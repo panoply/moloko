@@ -3,7 +3,7 @@
 Moloko is an embedded web based code editor built atop of [Monaco](https://github.com/microsoft/monaco-editor).
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/panoply/moloko/master/screenshot.png" width="90%">
+<img src="https://raw.githubusercontent.com/panoply/moloko/master/screenshot.png">
 </p>
 
 # Installation
