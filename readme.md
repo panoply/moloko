@@ -7,7 +7,7 @@ Moloko is an embedded web based code editor built atop of [Monaco](https://githu
 Moloko has peer dependencies on [mithril.js](https://mithril.js.org) and [Æsthetic](https://github.com/panoply/esthetic). Both these modules need to be installed in order for moloko to be used.
 
 ```bash
-pnpm add moloko-monaco mithril esthetic
+pnpm add moloko mithril esthetic
 ```
 
 ### Requirements
@@ -39,7 +39,7 @@ In addition to Liquid, Moloko also supports several other languages:
 Moloko leverages the powerful [mithril.js](https://mithril.js.org) SPA framework together with the [Æsthetic](https://github.com/panoply/esthetic) beautification tool and [Monaco](https://github.com/microsoft/monaco-editor) text editor.
 
 ```typescript
-import moloko from 'moloko-monaco';
+import moloko from 'moloko';
 
 // Render the editor to a document element
 moloko.mount(document.body, options?: Options);

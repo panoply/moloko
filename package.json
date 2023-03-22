@@ -1,6 +1,6 @@
 {
   "name": "moloko-monaco",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Liquid code editing and embedded support for the browser.",
   "main": "package/moloko.js",
   "module": "package/moloko.js",
