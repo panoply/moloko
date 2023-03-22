@@ -36,7 +36,7 @@ In addition to Liquid, Moloko also supports several other languages:
 
 # Usage
 
-Moloko leverages the powerful [mithril.js](https://mithril.js.org) SPA framework together with the [Ace](https://ace.c9.io/) text editor.
+Moloko leverages the powerful [mithril.js](https://mithril.js.org) SPA framework together with the [Æsthetic](https://github.com/panoply/esthetic) beautification tool and [Monaco](https://github.com/microsoft/monaco-editor) text editor.
 
 ```typescript
 import moloko from 'moloko-monaco';
