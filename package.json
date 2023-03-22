@@ -1,5 +1,5 @@
 {
-  "name": "moloko-monaco",
+  "name": "moloko",
   "version": "0.1.0",
   "description": "Liquid code editing and embedded support for the browser.",
   "main": "package/moloko.js",
