@@ -4,7 +4,7 @@ import b from 'bss';
 import { file, icon } from './icons';
 import { config } from 'attrs';
 import esthetic from 'esthetic';
-import * as monaco from 'monaco-editor';
+import { monaco } from '../monaco';
 
 export function ghissue (options = {}) {
 
@@ -86,8 +86,16 @@ export const Sidebar: m.ClosureComponent<IAttrs> = ({ attrs }) => {
         }
         , file(attrs.input.language)
       )
-      , actions.map(([ key, action ]: [keyof ISidebar['actions'], IActions ]) => (
-        m(
+      , actions.map(
+        (
+          [
+            key,
+            action
+          ]: [
+            keyof ISidebar['actions'],
+            IActions
+          ]
+        ) => m(
           'button[type="button"]' + button
           , {
             onclick: async () => {
@@ -126,7 +134,7 @@ export const Sidebar: m.ClosureComponent<IAttrs> = ({ attrs }) => {
           }
           , icon(action.icon)
         )
-      ))
+      )
     )
   };
 };

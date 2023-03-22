@@ -1,4 +1,4 @@
-import { editor } from 'monaco-editor';
+import type { editor } from 'monaco-editor';
 
 const shared: editor.ITokenThemeRule[] = [
   {
@@ -145,6 +145,9 @@ const javascript: editor.ITokenThemeRule[] = [
 
 ];
 
+/**
+ * Theme Rules
+ */
 const rules: editor.ITokenThemeRule[] = [
   ...shared,
   ...liquid,
@@ -159,21 +162,6 @@ export const PotionTheme: editor.IStandaloneThemeData = {
   inherit: true,
   colors: {
     'editor.background': '#0f1215',
-    'editor.foreground': '#fafafa',
-    'editor.selectionBackground': '#253B76',
-    'editor.lineHighlightBackground': '#FFFFFF0F',
-    'editorCursor.foreground': '#FFFFFFA6',
-    'editorWhitespace.foreground': '#FFFFFF40',
-    'editorHoverWidget.background': '#161616'
-  },
-  rules
-};
-
-export const PotionPreview: editor.IStandaloneThemeData = {
-  base: 'vs-dark',
-  inherit: true,
-  colors: {
-    'editor.background': '#0e0e0e',
     'editor.foreground': '#fafafa',
     'editor.selectionBackground': '#253B76',
     'editor.lineHighlightBackground': '#FFFFFF0F',

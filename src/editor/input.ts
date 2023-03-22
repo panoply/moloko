@@ -2,53 +2,62 @@ import { IAttrs } from 'types';
 import * as hash from 'editor/hash';
 import m from 'mithril';
 import esthetic from 'esthetic';
-import * as monaco from 'monaco-editor';
+import { monaco } from '../monaco';
 
-monaco.languages.registerDocumentRangeFormattingEditProvider({ language: 'liquid' }, {
-  provideDocumentRangeFormattingEdits: (model) => {
-
-    const text = esthetic.format(model.getValue());
-
-    return [
-      {
-        text,
-        range: model.getFullModelRange()
-      }
-    ];
+export const Input: m.ClosureComponent<IAttrs> = ({
+  attrs: {
+    input,
+    editor,
+    previewOpen,
+    previewMode
   }
-});
+}) => {
 
-export const Input: m.Component<IAttrs> = {
+  monaco.languages.registerDocumentRangeFormattingEditProvider(
+    {
+      language: input.language
+    }
+    , {
+      provideDocumentRangeFormattingEdits: (model) => {
 
-  oncreate: ({ dom, attrs }) => {
+        const text = esthetic.format(model.getValue());
 
-    attrs.editor.input = monaco.editor.create(dom as HTMLElement, {
-      model: attrs.input.model
-    });
-
-    attrs.editor.input.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, function () {
-      attrs.editor.input.getAction('editor.action.formatDocument').run();
-    });
-
-    attrs.input.model.onDidChangeContent(async event => {
-
-      hash.encode(attrs);
-
-      if (event.isRedoing || event.isUndoing) return;
-
-      if (attrs.previewOpen && attrs.previewMode === 'diff') {
-        const value = attrs.editor.input.getValue();
-        const text = esthetic.format(value);
-        attrs.editor.diff = await monaco.editor.colorize(text, attrs.input.language, {});
-        m.redraw();
+        return [
+          {
+            text,
+            range: model.getFullModelRange()
+          }
+        ];
       }
+    }
+  );
 
-    });
+  const command = () => editor.input.getAction('editor.action.formatDocument').run();
 
-    // hash.encode(attrs);
+  return {
+    oncreate: ({ dom, attrs }) => {
 
-  },
+      const { model } = input;
 
-  view: () => m('div', { style: { height: '100%' } })
+      editor.input = monaco.editor.create(dom as HTMLElement, { model });
+      editor.input.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, command);
+      input.model.onDidChangeContent(async event => {
+
+        hash.encode(attrs);
+
+        if (event.isRedoing || event.isUndoing) return;
+
+        if (previewOpen && previewMode === 'diff') {
+          const value = editor.input.getValue();
+          const text = esthetic.format(value);
+          editor.diff = await monaco.editor.colorize(text, attrs.input.language, {});
+          m.redraw();
+        }
+
+      });
+
+    },
+    view: () => m('div', { style: { height: '100%' } })
+  };
 
 };

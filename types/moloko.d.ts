@@ -256,8 +256,27 @@ export interface IAttrs {
 
 }
 
-export interface IOptions {
-
+export interface IConfig {
+  /**
+   * ESM Module Paths
+   *
+   * Reference to the external modules relative to the
+   * distribution bundle.
+   */
+  paths?: {
+    /**
+     * Monaco Editor
+     *
+     * @default './'
+     */
+    monaco?: string;
+    /**
+     * Workers
+     *
+     * @default './workers/'
+     */
+    workers?: string;
+  };
   /**
    * Monaco Editor Options
    *

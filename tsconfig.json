@@ -11,7 +11,6 @@
   "include": [
     "src",
     "types",
-    "node_modules/.ace/build/src/ace.js",
     "tsup.ts"
  ],
   "typeAcquisition": {
@@ -39,7 +38,6 @@
       "store": ["./src/store.ts"],
       "editor/*": ["./src/editor/*"],
       "monaco/*": ["./src/monaco/*"],
-      "monaco-editor": ["./node_modules/esm/vs/editor/editor.main.js"],
       "bss": ["./types/bss.d.ts"]
     }
   }

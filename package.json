@@ -1,7 +1,7 @@
 {
   "name": "moloko",
-  "version": "0.1.0",
-  "description": "Liquid code editing and embedded support for the browser.",
+  "version": "0.1.0-beta.1",
+  "description": "Moloko is an embedded web based code editor built atop of Monaco",
   "main": "package/moloko.js",
   "module": "package/moloko.js",
   "types": "index.d.ts",
@@ -14,7 +14,8 @@
   },
   "scripts": {
     "dev": "concurrently \"tsup --watch\" \"http-server -o\"",
-    "build": "tsup --minify --env.NODE_ENV production"
+    "workers": "pnpm tsup --minify --env.NODE_ENV workers",
+    "build": "pnpm tsup --minify  --env.NODE_ENV=production"
   },
   "keywords": [],
   "author": "",
@@ -73,6 +74,7 @@
   "dependencies": {
     "bss": "^1.6.4",
     "lz-string": "^1.5.0",
+    "mergerino": "^0.4.0",
     "minimist": "^1.2.8"
   },
   "peerDependencies": {

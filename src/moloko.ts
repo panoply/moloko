@@ -1,4 +1,4 @@
-import type { IOptions } from 'types';
+import type { IConfig } from 'types';
 import esthetic from 'esthetic';
 import * as hash from 'editor/hash';
 import { attrs, config } from 'attrs';
@@ -6,10 +6,10 @@ import m from 'mithril';
 import b from 'bss';
 import { Sidebar } from 'src/components/sidebar';
 import { Footer } from 'src/components/footer';
-import { getEditor, getRules } from 'monaco/models';
-import { defaults } from 'monaco/config';
 import { Input } from 'editor/input';
 import { Rules } from 'editor/rules';
+import { load, setEditorOptions, getInputModel, getRulesModel } from './monaco';
+import merge from 'mergerino';
 
 esthetic.config({
   logColors: false
@@ -23,7 +23,7 @@ esthetic.config({
  * Quickly checks if the editor session is
  * hashed and preloads any required modules.
  */
-function configure (options: IOptions) {
+function configure (options: IConfig) {
 
   if (options.hash) {
     if (window.location.hash.charCodeAt(1) === 77 && window.location.hash.charCodeAt(2) === 61) {
@@ -45,7 +45,7 @@ function configure (options: IOptions) {
           languageName: file.languageName,
           order: file.order,
           uri: file.uri,
-          model: getEditor(file.language, file.model)
+          model: getInputModel(file.language, file.model)
         });
 
       }
@@ -59,7 +59,7 @@ function configure (options: IOptions) {
     attrs.previewOpen = text.previewOpen;
     attrs.rulesOpen = text.rulesOpen;
 
-    attrs.model.rules = getRules(text.rules);
+    attrs.model.rules = getRulesModel(text.rules);
 
     esthetic.rules(text.rules);
 
@@ -67,9 +67,9 @@ function configure (options: IOptions) {
 
     esthetic.rules({ language: options.language });
 
-    attrs.model.rules = getRules(attrs.rules);
+    attrs.model.rules = getRulesModel(attrs.rules);
     attrs.input = {
-      model: getEditor(options.language, options.input),
+      model: getInputModel(options.language),
       language: options.language,
       languageName: options.language,
       order: 0,
@@ -83,16 +83,17 @@ function configure (options: IOptions) {
 /**
  * Moloko Initialize
  */
-export async function mount (element: HTMLElement, options: IOptions = {}) {
+export async function mount (element: HTMLElement, options: IConfig = {}) {
 
-  if ('monaco' in options) Object.assign(config.monaco, options.monaco);
-  if ('sidebar' in options) Object.assign(config.sidebar, options.sidebar);
-  if ('footer' in options) Object.assign(config.footer, options.footer);
-  if ('colors' in options) Object.assign(config.colors, options.colors);
+  Object.assign(config, merge(config, options));
 
-  Object.assign(config, options);
+  try {
+    await load(config);
+  } catch (e) {
+    throw new Error('Failed to load Monaco', e);
+  }
 
-  defaults(config.monaco);
+  setEditorOptions(config.monaco);
   configure(config);
 
   document.body.style.backgroundColor = config.colors.background;

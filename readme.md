@@ -10,6 +10,10 @@ Moloko has peer dependencies on [mithril.js](https://mithril.js.org) and [Æsthe
 pnpm add moloko mithril esthetic
 ```
 
+### Use Case?
+
+Moloko is developed for playground usage within [Æsthetic](https://github.com/panoply/esthetic) and [Liquify](https://github.com/panoply/liquify).
+
 ### Requirements
 
 Moloko is running atop of [Monaco](https://github.com/microsoft/monaco-editor) and thus it requires workers be integrated into a distribution bundle of your project.

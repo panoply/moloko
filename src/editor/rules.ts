@@ -1,58 +1,53 @@
 import type { IAttrs } from 'types';
 import m from 'mithril';
-import * as monaco from 'monaco-editor';
+import { monaco } from '../monaco';
 import esthetic from 'esthetic';
 
-monaco.languages.registerDocumentRangeFormattingEditProvider({ language: 'json' }, {
-  provideDocumentRangeFormattingEdits: (model) => {
-
-    const text = esthetic.json(model.getValue());
-
-    return [
-      {
-        text,
-        range: model.getFullModelRange()
-      }
-    ];
-  }
-});
-
-export const Rules: m.Component<IAttrs> = {
-  oncreate: (
-    {
-      dom,
-      attrs
+export const Rules: m.ClosureComponent<IAttrs> = (
+  {
+    attrs: {
+      editor,
+      model
     }
-  ) => {
+  }
+) => {
 
-    attrs.editor.rules = monaco.editor.create(dom as HTMLElement, {
-      model: attrs.model.rules
-    });
+  monaco.languages.registerDocumentRangeFormattingEditProvider(
+    {
+      language: 'json'
+    }
+    , {
+      provideDocumentRangeFormattingEdits: (textModel) => {
 
-    attrs.editor.rules.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, function () {
+        const text = esthetic.format(textModel.getValue());
 
-      esthetic.rules(JSON.parse(attrs.model.rules.getValue()));
+        return [
+          {
+            text,
+            range: textModel.getFullModelRange()
+          }
+        ];
+      }
+    }
+  );
 
-      console.log(esthetic.rules());
+  const command = async () => {
 
-      attrs.editor.rules
-        .getAction('editor.action.formatDocument')
-        .run()
-        .then(async () => {
+    esthetic.rules(JSON.parse(model.rules.getValue()));
 
-          await attrs.editor.input
-            .getAction('editor.action.formatDocument')
-            .run();
+    await editor.rules.getAction('editor.action.formatDocument').run();
+    await editor.input.getAction('editor.action.formatDocument').run();
 
-        });
-    });
+  };
 
-  },
-  onremove: ({ attrs }) => {
-
-    attrs.editor.rules.dispose();
-
-  },
-  view: () => m('div', { style: { height: '100%', overflow: 'hidden' } })
-
+  return {
+    oncreate: ({ dom }) => {
+      editor.rules = monaco.editor.create(dom as HTMLElement, { model: model.rules });
+      editor.rules.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, command);
+    },
+    onremove: ({ attrs: { editor: { rules } } }) => {
+      rules.dispose();
+    },
+    view: () => m('div', { style: { height: '100%', overflow: 'hidden' } })
+  };
 };

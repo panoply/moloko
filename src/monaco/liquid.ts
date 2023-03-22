@@ -1,4 +1,4 @@
-import { languages } from 'monaco-editor';
+import type { languages } from 'monaco-editor';
 
 const EMPTY_ELEMENTS: string[] = [
   'area',
@@ -57,7 +57,7 @@ export const configuration: languages.LanguageConfiguration = {
       ),
       afterText: /^<\/(\w[\w\d]*)\s*>$/i,
       action: {
-        indentAction: languages.IndentAction.IndentOutdent
+        indentAction: 2
       }
     },
     {
@@ -65,7 +65,7 @@ export const configuration: languages.LanguageConfiguration = {
         `<(?!(?:${EMPTY_ELEMENTS.join('|')}))(\\w[\\w\\d]*)([^/>]*(?!/)>)[^<]*$`,
         'i'
       ),
-      action: { indentAction: languages.IndentAction.Indent }
+      action: { indentAction: 1 }
     }
   ]
 };

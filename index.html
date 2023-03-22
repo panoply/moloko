@@ -8,7 +8,12 @@
     <link rel="stylesheet" href="./dist/moloko.css" />
     <script type="module">
       import moloko from "./dist/moloko.js"
-      moloko.mount(document.body)
+       moloko.mount(document.body, {
+          paths: {
+            monaco: './monaco.js',
+            workers: './dist/workers'
+          }
+        })
     </script>
   </head>
   <body></body>

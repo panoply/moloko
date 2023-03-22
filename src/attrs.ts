@@ -1,5 +1,5 @@
 import esthetic from 'esthetic';
-import type { IAttrs, IOptions } from 'types';
+import type { IAttrs, IConfig } from 'types';
 
 /**
  * Internal state reference.
@@ -37,7 +37,7 @@ export const attrs: IAttrs = {
 /**
  * Internal state reference.
  */
-export const config: IOptions = {
+export const config: IConfig = {
   monaco: {
     automaticLayout: false,
     useShadowDOM: true,

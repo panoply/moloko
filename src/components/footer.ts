@@ -2,7 +2,7 @@ import type { IAttrs } from 'types';
 import type { LanguageName, LanguageOfficialName } from 'esthetic';
 import m from 'mithril';
 import b from 'bss';
-import { file, icon } from 'src/components/icons';
+import { file, icon } from './icons';
 import { config } from 'attrs';
 
 export const Footer: m.Component<IAttrs> = {
