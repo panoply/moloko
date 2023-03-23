@@ -1,0 +1,462 @@
+/* stylelint-disable */
+$moloko-font-title: systsystem-ui, -apple-system, 'Segoe UI', Roboto,
+  Ubuntu, Cantarell, 'Noto Sans', sans-serif, BlinkMacSystemFont,
+  'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+  'Segoe UI Emoji', 'Segoe UI Symbolem-ui';
+/* stylelint-enabled */
+
+$tooltip-bg: #000;
+$tooltip-font-family: system-ui, sans-serif;
+$tooltip-font-style: normal;
+$tooltip-font-size: 0.5rem;
+$tooltip-font-color: #fafafa;
+$tooltip-padding-y: 0.3rem;
+$tooltip-padding-x: 0.6rem;
+$tooltip-arrow-size: 9px;
+$tooltip-radius: 0;
+$tooltip-border-width: 0.03rem;
+$tooltip-animation: true;
+$tooltip-use-outline: false;
+$tooltip-arrow-directions: (
+  bottom: top,
+  top: bottom,
+  left: right,
+  right: left
+);
+
+@mixin arrow($direction) {
+  @if not map-has-key($tooltip-arrow-directions, $direction) {
+    $keys: map-keys($tooltip-arrow-directions);
+
+    @error "[tooltip] The $direction parameter must be one of: `#{$keys}, `#{$direction}` was given.";
+  }
+
+  width: 0;
+  height: 0;
+
+  @if $tooltip-use-outline {
+    border: $tooltip-arrow-size solid transparent;
+    border-#{map-get($tooltip-arrow-directions, $direction)}-color: $tooltip-bg;
+  } @else {
+    border: $tooltip-arrow-size solid transparent;
+    border-#{map-get($tooltip-arrow-directions, $direction)}-color: $tooltip-bg;
+  }
+}
+
+@mixin base-effects() {
+  opacity: 0;
+  pointer-events: none;
+
+  @if $tooltip-animation {
+    transition: opacity 0.12s ease-out 0.12s,
+      transform 0.12s ease-out 0.12s;
+  } @else {
+    transition: none;
+  }
+}
+
+@mixin normalized-text() {
+  font-weight: 400;
+  font-size: $tooltip-font-size;
+  font-family: $tooltip-font-family;
+  font-style: normal;
+  font-style: $tooltip-font-style;
+  text-indent: 0;
+  text-shadow: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+//
+// Styles
+// -----------------------------------------
+
+// IE 11 button bugfix
+button[aria-label] {
+  &[data-tooltip] {
+    overflow: visible;
+  }
+}
+
+[aria-label] {
+  &[data-tooltip] {
+    position: relative; // alt. absolute or fixed
+    cursor: pointer; // Fixing iOS Safari event issue. More info at: https://goo.gl/w8JF4W
+
+    &::after {
+      @include base-effects;
+      @include normalized-text;
+
+      @if $tooltip-use-outline {
+        background: inherit;
+        border: $tooltip-border-width solid $tooltip-bg;
+        color: $tooltip-font-color;
+      } @else {
+        background: $tooltip-bg;
+        color: $tooltip-font-color;
+      }
+
+      position: absolute;
+      z-index: 99999;
+      padding: $tooltip-padding-y $tooltip-padding-x;
+      white-space: nowrap;
+      border-radius: $tooltip-radius;
+      content: attr(aria-label);
+    }
+
+    &::before {
+      @include arrow(bottom);
+      @include base-effects;
+
+      position: absolute;
+      z-index: 10;
+      content: '';
+    }
+
+    &:hover,
+    &[data-tooltip*=':show'] {
+      &::before,
+      &::after {
+        opacity: 1;
+        pointer-events: none;
+      }
+    }
+
+    &[data-tooltip='top'],
+    &[data-tooltip='bottom'] {
+      &:hover {
+        &::after,
+        &::before {
+          transform: translate(-50%, 0);
+        }
+      }
+    }
+
+    &[data-tooltip*='-left'] {
+      &::after {
+        left: 0;
+      }
+
+      &::before {
+        left: 5px;
+      }
+    }
+
+    &[data-tooltip*='-right'] {
+      &::after {
+        right: 0;
+      }
+
+      &::before {
+        right: 5px;
+      }
+    }
+
+    &[data-tooltip*='-left'],
+    &[data-tooltip*='-right'] {
+      &:hover {
+        &::before,
+        &::after {
+          transform: translate(0, 0);
+        }
+      }
+    }
+
+    &[data-tooltip^='top'] {
+      &::before,
+      &::after {
+        bottom: 100%;
+        transform: translate(0, 0);
+        transform-origin: top;
+      }
+
+      &::after {
+        margin-bottom: $tooltip-arrow-size + 5px;
+      }
+    }
+
+    &[data-tooltip='top'] {
+      &::before,
+      &::after {
+        left: 50%;
+        transform: translate(-50%, 0);
+      }
+    }
+
+    &[data-tooltip^='bottom'] {
+      &::before,
+      &::after {
+        top: 100%;
+        transform: translate(0, calc(0 * -1));
+      }
+
+      &::after {
+        margin-top: $tooltip-arrow-size + 5px;
+      }
+
+      &::before {
+        @include arrow(top);
+      }
+    }
+
+    &[data-tooltip='bottom'] {
+      &::after,
+      &::before {
+        left: 50%;
+        transform: translate(-50%, calc(0 * -1));
+      }
+    }
+
+    &[data-tooltip='left'],
+    &[data-tooltip='right'] {
+      &:hover {
+        &::before,
+        &::after {
+          transform: translate(0, -50%);
+        }
+      }
+    }
+
+    &[data-tooltip='left'] {
+      &::after,
+      &::before {
+        top: 50%;
+        right: 100%;
+        transform: translate(0, -50%);
+      }
+
+      &::after {
+        margin-right: $tooltip-arrow-size + 5px;
+      }
+
+      &::before {
+        @include arrow(right);
+      }
+    }
+
+    &[data-tooltip='right'] {
+      &::after,
+      &::before {
+        top: 50%;
+        left: 75%;
+        transform: translate(calc(0 * -1), -50%);
+      }
+
+      &::after {
+        margin-left: $tooltip-arrow-size + 5px;
+      }
+
+      &::before {
+        @include arrow(left);
+      }
+    }
+  }
+}
+
+.moloko-wrapper {
+  position: absolute;
+  right: 0;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+
+.moloko-container {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.moloko-sidebar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-flow: column wrap;
+  height: 100%;
+  border-right: 0.01rem solid var(--moloko-border);
+
+  .button {
+    padding: 30px 25px;
+    color: #fafafa;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    &.lang {
+      display: flex;
+      justify-content: center;
+      padding: 20px 0;
+      transition: background 0.3s linear;
+
+      svg {
+        overflow: visible;
+      }
+
+      &:hover {
+        svg {
+          opacity: 0.8;
+        }
+      }
+    }
+
+    &:hover {
+      color: var(--moloko-accent);
+      transition: color 0.15s linear;
+    }
+  }
+}
+
+.moloko-language {
+  position: absolute;
+  width: 200px;
+  height: 100%;
+  border-right: 0.01rem solid var(--moloko-border);
+  transition: left 0.15s linear;
+  will-change: left;
+
+  .select-lang {
+    padding: 30px 0;
+    color: #384355;
+    font-weight: 600;
+    font-size: 0.8rem;
+    font-family: system-ui, sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .button {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    width: 100%;
+    padding: 18px 20px;
+    color: #fafafa;
+    text-align: left;
+    background: transparent;
+    border: 0;
+    border-left: 1.5px solid transparent;
+
+    &.current {
+      color: var(--moloko-accent);
+      border-left: 1.5px solid var(--moloko-accent);
+
+      &:hover {
+        cursor: initial;
+      }
+    }
+
+    &:hover {
+      border-left: 1.5px solid var(--moloko-accent);
+      cursor: pointer;
+
+      > svg {
+        fill: var(--moloko-accent);
+        transition: fill 0.15s linear;
+      }
+    }
+
+    > svg {
+      width: 22px;
+      height: 17px;
+      overflow: visible;
+    }
+  }
+}
+
+// RULES PANE
+.moloko-rules {
+  position: absolute;
+  inset: 0 60% 0 0;
+  width: 40%;
+  height: 100%;
+
+  &::after {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 40%;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    color: rgb(50 55 64 / 35%);
+    font-weight: 900;
+    font-size: 2.5rem;
+    font-family: $moloko-font-title;
+    font-style: italic;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-orientation: mixed;
+    content: attr(aria-label);
+    writing-mode: vertical-rl;
+  }
+}
+
+// INPUT PANE
+.moloko-input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  height: 100%;
+  transition: left 0.2s linear;
+  will-change: left;
+}
+
+// PREVIEW PANE
+.moloko-preview {
+  position: absolute;
+  top: 25px;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  z-index: 2;
+  padding: 25px 15px;
+  overflow: scroll;
+  border-left: 0.01rem solid;
+  transition: left 0.2s linear;
+  will-change: left;
+
+  &::after {
+    position: fixed;
+    top: 0;
+    right: 25px;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    color: rgb(50 55 64 / 35%);
+    font-weight: 900;
+    font-size: 2.5rem;
+    font-family: $moloko-font-title;
+    font-style: italic;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-orientation: mixed;
+    content: attr(aria-label);
+    writing-mode: vertical-rl;
+  }
+}
+
+.moloko-preview-top {
+  position: fixed;
+  right: 0;
+  height: 40px;
+  border-bottom: 0.01rem solid;
+  border-left: 0.01rem solid;
+}
+
+.moloko-pre {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 0;
+  font-variation-settings: normal;
+}

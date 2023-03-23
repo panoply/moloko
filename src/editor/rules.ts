@@ -46,7 +46,9 @@ export const Rules: m.ClosureComponent<IAttrs> = (
       editor.rules.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, command);
     },
     onremove: ({ attrs: { editor: { rules } } }) => {
-      rules.dispose();
+      setTimeout(() => {
+        rules.dispose();
+      }, 300);
     },
     view: () => m('div', { style: { height: '100%', overflow: 'hidden' } })
   };

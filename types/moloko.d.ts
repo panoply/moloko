@@ -143,10 +143,6 @@ export interface IFooter {
 
 export interface IEditor {
   /**
-   * The Language identifier
-   */
-  diff: string;
-  /**
    * Rules model and editor instances
    */
   rules: editor.IStandaloneCodeEditor;
@@ -157,14 +153,6 @@ export interface IEditor {
 }
 
 export interface IFile {
-  /**
-   * A URI identifier of the current document
-   */
-  uri: string;
-  /**
-   * The order index of the document tab (`0` if tabs are disabled)
-   */
-  order: number;
   /**
    * The Language identifier
    */
@@ -180,6 +168,10 @@ export interface IFile {
 }
 
 export interface IAttrs {
+  /**
+   * Base Path for file resolutions
+   */
+  path: string;
   /**
    * The current hash reference
    *
@@ -205,41 +197,41 @@ export interface IAttrs {
   /**
    * Whether or not the language selector is open
    *
-   * @default false
+   * - `0` _inactive (hidden)_
+   * - `1` _active (shown)_
+   * - `2` _toggled (transitions)_
+   *
+   * @default 0
    */
-  languagesOpen: boolean;
+  languagesOpen: 0 | 1 | 2;
   /**
    * Æsthetic Rules Editor Open
    *
-   * @default false
+   * - `0` _inactive (hidden)_
+   * - `1` _active (shown)_
+   * - `2` _toggled (transitions)_
+   *
+   * @default 0
    */
-  rulesOpen: boolean;
+  rulesOpen: 0 | 1 | 2;
   /**
    * Whether or not the Preview pane is open
    *
-   * @default false
+   * - `0` _inactive (hidden)_
+   * - `1` _active (shown)_
+   * - `2` _toggled (transitions)_
+   *
+   * @default 0
    */
-  previewOpen: boolean;
-  /**
-   * Active File
-   */
-  set input(file: IFile)
-  /**
-   * Active Input
-   */
-  get input(): IFile
-  /**
-   * Active File index
-   */
-  idx: number;
+  previewOpen: 0 | 1 | 2;
   /**
    * List of open editor model files
    */
   model: {
     /**
-     * Diff Preview Editor Model
+     * Preview String
      */
-    diff: editor.ITextModel
+    preview: string;
     /**
     * Rules Editor model
     */
@@ -247,7 +239,7 @@ export interface IAttrs {
     /**
      * Input Editor Models
      */
-    input: IFile[];
+    input: editor.ITextModel;
   }
   /**
    * Editor Instances
@@ -258,24 +250,36 @@ export interface IAttrs {
 
 export interface IConfig {
   /**
-   * ESM Module Paths
+   * URI Path Resolved
    *
-   * Reference to the external modules relative to the
-   * distribution bundle.
+   * By default, all files will resolve at the following locations:
+   *
+   * - `https://website.com/moloko.js`
+   * - `https://website.com/moloko.css`
+   * - `https://website.com/monaco.js`
+   * - `https://website.com/monaco.css`
+   * - `https://website.com/workers/css.js`
+   * - `https://website.com/workers/editor.js`
+   * - `https://website.com/workers/html.js`
+   * - `https://website.com/workers/json.js`
+   * - `https://website.com/workers/typescript.js`
    */
-  paths?: {
+  resolve?: {
     /**
-     * Monaco Editor
+     * Origin Location
      *
-     * @default './'
+     * @default window.location.origin
      */
-    monaco?: string;
+    origin?: string;
     /**
-     * Workers
+     * Moloko Directory location.
      *
-     * @default './workers/'
+     * **NOTE**
+     *
+     * Do not include extensions, provide only path
+     * detinations.
      */
-    workers?: string;
+    path?: string;
   };
   /**
    * Monaco Editor Options
@@ -283,6 +287,23 @@ export interface IConfig {
    * These will be defined at runtime as defaults.
    */
   monaco?: editor.IEditorOptions;
+  /**
+   * Whether or not instructions should render onload
+   */
+  instructions?: boolean;
+  /**
+   * The code preview pane
+   */
+  preview?: {
+    /**
+     * The background colour of the preview pane
+     */
+    background?: string;
+    /**
+     * Control the scroll sync behaviour
+     */
+    scrollSync?: 'off' | 'auto' | 'instant' | 'smooth';
+  }
   /**
    * The default Language
    *
@@ -343,6 +364,10 @@ export interface IConfig {
      */
     background?: string;
     /**
+     * The base backdrop color (a lighter tone than background)
+     */
+    backdrop?: string;
+    /**
      * The accent color (ie: hovers, active etc)
      */
     accents?: string;
@@ -353,12 +378,7 @@ export interface IConfig {
   };
 }
 
-export interface Hash extends Omit<IAttrs, | 'hash' | 'input' | 'editor' | 'files' | 'model'> {
-  input: {
-    uri: string;
-    order: number;
-    language: string;
-    languageName: LanguageOfficialName;
-    model: string;
-  }[]
+export interface Hash extends Omit<IAttrs, | 'hash' | 'input' | 'editor' | 'files' | 'model' | 'path'> {
+  model: string;
+  language: string;
 }

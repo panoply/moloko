@@ -6,7 +6,7 @@ import { monaco } from '../monaco';
 
 export const Input: m.ClosureComponent<IAttrs> = ({
   attrs: {
-    input,
+    model,
     editor,
     previewOpen,
     previewMode
@@ -15,7 +15,8 @@ export const Input: m.ClosureComponent<IAttrs> = ({
 
   monaco.languages.registerDocumentRangeFormattingEditProvider(
     {
-      language: input.language
+      language: model.input.getLanguageId(),
+      hasAccessToAllModels: false
     }
     , {
       provideDocumentRangeFormattingEdits: (model) => {
@@ -37,25 +38,26 @@ export const Input: m.ClosureComponent<IAttrs> = ({
   return {
     oncreate: ({ dom, attrs }) => {
 
-      const { model } = input;
+      if (editor.input === null) {
 
-      editor.input = monaco.editor.create(dom as HTMLElement, { model });
-      editor.input.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, command);
-      input.model.onDidChangeContent(async event => {
+        editor.input = monaco.editor.create(dom as HTMLElement, { model: model.input });
+        editor.input.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, command);
+        model.input.onDidChangeContent(async event => {
 
-        hash.encode(attrs);
+          hash.encode(attrs);
 
-        if (event.isRedoing || event.isUndoing) return;
+          if (event.isRedoing || event.isUndoing) return;
 
-        if (previewOpen && previewMode === 'diff') {
-          const value = editor.input.getValue();
-          const text = esthetic.format(value);
-          editor.diff = await monaco.editor.colorize(text, attrs.input.language, {});
-          m.redraw();
-        }
+          if (previewOpen && previewMode === 'diff') {
+            const value = editor.input.getValue();
+            const text = esthetic.format(value);
+            attrs.model.preview = await monaco.editor.colorize(text, model.input.getLanguageId(), {});
+            m.redraw();
+          }
 
-      });
+        });
 
+      }
     },
     view: () => m('div', { style: { height: '100%' } })
   };

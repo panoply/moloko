@@ -9,7 +9,6 @@ import lz from 'lz-string';
  */
 export function encode ({
   detectLanguage,
-  idx,
   languagesOpen,
   model,
   previewMode,
@@ -18,34 +17,18 @@ export function encode ({
   rulesOpen
 }: IAttrs) {
 
-  const input = model.input.map((
-    {
-      language,
-      languageName,
-      model,
-      order,
-      uri
-    }
-  ) => ({
-    language,
-    languageName,
-    order,
-    uri,
-    model: model.getValue()
-  }));
-
   attrs.hash = 'M=' + lz.compressToEncodedURIComponent(JSON.stringify(<Hash>{
-    detectLanguage,
-    input,
-    idx,
+    language: model.input.getLanguageId(),
+    model: model.input.getValue(),
     languagesOpen,
+    detectLanguage,
     previewMode,
     previewOpen,
     rules,
     rulesOpen
   }));
 
-  // window.location.hash = attrs.hash;
+  window.location.hash = attrs.hash;
 
 }
 

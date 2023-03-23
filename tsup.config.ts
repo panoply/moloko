@@ -13,6 +13,7 @@ export default defineConfig([
     ] : [],
     noExternal: process.env.production ? [] : [
       'bss',
+      'url-join',
       'lz-string',
       'mergerino',
       'mithril',

@@ -4,7 +4,7 @@ import { configuration, liquid } from 'monaco/liquid';
 import { schema } from 'monaco/schema';
 import esthetic, { LanguageName, Rules } from 'esthetic';
 import { SAMPLE } from 'monaco/sample';
-import { IConfig } from 'types';
+import join from 'url-join';
 
 /**
  * Monaco Editor
@@ -19,34 +19,41 @@ export let monaco: typeof import('monaco-editor');
  * The monaco editor module is loaded externally, this function
  * will trigger the import and assign the `monaco` let variable.
  */
-export async function load ({ paths }: IConfig) {
+export async function getMonacoModule (path: string) {
 
-  monaco = await import(paths.monaco);
+  monaco = await import(join(path, 'monaco.js'));
 
   monaco.languages.setMonarchTokensProvider('liquid', liquid);
   monaco.languages.setLanguageConfiguration('liquid', configuration);
+  monaco.languages.html.registerHTMLLanguageService('liquid');
+  monaco.languages.register({
+    id: 'liquid',
+    extensions: [ '.liquid' ],
+    aliases: [ 'Liquid', 'liquid' ],
+    mimetypes: [ 'text/liquid' ]
+  });
 
   self.MonacoEnvironment = {
     getWorkerUrl: (_, label) => {
 
       switch (label) {
         case 'json':
-          return `${paths.workers}/json.js`;
+          return join(path, 'workers', 'json.js');
         case 'css':
         case 'scss':
         case 'less':
-          return `${paths.workers}/css.js`;
+          return join(path, 'workers', 'css.js');
         case 'html':
         case 'xml':
         case 'liquid':
-          return `${paths.workers}/html.js`;
+          return join(path, 'workers', 'html.js');
         case 'javascript':
         case 'typescript':
         case 'jsx':
         case 'tsx':
-          return `${paths.workers}/typescript.js`;
+          return join(path, 'workers', 'typescript.js');
         default:
-          return `${paths.workers}/editor.js`;
+          return join(path, 'workers', 'editor.js');
       }
 
     }

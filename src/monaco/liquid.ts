@@ -25,7 +25,6 @@ const EMPTY_ELEMENTS: string[] = [
  * Language configuration for Liquid
  */
 export const configuration: languages.LanguageConfiguration = {
-
   colorizedBracketPairs: [],
   wordPattern: /(-?\d*\.\d\w*)|([^`~!@$^&*()=+[{\]}\\|;:'",.<>/\s]+)/g,
   brackets: [
