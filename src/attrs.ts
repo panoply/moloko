@@ -5,30 +5,22 @@ import type { IAttrs, IConfig } from 'types';
  * Internal state reference.
  */
 export const attrs: IAttrs = {
-  set input (file) {
-    attrs.idx = attrs.model.input.length;
-    attrs.model.input.push(file);
-  },
-  get input () {
-    return attrs.model.input[attrs.idx];
-  },
   get rules () {
     return esthetic.rules();
   },
   hash: '',
+  path: '',
   detectLanguage: true,
-  languagesOpen: false,
+  languagesOpen: 0,
+  rulesOpen: 0,
+  previewOpen: 0,
   previewMode: 'diff',
-  previewOpen: false,
-  rulesOpen: false,
-  idx: 0,
   model: {
-    diff: null,
+    preview: null,
     rules: null,
-    input: []
+    input: null
   },
   editor: {
-    diff: null,
     input: null,
     rules: null
   }
@@ -38,6 +30,10 @@ export const attrs: IAttrs = {
  * Internal state reference.
  */
 export const config: IConfig = {
+  resolve: {
+    origin: window.location.origin,
+    path: ''
+  },
   monaco: {
     automaticLayout: false,
     useShadowDOM: true,
@@ -70,16 +66,16 @@ export const config: IConfig = {
   hash: true,
   input: '',
   language: 'liquid',
+  instructions: true,
+  preview: {
+    background: '#13171a',
+    scrollSync: 'smooth'
+  },
   sidebar: {
     enable: true,
-    background: '#13171a',
+    background: '#0f1215',
     width: 75,
     actions: {
-      file: {
-        active: true,
-        icon: 'document',
-        tooltip: 'Current Document'
-      },
       rules: {
         active: false,
         icon: 'rules',
@@ -126,6 +122,7 @@ export const config: IConfig = {
   },
   colors: {
     background: '#0f1215',
+    backdrop: '#13171a',
     accents: '#e45589',
     borders: '#666666'
   }
