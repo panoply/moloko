@@ -5,13 +5,11 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./dist/moloko.css" />
     <script type="module">
       import moloko from "./dist/moloko.js"
        moloko.mount(document.body, {
-          paths: {
-            monaco: './monaco.js',
-            workers: './dist/workers'
+          resolve: {
+            path: 'dist'
           }
         })
     </script>
