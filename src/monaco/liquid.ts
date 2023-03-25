@@ -31,7 +31,9 @@ export const configuration: languages.LanguageConfiguration = {
     [ '<!--', '-->' ],
     [ '<', '>' ],
     [ '{{', '}}' ],
+    [ '{{-', '-}}' ],
     [ '{%', '%}' ],
+    [ '{%-', '-%}' ],
     [ '{', '}' ],
     [ '(', ')' ]
   ],
@@ -75,36 +77,70 @@ export const configuration: languages.LanguageConfiguration = {
  * Grammar support for the Liquid Template Language.
  */
 export const liquid: languages.IMonarchLanguage = {
-  defaultToken: '',
-  tokenPostfix: '',
+
   ignoreCase: true,
+  brackets: [
+    {
+      open: '{%',
+      close: '%}',
+      token: 'delimiter.liquid'
+    },
+    {
+      open: '{{',
+      close: '}}',
+      token: 'delimiter.liquid'
+    }
+  ],
+
+  script: [
+    'schema',
+    'endschema',
+    'javascript',
+    'endjavascript'
+  ],
+
+  styles: [
+    'style',
+    'endstyle',
+    'stylesheet',
+    'endstylesheet'
+  ],
+
   keywords: [
     // (opening) tags
-    'if',
+
+    // LIQUID SINGLETONS
+    'render',
+    'layout',
+    'include',
     'else',
     'elsif',
+    'cycle',
+    'liquid',
+
+    // LIQUID BLOCK TAGS
+    'if',
     'render',
     'assign',
     'capture',
     'case',
     'comment',
-    'cycle',
+    'increment',
     'decrement',
     'for',
-    'include',
-    'increment',
-    'layout',
-    'liquid',
     'section',
     'block',
     'raw',
-    'render',
     'tablerow',
     'unless',
+
+    // LIQUID EMBEDDED
     'schema',
-    'style',
     'stylesheet',
-    // closing tags
+    'style',
+    'javascript',
+
+    // LIQUID END TAG
     'endif',
     'endcapture',
     'endcase',
@@ -114,55 +150,113 @@ export const liquid: languages.IMonarchLanguage = {
     'endraw',
     'endtablerow',
     'endunless',
-    'endschema',
-    'endstyle',
-    'endstylesheet'
 
+    // LIQUID END EMBEDDED
+    'endschema',
+    'endstylesheet',
+    'endstyle',
+    'endjavascript'
   ],
 
   tokenizer: {
     root: [
-      [ /\s+/, '' ],
-      [ /{%-?\s*#/, 'comment.line.liquid', '@liquid_comment_line' ],
-      [ /{%-?\s*comment\s*-?%}/, 'comment.liquid', '@liquid_comment_block' ],
+
       [
-        /({%-?)(\s*)(schema)(\s*)(-?%})/,
+        /^-{3}/,
+        { token: 'delimiter.liquid', next: '@Frontmatter', nextEmbedded: 'yaml' }
+      ],
+
+      // WHITESPACE
+      [ /[ \t\r\n]+/, '' ],
+
+      // LIQUID COMMENTS
+
+      [ /{%-?\s*(?=\s*#)/, 'comment.line.liquid', '@LiquidLineComment' ],
+      [ /{%-?\s*comment\s*-?%}/, 'comment.liquid', '@LiquidBlockComment' ],
+
+      // LIQUID TAGS
+
+      [
+        /({%)(-?\s*)(style)(\s*-?)(%})/,
         [
-          'delimiter.tag.liquid',
+          'delimiter.liquid',
           '',
           'tag.liquid',
           '',
-          { token: 'delimiter.tag.liquid', next: '@liquid_script', nextEmbedded: 'javascript' }
+          { token: 'delimiter.liquid', next: '@LiquidStyle', nextEmbedded: 'css' }
         ]
       ],
+
       [
-        /({%-?)(\s*)(style(?:sheet)?)(\s*)(-?%})/,
+        /({%)(-?\s*)(stylesheet)(\s*-?)(%})/,
         [
-          'delimiter.tag.liquid',
+          'delimiter.liquid',
           '',
           'tag.liquid',
           '',
-          { token: 'delimiter.tag.liquid', next: '@liquid_style', nextEmbedded: 'css' }
+          { token: 'delimiter.liquid', next: '@LiquidStylesheet', nextEmbedded: 'css' }
         ]
       ],
-      [ /({%-?)([ \n\t\f]*)([\w_-]+)/, [ 'delimiter.tag.liquid', '', { token: 'tag.liquid', next: '@liquid_tag' } ] ],
-      [ /{{-?/, 'delimiter.output.liquid', '@liquid_outputs' ],
-      [ /{%-?/, 'delimiter.liquid' ],
-      [ /<!DOCTYPE/, 'metatag.html', '@doctype' ],
-      [ /<!--/, 'comment.html', '@comment' ],
+
+      [
+        /({%)(-?\s*)(schema)(\s*-?)(%})/,
+        [
+          'delimiter.liquid',
+          '',
+          'tag.liquid',
+          '',
+          {
+            token: 'delimiter.liquid',
+            next: '@LiquidSchema',
+            nextEmbedded: 'json'
+          }
+        ]
+      ],
+
+      [
+        /({%)(-?\s*)(javascript)(\s*-?)(%})/,
+        [
+          'delimiter.liquid',
+          '',
+          'tag.liquid',
+          '',
+          {
+            token: 'delimiter.liquid',
+            next: '@LiquidJavaScript',
+            nextEmbedded: 'javascript'
+          }
+        ]
+      ],
+
+      [ /{%/, { token: '@rematch', next: '@LiquidTag' } ],
+      [ /{{/, { token: '@rematch', next: '@LiquidOutput' } ],
+
+      // HTML COMMENT
+
+      [ /<!--/, 'comment.html', '@HTMLComment' ],
+
+      // HTML TAGS
+
+      [ /<!DOCTYPE/, 'metatag.html', '@HTMLDocType' ],
       [ /(<)((?:[\w-]+:)?[\w-]+)(\s*)(\/>)/, [ 'delimiter.html', 'tag.html', '', 'delimiter.html' ] ],
-      [ /(<)(script)/, [ 'delimiter.html', { token: 'tag.html', next: '@script' } ] ],
-      [ /(<)(style)/, [ 'delimiter.html', { token: 'tag.html', next: '@style' } ] ],
-      [ /(<)((?:[\w-]+:)?[\w-]+)/, [ 'delimiter.html', { token: 'tag.html', next: '@html_tag' } ] ],
-      [ /(<\/)((?:[\w-]+:)?[\w-]+)/, [ 'delimiter.html', { token: 'tag.html', next: '@html_tag' } ] ],
+
+      // HTML EMBEDDED
+
+      [ /(<)(script)/, [ 'delimiter.html', { token: 'tag.html', next: '@HTMLTagScript' } ] ],
+      [ /(<)(style)/, [ 'delimiter.html', { token: 'tag.html', next: '@HTMLTagStyle' } ] ],
+
+      // HTML STANDARD TAGS
+
+      [ /(<)((?:[\w-]+:)?[\w-]+)/, [ 'delimiter.html', { token: 'tag.html', next: '@HTMLTag' } ] ],
+      [ /(<\/)((?:[\w-]+:)?[\w-]+)/, [ 'delimiter.html', { token: 'tag.html', next: '@HTMLTag' } ] ],
       [ /</, 'delimiter.html' ],
-      [ /[^<]+/, '' ] // text
+      [ /[^<]+/, '' ]
     ],
 
     /**
      * Liquid Comment Blocks
      */
-    liquid_comment_block: [
+    LiquidBlockComment: [
       [ /{%-?\s*endcomment\s*-?%}/, 'comment.end.liquid', '@pop' ],
       [ /./, 'comment.content.liquid' ]
     ],
@@ -170,14 +264,45 @@ export const liquid: languages.IMonarchLanguage = {
     /**
      * Liquid Comment Line
      */
-    liquid_comment_line: [
-      [ /%}/, 'comment.content.liquid', '@pop' ]
+    LiquidLineComment: [
+      [ /%}/, 'comment.content.liquid', '@pop' ],
+      [ /./, 'comment.content.liquid' ]
     ],
 
-    liquid_script: [
+    Frontmatter: [
+      [ /[ \t\r\n]+/, '' ],
+      [
+        /^-{3}$/
+        ,
+        {
+          token: 'delimiter.liquid',
+          next: '@pop',
+          nextEmbedded: '@pop'
+        }
+
+      ]
+    ],
+
+    LiquidJavaScript: [
+      [ /[ \t\r\n]+/, '' ],
       [ /%}/, 'delimiter.liquid', '@pop' ],
       [
-        /{%-?\s*(?:end(?:schema|javascript)?)\s*-?%}/
+        /{%-?\s*endjavascript\s*-?%}/
+        ,
+        {
+          token: '@rematch',
+          next: '@pop',
+          nextEmbedded: '@pop'
+        }
+
+      ]
+    ],
+
+    LiquidSchema: [
+      [ /[ \t\r\n]+/, '' ],
+      [ /%}/, 'delimiter.liquid', '@pop' ],
+      [
+        /{%-?\s*endschema\s*-?%}/
         ,
         {
           token: '@rematch',
@@ -187,10 +312,11 @@ export const liquid: languages.IMonarchLanguage = {
       ]
     ],
 
-    liquid_style: [
+    LiquidStyle: [
+      [ /[ \t\r\n]+/, '' ],
       [ /%}/, 'delimiter.liquid', '@pop' ],
       [
-        /{%-?\s*(?:endstyle(?:sheet)?)\s*-?%}/
+        /{%-?\s*endstyle\s*-?%}/
         ,
         {
           token: '@rematch',
@@ -200,37 +326,45 @@ export const liquid: languages.IMonarchLanguage = {
       ]
     ],
 
-    liquid_fallback: [
+    LiquidStylesheet: [
+      [ /[ \t\r\n]+/, '' ],
+      [ /%}/, 'delimiter.liquid', '@pop' ],
       [
-        /({%-?)\s*(endverbatim)\s*(-?%})/
+        /{%-?\s*endstylesheet\s*-?%}/
         ,
-        [
-          'delimiter.tag.liquid',
-          'tag.liquid',
-          {
-            token: 'delimiter.liquid',
-            next: '@popall'
-          }
-        ]
-      ],
-      [ /./, 'string.liquid' ]
+        {
+          token: '@rematch',
+          next: '@pop',
+          nextEmbedded: '@pop'
+        }
+      ]
     ],
 
-    liquid_tag: [
-      [ /-?%}/, 'delimiter.tag.liquid', '@pop' ],
+    LiquidTag: [
+      [ /%}/, 'delimiter.liquid', '@pop' ],
       { include: 'expression' }
     ],
 
     /**
     * Variable Tag Handling
     */
-    liquid_outputs: [
-      [ /-/, 'delimiter.whitespace.liquid' ],
-      [ /-?}}/, 'delimiter.liquid', '@pop' ],
+    LiquidOutput: [
+      [ /}}/, 'delimiter.liquid', '@pop' ],
       { include: 'expression' }
+
     ],
 
-    stringState: [
+    LiquidSingleQuoteString: [
+
+      // closing double quoted string
+      [ /'/, 'string.liquid', '@pop' ],
+
+      // string part
+      [ /[^'\\]*(?:(?:\\.|#(?!\{))[^'\\]*)*/, 'string.liquid' ]
+
+    ],
+
+    LiquidDoubleQuoteString: [
 
       // closing double quoted string
       [ /"/, 'string.liquid', '@pop' ],
@@ -245,58 +379,58 @@ export const liquid: languages.IMonarchLanguage = {
      */
     expression: [
 
-      // whitespace
-      [ /\s+/, '' ],
+      // WHITESPACE
+      [ /[ \t\r\n]+/, '' ],
 
-      // operators - logic
-      [ /(\b(?:and|or|in|with|contains)\b)(\s+)/, [ 'operator.liquid', '' ] ],
+      // OBJECT NAME
+      [ /([a-zA-Z_][a-zA-Z0-9_-]+)(\s*)(?=[[.])/, [ 'keyword.object.liquid', '' ] ],
 
-      // operators - logic
-      [ /(\b(?:true|false|nil)\b)/, 'boolean.liquid' ],
-
-      // object props
-      [ /([a-zA-Z_][a-zA-Z0-9_-]+)(\s*)(?=\.)/, [ 'keyword.object.liquid', '' ] ],
-
-      // filter parameters
+      // FILTER PARARAMETERS
       [ /(\|)(\s*)(\w+)(:)/, [ 'operator.liquid', '', 'keyword.filter.liquid', 'operator.liquid' ] ],
 
-      // filter parameters
+      // ARGUMENT PARAMETERS
       [ /(\w+)(:)/, [ 'keyword.parameter.liquid', 'operator.liquid' ] ],
 
-      // operators - math
+      // OPERATOR SYMBOLS
+      [ /(\b(?:and|or|in|with|contains)\b)(\s+)/, [ 'operator.liquid', '' ] ],
+
+      // OPERATOR LOGIC
+      [ /(\b(?:true|false|nil)\b)/, 'boolean.liquid' ],
+
+      // OPERATOR MATH
       [ /\+|-|\/{1,2}|\*{1,2}/, 'operator.liquid' ],
 
-      // operators - comparison
+      // OPERATER COMPARISON
       [ /==|!=|<|>|>=|<=|=/, 'operator.liquid' ],
 
-      // operators - misc
+      // OPERATOR PUNCTUATION
       [ /\||:|\.{1,2}/, 'operator.liquid' ],
 
-      // numbers
+      // NUMBERS
       [ /\d+(\.\d+)?/, 'number.liquid' ],
 
-      // punctuation
+      // PUNCTATION
       [ /\(|\)|\[|\]/, 'delimiter.liquid' ],
 
-      [
-        /[^\W\d][\w]*/,
-        {
-          cases: {
-            '@keywords': 'tag.liquid',
-            '@default': 'tag.output.liquid'
-          }
+      // KEYWORD IDENTIFIERS
+      [ /[^\W\d][\w]*/, {
+        cases: {
+          '@keywords': 'tag.liquid',
+          '@default': ''
         }
-      ],
-      // strings
+      } ],
+
+      // STRINGS
       [ /"([^"\\]*(?:\\.[^"\\]*)*)"|'([^'\\]*(?:\\.[^'\\]*)*)'/, 'string.liquid' ],
 
-      [ /"/, 'string.liquid', '@stringState' ]
+      [ /'/, 'string.liquid', '@LiquidSingleQuoteString' ],
 
+      [ /"/, 'string.liquid', '@LiquidDoubleQuoteString' ]
     ],
 
-    liquid_string: [
-      [ /\s*{{-?/, 'delimiter.tag.liquid', '@liquid_outputs' ],
-      [ /\s*{%-?/, 'delimiter.output.liquid', '@liquid_tag' ],
+    LiquidAttributeString: [
+      [ /\s*{{-?/, 'delimiter.liquid', '@LiquidOutput' ],
+      [ /\s*{%-?/, 'delimiter.output.liquid', '@LiquidTag' ],
       [ /"/, 'attribute.value.html', '@pop' ],
       [ /./, 'attribute.value.html' ]
     ],
@@ -304,20 +438,21 @@ export const liquid: languages.IMonarchLanguage = {
     /**
      * HTML
      */
-    doctype: [
+    HTMLDocType: [
       [ /[^>]+/, 'metatag.content.html' ],
       [ />/, 'metatag.html', '@pop' ]
     ],
 
-    comment: [
+    // HTML Comments
+    HTMLComment: [
       [ /-->/, 'comment.html', '@pop' ],
       [ /[^-]+/, 'comment.content.html' ],
       [ /./, 'comment.content.html' ]
     ],
 
-    html_tag: [
+    HTMLTag: [
       [ /\/?>/, 'delimiter.html', '@pop' ],
-      [ /"/, 'attribute.value.html', '@liquid_string' ],
+      [ /"/, 'attribute.value.html', '@LiquidAttributeString' ],
       [ /'([^']*)'/, 'attribute.value.html' ],
       [ /[\w-]+/, 'attribute.name.html' ],
       [ /=/, 'delimiter.equals.html' ],
@@ -325,8 +460,8 @@ export const liquid: languages.IMonarchLanguage = {
     ],
 
     // After <script
-    script: [
-      [ /type/, 'attribute.name.html', '@html_script_after_type' ],
+    HTMLTagScript: [
+      [ /type/, 'attribute.name.html', '@HTMLTagScriptType' ],
       [ /"([^"]*)"/, 'attribute.value.html' ],
       [ /'([^']*)'/, 'attribute.value.html' ],
       [ /[\w-]+/, 'attribute.name.html' ],
@@ -335,7 +470,7 @@ export const liquid: languages.IMonarchLanguage = {
         />/,
         {
           token: 'delimiter.html',
-          next: '@html_script_embedded',
+          next: '@HTMLTagScriptEmbedded',
           nextEmbedded: 'text/javascript'
         }
       ],
@@ -347,13 +482,13 @@ export const liquid: languages.IMonarchLanguage = {
     ],
 
     // After <script ... type
-    html_script_after_type: [
-      [ /=/, 'delimiter.html', '@html_script_after_type_equals' ],
+    HTMLTagScriptType: [
+      [ /=/, 'delimiter.html', '@HTMLTagScriptTypeEquals' ],
       [
         />/,
         {
           token: 'delimiter.html',
-          next: '@html_script_embedded',
+          next: '@HTMLTagScriptEmbedded',
           nextEmbedded: 'text/javascript'
         }
       ], // cover invalid e.g. <script type>
@@ -362,26 +497,26 @@ export const liquid: languages.IMonarchLanguage = {
     ],
 
     // After <script ... type =
-    html_script_after_type_equals: [
+    HTMLTagScriptTypeEquals: [
       [
         /"([^"]*)"/,
         {
           token: 'attribute.value.html',
-          switchTo: '@html_script_with_custom_type.$1'
+          switchTo: '@HTMLTagScriptCustomType.$1'
         }
       ],
       [
         /'([^']*)'/,
         {
           token: 'attribute.value.html',
-          switchTo: '@html_script_with_custom_type.$1'
+          switchTo: '@HTMLTagScriptCustomType.$1'
         }
       ],
       [
         />/,
         {
           token: 'delimiter.html',
-          next: '@html_script_embedded',
+          next: '@HTMLTagScriptEmbedded',
           nextEmbedded: 'text/javascript'
         }
       ], // cover invalid e.g. <script type=>
@@ -390,12 +525,12 @@ export const liquid: languages.IMonarchLanguage = {
     ],
 
     // After <script ... type = $S2
-    html_script_with_custom_type: [
+    HTMLTagScriptCustomType: [
       [
         />/,
         {
           token: 'delimiter.html',
-          next: '@html_script_embedded.$S2',
+          next: '@HTMLTagScriptEmbedded.$S2',
           nextEmbedded: '$S2'
         }
       ],
@@ -408,14 +543,14 @@ export const liquid: languages.IMonarchLanguage = {
     ],
 
     // Embedded <script
-    html_script_embedded: [
+    HTMLTagScriptEmbedded: [
       [ /<\/script/, { token: '@rematch', next: '@pop', nextEmbedded: '@pop' } ],
       [ /[^<]+/, '' ]
     ],
 
     // After <style
-    style: [
-      [ /type/, 'attribute.name.html', '@html_style_after_type' ],
+    HTMLTagStyle: [
+      [ /type/, 'attribute.name.html', '@HTMLTagStyleType' ],
       [ /"([^"]*)"/, 'attribute.value.html' ],
       [ /'([^']*)'/, 'attribute.value.html' ],
       [ /[\w-]+/, 'attribute.name.html' ],
@@ -424,7 +559,7 @@ export const liquid: languages.IMonarchLanguage = {
         />/,
         {
           token: 'delimiter.html',
-          next: '@html_style_embedded',
+          next: '@HTMLTagStyleEmbedded',
           nextEmbedded: 'text/css'
         }
       ],
@@ -436,13 +571,13 @@ export const liquid: languages.IMonarchLanguage = {
     ],
 
     // After <style ... type
-    html_style_after_type: [
-      [ /=/, 'delimiter.html', '@html_style_after_equals' ],
+    HTMLTagStyleType: [
+      [ /=/, 'delimiter.html', '@HTMLTagStyleTypeEquals' ],
       [
         />/,
         {
           token: 'delimiter.html',
-          next: '@html_style_embedded',
+          next: '@HTMLTagStyleEmbedded',
           nextEmbedded: 'text/css'
         }
       ], // cover invalid e.g. <style type>
@@ -451,26 +586,26 @@ export const liquid: languages.IMonarchLanguage = {
     ],
 
     // After <style ... type =
-    html_style_after_equals: [
+    HTMLTagStyleTypeEquals: [
       [
         /"([^"]*)"/,
         {
           token: 'attribute.value.html',
-          switchTo: '@html_style_with_custom_type.$1'
+          switchTo: '@HTMLTagStyleCustomType.$1'
         }
       ],
       [
         /'([^']*)'/,
         {
           token: 'attribute.value.html',
-          switchTo: '@html_style_with_custom_type.$1'
+          switchTo: '@HTMLTagStyleCustomType.$1'
         }
       ],
       [
         />/,
         {
           token: 'delimiter.html',
-          next: '@html_style_embedded',
+          next: '@HTMLTagStyleEmbedded',
           nextEmbedded: 'text/css'
         }
       ], // cover invalid e.g. <style type=>
@@ -479,12 +614,12 @@ export const liquid: languages.IMonarchLanguage = {
     ],
 
     // After <style ... type = $S2
-    html_style_with_custom_type: [
+    HTMLTagStyleCustomType: [
       [
         />/,
         {
           token: 'delimiter.html',
-          next: '@html_style_embedded.$S2',
+          next: '@HTMLTagStyleEmbedded.$S2',
           nextEmbedded: '$S2'
         }
       ],
@@ -496,7 +631,7 @@ export const liquid: languages.IMonarchLanguage = {
       [ /<\/style\s*>/, { token: '@rematch', next: '@pop' } ]
     ],
 
-    html_style_embedded: [
+    HTMLTagStyleEmbedded: [
       [ /<\/style/, { token: '@rematch', next: '@pop', nextEmbedded: '@pop' } ],
       [ /[^<]+/, '' ]
     ]
