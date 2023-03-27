@@ -38,7 +38,8 @@ export default defineConfig([
   }
   // {
   //   entry: {
-  //     monaco: './node_modules/monaco-editor/esm/vs/editor/editor.main.js'
+  //     monaco: './node_modules/monaco-editor/esm/vs/editor/editor.main.js',
+  //     liquidjs: './node_modules/liquidjs/dist/liquid.browser.esm.js'
   //   },
   //   clean: false,
   //   platform: 'browser',

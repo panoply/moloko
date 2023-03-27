@@ -2,8 +2,8 @@ import type { IAttrs } from 'types';
 import type { LanguageName, LanguageOfficialName } from 'esthetic';
 import m from 'mithril';
 import b from 'bss';
-import { file, icon } from './icons';
-import { config } from 'attrs';
+import { file, icon } from '../utils/icons';
+import { config } from 'src/model';
 
 export const Footer: m.Component<IAttrs> = {
   view: (

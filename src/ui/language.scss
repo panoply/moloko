@@ -1,0 +1,57 @@
+.moloko-language {
+  width: 200px;
+  height: 100%;
+  overflow-y: scroll;
+  border-right: 0.01rem solid $moloko-border-color;
+  transition: left 0.15s linear;
+  will-change: left;
+
+  .language-label {
+    padding: 30px 0;
+    color: #384355;
+    font-weight: 600;
+    font-size: 0.8rem;
+    font-family: system-ui, sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .btn-language {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    width: 100%;
+    padding: 18px 20px;
+    color: #fafafa;
+    text-align: left;
+    background: transparent;
+    border: 0;
+    border-left: 1.5px solid transparent;
+
+    &.current {
+      color: var(--moloko-accent);
+      border-left: 1.5px solid var(--moloko-accent);
+
+      &:hover {
+        cursor: initial;
+      }
+    }
+
+    &:hover {
+      border-left: 1.5px solid var(--moloko-accent);
+      cursor: pointer;
+
+      > svg {
+        transition: fill 0.15s linear;
+        fill: var(--moloko-accent);
+      }
+    }
+
+    > svg {
+      width: 22px;
+      height: 17px;
+      overflow: visible;
+    }
+  }
+}

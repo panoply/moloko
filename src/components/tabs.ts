@@ -1,10 +1,17 @@
-import type { Attrs } from 'types';
-import type { LanguageName, LanguageOfficialName } from 'esthetic';
+import type { IAttrs, Style } from 'types';
 import m from 'mithril';
-import b from 'bss';
-import { file, icon } from 'src/components/icons';
+import { file, icon } from 'utils/icons';
 
-export const Tabs: m.Component<Attrs> = {
-  view: () => []
-
+export const Tabs: m.Component<IAttrs> = {
+  view: () => [
+    m(
+      '.moloko-tabs'
+      , [
+        m('button.ml-btn.active', [ file('liquid'), m('span', 'File 1'), icon('cross') ]),
+        m('button.ml-btn', [ file('liquid'), m('span', 'File 2'), icon('cross') ]),
+        m('button.ml-btn', [ file('liquid'), m('span', 'File 2'), icon('cross') ]),
+        m('button.ml-btn.create', icon('plus'))
+      ]
+    )
+  ]
 };

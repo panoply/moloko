@@ -166,7 +166,7 @@ export const PotionTheme: editor.IStandaloneThemeData = {
     'editor.selectionBackground': '#253B76',
     'editor.lineHighlightBackground': '#FFFFFF0F',
     'editorCursor.foreground': '#FFFFFFA6',
-    'editorWhitespace.foreground': '#FFFFFF40',
+    'editorWhitespace.foreground': '#424242',
     'editorHoverWidget.background': '#161616'
   },
   rules

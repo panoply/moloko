@@ -1,25 +1,28 @@
-import { IAttrs } from 'types';
+import { IAttrs } from 'types/model';
+import type { editor } from 'monaco-editor';
+import { Style } from 'types';
 import * as hash from 'editor/hash';
 import m from 'mithril';
 import esthetic from 'esthetic';
 import { monaco } from '../monaco';
+import { State } from 'utils/enums';
+import { formatCode } from 'utils/helpers';
 
-export const Input: m.ClosureComponent<IAttrs> = ({
-  attrs: {
-    model,
-    editor,
-    previewOpen,
-    previewMode
+export const Input: m.ClosureComponent<IAttrs> = (
+  {
+    attrs
   }
-}) => {
+) => {
+
+  const options = Object.assign<editor.IEditorOptions, editor.IEditorOverrideServices>({}, attrs.config.monaco);
+  options.model = attrs.input.model;
 
   monaco.languages.registerDocumentRangeFormattingEditProvider(
     {
-      language: model.input.getLanguageId(),
-      hasAccessToAllModels: false
-    }
-    , {
-      provideDocumentRangeFormattingEdits: (model) => {
+      language: attrs.input.model.getLanguageId()
+    },
+    {
+      provideDocumentRangeFormattingEdits: model => {
 
         const text = esthetic.format(model.getValue());
 
@@ -33,33 +36,41 @@ export const Input: m.ClosureComponent<IAttrs> = ({
     }
   );
 
-  const command = () => editor.input.getAction('editor.action.formatDocument').run();
+  attrs.input.model.onDidChangeContent(() => {
+
+    if (attrs.preview.state === State.Opened) {
+
+      formatCode(attrs);
+
+      if (attrs.hash !== null) hash.encode(attrs);
+
+    } else if (attrs.hash !== null) {
+
+      hash.encode(attrs);
+
+    }
+
+  });
 
   return {
-    oncreate: ({ dom, attrs }) => {
-
-      if (editor.input === null) {
-
-        editor.input = monaco.editor.create(dom as HTMLElement, { model: model.input });
-        editor.input.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, command);
-        model.input.onDidChangeContent(async event => {
-
-          hash.encode(attrs);
-
-          if (event.isRedoing || event.isUndoing) return;
-
-          if (previewOpen && previewMode === 'diff') {
-            const value = editor.input.getValue();
-            const text = esthetic.format(value);
-            attrs.model.preview = await monaco.editor.colorize(text, model.input.getLanguageId(), {});
-            m.redraw();
-          }
-
-        });
-
+    oncreate: (
+      {
+        dom
       }
+    ) => {
+
+      attrs.input.editor = monaco.editor.create(dom as HTMLElement, options);
+
+      attrs.input.editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => {
+        attrs.input.editor.trigger(
+          'editor',
+          'editor.action.formatDocument',
+          null
+        );
+      });
+
     },
-    view: () => m('div', { style: { height: '100%' } })
+    view: () => m('div', { style: <Style>{ height: '100%' } })
   };
 
 };

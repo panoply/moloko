@@ -1,0 +1,10 @@
+.ml-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    transition: color 0.15s linear;
+  }
+}
+

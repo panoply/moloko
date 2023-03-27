@@ -92,20 +92,6 @@ export const liquid: languages.IMonarchLanguage = {
     }
   ],
 
-  script: [
-    'schema',
-    'endschema',
-    'javascript',
-    'endjavascript'
-  ],
-
-  styles: [
-    'style',
-    'endstyle',
-    'stylesheet',
-    'endstylesheet'
-  ],
-
   keywords: [
     // (opening) tags
 
@@ -161,13 +147,13 @@ export const liquid: languages.IMonarchLanguage = {
   tokenizer: {
     root: [
 
+      // WHITESPACE
+      [ /\s+/, '' ],
+
       [
         /^-{3}/,
         { token: 'delimiter.liquid', next: '@Frontmatter', nextEmbedded: 'yaml' }
       ],
-
-      // WHITESPACE
-      [ /[ \t\r\n]+/, '' ],
 
       // LIQUID COMMENTS
 
@@ -270,7 +256,10 @@ export const liquid: languages.IMonarchLanguage = {
     ],
 
     Frontmatter: [
-      [ /[ \t\r\n]+/, '' ],
+
+      // WHITESPACE
+      [ /\s+/, '' ],
+
       [
         /^-{3}$/
         ,
@@ -284,7 +273,10 @@ export const liquid: languages.IMonarchLanguage = {
     ],
 
     LiquidJavaScript: [
-      [ /[ \t\r\n]+/, '' ],
+
+      // WHITESPACE
+      [ /\s+/, '' ],
+
       [ /%}/, 'delimiter.liquid', '@pop' ],
       [
         /{%-?\s*endjavascript\s*-?%}/
@@ -299,7 +291,10 @@ export const liquid: languages.IMonarchLanguage = {
     ],
 
     LiquidSchema: [
-      [ /[ \t\r\n]+/, '' ],
+
+      // WHITESPACE
+      [ /\s+/, '' ],
+
       [ /%}/, 'delimiter.liquid', '@pop' ],
       [
         /{%-?\s*endschema\s*-?%}/
@@ -313,7 +308,10 @@ export const liquid: languages.IMonarchLanguage = {
     ],
 
     LiquidStyle: [
-      [ /[ \t\r\n]+/, '' ],
+
+      // WHITESPACE
+      [ /\s+/, '' ],
+
       [ /%}/, 'delimiter.liquid', '@pop' ],
       [
         /{%-?\s*endstyle\s*-?%}/
@@ -327,7 +325,10 @@ export const liquid: languages.IMonarchLanguage = {
     ],
 
     LiquidStylesheet: [
-      [ /[ \t\r\n]+/, '' ],
+
+      // WHITESPACE
+      [ /\s+/, '' ],
+
       [ /%}/, 'delimiter.liquid', '@pop' ],
       [
         /{%-?\s*endstylesheet\s*-?%}/
@@ -380,7 +381,9 @@ export const liquid: languages.IMonarchLanguage = {
     expression: [
 
       // WHITESPACE
-      [ /[ \t\r\n]+/, '' ],
+
+      // WHITESPACE
+      [ /\s+/, '' ],
 
       // OBJECT NAME
       [ /([a-zA-Z_][a-zA-Z0-9_-]+)(\s*)(?=[[.])/, [ 'keyword.object.liquid', '' ] ],
@@ -474,7 +477,10 @@ export const liquid: languages.IMonarchLanguage = {
           nextEmbedded: 'text/javascript'
         }
       ],
-      [ /[ \t\r\n]+/, '' ], // whitespace
+
+      // WHITESPACE
+      [ /\s+/, '' ],
+      // whitespace
       [
         /(<\/)(script\s*)(>)/,
         [ 'delimiter.html', 'tag.html', { token: 'delimiter.html', next: '@pop' } ]
@@ -492,7 +498,10 @@ export const liquid: languages.IMonarchLanguage = {
           nextEmbedded: 'text/javascript'
         }
       ], // cover invalid e.g. <script type>
-      [ /[ \t\r\n]+/, '' ], // whitespace
+
+      // WHITESPACE
+      [ /\s+/, '' ],
+      // whitespace
       [ /<\/script\s*>/, { token: '@rematch', next: '@pop' } ]
     ],
 
@@ -520,7 +529,10 @@ export const liquid: languages.IMonarchLanguage = {
           nextEmbedded: 'text/javascript'
         }
       ], // cover invalid e.g. <script type=>
-      [ /[ \t\r\n]+/, '' ], // whitespace
+
+      // WHITESPACE
+      [ /\s+/, '' ],
+      // whitespace
       [ /<\/script\s*>/, { token: '@rematch', next: '@pop' } ]
     ],
 
@@ -538,7 +550,10 @@ export const liquid: languages.IMonarchLanguage = {
       [ /'([^']*)'/, 'attribute.value.html' ],
       [ /[\w-]+/, 'attribute.name.html' ],
       [ /=/, 'delimiter.html' ],
-      [ /[ \t\r\n]+/, '' ], // whitespace
+
+      // WHITESPACE
+      [ /\s+/, '' ],
+      // whitespace
       [ /<\/script\s*>/, { token: '@rematch', next: '@pop' } ]
     ],
 
@@ -563,7 +578,10 @@ export const liquid: languages.IMonarchLanguage = {
           nextEmbedded: 'text/css'
         }
       ],
-      [ /[ \t\r\n]+/, '' ], // whitespace
+
+      // WHITESPACE
+      [ /\s+/, '' ],
+      // whitespace
       [
         /(<\/)(style\s*)(>)/,
         [ 'delimiter.html', 'tag.html', { token: 'delimiter.html', next: '@pop' } ]

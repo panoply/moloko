@@ -1,0 +1,219 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+.moloko-language {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 75px;
+  width: 200px;
+  height: 100%;
+  overflow-y: scroll;
+  border-right: 0.01rem solid $moloko-border-color;
+
+  &::-webkit-scrollbar-track {
+    background-color: $moloko-background-editor;
+  }
+
+  &::-webkit-scrollbar {
+    width: 2px;
+    background-color: #384355;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #384355;
+  }
+
+
+  .language-label {
+    padding: 30px 0;
+    color: #384355;
+    font-weight: 600;
+    font-size: 0.8rem;
+    font-family: system-ui, sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .btn-language {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    width: 100%;
+    padding: 18px 20px;
+    color: #fafafa;
+    text-align: left;
+    background: transparent;
+    border: 0;
+    border-left: 1.5px solid transparent;
+
+    &.current {
+      color: var(--moloko-accent);
+      border-left: 1.5px solid var(--moloko-accent);
+
+      &:hover {
+        cursor: initial;
+      }
+    }
+
+    &:hover {
+      border-left: 1.5px solid var(--moloko-accent);
+      cursor: pointer;
+
+      > svg {
+        transition: fill 0.15s linear;
+        fill: var(--moloko-accent);
+      }
+    }
+
+    > svg {
+      width: 22px;
+      height: 17px;
+      overflow: visible;
+    }
+  }
+}
+
+
+.moloko-editor {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: stretch;
+  justify-content: space-evenly;
+  margin: 0;
+  padding: 0;
+  background-color: $moloko-background-editor;
+}
+
+.moloko-esthetic {
+  flex-grow: 1;
+  margin-left: 75px;
+
+
+  &::after {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 40%;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    color: rgb(50 55 64 / 35%);
+    font-weight: 900;
+    font-size: 2.5rem;
+    font-family: $moloko-font-title;
+    font-style: italic;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-orientation: mixed;
+    content: attr(aria-label);
+    writing-mode: vertical-rl;
+  }
+}
+
+.moloko-sidebar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  display: flex;
+  flex-flow: column wrap;
+  width: 75px;
+  height: 100%;
+  background-color: $moloko-background-sidebar;
+  border-right: 0.01rem solid $moloko-border-color;
+
+  .btn-language {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    background-color: $moloko-background-editor;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s linear;
+
+
+    svg {
+      width: 20px;
+      height: 20px;
+      margin-left: -5px;
+      overflow: visible;
+    }
+  }
+
+  .btn-action {
+    padding: 30px 25px;
+    color: #fafafa;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    &.active {
+      color: $moloko-button-hover;
+    }
+
+    &:hover {
+      color: $moloko-button-hover;
+      transition: color 0.15s linear;
+    }
+  }
+}
+
+
+.moloko {
+
+
+  &-esthetic,
+  &-input,
+  &-preview {
+    flex-grow: 1;
+    margin-left: 75px;
+  }
+
+  &-input + &-preview {
+    width: 50%;
+    margin-left: 0;
+  }
+
+  &-sidebar + &-input {
+    width: 50%;
+  }
+
+  &-language + &-input {
+    margin-left: 275px;
+  }
+
+  &-sidebar + &-esthetic {
+    width: 700px;
+  }
+
+  &-sidebar + &-esthetic + &-input {
+    width: auto;
+    margin-left: 0;
+  }
+
+  &-language + &-input + &-preview,
+  &-esthetic + &-input + &-preview {
+    display: none;
+  }
+}
+

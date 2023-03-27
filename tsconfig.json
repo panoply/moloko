@@ -32,8 +32,8 @@
     "baseUrl": ".",
     "paths": {
       "types": ["./index.d.ts"],
-      "utils": ["./src/utils.ts"],
-      "attrs": ["./src/attrs.ts"],
+      "utils/*": ["./src/utils/*"],
+      "attrs": ["src/model.ts"],
       "actions": ["./src/actions.ts"],
       "store": ["./src/store.ts"],
       "editor/*": ["./src/editor/*"],

@@ -1,10 +1,10 @@
-import type { editor } from 'monaco-editor';
 import { PotionTheme } from 'monaco/theme';
 import { configuration, liquid } from 'monaco/liquid';
 import { schema } from 'monaco/schema';
 import esthetic, { LanguageName, Rules } from 'esthetic';
 import { SAMPLE } from 'monaco/sample';
 import join from 'url-join';
+import { loadExternalCSS } from 'utils/helpers';
 
 /**
  * Monaco Editor
@@ -21,8 +21,12 @@ export let monaco: typeof import('monaco-editor');
  */
 export async function getMonacoModule (path: string) {
 
+  loadExternalCSS(path);
+
   monaco = await import(join(path, 'monaco.js'));
 
+  monaco.editor.defineTheme('potion', PotionTheme);
+  monaco.editor.setTheme('potion');
   monaco.languages.setMonarchTokensProvider('liquid', liquid);
   monaco.languages.setLanguageConfiguration('liquid', configuration);
   monaco.languages.html.registerHTMLLanguageService('liquid');
@@ -58,26 +62,6 @@ export async function getMonacoModule (path: string) {
 
     }
   };
-
-}
-
-/**
- * Set Monaco Defaults
- *
- * Assigns the `defaultValue` to Monaco and returns the `options`
- */
-export function setEditorOptions (options: editor.IEditorOptions) {
-
-  monaco.editor.defineTheme('potion', PotionTheme);
-  monaco.editor.setTheme('potion');
-
-  for (const option in options) {
-
-    monaco.editor.EditorOptions[option].defaultValue = options[option];
-
-  }
-
-  return options;
 
 }
 

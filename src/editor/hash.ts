@@ -1,5 +1,4 @@
-import type { IAttrs, Hash } from 'types';
-import { attrs } from 'attrs';
+import type { IAttrs, Hash } from 'types/model';
 import lz from 'lz-string';
 
 /**
@@ -7,25 +6,24 @@ import lz from 'lz-string';
  *
  * Compress the editors current session
  */
-export function encode ({
-  detectLanguage,
-  languagesOpen,
-  model,
-  previewMode,
-  previewOpen,
-  rules,
-  rulesOpen
-}: IAttrs) {
+export function encode (attrs: IAttrs) {
 
   attrs.hash = 'M=' + lz.compressToEncodedURIComponent(JSON.stringify(<Hash>{
-    language: model.input.getLanguageId(),
-    model: model.input.getValue(),
-    languagesOpen,
-    detectLanguage,
-    previewMode,
-    previewOpen,
-    rules,
-    rulesOpen
+    language: attrs.language,
+    input: {
+      value: attrs.input.model.getValue(),
+      width: attrs.input.width
+    },
+    preview: {
+      mode: attrs.preview.mode,
+      state: attrs.preview.state,
+      width: attrs.preview.width
+    },
+    esthetic: {
+      rules: attrs.esthetic.rules,
+      state: attrs.esthetic.state,
+      width: attrs.esthetic.width
+    }
   }));
 
   window.location.hash = attrs.hash;

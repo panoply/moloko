@@ -1,5 +1,5 @@
 import type Esthetic from 'esthetic';
-import { IAttrs, IOptions } from './types/moloko';
+import { IAttrs, IConfig } from './types/moloko';
 
 export * from './types/moloko';
 
@@ -16,7 +16,7 @@ export declare const moloko: {
    * Renders the text edtior to the provided element.
    * Optionally pass in options.
    */
-  mount(element: Element | HTMLElement, options?: IOptions): IAttrs
+  mount(element: Element | HTMLElement, options?: IConfig): IAttrs
   /**
    * **Æsthetic**
    *
@@ -26,3 +26,5 @@ export declare const moloko: {
   esthetic: typeof Esthetic;
 
 };
+
+export default moloko;

@@ -1,9 +1,9 @@
-import { IActions, IAttrs, ISidebar } from 'types';
+import { IActions, ISidebar } from 'types';
+import { IAttrs } from 'types/model';
 import m from 'mithril';
-import { file, icon } from './icons';
-import { config } from 'attrs';
-import esthetic from 'esthetic';
-import { monaco } from '../monaco';
+import { file, icon } from '../utils/icons';
+import { State } from 'utils/enums';
+import { formatCode, isOpen, pixels, setWidths, toggleRedraw } from 'utils/helpers';
 
 export function ghissue (options = {}) {
 
@@ -43,87 +43,87 @@ export const Sidebar: m.ClosureComponent<IAttrs> = ({ attrs }) => {
   /* CONSTANTS                                    */
   /* -------------------------------------------- */
 
-  const actions = Object.entries(config.sidebar.actions);
+  const actions = Object.entries(attrs.config.sidebar.actions);
 
-  const timeout = (prop: 'languagesOpen' | 'rulesOpen' | 'previewOpen') => () => {
-    attrs[prop] = 0;
+  const onEsthetic = () => {
+
+    if (attrs.esthetic.state === State.Opened) {
+
+      attrs.esthetic.state = State.Hidden;
+
+      if (isOpen(attrs.preview.state)) {
+        attrs.input.editor.layout({
+          width: pixels(50),
+          height: window.innerHeight
+        });
+      } else {
+        attrs.input.editor.layout({
+          width: pixels(100, 75),
+          height: window.innerHeight
+        });
+      }
+
+    } else if (attrs.esthetic.state === State.Hidden) {
+
+      attrs.esthetic.state = State.Opened;
+
+      attrs.input.editor.layout({
+        width: pixels(100, 700),
+        height: window.innerHeight
+      });
+
+    }
+
     m.redraw();
-  };
-
-  const closeRules = (action: IActions) => {
-
-    if (attrs.rulesOpen === 1) {
-      action.active = false;
-      attrs.rulesOpen = 2;
-      setTimeout(timeout('rulesOpen'), 250);
-    } else if (attrs.rulesOpen === 0) {
-      attrs.rulesOpen = 1;
-      action.active = true;
-    } else {
-      action.active = false;
-    }
 
   };
 
-  const closePreview = async (action: IActions) => {
+  const onLanguage = () => {
 
-    if (config.sidebar.actions.rules.active) {
-      closeRules(config.sidebar.actions.rules);
-    }
+    if (attrs.language.state === State.Opened) {
 
-    if (attrs.previewOpen === 1) {
+      attrs.language.state = State.Hidden;
 
-      action.active = false;
-      attrs.previewOpen = 0;
+      if (isOpen(attrs.preview.state)) {
+        attrs.input.editor.layout({
+          width: pixels(50),
+          height: window.innerHeight
+        });
+      } else {
+        attrs.input.editor.layout({
+          width: pixels(100, 75),
+          height: window.innerHeight
+        });
+      }
 
-    } else if (attrs.previewOpen === 0) {
+    } else if (attrs.language.state === State.Hidden) {
 
-      attrs.previewOpen = 1;
-      action.active = true;
+      attrs.preview.state = State.Hidden;
+      attrs.language.state = State.Opened;
 
-      const value = attrs.model.input.getValue();
-      const text = esthetic.format(value);
-      attrs.model.preview = await monaco.editor.colorize(text, attrs.model.input.getLanguageId(), {});
+      attrs.input.editor.layout({
+        width: pixels(100, 275),
+        height: window.innerHeight
+      });
+
+      m.redraw();
 
     }
 
   };
 
-  const closeLanguage = () => {
-
-    if (config.sidebar.actions.rules.active) {
-      closeRules(config.sidebar.actions.rules);
-    }
-
-    if (attrs.languagesOpen === 1) {
-      attrs.languagesOpen = 2;
-      setTimeout(timeout('languagesOpen'), 250);
-    } else {
-      attrs.languagesOpen = 1;
-    }
-
-  };
+  let last: HTMLButtonElement;
 
   return {
-    view: ({ attrs: { model } }) => m(
-      '.moloko-sidebar'
-      , {
-        style: {
-          width: `${config.sidebar.width}px`,
-          top: `${config.offset}px`,
-          background: config.sidebar.background,
-          borderColor: attrs.languagesOpen === 1 ? config.colors.backdrop : config.colors.borders
-        }
+    view: (
+      {
+        attrs
       }
-      , m(
-        'button.button.lang[type="button"]'
-        , {
-          style: {
-            backgroundColor: attrs.languagesOpen === 1 ? config.colors.backdrop : 'initial'
-          },
-          onclick: closeLanguage
-        }
-        , file(model.input.getLanguageId())
+    ) => [
+      m(
+        'button.btn-language[type="button"]'
+        , { onclick: onLanguage }
+        , file(attrs.language.current)
       )
       , actions.map(
         (
@@ -135,33 +135,53 @@ export const Sidebar: m.ClosureComponent<IAttrs> = ({ attrs }) => {
             IActions
           ]
         ) => m(
-          'button.button[type="button"][data-tooltip="right"]'
+          'button.btn-action[type="button"][data-tooltip="right"]'
           , {
             dataTooltip: 'right',
             ariaLabel: action.tooltip,
-            onclick: async () => {
+            onclick: (event) => {
 
-              if (attrs.languagesOpen !== 0) closeLanguage();
-
-              if (key === 'file') {
-                config.sidebar.actions.rules.active = false;
-                closeRules(action);
-              } else if (key === 'rules') {
-                closeRules(action);
-              } else if (key === 'preview') {
-                await closePreview(action);
+              if (last === event.currentTarget) {
+                last.classList.remove('active');
+                last = undefined;
+              } else {
+                last = event.currentTarget;
+                last.classList.add('active');
               }
 
-            },
-            style: {
-              '--moloko-accent': config.colors.accents,
-              color: action.active ? config.colors.accents : ''
+              if (key === 'file') {
+                onEsthetic();
+              } else if (key === 'rules') {
+                onEsthetic();
+              } else if (key === 'preview') {
+
+                if (attrs.preview.state === State.Opened) {
+                  attrs.preview.state = State.Hidden;
+                  attrs.preview.editor.getContainerDomNode().style.display = 'none';
+                  attrs.input.editor.layout({
+                    width: pixels(100, 75),
+                    height: window.innerHeight
+                  });
+                } else if (attrs.preview.state === State.Hidden) {
+                  attrs.preview.state = State.Opened;
+                  attrs.preview.editor.getContainerDomNode().style.display = '';
+                  attrs.input.editor.layout({
+                    width: pixels(50, 75),
+                    height: window.innerHeight
+                  });
+                  formatCode(attrs);
+                }
+              }
+
             }
           }
           , key === 'preview'
-            ? action.active ? icon(action.icon) : icon('document') : icon(action.icon)
+            ? isOpen(attrs.preview.state)
+              ? icon(action.icon)
+              : icon('document')
+            : icon(action.icon)
         )
       )
-    )
+    ]
   };
 };

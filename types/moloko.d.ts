@@ -1,6 +1,7 @@
 import type { editor } from 'monaco-editor';
 import type { Rules, LanguageName, LanguageOfficialName } from 'esthetic';
-
+import type { Liquid } from 'liquidjs';
+export { StandardProperties as Style } from 'csstype';
 export type Icons = (
   | 'pane'
   | 'document'
@@ -150,6 +151,10 @@ export interface IEditor {
   * Input editor session and instance
   */
   input: editor.IStandaloneCodeEditor;
+  /**
+  * Input editor session and instance
+  */
+  preview: editor.IStandaloneCodeEditor;
 }
 
 export interface IFile {
@@ -178,6 +183,41 @@ export interface IAttrs {
    * @default null
    */
   hash: string;
+  /**
+   * Runtime Iframe
+   */
+  runtime: {
+    /**
+     * The iframe element
+     */
+    iframe: HTMLIFrameElement
+
+  },
+  /**
+   * The current hash reference
+   *
+   * @default null
+   */
+  service: {
+    /**
+     * LiquidJS rendered
+     */
+    liquidjs: Liquid
+  };
+  /**
+   * Panes Width
+   */
+  panes: {
+    editor: number;
+    /**
+     * Rules
+     */
+    rules: number;
+    /**
+     * Rules
+     */
+    preview: number;
+  };
   /**
    * Æsthetic formatting Rules
    */
@@ -282,11 +322,24 @@ export interface IConfig {
     path?: string;
   };
   /**
+   * Additional Services exposed to moloko
+   */
+  services?: {
+    /**
+     * Whether or not to load in [LiquidJS](https://github.com/harttle/liquidjs)
+     */
+    liquidjs?: boolean;
+  }
+  /**
    * Monaco Editor Options
    *
    * These will be defined at runtime as defaults.
    */
   monaco?: editor.IEditorOptions;
+  /**
+   * Tabs
+   */
+  tabs?: boolean;
   /**
    * Whether or not instructions should render onload
    */
@@ -338,14 +391,6 @@ export interface IConfig {
    * @default false
    */
   diff?: boolean;
-  /**
-   * Whether or not to allow tabs
-   *
-   * **NOT YET AVAILABLE**
-   *
-   * @deprecated
-   */
-  tabs?: boolean;
   /**
    * Sidebar Component
    *
