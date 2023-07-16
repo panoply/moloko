@@ -1,6 +1,6 @@
 {
   "name": "moloko",
-  "version": "0.1.0-beta.1",
+  "version": "0.2.0-beta.1",
   "description": "Moloko is an embedded web based code editor built atop of Monaco",
   "main": "package/moloko.js",
   "module": "package/moloko.js",
