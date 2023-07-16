@@ -39,7 +39,7 @@ function setMolokoOptions (attrs: IAttrs) {
     attrs.preview.width = store.preview.width;
     attrs.esthetic.state = store.esthetic.state;
     attrs.esthetic.width = store.esthetic.width;
-    attrs.esthetic.model = getRulesModel(store.esthetic.rules);
+    attrs.esthetic.model = getRulesModel(attrs.language.current, store.esthetic.rules);
 
     esthetic.rules(store.esthetic.rules);
 
@@ -50,7 +50,7 @@ function setMolokoOptions (attrs: IAttrs) {
     if (attrs.config.preview.enable) attrs.preview.model = getInputModel(attrs.language.current);
 
     attrs.input.model = getInputModel(attrs.language.current);
-    attrs.esthetic.model = getRulesModel(attrs.esthetic.rules);
+    attrs.esthetic.model = getRulesModel(attrs.language.current, attrs.esthetic.rules);
 
   }
 };

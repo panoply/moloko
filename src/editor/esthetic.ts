@@ -3,15 +3,13 @@ import type { editor } from 'monaco-editor';
 import type { ClosureComponent } from 'mithril';
 import { monaco } from '../monaco';
 import { esthetic, m } from 'modules';
+import { encode } from './hash';
 
 export function EstheticStatic (dom: HTMLElement, attrs: IAttrs) {
-
-  monaco.editor.setTheme('potion-bg')
 
   const options = Object.assign<editor.IEditorOptions, editor.IEditorOverrideServices>({}, attrs.config.monaco);
 
   options.model = attrs.esthetic.model;
-  options.
   options.automaticLayout = false;
 
   monaco.languages.registerDocumentRangeFormattingEditProvider(
@@ -73,13 +71,12 @@ export const Esthetic: ClosureComponent<IAttrs> = (
 ) => {
 
   const options = Object.assign<editor.IEditorOptions, editor.IEditorOverrideServices>({}, attrs.config.monaco);
-
   options.model = attrs.esthetic.model;
   options.automaticLayout = false;
 
   monaco.languages.registerDocumentRangeFormattingEditProvider(
     {
-      language: 'json'
+      language: attrs.esthetic.model.getLanguageId()
     }
     ,
     {
@@ -97,40 +94,41 @@ export const Esthetic: ClosureComponent<IAttrs> = (
     }
   );
 
+  const addCommand = () => {
+
+    attrs.esthetic.editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => {
+
+      attrs.esthetic.rules = JSON.parse(attrs.esthetic.model.getValue())
+      esthetic.rules(attrs.esthetic.rules);
+
+      encode(attrs)
+
+      attrs.esthetic.editor.trigger(
+        'editor',
+        'editor.action.formatDocument',
+        null
+      );
+
+      attrs.input.editor.trigger(
+        'editor',
+        'editor.action.formatDocument',
+        null
+      );
+
+    });
+
+
+  }
+
   return {
     oncreate: (
       {
-        dom,
-        attrs
+        dom
       }
     ) => {
 
       attrs.esthetic.editor = monaco.editor.create(dom as HTMLElement, options);
-      attrs.esthetic.editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => {
-
-        esthetic.rules(JSON.parse(attrs.esthetic.model.getValue()));
-
-        attrs.esthetic.editor.trigger(
-          'editor',
-          'editor.action.formatDocument',
-          null
-        );
-
-        attrs.input.editor.trigger(
-          'editor',
-          'editor.action.formatDocument',
-          null
-        );
-
-      });
-    },
-    onremove: (
-      {
-        attrs
-      }
-    ) => {
-
-      attrs.esthetic.editor.dispose();
+      attrs.esthetic.editor.onDidFocusEditorText(() => addCommand());
 
     },
     view: () => m('div', { style: { height: '100%' } })

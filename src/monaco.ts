@@ -4,7 +4,6 @@ import { schema } from 'monaco/schema';
 import type { LanguageName, Rules } from 'esthetic';
 import { SAMPLE } from 'monaco/sample';
 import join from 'url-join';
-import { esthetic } from 'modules';
 import { loadExternalCSS } from 'utils/helpers';
 
 /**
@@ -80,11 +79,111 @@ export function getInputModel (language: LanguageName, input: string = SAMPLE) {
 /**
  * Rules Model
  *
- * Generages a rules editor model for Æsthetic
+ * Generates a rules editor model for Æsthetic
  */
-export function getRulesModel (rules: Rules) {
+export function getRulesModel (language: LanguageName, rules: Rules) {
 
-  const input: string = JSON.stringify(rules ? esthetic.rules() : rules, null, 2);
+  let input: string;
+
+  if(rules) {
+    input = JSON.stringify(rules, null, 2)
+  } else{
+    input = JSON.stringify({
+      "crlf": false,
+      "correct": false,
+      "preset": "default",
+      "language": language,
+      "endNewline": false,
+      "indentChar": " ",
+      "indentLevel": 0,
+      "indentSize": 2,
+      "preserveLine": 2,
+      "wrap": 0,
+      "wrapFraction": 0,
+      "liquid": {
+        "commentNewline": false,
+        "commentIndent": true,
+        "delimiterTrims": "preserve",
+        "delimiterPlacement": "preserve",
+        "forceFilter": 0,
+        "forceArgument": 0,
+        "ignoreTagList": [],
+        "indentAttribute": false,
+        "lineBreakSeparator": "before",
+        "normalizeSpacing": true,
+        "preserveComment": false,
+        "preserveInternal": false,
+        "dedentTagList": [],
+        "quoteConvert": "none"
+      },
+      "markup": {
+        "attributeCasing": "preserve",
+        "attributeSort": false,
+        "commentNewline": false,
+        "commentIndent": true,
+        "delimiterTerminus": "inline",
+        "forceAttribute": 3,
+        "forceIndent": false,
+        "ignoreCSS": false,
+        "ignoreJS": true,
+        "ignoreJSON": false,
+        "lineBreakValue": "preserve",
+        "preserveComment": false,
+        "preserveText": false,
+        "preserveAttribute": false,
+        "selfCloseSpace": true,
+        "selfCloseSVG": true,
+        "stripAttributeLines": false,
+        "quoteConvert": "none"
+      },
+      "json": {
+        "arrayFormat": "default",
+        "braceAllman": false,
+        "bracePadding": false,
+        "objectIndent": "default",
+        "objectSort": false
+      },
+      "style": {
+        "commentIndent": false,
+        "commentNewline": false,
+        "atRuleSpace": true,
+        "classPadding": false,
+        "noLeadZero": false,
+        "preserveComment": false,
+        "sortSelectors": false,
+        "sortProperties": false,
+        "quoteConvert": "none",
+        "correct": false
+      },
+      "script": {
+        "arrayFormat": "default",
+        "braceNewline": false,
+        "bracePadding": false,
+        "braceStyle": "none",
+        "braceAllman": false,
+        "caseSpace": false,
+        "commentIndent": false,
+        "commentNewline": false,
+        "elseNewline": false,
+        "endComma": "never",
+        "functionNameSpace": false,
+        "functionSpace": false,
+        "inlineReturn": true,
+        "methodChain": 4,
+        "neverFlatten": false,
+        "noCaseIndent": false,
+        "noSemicolon": false,
+        "objectSort": false,
+        "objectIndent": "default",
+        "preserveComment": false,
+        "quoteConvert": "none",
+        "styleGuide": "none",
+        "ternaryLine": false,
+        "variableList": true,
+        "vertical": false
+      }
+    }, null, 2)
+  }
 
   // configure the JSON language support with schemas and schema associations
   monaco.languages.json.jsonDefaults.setDiagnosticsOptions({

@@ -85,7 +85,7 @@ export interface IAttrs {
     width: number;
     model: editor.ITextModel;
     editor: editor.IStandaloneCodeEditor;
-    get rules(): Rules;
+    rules: Rules;
   }
 }
 
