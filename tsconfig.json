@@ -35,9 +35,9 @@
       "utils/*": ["./src/utils/*"],
       "attrs": ["src/model.ts"],
       "actions": ["./src/actions.ts"],
-      "store": ["./src/store.ts"],
       "editor/*": ["./src/editor/*"],
       "monaco/*": ["./src/monaco/*"],
+      "modules": ["./src/modules.ts"],
       "bss": ["./types/bss.d.ts"]
     }
   }

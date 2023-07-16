@@ -1,9 +1,10 @@
 import { IActions, ISidebar } from 'types';
-import { IAttrs } from 'types/model';
-import m from 'mithril';
+import type { IAttrs } from 'types/model';
+import type { ClosureComponent } from 'mithril';
+import { m } from 'modules';
 import { file, icon } from '../utils/icons';
 import { State } from 'utils/enums';
-import { formatCode, isOpen, pixels, setWidths, toggleRedraw } from 'utils/helpers';
+import { formatCode, isOpen, pixels } from 'utils/helpers';
 
 export function ghissue (options = {}) {
 
@@ -37,7 +38,7 @@ export function ghissue (options = {}) {
   return url.toString();
 }
 
-export const Sidebar: m.ClosureComponent<IAttrs> = ({ attrs }) => {
+export const Sidebar: ClosureComponent<IAttrs> = ({ attrs }) => {
 
   /* -------------------------------------------- */
   /* CONSTANTS                                    */
@@ -47,72 +48,119 @@ export const Sidebar: m.ClosureComponent<IAttrs> = ({ attrs }) => {
 
   const onEsthetic = () => {
 
-    if (attrs.esthetic.state === State.Opened) {
+    if(attrs.language.state === State.Opened) {
 
-      attrs.esthetic.state = State.Hidden;
+      attrs.language.state = State.Toggle;
 
-      if (isOpen(attrs.preview.state)) {
-        attrs.input.editor.layout({
-          width: pixels(50),
-          height: window.innerHeight
-        });
-      } else {
-        attrs.input.editor.layout({
-          width: pixels(100, 75),
-          height: window.innerHeight
-        });
+      setTimeout(() => {
+
+        attrs.language.state = State.Hidden
+
+        if (isOpen(attrs.preview.state)) {
+          attrs.input.editor.layout({ width: pixels(50, 75), height: window.innerHeight });
+        } else {
+          attrs.input.editor.layout({ width: pixels(100, 75),  height: window.innerHeight });
+        }
+
+        onEsthetic()
+
+      }, 300)
+
+    } else {
+
+      if (attrs.esthetic.state === State.Opened) {
+
+        attrs.esthetic.state = State.Toggle;
+
+        setTimeout(() => {
+
+          attrs.esthetic.state = State.Hidden
+
+
+          if (isOpen(attrs.preview.state)) {
+            attrs.input.editor.layout({ width: pixels(50, 75), height: window.innerHeight });
+          } else {
+            attrs.input.editor.layout({ width: pixels(100, 75),  height: window.innerHeight });
+          }
+
+
+          last = ''
+          m.redraw()
+
+        }, 300)
+
+
+      } else if (attrs.esthetic.state === State.Hidden) {
+
+        attrs.esthetic.state = State.Opened;
+        attrs.input.editor.layout({ width: pixels(100, 675), height: window.innerHeight });
+
+        last = 'rules'
+        m.redraw()
+
       }
 
-    } else if (attrs.esthetic.state === State.Hidden) {
-
-      attrs.esthetic.state = State.Opened;
-
-      attrs.input.editor.layout({
-        width: pixels(100, 700),
-        height: window.innerHeight
-      });
-
     }
-
-    m.redraw();
-
   };
 
   const onLanguage = () => {
 
-    if (attrs.language.state === State.Opened) {
+    if(attrs.esthetic.state === State.Opened) {
 
-      attrs.language.state = State.Hidden;
+      attrs.esthetic.state = State.Toggle;
 
-      if (isOpen(attrs.preview.state)) {
-        attrs.input.editor.layout({
-          width: pixels(50),
-          height: window.innerHeight
-        });
-      } else {
-        attrs.input.editor.layout({
-          width: pixels(100, 75),
-          height: window.innerHeight
-        });
+      setTimeout(() => {
+
+        attrs.esthetic.state = State.Hidden
+
+        if (isOpen(attrs.preview.state)) {
+          attrs.input.editor.layout({ width: pixels(50, 75), height: window.innerHeight });
+        } else {
+          attrs.input.editor.layout({ width: pixels(100, 75), height: window.innerHeight });
+        }
+
+      last = ''
+       onLanguage()
+
+      }, 300)
+
+    } else {
+
+      if (attrs.language.state === State.Opened) {
+
+        attrs.language.state = State.Toggle;
+
+        setTimeout(() => {
+
+          attrs.language.state = State.Hidden
+
+          if (isOpen(attrs.preview.state)) {
+            attrs.input.editor.layout({ width: pixels(50, 75), height: window.innerHeight });
+          } else {
+            attrs.input.editor.layout({ width: pixels(100, 75),  height: window.innerHeight });
+          }
+
+
+          m.redraw()
+
+        }, 300)
+
+      } else if (attrs.language.state === State.Hidden) {
+
+        // attrs.preview.state = State.Hidden;
+        attrs.language.state = State.Opened;
+        attrs.input.editor.layout({ width: pixels(100, 275), height: window.innerHeight });
+
+        m.redraw()
+
+
       }
-
-    } else if (attrs.language.state === State.Hidden) {
-
-      attrs.preview.state = State.Hidden;
-      attrs.language.state = State.Opened;
-
-      attrs.input.editor.layout({
-        width: pixels(100, 275),
-        height: window.innerHeight
-      });
-
-      m.redraw();
 
     }
 
   };
 
-  let last: HTMLButtonElement;
+  let last: string;
 
   return {
     view: (
@@ -139,38 +187,57 @@ export const Sidebar: m.ClosureComponent<IAttrs> = ({ attrs }) => {
           , {
             dataTooltip: 'right',
             ariaLabel: action.tooltip,
-            onclick: (event) => {
+            class: last === key ? 'active' : '',
+            onclick: () => {
 
-              if (last === event.currentTarget) {
-                last.classList.remove('active');
-                last = undefined;
-              } else {
-                last = event.currentTarget;
-                last.classList.add('active');
-              }
+              console.log(key)
 
               if (key === 'file') {
+
                 onEsthetic();
+
               } else if (key === 'rules') {
+
                 onEsthetic();
+
               } else if (key === 'preview') {
 
+                if(attrs.language.state === State.Opened) {
+                  onLanguage()
+                } else if (attrs.esthetic.state === State.Opened) {
+                  onEsthetic()
+                }
+
                 if (attrs.preview.state === State.Opened) {
+
                   attrs.preview.state = State.Hidden;
                   attrs.preview.editor.getContainerDomNode().style.display = 'none';
-                  attrs.input.editor.layout({
-                    width: pixels(100, 75),
-                    height: window.innerHeight
-                  });
+                  attrs.input.editor.layout({ width: pixels(100, 75), height: window.innerHeight });
+
                 } else if (attrs.preview.state === State.Hidden) {
+
                   attrs.preview.state = State.Opened;
                   attrs.preview.editor.getContainerDomNode().style.display = '';
-                  attrs.input.editor.layout({
-                    width: pixels(50, 75),
-                    height: window.innerHeight
-                  });
+                  attrs.input.editor.layout({ width: pixels(50, 75), height: window.innerHeight });
+
                   formatCode(attrs);
+
                 }
+              } else if (key === 'github') {
+                window.open(ghissue({
+                  title: '',
+                  labels: [`${attrs.config.language}`],
+                  body: [
+                    '<!-- DESCRIBE THE ISSUE -->',
+                    '',
+                    '',
+                    '<!--',
+                    '  DO NOT EDIT BELOW THIS LINE AS IT CONTAINS PLAYGROUND LINK',
+                    '-->',
+                    '',
+                    `[ÆSTHETIC PLAYGROUND](${window.location.href})`,
+                  ].join('\n')
+                }), "_blank");
               }
 
             }

@@ -1,4 +1,4 @@
-import m from 'mithril';
+import { m } from 'modules';
 import { LanguageName } from 'esthetic';
 
 export type Icons = (

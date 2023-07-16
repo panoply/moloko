@@ -2,13 +2,13 @@ import { IAttrs } from 'types/model';
 import type { editor } from 'monaco-editor';
 import { Style } from 'types';
 import * as hash from 'editor/hash';
-import m from 'mithril';
-import esthetic from 'esthetic';
+import type { ClosureComponent } from 'mithril';
 import { monaco } from '../monaco';
 import { State } from 'utils/enums';
 import { formatCode } from 'utils/helpers';
+import { esthetic, m } from 'modules';
 
-export const Input: m.ClosureComponent<IAttrs> = (
+export const Input: ClosureComponent<IAttrs> = (
   {
     attrs
   }

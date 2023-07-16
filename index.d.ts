@@ -1,5 +1,6 @@
 import type Esthetic from 'esthetic';
 import { IAttrs, IConfig } from './types/moloko';
+import Mithril from 'mithril';
 
 export * from './types/moloko';
 
@@ -16,7 +17,37 @@ export declare const moloko: {
    * Renders the text edtior to the provided element.
    * Optionally pass in options.
    */
-  mount(element: Element | HTMLElement, options?: IConfig): IAttrs
+  mount(element: Element | HTMLElement, options?: IConfig): IAttrs;
+
+  /**
+   * **Moloko Render**
+   *
+   * Renders the text edtior to the provided element.
+   * Optionally pass in options.
+   */
+  render(element: Element | HTMLElement, options?: IConfig): Promise<{
+    readonly attrs: IAttrs;
+    Esthetic: Mithril.ClosureComponent<IAttrs>;
+    Preview: Mithril.Component<IAttrs, {}>;
+  }>
+
+  /**
+   * **Moloko Loader**
+   *
+   * Cherry pick editor instances
+   */
+  loader(options?: IConfig): {
+    readonly attrs: IAttrs;
+    /**
+     * **Æsthetic Rules**
+     *
+     * Returns JSON Schema editor instances
+     */
+    readonly esthetic: (dom: HTMLElement, attrs: IAttrs) => {
+      mount: () => void;
+      unmount: () => void;
+    };
+  }
   /**
    * **Æsthetic**
    *

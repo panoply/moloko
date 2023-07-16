@@ -1,9 +1,10 @@
 import { PotionTheme } from 'monaco/theme';
 import { configuration, liquid } from 'monaco/liquid';
 import { schema } from 'monaco/schema';
-import esthetic, { LanguageName, Rules } from 'esthetic';
+import type { LanguageName, Rules } from 'esthetic';
 import { SAMPLE } from 'monaco/sample';
 import join from 'url-join';
+import { esthetic } from 'modules';
 import { loadExternalCSS } from 'utils/helpers';
 
 /**
@@ -23,7 +24,7 @@ export async function getMonacoModule (path: string) {
 
   loadExternalCSS(path);
 
-  monaco = await import(join(path, 'monaco.js'));
+  monaco = await import(join(path, 'monaco/monaco.js'));
 
   monaco.editor.defineTheme('potion', PotionTheme);
   monaco.editor.setTheme('potion');
@@ -42,22 +43,22 @@ export async function getMonacoModule (path: string) {
 
       switch (label) {
         case 'json':
-          return join(path, 'workers', 'json.js');
+          return join(path, 'monaco/workers', 'json.js');
         case 'css':
         case 'scss':
         case 'less':
-          return join(path, 'workers', 'css.js');
+          return join(path, 'monaco/workers', 'css.js');
         case 'html':
         case 'xml':
         case 'liquid':
-          return join(path, 'workers', 'html.js');
+          return join(path, 'monaco/workers', 'html.js');
         case 'javascript':
         case 'typescript':
         case 'jsx':
         case 'tsx':
-          return join(path, 'workers', 'typescript.js');
+          return join(path, 'monaco/workers', 'typescript.js');
         default:
-          return join(path, 'workers', 'editor.js');
+          return join(path, 'monaco/workers', 'editor.js');
       }
 
     }

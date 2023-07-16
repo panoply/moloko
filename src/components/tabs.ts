@@ -1,8 +1,9 @@
-import type { IAttrs, Style } from 'types';
-import m from 'mithril';
+import type { IAttrs } from 'types';
+import type { Component } from 'mithril';
+import { m } from 'modules';
 import { file, icon } from 'utils/icons';
 
-export const Tabs: m.Component<IAttrs> = {
+export const Tabs: Component<IAttrs> = {
   view: () => [
     m(
       '.moloko-tabs'

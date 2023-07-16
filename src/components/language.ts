@@ -1,10 +1,11 @@
 import { IAttrs } from 'types/model';
-import m from 'mithril';
+import type { Component } from 'mithril';
+import { m } from 'modules';
 import { monaco } from '../monaco';
 import { file } from '../utils/icons';
 import { State } from 'utils/enums';
 
-export const Language: m.Component<IAttrs> = {
+export const Language: Component<IAttrs> = {
   view: (
     {
       attrs

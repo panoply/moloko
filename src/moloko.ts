@@ -1,16 +1,15 @@
 import type { IConfig, Style } from 'types';
-import esthetic from 'esthetic';
 import * as hash from 'editor/hash';
 import { model } from 'src/model';
-import m from 'mithril';
 import { Sidebar } from 'src/components/sidebar';
 import { Input } from 'editor/input';
 import { getMonacoModule, getInputModel, getRulesModel } from './monaco';
 import { Preview } from 'editor/preview';
 import { IAttrs } from 'types/model';
-import { Esthetic } from 'editor/esthetic';
+import { Esthetic, EstheticStatic } from 'editor/esthetic';
 import { Language } from './components/language';
 import { State } from 'utils/enums';
+import { load, esthetic, m } from 'modules';
 
 /**
  * Quickly checks if the editor session is
@@ -48,19 +47,25 @@ function setMolokoOptions (attrs: IAttrs) {
 
     esthetic.rules({ language: attrs.language.current });
 
+    if (attrs.config.preview.enable) attrs.preview.model = getInputModel(attrs.language.current);
+
     attrs.input.model = getInputModel(attrs.language.current);
-    attrs.preview.model = getInputModel(attrs.language.current);
     attrs.esthetic.model = getRulesModel(attrs.esthetic.rules);
 
   }
 };
 
-/**
- * Moloko Initialize
- */
-export async function mount (element: HTMLElement, options: IConfig = {}) {
+export async function loader (options: IConfig = {}): Promise<{
+  readonly attrs: IAttrs;
+  readonly esthetic: (dom: HTMLElement, attrs: IAttrs) => {
+    mount: () => void;
+    unmount: () => void;
+  };
+}> {
 
   const attrs = model(options);
+
+  await load(attrs);
 
   try {
     await getMonacoModule(attrs.path);
@@ -70,34 +75,75 @@ export async function mount (element: HTMLElement, options: IConfig = {}) {
 
   setMolokoOptions(attrs);
 
-  document.body.style.overflow = 'hidden';
+  return {
+    get attrs () {
+      return attrs;
+    },
+    get esthetic () {
+      return EstheticStatic;
+    }
+  };
+
+}
+
+/**
+ * Moloko Initialize
+ */
+export async function render (element: HTMLElement, options: IConfig = {}) {
+
+  const { attrs } = await loader(options);
+
+  return {
+    get attrs () {
+      return attrs;
+    },
+    Esthetic,
+    Preview
+  };
+
+}
+
+/**
+ * Moloko Initialize
+ */
+export async function mount (element: HTMLElement, options: IConfig = {}) {
+
+  const { attrs } = await loader(options);
+
+  const toggles = (prop: string) => {
+   return attrs[prop].state === State.Opened
+    ? '.open'
+    : attrs[prop].state === State.Toggle
+      ? '.close'
+    : ''
+  }
 
   m.mount(element, {
     view: () => m(
       'section.moloko-editor'
       , { style: <Style>{ top: `${attrs.config.offset}px` } }
       , [
-        m(
+        attrs.config.sidebar.enable ? m(
           'aside.moloko-sidebar'
           , m(Sidebar, attrs)
+        ) : null
+        ,
+         m(
+          'aside.moloko-language' + toggles('language')
+          , m(Language, attrs)
         )
         ,
-        attrs.language.state === State.Opened ? m(
-          'aside.moloko-language'
-          , m(Language, attrs)
-        ) : null
-        ,
-        attrs.esthetic.state === State.Opened ? m(
-          'section.moloko-esthetic'
+         m(
+          'section.moloko-esthetic' + toggles('esthetic')
           , m(Esthetic, attrs)
-        ) : null
+        )
         ,
         m(
           'section.moloko-input'
           , m(Input, attrs)
         )
         ,
-        attrs.preview.state === State.Opened ? m(
+        attrs.config.preview.enable && attrs.preview.state === State.Opened ? m(
           'section.moloko-preview'
           , m(Preview, attrs)
         ) : null

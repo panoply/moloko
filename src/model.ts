@@ -1,7 +1,7 @@
-import esthetic from 'esthetic';
 import type { IConfig } from 'types';
 import type { IAttrs } from 'types/model';
 import { State, Mode } from 'utils/enums';
+import { esthetic } from 'modules';
 import merge from 'mergerino';
 import join from 'url-join';
 
@@ -13,7 +13,9 @@ export function model (options: IConfig): IAttrs {
   const defaults: IConfig = {
     resolve: {
       origin: window.location.origin,
-      path: ''
+      path: '',
+      mithril: true,
+      esthetic: true
     },
     tabs: false,
     monaco: {
@@ -38,7 +40,7 @@ export function model (options: IConfig): IAttrs {
       formatOnPaste: false,
       scrollBeyondLastLine: false,
       fontFamily: 'Courier New, Monaco',
-      fontWeight: '300',
+      fontWeight: '400',
       fontSize: 16,
       lineHeight: 19,
       cursorBlinking: 'blink',
@@ -48,6 +50,9 @@ export function model (options: IConfig): IAttrs {
         enabled: false,
         independentColorPoolPerBracketType: false
       }
+    },
+    preview: {
+      enable: true
     },
     offset: 0,
     detect: true,

@@ -1,15 +1,14 @@
-import esthetic from 'esthetic';
 import { IAttrs } from 'types/model';
 import join from 'url-join';
 import { State } from './enums';
-import m from 'mithril';
+import { esthetic, m } from 'modules';
 
 export function loadExternalCSS (path: string) {
 
   const head = document.documentElement.firstElementChild;
   const loaded = Array.from(head.querySelectorAll('link')).map(({ id }) => id);
 
-  for (const file of [ 'monaco.css', 'moloko.css' ]) {
+  for (const file of [ 'monaco/monaco.css', 'moloko.css' ]) {
 
     const id = file.slice(0, -4);
 
@@ -59,6 +58,7 @@ export function toggleRedraw (attrs: IAttrs) {
   return (pane: 'language' | 'esthetic' | 'preview', timer = 250) => {
 
     setWidths(attrs);
+
     attrs[pane].state = State.Toggle;
 
     setTimeout(() => {

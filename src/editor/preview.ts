@@ -1,10 +1,11 @@
 import { Style } from 'types';
 import { IAttrs } from 'types/model';
 import type { editor } from 'monaco-editor';
-import m from 'mithril';
+import { Component } from 'mithril';
 import { monaco } from '../monaco';
+import { m } from 'modules';
 
-export const Preview: m.Component<IAttrs> = {
+export const Preview: Component<IAttrs> = {
   oncreate: (
     {
       dom,

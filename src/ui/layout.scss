@@ -12,18 +12,25 @@ html {
 html,
 body {
   height: 100%;
-  margin: 0;
 }
 
 .moloko-language {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 75px;
+  left: 0;
   width: 200px;
   height: 100%;
   overflow-y: scroll;
+  margin-left: 75px;
   border-right: 0.01rem solid $moloko-border-color;
+  transform: translateX(-200px);
+  background-color: #12161d;
+
+  &.close,
+  &.open {
+    transform: translateX(0);
+  }
 
   &::-webkit-scrollbar-track {
     background-color: $moloko-background-editor;
@@ -104,14 +111,25 @@ body {
 
 .moloko-esthetic {
   flex-grow: 1;
-  margin-left: 75px;
+  width: 600px;
+  transform: translateX(-600px);
+  background-color: #12161d;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 75px;
 
+  &.close,
+  &.open {
+    transform: translateX(0);
+  }
 
   &::after {
     position: fixed;
     top: 0;
     bottom: 0;
     left: 40%;
+    transition: left 200ms;
     z-index: 1;
     display: flex;
     justify-content: center;
@@ -134,7 +152,7 @@ body {
   top: 0;
   bottom: 0;
   left: 0;
-  z-index: 999;
+  z-index: 9999;
   display: flex;
   flex-flow: column wrap;
   width: 75px;
@@ -181,38 +199,54 @@ body {
 
 .moloko {
 
-
-  &-esthetic,
   &-input,
   &-preview {
     flex-grow: 1;
     margin-left: 75px;
   }
 
+  &-input,
+  &-preview {
+    width: 50%;
+  }
+
   &-input + &-preview {
-    width: 50%;
     margin-left: 0;
   }
 
-  &-sidebar + &-input {
-    width: 50%;
-  }
 
-  &-language + &-input {
+  /* -------------------------------------------- */
+  /* LANGUAGE TOGGLE                              */
+  /* -------------------------------------------- */
+
+  &-language.open + &-esthetic + &-input {
     margin-left: 275px;
+    transition: margin-left 300ms;
   }
 
-  &-sidebar + &-esthetic {
-    width: 700px;
+
+  &-language.close + &-esthetic + &-input {
+    margin-left: 75px;
+    transition: margin-left 300ms;
   }
 
-  &-sidebar + &-esthetic + &-input {
-    width: auto;
-    margin-left: 0;
+  /* -------------------------------------------- */
+  /* SIDEBAR TOGGLE                               */
+  /* -------------------------------------------- */
+
+  &-esthetic.open + &-input {
+    margin-left: 675px;
+    transition: margin-left 300ms,
   }
 
-  &-language + &-input + &-preview,
-  &-esthetic + &-input + &-preview {
+  &-esthetic.close + &-input {
+    margin-left: 75px;
+    transition: margin-left 300ms,
+  }
+
+
+  &-language.open + &-esthetic + &-input + &-preview,
+  &-esthetic.open + &-input + &-preview {
     display: none;
   }
 }

@@ -171,3 +171,18 @@ export const PotionTheme: editor.IStandaloneThemeData = {
   },
   rules
 };
+
+export const PotionThemeLightBackground: editor.IStandaloneThemeData = {
+  base: 'vs-dark',
+  inherit: true,
+  colors: {
+    'editor.background': '#12161d',
+    'editor.foreground': '#fafafa',
+    'editor.selectionBackground': '#253B76',
+    'editor.lineHighlightBackground': '#FFFFFF0F',
+    'editorCursor.foreground': '#FFFFFFA6',
+    'editorWhitespace.foreground': '#424242',
+    'editorHoverWidget.background': '#161616'
+  },
+  rules
+};

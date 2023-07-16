@@ -68,7 +68,7 @@ export interface ISidebar {
    *
    * Returns in the order of each key.
    */
-  actions: {
+  actions?: {
     /**
      * The current file
      */
@@ -120,7 +120,7 @@ export interface IFooter {
    *
    * Returns in the order of each key.
    */
-  actions: {
+  actions?: {
     /**
      * Language detection control
      *
@@ -296,13 +296,15 @@ export interface IConfig {
    *
    * - `https://website.com/moloko.js`
    * - `https://website.com/moloko.css`
-   * - `https://website.com/monaco.js`
-   * - `https://website.com/monaco.css`
-   * - `https://website.com/workers/css.js`
-   * - `https://website.com/workers/editor.js`
-   * - `https://website.com/workers/html.js`
-   * - `https://website.com/workers/json.js`
-   * - `https://website.com/workers/typescript.js`
+   * - `https://website.com/module/esthetic.js`
+   * - `https://website.com/module/mithri.js`
+   * - `https://website.com/monaco/monaco.js`
+   * - `https://website.com/monaco/monaco.css`
+   * - `https://website.com/monaco/workers/css.js`
+   * - `https://website.com/monaco/workers/editor.js`
+   * - `https://website.com/monaco/workers/html.js`
+   * - `https://website.com/monaco/workers/json.js`
+   * - `https://website.com/monaco/workers/typescript.js`
    */
   resolve?: {
     /**
@@ -320,16 +322,55 @@ export interface IConfig {
      * detinations.
      */
     path?: string;
-  };
-  /**
-   * Additional Services exposed to moloko
-   */
-  services?: {
     /**
-     * Whether or not to load in [LiquidJS](https://github.com/harttle/liquidjs)
+     * Mithril Module
+     *
+     * `true`
+     *
+     * Uses the included mithril module.
+     *
+     * `false`
+     *
+     * Passing `false` will expect a variable of `m` to be exposed on `globalThis`
+     *
+     * `string`
+     *
+     * A path value or CDN reference to resolve mithril
+     *
+     *
+     * `typeof m`
+     *
+     * Provide an already invoked mithril instance
+     *
+     * @default true
      */
-    liquidjs?: boolean;
-  }
+    mithril?: boolean | string | typeof import('mithril');
+
+    /**
+     * Whether to use bundled esthetic.js
+     *
+    * `true`
+     *
+     * Uses the included esthetic module.
+     *
+     * `false`
+     *
+     * Passing `false` will expect a variable of `esthetic` to be exposed on `globalThis`
+     *
+     * `string`
+     *
+     * A path value or CDN reference to resolve esthetic
+     *
+     *
+     * `typeof m`
+     *
+     * Provide an already invoked esthetic instance
+     *
+     * @default true
+     */
+    esthetic?: boolean | string | typeof import('esthetic');
+
+  };
   /**
    * Monaco Editor Options
    *
@@ -345,9 +386,26 @@ export interface IConfig {
    */
   instructions?: boolean;
   /**
+   * Æsthetic
+   */
+  esthetic?: {
+    /**
+     * Enable Æsthetic
+     *
+     * @default true
+     */
+    enable?: boolean;
+  };
+  /**
    * The code preview pane
    */
   preview?: {
+    /**
+     * Enable Preview
+     *
+     * @default true
+     */
+    enable?: boolean;
     /**
      * The background colour of the preview pane
      */
