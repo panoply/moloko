@@ -1,1 +1,8053 @@
-var e=Object.defineProperty,t="",n='"',i=",",r="'",s=" ",o="\n";function a(e){switch(e){case"text":return"Plain Text";case"html":return"HTML";case"liquid":return"Liquid";case"xml":return"XML";case"json":return"JSON";case"jsx":return"JSX";case"tsx":return"TSX";case"typescript":return"TypeScript";case"javascript":return"JavaScript";case"less":return"LESS";case"scss":return"SCSS";case"sass":return"SASS";case"css":return"CSS"}}function l(e){switch(e){case"text":return"ignore";case"auto":return"auto";case"markup":case"html":case"liquid":case"xml":return"markup";case"json":case"jsx":case"tsx":case"typescript":case"javascript":return"script";case"less":case"scss":case"sass":case"css":return"style"}}function c(e){switch(e){case"auto":return 5;case"markup":case"html":case"liquid":case"xml":return 1;case"json":case"jsx":case"tsx":case"typescript":case"javascript":return 2;case"less":case"scss":case"sass":case"css":return 3}return 4}function u(e,t){let n={lexer:t,language:a(e),chars:0,time:""},i=Date.now();return e=>{let t=+(Date.now()-i).toFixed(0);return n.time=t>1e3?`${t}s`:`${t}ms`,n.chars=e,n}}function p(...e){return e.join(o)}function d(e,n=s){if(e<=0)return n;let i=t,r=1;do{i+=n}while(r++<e);return i}function h(e,t){return!!e&&e.charCodeAt(0)===t}function f(e,t){return h(e[e.length-1],t)}function g(e,t,n=2){return h(e[e.length-n],t)}function k(e,t){return!1===h(e,t)}function m(e,t){return!1===f(e,t)}function b(e){return/\s/.test(e)}function y(e){return/\d/.test(e)}function w(e){return`\\${e}`}var{toString:x}=Object.prototype;function v(e){return t=>t in e}function q(e){return"Array"===x.call(e).slice(8,-1)}function j(e){return"Object"===x.call(e).slice(8,-1)}function O(e){return"String"===x.call(e).slice(8,-1)}function $(e){return"Boolean"===x.call(e).slice(8,-1)}function S(e){return"Number"===x.call(e).slice(8,-1)}function _(e){return"Undefined"===x.call(e).slice(8,-1)}function A(e){let n=Be.count,i=Be.stack.index,r=0,s=0,o=0,a=0,l=0,c=0,u=0,p=!0,{count:d}=Be,f=Be.stack.token,g=Be.stack.index,m=Be.lineOffset,b="style"===e.lexer[d],y=b&&"global"===f,w=b?[";","separator"]:[",","separator"],x=[],v={begin:[],ender:[],lexer:[],lines:[],stack:[],token:[],types:[]};a=n;do{if(e.begin[n]===i||y&&n<a&&h(e.token[n],125)&&-1===e.begin[e.begin[n]]){if(e.types[n].indexOf("liquid")>-1)return;if(e.token[n]===w[0]||!0===b&&h(e.token[n],125)&&k(e.token[n+1],59)?(p=!0,l=n+1):!0===b&&h(e.token[n-1],125)&&(p=!0,l=n),0===l&&"comment"===e.types[0])do{l+=1}while("comment"===e.types[l]);else"comment"===e.types[l]&&e.lines[l]<2&&(l+=1);!0===p&&(e.token[n]===w[0]||!0===b&&h(e.token[n-1],125))&&l<=a&&((!0===b&&"};".indexOf(e.token[a])<0||!1===b&&k(e.token[a],44))&&(a+=1),x.push([l,a]),a=!0===b&&h(e.token[l],125)?l:l-1)}n-=1}while(n>i);if(x.length>0&&x[x.length-1][0]>n+1){if(r=x[x.length-1][0]-1,"comment"===e.types[r]&&e.lines[r]>1){do{r-=1}while(r>0&&"comment"===e.types[r]);x[x.length-1][0]=r+1}if("comment"===e.types[n+1]&&-1===n)do{n+=1}while("comment"===e.types[n+1]);x.push([n+1,r])}if(x.length>1&&(!0===b||"json"===Be.language||h(e.token[n-1],61)||h(e.token[n-1],58)||h(e.token[n-1],40)||h(e.token[n-1],91)||h(e.token[n-1],44)||"word"===e.types[n-1]||0===n)){x.sort((function(t,n){let i=t[0],r=n[0];if("comment"===e.types[i]){do{i+=1}while(i<d&&"comment"===e.types[i]);if(void 0===e.token[i])return 1}if("comment"===e.types[r]){do{r+=1}while(r<d&&"comment"===e.types[r]);if(void 0===e.token[r])return 1}if(!0===b){if(0===e.token[i].indexOf("@import")||0===e.token[r].indexOf("@import"))return i<r?-1:1;if(e.types[i]!==e.types[r]){if("function"===e.types[i])return 1;if("variable"===e.types[i])return-1;if("selector"===e.types[i])return 1;if("property"===e.types[i]&&"variable"!==e.types[r]||"mixin"===e.types[i]&&"property"!==e.types[r]&&"variable"!==e.types[r])return-1}}return e.token[i].toLowerCase()>e.token[r].toLowerCase()?1:-1})),u=x.length,p=!1,i=0;do{if(c=x[i][1],!0===b&&(o=c,"comment"===e.types[o]&&(o-=1),h(e.token[o],125)?(c+=1,w[0]="}",w[1]="end"):(w[0]=";",w[1]="separator")),r=x[i][0],!0===b&&"end"!==e.types[c-1]&&"comment"===e.types[c]&&"comment"!==e.types[c+1]&&i<u-1&&(c+=1),r<c)do{!1===b&&i===u-1&&r===c-2&&h(e.token[r],44)&&"script"===e.lexer[r]&&"comment"===e.types[r+1]||Be.push(v,{begin:e.begin[r],ender:e.begin[r],lexer:e.lexer[r],lines:e.lines[r],stack:e.stack[r],token:e.token[r],types:e.types[r]},t),s+=1,e.token[r]!==w[0]||!0!==b&&e.begin[r]!==e.begin[x[i][0]]?e.token[r]!==w[0]&&"comment"!==e.types[r]&&(p=!1):p=!0,r+=1}while(r<c);if(!1===p&&"x;"!==v.token[v.token.length-1]&&(!0===b||i<u-1)){if(r=v.types.length-1,"comment"===v.types[r])do{r-=1}while(r>0&&"comment"===v.types[r]);r+=1,Be.splice({data:v,howmany:0,index:r,record:{begin:g,stack:y?"global":f,ender:Be.count,lexer:v.lexer[r-1],lines:0,token:w[0],types:w[1]}}),s+=1}i+=1}while(i<u);Be.splice({data:e,howmany:s,index:n+1}),Be.lineOffset=m,Be.concat(e,v)}}function C(e,t,n){return!1===q(e)?e:"normal"===t?N.call({array:e,recursive:n},e):"descend"===t?T.call({recursive:n},e):L.call({recursive:n},e)}function I(e,t){let n=e,i=-1,{data:r}=Be,s=[],o=Be.stack.length<2?[-1]:[Be.stack[Be.stack.length-2][1]];do{n>0&&r.types[n].indexOf("attribute")>-1&&r.types[n].indexOf("end")<0&&r.types[n-1].indexOf("start")<0&&r.types[n-1].indexOf("attribute")<0&&"markup"===r.lexer[n]&&o.push(n-1),n>0&&r.types[n-1].indexOf("attribute")>-1&&r.types[n].indexOf("attribute")<0&&"markup"===r.lexer[o[o.length-1]]&&r.types[o[o.length-1]].indexOf("start")<0&&o.pop(),r.begin[n]!==o[o.length-1]&&(r.begin[n]=o.length>0?o[o.length-1]:-1),r.types[n].indexOf("else")>-1&&(o.length>0?o[o.length-1]=n:o.push(n)),r.types[n].indexOf("end")>-1&&o.pop(),r.types[n].indexOf("start")>-1&&o.push(n),n+=1}while(n<t);n=t;do{n-=1,r.types[n].indexOf("end")>-1&&(s.push(n),i+=1),r.ender[n]=i>-1?s[i]:-1,r.types[n].indexOf("start")>-1&&(s.pop(),i-=1)}while(n>e)}function L(e){let n=0,i=e.length,r=e,s=r.map((e=>e[1])),o=()=>{let e=0,t=r.length;if(e<t)do{!0===q(r[e])&&(r[e]=L.apply(this,r[e])),e+=1}while(e<t)},a=(l=t)=>{let c=n,u=0,p=0,d=0,h=[],f=r[n];if(c<i)do{r[c]<f?(f=r[c],h=[c]):r[c]===f&&h.push(c),c+=1}while(c<i);if(p=h.length,c=n,u=p+n,c<u)do{f[1]=s[c],r[h[d]]=r[c],r[c]=f,d+=1,c+=1}while(c<u);return n+=p,n<i?a():(!0===this.recursive&&o(),e=r),l};return a(),e}function T(e){let n=0,i=e.length,r=e,s=()=>{let e=r.length,t=0;if(t<e)do{q(r[t])&&(r[t]=T.apply(this,r[t])),t+=1}while(t<e)},o=(a="")=>{let l=n,c=0,u=0,p=0,d=r[n],h=[],f=t,g=typeof d;if(l<i)do{f=typeof r[l],r[l]>d||f>g?(d=r[l],h=[l]):r[l]===d&&h.push(l),l+=1}while(l<i);if(u=h.length,l=n,c=u+n,l<c)do{r[h[p]]=r[l],r[l]=d,p+=1,l+=1}while(l<c);return n+=u,n<i?o():(!0===this.recursive&&s(),e=r),a};return o(),e}function N(e){let t=e,n=[e[0]],i=()=>{let e=0,n=t.length;if(e<n)do{q(t[e])&&(t[e]=N.apply(this,t[e])),e+=1}while(e<n)},r=s=>{let o=0,a=[],l=t.length;if(o<l)do{t[o]!==s&&a.push(t[o]),o+=1}while(o<l);t=a,a.length>0?(n.push(a[0]),r(a[0])):(!0===this.recursive&&i(),e=t)};return r(this.array[0]),e}var P=function(){let e=function(e={units:["%","cap","ch","cm","deg","dpcm","dpi","dppx","em","ex","fr","grad","Hz","ic","in","kHz","lh","mm","ms","mS","pc","pt","px","Q","rad","rem","rlh","s","turn","vb","vh","vi","vmax","vmin","vw"],atrules:["@charset","@color-profile","@counter-style","@font-face","@font-feature-values","@font-palette-values","@import","@keyframes","@layer","@media","@namespace","@page","@supports"],webkit:{classes:["webkit-any","webkit-any-link*","webkit-autofill"],elements:["webkit-file-upload-button","webkit-inner-spin-button","webkit-input-placeholder","webkit-meter-bar","webkit-meter-even-less-good-value","webkit-meter-inner-element","webkit-meter-optimum-value","webkit-meter-suboptimum-value","webkit-outer-spin-button","webkit-progress-bar","webkit-progress-inner-element","webkit-progress-value","webkit-search-cancel-button","webkit-search-results-button","webkit-slider-runnable-track","webkit-slider-thumb"]},pseudo:{classes:["active","any-link","checked","default","defined","disabled","empty","enabled","first","first-child","first-of-type","fullscreen","focus","focus-visible","focus-within","host","hover","indeterminate","in-range","invalid","is","lang","last-child","last-of-type","left","link","modal","not","nth-child","nth-col","nth-last-child","nth-last-of-type","nth-of-type","only-child","only-of-type","optional","out-of-range","picture-in-picture","placeholder-shown","paused","playing","read-only","read-write","required","right","root","scope","target","valid","visited","where"],elements:["after","backdrop","before","cue","cue-region","first-letter","first-line","file-selector-button","marker","part","placeholder","selection","slotted"],functions:["after","before","first-letter","first-line","host","host-context","part","slotted","lang","not","nth-child","nth-col","nth-last-child","nth-last-of-type","nth-of-type","where"]}}){let t=new Set(e.units),n=new Set(e.atrules),i=new Set(e.pseudo.classes),r=new Set(e.pseudo.elements),s=new Set(e.pseudo.functions),o=new Set(e.webkit.elements),a=new Set(e.webkit.classes);return{get grammar(){return e},get units(){return t},get pseudoClasses(){return i},get pseudoElements(){return r},get pseudoFunctions(){return s},get webkitElements(){return o},get webkitClasses(){return a},atrules:e=>n.has(e.slice(0,e.indexOf("(")).trim()),extend(l){for(let c in l){if(q(l[c]))for(let i of l[c])"units"!==c||t.has(i)?"atrules"===c&&!n.has(i)&&(e[c].push(i),n.add(i)):(e[c].push(i),t.add(i));if("object"==typeof l[c])for(let t in l[c])if(q(l[c][t]))for(let n of l[c][t])"webkit"===c?"elements"===t?(e[c][t].push(n),o.add(n)):"classes"===t&&(e[c][t].push(n),a.add(n)):"pseudo"===c&&("elements"===t?(e[c][t].push(n),r.add(n)):"classes"===t?(e[c][t].push(n),i.add(n)):"functions"===t&&(e[c][t].push(n),s.add(n)))}}}}(),t=function(e={embedded:{schema:[{language:"json"}],style:[{language:"css"}],stylesheet:[{language:"css"},{language:"scss",argument:/['"]scss['"]/}],javascript:[{language:"javascript"}]},tags:["form","paginate","capture","case","comment","for","if","raw","tablerow","unless","schema","style","script","stylesheet","javascript"],control:["if","unless","case"],else:["else","elsif","when"],singletons:["include","layout","section","assign","liquid","break","continue","cycle","decrement","echo","increment","render"]}){let t=new Set(e.else),n=new Set(e.control),i=new Set(e.tags),r=new Set(e.singletons),s={};return o(e.embedded),{get grammar(){return e},get tags(){return i},get control(){return n},get else(){return t},get singleton(){return r},get embed(){return s},extend(s){for(let a in s)if(q(s[a]))for(let o of s[a])"tags"===a&&!1===i.has(o)?(e.tags.push(o),i.add(o)):"else"===a&&!1===t.has(o)?(e.else.push(o),t.add(o)):"control"===a&&n.has(o)?(e.control.push(o),n.add(o)):"singletons"===a&&!1===r.has(o)&&(e.singletons.push(o),r.add(o));else"embedded"===a&&"object"==typeof s[a]&&o(s[a])}};function o(e){for(let t in e)for(let{language:n,argument:i=null}of e[t])if(t in s||(s[t]={tag:t,language:n,args:new Map([[new Set,{tag:t,language:n}]])}),i)for(let[e]of s[t].args)if(null!==e)if(q(i))for(let t of i)e.has(t)||e.add(t);else{let t=new RegExp(i);if(e.size>0)for(let n of e)n instanceof RegExp&&n.source!==t.source&&e.add(t);else e.add(t)}}}(),n=function(e={keywords:["ActiveXObject","ArrayBuffer","AudioContext","Canvas","CustomAnimation","DOMParser","DataView","Date","Error","EvalError","FadeAnimation","FileReader","Flash","Float32Array","Float64Array","FormField","Frame","Generator","HotKey","Image","Iterator","Intl","Int16Array","Int32Array","Int8Array","InternalError","Loader","Map","MenuItem","MoveAnimation","Notification","ParallelArray","Point","Promise","Proxy","RangeError","Rectangle","ReferenceError","Reflect","RegExp","ResizeAnimation","RotateAnimation","Set","SQLite","ScrollBar","Set","Shadow","StopIteration","Symbol","SyntaxError","Text","TextArea","Timer","TypeError","URL","Uint16Array","Uint32Array","Uint8Array","Uint8ClampedArray","URIError","WeakMap","WeakSet","Web","Window","XMLHttpRequest"]}){let t=new Set(e.keywords);return{get grammar(){return e},get keywords(){return t},extend(n){for(let i in n)if(q(n[i]))for(let r of n[i])"keywords"===i&&!t.has(r)&&(e[i].push(r),t.add(r))}}}(),i=function(e={embedded:{script:[{language:"javascript"},{language:"json",attribute:{type:["application/json","application/ld+json"]}},{language:"jsx",attribute:{type:["text/jsx","application/jsx"]}}],style:[{language:"css"}]},voids:["area","base","br","col","command","embed","hr","img","input","keygen","link","menuitem","meta","param","source","track","wbr"],tags:["a","abbr","acronym","address","applet","article","aside","audio","b","basefont","bdi","bdo","big","blockquote","body","button","canvas","caption","center","cite","code","colgroup","data","datalist","dd","del","details","dfn","dialog","dir","div","dl","dt","em","fieldset","figcaption","figure","figure","font","footer","form","frame","frameset","h1","h6","head","header","html","i","iframe","ins","isindex","kbd","label","legend","fieldset","li","main","map","mark","marquee","menu","meter","nav","noframes","frame","noscript","object","ol","optgroup","option","output","p","object","picture","pre","progress","q","rp","rt","ruby","s","samp","script","section","select","small","picture","video","audio","span","strike","strong","style","sub","summary","details","sup","svg","table","tbody","td","template","textarea","tfoot","th","thead","time","title","tr","audio","video","tt","u","ul","var","video"]}){let t=new Set(e.tags),n=new Set(e.voids),i={};return r(e.embedded),{get grammar(){return e},get tags(){return t},get voids(){return n},get embed(){return i},extend(i){for(let s in i)if(q(i[s]))for(let r of i[s])"tags"===s&&!1===t.has(r)?(e.tags.push(r),t.add(r)):"voids"===s&&!1===n.has(r)&&(e.voids.push(r),n.add(r));else"embedded"===s&&"object"==typeof i[s]&&r(i[s])}};function r(e){for(let t in e){t in i||(i[t]={tag:t,attr:new Map});for(let{language:n,attribute:r}of e[t])if("language"in i[t]||(i[t].language=n),i[t].attr.has(n)||i[t].attr.set(n,{tag:t,language:n,attr:new Map}),r){let e=i[t].attr.get(n);for(let s in r){e.attr.has(s)||e.attr.set(s,{tag:t,language:n,attr:s,value:new Set});let o=i[t].attr.get(n).attr.get(s);if(q(r[s]))for(let e of r[s])o.value.has(e)||o.value.add(e);else{let e=new RegExp(r[s]);if(o.value.size>0)for(let t of o.value)t instanceof RegExp&&t.source!==e.source&&o.value.add(e);else o.value.add(e)}}}}}}(),r=function(e={tags:["a","altGlyph","altGlyphDef","altGlyphItem","animate","animateColor","animateMotion","animateTransform","circle","clipPath","color-profile","cursor","defs","desc","ellipse","feBlend","feColorMatrix","feComponentTransfer","feComposite","feConvolveMatrix","feDiffuseLighting","feDisplacementMap","feDistantLight","feFlood","feFuncA","feFuncB","feFuncG","feFuncR","feGaussianBlur","feImage","feMerge","feMergeNode","feMorphology","feOffset","fePointLight","feSpecularLighting","feSpotLight","feTile","feTurbulence","filter","font","font-face","font-face-format","font-face-name","font-face-src","font-face-uri","foreignObject","g","glyph","glyphRef","hkern","image","line","linearGradient","marker","mask","metadata","missing-glyph","mpath","path","pattern","polygon","polyline","radialGradient","rect","set","stop","switch","symbol","text","textPath","title","tref","tspan","use","view","vkern"]}){let t=new Set(e.tags);return{get grammar(){return e},get tags(){return t},extend(n){for(let i in n)if(q(n[i]))for(let r of n[i])"tags"===i&&!1===t.has(r)&&(e.tags.push(r),t.add(r))}}}();return{html:i,liquid:t,js:n,css:e,svg:r,extend(r){if("object"==typeof r)for(let s in r)"liquid"===s?t.extend(r.liquid):"html"===s?i.extend(r.html):"css"===s?e.extend(r.css):("js"===s||"svg"===s)&&n.extend(r.js);return{get html(){return i.grammar},get liquid(){return t.grammar},get js(){return n.grammar},get css(){return e.grammar},get svg(){return e.grammar}}}}}();function F(e,n=NaN,i){if(!1===O(e))return t;if(k(e,60)&&k(e,123))return i||e;if(h(e,60)){let t=e.search(/[\s>]/),i=e.slice(h(e[1],47)?2:1,t);return h(i,63)&&f(i,63)?"xml":isNaN(n)?i:i.slice(n)}let r=(h(e[2],45)?e.slice(3).trimStart():e.slice(2).trimStart()).split(/\s|-?[%}]}/).shift();return isNaN(n)?r:r.slice(n)}function z(e){return(t,n,i)=>{let r=e,s=e;return h(i[n-1],92)&&(r=t[0]),h(t[t.length-2],92)&&(s=t[t.length-1]),r+t.slice(1,-1)+s}}var E={version:"0.5.6-beta.1",env:"undefined"!=typeof process&&null!=process.versions?"node":"browser",lastUpdate:(new Date).toDateString(),cwd:null,reportStats:!0,editorConfig:!1,throwErrors:!0,globalThis:!0,persistRules:!0,logLevel:2,logColors:!0,resolveConfig:"package.json"};function M(e,t,n){n||(n=F(t));let i=J(e,n,Be.lineNumber);i.language=a(Be.language),Be.error=p(i.message,o,function(e=Be.lineNumber){let t=[],n=Be.source.split(o),i=e,r=`${i+1}`.length,s=i-1,a="";n.length>2&&(s=i-3),2===n.length&&(s=i-2);do{let e=`${s+1}`,o=r-e.length>0?` [90m${e} |`:`[90m${e} |`,l=n[s].trim();if(s>i)break;l?(s===i-1?0===l.length?t.push(`${" ".repeat(r+2)} ${B(a.length)}`):(t.push(`${o} [31m${l}[39m`),t.push(`${" ".repeat(r+2)} ${B(l.length)}`)):t.push(`${o} [90m${l||"␤"}`),s+=1,a=l):(t.push(`${o} [90m${l||"␤"}`),s+=1)}while(s<i);return t.join(o)}(),o,i.details,o,`Language: ${a(Be.language)} `,`Location: ${Be.lineNumber}:${Be.lineColumn}`,`Æsthetic: Parse Failed (Code: ${i})`)}function W(e,t,n){n||(n=F(t.token));let i=J(e,n,t.line);i.language=a(Be.language),Be.error=p(i.message,o,function(e){let t=e.line-Be.get(e.index).lines,n=0,i="",r=Be.source.split(o).slice(t,e.line),s=`${e.line+1}`.length,a=[],{indentSize:l,indentChar:c}=Be.rules;do{let o=`${t+1}`,u=s-o.length>0?` [90m${o} |`:`[90m${o} |`;if(i=r[n],0===n){if(_(r[n])){a.push(`${u} [31m${e.token}[39m`);break}i=r[n].trimStart(),a.push(`${u} [31m${i}[39m`)}else{let e=i.match(/^\s*/);null!==e&&e[0].length>l?(i=c.repeat(l)+i.trimStart(),a.push(`${u} [31m${i}[39m`)):a.push(`${u} [31m${i}[39m`)}n+=1,t+=1}while(n<r.length);return a.join(o)}(t),o,i.details,o,D(`Language: ${a(Be.language)}`),D(`Location: ${t.line}`),D(`Æsthetic: Parse Failed (Code: ${e})`))}function R(e){return p(`Rule Error: ${e.message}`,o,`Definition: ${e.option}`,`Provided: ${e.provided} `,`Expected: ${e.expected.join(", ")} `)}var B=e=>`[93m${"^".repeat(e)}[39m`;function D(...e){return E.logColors?`${e.join(o)}`.replace(/"(.*?)"/g,"[31m$1[39m"):e.join(o)}function J(e,t,n=Be.lineNumber){return{105:{code:e,message:D(`Syntax Error (line ${n}): Missing HTML "${t}" end tag`),details:D(`The "<${t}>" tag type has an incomplete HTML syntactic structure resulting in a parse error.`,`To resolve the issue check that you have a closing "</${t}>" tag. For more information`,"see: https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags")},112:{code:e,message:D(`Syntax Error (line ${n}): Missing Liquid "end${t}" tag`),details:D(`The Liquid "${t}" is a tag block type which requires an end tag be provided.`,"For more information, see: https://shopify.dev/api/liquid/tags")},104:{code:e,message:D(`Syntax Error (line ${n}): Missing HTML start "${t}" tag`),details:D("There is an incorrect placement or an incomplete structure resulting in a parse error.",`To resolve the issue, you may need to provide a start \`<${t}>\` tag type or correct the placement. `)},110:{code:e,message:D(`Syntax Error (line ${n}): Missing Liquid start "${t}" tag`),details:D("The Liquid tag has incorrect placement or an incomplete structure resulting in a parse error.","To resolve the issue, you may need to provide a start tag type or correct the placement. ")},111:{code:e,message:D(`Syntax Error (line ${n}): Missing Close Delimiter "%}" or "}}" on liquid tag`),details:D("The Liquid tag is missing its closing delimiter resulting in malformed syntax.")},106:{code:e,message:D(`Syntax Error (line ${n}): Missing HTML ">" delimiter on end tag`),details:D("The HTML tag is missing its closing delimiter resulting in malformed syntax.",'You can have Esthetic autofix syntax errors like this by setting the markup rule "correct" to true.')},107:{code:e,message:D(`Illegal Syntax (line ${n}): Invalid HTML Comment Attribute`),details:D("HTML comments are not allowed inside tags, start or end, at all.","To resolve the issue, remove the comment or place it above the tag.","For more information see: https://html.spec.whatwg.org/multipage/syntax.html#start-tags")},103:{code:e,message:D(`Syntax Error (line ${n}): Invalid quotation character`),details:D("Bad quotation character (“, &#x201c) provided. Only single ' or double \"","quotations characters are valid in HTML (markup) languages. For more information see:","https://html.spec.whatwg.org/multipage/parsing.html#attribute-value-(double-quoted)-state")},108:{code:e,message:D(`Syntax Error (line ${n}): Invalid CDATA Termination Sequence`),details:D("The CDATA bracket state sequence provided is invalid resulting in a parse error.","For more information see: https://html.spec.whatwg.org/multipage/parsing.html#cdata-section-bracket-state")},114:{code:e,message:D(`Syntax Error (line ${n}): Invalid character sequence in "${t}" token`),details:D("An invalid sequence of characters defined")},101:{code:e,message:D(`Syntax Error (line ${n}): Unterminated String`),details:D("There is an unterminated string sequence resulting in a parse error.")}}[e]}var V=/\S/,H=/^\s+$/,Z=/\s+/g,U=/^\s+/,G=/\s+$/,X=/^[\t\v\f\r \u00a0\u2000-\u200b\u2028-\u2029\u3000]+/,Q=/[\t\v\f \u00a0\u2000-\u200b\u2028-\u2029\u3000]+$/,Y=/[\t\v\r \u00a0\u2000-\u200b\u2028-\u2029\u3000]+/g,K=/^\n+/,ee=/({%-?\s*(?:comment\s*-?%}|#)|<!-{2})\s*esthetic-ignore-(start|next|end)\b/,te=/(\/[*/]|{%-?\s*(?:comment\s*-?%}|#)|<!-{2})\s*esthetic-ignore-start\b/,ne=/^\/\/\s*esthetic-ignore-start\b/,ie=/^\/\*{1,2}(?:\s*|\n\s*\*\s*)esthetic-ignore-start\b/,re=/(\/[*/]|{%-?\s*(?:comment\s*-?%}|#)|<!--)\s*esthetic-ignore-next\b/,se=/^\s*[*-]\s/,oe=/^\s*\d+\.\s/,ae=/^\s*(?:[*-]|\d+\.)\s/,le=/^<!--+/,ce=/--+>$/,ue=/{%-?|-?%}/g,pe=/^{%-?\s*#/,de=/(\/|\\|\||\*|\[|\]|\{|\})/g;function he(e){let{rules:n}=Be,i=[],r=[],a=e.begin.replace(de,w),l=h(e.begin[0],123)&&h(e.begin[1],37),c=!1!==l&&35===e.chars.slice(e.start+2,e.chars.indexOf("%}",e.start+2)).join(t).trimStart().charCodeAt(0),u=new RegExp(`^(${a}\\s*esthetic-ignore-start)`),p=new RegExp(`(${a}\\s*)`),d=l?new RegExp(`\\s*${e.ender.replace(ue,(e=>h(e,123)?"{%-?\\s*":"\\s*-?%}"))}$`):new RegExp(e.ender.replace(de,w)),f=e.start,g=0,m=0,y=0,x=[],v=0,q=t,j=!1,O=!1,$=!1,S=t,_=e.ender.length-1,A=e.ender.charAt(_),C=0;function I(){if(H.test(x[g+1])||x[g+1]===t)do{g+=1}while(g<v&&(H.test(x[g+1])||x[g+1]===t));g<v-1&&r.push(t)}do{if(i.push(e.chars[f]),h(e.chars[f],10)&&(Be.lineOffset=Be.lines(f,Be.lineOffset)),e.chars[f]===A&&e.chars.slice(f-_,f+1).join(t)===e.ender)break;f+=1}while(f<e.end);if(S=i.join(t),!0===u.test(S))return function(){let n=o;f+=1;do{if(i.push(e.chars[f]),"esthetic-ignore-end"===i.slice(i.length-19).join(t)){if(l){let n=e.chars.indexOf("{",f);if(h(e.chars[n+1],37)){let i=e.chars.slice(n,e.chars.indexOf("}",n+1)+1).join(t);d.test(i)&&(e.ender=i)}}f+=1;break}f+=1}while(f<e.end);g=f,_=e.begin.length-1,A=e.begin.charAt(_);do{if("/*"===e.begin&&h(e.chars[g-1],47)&&(h(e.chars[g],42)||h(e.chars[g],47))||"/*"!==e.begin&&e.chars[g]===A&&e.chars.slice(g-_,g+1).join(t)===e.begin)break;g-=1}while(g>e.start);if("/*"===e.begin&&h(e.chars[g],42)?n="*/":"/*"!==e.begin&&(n=e.ender),_=n.length-1,A=n.charAt(_),n!==o||e.chars[f]!==o)do{if(i.push(e.chars[f]),n===o&&e.chars[f+1]===o||e.chars[f]===A&&e.chars.slice(f-_,f+1).join(t)===n)break;f+=1}while(f<e.end);return e.chars[f]===o&&(f-=1),S=i.join(t).replace(Q,t),[S,f]}();if(!0===l&&n.liquid.preserveComment||!1===l&&n.markup.preserveComment||"style"===Be.lexer&&n.style.preserveComment||"script"===Be.lexer&&n.style.preserveComment||n.wrap<1&&!1===/comment\s*%}\n/.test(S)||f===e.end||S.length<=n.wrap&&S.indexOf(o)<0||"/*"===e.begin&&S.indexOf(o)>0&&S.replace(o,t).indexOf(o)>0&&!1===/\n(?!\s*\*)/.test(S)){if(c){x=S.replace(/\r\n/g,o).split(o);for(let e=1,t=x.length-1;e<t;e++)k(x[e].trimStart(),35)&&""!==x[e].trimStart()&&(x[e]="# "+x[e].trimStart());return[x.join(Be.crlf),f]}return[S,f]}if(g=e.start,g>0&&k(e.chars[g-1],10)&&b(e.chars[g-1]))do{g-=1}while(g>0&&k(e.chars[g-1],10)&&b(e.chars[g-1]));let L=e.chars.slice(g,e.start).join(t),T=new RegExp(o+L,"g");x=S.replace(/\r\n/g,o).replace(T,o).split(o),v=x.length,x[0]=x[0].replace(p,t),x[v-1]=x[v-1].replace(d,t),v<2&&(x=x[0].split(s)),x[0]===t?x[0]=e.begin:x.splice(0,0,e.begin),v=x.length;let N=t,P=v-1;for(;P--&&x[P]===t;)N+=o;N!==t&&(N=N.slice(0,n.preserveLine)),g=0;do{if(q=g<v-1?x[g+1].replace(X,t):t,!0===H.test(x[g])||x[g]===t)I();else{let i=x[g].replace(X,t);if(n.wrap>0&&i.length>n.wrap&&i.indexOf(s)>n.wrap)x[g]=i,m=x[g].indexOf(s),r.push(x[g].slice(0,m)),x[g]=x[g].slice(m+1),g-=1;else{if(C=g<1?n.wrap-(e.begin.length+1):n.wrap,"/*"===e.begin&&0!==x[g].indexOf("/*")?x[g]="   ":x[g]=x[g].replace(X,t).replace(Q,t).replace(Z,s),y=x[g].replace(X,t).indexOf(s),m=x[g].length,m>C&&y>0&&y<C){m=C;do{if(m-=1,b(x[g].charAt(m))&&m<=n.wrap)break}while(m>0);oe.test(x[g])&&!1===oe.test(x[g+1])&&x.splice(g+1,0,"1. "),!0===H.test(x[g+1])||x[g+1]===t?(r.push(x[g].slice(0,m)),x[g]=x[g].slice(m+1),j=!0,g-=1):se.test(x[g+1])?(r.push(x[g].slice(0,m)),x[g]=x[g].slice(m+1),O=!0,g-=1):oe.test(x[g+1])?(r.push(x[g].slice(0,m)),x[g]=x[g].slice(m+1),$=!0,g-=1):x[g].replace(X,t).indexOf(s)<n.wrap&&(x[g].length>n.wrap?x[g+1]=x[g].slice(m+1)+Be.crlf+x[g+1]:x[g+1]=x[g].slice(m+1)+s+x[g+1]),!1===j&&!1===O&&!1===$&&(x[g]=x[g].slice(0,m))}else void 0!==x[g+1]&&(x[g].length+q.indexOf(s)>n.wrap&&q.indexOf(s)>0||x[g].length+q.length>n.wrap&&q.indexOf(s)<0)?(r.push(x[g]),0!==n.wrap&&(g+=1),j=!0):g>0&&void 0!==x[g+1]&&x[g+1]!==t&&x[g+1].indexOf(s)<0&&!1===H.test(x[g+1])&&!1===ae.test(x[g+1])?(x[g+1]=`${x[g]} ${x[g+1]}`,j=!0):(r.push(x[g]),j=!0);O=!1,$=!1}}g+=1}while(g<v);if(r.length>0){if(r[r.length-1].length>n.wrap-(e.ender.length+1)?r.push(e.ender):r.push(N+e.ender),c)for(let e=1,t=r.length-1;e<t;e++)k(r[e],35)&&""!==r[e]&&(r[e]="# "+r[e]);S=r.join(Be.crlf)}else x[x.length-1]=x[x.length-1]+e.ender,S=x.join(Be.crlf);return[S,f]}function fe(e){let{wrap:n}=Be.rules,{preserveComment:i}=Be.rules[Be.lexer],r=e.start,a=0,l=t,c=[];do{c.push(e.chars[r]),r+=1}while(r<e.end&&k(e.chars[r],10));if(r===e.end?e.chars.push(o):r-=1,l=c.join(t).replace(G,t),!0===ne.test(l)){let n=o;r+=1;do{c.push(e.chars[r]),r+=1}while(r<e.end&&(k(e.chars[r-1],100)||h(e.chars[r-1],100)&&"esthetic-ignore-end"!==c.slice(c.length-19).join(t)));a=r;do{}while(a>e.start&&h(e.chars[a-1],47)&&(h(e.chars[a],42)||h(e.chars[a],47)));if(h(e.chars[a],42)&&(n="*/"),n!==o||k(e.chars[r],10))do{if(c.push(e.chars[r]),n===o&&h(e.chars[r+1],10))break;r+=1}while(r<e.end&&(n===o||"*/"===n&&(h(e.chars[r-1],42)||h(e.chars[r],47))));return e.chars[r]===o&&(r-=1),l=c.join(t).replace(G,t),[l,r]}return"//"===l||!0===i||(l=l.replace(/(\/\/\s*)/,"// "),n<1||r===e.end-1&&Be.data.begin[Be.count]<1||(a=r+1,function n(){let i=t;do{if(a+=1,h(e.chars[a+1],10))return}while(a<e.end&&b(e.chars[a]));if(e.chars[a]+e.chars[a+1]==="//"){c=[];do{c.push(e.chars[a]),a+=1}while(a<e.end&&k(e.chars[a],10));i=c.join(t),!1===/^\/\/ (?:[*-]|\d+\.)/.test(i)&&!1===/^\/\/\s*$/.test(i)&&(l=`${l} ${i.replace(/(^\/\/\s*)/,t).replace(G,t)}`,r=a-1,n())}}(),function(){let i=[],r={ender:-1,types:"comment",lexer:e.lexer,lines:Be.lineOffset};Be.count>-1?(r.begin=Be.stack.index,r.stack=Be.stack.token,r.token=Be.data.token[Be.count]):(r.begin=-1,r.stack="global",r.token=t);let o=0,a=0;if(l=l.replace(/\s+/g,s).replace(G,t),a=l.length,!(n>a)){do{if(o=n,k(l[o],32)){do{o-=1}while(o>0&&k(l[o],32));if(o<3){o=n;do{o+=1}while(o<a-1&&k(l[o],32))}}i.push(l.slice(0,o)),l=`// ${l.slice(o).replace(U,t)}`,a=l.length}while(n<a);o=0,a=i.length;do{r.token=i[o],Be.push(Be.data,r,t),r.lines=2,Be.lineOffset=2,o+=1}while(o<a)}}())),[l,r]}var ge=Object.assign,ke=Object.defineProperty,me={global:{preset:{description:"Use preset style guide as the base defaults",default:"default",type:"choice",values:[{rule:"default",description:"This is the default and the most unobtrusive."},{rule:"recommended",description:"This style guide is typically suited for most cases"},{rule:"strict",description:"This is a strict ruleset curated by the projects author."},{rule:"warrington",description:"This style guide preset is best suited for Shopify theme developers"},{rule:"prettier",description:"This preset replicates the Prettier style"}]},correct:{default:!1,description:"Automatically correct some sloppiness in code.",type:"boolean",preset:{default:!1,prettier:!0,recommended:!0,strict:!0,warrington:!0}},crlf:{description:"If line termination should be Windows (CRLF) format. Unix (LF) format is the default.",type:"boolean",default:!1,preset:{default:!1,prettier:!1,recommended:!1,strict:!1,warrington:!1}},endNewline:{description:"Insert an empty line at the end of output.",type:"boolean",default:!1,preset:{default:!1,prettier:!1,recommended:!1,strict:!1,warrington:!1}},indentSize:{description:"The number of character values to comprise a single indentation.",type:"number",default:2,preset:{default:2,prettier:2,recommended:2,strict:2,warrington:2}},indentChar:{description:"The string characters to comprise a single indentation. Any string combination is accepted.",type:"string",default:" ",preset:{default:" ",prettier:" ",recommended:" ",strict:" ",warrington:" "}},indentLevel:{default:0,type:"number",description:"How much indentation padding should be applied to beautification? This is typically used internally",preset:{default:0,prettier:0,recommended:0,strict:0,warrington:0}},language:{description:"The language name",type:"choice",default:"auto",values:[{rule:"auto",description:"Detect Language"},{rule:"text",description:"Plain Text"},{rule:"html",description:"HTML"},{rule:"liquid",description:"HTML + Liquid"},{rule:"javascript",description:"JavaScript"},{rule:"jsx",description:"JSX"},{rule:"typescript",description:"TypeScript"},{rule:"tsx",description:"TSX"},{rule:"json",description:"JSON"},{rule:"css",description:"CSS"},{rule:"scss",description:"SCSS"},{rule:"less",description:"LESS"},{rule:"xml",description:"XML"}]},preserveLine:{default:2,description:"The maximum number of consecutive empty lines to retain.",type:"number",preset:{default:2,prettier:2,recommended:3,strict:1,warrington:3}},wrap:{default:0,description:"Character width limit before applying word wrap. A 0 value disables this option. A negative value concatenates script strings.",type:"number",preset:{default:0,prettier:80,recommended:120,strict:0,warrington:100}},wrapFraction:{default:0,description:"Wrap fraction is used on internal structures as a secondary point of control. By default, it will use a 75% metric according to `wrap` defined values.",type:"number",preset:{default:0,prettier:80,recommended:80,strict:80,warrington:0}}},liquid:{commentNewline:{default:!1,description:"If a blank new line should be forced above comments.",type:"boolean",preset:{default:!1,prettier:!0,recommended:!0,strict:!0,warrington:!0}},commentIndent:{default:!1,description:"This will determine whether comments should always start at position 0 of each line or if comments should be indented according to the code.",type:"boolean",preset:{default:!1,prettier:!0,recommended:!0,strict:!0,warrington:!0}},delimiterTrims:{default:"preserve",description:"How delimiter whitespace trim dashes should handled on Liquid tokens. You should avoid setting this to force in order to avoid stripping whitespace between text content.",type:"choice",values:[{rule:"preserve",description:"All trim dash occurances of trims intact"},{rule:"never",description:"Removes all trim dash occurances for tags and output tokens"},{rule:"always",description:"Applies trime dashes to all tags and output tokens"},{rule:"tags",description:"Applies trim dashes to tags tokens only"},{rule:"outputs",description:"Applies trim dashes to output object tokens only"},{rule:"multiline",description:"Applies trim dashes to multline token expressions only"}],preset:{default:"preserve",prettier:"preserve",recommended:"preserve",strict:"multiline",warrington:"preserve"}},ignoreTagList:{default:[],description:"A list of liquid tag to ignore",type:"array",preset:{default:[],prettier:["javascript","capture"],recommended:["javascript"],strict:[],warrington:[]}},indentAttribute:{default:!1,description:"Whether or not markup tags with Liquid contained attributes should apply indentation",type:"boolean",preset:{default:!1,prettier:!0,recommended:!0,strict:!1,warrington:!0}},preserveComment:{default:!1,description:"Prevent comment reformatting due to option wrap.",type:"boolean",preset:{default:!1,prettier:!1,recommended:!1,strict:!1,warrington:!1}},normalizeSpacing:{default:!0,description:"Whether or not to normalize the distributed spacing contained in Liquid tokens.",type:"boolean",preset:{default:!0,prettier:!0,recommended:!0,strict:!0,warrington:!0}},lineBreakSeparator:{default:"default",description:"Controls the placement of Liquid tag separator type characters in newline structures.",type:"choice",values:[{rule:"preserve",description:"Leave line break character intace"},{rule:"before",description:"Place line break character at the start of expressions"},{rule:"after",description:"Place line break character at the end of expressions"}],preset:{default:"preserve",prettier:"after",recommended:"before",strict:"before",warrington:"after"}},dedentTagList:{default:[],description:"List of tags which will have their inner contents excluded from indentation",type:"array",preset:{default:[],prettier:["schema"],recommended:[],strict:[],warrington:[]}},forceArgument:{default:0,description:"Forces arguments onto newlines. When this value is `0` then arguments will be forced according to wrap fraction limit.",type:"number",preset:{default:0,prettier:0,recommended:3,strict:3,warrington:0}},forceFilter:{default:0,description:"Forces filter pipes onto newlines. When this value is `0` then filters will be forced according to wrap fraction limit.",type:"number",preset:{default:0,prettier:0,recommended:5,strict:4,warrington:0}},delimiterPlacement:{default:"preserve",description:"Controls the placement of Liquid delimiters",type:"choice",values:[{rule:"preserve",description:"Preserve delimiters"},{rule:"default",description:"Use defaults"},{rule:"consistent",description:"Place line break character at the start of expressions"},{rule:"inline",description:"Place line break character at the end of expressions"},{rule:"force-inline",description:"Place line break character at the end of expressions"},{rule:"force-multiline",description:"Place line break character at the end of expressions"}],preset:{default:"preserve",prettier:"default",recommended:"consistent",strict:"force-multiline",warrington:"consistent"}},preserveInternal:{default:!1,description:"Whether or not to preserve the inner contents of tokens",type:"boolean",preset:{default:!1,prettier:!1,recommended:!1,strict:!1,warrington:!1}},quoteConvert:{description:"If the quotes should be converted to single quotes or double quotes.",type:"choice",default:"none",values:[{rule:"none",description:"Ignores this option"},{rule:"single",description:"Converts double quotes to single quotes"},{rule:"double",description:"Converts single quotes to double quotes"}],preset:{default:"none",prettier:"double",recommended:"single",strict:"single",warrington:"single"}}},markup:{attributeSort:{default:!1,description:"Alphanumerically sort markup attributes. Attribute sorting is ignored on tags that contain attributes template attributes.",type:{array:"A list of attributes to begin sorting order with",boolean:"Whether or not to apply alphanumeric sorting"},preset:{default:!1,prettier:!1,recommended:!0,strict:["id","class","type","name","value"],warrington:!1}},attributeCasing:{default:"preserve",description:"Controls the casing of attribute values and keys.",type:"choice",values:[{rule:"preserve",description:"All tag attribute keys/values are preserved and left intact."},{rule:"lowercase",description:"All tag attribute keys/values are converted to lowercase"},{rule:"lowercase-name",description:"Only attribute keys are converted to lowercase"},{rule:"lowercase-value",description:"Only attribute values are converted to lowercase"}],preset:{default:"preserve",prettier:"preserve",recommended:"lowercase-name",strict:"lowercase-name",warrington:"preserve"}},commentNewline:{default:!1,description:"If a blank new line should be forced above comments.",type:"boolean",preset:{default:!1,prettier:!1,recommended:!0,strict:!0,warrington:!1}},commentIndent:{default:!1,description:"This will determine whether comments should always start at position 0 of each line or if comments should be indented according to the code.",type:"boolean",preset:{default:!1,prettier:!1,recommended:!0,strict:!0,warrington:!0}},delimiterTerminus:{description:"Whether or not ending HTML tag delimiters should be forced onto a newline. This will emulate the style of Prettier's singleAttributePerLine formatting option, wherein the last > delimiter character breaks itself onto a new line",default:"inline",type:"choice",values:[{rule:"inline",description:"Inline the ending delimiter"},{rule:"force",description:"Force the ending delimiter onto its own line"},{rule:"adapt",description:"adapt the delimiter in accordance with structure"}],preset:{default:"inline",prettier:"force",recommended:"adapt",strict:"adapt",warrington:"adapt"}},forceAttribute:{default:!1,description:"If all markup attributes should be indented each onto their own line. This option accepts either a boolean or number value, depending on your preferences you can either force attributes based a count limit, disable forcing or always enable enforcing.",type:{number:"Optionally define an attribute force threshold. When the number of attributes exceeds this limit then they will be forced, otherwise they will be left intact.",boolean:"Whether or not to enforce the rule. A value of true will always force attributes, whereas a value of false will never force attributes."},preset:{default:!1,prettier:1,recommended:2,strict:2,warrington:2}},forceIndent:{default:!1,description:"Will force indentation upon all content and tags without regard for the creation of new text nodes.",type:"boolean",preset:{default:!1,prettier:!0,recommended:!0,strict:!0,warrington:!0}},ignoreJS:{default:!0,description:"Whether to ignore embedded regions of tags identified to contain JavaScript",type:"boolean",preset:{default:!0,prettier:!0,recommended:!0,strict:!1,warrington:!1}},ignoreCSS:{default:!1,description:"Whether to ignore embedded regions of tags identified to contain CSS",type:"boolean",preset:{default:!1,prettier:!0,recommended:!1,strict:!1,warrington:!1}},ignoreJSON:{default:!1,description:"Whether HTML <script> tags annotated with a JSON identifiable attribute should be ignored from beautification.",type:"boolean",preset:{default:!1,prettier:!1,recommended:!1,strict:!1,warrington:!1}},preserveAttribute:{default:!1,description:"If markup tags should have their insides preserved. This option is only available to markup and does not support child tokens that require a different lexer.",type:"boolean",preset:{default:!1,prettier:!1,recommended:!1,strict:!1,warrington:!1}},preserveComment:{default:!1,description:"Prevent comment reformatting due to option wrap.",type:"boolean",preset:{default:!1,prettier:!1,recommended:!1,strict:!1,warrington:!1}},preserveText:{default:!1,description:"If text in the provided markup code should be preserved exactly as provided. This option eliminates beautification and wrapping of text content.",type:"boolean",preset:{default:!1,prettier:!1,recommended:!1,strict:!1,warrington:!1}},lineBreakValue:{default:"preserve",description:"Determines how Æsthetic should handle line break occurance sequences within attribute values",type:"choice",values:[{rule:"preserve",description:"Preserve the supplied value structure sequences"},{rule:"align",description:"Align all line breaks to the starting point of attribute name"},{rule:"indent",description:"Indent all line breaks from the starting point of attribute name"},{rule:"force-preserve",description:"Force encapsulated values onto newlines but preserve inner contents"},{rule:"force-align",description:"Force encapsulated values onto newlines and apply aligned formatting"},{rule:"force-indent",description:"Force encapsulated values onto newlines and apply indentation formatting"}],preset:{default:"preserve",prettier:"indent",recommended:"force-indent",strict:"force-indent",warrington:"force-indent"}},selfCloseSpace:{default:!1,description:'Markup self-closing tags end will end with " />" instead of "/>".',type:"boolean",preset:{default:!1,prettier:!1,recommended:!1,strict:!1,warrington:!1}},selfCloseSVG:{default:!0,description:"Whether or not SVG type tags should be converted to self closing void types.",type:"boolean",preset:{default:!1,prettier:!1,recommended:!0,strict:!0,warrington:!0}},stripAttributeLines:{default:!1,description:"Whether or not newlines contained within tag attributes should be removed or preserved.",type:"boolean",preset:{default:!1,prettier:!0,recommended:!0,strict:!0,warrington:!1}},quoteConvert:{description:"If the quotes should be converted to single quotes or double quotes.",type:"choice",default:"none",values:[{rule:"none",description:"Ignores this option"},{rule:"single",description:"Converts double quotes to single quotes"},{rule:"double",description:"Converts single quotes to double quotes"}],preset:{default:"none",prettier:"double",recommended:"double",strict:"double",warrington:"double"}}},style:{classPadding:{description:"Inserts new line characters between every CSS code block.",default:!1,type:"boolean"},commentNewline:{default:!1,description:"If a blank new line should be forced above comments.",type:"boolean"},commentIndent:{default:!1,description:"This will determine whether comments should always start at position 0 of each line or if comments should be indented according to the code.",type:"boolean"},sortSelectors:{default:!1,type:"boolean",description:"If comma separated CSS selectors should present on a single line of code."},sortProperties:{description:"This option will alphabetically sort CSS properties contained within classes.",default:!1,type:"boolean"},noLeadZero:{description:"This will eliminate leading zeros from numbers expressed within values.",default:!1,type:"boolean"},preserveComment:{default:!1,description:"Prevent comment reformatting due to option wrap.",type:"boolean"},atRuleSpace:{default:!0,description:"Insert a single whitespace character betwen @ rules.",type:"boolean"},quoteConvert:{description:"If the quotes should be converted to single quotes or double quotes.",type:"choice",default:"none",values:[{rule:"none",description:"Ignores this option"},{rule:"single",description:"Converts double quotes to single quotes"},{rule:"double",description:"Converts single quotes to double quotes"}]}},json:{arrayFormat:{description:"Determines if all array indexes should be indented, never indented, or left to the default",type:"choice",default:"default",values:[{rule:"default",description:"Default formatting"},{rule:"indent",description:"Always indent each index of an array"},{rule:"inline",description:"Ensure all array indexes appear on a single line"}]},braceAllman:{default:!1,description:'Determines if opening curly braces will exist on the same line as their condition or be forced onto a new line, otherwise known as "Allman Style" indentation.',type:"boolean"},bracePadding:{default:!1,description:"This will create a newline before and after objects values",type:"boolean"},objectIndent:{description:"This option will alphabetically sort object properties in JSON objects",type:"choice",default:"default",values:[{rule:"default",description:"Default formatting"},{rule:"indent",description:"Always indent each index of an array"},{rule:"inline",description:"Ensure all array indexes appear on a single line"}]},objectSort:{default:!1,description:"This option will alphabetically sort object properties in JSON objects",type:"boolean"}},script:{arrayFormat:{description:"Determines if all array indexes should be indented, never indented, or left to the default",type:"choice",default:"default",values:[{rule:"default",description:"Default formatting"},{rule:"indent",description:"Always indent each index of an array"},{rule:"inline",description:"Ensure all array indexes appear on a single line"}]},braceAllman:{default:!1,description:'Determines if opening curly braces will exist on the same line as their condition or be forced onto a new line, otherwise known as "Allman Style" indentation.',type:"boolean"},bracePadding:{default:!1,description:"This will create a newline before and after objects values",type:"boolean"},braceNewline:{default:!1,description:"If true an empty line will be inserted after opening curly braces and before closing curly braces.",type:"boolean"},braceStyle:{default:"none",description:"Emulates JSBeautify's brace_style option using existing Prettify options",type:"choice",values:[{rule:"none",description:"Ignores this option"},{rule:"collapse",description:"Sets formatObject to indent and neverflatten to true."},{rule:"collapse-preserve-inline",description:"Sets formatObject to inline and bracePadding to true"},{rule:"expand",description:"Sets objectIndent to indent and braceNewline + neverflatten to true."}]},caseSpace:{default:!1,type:"boolean",description:"If the colon separating a case's expression (of a switch/case block) from its statement should be followed by a space instead of indentation thereby keeping the case on a single line of code."},commentNewline:{default:!1,description:"If a blank new line should be forced above comments.",type:"boolean"},commentIndent:{default:!1,description:"This will determine whether comments should always start at position 0 of each line or if comments should be indented according to the code.",type:"boolean"},elseNewline:{default:!1,type:"boolean",description:'If keyword "else" is forced onto a new line.'},endComma:{description:"If there should be a trailing comma in arrays and objects.",type:"choice",default:"none",values:[{rule:"none",description:"Ignore this option"},{rule:"always",description:"Always ensure there is a tailing comma"},{rule:"never",description:"Remove trailing commas"}]},objectSort:{default:!1,description:"This option will alphabetically sort object properties in JSON objects",type:"boolean"},objectIndent:{description:"This option will alphabetically sort object properties in JSON objects",type:"choice",default:"default",values:[{rule:"default",description:"Default formatting"},{rule:"indent",description:"Always indent each index of an array"},{rule:"inline",description:"Ensure all array indexes appear on a single line"}]},functionSpace:{default:!0,type:"boolean",description:"Inserts a space following the function keyword for anonymous functions."},functionNameSpace:{default:!0,type:"boolean",description:"If a space should follow a JavaScript function name."},methodChain:{default:-1,description:"When to break consecutively chained methods and properties onto separate lines. A negative value disables this option. A value of 0 ensures method chainsare never broken.",type:"number"},preserveComment:{default:!1,description:"Prevent comment reformatting due to option wrap.",type:"boolean"},ternaryLine:{description:"If ternary operators in JavaScript `?` and `:` should remain on the same line.",type:"boolean",default:!1},neverFlatten:{default:!0,description:"If destructured lists in script should never be flattend.",type:"boolean"},noCaseIndent:{description:"If the colon separating a case's expression (of a switch/case block) from its statement should be followed by a space instead of indentation, thereby keeping the case on a single line of code.",default:!1,type:"boolean"},noSemicolon:{description:"Removes semicolons that would be inserted by ASI. This option is in conflict with option `attemptCorrection` and takes precedence over conflicting features. Use of this option is a possible security/stability risk.",default:!1,type:"boolean"},quoteConvert:{description:"If the quotes should be converted to single quotes or double quotes.",type:"choice",default:"none",values:[{rule:"none",description:"Ignores this option"},{rule:"single",description:"Converts double quotes to single quotes"},{rule:"double",description:"Converts single quotes to double quotes"}]},variableList:{description:"If consecutive JavaScript variables should be merged into a comma separated list or if variables in a list should be separated. each — Ensure each reference is a single declaration statement.",type:"choice",default:"none",values:[{rule:"none",description:"Ignores this option"},{rule:"each",description:"Ensure each reference is a single declaration statement"},{rule:"list",description:"Ensure consecutive declarations are a comma separated list"}]},vertical:{description:"If lists of assignments and properties should be vertically aligned",type:"boolean",default:!1}}};function be(e,t,n){if("html"===t){if(!(e in P.html.embed))return!1;let t=P.html.embed[e];if(t.attr.size>0)for(let e of t.attr.values()){if(!n)return e;if(e.attr.has(n[0])&&e.attr.get(n[0]).value.has(n[1]))return e.attr.get(n[0])}return t.attr.has(n[0])?t.attr.get(n[0]).attr.has(n[1])?t.attr.get(n[0]).attr.get(n[1]):t.attr.get(n[0]):t}if("liquid"===t){if(!(e in P.liquid.embed))return!1;let t=P.liquid.embed[e];if(t.args.size>0&&n){let i=n.slice(n.indexOf(e)+e.length).match(/\s*(.*)(?=\s)/)[0];for(let[e,n]of t.args){if(e.has(i))return n;for(let t of e)if(t instanceof RegExp&&t.test(i))return n}}return t}}function ye(e,t){let n,i=h(e[2],45)?3:2,r=e.slice(i);return n="never"===t.delimiterTrims?`{${e[1]}`:"always"===t.delimiterTrims||"outputs"===t.delimiterTrims&&h(e[1],123)||"tags"===t.delimiterTrims&&h(e[1],37)?`{${e[1]}-`:e.slice(0,i),"preserve"===t.delimiterPlacement?n+=/^\s*\n/.test(r)?o:s:"force"===t.delimiterPlacement?n+=o:"inline"===t.delimiterPlacement||"default"===t.delimiterPlacement||"force-multiline"===t.delimiterPlacement?n+=s:"consistent"===t.delimiterPlacement&&(/^\s*\n/.test(r)?n+=o:n+=s),n+r.trim()}function we(e,n){let i,r=h(e[e.length-3],45)?e.length-3:e.length-2,a=e.slice(0,r)||t;return i="never"===n.delimiterTrims?`${e[e.length-2]}}`:"always"===n.delimiterTrims||"outputs"===n.delimiterTrims&&h(e[1],123)||"tags"===n.delimiterTrims&&h(e[1],37)?`-${e[e.length-2]}}`:e.slice(r),"preserve"===n.delimiterPlacement?i=(/\s*\n\s*$/.test(a)?o:s)+i:"force"===n.delimiterPlacement?i=o+i:"inline"===n.delimiterPlacement||"default"===n.delimiterPlacement||"force-multiline"===n.delimiterPlacement?i=s+i:"consistent"===n.delimiterPlacement&&(i=/^\s*\n/.test(a)?o+i:s+i),a.trim()+i}function xe(e,t,n){let i,r,[a,l]=ve(e),c=e.slice(a,l);return"never"===n.delimiterTrims?(i=`{${e[1]}`,r=`${e[e.length-2]}}`):"always"===n.delimiterTrims||"outputs"===n.delimiterTrims&&h(e[1],123)||"tags"===n.delimiterTrims&&h(e[1],37)?(i=`{${e[1]}-`,r=`-${e[e.length-2]}}`):(i=e.slice(0,a),r=e.slice(l)),t||(t=c.trimStart().split(/\s/)[0]||""),"else"===t||"break"===t||"continue"===t||"increment"===t||"decrement"===t||t.startsWith("end")?(i+=s,r=s+r):"preserve"===n.delimiterPlacement?(i+=/^\s*\n/.test(c)?o:s,r=(/\s*\n\s*$/.test(c)?o:s)+r):"force"===n.delimiterPlacement?(i+=o,r=o+r):"inline"===n.delimiterPlacement||"default"===n.delimiterPlacement||"force-multiline"===n.delimiterPlacement?(i+=s,r=s+r):"consistent"===n.delimiterPlacement&&(/^\s*\n/.test(c)?(i+=o,r=o+r):(i+=s,r=s+r)),c=c.trim(),i+c+r}function ve(e){return[h(e[2],45)?3:2,h(e[e.length-3],45)?e.length-3:e.length-2]}function qe(e,t=!0){return t?new RegExp(`{%-?\\s*${e}\\s*-?%}`):new RegExp(`{%-?\\s*${e}`)}function je(e){let t=e.indexOf("{");return h(e[t+1],123)}function Oe(e){let t=e.indexOf("{");if(h(e[t+1],37)){let n;return n=e.slice(t+(h(e[t+2],45)?3:2)).trimStart(),n=n.slice(0,n.search(/[\s=|!<>,.[]|-?[%}]}/)),!n.startsWith("end")&&P.liquid.else.has(n)}return!1}function $e(e){let t=e.indexOf("=");return!!(t>-1&&(h(e[t+1],34)||h(e[t+1],39)))&&/{%-?\s*end[a-z]+/.test(e.slice(t,e.lastIndexOf(e[t+1])))}function Se(e){return!!_e(e)&&/{%-?\s*end\w+/.test(e)}function _e(e,t=!1){let n;if(t)return!!(h(e[0],123)&&h(e[1],37)&&h(e[e.length-2],37)&&h(e[e.length-1],125))&&(n=e.slice(h(e[2],45)?3:2).trimStart(),!h(n,34)&&!h(n,39)&&(n=n.slice(0,n.search(/[\s=|!<"'>,.[]|-?[%}]}/)),!n.startsWith("end")&&P.liquid.tags.has(n)));let i=e.indexOf("{");if(-1===i)return!1;do{if(h(e[i+1],37))return n=e.slice(i+(h(e[i+2],45)?3:2)).trimStart(),n=n.slice(0,n.search(/[\s=|!<>,.[]|-?[%}]}/)),!n.startsWith("end")&&P.liquid.tags.has(n);i=e.indexOf("{",i+1)}while(i>-1);return!1}function Ae(e){let n=e;Array.isArray(e)&&(n=e.join(t));let i=n.indexOf("{");return!!h(n[i+1],37)&&(h(n[i+2],45)?n.slice(i+3).trimStart().startsWith("end"):n.slice(i+2).trimStart().startsWith("end"))}function Ce(e,t){if(1===t)return h(e[0],123)&&(h(e[1],37)||h(e[1],123));if(6===t)return h(e[0],123)&&h(e[1],37);if(7===t)return h(e[0],123)&&h(e[1],123);if(8===t)return h(e[e.length-2],37)&&h(e[e.length-1],125);if(9===t)return h(e[e.length-2],125)&&h(e[e.length-1],125);if(4===t)return/{[{%]/.test(e);if(5===t)return/{[{%]/.test(e)&&/[%}]}/.test(e);if(2===t){let t=e.length;return h(e[t-1],125)&&(h(e[t-2],37)||h(e[t-2],125))}if(3===t){let t=e.length;return h(e[0],123)&&(h(e[1],37)||h(e[1],123))&&h(e[t-1],125)&&(h(e[t-2],37)||h(e[t-2],125))}}function Ie(e){let a,{data:l,rules:c}=Be,u=e||Be.source,p="jsx"===Be.language||"tsx"===Be.language,w=new Set(c.liquid.ignoreTagList),x=q(c.markup.attributeSort)?c.markup.attributeSort.length:-1,v=q(u)?u:u.split(t),O=v.length,$={start:-1,tname:[],index:[]},S=0,_=!1,A=Ie?Be.language:"html",I=0;function L(e,n=t,i){if(n===t&&void 0===i)Be.push(l,e,t);else if(j(n))ge(e,n),Be.push(l,e,t);else if(q(n))for(let i of n)ge(e,i),Be.push(l,e,t);else i?(ge(e,i),Be.push(l,e,n)):console.log("isssue")}function T(e,t=null){return"html"!==Be.language&&"liquid"!==Be.language&&!1===p||/(?:{[=#/]|%[>\]])|\}%[>\]]/.test(e)||!Ce(e,3)?e:xe(e,t,c.liquid)}function N(e,n=t){if(e<1)return n;let i=t,r=v.lastIndexOf(o,e);return r>-1&&(i=u.slice(r+1,e),i.length>0&&i.trim().length<1)?n?i+n:i:n}function E(e,t=v){let n=e,i=1;for(;h(t[n++],10);)i+=1;return i}function R(e,t=-1,n=!1){return!1===n?u.slice(e,t).trimStart():u.slice(e,t)}function B(e){let t=e;do{t-=1}while(h(v[t],92));return t=e-t,t%2==1}function D(e,i=!0){let s=e.indexOf("=");if(s>0){let t=e.indexOf(n);if(s<t&&t>0)return i?[e.slice(0,s),e.slice(s+1)]:[e.slice(0,s),e.slice(s+2,-1)];let o=e.indexOf(r);if(s<o&&o>0)return i?[e.slice(0,s),e.slice(s+1)]:[e.slice(0,s),e.slice(s+2,-1)]}return[e,t]}function J(e){let y={lexer:"markup",lines:Be.lineOffset,stack:"global"!==Be.stack.token?Be.stack.token:"global",begin:Be.stack.index,token:t,types:t,ender:-1},q=t,j=t,W=t,J=t,H=t,U=!1,X=!1,Q=0,Y=!1,ne=!1,ie=!1,se=!1,oe=[];function ae(){return de()}function le(){return se&&!1===X&&"xml"!==W&&(P.html.voids.has(J)?(y.types=W="singleton",k(q[q.length-2],47)&&(y.token=function(e){return!1===c.correct||h(e[e.length-2],47)?e:/\/\s+>$/.test(e)?`${e.slice(0,e.lastIndexOf("/"))}${c.markup.selfCloseSpace?"/>":" />"}`:`${e.slice(0,-1)}${c.markup.selfCloseSpace?"/>":" />"}`}(q))):h(q[q.length-2],47)&&h(q[q.length-1],62)?y.types=W="singleton":y.types=W="start"),function(){if("svg"===J&&($.start=Be.count+1),P.svg.tags.has(J)&&$.start>0)if("start"===y.types)y.types="singleton",$.tname.push(J),$.index.push(Be.count+1);else if("end"===y.types){let e=$.tname.indexOf(J),t=$.tname.lastIndexOf(J);e>-1&&(t===e?(l.types[$.index[t]]="start",$.tname.splice(t,1),$.index.splice(t,1)):l.begin[Be.count]===$.index[e]?(l.types[l.begin[Be.count]]="start",$.tname.splice(e,1),$.index.splice(e,1)):l.types[$.index[t]]="start"),"svg"===J&&($.start=-1)}return function(){if(y.types.indexOf("liquid")<0)return ae();if(y.token===t&&(y.token=q),h(q[0],123)&&h(q[1],37))if(P.liquid.else.has(J))y.types=W="when"===J?"liquid_when":"liquid_else";else if(P.liquid.tags.has(J))y.types=W="liquid_start";else if(J.startsWith("end")){let e=J.slice(3);if(P.liquid.tags.has(e))y.types=W="liquid_end";else{y.stack=e,y.types=W="liquid_end";let t=0;do{if("liquid"===l.types[t]&&l.stack[t]===e){l.types[t]="liquid_start";break}t=l.stack.indexOf(e,t+1)}while(t>-1)}}else y.stack=J;return"double"===c.liquid.quoteConvert?y.token=q=y.token.replace(/'[^"]*?'/g,z(n)):"single"===c.liquid.quoteConvert&&(y.token=q=y.token.replace(/"[^']*?"/g,z(r))),ae()}()}()}function ce(){if(Be.count<1)return le();let i=t;if(re.test(l.token[Be.count])){if(P.html.voids.has(J))return y.token=q.replace(">",oe.map((([e])=>e)).join(s)+">"),y.types="ignore",L(y);W.indexOf("liquid")>-1&&P.liquid.tags.has(J)&&(i=`end${J}`),X=!0,ie=!1}else(function(e,t){return e in P.liquid.embed})(J)&&w.has(J)&&(i=null);if(null!==i&&!1===ie&&!0===X&&(">"===e||"}}"===e||"%}"===e)){let e=[];if(ie=!0,S+=1,S<O){"json_preserve"!==W&&"script_preserve"!==W&&"style_preserve"!==W&&"liquid_json_preserve"!==W&&"liquid_script_preserve"!==W&&"liquid_style_preserve"!==W&&(W="ignore");let s=t,o=0,a=-1,l=t,c=0,u=0,p=!1;do{if(h(v[S],10)&&Be.lines(S),e.push(v[S]),s===t){if(s=h(v[S],34)?n:h(v[S],39)?r:t,h(v[S],123)&&(h(v[S+1],123)||h(v[S+1],37))){if(a=h(v[S+1],37)?v.indexOf("}",S)+1:v.indexOf("}",S)+2,l=R(h(v[S+2],45)?S+3:S+2,a),l.startsWith(J))o+=1;else if(l.startsWith(i))if(o>0)o-=1;else if(h(v[S+1],123)&&(a+=1),h(v[a-2],37)){e.push(...v.slice(S+1,a)),W="liquid_ignore",S=a-1;break}}else if(h(v[S],60)&&!0===se)p=h(v[S+1],47);else if(v[S]===j&&k(v[S-1],47))if(!0===p){if(Q-=1,Q<0)break}else Q+=1}else if(h(v[S],s.charCodeAt(s.length-1))){if(u=0,c=s.length-1,h(s[c],125)){if(R(S+(h(v[S+2],45)?3:2),v.indexOf("%",S+2)).startsWith(i))break}else if(c>-1)do{if(k(v[S-u],s.charCodeAt(c)))break;u+=1,c-=1}while(c>-1);c<0&&(s=t)}S+=1}while(S<O)}if("ignore"===W){Be.is("types","ignore")||(l.types[Be.count]="ignore");let n=Be.iterator+v.slice(Be.iterator,S).join(t).search(V),i=N(n);i===t&&(i=l.token[Be.count].search(V)>0?d(l.token[Be.count].search(V)):t),oe=[],q=i+v.slice(n,S-e.length+1).join(t)+e.join(t),y.types="ignore",y.token=q}else if("liquid_ignore"===W)Be.is("types","ignore")||(l.types[Be.count]="ignore"),q=N(S-q.length-e.length+1,q)+e.join(t),W="ignore",y.types="ignore",y.token=q;else if(!W.startsWith("liquid_")){y.types="start",de(!0);let n=e.lastIndexOf("<"),i=e.slice(0,n).join(t);return V.test(i)?L(y,[{lexer:"markup",types:W,token:i},{lexer:"markup",types:"end",token:e.slice(n).join(t).trim()}]):L(y,[{lexer:"markup",types:"end",token:e.slice(n).join(t).trim()}]),_=!1,a=A,ke()}}return le()}function ue(){if(h(q,60)&&h(q[1],47))return ce();let e=oe.length-1;if(h(q,60))if(e>-1)do{let t=be(J,"html",D(oe[e][0],!1));if(!1!==t){if("json"===t.language&&c.markup.ignoreJSON){W="json_preserve",X=!0;break}if("javascript"===t.language&&c.markup.ignoreJS){W="script_preserve",X=!0;break}if("css"===t.language&&c.markup.ignoreCSS){W="style_preserve",X=!0;break}a=t.language,W="start",_=!0,X=!1;break}e-=1}while(e>-1);else{let e=be(J,"html");!1!==e&&("json"===e.language&&c.markup.ignoreJSON?(W="json_preserve",X=!0):"javascript"===e.language&&c.markup.ignoreJS?(W="script_preserve",X=!0):"css"===e.language&&c.markup.ignoreCSS?(W="style_preserve",X=!0):(a=e.language,W="start",_=!0,X=!1))}else if(_e(q,!0)){let e=be(J,"liquid",q);if(!1!==e){if(w.has(J))return X=!0,ie=!1,ce();_=!0,a=e.language}}return ce()}function de(e=!1){null!==e&&L(y);let i=Be.count,s=J.replace(/\/$/,t),a=c.markup.quoteConvert,l=0,u=0,d=0,f=t,g=t,b=oe.length;function w(){Be.attributes.has(i)&&l+1===b&&m(y.token,62)&&(y.token=y.token+">");let e=y.types.indexOf("liquid_attribute")>-1;if(!0===X||"none"===a||y.types.indexOf("attribute")<0||!1===e&&"single"===a&&y.token.indexOf(n)<0||!1===e&&"double"===a&&y.token.indexOf(r)<0)L(y);else{let i=0,s=!1,o=y.token.split(t),l=y.token.indexOf("="),c=o.length-1;if(k(o[l+1],34)&&k(o[o.length-1],34)&&"single"===a&&!1===e)L(y);else if(k(o[l+1],39)&&k(o[o.length-1],39)&&"double"===a&&!1===e)L(y);else{if(i=l+2,!1===e&&("double"===a?(y.token.slice(l+2,c).indexOf(n)>-1&&(s=!0),o[l+1]=n,o[o.length-1]=n):"single"===a&&(y.token.slice(l+2,c).indexOf(r)>-1&&(s=!0),o[l+1]=r,o[o.length-1]=r)),!0===s||!0===e){e=!1;do{h(o[i-1],123)&&(h(o[i],37)||h(o[i],123))?e=!0:h(o[i],125)&&(h(o[i-1],37)||h(o[i-1],125))&&(e=!1),!0===e?h(o[i],34)&&"double"===a?o[i]=r:h(o[i],39)&&"single"===a&&(o[i]=n):h(o[i],39)&&"double"===a?o[i]=n:h(o[i],34)&&"single"===a&&(o[i]=r),i+=1}while(i<c)}y.token=o.join(t),L(y)}}}function v(){if(Se(oe[l][0]))y.types="liquid_attribute_chain",y.token=oe[l][0];else if(Ae(oe[l][0]))y.token=oe[l][0],y.types="liquid_attribute_end",y.ender=y.begin;else{if(_e(oe[l][0],!0))return y.types="liquid_attribute_start",y.begin=Be.count,y.token=oe[l][0],w(),!0;Oe(oe[l][0])?(y.types="liquid_attribute_else",y.token=oe[l][0]):(y.types="attribute",y.token=oe[l][0])}return w(),!1}if(oe.length<1)return!0!==e?void 0:ke();if(h(oe[oe.length-1][0],47)&&(oe.pop(),q=q.replace(/>$/,"/>")),u=oe.length,d=1,d<u)do{f=oe[d-1][0],h(f[f.length-1],61)&&oe[d][0].indexOf("=")<0&&(oe[d-1][0]=f+oe[d][0],oe.splice(d,1),u-=1,d-=1),d+=1}while(d<u);if((x>0||!0===c.markup.attributeSort)&&function(){if(p||Y||ne)return;if(0===x)return void(oe=C(oe,t,!1));let e=[];d=0,u=0,b=oe.length;do{u=0;do{if(oe.length>0&&(f=oe[u][0].split("=")[0],c.markup.attributeSort[d]===f)){e.push(oe[u]),oe.splice(u,1),b-=1;break}u+=1}while(u<b);d+=1}while(d<x);oe=C(oe,t,!1),oe=e.concat(oe),b=oe.length}(),y.begin=i,y.stack=s,y.types="attribute",l<b)do{if(void 0===oe[l])break;y.lines=oe[l][1],oe[l][0]=oe[l][0].replace(G,t),!0===p&&/^\/[/*]/.test(oe[l][0])?(y.types="comment_attribute",y.token=oe[l][0],w(),l+=1):oe[l][1]<=1&&Se(oe[l][0])&&!$e(oe[l][0])?(y.types="liquid_attribute_chain",y.token=oe[l][0],w(),l+=1):(u=oe[l][0].indexOf("="),d=oe[l][0].indexOf(n),u<0?(Ae(oe[l][0])?(y.token=oe[l][0],y.types="liquid_attribute_end",y.ender=y.begin):_e(oe[l][0],!0)?(y.types="liquid_attribute_start",y.begin=Be.count,y.token=oe[l][0]):Oe(oe[l][0])?(y.types="liquid_attribute_else",y.token=oe[l][0]):je(oe[l][0])?(y.types="liquid_attribute",y.token=oe[l][0]):h(oe[l][0],35)||h(oe[l][0],91)||h(oe[l][0],123)||h(oe[l][0],40)||!0===p?y.token=oe[l][0]:(y.types="liquid_attribute",y.token="preserve"===c.markup.attributeCasing?oe[l][0]:oe[l][0].toLowerCase()),w()):Ce(oe[l][0],6)?v():(f=oe[l][0].slice(0,u),g="force-preserve"===c.markup.lineBreakValue||"force-indent"===c.markup.lineBreakValue||"force-align"===c.markup.lineBreakValue?oe[l][0][u+1]+o+oe[l][0].slice(u+2,-1).trim()+o+oe[l][0][oe[l][0].length-1]:oe[l][0].slice(u+1),"lowercase-name"===c.markup.attributeCasing?(f=f.toLowerCase(),oe[l][0]=f+"="+g):"lowercase-value"===c.markup.attributeCasing?(g=g.toLowerCase(),oe[l][0]=f+"="+g):("lowercase"===c.markup.attributeCasing&&(f=f.toLowerCase(),g=g.toLowerCase()),oe[l][0]=f+"="+g),!0===c.correct&&k(g,60)&&k(g,123)&&k(g,61)&&k(g,34)&&k(g,39)&&(g=n+g+n),!0===p&&/^\s*{/.test(g)?(L(y,"jsx_attribute",{token:`${f}={`,types:"jsx_attribute_start"}),Be.external("jsx",g.slice(1,g.length-1)),y.begin=Be.count,/\s\}$/.test(g)?(g=g.slice(0,g.length-1),g=G.exec(g)[0],y.lines=g.indexOf("\n")<0?1:g.split("\n").length):y.lines=0,y.begin=Be.stack.index,y.stack=Be.stack.token,y.token="}",y.types="jsx_attribute_end",w(),y.types="attribute",y.begin=i,y.stack=s):Ce(f,6)?v():(y.types="attribute",y.token=oe[l][0],w())),l+=1)}while(l<b);return e?void 0:ke()}function fe(n){Be.iterator=S;let i=he({chars:v,end:O,lexer:"markup",begin:H,start:S,ender:e});if(q=i[0],S=i[1],!ee.test(q)){if(h(q[0],123)&&h(q[1],37)&&!1===n){let e=q.indexOf("%}",2)+2,t=q.lastIndexOf("{%");q=T(q.slice(0,e),J)+q.slice(e,t)+T(q.slice(t),J)}return y.token=q,y.types="comment",ue()}if(te.test(q)){let e;e=q.startsWith("\x3c!--")?q.indexOf("--\x3e")+3:pe.test(q)?q.indexOf("%}")+2:q.indexOf("%}",q.indexOf("%}")+2)+2,L(y,[{token:N(Be.iterator,q.slice(0,e)),types:"ignore"},{token:q.slice(e).replace(K,t),types:"ignore",lines:E(e,q)}])}else L(y,{token:N(Be.iterator,q),types:"ignore"}),Be.iterator=S+1}function ge(e){let t=S,n=S+e;do{if(h(v[n],62))return S=n,u.slice(t,n+1);n+=1}while(n<O)}function ke(){if(c.wrap>0&&!0===p){let e=0,t=Be.count,n=0;if(l.types[t].indexOf("attribute")>-1){do{e=e+l.token[t].length+1,t-=1}while("markup"!==l.lexer[t]||l.types[t].indexOf("attribute")>-1);1===l.lines[t]&&(e=e+l.token[t].length+1)}else 1===l.lines[t]&&(e=l.token[t].length+1);if(n=t-1,e>0&&"script_end"!==l.types[n])if(l.types[n].indexOf("attribute")>-1){do{e=e+l.token[n].length+1,n-=1}while("markup"!==l.lexer[n]||l.types[n].indexOf("attribute")>-1);1===l.lines[n]&&(e=e+l.token[n].length+1)}else 1===l.lines[n]&&(e=l.token[n].length+1)}Be.lineOffset=0}return function(){if("---"===e)H="---",W="ignore",ie=!0;else if(h(v[S],60)){if(h(v[S+1],123)&&(h(v[S+2],123)||h(v[S+2],37))){let e=ge(3);return U=!0,Be.stack.push(["liquid_bad",Be.count]),void L(y,{token:e,types:"liquid_start_bad"})}if(h(v[S+1],47)){if(h(v[S+2],123)&&(h(v[S+3],123)||h(v[S+3],37))){let e=ge(3);return void L(y,{token:e,types:"liquid_end_bad"})}W="end",e=">"}else h(v[S+1],33)?(h(v[S+2],100)||h(v[S+2],68))&&(h(v[S+3],111)||h(v[S+3],79))&&(h(v[S+4],99)||h(v[S+4],67))&&(h(v[S+5],116)||h(v[S+5],84))&&(h(v[S+6],121)||h(v[S+6],89))&&(h(v[S+7],112)||h(v[S+7],80))&&(h(v[S+8],101)||h(v[S+8],69))?(e=">",W="doctype",ie=!0):h(v[S+2],45)&&h(v[S+3],45)?(e="--\x3e",H="\x3c!--",W="comment"):h(v[S+2],91)&&67===v[S+3].charCodeAt(0)&&68===v[S+4].charCodeAt(0)&&65===v[S+5].charCodeAt(0)&&84===v[S+6].charCodeAt(0)&&65===v[S+7].charCodeAt(0)&&h(v[S+8],91)&&(e="]]>",W="cdata",ie=!0):h(v[S+1],63)?(e="?>",120===v[S+2].charCodeAt(0)&&109===v[S+3].charCodeAt(0)&&109===v[S+4].charCodeAt(0)?(W="xml",se=!0):(ie=!0,W="liquid")):h(v[S+1],112)&&h(v[S+2],114)&&h(v[S+3],101)&&(h(v[S+4],62)||b(v[S+4]))?(e="</pre>",W="ignore",ie=!0):(se=!0,e=">")}else if(h(v[S],123)){if(p)return _=!0,U=!0,Be.stack.push(["script",Be.count]),void L(y,{token:"{",types:"script_start"});if(h(v[S+1],123))ie=!0,e="}}",W="liquid";else if(h(v[S+1],37)){ie=!0,e="%}",W="liquid";let t=v.indexOf("}",S+2);if(h(v[t-1],37)){let n=u.slice(S+2,t-1);if(h(n,45)?(H="{%-",n=n.slice(1).trimStart()):(H="{%",n=n.trimStart()),J=n.slice(0,n.search(/[\s%}-]/)),h(n[n.length-1],45)?(e="-%}",n=n.slice(0,n.length-1).trimEnd()):(e="%}",n=n.trimEnd()),function(t,n){if("comment"===(t=t.trimStart().split(/\s/)[0])||w.has(t)){let i=u.indexOf("{%",n),r=i;45===v[i+1].charCodeAt(0)&&(r=i+1),r=u.indexOf(`end${t}`,r),r>0&&(r=v.indexOf("}",r),r>0&&37===v[r-1].charCodeAt(0)&&("comment"!==t?(W="ignore",X=!0,H=u.slice(S,n+1),e=u.slice(i,r+1)):(W="comment",H=u.slice(S,n+1),i=u.lastIndexOf("{%",r),e=u.slice(i,r+1))))}}(n,t),h(n,35))return W="comment",j=(e="%}").charAt(e.length-1),fe(!0)}else ie=!0,e="%}",W="liquid"}else ie=!0,e=v[S+1]+"}",W="liquid"}return!0!==ie&&!0===c.markup.preserveAttribute&&(ie=!0),U?ue():(j=e.charAt(e.length-1),"comment"===W&&(h(v[S],60)||h(v[S],123)&&h(v[S+1],37))?fe():S<O?function(){let n=[],r={pipes:[],fargs:[],targs:[],logic:[]},a=0,d=0,w=t,x=0,$=0,_=0,C=0,N=t,z=t,E=0,R=!1,V=!1,U=!1,K=!1,ee=!1,te=NaN,re=[];function ae(){if(f(n,44)){if("when"===J&&r.logic.push(n.length-1),!0===c.correct&&/^,\s*-?[%}]}/.test(u.slice(S)))return n.pop(),S+=1,!0;44===te?r.fargs[r.fargs.length-1].push(n.length-1):58===te?(r.fargs[r.fargs.length-1][0]+=1,r.fargs[r.fargs.length-1].push(n.length-1),te=44):r.targs.push(n.length-1)}else f(n,124)?(r.pipes.push(n.length-1),te=124):f(n,58)&&124===te&&(r.fargs.push([n.length-1]),te=58);if(h(v[S],10)&&"liquid"!==J&&!1===V&&!1===c.liquid.preserveInternal&&n.length>3&&!(h(v[S+1],45)&&h(v[S+2],37)&&h(v[S+3],125)||h(v[S+1],37)&&h(v[S+2],125))?n.pop():!0===c.liquid.normalizeSpacing&&(k(v[S],32)&&(g(n,39)||g(n,34))?k(v[S],44)&&k(v[S],93)?(n.splice(n.length-1,1,s,v[S]),k(v[S+1],32)&&k(v[S+1],61)&&k(v[S+1],125)&&n.push(s)):k(v[S+1],32)&&n.push(s):h(v[S],32)&&h(v[S-1],93)?n.pop():n.length>3&&h(v[S+1],10)&&k(v[S+2],32)?n.push(s):h(v[S],32)&&h(v[S+1],32)?n.pop():g(n,93)&&f(n,32)&&k(v[S],32)&&k(v[S],44)&&k(v[S],46)?n.splice(n.length-1,1,s,v[S]):g(n,32)&&h(v[S],32)&&h(v[S+1],32)?n.pop():h(v[S],44)&&k(v[S+1],32)||h(v[S],58)&&k(v[S+1],32)?n.push(s):h(v[S],32)&&g(n,46)||function(e,...t){let n=e.length-1,i=t.length;for(;i--;)if(!1===h(e[n--],t[i]))return!1;return!0}(n,91,32)?n.pop():k(v[S],32)&&h(v[S+1],124)||h(v[S],124)&&k(v[S+1],32)?n.push(s):h(v[S],32)&&(h(v[S+1],46)||h(v[S+1],93)||h(v[S+1],91)||h(v[S+1],58)||h(v[S+1],44))?n.pop():("assign"===J&&(k(v[S],32)&&h(v[S+1],61)||h(v[S],61)&&k(v[S+1],32))||("if"===J||"unless"===J||"elsif"===J)&&((k(v[S],32)||h(v[S],10))&&(h(v[S+1],33)||h(v[S+1],60)||h(v[S+1],62)||h(v[S+1],61)&&h(v[S+2],61))||h(v[S],61)&&(k(v[S+1],32)||h(v[S+1],10))&&(h(v[S-1],61)||h(v[S-1],60)||h(v[S-1],62)||h(v[S-1],33))||k(v[S+1],32)&&k(v[S+1],61)&&(h(v[S],60)||h(v[S],62))))&&n.push(s)),b(v[S-1]))if(w=u.slice(S),"if"===J||"elsif"===J||"unless"===J){if(b(v[S+2])&&w.startsWith("or"))return r.logic.push(n.length-1),n.pop(),n.push(w.slice(0,2)),S+=2,!0;if(b(v[S+3])&&w.startsWith("and"))return r.logic.push(n.length-1),n.pop(),n.push(w.slice(0,3)),S+=3,!0;if(b(v[S+8])&&w.startsWith("contains"))return r.logic.push(n.length-1),n.pop(),n.push(w.slice(0,8)),S+=8,!0}else if("when"===J&&b(v[S+2])&&w.startsWith("or"))return r.logic.push(n.length-1),n.pop(),n.push(w.slice(0,2)),S+=2,!0;if(h(n[n.length-1],44)&&h(n[n.length-2],44))return M(114,n.join(t),F(n.join(t)));V=!1}function le(e){let n,i=t;if(!0===e?(i=re.join(t),n=D(i),N=t,"data-esthetic-ignore"===n[0]&&(X=!0)):(i=re.join(t),(!1===p||p&&m(i,125))&&(i=i.replace(Z,s)),n=D(i),"data-esthetic-ignore"===n[0]&&(X=!0),p&&h(re[0],123)&&h(re[re.length-1],125)&&(E=0)),h(i[0],123)&&h(i[1],37)&&(ne=!0),i=i.replace(/^\u0020/,t).replace(/\u0020$/,t),re=i.replace(/\r\n/g,o).split(o),re.length<1&&(re[0]=re[0].replace(G,t)),i=T(re.join(Be.crlf),J),!0===c.markup.stripAttributeLines&&C>=1&&(C=1),oe.length>0){let e=oe.length-1;0===I&&(h(i,61)||h(i,45))&&(oe[e][0]=oe[e][0]+i,oe[e][1]=C,i=t)}if(!1===e&&(_e(i)&&(I+=1),Ae(i)&&(I-=1)),i!==t&&i!==s&&oe.push([i,C]),oe.length>0){let[e]=oe[oe.length-1];if(e.indexOf("=“")>0)return M(103,e);if(e.indexOf("=”")>0)return M(103,e)}re=[],C=h(v[S],10)?1:0}if(!Be.error){do{if(h(v[S],10)&&(C=Be.lines(S,C)),"---"!==H||"---"!==e||"ignore"!==W){if(!0===ie||!1===b(v[S])&&k(N,125)||h(N,125)){if(n.push(v[S]),!1===R&&h(v[S-1],123)&&(h(v[S],123)||h(v[S],37)))R=!0;else if(!0===R&&h(v[S],125)){if(h(v[S-1],125)||h(v[S-1],37))R=!1;else if((h(v[S-2],125)||h(v[S-2],37))&&b(v[S-1]))return M(111,n.join(t))}else if(!0===R&&h(v[S],10)&&!1===c.liquid.preserveInternal&&("preserve"===c.liquid.delimiterPlacement||"consistent"===c.liquid.delimiterPlacement))if(h(v[S-1],45)&&h(v[S-3],123)&&(h(v[S-2],123)||h(v[S-2],37))||h(v[S-2],123)&&(h(v[S-1],123)||h(v[S-1],37)))V=!0;else if(!0===/^\s*-?[%}]}/.test(u.slice(S))){for(;!0===b(v[S]);)S+=1,h(v[S],10)&&(C=Be.lines(S,C));n.push(v[S]),V=!0}if("end"===W&&n.length>2&&h(n[0],60)&&h(n[1],47)&&(h(n[n.length-1],47)||h(n[n.length-1],60))){if(!c.correct)return M(106,n.join(t));n.pop(),n.push(">");break}if(h(n[0],60)&&h(n[1],62)&&h(e,62))return L(y,"(empty)",{token:"<>",types:"start"});if(h(n[0],60)&&h(n[1],47)&&h(n[2],62)&&h(e,62))return y.token="</>",y.token="end",L(y)}if("cdata"===W&&h(v[S],62)&&h(v[S-1],93)&&k(v[S-2],93))return M(103,n.join(t));if("comment"===W){if(N=t,v[S]===j&&n.length>e.length+1){if(d=n.length,a=e.length-1,a>-1)do{if(d-=1,k(n[d],e.charCodeAt(a)))break;a-=1}while(a>-1);if(a<0)break}}else if(N===t){if(h(n[0],60)&&h(n[1],33)&&"cdata"!==W){if("doctype"===W&&h(v[S],62))break;if(h(v[S],91)){if(h(v[S+1],60)){W="start";break}if(b(v[S+1]))do{S+=1,h(v[S],10)&&(C=Be.lines(S,C))}while(S<O-1&&b(v[S+1]));if(h(v[S+1],60)){W="start";break}}}if(p&&(h(v[S],123)?E+=1:h(v[S],125)&&(E-=1)),h(v[S],60)&&!0===se&&!1===ie&&n.length>1&&!1===/>{2,3}/.test(e)){Be.error=`Invalid structure detected ${v.slice(S,S+8).join(t)}`;break}if(!1===b(v[S])&&!0===U&&v[S]!==j){if(Q=0,U=!1,N=z,n.pop(),S<O)do{if(h(v[S],10)&&!1===ee&&(C=Be.lines(S,C)),!0===c.markup.preserveAttribute?n.push(v[S]):re.push(v[S]),(k(N,34)||k(N,39))&&(h(v[S-1],123)&&(h(v[S],37)||h(v[S],123))?R=!0:h(v[S],125)&&(h(v[S-1],125)||h(v[S-1],37))&&(R=!1)),!1===p&&!1===ee&&!0===R&&!1===c.markup.preserveAttribute)for(;S<O;){if(S+=1,h(v[S],10)&&(C=Be.lines(S,C)),h(re[0],61)&&(h(re[1],123)||h(re[1],37))&&(h(re[re.length-2],125)||h(re[re.length-2],37))&&h(re[re.length-1],125)){R=!1,N=t,le(!1);break}if(h(re[0],61)&&k(re[1],123)){R=!1,N=t,le(!1);break}if(re.push(v[S]),h(re[0],61)&&h(v[S+1],62)){R=!1,oe[oe.length-1][0]+=re.join(t),re=[],N=t;break}if(k(re[0],61)&&h(v[S],125)&&(h(v[S-1],125)||h(v[S-1],37))){R=!1,N=t,le(!1);break}}if(!1!==p||!h(v[S],60)&&!h(v[S],62)||N!==t&&!h(N,62))if(N===t){if(v[S+1]===j){(f(re,47)||f(re,63)&&"xml"===W)&&(re.pop(),!1===ie||n.pop(),S-=1),re.length>0&&le(!1);break}if(!1===p&&h(v[S],123)&&h(v[S-1],61)?N="}":h(v[S],34)||h(v[S],39)?(N=v[S],!1===ee&&!1===R&&(ee=!0),h(v[S-1],61)&&(h(v[S+1],60)||h(v[S+1],123)&&h(v[S+2],37)||b(v[S+1])&&k(v[S-1],61))&&(Q=S)):h(v[S],40)?(N=")",_=1):p?(h(v[S-1],61)||b(v[S-1]))&&h(v[S],123)?(N="}",$=1):h(v[S],47)&&(h(v[S+1],42)?N="*/":h(v[S+1],47)&&(N=o)):h(n[0],123)&&h(v[S],123)&&(h(v[S+1],123)||h(v[S+1],37))&&(N=h(v[S+1],123)?"}}":v[S+1]+"}"),b(v[S])&&N===t){if(h(re[re.length-2],61)&&(a=S+1,a<O))do{if(!1===b(v[a])){(h(v[a],34)||h(v[a],39))&&(S=a-1,K=!0,re.pop());break}a+=1}while(a<O);if(!0===K)K=!1;else if(0===E||1===E&&h(re[0],123)){re.pop(),re.length>0&&le(!1),U=!0;break}}}else if(h(v[S],40)&&h(N,41))_+=1;else if(h(v[S],41)&&h(N,41)){if(_-=1,0===_&&(N=t,h(v[S+1],e.charCodeAt(0)))){le(!1);break}}else if(!0===p&&(h(N,125)||h(N,10)&&h(v[S],10)||h(N,42)&&h(v[S-1],42)&&h(v[S],47))){if(h(v[S],96)){S+=1;do{if(re.push(v[S]),h(v[S],96))break;S+=1}while(S<v.length)}if(!h(N,125)){z=t,Y=!0,q=re.join(t),q!==s&&oe.push([q,C]),re=[],C=h(N,10)?2:1,N=t;break}if(h(v[S],125)&&v[S]!==N)$+=1;else if(v[S]===N&&($-=1,0===$)){E=0,N=t,q=re.join(t),!1===c.markup.preserveAttribute&&(p?/^\s*$/.test(q)||oe.push([q,C]):(q=q.replace(Z,s),q!==s&&oe.push([q,C]))),re=[],C=1;break}}else if(h(v[Q-1],61)&&h(v[S],123)&&h(v[S+1],37)&&(h(N,34)||h(N,39)))N+="{%",Q=0;else if(h(v[S-1],37)&&h(v[S],125)&&('"{%'===N||"'{%"===N))N=N[0],Q=0;else if(h(v[S],60)&&h(e,62)&&h(v[Q-1],61)&&(h(N,34)||h(N,39)))N+="<",Q=0;else if(!h(v[S],62)||'"<'!==N&&"'<"!==N)if(0===Q&&k(N,62)&&(N.length<2||k(N,34)&&k(N,39))){if(d=0,a=N.length-1,a>-1)do{if(k(v[S-d],N.charCodeAt(a)))break;d+=1,a-=1}while(a>-1);if(a<0&&!1===R&&!0===ee&&(ee=!1,le(!0),v[S+1]===j))break;0===a&&h(v[S],62)}else Q>0&&!1===b(v[S])&&(Q=0);else N=N.charAt(0),Q=0;else if(N===t&&h(v[S],60))N=">",x=1;else if(h(N,62))if(h(v[S],60))x+=1;else if(h(v[S],62)&&(x-=1,0===x)){N=t,Q=0,le(!1);break}S+=1}while(S<O)}else if(!1===h(e,10)&&(h(v[S],34)||h(v[S],39)))N=v[S];else if(S>0&&!0===R&&k(N,34)&&k(N,39)){if(!0===ae())continue}else if("comment"!==W&&k(e,10)&&h(v[S],60)&&h(v[S+1],33)&&h(v[S+2],45)&&h(v[S+3],45)&&"conditional"!==l.types[Be.count])N="--\x3e";else if(h(v[S],123)&&k(n[0],123)&&k(e,10)&&(h(v[S+1],123)||h(v[S+1],37))){if(h(v[S+1],123))N="}}";else if(N=v[S+1]+"}",re.length<1&&(oe.length<1||b(v[S-1]))){n.pop();do{h(v[S],10)&&(C+=1),re.push(v[S]),S+=1}while(S<O&&v[S-1]+v[S]!==N);re.push("}"),oe.push([re.join(t),C]),re=[],C=1,N=t}N===e&&(N=t)}else if(se&&k(e,10)&&k(v[S-1],60)&&b(v[S]))U=!0;else if(se&&p&&h(v[S],47)&&(h(v[S+1],42)||h(v[S+1],47)))U=!0,n[n.length-1]=s,z=h(v[S+1],42)?"*/":o,re.push(v[S]);else if(!1===R&&(v[S]===j||h(e,10)&&h(v[S+1],60))&&(n.length>e.length+1||h(n[0],93))&&(!1===p||0===E)){if(h(e,10)){if(b(n[n.length-1]))do{n.pop(),S-=1}while(b(n[n.length-1]));break}if(d=n.length,a=e.length-1,a>-1)do{if(d-=1,n[d]!==e.charAt(a))break;a-=1}while(a>-1);if(a<0){h(n[d],62)&&h(v[S],62)&&h(v[S-1],125)&&b(v[S+1])&&oe.length>0&&0===oe[oe.length-1][1]&&(oe[oe.length-1][1]=h(v[S+1],32)?1:2);break}}}else if(h(v[S],N.charCodeAt(N.length-1))&&k(v[S-1],92)&&(!0===p&&h(e,125)&&!1===B(S)||!1===p||k(e,125))){if(d=0,a=N.length-1,a>-1)do{if(k(v[S-d],N.charCodeAt(a)))break;d+=1,a-=1}while(a>-1);a<0&&(N=t)}S+=1}else{if(n.push(v[S]),S>3&&h(v[S],45)&&h(v[S-1],45)&&h(v[S-2],45))break;S+=1}}while(S<O);if(Q=0,J||(J=F(n.join(t))),!1===X)if("liquid"===W){if(q=function(e,n,r,{wrapFraction:a,liquid:{forceFilter:l,forceArgument:c,lineBreakSeparator:u,delimiterTrims:p,delimiterPlacement:d,preserveInternal:f}}){let g,k,[m,b]=ve(e);if("never"===p?(g=`{${e[1]}`,k=`${e[e.length-2]}}`):"always"===p||"outputs"===p&&h(e[1],123)||"tags"===p&&h(e[1],37)?(g=`{${e[1]}-`,k=`-${e[e.length-2]}}`):"preserve"===p?(g=e.slice(0,m).join(t),k=e.slice(b).join(t)):(g=`{${e[1]}`,k=`${e[e.length-2]}}`),"else"===n||"break"===n||"continue"===n||"increment"===n||"decrement"===n||n.startsWith("end"))return g+=s,k=s+k,g+e.slice(m,b).join(t).trim()+k;if("preserve"===d?(g+=h(e[m],10)?o:s,k=(h(e[b-1],10)?o:s)+k):"force"===d?(g+=o,k=o+k):"inline"===d||"default"===d?(g+=s,k=s+k):"consistent"===d&&h(e[m],10)?(g+=o,k=o+k):(g+=s,k=s+k),"liquid"===n||!0===f)return g+e.slice(m,b).join(t).trim()+k;if(a>0&&e.length>=a&&r.logic.length>0&&("if"===n||"elsif"===n||"unless"===n||"when"===n)){"multiline"===p&&(g=`{${e[1]}-`+g[g.length-1],k=k[0]+`-${e[e.length-2]}}`),"force-multiline"===d&&(g=g.trimEnd()+o,k=o+k.trimStart());let n=r.logic.length;for(let i=0;i<n;i++){let n=r.logic[i];e[n]=o+e[n],h(e[n-1],32)&&(e[n-1]=t)}return g+e.slice(m,b).join(t).trim()+k}let y=r.pipes.length;if(y>0){if(l>0&&y>=l||0===l&&a>0&&e.length>a){"multiline"===p&&(g=`{${e[1]}-`+g[g.length-1],k=k[0]+`-${e[e.length-2]}}`),"force-multiline"===d&&(g=g.trimEnd()+o,k=o+k.trimStart());for(let n=0;n<y;n++){let s=r.pipes[n];if(h(e[s-1],32)&&(e[s-1]=t),e[s]=o+e[s],0===n){let n=s-1;if(h(e[n-1],32))do{e[n--]=t}while(h(e[n],32))}if(r.fargs[n]&&(c>0&&r.fargs[n].length>=c||0===c&&a>0&&e.slice(r.fargs[n][0],r.fargs[n][r.fargs[n].length-1]).length>a)){let t=r.fargs[n].length;for(let s=0;s<t;s++){let t=r.fargs[n][s];"after"===u?e[h(e[t-1],44)?t-1:t]=0===s?o+"  ":i+o+" ":"before"===u?h(e[t-1],44)?e[t-1]=0===s?"  "+o:o+"  "+i:e[t]=0===s?o+"  ":o+"  "+i:e[t]=o+"  "+e[t]}}}}return g+e.slice(m,b).join(t).trim()+k}if(r.targs.length>=c){"multiline"===p&&(g=`{${e[1]}-`+g[g.length-1],k=k[0]+`-${e[e.length-2]}}`);for(let n=0;n<r.targs.length;n++){let s=r.targs[n];"after"===u?(h(e[s+1],32)&&(e[s+1]=t),h(e[s-1],32)&&(e[s-1]=t),e[s]=h(e[s],44)?i+o:o):"before"===u&&(h(e[s-1],44)?e[s-1]=o+i:e[s]=o+i)}}return g+e.slice(m,b).join(t).trim()+k}(n,J,r,c),c.liquid.normalizeSpacing&&(q=q.replace(/\] \[/g,"][").replace(/(\])(\w+:)/,"$1 $2"),"render"===J&&q.indexOf("]as")>-1&&(q=q.replace(/\]as(?=\s+)/,"] as"))),"liquid"===J)return function(){let e=q.indexOf("liquid")+6,n=t,i=t,r=1;L(y,{token:ye(q.slice(0,e),c.liquid),types:"liquid_start",stack:"liquid"});let s=q.slice(e).split(o),a=s.pop().trim(),l=h(a[a.length-3],45)?a.length-3:a.length-2,u=a.slice(0,l),p=a.slice(l);0!==u.length&&s.push(u),e=0;do{n=s[e].trim(),i=n.split(/\s/)[0],i.startsWith("end")?(y.token=n,y.types="liquid_end",y.lines=r,L(y),r=1):i.startsWith("#")?(y.token=n,y.types="liquid",y.lines=r<=1?2:r,L(y),r=1):i.startsWith("comment")||P.liquid.tags.has(i)?(y.token=n,y.types="liquid_start",y.lines=r,L(y),r=1):P.liquid.else.has(i)?(y.token=n,y.types="when"===i?"liquid_when":"liquid_else",y.lines=r,L(y),r=1):P.liquid.singleton.has(i)?(y.token=n,y.types="liquid",y.lines=r<=1?2:r,L(y),r=1):n.trim().length>0&&(y.token=n,y.types="content",y.lines=r,L(y),r=1),e+=1,r+=1}while(e<s.length);"default"===c.liquid.delimiterPlacement||"force-multiline"===c.liquid.delimiterPlacement||"preserve"===c.liquid.delimiterPlacement&&/\n-?%}$/.test(q)||"consistent"===c.liquid.delimiterPlacement&&/^{%-?\n/.test(q)?L(y,{token:p,types:"liquid_end",lines:2}):Be.replace({token:we(Be.current.token+p,c.liquid)})}()}else q=n.join(t);else q=n.join(t);return"xml"===J?A="xml":A===t&&"html"===J&&(A="html"),y.token=q,y.types=W,!1===ie&&!1===p&&(q=q.replace(Z,s)),ue()}}():ue())}()}function H(){let e=[],n=S,i=!0===p&&h(l.token[Be.count],123),r=t,d=Be.lineOffset,f=t;!0===_&&(f=!0===i?"script":Be.stack.index>-1?F(l.token[Be.stack.index]):F(l.token[l.begin[Be.count]]));let g={begin:Be.stack.index,ender:-1,lexer:"markup",lines:d,stack:F(Be.stack.token)||"global",token:t,types:"content"};function m(){let e=S-1,t=0;if(k(v[S-1],92))return!1;if(e>-1)do{if(k(v[e],92))break;t+=1,e-=1}while(e>-1);return t%2==1}if(S<O){let n=t,w=t,x=t,q=0;do{if(h(v[S],10)&&(d=Be.lines(S,d)),!0===_){if("liquid_start"===l.types[Be.count]){let e=`end${f}`,i=u.indexOf(`end${f}`,S);if(i>-1){let r=i;do{if(!1===b(v[r])&&h(v[r],37)&&h(v[r-1],123)){r-=2;break}}while(v[r--]);if(n=v.slice(r+1,v.indexOf("%",i+e.length)+2).join(t),qe(e).test(n)){d=1,x=v.slice(S,r).join(t).replace(G,t),S=r+n.length,Be.external(a,x);do{h(v[r],10)&&(d+=1)}while(b(v[r--]));L(g,{token:T(n),types:"liquid_end",lines:d});break}}}if(w===t){if(h(v[S],47))h(v[S+1],42)?w="*":h(v[S+1],47)?w="/":!p&&"script"===f&&k(v[S-1],60)&&"([{!=,;.?:&<>".indexOf(v[S-1])>-1&&(w="r");else if(!1===m()&&(h(v[S],34)||h(v[S],39)||h(v[S],96)))w=v[S];else if(h(v[S],123)&&!0===i)q+=1;else if(h(v[S],125)&&!0===i){if(0===q){x=e.join(t).replace(U,t).replace(G,t),Be.external(a,x),Be.stack.update(Be.stack.index+1),"end"===l.types[Be.count]&&"script"===l.lexer[l.begin[Be.count]-1]&&(L(g,{lexer:"script",types:"separator",token:!0===c.correct?";":"x;"}),g.lexer="markup"),L(g,{token:"}",types:"script_end"}),Be.stack.pop();break}q-=1}if("script"===f){if(n=v.slice(S+1,S+9).join(t).toLowerCase(),"</script"===n){if(x=e.join(t).trimEnd(),e.length<1)break;le.test(x)&&ce.test(x)?(L(g,{token:"\x3c!--",types:"comment"}),x=x.replace(le,t).replace(ce,t),Be.external("javascript",x),L(g,{token:"--\x3e"})):Be.external(a,x);break}}else if("style"===f&&h(v[S+1],60)&&h(v[S+2],47)&&(n=v.slice(S+1,S+8).join(t).toLowerCase(),"</style"===n)){if(x=e.join(t).trimEnd(),e.length<1)break;le.test(x)&&ce.test(x)?(L(g,{token:"\x3c!--",types:"comment"}),x=x.replace(le,t).replace(ce,t),Be.external("css",x),L(g,{token:"--\x3e"})):Be.external(a,x);break}}else w===v[S]&&!1===m()&&(h(w,34)||h(w,39)||h(w,96)||h(w,42)&&h(v[S+1],47))?w=t:h(w,96)&&h(v[S],36)&&h(v[S+1],123)&&!1===m()?w="}":h(w,125)&&h(v[S],125)&&!1===m()?w="`":h(w,47)&&(h(v[S],10)||h(v[S],13))||"r"===w&&h(v[S],47)&&!1===m()?w=t:h(w,47)&&h(v[S],62)&&h(v[S-1],45)&&h(v[S-2],45)&&(n=u.slice(S+1,S+11).toLowerCase(),n=n.slice(0,n.length-2),"script"===f&&"</script"===n&&(w=t),n=n.slice(0,n.length-1),"style"===f&&"</style"===n&&(w=t))}if(1==("liquid_start"===l.types[Be.count]&&0===l.token[Be.count].indexOf("<!")&&l.token[Be.count].indexOf("<![")<0&&91===l.token[Be.count].charCodeAt(l.token[Be.count].length-1))&&h(v[S],93)){S-=1,d=0,r=e.join(t).replace(G,t),L(g,{token:r});break}if(!1===_&&e.length>0&&(h(v[S],60)&&k(v[S+1],61)&&!1===y(v[S+1])&&!1===b(v[S+1])||h(v[S],91)&&h(v[S+1],37)||h(v[S],123)&&(!0===p||h(v[S+1],123)||h(v[S+1],37)))){if(S-=1,d=0,r="comment"===Be.stack.token?e.join(t):e.join(t).replace(G,t),g.token=r,c.wrap>0&&!1===c.markup.preserveText){let n=function(){if(h(r[i],32))return a.push(r.slice(0,i)),r=r.slice(i+1),o=r.length,void(i=c.wrap);do{i-=1}while(i>0&&k(r[i],32));if(i>0)a.push(r.slice(0,i)),r=r.slice(i+1),o=r.length,i=c.wrap;else{i=c.wrap;do{i+=1}while(i<o&&k(r[i],32));a.push(r.slice(0,i)),r=r.slice(i+1),o=r.length,i=c.wrap}},i=c.wrap,o=r.length,a=[];if("<a>"===l.token[l.begin[Be.count]]&&"<li>"===l.token[l.begin[l.begin[Be.count]]]&&0===l.lines[l.begin[Be.count]]&&0===Be.lineOffset&&r.length<c.wrap){L(g);break}if(o<c.wrap){L(g);break}if(Be.lineOffset<1&&Be.count>-1){let e=Be.count;do{if(i-=l.token[e].length,l.types[e].indexOf("attribute")>-1&&(i-=1),l.lines[e]>0&&l.types[e].indexOf("attribute")<0)break;e-=1}while(e>0&&i>0);i<1&&(i=r.indexOf(s))}r=e.join(t).replace(U,t).replace(G,t).replace(Z,s);do{n()}while(i<o);r!==t&&k(r,32)&&a.push(r),r=a.join(Be.crlf),r=t+r+t}else{let e=r.indexOf(o);e>-1&&(L(g,{token:r.slice(0,e)}),r=r.slice(e),K.test(r)?g.lines=1:(g.lines=2,r=r.replace(U,t)))}d=0,L(g,{token:r});break}e.push(v[S]),S+=1}while(S<O)}if(S>n&&S<O)if(b(v[S])){let e=S;Be.lineOffset=Be.lineOffset+1;do{h(v[e],10)&&(Be.lineNumber=Be.lineNumber+1,Be.lineOffset=Be.lineOffset+1),e-=1}while(e>n&&b(v[e]))}else Be.lineOffset=0;else(S!==n||S===n&&!1===_)&&(r=e.join(t).replace(G,t),d=0,g.token!==r&&(L(g,{token:r}),Be.lineOffset=0));_=!1}function X(){Be.lineOffset=1;do{if(h(v[S],10)&&(Be.lineIndex=S,Be.lineOffset=Be.lineOffset+1,Be.lineNumber=Be.lineNumber+1),!1===b(v[S+1]))break;S+=1}while(S<O)}("html"===Be.language||"liquid"===Be.language)&&(A="html");do{if(Be.error)return l;if(b(v[S])?X():h(v[S],60)||h(v[S],123)&&(p||h(v[S+1],123)||h(v[S+1],37))?J(t):h(v[S],45)&&h(v[S+1],45)&&h(v[S+2],45)?J("---"):H(),S+=1,S===O&&Be.pairs.size>0&&Be.pairs.has(Be.stack.index)){console.log(Be.pairs);let e=Be.pairs.get(Be.stack.index);2===e.type&&W(105,e)}}while(S<O);return l}function Le(e){return 1===e?Ie():3===e?function(){let{data:e,rules:i,source:a}=Be,l=a.split(t),c=a.length,u=[],p=[],d=0,f=t,g=t;function m(t){Be.push(e,{begin:Be.stack.index,ender:-1,lexer:"style",lines:Be.lineOffset,stack:Be.stack.token,token:g,types:f},t)}function w(e){let t=e;do{e-=1}while(h(l[e],92)&&e>0);return(t-e)%2==1}function x(o){let a=o.replace(/\s*!important/," !important").split(t),l=/-?transition$/.test(e.token[Be.count-2]),c=[],u=/(\s|\(|,)-?0+\.?\d+([a-z]|\)|,|\s)/g,p=/(\s|\(|,)-?\.?\d+([a-z]|\)|,|\s)/g,d=0,f=0,g=t,m=a.length,b=[];function y(e){return!0===i.style.noLeadZero?e.replace(/^-?\D0+(\.|\d)/,(e=>e.replace(/0+/,t))):/0*\./.test(e)?e.replace(/0*\./,"0."):/0+/.test(/\d+/.exec(e)[0])?/^\D*0+\D*$/.test(e)?e.replace(/0+/,"0"):e.replace(/\d+/.exec(e)[0],/\d+/.exec(e)[0].replace(/^0+/,t)):e}function w(e){return e.replace(",",", ")}function x(e){return`${e} `}function v(){let e=d-1,t=e;if(e<1)return!0;do{t-=1}while(t>0&&h(a[t],92));return(e-t)%2==1}if(d<m)do{b.push(a[d]),(k(a[d-1],92)||!1===v())&&(g===t?h(a[d],34)?(g=n,f+=1):h(a[d],39)?(g=r,f+=1):h(a[d],40)?(g=")",f+=1):h(a[d],91)&&(g="]",f+=1):h(a[d],40)&&h(g,41)||h(a[d],91)&&h(g,93)?f+=1:a[d]===g&&(f-=1,0===f&&(g=t))),g===t&&h(a[d],32)&&(b.pop(),c.push(b.join(t)),b=[]),d+=1}while(d<m);if(c.push(b.join(t)),m=c.length,d=0,d<m)do{!0===i.style.noLeadZero&&!0===/^-?0+\.\d+[a-z]/.test(c[d])?c[d]=c[d].replace(/0+\./,"."):!1===i.style.noLeadZero&&/^-?\.\d+[a-z]/.test(c[d])?c[d]=c[d].replace(".","0."):u.test(c[d])||p.test(c[d])?c[d]=c[d].replace(u,y).replace(p,y):/^(0+([a-z]{2,3}|%))$/.test(c[d])&&!1===l?c[d]="0":/^(0+)/.test(c[d])?(c[d]=c[d].replace(/0+/,"0"),/\d/.test(c[d].charAt(1))&&(c[d]=c[d].substr(1))):/^url\((?!('|"))/.test(c[d])&&41===c[d].charCodeAt(c[d].length-1)&&(g=c[d].charAt(c[d].indexOf("url(")+4),"@"!==g&&k(g,40)&&k(g,60)&&("double"===i.style.quoteConvert?c[d]=c[d].replace(/url\(/,'url("').replace(/\)$/,'")'):c[d]=c[d].replace(/url\(/,"url('").replace(/\)$/,"')"))),/^(\+|-)?\d+(\.\d+)?(e-?\d+)?\D+$/.test(c[d])&&(P.css.units.has(c[d].replace(/(\+|-)?\d+(\.\d+)?(e-?\d+)?/,t))||(c[d]=c[d].replace(/(\+|-)?\d+(\.\d+)?(e-?\d+)?/,x))),/^\w+\(/.test(c[d])&&")"===c[d].charAt(c[d].length-1)&&(0!==c[d].indexOf("url(")||0===c[d].indexOf("url(")&&c[d].indexOf(s)>0)&&(c[d]=c[d].replace(/,\S/g,w)),d+=1}while(d<m);return g=c.join(s),g.charAt(0)+g.slice(1).replace(/\s*(\/|\+|\*)\s*(\d|\$)/,(function(e){return e=e.replace(/\s*/g,t),/\/\d/.test(e)&&0===o.indexOf("url(")?e:` ${e.charAt(0)} ${e.charAt(1)}`}))}function v(){let o=[],a=[],p=i.style.quoteConvert,v=d,q=0,j=t,O=null,$=!1;function S(){if(a.push(l[v]),b(l[v+1]))do{v+=1}while(v<c&&b(l[v+1]))}if(v<c)do{if(h(l[v],34)||h(l[v],39)?(null===O&&(O=!1),o[o.length-1]!==l[v]||!k(l[v-1],92)&&!1!==w(v-1)?k(o[o.length-1],34)&&k(o[o.length-1],39)&&(k(l[v-1],92)||!1===w(v-1))?(o.push(l[v]),"double"===p?l[v]=n:"single"===p&&(l[v]=r)):h(l[v-1],92)&&"none"!==p?!0===w(v-1)&&("double"===p&&h(l[v],39)||"single"===p&&h(l[v],34))&&a.pop():"double"===p&&h(l[v],34)?l[v]='\\"':"single"===p&&h(l[v],39)&&(l[v]="\\'"):(o.pop(),"double"===p?l[v]=n:"single"===p&&(l[v]=r)),a.push(l[v])):k(l[v-1],92)||!1===w(v-1)?h(l[v],40)?(null===O&&(O=!0),o.push(")"),S()):h(l[v],91)?(O=!1,o.push("]"),S()):(h(l[v],35)||h(l[v],64))&&h(l[v+1],123)?(O=!1,a.push(l[v]),v+=1,o.push("}"),S()):l[v]===o[o.length-1]?(a.push(l[v]),o.pop()):a.push(l[v]):a.push(l[v]),"map"===Be.stack.token&&0===o.length&&(h(l[v+1],44)||h(l[v+1],41))){if(!h(l[v+1],41)||!h(e.token[Be.count],40))break;Be.pop(e),Be.stack.pop(),a.splice(0,0,"(")}if(h(l[v+1],58)){if(q=v,b(l[q]))do{q-=1}while(b(l[q]));j=l.slice(q-6,q+1).join(t),(j.indexOf("filter")===j.length-6||j.indexOf("progid")===j.length-6)&&(j="filter")}if(0===o.length){if(h(l[v+1],59)&&!0===w(v+1)||h(l[v+1],58)&&k(l[v],58)&&k(l[v+2],58)&&"filter"!==j&&"progid"!==j||h(l[v+1],123)||h(l[v+1],125)||h(l[v+1],47)&&(h(l[v+2],42)||h(l[v+2],47))){if(q=a.length-1,b(a[q]))do{q-=1,v-=1,a.pop()}while(b(a[q]));break}if(h(l[v+1],44))break}v+=1}while(v<c);d=v,"map"===Be.stack.token&&h(a[0],40)&&(u[u.length-1]=u[u.length-1]-1),g=a.join(t).replace(/\s+/g,s).replace(/^\s/,t).replace(/\s$/,t),!0===O&&(P.css.atrules(g)&&!0===i.style.atRuleSpace?e.token[Be.count]=e.token[Be.count].replace(/\s*\(/g," (").replace(/\s*\)\s*/g,") ").replace(/,\(/g,", ("):g=g.replace(/\s+\(/g,"(").replace(/\s+\)/g,")").replace(/,\(/g,", (")),"colon"===f&&"start"===e.types[Be.count-1]?P.css.pseudoClasses.has(g)&&(e.token[Be.count]=g=":"+g,f="pseudo",$=!0):Be.count>-1&&0===e.token[Be.count].indexOf("extend(")?f="pseudo":!0===O&&!1===y(g.charAt(0))&&!1===/^rgba?\(/.test(g)&&0!==g.indexOf("url(")&&(g.indexOf(s)<0||g.indexOf(s)>g.indexOf("("))&&")"===g.charAt(g.length-1)?(h(e.token[Be.count],58)?f="value":(g=g.replace(/,\u0020?/g,", "),f="function"),g=x(g)):Be.count>-1&&r.indexOf(e.token[Be.count].charAt(0))>-1&&"variable"===e.types[Be.count]?f="item":h(a[0],64)||"$"===a[0]?("colon"!==e.types[Be.count]||"css"!==i.language||"property"!==e.types[Be.count-1]&&"variable"!==e.types[Be.count-1]?Be.count>-1&&(f="item",j=e.token[Be.count],v=j.indexOf("("),h(j[j.length-1],41)&&v>0&&(j=j.slice(v+1,j.length-1),e.token[Be.count]=e.token[Be.count].slice(0,v+1)+x(j)+")")):f="value",g=x(g)):f="item",!1===$?m(t):$=!1}function q(n){let r=Be.count,o=0,a=t,c=[];function u(){if(!(Be.count<0)){if(r>0&&("comment"===e.types[r]||"ignore"===e.types[r]))do{r-=1,c.push(e.token[r])}while(r>0&&"style"===e.lexer[r]&&("comment"===e.types[r]||"ignore"===e.types[r]));if(o=r-1,o>0&&("comment"===e.types[o]||"ignore"===e.types[o]))do{o-=1}while(o>0&&"style"===e.lexer[r]&&("comment"===e.types[o]||"ignore"===e.types[o]));o<0&&(o=0),r<0&&(r=0),a=e.token[r][0]}}function p(e){return e.replace(/\s*&/," &").replace(/\s*&\s*{/," & {").replace(/\s*>\s*/g," > ").replace(/\s*\+\s*/g," + ")}function g(n){let o=n,a=e.begin[o];if(e.token[n]=e.token[n].replace(/\s*&/," &").replace(/\s*&\s*{/," & {").replace(/\s*>\s*/g," > ").replace(/\s*\+\s*/g," + ").replace(/:\s+/g,": ").replace(/^\s+/,t).replace(/\s+$/,t).replace(/\s+::\s+/,"::"),k(e.token[o],44)&&"comment"!==e.types[o]&&(e.types[o]="selector"),h(e.token[o-1],44)||h(e.token[o-1],58)||"comment"===e.types[o-1]||"pseudo"===e.types[o-1])if("colon"!==e.types[o-1]||"selector"!==e.types[o]&&"at_rule"!==e.types[o]||"template"!==e.types[o-2]&&"liquid_start"!==e.types[o-2]&&"liquid_else"!==e.types[o-2]&&"liquid_end"!==e.types[o-2])if("pseudo"===e.types[o-1])e.token[o-1]=`${e.token[o-1]}${e.token[o]}`,e.types[o-1]="selector",Be.splice({data:e,howmany:1,index:o});else if("comment"===e.types[o-2])e.token[o-1]=p(`${e.token[o-1]}${e.token[o]}`),e.types[o-1]="selector",Be.splice({data:e,howmany:1,index:o});else do{if(o-=1,e.begin[o]!==a)break;if(h(e.token[o],59))break;k(e.token[o],44)&&"comment"!==e.types[o]&&(e.types[o]="selector"),":"===e.token[o]&&k(e.token[o-1],59)&&(e.token[o-1]=p(`${e.token[o-1]}:${e.token[o+1]}`),Be.splice({data:e,howmany:2,index:o}))}while(o>0);else e.token[o-1]=":"+e.token[o]+s,e.types[o-1]="selector",Be.splice({data:e,howmany:1,index:o});if(o=Be.count,!0===i.style.sortSelectors&&h(e.token[o-1],44)){let t=[e.token[o]];do{if(o-=1,"comment"===e.types[o]||"ignore"===e.types[o])do{o-=1}while(o>0&&("comment"===e.types[o]||"ignore"===e.types[o]));h(e.token[o],44)&&(o-=1),t.push(e.token[o])}while(o>0&&(h(e.token[o-1],44)||"selector"===e.types[o-1]||"comment"===e.types[o-1]||"ignore"===e.types[o-1]));t.sort(),o=Be.count,e.token[o]=t.pop();do{if(o-=1,"comment"===e.types[o]||"ignore"===e.types[o])do{o-=1}while(o>0&&("comment"===e.types[o]||"ignore"===e.types[o]));h(e.token[o],44)&&(o-=1),e.token[o]=t.pop()}while(o>0&&(h(e.token[o-1],44)||"selector"===e.types[o-1]||"comment"===e.types[o-1]||"ignore"===e.types[o-1]))}r=Be.count,u()}u(),"start"===n&&("value"===e.types[r]||"variable"===e.types[r])&&(e.types[r]="item"),"style"!==e.lexer[Be.count-1]||o<0?"colon"===n?h(a,36)||h(a,64)?e.types[r]="variable":"global"!==e.stack[r]&&("comment"!==e.types[r]||"ignore"!==e.types[r])&&(e.types[r]="property"):"style"===e.lexer[r]&&(e.types[r]="selector",g(r)):"start"===n&&"function"===e.types[r]&&"style"===e.lexer[r]?(e.types[r]="selector",g(r)):"item"===e.types[r]&&"style"===e.lexer[r]&&("start"===n?(g(r),e.types[r]="selector",":"===e.token[r]&&(e.types[o]="selector"),e.token[r].indexOf("=“")>0?Be.error=`Invalid Quote (“, \\201c) used on line number ${Be.lineNumber}`:e.token[r].indexOf("=”")>0&&(Be.error=`Invalid Quote (”, \\201d) used on line number ${Be.lineNumber}`)):"end"===n?(h(a,36)||h(a,64)?e.types[r]="variable":e.types[r]="value",e.token[r]=x(e.token[r])):"separator"===n?"colon"===e.types[o]||h(e.token[o],44)||h(e.token[o],123)?(k(l[d],59)&&("selector"===e.types[o]||"at_rule"===e.types[o]||h(e.token[o],123))?(e.types[r]="selector",g(r)):h(e.token[r],36)||h(e.token[r],64)?e.types[r]="variable":e.types[r]="value",e.token[r]=x(e.token[r]),"“"===e.token[r].charAt(0)?Be.error=`Invalid Quote (“, \\201c) used on line number ${Be.lineNumber}`:"”"===e.token[r].charAt(0)&&(Be.error=`Invalid (”, \\201d) used on line number ${Be.lineNumber}`)):h(a,36)||h(a,64)?e.types[r]="variable":"value"===e.types[o]||"variable"===e.types[o]?(e.token[o]=e.token[o]+e.token[r],Be.pop(e)):e.types[r]="value":"colon"===n?h(a,36)||h(a,64)?e.types[r]="variable":e.types[r]="property":h(e.token[o],64)&&("variable"!==e.types[o-2]&&"property"!==e.types[o-2]||"separator"===e.types[o-1])?(e.types[o]="variable",f="variable",e.token[o]=x(e.token[o])):"comment"===n&&(h(a,46)||h(a,35))&&(e.types[r]="selector"))}function j(){let t=Be.count;do{t-=1}while(t>0&&"comment"===e.types[t]);";"!==e.token[t]&&Be.splice({data:e,howmany:0,index:t+1,record:{begin:Be.stack.index,ender:-1,lexer:"style",lines:Be.lineOffset,stack:Be.stack.token,token:";",types:"separator"}})}function O(o,a){let u=[],k=t,y=t,w=0,x=o.length;function v(n){let r=Be.count>0?e.types[Be.count-1]:e.types[Be.count];"item"===f&&("colon"===r?e.types[Be.count]="value":q(r)),h(l[d+1],32),f=n,g=xe(g,y,i.liquid),f.indexOf("start")>-1||f.indexOf("else")>-1?m(g):m(t)}if(p[p.length-1]=!0,d<c)do{if(u.push(l[d]),k===t){if(h(l[d],34))k=n;else if(h(l[d],39))k=r;else if(h(l[d],47))h(l[d+1],47)?k="/":h(l[d+1],42)&&(k="*");else if(l[d+1]===a.charAt(0)){do{w+=1,d+=1,u.push(l[d])}while(d<c&&w<a.length&&l[d+1]===a.charAt(w));if(w===a.length){if(k=u.join(t),b(k.charAt(x)))do{x+=1}while(b(k.charAt(x)));w=x;do{w+=1}while(w<a.length&&!b(k.charAt(w)));if(w===k.length&&(w-=a.length),"{%"===o&&(y=F(k)),"item"===f&&"colon"===e.types[Be.count-1]&&("property"===e.types[Be.count-2]||"variable"===e.types[Be.count-2]))return f="value",e.types[Be.count]="value",void(!0===Number.isNaN(Number(e.token[Be.count]))&&")"!==e.token[Be.count].charAt(e.token[Be.count].length-1)?e.token[Be.count]=e.token[Be.count]+k:e.token[Be.count]=e.token[Be.count]+s+k);if(g=k,"{%"===o){let e=Array.from(P.liquid.tags),t=e.length-1;if(y=y.slice(0,y.indexOf(s)),y.indexOf("(")>0&&(y=y.slice(0,y.indexOf("("))),P.liquid.else.has(y))return void v("liquid_else");if(t=e.length-1,t>-1)do{if(y===e[t])return void v("liquid_start");if(y==="end"+e[t])return void v("liquid_end");t-=1}while(t>-1)}else if("{{"===o){let e=k.slice(2),t=e.length,n=0;do{n+=1}while(n<t&&!1===b(e.charAt(n))&&40!==e.charCodeAt(x));if(e=e.slice(0,n),h(e[e.length-2],125)&&(e=e.slice(0,e.length-2)),"end"===e)return void v("liquid_end")}return void v("liquid")}w=0}}else k===l[d]&&(h(k,34)||h(k,39)||h(k,47)&&(h(l[d],13)||h(l[d],10))||h(k,42)&&h(l[d+1],47))&&(k=t);d+=1}while(d<c)}function $(e){let n;e?(n=fe({chars:l,start:d,end:c,lexer:"style",begin:"//",ender:o}),g=n[0],f=ne.test(g)?"ignore":"comment"):(n=he({chars:l,start:d,end:c,lexer:"style",begin:"/*",ender:"*/"}),g=n[0],f=ie.test(g)?"ignore":"comment"),m(t),d=n[1]}function S(){let n=Be.lineOffset,i={data:{margin:[t,t,t,t,!1],padding:[t,t,t,t,!1]},last:{margin:0,padding:0},removes:[]},r=Be.stack.index;function o(n){if(e.token[a-2]===n){let r=e.token[a].replace(/\s*!important\s*/g,t).split(s),o=r.length;e.token[a].indexOf("!important")>-1&&(i.data[n[4]]=!0),o>3?(i.data[n][0]===t&&(i.data[n][0]=r[0]),i.data[n][1]===t&&(i.data[n][1]=r[1]),i.data[n][2]===t&&(i.data[n][2]=r[2]),i.data[n][3]===t&&(i.data[n][3]=r[3])):o>2?(i.data[n][0]===t&&(i.data[n][0]=r[0]),i.data[n][1]===t&&(i.data[n][1]=r[1]),i.data[n][2]===t&&(i.data[n][2]=r[2]),i.data[n][3]===t&&(i.data[n][3]=r[1])):o>1?(i.data[n][0]===t&&(i.data[n][0]=r[0]),i.data[n][1]===t&&(i.data[n][1]=r[1]),i.data[n][2]===t&&(i.data[n][2]=r[0]),i.data[n][3]===t&&(i.data[n][3]=r[1])):(i.data[n][0]===t&&(i.data[n][0]=r[0]),i.data[n][1]===t&&(i.data[n][1]=r[0]),i.data[n][2]===t&&(i.data[n][2]=r[0]),i.data[n][3]===t&&(i.data[n][3]=r[0]))}else if(e.token[a-2]===`${n}-bottom`)i.data[n][2]===t&&(i.data[n][2]=e.token[a]);else if(e.token[a-2]===`${n}-left`)i.data[n][3]===t&&(i.data[n][3]=e.token[a]);else if(e.token[a-2]===`${n}-right`)i.data[n][1]===t&&(i.data[n][1]=e.token[a]);else{if(e.token[a-2]!==`${n}-top`)return;i.data[n][0]===t&&(i.data[n][0]=e.token[a])}i.removes.push([a,n]),i.last[n]=a}let a=Be.count,l=!1;do{a-=1,e.begin[a]===r?"value"===e.types[a]&&"property"===e.types[a-2]&&(0===e.token[a-2].indexOf("margin")?o("margin"):0===e.token[a-2].indexOf("padding")&&o("padding")):(l=!0,a=e.begin[a])}while(a>r);(function(){let n=0,s=t,o=/^(0+([a-z]+|%))/,a=i.removes.length,c=i.data.margin[0]!==t&&i.data.margin[1]!==t&&i.data.margin[2]!==t&&i.data.margin[3]!==t,u=i.data.padding[0]!==t&&i.data.padding[1]!==t&&i.data.padding[2]!==t&&i.data.padding[3]!==t;function p(a){if(!0===o.test(i.data[a][0])&&(i.data[a][0]="0"),!0===o.test(i.data[a][1])&&(i.data[a][1]="0"),!0===o.test(i.data[a][2])&&(i.data[a][2]="0"),!0===o.test(i.data[a][3])&&(i.data[a][3]="0"),s=i.data[a][0]===i.data[a][1]&&i.data[a][0]===i.data[a][2]&&i.data[a][0]===i.data[a][3]?i.data[a][0]:i.data[a][0]===i.data[a][2]&&i.data[a][1]===i.data[a][3]&&i.data[a][0]!==i.data[a][1]?`${i.data[a][0]} ${i.data[a][1]}`:i.data[a][1]===i.data[a][3]&&i.data[a][0]!==i.data[a][2]?`${i.data[a][0]} ${i.data[a][1]} ${i.data[a][2]}`:`${i.data[a][0]} ${i.data[a][1]} ${i.data[a][2]} ${i.data[a][3]}`,!0===i.data[a[4]]&&(s=`${s.replace(" !important",t)} !important`),i.last[a]>Be.count){n=r<1?1:r+1;do{if(e.begin[n]===r&&"value"===e.types[n]&&0===e.token[n-2].indexOf(a)){i.last[a]=n;break}n+=1}while(n<Be.count)}e.token[i.last[a]]=s,e.token[i.last[a]-2]=a}if(a>1&&(!0===c||!0===u))do{i.removes[n][0]!==i.last.margin&&i.removes[n][0]!==i.last.padding&&(!0===c&&"margin"===i.removes[n][1]||!0===u&&"padding"===i.removes[n][1])&&Be.splice({data:e,howmany:"separator"===e.types[i.removes[n][0]+1]?4:3,index:i.removes[n][0]-2}),n+=1}while(n<a-1);!0===c&&p("margin"),!0===u&&p("padding"),!0===l&&(r<0?Be.error="Brace mismatch. There appears to be more closing braces than starting braces.":I(r,Be.count+1))})(),Be.lineOffset=n}function _(){Be.lineOffset=1;do{if(h(l[d],10)&&(Be.lineIndex=d,Be.lineOffset=Be.lineOffset+1,Be.lineNumber=Be.lineNumber+1),!1===b(l[d+1]))break;d+=1}while(d<c)}do{b(l[d])?_():h(l[d],47)&&h(l[d+1],42)?$(!1):h(l[d],47)&&h(l[d+1],47)?$(!0):h(l[d],123)&&h(l[d+1],37)?O("{%","%}"):h(l[d],123)&&h(l[d+1],123)?O("{{","}}"):h(l[d],123)||h(l[d],40)&&h(e.token[Be.count],58)&&"variable"===e.types[Be.count-1]?(q("start"),f="start",g=l[d],h(l[d],40)?(m("map"),u.push(0)):"at_rule"===e.types[Be.count]||"selector"===e.types[Be.count]||"variable"===e.types[Be.count]?h(e.token[Be.count],64)?(e.types[Be.count]="at_rule",m(e.token[Be.count])):m(e.token[Be.count]):"colon"===e.types[Be.count]?m(e.token[Be.count-1]):m("block"),p.push(!1)):h(l[d],125)||")"===l[d]&&"map"===Be.stack.token&&0===u[u.length-1]?h(l[d],125)&&h(e.token[Be.count-1],123)&&"item"===e.types[Be.count]&&void 0!==e.token[Be.count-2]&&64===e.token[Be.count-2].charCodeAt(e.token[Be.count-2].length-1)?(e.token[Be.count-2]=e.token[Be.count-2]+"{"+e.token[Be.count]+"}",Be.pop(e),Be.pop(e),Be.stack.pop()):(h(l[d],41)&&u.pop(),q("end"),h(l[d],125)&&k(e.token[Be.count],59)&&("value"===e.types[Be.count]||"function"===e.types[Be.count]||"variable"===e.types[Be.count]&&(h(e.token[Be.count-1],58)||h(e.token[Be.count-1],59))?(g=!0===i.correct?";":"x;",f="separator",m(t)):"comment"===e.types[Be.count]&&j()),p.pop(),g=l[d],f="end",h(l[d],125)&&S(),!0===i.style.sortProperties&&h(l[d],125)&&A(e),m(t)):h(l[d],59)||h(l[d],44)?("selector"===e.types[Be.count-1]||"at_rule"===e.types[Be.count-1]||"function"!==e.types[Be.count]&&h(e.token[Be.count-1],125)?q("start"):q("separator"),"separator"!==e.types[Be.count]&&!0===w(d)&&(g=l[d],f="separator",m(t))):Be.count>-1&&h(l[d],58)&&"end"!==e.types[Be.count]?(q("colon"),g=":",f="colon",m(t)):("map"===Be.stack.token&&h(l[d],40)&&(u[u.length-1]=u[u.length-1]+1),v()),d+=1}while(d<c);return!0===i.style.sortProperties&&A(e),e}():2===e?function(){let e,i,s,{data:a,references:l,rules:c,source:u}=Be,p="json"===Be.language?c.json:c.script,d=q(u)?u:u.split(t),f=d.length,g=[],m=[],w=[],x=[0,t],v=[!1],j={count:[],index:[],word:[]},O=-1,$=0,S=t,_=t,C=[],L=0,T=-1,N=-1,P=[],F=["autoescape","block","capture","case","comment","embed","filter","for","form","if","macro","paginate","raw","sandbox","spaceless","tablerow","unless","verbatim"];function z(){j.count.pop(),j.index.pop(),j.word.pop(),O-=1}function E(e=t){let n={begin:Be.stack.index,ender:-1,lexer:"script",lines:Be.lineOffset,stack:Be.stack.token,token:S,types:_};Be.push(a,n,e)}function M(e,n){let i=!0===n?$:$+1,r=t;if(("number"!=typeof e||e<1)&&(e=1),h(d[$],47)&&(h(d[$+1],47)?r=o:h(d[$+1],42)&&(r="/")),i<f)do{if(!1===b(d[i])){if(h(d[i],47)&&(r===t?h(d[i+1],47)?r=o:h(d[i+1],42)&&(r="/"):h(r,47)&&h(d[i-1],42)&&(r=t)),r===t&&d[i-1]+d[i]!=="*/")return d.slice(i,i+e).join(t)}else h(r,10)&&h(d[i],10)&&(r=t);i+=1}while(i<f);return t}function W(e){let t=e;do{e-=1}while(h(d[e],92)&&e>0);return(t-e)%2==1}function R(e){let n=M(1,!1),i=0===Be.stack.length?t:Be.stack.token,r={begin:a.begin[Be.count],ender:a.begin[Be.count],lexer:a.lexer[Be.count],lines:a.lines[Be.count],stack:a.stack[Be.count],token:a.token[Be.count],types:a.types[Be.count]};if(te.test(S)||"start"===_||"type_start"===_||"json"===Be.language||h(n,123)||h(r.token,59)||h(r.token,44)||"class"===r.stack||"map"===r.stack||"attribute"===r.stack||"generic"===a.types[r.begin-1]||"initializer"===i||h(r.token,125)&&"global"===a.stack[r.begin-1]&&"operator"!==a.types[r.begin-1]&&r.stack===a.stack[Be.count-1]||"array"===r.stack&&k(r.token,93)||h(a.token[a.begin[Be.count]],123)&&"data_type"===r.stack||void 0!==r.types&&r.types.indexOf("liquid")>-1&&r.types.indexOf("template_string")<0||h(n,59)&&!1===e||"script"!==a.lexer[Be.count-1]&&($<f&&f===u.length-1||f<u.length-1))return;let s=0;if(h(r.token,125)&&("function"===r.stack||"if"===r.stack||"else"===r.stack||"for"===r.stack||"do"===r.stack||"while"===r.stack||"switch"===r.stack||"class"===r.stack||"try"===r.stack||"catch"===r.stack||"finally"===r.stack||"block"===r.stack)){if("function"!==r.stack||"data_type"!==a.stack[r.begin-1]&&"type"!==a.types[r.begin-1])s=a.begin[r.begin-1];else{s=r.begin;do{s-=1}while(s>0&&k(a.token[s],41)&&"arguments"!==a.stack[s]);s=a.begin[s]}if(!h(a.token[s],40))return;if(s-=1,"function"===a.token[s-1]&&(s-=1),"object"===a.stack[s-1]||"switch"===a.stack[s-1]||k(a.token[s-1],61)&&k(a.token[s-1],58)&&"return"!==a.token[s-1])return}if(!("comment"===r.types||"method"===i||"paren"===i||"expression"===i||"array"===i||"object"===i||"switch"===i&&"method"!==r.stack&&h(a.token[a.begin[Be.count]],40)&&"return"!==a.token[a.begin[Be.count]-1]&&"operator"!==a.types[a.begin[Be.count]-1]||"expression"===a.stack[Be.count]&&("while"!==a.token[a.begin[Be.count]-1]||"while"===a.token[a.begin[Be.count]-1]&&"do"!==a.stack[a.begin[Be.count]-2])||n!==t&&"=<>+*?|^:&%~,.()]".indexOf(n)>-1&&!1===e)){if("comment"===r.types){s=Be.count;do{s-=1}while(s>0&&"comment"===a.types[s]);if(s<1)return;r.token=a.token[s],r.types=a.types[s],r.stack=a.stack[s]}void 0===r.token||"start"===r.types||"separator"===r.types||"operator"===r.types&&"++"!==r.token&&"--"!==r.token||"x}"===r.token||"var"===r.token||"let"===r.token||"const"===r.token||"else"===r.token||0===r.token.indexOf("#!/")||"instanceof"===r.token||"method"===r.stack&&("function"===a.token[r.begin-1]||"function"===a.token[r.begin-2])||("list"===p.variableList&&(j.index[O]=Be.count),S=!0===c.correct?";":"x;",_="separator",s=Be.lineOffset,Be.lineOffset=0,E(),Be.lineOffset=s,X())}}function B(){let e=Be.count;if("comment"===a.types[e])do{e-=1}while(e>0&&"comment"===a.types[e]);"from"===a.token[e]&&(e-=2),"x;"===a.token[e]&&Be.splice({data:a,howmany:1,index:e})}function D(){let e=Be.count;do{e-=1}while(e>-1&&"x}"===a.token[e]);if("else"===a.stack[e])return E();e+=1,Be.splice({data:a,howmany:0,index:e,record:{begin:a.begin[e],ender:-1,lexer:"script",lines:Be.lineOffset,stack:a.stack[e],token:S,types:_}}),E()}function J(){let e=[d[$]],n=0,i=h(e[0],46),r=/zz/;if($<f-2&&"0"===d[$]&&("x"===d[$+1]?r=/[0-9a-fA-F]/:"o"===d[$+1]?r=/[0-9]/:"b"===d[$+1]&&(r=/0|1/),r.test(d[$+2]))){e.push(d[$+1]),n=$+1;do{n+=1,e.push(d[n])}while(r.test(d[n+1]));return $=n,e.join(t)}if(n=$+1,n<f)do{if(!(y(d[n])||h(d[n],46)&&!1===i))break;e.push(d[n]),h(d[n],46)&&(i=!0),n+=1}while(n<f);if(n<f-1&&(y(d[n-1])||y(d[n-2])&&(h(d[n-1],45)||h(d[n-1],43)))&&("e"===d[n]||"E"===d[n])&&(e.push(d[n]),(h(d[n+1],45)||h(d[n+1],43))&&(e.push(d[n+1]),n+=1),i=!1,n+=1,n<f))do{if(!(y(d[n])||h(d[n],46)&&!1===i))break;e.push(d[n]),h(d[n],46)&&(i=!0),n+=1}while(n<f);return $=n-1,e.join(t)}function V(){let e=0,n=0,i=f,r=t,s=["=","<",">","+","*","?","|","^",":","&","%","~"],o=s.length;if(T>-1&&ee(),h(d[$],47)&&Be.count>-1&&("word"!==_&&"reference"!==_||"typeof"===S||"return"===S||"else"===S)&&"number"!==_&&"string"!==_&&"end"!==_)return"return"===S||"typeof"===S||"else"===S||"word"!==_?(S=function(){let e=0,n=0,i=$+1,r=!1,s=f,o=["/"];if(i<s)do{if(o.push(d[i]),(k(d[i-1],92)||h(d[i-2],92))&&(h(d[i],91)&&(r=!0),h(d[i],93)&&(r=!1)),h(d[i],47)&&!1===r){if(!h(d[i-1],92))break;if(n=0,e=i-1,e>0)do{if(!h(d[e],92))break;n+=1,e-=1}while(e>0);if(n%2==0)break}i+=1}while(i<s);return"g"===d[i+1]||"i"===d[i+1]||"m"===d[i+1]||"y"===d[i+1]||"u"===d[i+1]?(o.push(d[i+1]),d[i+2]===d[i+1]||"g"!==d[i+2]&&"i"!==d[i+2]&&"m"!==d[i+2]&&"y"!==d[i+2]&&"u"!==d[i+2]?$=i+1:(o.push(d[i+2]),d[i+3]===d[i+1]||d[i+3]===d[i+2]||"g"!==d[i+3]&&"i"!==d[i+3]&&"m"!==d[i+3]&&"y"!==d[i+3]&&"u"!==d[i+3]?$=i+2:(o.push(d[i+3]),d[i+4]===d[i+1]||d[i+4]===d[i+2]||d[i+4]===d[i+3]||"g"!==d[i+4]&&"i"!==d[i+4]&&"m"!==d[i+4]&&"y"!==d[i+4]&&"u"!==d[i+4]?$=i+3:(o.push(d[i+4]),d[i+5]===d[i+1]||d[i+5]===d[i+2]||d[i+5]===d[i+3]||d[i+5]===d[i+4]||"g"!==d[i+5]&&"i"!==d[i+5]&&"m"!==d[i+5]&&"y"!==d[i+5]&&"u"!==d[i+5]?$=i+4:(o.push(d[i+4]),$=i+5))))):$=i,o.join(t)}(),_="regex"):(S="/",_="operator"),E(),"regex";if(h(d[$],63)&&("+-*/.?".indexOf(d[$+1])>-1||h(d[$+1],58)&&s.join(t).indexOf(d[$+2])<0)&&(h(d[$+1],46)&&!1===y(d[$+2])?r="?.":h(d[$+1],63)&&(r="??"),r===t))return"?";if(h(d[$],58)&&"+-*/".indexOf(d[$+1])>-1)return":";if($<f-1){if(k(d[$],60)&&h(d[$+1],60))return d[$];if(h(d[$],33)&&h(d[$+1],47))return"!";if(h(d[$],45)&&(v[v.length-1]=!1,h(d[$+1],45)?r="--":h(d[$+1],61)?r="-=":h(d[$+1],62)&&(r="->"),r===t))return"-";if(h(d[$],43)&&(v[v.length-1]=!1,h(d[$+1],43)?r="++":h(d[$+1],61)&&(r="+="),r===t))return"+";if(h(d[$],61)&&k(d[$+1],61)&&k(d[$+1],33)&&k(d[$+1],62))return v[v.length-1]=!1,"="}if(h(d[$],59))if("typescript"===Be.language)if("arguments"===a.stack[Be.count])"?"===a.token[Be.count]&&(Be.pop(a),r="?:",$-=1),v[v.length-1]=!0;else if(!h(S,41)||"function"!==a.token[a.begin[Be.count]-1]&&"function"!==a.token[a.begin[Be.count]-2]){if("reference"===_){e=Be.count;let t=!1;do{if(a.begin[e]===a.begin[Be.count]){if(e<Be.count&&":"===a.token[e]&&"type"!==a.types[e+1]&&(t=!0),"?"===a.token[e]&&!1===t||";"===a.token[e]||"x;"===a.token[e])break;if("var"===a.token[e]||"let"===a.token[e]||"const"===a.token[e]||"type"===a.types[e]){v[v.length-1]=!0;break}}else{if("type_end"===a.types[e]){v[v.length-1]=!0;break}e=a.begin[e]}e-=1}while(e>a.begin[Be.count])}}else v[v.length-1]=!0;else"["===a.token[Be.count-1]&&("word"===a.types[Be.count]||"reference"===a.types[Be.count])&&(Be.stack.update("attribute"),a.stack[Be.count]="attribute");if(r===t)if(h(d[$+1],43)&&h(d[$+2],43)||h(d[$+1],45)&&h(d[$+2],45))r=d[$];else{let a=[d[$]];if(e=$+1,e<i)do{if(h(d[e],43)&&h(d[e+1],43)||h(d[e],45)&&h(d[e+1],45))break;if(n=0,n<o)do{if(d[e]===s[n]){a.push(s[n]);break}n+=1}while(n<o);if(n===o)break;e+=1}while(e<i);r=a.join(t)}if($+=r.length-1,"=>"===r&&h(S,41)){e=Be.count,i=a.begin[e];do{a.begin[e]===i&&(a.stack[e]="method"),e-=1}while(e>i-1)}return r}function H(){let e=[d[$]];if($+=1,$<f)do{if(e.push(d[$]),h(d[$],96)&&(k(d[$-1],92)||!W($-1))||h(d[$-1],36)&&h(d[$],123)&&(k(d[$-2],92)||!W($-2)))break;$+=1}while($<f);return e.join(t)}function Z(){let e=0,n=!1,i=!1,r=0,s=0,o=0,l=t,c=t,u=t,p=[],g=v[v.length-1],m="0123456789=<>+-*?|^:&.,;%(){}[]~";function w(){h(S,40)&&Be.stack.update("paren",Be.count),Be.external("html",p.join(t))}if(T>-1&&ee(),c=Be.count>0?a.token[Be.count-1]:t,u=Be.count>0?a.types[Be.count-1]:t,l=M(1,!1),"jsx"!==Be.language&&"tsx"!==Be.language&&!1===y(l)&&("function"===S||"=>"===c||"void"===c||"."===c||"return"===S||"operator"===_||"arguments"===a.stack[Be.count]||"type"===_&&"type"===c||"reference"===_&&("operator"===u||"function"===c||"class"===c||"new"===c)||"type"===_&&"operator"===u)){let n=[],i=0,r=0;e=$;do{if(n.push(d[e]),h(d[e],60))i+=1;else if(h(d[e],62)&&(i-=1,i<1))break;e+=1}while(e<f);if(r=$,$=e,l=M(1,!1),h(d[e],62)&&(!0===g||"=>"===c||"."===c||"operator"!==u||"operator"===u&&(h(l,40)||h(l,61))))return _="generic",S=n.join(t).replace(/^<\s+/,"<").replace(/\s+>$/,">").replace(/,\s*/g,", "),void E();$=r}if(e=Be.count,"comment"===a.types[e])do{e-=1}while(e>0&&"comment"===a.types[e]);if(!1===g&&">"!==M(1,!1)&&(k(d[$],60)&&m.indexOf(d[$+1])>-1||"++"===a.token[e]||"--"===a.token[e]||!0===b(d[$+1])||!0===y(d[$+1])&&("operator"===_||"string"===_||"number"===_||"reference"===_||"word"===_&&"return"!==S)))return _="operator",S=V(),E();if("typescript"!==Be.language&&("return"===a.token[e]||"operator"===a.types[e]||"start"===a.types[e]||"separator"===a.types[e]||"jsx_attribute_start"===a.types[e]||h(a.token[e],125)&&"global"===Be.stack.token)){_="markup",Be.language="jsx";do{if(p.push(d[$]),h(d[$],123))s+=1,n=!0;else if(h(d[$],125))s-=1,0===s&&(n=!1);else if(h(d[$],60)&&!1===n){if(h(d[$+1],60))do{p.push(d[$]),$+=1}while($<f&&h(d[$+1],60));r+=1,h(M(1,!1),47)&&(i=!0)}else if(h(d[$],62)&&!1===n){if(h(d[$+1],62))do{p.push(d[$]),$+=1}while(h(d[$+1],62));if(r-=1,!0===i?o-=1:k(d[$-1],47)&&(o+=1),0===r&&0===s&&o<1){if(l=M(2,!1),k(l,60))return w();if(!(h(l,60)&&m.indexOf(l.charAt(1))<0&&!1===b(l.charAt(1))))return w();e=$+1;do{if(e+=1,h(d[e],62)||b(d[e-1])&&m.indexOf(d[e])<0)break;if(m.indexOf(d[e])>-1)return w()}while(e<f)}i=!1}$+=1}while($<f);return w()}_="operator",S=V(),E()}function U(){let n=!0,i="+",r=t,s=t,o=t,l=t,u=0,p=0,f=0,g=[];function m(){p=a.begin[p]-1,"end"===a.types[p]?m():h(a.token[p-1],46)&&b()}function b(){p-=2,"end"===a.types[p]?m():h(a.token[p-1],46)&&b()}function y(){let e=0;if(e<g.length)do{Be.push(a,g[e],t),e+=1}while(e<g.length)}function w(e){return{begin:a.begin[e],ender:a.ender[e],lexer:a.lexer[e],lines:a.lines[e],stack:a.stack[e],token:a.token[e],types:a.types[e]}}if(r=a.token[Be.count],s=a.token[Be.count-1],o=a.token[Be.count-2],"++"!==r&&"--"!==r&&"++"!==s&&"--"!==s&&(p=Be.count,"end"===a.types[p]?m():h(a.token[p-1],46)&&b()),"++"===a.token[p-1]||"--"===a.token[p-1]){if("startendoperator".indexOf(a.types[p-2])>-1)return;if(f=p,f<Be.count+1){do{g.push(w(f)),f+=1}while(f<Be.count+1);Be.splice({data:a,howmany:Be.count-p,index:p})}}else{if(!1===c.correct||"++"!==r&&"--"!==r&&"++"!==s&&"--"!==s)return;if(l=M(1,!1),"++"!==r&&"--"!==r||!(h(d[$],59)||h(l,59)||h(d[$],125)||h(l,125)||h(d[$],41)||h(l,41))){if(!(h(o,91)||h(o,59)||h(o,123)||h(o,125)||h(o,40)||h(o,41)||h(o,44)||"return"===o||"x;"===o))return;if("++"===r||"--"===r){if(h(o,91)||h(o,40)||h(o,44)||"return"===o)return;"--"===r&&(i="-"),n=!1}else("--"===s||"--"===r)&&(i="-")}else{if(i=a.stack[Be.count],"array"===i||"method"===i||"object"===i||"paren"===i||"notation"===i||"while"===a.token[a.begin[Be.count]-1]&&"while"!==i)return;f=Be.count;do{if(f-=1,"return"===a.token[f])return;if("end"===a.types[f])do{f=a.begin[f]-1}while("end"===a.types[f]&&f>0)}while(f>0&&(h(a.token[f],46)||"word"===a.types[f]||"reference"===a.types[f]||"end"===a.types[f]));if(h(a.token[f],44)&&k(d[$],59)&&k(l,59)&&k(d[$],125)&&k(l,125)&&k(d[$],41)&&k(l,41))return;if("operator"===a.types[f]){if("switch"!==a.stack[f]||!h(a.token[f],58))return;do{if(f-=1,"start"===a.types[f]){if(u-=1,u<0)break}else"end"===a.types[f]&&(u+=1);if(h(a.token[f],63)&&0===u)return}while(f>0)}n=!1,i="--"===r?"-":"+"}if(!1===n&&(e=Be.pop(a)),p=Be.count,"end"===a.types[p]?m():h(a.token[p-1],46)&&b(),f=p,f<Be.count+1)do{g.push(w(f)),f+=1}while(f<Be.count+1)}!0===n?(Be.splice({data:a,howmany:1,index:p-1}),S="=",_="operator",E(),y(),S=i,_="operator",E(),S="1",_="number",E()):(S="=",_="operator",E(),y(),S=i,_="operator",E(),S="1",_="number",E()),S=a.token[Be.count],_=a.types[Be.count],h(l,125)&&k(d[$],59)&&R(!1)}function G(e,i,s){let l,u=0,g=!1,m=!1,y=[e],w=i.split(t),x=w.length,v=$,q=$+e.length,j=p.quoteConvert;function O(){let e=0;if(y=[],_=s,u=$,"string"===s&&b(d[u+1])){e=1;do{u+=1,h(d[u],10)&&(e+=1)}while(u<f&&!0===b(d[u+1]));Be.lineOffset=e}}function A(){let p=t;if(h(e,34)&&"single"===j?(y[0]=r,y[y.length-1]=r):h(e,39)&&"double"===j?(y[0]=n,y[y.length-1]=n):!0===g&&(p=y[y.length-1],y.pop(),y.pop(),y.push(p)),$=u,i===o&&($-=1,y.pop()),S=y.join(t),(h(e,34)||h(e,39)||"{{"===e||"{%"===e)&&(S=function(e){if("javascript"!==Be.language&&"typescript"!==Be.language&&"jsx"!==Be.language&&"tsx"!==Be.language){let t=e=>e.replace(/\s*$/," "),n=e=>e.replace(/^\s*/," ");return/\{(#|\/|(%>)|(%\]))/.test(e)||/\}%(>|\])/.test(e)||(e=(e=e.replace(/\{((\{+)|%-?)\s*/g,t)).replace(/\s*((\}\}+)|(-?%\}))/g,n)),e}return e}(S)),"{%"===e||"{{"===e)return l=function(e){let n=2,i=0,r=t,s=e.slice(0,2),o=e.length;if(h(e[2],45)&&(n+=1),!0===b(e.charAt(n)))do{n+=1}while(!0===b(e.charAt(n))&&n<o);i=n;do{i+=1}while(!1===b(e.charAt(i))&&"("!==e.charAt(i)&&i<o);if(i===o&&(i=e.length-2),r=e.slice(n,i),"else"===r||"{%"===s&&("elseif"===r||"when"===r||"elif"===r||"elsif"===r))return["liquid_else",`liquid_${r}`];if("{{"===s)return"end"===r?["liquid_end",t]:"define"===r||"form"===r||"if"===r||"unless"===r||"range"===r||"with"===r?["liquid_start",`liquid_${r}`]:["liquid",t];if(i=F.length-1,i>-1)do{if(r===F[i]&&"block"!==r)return["liquid_start",`liquid_${r}`];if(r==="end"+F[i])return["liquid_end",t];i-=1}while(i>-1);return["liquid",t]}(S),_=l[0],void E(l[1]);if("string"===s){if(_="string","json"===Be.language)S=S.replace(/\\u[\dA-F]{4}/gi,(e=>String.fromCharCode(parseInt(e.replace(/\\u/g,""),16))));else if(0===e.indexOf("#!"))S=S.slice(0,S.length-1),Be.lineOffset=2;else if(("object"!==Be.stack.token||"object"===Be.stack.token&&k(M(1,!1),58)&&k(a.token[Be.count],44)&&k(a.token[Be.count],123))&&(S.length>c.wrap&&c.wrap>0||0!==c.wrap&&h(a.token[Be.count],43)&&(h(a.token[Be.count-1],46)||h(a.token[Be.count-1],39)))){let e=S,i=t,s="double"===j?n:"single"===j?r:e.charAt(0),o=c.wrap,l=/u[0-9a-fA-F]{4}/,u=/x[0-9a-fA-F]{2}/;if(e=e.slice(1,e.length-1),h(a.token[Be.count],43)&&(h(a.token[Be.count-1],46)||h(a.token[Be.count-1],39))&&(Be.pop(a),s=a.token[Be.count].charAt(0),e=a.token[Be.count].slice(1,a.token[Be.count].length-1)+e,Be.pop(a)),e.length>o&&o>0)do{i=e.slice(0,o),h(i[o-5],92)&&l.test(e.slice(o-4,o+1))?i=i.slice(0,o-5):h(i[o-4],92)&&l.test(e.slice(o-3,o+2))?i=i.slice(0,o-4):h(i[o-3],92)&&(l.test(e.slice(o-2,o+3))||u.test(e.slice(o-2,o+1)))?i=i.slice(0,o-3):h(i[o-2],92)&&(l.test(e.slice(o-1,o+4))||u.test(e.slice(o-1,o+2)))?i=i.slice(0,o-2):h(i[o-1],92)&&(i=i.slice(0,o-1)),i=s+i+s,e=e.slice(i.length-2),S=i,_="string",E(t),Be.lineOffset=0,S="+",_="operator",E(t)}while(e.length>o);S=e===t?s+s:s+e+s,_="string"}}else _=/\{\s*\?>$/.test(S)?"liquid_start":s;S.length>0&&E(t)}if(T>-1&&ee(),h(d[$-1],92)&&!0===W($-1)&&(h(d[$],34)||h(d[$],39))){if(Be.pop(a),!h(a.token[0],123))return h(d[$],34)?(y=['\\"'],void A()):(y=["\\'"],void A());h(d[$],34)?(e=n,i='\\"',y=[n]):(e=r,i="\\'",y=[r]),g=!0}if(u=q,u<f)do{if(k(a.token[0],123)&&k(a.token[0],91)&&"none"!==j&&(h(d[u],34)||h(d[u],39))?(h(d[u-1],92)?!0===W(u-1)&&("double"===j&&h(d[u],39)||"single"===j&&h(d[u],34))&&y.pop():"double"===j&&h(d[u],34)&&h(d[$],39)?d[u]=n:"single"===j&&h(d[u],39)&&h(d[$],34)&&(d[u]=r),y.push(d[u])):u>v?(m=!0,h(d[u],123)&&h(d[u+1],37)&&d[u+2]!==e?(A(),G("{%","%}","liquid"),O()):h(d[u],123)&&h(d[u+1],123)&&d[u+2]!==e?(A(),G("{{","}}","liquid"),O()):(m=!1,y.push(d[u]))):y.push(d[u]),"json"!==Be.language&&"javascript"!==Be.language&&(h(e,34)||h(e,39))&&(!0===m||u>v)&&k(d[u-1],92)&&k(d[u],34)&&k(d[u],39)&&(h(d[u],10)||u===f-1)){Be.error="Unterminated string in script on line number "+Be.lineNumber;break}if(d[u]===w[x-1]&&(k(d[u-1],92)||!1===W(u-1))&&(1===x||y[u-q]===w[0]&&y.slice(u-q-x+2).join(t)===i))break;u+=1}while(u<f);A()}function X(){let n=t,r=M(5,!1),s=Be.count,o=Be.lineOffset;if(!("json"===Be.language||m.length<1||"x"!==m[m.length-1].charAt(0)||!1===/^x?(;|\}|\))$/.test(S)||"do"===a.stack[Be.count]&&"while"===r&&h(a.token[Be.count],125))){if(h(S,59)&&"x{"===a.token[s-1])return n=a.token[a.begin[s-2]-1],"do"===a.token[s-2]||h(a.token[s-2],41)&&"ifforwhilecatch".indexOf(n)>-1?(e=Be.pop(a),S=!0===c.correct?"}":"x}",_="end",i=Be.stack.entry,E(),m.pop(),void(Be.lineOffset=o)):(e=Be.pop(a),S=!0===c.correct?"}":"x}",_="end",i=Be.stack.entry,E(),m.pop(),S=";",_="end",Be.push(a,e,t),void(Be.lineOffset=o));if(S=!0===c.correct?"}":"x}",_="end","x}"!==a.token[Be.count]){if("else"===r&&"if"===a.stack[Be.count]&&(h(a.token[Be.count],59)||"x;"===a.token[Be.count]))return i=Be.stack.entry,E(),m.pop(),void(Be.lineOffset=o);do{if(i=Be.stack.entry,E(),m.pop(),"do"===a.stack[Be.count])break}while("x{"===m[m.length-1]);Be.lineOffset=o}}}function Q(){let e=Be.count;if("object"===a.stack[e]&&!0===p.objectSort)S=",",_="separator",B(),E();else{do{e-=1}while(e>0&&"comment"===a.types[e-1]);Be.splice({data:a,howmany:0,index:e,record:{begin:a.begin[e],ender:-1,lexer:"script",lines:Be.lineOffset,stack:a.stack[e],token:",",types:"separator"}}),E()}}function Y(t){let n=!1,r=!1,s=M(1,!1),o=h(a.token[Be.count],40)?Be.count:a.begin[Be.count];if(T>-1&&ee(),w.length>0&&(0===w[w.length-1]?w.pop():w[w.length-1]=w[w.length-1]-1),(h(t,41)||"x)"===t||h(t,93))&&(!0===c.correct&&U(),B()),(h(t,41)||"x)"===t)&&R(!1),O>-1&&(h(t,125)&&("list"===p.variableList&&0===j.count[O]||"x;"===a.token[Be.count]&&"each"===p.variableList)&&z(),j.count[O]=j.count[O]-1,j.count[O]<0&&z()),h(S,44)&&"initializer"!==a.stack[Be.count]&&(h(t,93)&&h(a.token[Be.count-1],91)||h(t,125))&&(e=Be.pop(a)),h(t,41)||"x)"===t?(S=t,g.length>0&&(C=g[g.length-1],C.length>1&&k(s,123)&&("if"===C[0]||"for"===C[0]||"with"===C[0]||"while"===C[0]&&void 0!==a.stack[C[1]-2]&&"do"!==a.stack[C[1]-2])&&(n=!0))):h(t,93)?S="]":h(t,125)&&(k(S,44)&&!0===c.correct&&U(),Be.stack.length>0&&"object"!==Be.stack.token&&R(!0),!0===p.objectSort&&"object"===Be.stack.token&&A(a),"comment"===_&&(S=a.token[Be.count],_=a.types[Be.count]),S="}"),_="data_type"===Be.stack.token?"type_end":"end",g.pop(),i=Be.stack.entry,h(t,41)&&!0===c.correct&&o-Be.count<2&&(h(a.token[Be.count],40)||"number"===a.types[Be.count])&&("Array"===a.token[o-1]||"Object"===a.token[o-1])&&"new"===a.token[o-2]&&(function(){let t=0,n="Array"===a.token[o-1],i=n?"[":"{",r=n?"]":"}",s=n?"array":"object";if(!0===n&&"number"===a.types[Be.count]&&(t=Number(a.token[Be.count]),e=Be.pop(a)),e=Be.pop(a),e=Be.pop(a),e=Be.pop(a),Be.stack.pop(),S=i,_="start",E(s),t>0){S=",",_="separator";do{E(),t-=1}while(t>0)}S=r,_="end",E()}(),r=!0),"x{"===m[m.length-1]&&h(t,125)?(X(),m.pop(),"try"!==a.stack[Be.count]&&k(s,58)&&k(s,59)&&"?"!==a.token[a.begin[$]-1]&&X(),S="}"):m.pop(),void 0!==p.endComma&&"none"!==p.endComma&&"array"===Be.stack.token||"object"===Be.stack.token||"data_type"===Be.stack.token)if("always"===p.endComma&&k(a.token[Be.count],44)){let e=Be.stack.index,t=Be.count;do{if(a.begin[t]===e){if(h(a.token[t],44))break}else t=a.begin[t];t-=1}while(t>e);if(t>e){let e=_,t=S;S=",",_="separator",E(),S=t,_=e}}else"never"===p.endComma&&h(a.token[Be.count],44)&&Be.pop(a);!1===r&&(E(),h(S,125)&&"object"!==a.stack[Be.count]&&"class"!==a.stack[Be.count]&&"data_type"!==a.stack[Be.count]&&(l.pop(),X())),!0===n&&(S=!0===c.correct?"{":"x{",_="start",E(C[0]),m.push("x{"),C[1]=Be.count),v.pop(),"data_type"!==Be.stack.token&&(v[v.length-1]=!1)}function K(e){let n=Be.count,i=t,r=t,s=t,o=!1;if(m.push(e),!h(e,123)||"type"!==a.types[Be.count]&&"type_end"!==a.types[Be.count]&&"generic"!==a.types[Be.count])h(e,91)&&"type_end"===a.types[Be.count]?v.push(!0):v.push(v[v.length-1]);else{let e=0;"type_end"===a.types[Be.count]&&(n=a.begin[Be.count]),e=n;do{if(n-=1,a.begin[n]!==e&&-1!==a.begin[n]||h(a.token[n],58))break}while(n>a.begin[n]);h(a.token[n],58)&&"arguments"===a.stack[n-1]?(v.push(!1),o=!0):v.push(v[v.length-1]),n=Be.count}if(T>-1&&(ee(),n=Be.count),O>-1&&(j.count[O]=j.count[O]+1),"function"===a.token[n-1]?g.push(["function",n+1]):g.push([S,n+1]),S=e,_=!0===v[v.length-1]?"type_start":"start",h(e,40)||"x("===e?B():h(e,91)&&(N>-1?(a.begin[N-1]===a.begin[a.begin[n]-1]||"x("===a.token[a.begin[n]])&&(N=-1,!0===c.correct?Y(")"):Y("x)"),B(),S="{",_="start"):h(S,41)&&B(),"comment"===_&&h(a.token[n-1],41)&&(S=a.token[n],a.token[n]="{",_=a.types[n],a.types[n]="start")),i=(()=>{let e=Be.count;if("comment"===a.types[e])do{e-=1}while(e>0&&"comment"===a.types[e]);return a.token[e]})(),r=void 0===a.stack[n]?t:(()=>{let e=Be.count;if("comment"===a.types[e])do{e-=1}while(e>0&&"comment"===a.types[e]);return a.token[a.begin[e]-1]})(),h(S,123)&&("word"===a.types[n]||h(a.token[n],93))){let e=n;if(h(a.token[e],93))do{e=a.begin[e]-1}while(h(a.token[e],93));do{if("start"===a.types[e]||"end"===a.types[e]||"operator"===a.types[e])break;e-=1}while(e>0);h(a.token[e],58)&&"arguments"===a.stack[e-1]&&(s="function",l.push(P),P=[])}if("type_start"===_)s="data_type";else if(s!==t||!h(S,123)&&"x{"!==S)h(S,91)?s="array":(h(S,40)||"x("===S)&&(s="function"===i||"function"===a.token[n-1]||"function*"===a.token[n-1]||"function"===a.token[n-2]?"arguments":h(a.token[n-1],46)||h(a.token[a.begin[n]-2],46)||"generic"===a.types[n]||h(a.token[n],125)&&"function"===a.stack[n]?"method":"if"===i||"for"===i||"class"===i||"while"===i||"catch"===i||"finally"===i||"switch"===i||"with"===i?"expression":"word"===a.types[n]||"property"===a.types[n]||"reference"===a.types[n]?"method":"paren");else{if("else"===i||"do"===i||"try"===i||"finally"===i||"switch"===i)s=i;else if(0===w[w.length-1]&&"return"!==i)w.pop(),s="class";else if("class"===a.token[n-1])s="class";else if(h(a.token[n],93)&&h(a.token[n-1],91))s="array";else if("word"!==a.types[n]&&"reference"!==a.types[n]||"word"!==a.types[n-1]&&"reference"!==a.types[n-1]&&("?"!==a.token[n-1]||"word"!==a.types[n-2]&&"reference"!==a.types[n-2])||"in"===a.token[n]||"export"===a.token[n-1]||"import"===a.token[n-1])if("method"!==a.stack[n]||"end"!==a.types[n]||"word"!==a.types[a.begin[n]-1]&&"reference"!==a.types[a.begin[n]-1]||"new"!==a.token[a.begin[n]-2])if(!h(S,123)||!h(i,41)&&"x)"!==i||"word"!==a.types[a.begin[n]-1]&&"reference"!==a.types[a.begin[n]-1]&&"]"!==a.token[a.begin[n]-1])if(h(S,123)&&(h(i,59)||"x;"===i))s="block";else if(h(S,123)&&h(a.token[n],58)&&"switch"===a.stack[n])s="block";else if("import"===a.token[n-1]||"import"===a.token[n-2]||"export"===a.token[n-1]||"export"===a.token[n-2])s="object";else if(!h(i,41)||"function"!==C[0]&&"if"!==C[0]&&"for"!==C[0]&&"class"!==C[0]&&"while"!==C[0]&&"switch"!==C[0]&&"catch"!==C[0])if("notation"===a.stack[n])s="function";else if("number"!==a.types[n]&&"string"!==a.types[n]&&"word"!==a.types[n]&&"reference"!==a.types[n]||"word"!==a.types[n-1]&&"reference"!==a.types[n-1]||"for"===a.token[a.begin[n]-1])if(Be.stack.length>0&&k(a.token[n],58)&&"object"===Be.stack.token&&(h(a.token[a.begin[n]-2],123)||h(a.token[a.begin[n]-2],44)))s="function";else if("markup"===a.types[C[1]-1]&&"function"===a.token[C[1]-3])s="function";else if("=>"===i)s="function";else if(!0===o||"type_end"===a.types[Be.count]&&"arguments"===a.stack[a.begin[Be.count]-2])s="function";else if(!h(i,41)||"method"!==a.stack[n]||"word"!==a.types[a.begin[n]-1]&&"property"!==a.types[a.begin[n]-1]&&"reference"!==a.types[a.begin[n]-1])if(h(S,123)&&"word"===a.types[n]&&"return"!==a.token[n]&&"in"!==a.token[n]&&"import"!==a.token[n]&&"const"!==a.token[n]&&"let"!==a.token[n]&&a.token[n]!==t)s="block";else if(h(S,123)&&"if|else|for|while|function|class|switch|catch|finally".indexOf(a.stack[n])>-1&&("x}"===a.token[n]||h(a.token[n],125)))s="block";else if("arguments"===a.stack[n])s="function";else if("generic"===a.types[n])do{if(n-=1,"function"===a.token[n]||"arguments"===a.stack[n]){s="function";break}if("interface"===a.token[n]){s="map";break}if(h(a.token[n],59)){s="object";break}}while(n>a.begin[Be.count]);else s="object";else s="function";else s="function";else s=C[0];else s="if"===r?"if":"for"===r?"for":"while"===r?"while":"class"===r?"class":"switch"===r||"switch"===a.token[a.begin[n]-1]?"switch":"catch"===r?"catch":"function";else s="initializer";else s="map";"object"!==s&&"class"!==s&&("function"===s?(l.push(P),P=[]):l.push([]))}E(s),w.length>0&&(w[w.length-1]=w[w.length-1]+1)}function ee(){let e=T,n=1,r=t,s=t,o=S,u=_,f=[];function g(){m.push("x{"),Be.splice({data:a,howmany:1,index:Be.count-3})}function b(e,t,n){let i=a.begin[e],r=0;do{if(a.token[e]===t&&"word"===a.types[e])if(!0===n)a.types[e]="reference";else if(a.begin[e]>i&&"{"===a.token[a.begin[e]]&&"object"!==a.stack[e]&&"class"!==a.stack[e]&&"data_type"!==a.stack[e])if("function"===a.stack[e])a.types[e]="reference";else{r=a.begin[e];do{if("function"===a.stack[r]){a.types[e]="reference";break}r=a.begin[r]}while(r>i)}e-=1}while(e>i)}do{f.push(d[e]),h(d[e],92),e+=1}while(e<$);if("“"===S.charAt(0)?Be.error=`Quote looking character (“, \\u201c) used instead of actual quotes on line number ${Be.lineNumber}`:"”"===S.charAt(0)&&(Be.error=`Quote looking character (”, \\u201d) used instead of actual quotes on line number ${Be.lineNumber}`),r=f.join(t),T=-1,Be.count>0&&"function"===r&&h(a.token[Be.count],40)&&(h(a.token[Be.count-1],123)||"x{"===a.token[Be.count-1])&&(a.types[Be.count]="start"),Be.count>1&&"function"===r&&h(S,40)&&(h(a.token[Be.count-1],125)||"x}"===a.token[Be.count-1]))if(h(a.token[Be.count-1],125)){if(e=Be.count-2,e>-1)do{if("end"===a.types[e]?n+=1:("start"===a.types[e]||"end"===a.types[e])&&(n-=1),0===n)break;e-=1}while(e>-1);if(h(a.token[e],123)&&h(a.token[e-1],41)){if(n=1,e-=2,e>-1)do{if("end"===a.types[e]?n+=1:("start"===a.types[e]||"end"===a.types[e])&&(n-=1),0===n)break;e-=1}while(e>-1);"function"!==a.token[e-1]&&"function"!==a.token[e-2]&&(a.types[Be.count]="start")}}else a.types[Be.count]="start";if(!0===c.correct&&("Object"===r||"Array"===r)&&h(d[$+1],40)&&h(d[$+2],41)&&h(a.token[Be.count-1],61)&&"new"===a.token[Be.count])"Object"===r?(a.token[Be.count]="{",S="}",a.stack[Be.count]="object",Be.stack.update("object")):(a.token[Be.count]="[",S="]",a.stack[Be.count]="array",Be.stack.update("array")),a.types[Be.count]="start",_="end",d[$+1]=t,d[$+2]=t,$+=2;else{if(n=Be.count,e=n,"none"===p.variableList||"var"!==r&&"let"!==r&&"const"!==r)O>-1&&r!==j.word[O]&&Be.count===j.index[O]&&h(a.token[j.index[O]],59)&&S!==j.word[O]&&"list"===p.variableList&&z();else{if("comment"===a.types[n])do{n-=1}while(n>0&&"comment"===a.types[n]);if("list"===p.variableList&&O>-1&&j.index[O]===n&&r===j.word[O])return S=",",_="separator",a.token[n]=S,a.types[n]=_,j.count[O]=0,j.index[O]=n,void(j.word[O]=r);O+=1,j.count.push(0),j.index.push(n),j.word.push(r),n=e}if("from"===r&&"x;"===a.token[Be.count]&&h(a.token[Be.count-1],125)&&B(),"while"===r&&"x;"===a.token[Be.count]&&h(a.token[Be.count-1],125)){let e=0,t=Be.count-2;if(t>-1)do{if("end"===a.types[t]?e+=1:"start"===a.types[t]&&(e-=1),e<0)return void(h(a.token[t],123)&&"do"===a.token[t-1]&&B());t-=1}while(t>-1)}if("comment"===u){let e=Be.count;do{e-=1}while(e>0&&"comment"===a.types[e]);u=a.types[e],o=a.token[e]}if(s=M(2,!1),"void"===r)_=":"===o&&"arguments"===a.stack[Be.count-1]?"type":"word";else if("object"!==Be.stack.token&&"class"!==Be.stack.token&&"data_type"!==Be.stack.token||!(h(a.token[Be.count],123)||h(a.token[a.begin[Be.count]],123)&&h(a.token[Be.count],44)||"liquid_end"===a.types[Be.count]&&(h(a.token[a.begin[Be.count]-1],123)||h(a.token[a.begin[Be.count]-1],44))))if(!0===v[v.length-1]||("typescript"===Be.language||"flow"===Be.language)&&"type"===o)_="type";else if(l.length>0&&("function"===o||"class"===o||"const"===o||"let"===o||"var"===o||"new"===o||"void"===o))_="reference",l[l.length-1].push(r),"javascript"!==Be.language&&"jsx"!==Be.language&&"typescript"!==Be.language&&"tsx"!==Be.language||"var"!==o&&("function"!==o||"operator"===a.types[Be.count-1]||"start"===a.types[Be.count-1]||"end"===a.types[Be.count-1])?b(Be.count,r,!1):b(Be.count,r,!0);else if("arguments"===Be.stack.token&&"operator"!==_)_="reference",P.push(r);else if(!h(o,44)||"method"===a.stack[Be.count]||"expression"===a.stack[Be.count]&&"for"!==a.token[a.begin[Be.count]-1])if("object"!==Be.stack.token||"object"===Be.stack.token&&","!==S&&"{"!==S){let e=l.length,t=0;if(e>0){do{if(e-=1,t=l[e].length,t>0){do{if(t-=1,r===l[e][t])break}while(t>0);if(r===l[e][t])break}}while(e>0);_=l[e][t]===r&&"."!==o?"reference":"word"}else _="word"}else _="word";else{let e=Be.count,t=Be.stack.index;do{if(a.begin[e]===t){if(";"===a.token[e]||"var"===a.token[e]||"let"===a.token[e]||"const"===a.token[e]||"type"===a.token[e])break}else"end"===a.types[e]&&(e=a.begin[e]);e-=1}while(e>t);l.length>0&&"var"===a.token[e]?(_="reference",l[l.length-1].push(r),"javascript"===Be.language||"jsx"===Be.language||"typescript"===Be.language||"tsx"===Be.language?b(e,r,!0):b(e,r,!1)):l.length>0&&("let"===a.token[e]||"const"===a.token[e]||"type"===a.token[e]&&("typescript"===Be.language||"tsx"===Be.language))?(_="reference",l[l.length-1].push(r),b(e,r,!1)):_="word"}else _="return"===r||"break"===r?"word":"property";S=r,"from"===r&&"}"===a.token[Be.count]&&B()}if(E(),"class"===r&&w.push(0),"do"===r&&(s=M(1,!0),"{"!==s&&(S=!0===c.correct?"{":"x{",_="start",m.push("x{"),E("do"))),"else"===r){s=M(2,!0);let e=Be.count-1;if("comment"===a.types[e])do{e-=1}while(e>0&&"comment"===a.types[e]);"x}"===a.token[e]&&("else"===a.token[Be.count]?"if"!==a.stack[Be.count-1]&&"comment"!==a.types[Be.count-1]&&"else"!==a.stack[Be.count-1]?(m.pop(),Be.splice({data:a,howmany:0,index:Be.count-1,record:{begin:a.begin[a.begin[a.begin[Be.count-1]-1]-1],ender:-1,lexer:"script",lines:0,stack:"if",token:!0===c.correct?"}":"x}",types:"end"}}),Be.stack.length>1&&(Be.stack.splice(Be.stack.length-2,1),Be.stack.update(Be.count))):("x}"===a.token[Be.count-2]&&"if"!==i[0]&&"else"===a.stack[Be.count]||"}"===a.token[Be.count-2]&&"if"===a.stack[Be.count-2]&&"if"===i[0]&&"if"!==a.token[i[1]-1]&&"x{"===a.token[a.begin[Be.count-1]])&&g():"x}"===a.token[Be.count]&&"if"===a.stack[Be.count]&&g()),"if"!==s&&k(s,123)&&(S=!0===c.correct?"{":"x{",_="start",m.push("x{"),E("else"))}("for"===r||"if"===r||"switch"===r||"catch"===r)&&"."!==a.token[Be.count-1]&&(s=M(1,!0),"("!==s&&(N=Be.count,!0===c.correct?K("("):K("x(")))}function ne(){Be.lineOffset=1;do{if(h(d[$],10)&&(Be.lineIndex=$,Be.lineOffset=Be.lineOffset+1,Be.lineNumber=Be.lineNumber+1),!1===b(d[$+1]))break;$+=1}while($<f)}do{b(d[$])?(T>-1&&ee(),ne(),Be.lineOffset>1&&L<Be.count&&k(d[$+1],59)&&k(d[$+1],125)&&(R(!1),L=Be.count)):h(d[$],123)&&h(d[$+1],37)?G("{%","%}","liquid"):h(d[$],123)&&h(d[$+1],123)?G("{{","}}","liquid"):h(d[$],60)&&h(d[$+1],33)&&h(d[$+2],45)&&h(d[$+3],45)?G("\x3c!--","--\x3e","comment"):h(d[$],60)?Z():h(d[$],47)&&($===f-1||h(d[$+1],42))?(R(!1),T>-1&&ee(),s=he({chars:d,end:f,lexer:"script",begin:"/*",start:$,ender:"*/"}),$=s[1],"var"===a.token[Be.count]||"let"===a.token[Be.count]||"const"===a.token[Be.count]?(e=Be.pop(a),E(),Be.push(a,e,t),0===a.lines[Be.count-2]&&(a.lines[Be.count-2]=a.lines[Be.count]),a.lines[Be.count]=0):s[0]!==t&&(S=s[0],_=te.test(S)?"ignore":"comment",2===S.indexOf("# sourceMappingURL=")&&(x[0]=Be.count+1,x[1]=S),Be.push(a,{begin:Be.stack.index,ender:-1,lexer:"script",lines:Be.lineOffset,stack:Be.stack.token,token:S,types:_},t)),/\/\*\s*global\s+/.test(a.token[Be.count])&&a.types.indexOf("word")<0&&(l[0]=a.token[Be.count].replace(/\/\*\s*global\s+/,t).replace("*/",t).replace(/,\s+/g,",").split(","))):(Be.count<0||a.lines[Be.count]>0)&&h(d[$],35)&&h(d[$+1],33)&&(h(d[$+2],47)||h(d[$+3],91))?G("#!"+d[$+2],o,"string"):h(d[$],47)&&($===f-1||h(d[$+1],47))?(R(!1),X(),T>-1&&ee(),s=fe({chars:d,end:f,lexer:"script",begin:"//",start:$,ender:o}),$=s[1],s[0]!==t&&(S=s[0],_=te.test(S)?"ignore":"comment",2===S.indexOf("# sourceMappingURL=")&&(x[0]=Be.count+1,x[1]=S),Be.push(a,{begin:Be.stack.index,ender:-1,lexer:"script",lines:Be.lineOffset,stack:Be.stack.token,token:S,types:_},t))):h(d[$],96)||h(d[$],125)&&"template_string"===Be.stack.token?(T>-1&&ee(),S=H(),h(S,125)&&"${"===S.slice(S.length-2)?(_="template_string_else",E("template_string")):"${"===S.slice(S.length-2)?(_="template_string_start",E("template_string")):h(S[0],125)?(_="template_string_end",E()):(_="string",E())):h(d[$],34)||h(d[$],39)?G(d[$],d[$],"string"):h(d[$],45)&&$<f-1&&k(d[$+1],61)&&k(d[$+1],45)&&("number"===_||"word"===_||"reference"===_)&&"return"!==S&&("word"===_||"reference"===_||"number"===_||h(S,41)||h(S,93))?(T>-1&&ee(),S="-",_="operator",E()):-1===T&&("0"!==d[$]||"0"===d[$]&&"b"!==d[$+1])&&(y(d[$])||$!==f-2&&h(d[$],45)&&h(d[$+1],46)&&y(d[$+2])||$!==f-1&&(h(d[$],45)||h(d[$],46))&&y(d[$+1]))?(T>-1&&ee(),"end"===_&&h(d[$],45)?(S="-",_="operator"):(S=J(),_="number"),E()):h(d[$],58)&&h(d[$+1],58)?(T>-1&&ee(),!0===c.correct&&U(),B(),$+=1,S="::",_="separator",E()):h(d[$],44)?(T>-1&&ee(),!0===c.correct&&U(),!0===v[v.length-1]&&a.stack[Be.count].indexOf("type")<0&&(v[v.length-1]=!1),"comment"===_?Q():O>-1&&0===j.count[O]&&"each"===p.variableList?(B(),S=";",_="separator",E(),S=j.word[O],_="word",E(),j.index[O]=Be.count):(S=",",_="separator",B(),E())):h(d[$],46)?(T>-1&&ee(),v[v.length-1]=!1,h(d[$+1],46)&&h(d[$+2],46)?(S="...",_="operator",$+=2):(B(),S=".",_="separator"),b(d[$-1])&&(Be.lineOffset=1),E()):h(d[$],59)?(T>-1&&ee(),!0===v[v.length-1]&&a.stack[Be.count].indexOf("type")<0&&(v[v.length-1]=!1),0===w[w.length-1]&&w.pop(),O>-1&&0===j.count[O]&&("each"===p.variableList?z():j.index[O]=Be.count+1),!0===c.correct&&U(),S=";",_="separator","x}"===a.token[Be.count]?D():E(),X()):h(d[$],40)||h(d[$],91)||h(d[$],123)?K(d[$]):h(d[$],41)||h(d[$],93)||h(d[$],125)?Y(d[$]):T<0&&"object"===a.stack[Be.count]&&h(d[$],42)&&k(d[$+1],61)&&!1===y(d[$+1])&&!1===b(d[$+1])?T=$:h(d[$],61)||h(d[$],38)||h(d[$],60)||h(d[$],62)||h(d[$],43)||h(d[$],45)||h(d[$],42)||h(d[$],47)||h(d[$],33)||h(d[$],63)||h(d[$],124)||h(d[$],94)||h(d[$],58)||h(d[$],37)||h(d[$],94)?(S=V(),"regex"===S?S=a.token[Be.count]:h(S,42)&&"function"===a.token[Be.count]?a.token[Be.count]="function*":(_="operator",k(S,33)&&"++"!==S&&"--"!==S&&B(),E())):T<0&&d[$]!==t&&(T=$),O>-1&&Be.count===j.index[O]+1&&h(a.token[j.index[O]],59)&&S!==j.word[O]&&"comment"!==_&&"list"===p.variableList&&z(),$+=1}while($<f);return T>-1&&ee(),(k(a.token[Be.count],125)&&h(a.token[0],123)||k(a.token[0],123))&&(k(a.token[Be.count],93)&&h(a.token[0],91)||k(a.token[0],91))&&R(!1),x[0]===Be.count&&(S=o+x[1],_="string",E()),"x;"===a.token[Be.count]&&(h(a.token[Be.count-1],125)||h(a.token[Be.count-1],93))&&0===a.begin[Be.count-1]&&Be.pop(a),p.objectSort&&a.begin.length>0&&I(0,Be.count+1),a}():void 0}function Te(e){return 1===e?function(){let{rules:e}=Be,{lineBreakValue:n}=e.markup,i=Be.start,r=-1,a=0,l=0,c=0,u=isNaN(e.indentLevel)?0:e.indentLevel,p=Be.data,m=Be.ender<1||Be.ender>p.token.length?p.token.length:Be.ender+1,y={},w="jsx"===e.language||"tsx"===e.language,x=new Map,v=Be.start>0?Array(Be.start).fill(0,0,Be.start):[],q=function(){do{"markup"===p.lexer[i]?(A(i,"doctype")&&(v[i-1]=u),I(i,"attribute")>-1?B():A(i,"comment")?(r<0&&(r=i),E()):!1===A(i,"comment")&&(l=N(),(A(l,"end")||A(l,"liquid_end")&&!1===A(i,"liquid_else"))&&(u>-1&&(u-=1),(C(i,"</ol>")||C(i,"</ul>")||C(i,"</dl>"))&&z()),A(i,"script_end")&&A(l,"end")?p.lines[l]<1?v.push(-20):p.lines[l]>1?v.push(u):v.push(-10):(!1===e.markup.forceIndent||!0===e.markup.forceIndent&&A(l,"script_start"))&&(A(i,"content")||A(i,"singleton")||A(i,"liquid"))?(c+=p.token[i].length,p.lines[l]>0&&A(l,"script_start")?v.push(-10):e.wrap>0&&!1===A(i,"singleton")&&(I(i,"liquid")<0||l<m&&I(i,"liquid")>-1&&I(l,"liquid")<0)?M():l<m&&(I(l,"end")>-1||I(l,"start")>-1)&&(p.lines[l]>0||I(i,"liquid_")>-1)?v.push(u):0===p.lines[l]?v.push(-20):1===p.lines[l]?v.push(-10):v.push(u)):A(i,"start")||A(i,"liquid_start")?(u+=1,A(l,"liquid_when")&&!1===e.liquid.dedentTagList.includes("case")&&(u+=1),!0===w&&C(i+1,"{")?0===p.lines[l]?v.push(-20):p.lines[l]>1?v.push(u):v.push(-10):A(i,"start")&&A(l,"end")?"liquid"===p.stack[i]||I(l-1,"comment")>-1?v.push(u):v.push(-20):A(i,"start")&&A(l,"script_start")?v.push(-10):!0===e.markup.forceIndent?v.push(u):0===p.lines[l]&&(A(l,"content")||A(l,"singleton")||A(i,"start")&&A(l,"liquid"))?v.push(-20):v.push(u)):!1===e.markup.forceIndent&&0===p.lines[l]&&(A(l,"content")||A(l,"singleton"))||A(i+2,"script_end")?v.push(-20):A(i,"liquid_when")?(v[i-1]=u-1,v.push(u)):A(i,"liquid_else")&&A(l,"liquid_end")?(u-=1,v[i-1]=u,v.push(u)):A(i,"liquid_else")&&A(l,"liquid_else")?(v[i-1]=u-1,v.push(u-1)):A(i,"liquid_else")&&(A(l,"content")||A(l,"liquid"))?(v[i-1]=u-1,v.push(u)):!0===e.markup.forceIndent&&(A(i,"content")&&(A(l,"liquid")||A(l,"content"))||A(i,"liquid")&&(A(l,"content")||A(l,"liquid")))?p.lines[l]<1?v.push(-20):p.lines[l]>1?v.push(u):v.push(-10):A(i,"liquid_start_bad")?(u+=1,v.push(u)):A(l,"liquid_end_bad")?(u-=1,v.push(u)):C(i,"{% endcase %}")&&!1===e.liquid.dedentTagList.includes("case")?(v[i-1]--,u-=1):A(l,"liquid_else")&&v[i-1]===u?v.push(u-1):A(i,"liquid_else")&&v[i-1]===u&&!1===e.markup.forceIndent?(v[i-1]=u-1,v.push(u)):A(a,"liquid_start")&&A(l,"liquid_end")&&0===p.lines[l]?v[i-1]=-20:v.push(u)),!1===A(i,"content")&&!1===A(i,"singleton")&&!1===A(i,"liquid")&&!1===A(i,"attribute")&&(c=0)):(c=0,W()),i+=1}while(i<m);return v}(),j=function(){let n=[e.indentChar],i=e.indentSize-1,r=0;if(r<i)do{n.push(e.indentChar),r+=1}while(r<i);return n.join(t)}(),O=[];function A(e,t){return p.types[e]===t}function C(e,t){return p.token[e]===t}function I(e,n){return e>-1&&(p.types[e]||t).indexOf(n)}function L(n,r=!0){let s=[],o=e.preserveLine+1,a=Math.min(p.lines[i+1]-1,o),l=0;if(n<0&&(n=0),r)do{s.push(Be.crlf),l+=1}while(l<a);if(n>0){l=0;do{s.push(j),l+=1}while(l<n)}return s.join(t)}function T(){let r,a=p.lines[i+1];r=A(i,"comment")&&(h(p.token[i][1],37)&&!1===e.liquid.preserveComment||k(p.token[i][1],37)&&!1===e.markup.preserveComment)?p.token[i].split(Be.crlf).map((e=>e.trimStart())):p.token[i].split(Be.crlf);let l=A(i,"attribute"),c=r.length-1,u=q[i-1]>-1?l?q[i-1]+1:q[i-1]:(()=>{let e=i-1,t=e>-1&&I(e,"start")>-1;if(q[i]>-1&&A(i,"attribute"))return q[i]+1;do{if(e-=1,q[e]>-1)return A(i,"content")&&!1===t?q[e]:q[e]+1;I(e,"start")>-1&&(t=!0)}while(e>0);return-2===e?0:1})(),d=0;p.lines[i+1]=0;do{A(i,"comment")?(0===d&&(h(p.token[i][1],37)&&!0===e.liquid.commentNewline||!1===h(p.token[i][1],37)&&!0===e.markup.commentNewline)&&(0===e.preserveLine||O.length>0&&O[O.length-1].lastIndexOf(o)+1<2)&&O.push(L(u)),r[d]!==t?(d>0&&(h(p.token[i][1],37)&&!0===e.liquid.commentIndent||!1===h(p.token[i][1],37)&&!0===e.markup.commentIndent)&&O.push(j),r[d+1].trimStart()!==t?O.push(r[d],L(u)):O.push(r[d],o)):r[d+1].trimStart()===t?O.push(o):O.push(L(u))):l?"align"===n||"force-align"===n?O.push(r[d].trim(),L(q[i])):"indent"===n||"force-indent"===n?O.push(r[d].trim(),L(u)):(O.push(r[d]),"force-preserve"!==n||d+1!==c&&0!==d?O.push(Be.crlf):O.push(L(q[i]))):O.push(r[d],L(u)),d+=1}while(d<c);if(l&&k(r[c],60)&&x.get(i-1)>=2&&f(r[c],62)&&"inline"!==e.markup.delimiterTerminus){x.delete(i-1);let t=L(q[i-1]-1);O[O.length-1]===t&&O.push(e.indentChar.repeat(e.indentSize)),A(i-1,"singleton")&&g(r[c],47)?O.push(r[c].slice(0,-2),t,"/>"):O.push(r[c].slice(0,-1),t,">")}else O.push(r[c]);p.lines[i+1]=a,A(i,"comment")&&(A(i+1,"liquid_end")||A(i-1,"liquid_end"))?O.push(L(q[i])):-10===q[i]?O.push(s):O.push(L(q[i]))}function N(){l>0&&(a=l-1);let e=i+1,t=0;if(A(e,void 0))return e-1;if(A(e,"comment")||i<m-1&&I(e,"attribute")>-1)do{if(A(e,"jsx_attribute_start")){t=e;do{if(A(e,"jsx_attribute_end")&&p.begin[e]===t)break;e+=1}while(e<m)}else if(!1===A(e,"comment")&&I(e,"attribute")<0)return e;e+=1}while(e<m);return e}function P(){let n=/(?!=)\/?>$/,r=p.token[i],o=n.exec(r);if(null===o)return;let a=i+1,l=!1,c=!0===e.markup.selfCloseSpace&&"/>"===o[0]?s:t;p.token[i]=r.replace(n,t);do{if(A(a,"jsx_attribute_end")&&p.begin[p.begin[a]]===i)l=!1;else if(p.begin[a]===i){if(A(a,"jsx_attribute_start"))l=!0;else if(I(a,"attribute")<0&&!1===l)break}else if(!1===l&&(p.begin[a]<i||I(a,"attribute")<0))break;a+=1}while(a<m);A(a-1,"comment_attribute")&&(c=L(q[a-2]-1)),p.token[a-1]=`${p.token[a-1]}${c}${o[0]}`,A(a,"comment")}function F(){if(!1===A(i,"end")&&k(p.token[i],60)&&x.get(p.begin[i])>=2&&f(p.token[i],62)){x.delete(p.begin[i]);let e=L(q[i-1]-1).replace(/\n+/,o),t=`${p.token[i].slice(0,-1)}${e}>`;A(p.begin[i],"singleton")&&h(p.token[i][p.token[i].length-2],47)?p.token[i]=`${p.token[i].slice(0,-2)}${e}/>`:p.token[i]=t}}function z(){let e=p.begin[i],t=i;do{if(t-=1,!C(t,"</li>")||!C(t-1,"</a>")||p.begin[p.begin[t]]!==e||p.begin[t-1]!==p.begin[t]+1)return;t=p.begin[t]}while(t>e+1);t=i;do{t-=1,A(t+1,"attribute")?v[t]=-10:!1===C(t,"</li>")&&(v[t]=-20)}while(t>e+1)}function E(){let t=i,n=!1;if(0===p.lines[i+1]&&!1===e.markup.forceIndent){do{if(p.lines[t]>0){n=!0;break}t-=1}while(t>r);t=i}else n=!0;if(!0===n){A(p.begin[t]-1,"liquid")&&(v[p.begin[t]-1]=u);do{v.push(u),t-=1}while(t>r);v[i]=u,(A(t,"attribute")||A(t,"liquid_attribute")||A(t,"jsx_attribute_start")||A(t,"start"))&&!1===A(i+1,"comment")&&!1===A(i+1,"start")&&!1===p.types[i+1].startsWith("liquid")||A(i+1,"liquid_end")?v[t]=u+1:A(i+1,"liquid_else")&&(v[t]=u-1)}else{do{v.push(-20),t-=1}while(t>r);v[t]=-20}r=-1}function M(){let n=u;if(!0!==e.markup.forceIndent&&!0!==e.markup.forceAttribute){if(l<m&&(I(l,"end")>-1||I(l,"start")>-1)&&p.lines[l]>0?(v.push(u),n+=1,i>0&&A(i,"singleton")&&I(i-1,"attribute")>-1&&A(p.begin[i-1],"singleton")&&(p.begin[i]<0||A(p.begin[i-1],"singleton")&&p.begin[p.ender[i]-1]!==i?v[i-1]=u:v[i-1]=u+1)):i>0&&A(i,"singleton")&&I(i-1,"attribute")>-1?(v[i-1]=u,c=p.token[i].length,v.push(-10)):0===p.lines[l]?v.push(-20):(0===e.wrap||i<m-2&&void 0!==p.token[i]&&void 0!==p.token[i+1]&&void 0!==p.token[i+2]&&p.token[i].length+p.token[i+1].length+p.token[i+2].length+1>e.wrap&&I(i+2,"attribute")>-1||void 0!==p.token[i]&&void 0!==p.token[i+1]&&p.token[i].length+p.token[i+1].length>e.wrap)&&(A(i+1,"singleton")||A(i+1,"liquid"))?v.push(u):(c+=1,v.push(-10)),i>0&&I(i-1,"attribute")>-1&&p.lines[i]<1&&(v[i-1]=-20),c>e.wrap){let r=i,o=Math.max(p.begin[i],0);if(A(i,"content")&&!1===e.markup.preserveText){let a=0,l=p.token[i].replace(/\s+/g,s).split(s);do{if(r-=1,!(v[r]<0))break;a+=p.token[r].length,-10===v[r]&&(a+=1)}while(r>0);r=0,o=l.length;do{l[r].length+a>e.wrap?(l[r]=Be.crlf+l[r],a=l[r].length):(l[r]=` ${l[r]}`,a+=l[r].length),r+=1}while(r<o);h(l[0],32)?p.token[i]=l.join(t).slice(1):(v[i-1]=n,p.token[i]=l.join(t).replace(Be.crlf,t)),p.token[i].indexOf(Be.crlf)>0&&(c=p.token[i].length-p.token[i].lastIndexOf(Be.crlf))}else{do{if(r-=1,v[r]>-1)return c=p.token[i].length,void(p.lines[i+1]>0&&(c+=1));if(I(r,"start")>-1)return void(c=0);if(p.lines[r+1]>0&&(!1===A(r,"attribute")||A(r,"attribute")&&A(r+1,"attribute"))&&(!1===A(r,"singleton")||A(r,"attribute")&&A(r+1,"attribute"))){c=p.token[i].length,p.lines[i+1]>0&&(c+=1);break}}while(r>o);v[r]=n}}}else v.push(u)}function W(){let e=i;"script_start"===p.types[e-1]&&h(p.token[e-1],123)&&(v[e-1]=-20);do{if("markup"===p.lexer[i+1]&&p.begin[i+1]<e&&!1===A(i+1,"start")&&!1===A(i+1,"singleton"))break;v.push(0),i+=1}while(i<m);y[e]=i,"script_end"===p.types[i+1]&&"}"===p.token[i+1]?v.push(-20):(p.types[i+1],v.push(u-1)),l=N(),"markup"===p.lexer[l]&&p.stack[i].indexOf("attribute")<0&&("end"===p.types[l]||"liquid_end"===p.types[l])&&(u-=1)}function R(n){let i=p.token[n].replace(/\s+/g,s).split(s),r=i.length,o=1,a=i[0].length;do{a+i[o].length>e.wrap?(a=i[o].length,i[o]=Be.crlf+i[o]):(i[o]=` ${i[o]}`,a+=i[o].length),o+=1}while(o<r);p.token[n]=i.join(t)}function B(){let t=i-1,r=i,s=!1,o=!1,a=I(t+1,"end"),d=p.token[t].length+1,h=0,f=(()=>{if(I(i,"start")>0){let e=i;do{if(A(e,"end")&&p.begin[e]===i&&e<m-1&&I(e+1,"attribute")>-1){s=!0;break}e+=1}while(e<m)}else i<m-1&&I(i+1,"attribute")>-1&&(s=!0);return A(l,"end")||A(l,"liquid_end")?A(t,"singleton")?u+2:u+1:A(t,"singleton")?u+1:u})();if(!1===s&&A(i,"comment_attribute"))return v.push(u),void(v[t]="singleton"===p.types[t]?u+1:u);function g(t){!1===e.markup.forceAttribute?v.push(-10):!0===e.markup.forceAttribute||t>=e.markup.forceAttribute?!0===e.liquid.indentAttribute?(A(i-1,"liquid_attribute_start")&&(v[i-1]=f+h),v.push(f+h)):v.push(f):v.push(-10)}f<1&&(f=1),a=0;do{a+=1}while(I(i+a,"attribute")>-1&&(!1===A(i+a,"end")||!1===A(i+a,"singleton")||!1===A(i+a,"start")||!1===A(i+a,"comment")));("force-preserve"===n||"force-align"===n||"force-indent"===n)&&($(e.markup.forceAttribute)&&!1===e.markup.forceAttribute||S(e.markup.forceAttribute)&&a<=e.markup.forceAttribute)&&(a=1/0);do{if(c=c+p.token[i].length+1,p.types[i].indexOf("attribute")>0)A(i,"comment_attribute")?v.push(f):I(i,"start")>0&&I(i,"liquid")<0?(o=!0,i<m-2&&p.types[i+2].indexOf("attribute")>0?(v.push(-20),i+=1,y[i]=i):(t===i-1&&!1===s?w?v.push(-20):v.push(f):w?v.push(-20):v.push(f+1),"markup"!==p.lexer[i+1]&&(i+=1,W()))):!0===e.liquid.indentAttribute?A(i,"liquid_attribute_start")?(h>0?v.push(f+h):v.push(f),h+=1):A(i,"liquid_attribute_else")?v[i-1]=f+h-1:A(i,"liquid_attribute_end")?(h-=1,v[i-1]=f+h):g(a):I(i,"end")>0&&!1===A(i,"liquid_attribute_end")?(-20!==v[i-1]&&(v[i-1]=v[p.begin[i]]-1),"markup"!==p.lexer[i+1]?v.push(-20):v.push(f)):I(i,"liquid_attribute")>-1?(d=d+p.token[i].length+1,!0===e.markup.preserveAttribute?v.push(-10):!0===e.markup.forceAttribute||e.markup.forceAttribute>=1||!0===o||i<m-1&&I(i+1,"attribute")>-1?g(a):v.push(-10)):v.push(f);else if(A(i,"attribute"))d=d+p.token[i].length+1,!0===e.markup.preserveAttribute?v.push(-10):!0===e.markup.forceAttribute||e.markup.forceAttribute>=1||!0===o||i<m-1&&I(i+1,"attribute")>-1?g(a):v.push(-10);else if(p.begin[i]<t+1)break;i+=1}while(i<m);if(i-=1,I(i,"liquid")<0&&I(i,"end")>-1&&I(i,"attribute")>0&&!1===A(t,"singleton")&&v[i-1]>0&&!0===s&&(v[i-1]=v[i-1]-1),-20!==v[i]&&(!0===w&&I(t,"start")>-1&&A(i+1,"script_start")?v[i]=f:C(i,"/")&&10!==v[i-1]?v[i-1]=-10:v[i]=v[t]),!0===e.markup.forceAttribute)c=0,v[t]=f,a>=2&&"force"===e.markup.delimiterTerminus&&x.set(t,a);else if(e.markup.forceAttribute>=1)if(a>=e.markup.forceAttribute){v[t]=f;let n=i-1;do{(A(n,"liquid")&&-10===v[n]||A(n,"attribute")&&-10===v[n])&&(v[n]=f),n-=1}while(n>t);("force"===e.markup.delimiterTerminus&&a>=2||"adapt"===e.markup.delimiterTerminus&&a===1/0)&&x.set(t,a)}else v[t]=-10;else v[t]=-10;if(!0===e.markup.preserveAttribute||C(t,"<%xml%>")||C(t,"<?xml?>"))c=0;else if(r=i,r>t+1){if(!1===e.markup.selfCloseSpace&&(d-=1),d>e.wrap&&e.wrap>0&&!1===e.markup.forceAttribute){v[t]=f,c=p.token[i].length,r-=1;do{p.token[r].length>e.wrap&&b(p.token[r])&&R(r),(I(r,"liquid")>-1&&-10===v[r]||A(r,"attribute")&&-10===v[r])&&(v[r]=f),r-=1}while(r>t)}}else e.wrap>0&&A(i,"attribute")&&p.token[i].length>e.wrap&&b(p.token[i])&&R(i)}function D(){let e=p.token[i].split(o),t=e.length,n=0,r=o;i-1>0||2===e[0].length||e[0].length,r+=L(q[i-1],!1)+"  ";do{if(0===n){if(n+1===t-1&&(2===e[n+1].length||3===e[n+1].length)){r.length>1&&(r=r.slice(0,-2)),O.push(e[n],r,e[n+1]);break}O.push(e[n],r)}else n===t-1?O.push(e[n]):(n+1===t-1&&(2===e[n+1].length||3===e[n+1].length)&&(r=r.slice(0,-2)),O.push(e[n],r));n+=1}while(n<t)}return function(){i=Be.start;let n=e.indentLevel;do{if("markup"===p.lexer[i])(A(i,"start")||A(i,"singleton")||A(i,"xml"))&&i<m-1&&I(i,"attribute")<0&&!1===_(p.types[i+1])&&I(i+1,"attribute")>-1&&P(),!1===_(p.token[i])&&p.token[i].indexOf(Be.crlf)>0&&(A(i,"content")&&!1===e.markup.preserveText||A(i,"comment")||A(i,"attribute"))?T():A(i,"comment")&&!1===e.markup.preserveComment&&(h(p.token[i][1],37)&&!0===e.liquid.commentNewline||!1===h(p.token[i][1],37)&&!0===e.markup.commentNewline)&&(0===e.preserveLine||O.length>0&&O[O.length-1].lastIndexOf(o)+1<2)?O.push(L(q[i]),O.pop(),p.token[i],L(q[i])):I(i,"_preserve")>-1?O.push(p.token[i]):A(i+1,"ignore")&&A(i+2,"ignore")?(O.push(p.token[i],L(q[i]).replace(Y,t),p.token[i+1],d(p.lines[i+2]-1==0?1:p.lines[i+2]-1,o)),i+=1):(n=q[i],"force"===e.markup.delimiterTerminus&&F(),/\n/.test(p.token[i])&&I(i,"liquid")>-1&&!A(i,"liquid_end")?D():O.push(p.token[i]),-10===q[i]&&i<m-1?O.push(s):q[i]>-1&&I(i+1,"_preserve")<0&&O.push(L(q[i])));else{Be.start=i,Be.ender=y[i],n>0&&e.liquid.dedentTagList.includes(p.stack[i])&&(O.splice(O.length-1,1,L(q[i]-1)),n-=1);let t=Be.external(n);"jsx"!==e.language||"template_string_end"!==p.types[i-1]&&"jsx_attribute_start"!==p.types[i-1]&&"script_start"!==p.types[i-1]?(O.push(t),(e.markup.forceIndent||q[Be.iterator]>-1&&i in y&&y[i]>i)&&(i=Be.iterator,O.push(L(q[i])))):O.push(t),i!==Be.iterator&&(i=Be.iterator)}i+=1}while(i<m);return Be.iterator=m-1,(O[0]===Be.crlf||h(O[0],32))&&(O[0]=t),!0===e.endNewline?O.join(t).replace(/\s*$/,Be.crlf):O.join(t).trimEnd()}()}():3===e?function(){let e=[],{data:n,rules:i,crlf:r}=Be,o=Be.ender>0?Be.ender+1:n.token.length,a=i.preserveLine+1,l=i.indentChar.repeat(i.indentSize),c=i.indentLevel,u=Be.start,p=[t,t];function d(e,t){return n.types[e]===t}function g(i){let s=[],c=u===o-1?1:n.lines[u+1]-1>a?a:n.lines[u+1]>1?n.lines[u+1]-1:1,p=0;i<0&&(i=0);do{s.push(r),p+=1}while(p<c);if(i>0){p=0;do{s.push(l),p+=1}while(p<i)}e.push(s.join(t))}do{(d(u+1,"end")||d(u+1,"liquid_end")||d(u+1,"liquid_else"))&&(c-=1),d(u,"liquid")&&n.lines[u]>0?(e.push(n.token[u]),k(n.token[u+1],59)&&!1===P.css.units.has(n.token[u+1])&&g(c)):d(u-1,"selector")&&d(u,"liquid")&&d(u+1,"selector")?(e.push(n.token[u]),f(n.token[u-1],45)&&(h(n.token[u+1],46)||h(n.token[u+1],35)||h(n.token[u+1],38))&&e.push(s)):d(u,"liquid_else")?(e.push(n.token[u]),c+=1,g(c)):d(u,"start")||d(u,"liquid_start")?(c+=1,e.push(n.token[u]),!1===d(u+1,"end")&&!1===d(u+1,"liquid_end")&&g(c)):h(n.token[u],59)||d(u,"end")||d(u,"liquid_end")||d(u,"comment")?(e.push(n.token[u]),d(u+1,"value")?1===n.lines[u+1]?e.push(s):n.lines[u+1]>1&&g(c):!1===d(u+1,"separator")?!1===d(u+1,"comment")||d(u+1,"comment")&&n.lines[u+1]>1?g(c):e.push(s):d(u,"comment")&&!1===d(u+1,"comment")&&n.lines[u]>1&&g(c)):h(n.token[u],58)?(e.push(n.token[u]),!1===d(u+1,"selector")&&k(n.token[u+1],44)&&e.push(s)):d(u,"selector")||d(u,"at_rule")?(!0===i.style.classPadding&&d(u-1,"end")&&n.lines[u]<3&&g(c),n.token[u].indexOf("and(")>0?(n.token[u]=n.token[u].replace(/and\(/,"and ("),e.push(n.token[u])):n.token[u].indexOf("when(")>0?(p=n.token[u].split("when("),e.push(p[0].replace(/\s+$/,t)),g(c+1),e.push(`when (${p[1]}`)):e.push(n.token[u]),d(u+1,"start")&&e.push(s)):h(n.token[u],44)?(d(u+1,"value")&&g(c),e.push(n.token[u]),d(u+1,"selector")||d(u+1,"property")?g(c):e.push(s)):"map"===n.stack[u]&&h(n.token[u+1],41)&&u-n.begin[u]>5?(e.push(n.token[u]),g(c)):"x;"===n.token[u]?g(c):(d(u,"variable")||d(u,"function"))&&!0===i.style.classPadding&&d(u-1,"end")&&n.lines[u]<3?(e.push(r),e.push(n.token[u])):k(n.token[u],59)&&e.push(n.token[u]),u+=1}while(u<o);return Be.iterator=o-1,(e[0]===Be.crlf||h(e[0],32))&&(e[0]=t),!0===i.endNewline?e.join(t).replace(/\s*$/,Be.crlf):e.join(t).replace(/\s+$/,t)}():2===e?function(){let{data:e,rules:n}=Be,i="json"===Be.language?n.json:n.script,r=0,a={},l="script",c=Be.ender<1||Be.ender>e.token.length?e.token.length:Be.ender+1,u=(()=>{let s=Be.start,u=n.indentLevel,p=!1,d=!1,f=t,g=t,m=e.types[0],b=e.token[0],y=[-1],w=[],x=Be.start>0?Array(Be.start).fill(0,0,Be.start):[],v=[],q=[[]],j=[],O=[],$=[],S=[!1],A=[],C=[];function I(){L(!1,!1);let n=!0===i.commentIndent?u:0;if(!1===p&&/\/\u002a\s*global\s/.test(e.token[s])){let n=e.token[s].replace(/\/\u002a\s*global\s+/,t).replace(/\s*\u002a\/$/,t).split(","),i=n.length;do{i-=1,n[i]=n[i].replace(/\s+/g,t),n[i]!==t&&Be.stack.push([n[i],-1])}while(i>0)}if("comment"===e.types[s-1]||"comment"===e.types[s+1])x[s-1]=n;else{if(e.lines[s]<2){let t=s+1;if("comment"===e.types[t])do{t+=1}while(t<c&&"comment"===e.types[t]);if(s<c-1&&"block"!==e.stack[t]&&(h(e.token[t],123)||"x{"===e.token[t])){let n=Be.stack.length;if(e.begin.splice(s,0,e.begin[t]),e.ender.splice(s,0,e.ender[t]),e.lexer.splice(s,0,e.lexer[t]),e.lines.splice(s,0,e.lines[t]),e.stack.splice(s,0,e.stack[t]),e.token.splice(s,0,e.token[t]),e.types.splice(s,0,e.types[t]),n>0)do{if(n-=1,Be.stack[n][1]===t)Be.stack[n][1]=s;else if(Be.stack[n][1]<s)break}while(n>0);t+=1,e.begin.splice(t,1),e.ender.splice(t,1),e.lexer.splice(t,1),e.lines.splice(t,1),e.stack.splice(t,1),e.token.splice(t,1),e.types.splice(t,1),n=s+1;do{e.begin[n]=s,e.stack[n]=e.stack[t],n+=1}while(n<t);n+=1;do{if(e.begin[n]===e.begin[t]&&(e.begin[n]=s,"end"===e.types[n]))break;n+=1}while(n<c-1);e.begin[t]=s,s-=1}else x[s-1]=-10,"paren"===e.stack[s]||"method"===e.stack[s]?x.push(u+2):x.push(u),!0===i.commentIndent&&x[s]>-1&&e.lines[s]<3&&(e.lines[s]=3);return void("comment"!==e.types[s+1]&&(p=!0))}h(e.token[s-1],44)?x[s-1]=n:h(b,61)&&"comment"!==e.types[s-1]&&!0===/^\/\*{2}\s*@[A-Za-z_]+/.test(g)?x[s-1]=-10:h(b,123)&&"comment"!==e.types[s-1]&&e.lines[0]<2?"function"===e.stack[s]?x[s-1]=n:x[s-1]=/\n/.test(g)?n:-10:x[s-1]=n}"comment"!==e.types[s+1]&&(p=!0),h(e.token[e.begin[s]],40)?x.push(u+1):x.push(u),x[s]>-1&&e.lines[s]<3&&("comment"===e.types[s-1]&&g.startsWith("//")?e.lines[s]=2:e.lines[s]=3),!0===i.commentNewline&&!1===g.startsWith("//")&&e.lines[s]>=3&&(e.lines[s]=2)}function L(t,n){let r=s-1,o=!0===t?0:1,a=void 0===q[q.length-1]?[]:q[q.length-1],l=!1===n&&"array"===e.stack[s]&&!0===t&&k(g,91);if(!(!1===O[O.length-1]||"array"===e.stack[s]&&"inline"===i.arrayFormat||"object"===e.stack[s]&&"inline"===i.objectIndent)){O[O.length-1]=!1;do{if("end"===e.types[r]?o+=1:"start"===e.types[r]&&(o-=1),"global"===e.stack[r])break;if(0===o){if("class"===e.stack[s]||"map"===e.stack[s]||!1===l&&(!1===t&&"("!==e.token[r]&&"x("!==e.token[r]||!0===t&&h(e.token[r],44)))"liquid_start"===e.types[r+1]?e.lines[r]<1?x[r]=-20:x[r]=u-1:a.length>0&&a[a.length-1]>-1?x[r]=u-1:x[r]=u;else if("array"===e.stack[s]&&"operator"===e.types[s]&&(h(e.token[r],44)&&(x[r]=u),r===e.begin[s]))break;if(!1===t)break}if(o<0){"liquid_start"===e.types[r+1]||"template_string_start"===e.types[r+1]?e.lines[r]<1?x[r]=-20:x[r]=u-1:a.length>0&&a[a.length-1]>-1?x[r]=u-1:x[r]=u;break}r-=1}while(r>-1)}}function T(){let t=_(q[q.length-1])?[]:q[q.length-1];function r(){let t=s,n=!1,i=e.begin[t];do{if(t-=1,"markup"===e.lexer[t]){n=!0;break}e.begin[t]!==i&&(t=e.begin[t])}while(t>i);if(!0===n){t=s;do{t-=1,e.begin[t]!==i?t=e.begin[t]:h(e.token[t],44)&&(x[t]=u+1)}while(t>i);x[i]=u+1,x[s-1]=u}else x[s-1]=-20}if(h(g,41)&&h(e.token[s+1],46)&&k(e.token[t[0]],58)&&t[t.length-1]>-1){let t=e.begin[s],n=!1,i=!1;do{t-=1}while(t>0&&x[t]<-9);n=x[t]===u,t=s+1;do{if(t+=1,h(e.token[t],123)){i=!0;break}if(e.begin[t]===e.begin[s+1]&&("separator"===e.types[t]||"end"===e.types[t]))break}while(t<c);!1===n&&!0===i&&q.length>1&&(q[q.length-2].push(e.begin[s]),u+=1)}if("separator"!==m&&z(),h(e.token[s+1],58)&&("object"===e.stack[s]||"array"===e.stack[s])&&L(!0,!1),h(e.token[e.begin[s]-1],44)&&(h(e.token[s+1],125)||h(e.token[s+1],93))&&("object"===e.stack[s]||"array"===e.stack[s])&&L(!0,!1),"attribute"!==e.stack[s]&&(k(g,41)&&"x)"!==g&&("markup"!==e.lexer[s-1]||"markup"===e.lexer[s-1]&&"return"!==e.token[s-2])&&(u-=1),h(g,125)&&"switch"===e.stack[s]&&!1===i.noCaseIndent&&(u-=1)),h(g,125)||"x}"===g){if("comment"!==e.types[s-1]&&"{"!==b&&"x{"!==b&&"end"!==m&&"string"!==m&&"number"!==m&&"separator"!==m&&"++"!==b&&"--"!==b&&(s<2||";"!==e.token[s-2]||"x;"!==e.token[s-2]||"break"===b||"return"===b)){let t=s-1,n=!1,i=e.begin[s],r=w.length;do{if(e.begin[t]===i){if((h(e.token[t],61)||h(e.token[t],59)||"x;"===e.token[t])&&(n=!0),h(e.token[t],46)&&x[t-1]>-1){O[O.length-1]=!1,x[i]=u+1,x[s-1]=u;break}if(t>0&&"return"===e.token[t]&&(")"===e.token[t-1]||"x)"===e.token[t-1]||"{"===e.token[t-1]||"x{"===e.token[t-1]||"}"===e.token[t-1]||"x}"===e.token[t-1]||";"===e.token[t-1]||"x;"===e.token[t-1])){u-=1,x[s-1]=u;break}if(h(e.token[t],58)&&0===v.length||h(e.token[t],44)&&!1===n)break;if(0===t||"{"===e.token[t-1]||"x{"===e.token[t-1]||"for"===e.token[t]||"if"===e.token[t]||"do"===e.token[t]||"function"===e.token[t]||"while"===e.token[t]||"var"===e.token[t]||"let"===e.token[t]||"const"===e.token[t]||"with"===e.token[t]){!1===w[r-1]&&r>1&&(s===c-1||")"!==e.token[s+1]&&"x)"!==e.token[s+1])&&"object"!==e.stack[s]&&(u-=1);break}}else t=e.begin[t];t-=1}while(t>i)}y.pop()}if(!1===i.bracePadding&&"}"!==g&&"markup"!==m&&"liquid"!==m&&(x[s-1]=-20),!0===i.bracePadding&&"start"!==m&&";"!==b&&(x[e.begin[s]]<-9||!0===O[O.length-1]))x[e.begin[s]]=-10,x[s-1]=-10,x.push(-20);else if("attribute"===e.stack[s])x[s-1]=-20,x.push(u);else if("array"===e.stack[s]&&(t.length>0||!0===j[j.length-1]))N(),O[O.length-1]=!1,x[e.begin[s]]=u+1,x[s-1]=u,x.push(-20);else if(t.length>0&&("object"===e.stack[s]||0===e.begin[s]&&h(g,125)))N(),O[O.length-1]=!1,x[e.begin[s]]=u+1,x[s-1]=u,x.push(-20);else if(")"===g||"x)"===g){let i=")"===g&&k(b,40)&&C.length>0?C.pop()+1:0,o="if"===e.token[e.begin[s]-1]?(()=>{let t=s;do{if(t-=1,")"===e.token[t]&&x[t-1]>-1)return i}while(t>e.begin[s]);return i+5})():i;if(i>0&&("jsx"!==Be.language||"jsx"===Be.language&&"render"!==e.token[e.begin[s]-1])){let t=n.wrap,r=e.begin[s],a=C.length,l=s-2;if(o>t){x[e.begin[s]]=u+1,x[s-1]=u;do{e.begin[l]===r?"&&"===e.token[l]||"||"===e.token[l]?x[l]=u+1:x[l]>-1&&"comment"!==e.types[l]&&"."!==e.token[l+1]&&(x[l]=x[l]+1):x[l]>-1&&"."!==e.token[l+1]&&(x[l]=x[l]+1),l-=1}while(l>r)}else a>0&&(C[a-1]=C[a-1]+i)}else if(")"===g&&s>e.begin[s]+2&&e.lexer[e.begin[s]+1]===l&&"function"!==e.token[e.begin[s]+1]){let i=e.begin[s]<0?0:e.begin[s],r=n.wrap,o=t.length,a=0,l=0,p=0,d=0,f=0,g=!1,m=!1,y=u+1,v=!1,q=!1,j=!1;if(x[i]<-9){l=i;do{l+=1}while(l<s&&x[l]<-9);d=l;do{a+=e.token[l].length,-10===x[l]&&(a+=1),"("===e.token[l]&&p>0&&p<r-1&&d===s&&(p=-1),")"===e.token[l]?f-=1:"("===e.token[l]&&(f+=1),l===i&&f>0&&(p=a),l-=1}while(l>i&&x[l]<-9);if("."===e.token[l+1]&&(y=x[l]+1),a>r-1&&r>0&&k(b,40)&&-1!==p&&!1===O[O.length-2]&&("if"===e.token[i-1]&&!0===w[w.length-1]||"if"!==e.token[i-1])&&(x[i]=y,"for"===e.token[i-1])){l=i;do{l+=1,h(e.token[l],59)&&e.begin[l]===i&&(x[l]=y)}while(l<s)}}l=s,a=0;do{l-=1,"function"===e.stack[l]?l=e.begin[l]:e.begin[l]===i?(h(e.token[l],63)?j=!0:h(e.token[l],44)&&!1===g?(g=!0,a>=r&&r>0&&(v=!0)):"markup"===e.types[l]&&!1===q&&(q=!0),x[l]>-9&&k(e.token[l],44)&&"markup"!==e.types[l]?a=0:(-10===x[l]&&(a+=1),a+=e.token[l].length,a>=r&&r>0&&(!0===g||!0===q)&&(v=!0))):x[l]>-9?a=0:(a+=e.token[l].length,a>=r&&r>0&&(!0===g||!0===q)&&(v=!0))}while(l>i&&!1===v);if(!1===g&&h(e.token[e.begin[s]+1],96))x[e.begin[s]]=-20,x[s-1]=-20;else if((!0===g||!0===q)&&a>=r&&r>0||x[i]>-9){if(!0===j){if(y=x[i],h(e.token[i-1],91)){l=s;do{if(l+=1,"end"===e.types[l]||h(e.token[l],44)||h(e.token[l],59))break}while(l<c);h(e.token[l],93)&&(y-=1,m=!0)}}else o>0&&t[o-1]>l&&(y-=o);O[O.length-1]=!1,l=s;do{if(l-=1,e.begin[l]===i)if(e.token[l].indexOf("=")>-1&&"operator"===e.types[l]&&e.token[l].indexOf("!")<0&&e.token[l].indexOf("==")<0&&"<="!==e.token[l]&&e.token[l].indexOf(">")<0){a=l;do{if(a-=1,e.begin[a]===i&&(";"===e.token[a]||","===e.token[a]||a===i))break}while(a>i)}else h(e.token[l],44)?x[l]=y:x[l]>-9&&!1===m&&("for"!==e.token[i-1]||"?"===e.token[l+1]||":"===e.token[l+1])&&("("!==e.token[e.begin[s]]||"+"!==e.token[l])&&(x[l]=x[l]+1);else x[l]>-9&&!1===m&&(x[l]=x[l]+1)}while(l>i);x[i]=y,x[s-1]=y-1}else x[s-1]=-20;"+"===e.token[e.begin[s]-1]&&x[e.begin[s]]>-9&&(x[e.begin[s]-1]=-10)}else"jsx"===Be.language||"tsx"===Be.language?r():x[s-1]=-20;x.push(-20)}else if(!0===O[O.length-1])h(g,93)&&e.begin[s]-1>0&&"["===e.token[e.begin[e.begin[s]-1]]&&(O[O.length-2]=!1),e.begin[s]<x.length&&(x[e.begin[s]]=-20),"jsx"===Be.language||"tsx"===Be.language?r():h(g,93)&&x[e.begin[s]]>-1?x[s-1]=x[e.begin[s]]-1:x[s-1]=-20,x.push(-20);else if("comment"===e.types[s-1]&&"//"===e.token[s-1].substring(0,2))"x}"===e.token[s-2]&&(x[s-3]=u+1),x[s-1]=u,x.push(-20);else if(m.indexOf("liquid")<0&&"comment"!==e.types[s-1]&&(h(b,123)&&h(g,125)||h(b,91)&&h(g,93)))x[s-1]=-20,x.push(-20);else if(h(g,93)){if(!0===w[w.length-1]&&!1===O[O.length-1]&&"inline"!==i.arrayFormat||h(b,93)&&x[s-2]===u+1?(x[s-1]=u,x[e.begin[s]]=u+1):-10===x[s-1]&&(x[s-1]=-20),"function"===e.token[e.begin[s]+1])x[s-1]=u;else if(!1===w[w.length-1]){(h(b,125)||"x}"===b)&&(x[s-1]=u);let t=s-1,n=1;do{if(h(e.token[t],93)&&(n+=1),h(e.token[t],91)&&(n-=1,0===n)){if(t>0&&(h(e.token[t+1],123)||h(e.token[t+1],91)||"x{"===e.token[t+1])){x[t]=u+1;break}if(k(e.token[t+1],91)||!1===d){x[t]=-20;break}break}1===n&&"+"===e.token[t]&&x[t]>1&&(x[t]=x[t]-1),t-=1}while(t>-1)}else("jsx"===Be.language||"tsx"===Be.language)&&r();if("inline"===i.arrayFormat){let t=s,n=e.begin[s];do{if(t-=1,"end"===e.types[t])break}while(t>n);t>n?(x[e.begin[s]]=u+1,x[s-1]=u):(x[e.begin[s]]=-20,x[s-1]=-20)}else x[e.begin[s]]>-1&&(x[s-1]=x[e.begin[s]]-1);x.push(-20)}else h(g,125)||"x}"===g||!0===w[w.length-1]?(h(g,125)&&"x}"===b&&"else"===e.token[s+1]?(x[s-2]=u+2,x.push(-20)):x.push(u),x[s-1]=u):x.push(-20);"comment"===e.types[s-1]&&(x[s-1]=u),N(),d=w[w.length-1],w.pop(),q.pop(),j.pop(),$.pop(),A.pop(),O.pop(),S.pop()}function N(){let t=0,n=q[q.length-1];if(void 0!==n){if(t=n.length-1,t<1&&n[t]<0&&(h(g,59)||"x;"===g||h(g,41)||"x)"===g||h(g,125)||"x}"===g))return void n.pop();if(!(t<0||n[t]<0)){if(h(g,58)){if(k(e.token[n[t]],63))do{n.pop(),t-=1,u-=1}while(t>-1&&n[t]>-1&&k(e.token[n[t]],63));n[t]=s,x[s-1]=u}else do{n.pop(),t-=1,u-=1}while(t>-1&&n[t]>-1);("array"===e.stack[s]||h(g,44))&&n.length<1&&n.push(-1)}}}function F(){let t=s;do{if(e.lexer[s+1]===l&&e.begin[s+1]<t||"return"===e.token[t-1]&&"end"===e.types[s]&&e.begin[s]===t)break;x.push(0),s+=1}while(s<c);a[t]=s,x.push(u-1)}function z(){let t=s-1,n=e.begin[s];if(!(u<1))do{if(n!==e.begin[t])t=e.begin[t];else if("separator"===e.types[t]||"operator"===e.types[t]){"."===e.token[t]&&x[t-1]>0&&("if"===e.token[n-1]?u-=2:u-=1);break}t-=1}while(t>0&&t>n)}function E(){let r=_(q[q.length-1])?[]:q[q.length-1];function o(){let t=e.token[s+1],i=0,o=0,a=s,l="+"===g?u+2:u,c=0;if(n.wrap<1)x.push(-10);else{do{if(a-=1,h(e.token[e.begin[s]],40)&&(a===e.begin[s]&&(c=i),h(e.token[a],44)&&e.begin[a]===e.begin[s]&&!0===w[w.length-1])||i>n.wrap-1||x[a]>-9||"operator"===e.types[a]&&"="!==e.token[a]&&"+"!==e.token[a]&&e.begin[a]===e.begin[s]||(i+=e.token[a].length,a===e.begin[s]&&"["===e.token[a]&&i<n.wrap-1)||"."===e.token[a]&&x[a]>-9)break;-10===x[a]&&(i+=1)}while(a>0);if(c>0&&(c+=t.length),i+=t.length,o=a,i>n.wrap-1&&x[a]<-9)do{o-=1}while(o>0&&x[o]<-9);if("."===e.token[o+1]&&e.begin[s]<=e.begin[o]?l+=1:"operator"===e.types[o]&&(l=x[o]),o=t.length,!(i+o<n.wrap))return!h(e.token[e.begin[s]],40)||":"!==e.token[r[0]]&&"?"!==e.token[r[0]]?"method"===e.stack[s]?(x[e.begin[s]]=u,l=!0===w[w.length-1]?u+3:u+1):("object"===e.stack[s]||"array"===e.stack[s])&&L(!0,!1):l=u+3,("var"===e.token[a]||"let"===e.token[a]||"const"===e.token[a])&&(i-=n.indentSize*n.indentChar.length*2),a=c>0?n.wrap-c:n.wrap-i,a>0&&a<5?(x.push(l),void(('"'===e.token[s].charAt(0)||"'"===e.token[s].charAt(0))&&(s+=1,x.push(-10)))):"("!==e.token[e.begin[s]]||c>n.wrap-1||0===c?(c>0&&(i=c),i-t.length<n.wrap-1&&('"'===t.charAt(0)||"'"===t.charAt(0))?(s+=1,i+=3,i-t.length>n.wrap-4?void x.push(l):void x.push(-10)):void x.push(l)):void x.push(-10);x.push(-10)}}if(z(),r.length>0&&r[r.length-1]>-1&&"array"===e.stack[s]&&(j[j.length-1]=!0),":"!==g&&("("!==e.token[e.begin[s]]&&"x("!==e.token[e.begin[s]]&&O.length>0&&L(!0,!1),"?"!==g&&"."===e.token[r[r.length-1]])){let t=0,n=s,i=e.begin[n];do{if(e.begin[n]===i){if("{"===e.token[n+1]||"["===e.token[n+1]||"function"===e.token[n])break;if(h(e.token[n],44)||h(e.token[n],59)||"end"===e.types[n]||h(e.token[n],58)){r.pop(),u-=1;break}if("?"===e.token[n]||h(e.token[n],58)){"."===e.token[r[r.length-1]]&&t<2&&(r[r.length-1]=i+1);break}"."===e.token[n]&&(t+=1)}n+=1}while(n<c)}if("!"===g||"..."===g)return(h(b,125)||"x}"===b)&&(x[s-1]=u),void x.push(-20);if(";"===b||"x;"===b)return"for"!==e.token[e.begin[s]-1]&&(x[s-1]=u),void x.push(-20);if("*"===g)return x[s-1]="function"===b||"yield"===b?-20:-10,void x.push(-10);if("?"!==g){if(":"===g){if("map"===e.stack[s]||"type"===e.types[s+1]||"type_start"===e.types[s+1])return x[s-1]=-20,void x.push(-10);if(v.length>0&&e.begin[v[v.length-1]]===e.begin[s]){let t=s,n=e.begin[s];do{if(t-=1,e.begin[t]===n){if(h(e.token[t],44)||h(e.token[t],59)){x[s-1]=-20;break}if("?"===e.token[t])return v.pop(),N(),!0===i.ternaryLine&&(x[s-1]=-10),void x.push(-10)}else"end"===e.types[t]&&(t=e.begin[t])}while(t>n)}return"where"===e.token[s-2]&&e.stack[s-2]===e.stack[s]?(x[s-1]=-10,void x.push(-10)):"reference"===m&&"("!==e.token[e.begin[s]]&&"x("!==e.token[e.begin[s]]?(x[s-1]=-20,void x.push(-10)):!h(b,41)&&"x)"!==b||"function"!==e.token[e.begin[s-1]-2]?"attribute"===e.stack[s]||"("!==e.token[e.begin[s]]&&"x("!==e.token[e.begin[s]]&&("reference"===m||h(b,41)||h(b,93)||"?"===b)&&("map"===e.stack[s]||"class"===e.stack[s]||"reference"===e.types[s+1])&&(0===v.length||v[v.length-1]<e.begin[s])&&("mapclassexpressionmethodglobalparen".indexOf(e.stack[s])>-1||"word"===e.types[s-2]&&"switch"!==e.stack[s])?(x[s-1]=-20,void x.push(-10)):"switch"===e.stack[s]&&(v.length<1||v[v.length-1]<e.begin[s])?(x[s-1]=-20,void(!0===i.caseSpace?x.push(-10):x.push(u))):("object"===e.stack[s]?x[s-1]=-20:v.length>0?x[s-1]=u:x[s-1]=-10,void x.push(-10)):(x[s-1]=-20,void x.push(-10))}if("++"!==g&&"--"!==g){if("+"===g){if(x[s-1]="start"===m?-20:-10,n.wrap<1||"x("===e.token[e.begin[s]])return void x.push(-10);let t=e.token[s+1];if(void 0===t)return void x.push(-10);if("operator"===e.types[s-1]||"start"===e.types[s-1]){if("reference"===e.types[s+1]||"("===t||"["===t)return void x.push(-20);if(Number(t.slice(1,-1))>-1&&(!0===/\d/.test(t.charAt(1))||"."===t.charAt(1)||"-"===t.charAt(1)||"+"===t.charAt(1)))return void x.push(-20)}return o()}if("comment"!==e.types[s-1]&&(h(b,40)?x[s-1]=-20:"*"===g&&"object"===e.stack[s]&&"reference"===e.types[s+1]&&(h(b,123)||h(b,44))?x[s-1]=u:("?"!==g||0===v.length)&&(x[s-1]=-10)),g.indexOf("=")>-1&&"=="!==g&&"==="!==g&&"!="!==g&&"!=="!==g&&">="!==g&&"<="!==g&&"=>"!==g&&"method"!==e.stack[s]&&"object"!==e.stack[s]){let n=s+1,i=0,r=!1,o=t;if((h(e.token[e.begin[s]],40)||"x("===e.token[e.begin[s]])&&"function"!==e.token[s+1])return;do{if("start"===e.types[n]){if(!0===r&&"["!==e.token[n]){!0===S[S.length-1]&&(S[S.length-1]=!1);break}i+=1}if("end"===e.types[n]&&(i-=1),i<0){!0===S[S.length-1]&&(S[S.length-1]=!1);break}if(0===i){if(o=e.token[n],!0===r){if("operator"===e.types[n]||h(e.token[n],59)||"x;"===e.token[n]||"?"===e.token[n]||"var"===e.token[n]||"let"===e.token[n]||"const"===e.token[n]){void 0!==o&&("?"===o||o.indexOf("=")>-1&&"=="!==o&&"==="!==o&&"!="!==o&&"!=="!==o&&">="!==o&&"<="!==o)&&!1===S[S.length-1]&&(S[S.length-1]=!0),(";"===o||"x;"===o||"var"===o||"let"===o||"const"===o)&&!0===S[S.length-1]&&(S[S.length-1]=!1);break}!0===S[S.length-1]&&("return"===o||"break"===o||"continue"===o||"throw"===o)&&(S[S.length-1]=!1)}(";"===o||"x;"===o||","===o)&&(r=!0)}n+=1}while(n<c);x.push(-10)}else if("-"===g&&"return"===b||h(b,61))x.push(-20);else{if("operator"!==m||"reference"!==e.types[s+1]||"--"===b||"++"===b||"&&"===g||"||"===g)return o();x.push(-20)}}else"number"===m||"reference"===m?(x[s-1]=-20,x.push(-10)):s<c-1&&("number"===e.types[s+1]||"reference"===e.types[s+1])?x.push(-20):x.push(-10)}else{if(0===e.lines[s]&&"word"===e.types[s-2]&&"return"!==e.token[s-2]&&"in"!==e.token[s-2]&&"instanceof"!==e.token[s-2]&&"typeof"!==e.token[s-2]&&("reference"===m||"word"===m)&&("word"===e.types[s+1]||"reference"===e.types[s+1]||(h(e.token[s+1],40)||"x("===e.token[s+1])&&"new"===e.token[s-2]))return x[s-1]=-20,"word"===e.types[s+1]||"reference"===e.types[s+1]?void x.push(-10):void x.push(-20);if(":"===e.token[s+1])return x[s-1]=-20,void x.push(-20);if(v.push(s),!0===i.ternaryLine)x[s-1]=-10;else{let t=s-1;do{t-=1}while(t>-1&&x[t]<-9);if(r.push(s),u+=1,x[t]===u&&":"!==e.token[t+1]&&(u+=1,r.push(s)),x[s-1]=u,h(e.token[e.begin[s]],40)&&(r.length<2||r[0]===r[1])){O[O.length-1]=!1,s-2===e.begin[s]?x[e.begin[s]]=u-1:x[e.begin[s]]=u,t=s-2;do{if("end"===e.types[t]&&x[t-1]>-1)break;x[t]>-1&&(x[t]=x[t]+1),t-=1}while(t>e.begin[s])}}x.push(-10)}}function M(){let t=()=>{let t=e.begin[s];if(t<0)Be.stack.push([e.token[s],-1]);else{if("function"!==e.stack[t+1])do{t=e.begin[t]}while(t>-1&&"function"!==e.stack[t+1]);Be.stack.push([e.token[s],t])}};if("comment"===e.types[s-1]?x[s-1]=u:"end"===m&&")"!==b&&")"!==e.token[e.begin[s-1]-1]?x[s-1]=-10:"separator"!==m&&"start"!==m&&"end"!==m&&m.indexOf("template_string")<0&&(x[s-1]="word"===m||"operator"===m||"property"===m||"type"===m||"reference"===m?-10:-20),"var"===b&&e.lexer[s-1]===l)t();else if("function"===b)Be.stack.push([e.token[s],s]);else if("let"===b||"const"===b)Be.stack.push([e.token[s],s]);else if("arguments"===e.stack[s])Be.stack.push([e.token[s],s]);else if(h(b,44)){let n=s;do{n-=1}while(n>e.begin[s]&&"var"!==e.token[n]&&"let"!==e.token[n]&&"const"!==e.token[n]);"var"===e.token[n]?t():("let"===e.token[n]||"const"===e.token[n])&&Be.stack.push([e.token[s],s])}x.push(-10)}function W(){let t=_(q[q.length-1])?[]:q[q.length-1],n=()=>{if(i.methodChain>0){let t=s,n=e.begin[s],r=[s],o="if"===e.token[n-1];do{if(t-=1,"end"===e.types[t]&&(t=e.begin[t]),e.begin[t]===n){if("string"===e.types[t]&&e.token[t].indexOf("${")===e.token[t].length-2)break;if("."===e.token[t]){if(x[t-1]>0)return void(x[s-1]=!0===o?u+1:u);r.push(t)}else if(";"===e.token[t]||","===e.token[t]||"operator"===e.types[t]||("word"===e.types[t]||"reference"===e.types[t])&&("word"===e.types[t-1]||"reference"===e.types[t-1]))break}}while(t>n);if(r.length<i.methodChain)return void(x[s-1]=-20);t=0,n=r.length;do{x[r[t]-1]=!0===o?u+1:u,t+=1}while(t<n);t=r[r.length-1]-1;do{x[t]>-1&&(x[t]=x[t]+1),t+=1}while(t<s);u=!0===o?u+2:u+1}x[s-1]=u};if("::"===g)return x[s-1]=-20,void x.push(-20);if("."===g)return"("!==e.token[e.begin[s]]&&"x("!==e.token[e.begin[s]]&&t.length>0&&("object"===e.stack[s]||"array"===e.stack[s]?L(!0,!1):L(!1,!1)),0===i.methodChain?x[s-1]=-20:i.methodChain<0?e.lines[s]>0?n():x[s-1]=-20:n(),void x.push(-20);if(","===g){if(z(),!1===w[w.length-1]&&("object"===e.stack[s]||"array"===e.stack[s]||"paren"===e.stack[s]||"expression"===e.stack[s]||"method"===e.stack[s])&&(w[w.length-1]=!0,h(e.token[e.begin[s]],40))){let t=s;do{t-=1,e.begin[t]===e.begin[s]&&"+"===e.token[t]&&x[t]>-9&&(x[t]=x[t]+2)}while(t>e.begin[s])}if("array"===e.stack[s]&&"indent"===i.arrayFormat)return x[s-1]=-20,void x.push(u);if("array"===e.stack[s]&&"inline"===i.arrayFormat)return x[s-1]=-20,void x.push(-10);if("object"===e.stack[s]&&"indent"===i.objectIndent)return x[s-1]=-20,void x.push(u);if("object"===e.stack[s]&&"inline"===i.objectIndent)return x[s-1]=-20,void x.push(-10);if(t.length>0)return t[t.length-1]>-1&&N(),x[s-1]=-20,void x.push(u);if(":"===e.token[s-2]&&"where"===e.token[s-4])return x[s-1]=-20,void x.push(-10);if(x[s-1]=-20,"end"!==e.types[s+1]&&($[$.length-1]=$[$.length-1]+1),(h(e.token[e.begin[s]],40)||"x("===e.token[e.begin[s]])&&"jsx"!==Be.language&&"global"!==e.stack[s]&&("string"!==e.types[s-1]&&"number"!==e.types[s-1]||"+"!==e.token[s-2]||"string"===e.types[s-1]&&"number"!==e.types[s-1]&&h(e.token[s-2],43)&&"string"!==e.types[s-3]&&"number"!==e.types[s-3]))return void x.push(-10);if("reference"===m&&"word"===e.types[s-2]&&"var-let-const-from".indexOf(e.token[s-2])<0&&("end"===e.types[s-3]||";"===e.token[s-3]))return A[A.length-1]=!0,void x.push(-10);if(!0===A[A.length-1]||"notation"===e.stack[s])return void x.push(-10);if($[$.length-1]>3&&("array"===e.stack[s]||"object"===e.stack[s])){if(!0===O[O.length-1]&&L(!0,!0),x[s-1]=-20,!0===j[j.length-1])return void x.push(u);let t=e.begin[s],n=s;do{"end"===e.types[n]?n=e.begin[n]:h(e.token[n],44)&&"comment"!==e.types[n+1]&&(x[n]=u),n-=1}while(n>t);return x[t]=u,void(j[j.length-1]=!0)}if("object"===e.stack[s]&&!0===O[O.length-1]&&"word"!==e.types[e.begin[s]-1]&&"reference"!==e.types[e.begin[s]-1]&&"("!==e.token[e.begin[s]-1]&&"x("!==e.token[e.begin[s]-1]){let t=e.begin[s],n=s-1;do{if(e.begin[n]===t){if(h(e.token[n],44))break;if(h(e.token[n],58)){L(!0,!1);break}}n-=1}while(n>t)}if(!1===O[O.length-1]||h(e.token[s-2],43)&&("string"===m||"number"===m)&&x[s-2]>0&&(h(b,34)||h(b,39))){if("method"===e.stack[s]){if(h(e.token[s-2],43)&&(h(b,34)||h(b,39))&&('"'===e.token[s-3].charAt(0)||"'"===e.token[s-3].charAt(0)))return void x.push(u+2);if("+"!==e.token[s-2])return void x.push(-10)}return void x.push(u)}return!0===O[O.length-1]&&"object"!==e.stack[s]||$[$.length-1]<4&&("array"===e.stack[s]||"object"===e.stack[s])?void x.push(-10):void x.push(u)}if(h(g,59)||"x;"===g){if(z(),void 0!==e.token[s+1]&&e.types[s+1].indexOf("attribute")>0&&e.types[s+1].indexOf("end")>0)return x[s-1]=-20,void x.push(u-1);if(y[y.length-1]>-1&&"expression"!==e.stack[y[y.length-1]]){let t=s;do{if(t-=1,h(e.token[t],59))break;if(h(e.token[t],44)){u-=1;break}"end"===e.types[t]&&(t=e.begin[t])}while(t>0&&t>e.begin[s])}return y[y.length-1]=-1,N(),"for"!==e.token[e.begin[s]-1]&&L(!1,!1),A[A.length-1]=!1,x[s-1]=-20,e.begin[s]>0&&"for"===e.token[e.begin[s]-1]&&"for"!==e.stack[s]?void x.push(-10):void x.push(u)}x.push(-20)}function R(){let t=e.stack[s+1],r=0===s?e.stack[s]:e.stack[s-1];if((h(b,41)||k(b,93)&&("object"===r||"array"===r))&&("method"!==t||"method"===t&&k(e.token[s+1],41)&&k(e.token[s+2],41))&&(h(b,41)&&("function"!==t||h(e.token[e.begin[e.begin[s-1]-1]],40)||"x("===e.token[e.begin[e.begin[s-1]-1]])?L(!1,!1):"end"!==e.types[s+1]&&"end"!==e.types[s+2]&&L(!0,!1)),w.push(!1),q.push([]),S.push(!1),j.push(!1),A.push(!1),$.push(0),!0===i.neverFlatten||"attribute"===t||"generic"===m||"indent"===i.arrayFormat&&"array"===t||"class"===t&&k(b,40)&&"x("!==b||h(g,91)&&"function"===e.token[s+1]?O.push(!1):"expression"===t||"method"===t||("object"===t||"class"===t)&&(h(b,40)||"x("===b||"word"===m||"reference"===m)||"array"===t||h(g,40)||"x("===g||h(g,123)&&"object"===t&&"operator"!==m&&"start"!==m&&"string"!==m&&"number"!==m&&"object"!==r&&"array"!==r&&s>0?O.push(!0):O.push(!1),k(g,40)&&"x("!==g&&"attribute"!==e.stack[s+1]&&(u+=1),h(g,123)||"x{"===g){if(y.push(-1),"comment"!==e.types[s-1]&&("markup"===m?x[s-1]=u:!0===i.braceAllman&&"operator"!==m&&"return"!==b?x[s-1]=u-1:"block"!==e.stack[s+1]&&("function"===t||h(b,41)||"x)"===b||h(b,44)||h(b,125)||"markup"===m)?x[s-1]=-10:(h(b,123)||"x{"===b||h(b,91)||h(b,125)||"x}"===b)&&(x[s-1]=u-1)),"object"===t){if("indent"===i.objectIndent)return O[O.length-1]=!1,void x.push(u);if("inline"===i.objectIndent)return O[O.length-1]=!0,void x.push(-20)}return"switch"===t?!0===i.noCaseIndent?void x.push(u-1):(u+=1,void x.push(u)):!0===O[O.length-1]&&"word"!==m&&"reference"!==m?void x.push(-20):void x.push(u)}if(h(g,40)||"x("===g)return n.wrap>0&&h(g,40)&&")"!==e.token[s+1]&&C.push(1),h(b,45)&&(h(e.token[s-2],40)||"x("===e.token[s-2])&&(x[s-2]=-20),"end"===m&&"if"!==r&&"for"!==r&&"catch"!==r&&"else"!==r&&"do"!==r&&"try"!==r&&"finally"!==r&&"catch"!==r&&("comment"===e.types[s-1]?x[s-1]=u:x[s-1]=-20),"async"===b?x[s-1]=-10:("method"===t||"function"===e.token[s-2]&&"reference"===m)&&("import"===b||"in"===b||!0===i.functionNameSpace?x[s-1]=-10:h(b,125)&&"function"===e.stack[s-1]||"word"===m||"reference"===m||"property"===m?x[s-1]=-20:"method"!==r&&"method"!==t&&(x[s-1]=u)),h(b,43)&&(h(e.token[s-2],34)||h(e.token[s-2],39))?void x.push(u):(h(b,125)||"x}"===b||(h(b,45)&&(s<2||k(e.token[s-2],41)&&k(e.token[s-2],93)&&"x)"!==e.token[s-2]&&"reference"!==e.types[s-2]&&"string"!==e.types[s-2]&&"number"!==e.types[s-2])||!1===i.functionSpace&&"function"===b)&&(x[s-1]=-20),void x.push(-20));if(h(g,91)){if(h(b,91)&&(w[w.length-2]=!0),"return"===b||"var"===b||"let"===b||"const"===b?x[s-1]=-10:"comment"===e.types[s-1]||"attribute"===e.stack[s-1]||"end"!==m&&"word"!==m&&"reference"!==m?(h(b,91)||h(b,123)||"x{"===b)&&(x[s-1]=u-1):x[s-1]=-20,"attribute"===e.stack[s])return void x.push(-20);if("indent"===i.arrayFormat)return O[O.length-1]=!1,void x.push(u);if("inline"===i.arrayFormat)return O[O.length-1]=!0,void x.push(-20);if("method"===t||!0===O[O.length-1])return void x.push(-20);let n=s+1;do{if(h(e.token[n],93))return void x.push(-20);if(h(e.token[n],44))return void x.push(u);n+=1}while(n<c);x.push(-20)}}function B(){if((h(b,41)||"x)"===b)&&"class"===e.stack[s]&&("static"===e.token[e.begin[s-1]-1]||"final"===e.token[e.begin[s-1]-1]||"void"===e.token[e.begin[s-1]-1])&&(x[s-1]=-10,x[e.begin[s-1]-1]=-10),h(b,93)&&(x[s-1]=-10),"else"===g&&h(b,125)&&("x}"===e.token[s-2]&&(x[s-3]=x[s-3]-1),(!0===i.braceAllman||!0===i.elseNewline)&&(x[s-1]=u)),"new"===g&&P.js.keywords.has(e.token[s+1])&&(r+=1),"from"===g&&"end"===m&&s>0&&("import"===e.token[e.begin[s-1]-1]||h(e.token[e.begin[s-1]-1],44))&&(x[s-1]=-10),"function"===g)return!1===i.functionSpace&&s<c-1&&(h(e.token[s+1],40)||"x("===e.token[s+1])?void x.push(-20):void x.push(-10);if(h(b,45)&&s>1)"operator"===e.types[s-2]||h(e.token[s-2],44)?x[s-1]=-20:"start"===e.types[s-2]&&(x[s-2]=-20,x[s-1]=-20);else if("while"!==g||!h(b,125)&&"x}"!==b){if("in"===g||(h(b,125)||"x}"===b)&&("catch"===g||"else"===g&&!1===i.elseNewline&&!1===i.braceAllman))x[s-1]=-10;else if("var"===g||"let"===g||"const"===g){if(y[y.length-1]=s,"end"===m&&(x[s-1]=u),"for"!==e.token[e.begin[s]-1]){let t=s+1,n=0;do{if("end"===e.types[t]&&(n-=1),"start"===e.types[t]&&(n+=1),n<0||0===n&&(h(e.token[t],59)||h(e.token[t],44)))break;t+=1}while(t<c);h(e.token[t],44)&&(u+=1)}return void x.push(-10)}}else{let t=s-1,n=0;do{if((h(e.token[t],125)||"x}"===e.token[t])&&(n+=1),(h(e.token[t],123)||"x{"===e.token[t])&&(n-=1),0===n){if("do"===e.token[t-1]){x[s-1]=-10;break}x[s-1]=u;break}t-=1}while(t>-1)}return"word"===m||"switch"!==e.stack[s]||"default"!==g&&"case"!==g?"catch"===g&&"."===b?(x[s-1]=-20,void x.push(-20)):"catch"===g||"finally"===g?(x[s-1]=-10,void x.push(-10)):void(!1===i.bracePadding&&s<c-1&&h(e.token[s+1],125)?x.push(-20):"object"!==e.stack[s]||!h(b,123)&&!h(b,44)||!h(e.token[s+1],40)&&"x("!==e.token[s+1]?("comment"===e.types[s-1]&&h(e.token[e.begin[s]],40)&&(x[s-1]=u+1),!0===n.script.inlineReturn&&"return"===g&&"start"===m&&"if"===e.stack[s]&&"x{"===b?(x[s-1]=-20,x.push(-20),console.log(b,m,g,f,x[s],u)):x.push(-10)):x.push(-20)):(x[s-1]=u-1,void x.push(-10))}do{e.lexer[s]===l?(f=e.types[s],g=e.token[s],"comment"===f?I():"regex"===f?x.push(-20):"string"===f?(1===g.length?(x.push(-20),0===e.lines[s]&&(x[s-1]=-20)):0===g.indexOf("#!/")?x.push(u):"liquid"!==m&&"liquid"!==e.types[s+1]&&x.push(-10),(h(b,44)||"start"===m)&&("object"===e.stack[s]||"array"===e.stack[s])&&!1===O[O.length-1]&&s>0&&(x[s-1]=u)):0===f.indexOf("template_string")?("template_string_start"===f?(u+=1,x.push(u)):"template_string_else"===f?(z(),x[s-1]=u-1,x.push(u)):(z(),u-=1,x[s-1]=u,x.push(-10)),s>2&&("template_string_else"===e.types[s-2]||"template_string_start"===e.types[s-2])&&(!0===i.bracePadding?(x[s-2]=-10,x[s-1]=-10):(x[s-2]=-20,x[s-1]=-20))):"separator"===f?W():"start"===f?R():"end"===f?T():"type"===f||"type_start"===f||"type_end"===f?(h(e.token[s-1],44)||h(e.token[s-1],58)&&"data_type"!==e.stack[s-1]?x[s-1]=-10:x[s-1]=-20,("type"===e.types[s]||"type_end"===e.types[s])&&x.push(-10),"type_start"===e.types[s]&&x.push(-20)):"operator"===f?E():"word"===f?B():"reference"===f?M():"markup"===f?((","!==e.token[s+1]&&g.indexOf("/>")!==g.length-2||","===e.token[s+1]&&"React"!==e.token[e.begin[s]-3])&&L(!1,!1),"return"===b||"?"===b||":"===b?(x[s-1]=-10,x.push(-20)):"start"===m||"return"===e.token[s-2]&&"method"===e.stack[s-1]?x.push(u):x.push(-20)):0===f.indexOf("liquid")?"liquid_else"===f?"string"===m?(e.lines[s-1]<=1&&(x[s-1]=-20),e.lines[s]>0?(u-=1,x.push(u)):x.push(-20)):(x[s-1]=u-1,x.push(u)):"liquid_start"===f?"string"===m?(e.lines[s-1]<=1&&(x[s-1]=-20),e.lines[s]>0?(u+=1,x.push(u)):x.push(-20)):(u+=1,e.lines[s-1]<1&&(x[s-1]=-20),e.lines[s]>0?x.push(u):x.push(-20)):"liquid_end"===f?"string"===m?(e.lines[s-1]<=1&&(x[s-1]=-20),e.lines[s]>1&&(x[s-1]=u-1,x.push(u))):(u-=1,"liquid_start"===m||e.lines[s-1]<1?x[s-1]=-20:x[s-1]=u,e.lines[s]>0?x.push(u):x.push(-20)):"liquid"===f&&(h(b,58)&&-10===x[s-2]&&(x[s-2]=-20),e.lines[s]>0?x.push(u):x.push(-20)):"generic"===f?(k(b,35)&&"return"!==b&&"operator"!==m&&"public"!==b&&"private"!==b&&"static"!==b&&"final"!==b&&"implements"!==b&&"class"!==b&&"void"!==b&&(x[s-1]=-20),h(e.token[s+1],40)||"x("===e.token[s+1]?x.push(-20):x.push(-10)):x.push(-10),"comment"!==f&&(m=f,b=g),C.length>0&&k(e.token[s],41)&&("comment"===e.types[s]&&C[C.length-1]>-1?C[C.length-1]=n.wrap+1:x[s]>-1||h(e.token[s],96)&&e.token[s].indexOf(o)>0?C[C.length-1]=-1:C[C.length-1]>-1&&(C[C.length-1]=C[C.length-1]+e.token[s].length,-10===x[s]&&(C[C.length-1]=C[C.length-1]+1)))):F(),s+=1}while(s<c);return x})();return(()=>{let r=[],p=n.indentChar.repeat(n.indentSize),f=n.preserveLine+1,g=["x;","x}","x{","x(","x)"],m=Be.start,b=n.indentLevel;function y(t){let n=m===c-1?1:e.lines[m+1]-1>f?f:e.lines[m+1]>1?e.lines[m+1]-1:1;return Be.crlf.repeat(n)+p.repeat(t)}if(!0===i.vertical){let t=function(t){let i=0,r=0,o=t-1,a=0,l=0,c=e.begin[m],p=[];do{if((e.begin[o]===c||h(e.token[o],93)||h(e.token[o],41))&&(h(e.token[o+1],61)||h(e.token[o+1],59)&&"object"===e.stack[o])){a=o,r=0;do{if(e.begin[a]===c){if(h(e.token[a],58)||h(e.token[a],59)||"x;"===e.token[a]||u[a]>-1&&"comment"!==e.types[a]){h(e.token[a+1],46)&&(r+=n.indentSize*n.indentChar.length);break}}else if(u[a]>-1)break;"comment"!==e.types[a]&&(-10===u[a-1]&&(r+=1),r=e.token[a].length+r),a-=1}while(a>c);if(l=a,h(e.token[l],44)&&h(e.token[o+1],61))do{if("end"===e.types[l]&&(l=e.begin[l]),e.begin[l]===c){if(h(e.token[l],59)||"x;"===e.token[l])break;if("var"===e.token[l]||"const"===e.token[l]||"let"===e.token[l]){r+=n.indentSize*n.indentChar.length;break}}l-=1}while(l>c);r>i&&(i=r),p.push([o,r]),o=a}else"end"===e.types[o]&&(o=e.begin[o]);o-=1}while(o>c);if(o=p.length,o>0)do{if(o-=1,a=p[o][1],a<i)do{e.token[p[o][0]]=e.token[p[o][0]]+s,a+=1}while(a<i)}while(o>0)};m=c;do{m-=1,"script"===e.lexer[m]&&h(e.token[m],125)&&k(e.token[m-1],123)&&u[e.begin[m]]>0?t(m):m=e.begin[m]}while(m>0)}m=Be.start;do{if(e.lexer[m]===l){if("comment"===e.types[m]&&!0===i.commentIndent&&/\n/.test(e.token[m])){let t=e.begin[m]>-1?h(e.token[m][2],42)?d(u[m],p)+n.indentChar:d(u[m],p):n.indentChar,i=e.token[m].split(/\n/),r=1;do{i[r]=t+i[r].trimStart(),r+=1}while(r<i.length);e.token.splice(m,1,i.join(o))}g.indexOf(e.token[m])<0&&(k(e.token[m],59)||!1===i.noSemicolon?r.push(e.token[m]):u[m]<0&&"comment"!==e.types[m+1]&&r.push(";")),m<c-1&&e.lexer[m+1]!==l&&e.begin[m]===e.begin[m+1]&&e.types[m+1].indexOf("end")<0&&k(e.token[m],44)?r.push(s):u[m]>-1?((u[m]>-1&&h(e.token[m],123)||u[m]>-1&&h(e.token[m+1],125))&&e.lines[m]<3&&!0===i.braceNewline&&e.lines[m+1]<3&&r.push(y(0)),2===Be.mode?Be.ender!==m&&r.push(y(u[m])):m!==c-1&&r.push(y(u[m])),b=u[m]):-10===u[m]&&(r.push(s),e.lexer[m+1]!==l&&(b+=1))}else if(a[m]===m)r.push(e.token[m]);else{Be.ender=a[m],Be.start=m;let e=Be.external(b);r.push(e),m=Be.iterator,-10===u[m]?r.push(s):u[m]>-1&&r.push(y(u[m]))}m+=1}while(m<c);return Be.iterator=c-1,r.join(t)})()}():void 0}var Ne=Object.assign||((e,t)=>(t&&Object.keys(t).forEach((n=>e[n]=t[n])),e)),Pe=(e,t,n)=>{let i=typeof n;if(n&&"object"===i)if(Array.isArray(n))for(let i of n)t=Pe(e,t,i);else for(let i of Object.keys(n)){let r=n[i];"function"==typeof r?t[i]=r(t[i],Fe):void 0===r?e&&!isNaN(i)?t.splice(i,1):delete t[i]:null===r||"object"!=typeof r||Array.isArray(r)?t[i]=r:"object"==typeof t[i]?t[i]=r===t[i]?r:Fe(t[i],r):t[i]=Pe(!1,{},r)}else"function"===i&&(t=n(t,Fe));return t},Fe=(e,...t)=>{let n=Array.isArray(e);return Pe(n,n?e.slice():Ne({},e),t)},ze=Fe,Ee=ze({crlf:!1,correct:!1,preset:"default",language:"auto",endNewline:!1,indentChar:" ",indentLevel:0,indentSize:2,preserveLine:2,wrap:0,wrapFraction:0,liquid:{commentNewline:!1,commentIndent:!0,delimiterTrims:"preserve",delimiterPlacement:"preserve",forceFilter:0,forceArgument:0,ignoreTagList:[],indentAttribute:!1,lineBreakSeparator:"before",normalizeSpacing:!0,preserveComment:!1,preserveInternal:!1,dedentTagList:[],quoteConvert:"none"},markup:{attributeCasing:"preserve",attributeSort:!1,commentNewline:!1,commentIndent:!0,delimiterTerminus:"inline",forceAttribute:3,forceAttributeValue:!0,forceIndent:!1,ignoreCSS:!1,ignoreJS:!0,ignoreJSON:!1,lineBreakValue:"preserve",preserveComment:!1,preserveText:!1,preserveAttribute:!1,selfCloseSpace:!0,selfCloseSVG:!0,stripAttributeLines:!1,quoteConvert:"none"},json:{arrayFormat:"default",braceAllman:!1,bracePadding:!1,objectIndent:"default",objectSort:!1,braceStyle:"none",caseSpace:!1,commentIndent:!1,commentNewline:!1,correct:!1,elseNewline:!1,functionNameSpace:!1,functionSpace:!1,methodChain:4,neverFlatten:!1,noCaseIndent:!1,preserveComment:!1,styleGuide:"none",ternaryLine:!1,variableList:"none",quoteConvert:"double",endComma:"never",noSemicolon:!0,vertical:!1},style:{commentIndent:!1,commentNewline:!1,atRuleSpace:!0,classPadding:!1,noLeadZero:!1,preserveComment:!1,sortSelectors:!1,sortProperties:!1,quoteConvert:"none"},script:{arrayFormat:"default",braceNewline:!1,bracePadding:!1,braceStyle:"none",braceAllman:!1,caseSpace:!1,commentIndent:!1,commentNewline:!1,elseNewline:!1,endComma:"never",functionNameSpace:!1,functionSpace:!1,inlineReturn:!0,methodChain:4,neverFlatten:!1,noCaseIndent:!1,noSemicolon:!1,objectSort:!1,objectIndent:"default",preserveComment:!1,quoteConvert:"none",styleGuide:"none",ternaryLine:!1,variableList:"none",vertical:!1}}),Me=class extends Array{get entry(){return this[this.length-1]}get token(){return this[this.length-1][0]}get index(){return this[this.length-1][1]}update(e,t){let n=this.length-1;return n>0?(void 0===t?"string"==typeof e?this[n][0]=e:this[n][1]=e:(this[n][0]=e,this[n][1]=t),this[n]):(this.push([e,t]),this[n+1])}pop(){let e=this.length-1,t=this[e];return e>0&&this.splice(e,1),t}},We=class{constructor(){this.hooks={parse:null,format:null},this.start=0,this.ender=0,this.iterator=0,this.attributes=new Map,this.regions=new Map,this.pairs=new Map,this.error=null,this.crlf="\n",this.references=[[]],this.count=-1,this.lineColumn=0,this.lineNumber=1,this.lineDepth=2,this.lineOffset=0,this.lineIndex=0,this.rules=Ee,this.data={begin:[],ender:[],lexer:[],lines:[],stack:[],token:[],types:[]}}get source(){return 2===this.mode?We.region:"node"===E.env&&Buffer.isBuffer(We.input)?We.input.toString():We.input}set source(e){We.input="node"!==E.env||Buffer.isBuffer(e)?e:Buffer.from(e)}get current(){return{begin:this.data.begin[this.count],ender:this.data.ender[this.count],lexer:this.data.lexer[this.count],lines:this.data.lines[this.count],stack:this.data.stack[this.count],token:this.data.token[this.count],types:this.data.types[this.count]}}reset(){this.error=null,this.count=-1,this.start=0,this.ender=0,this.lineColumn=0,this.lineNumber=1,this.lineDepth=2,this.lineIndex=0,this.lineOffset=0,this.data.begin=[],this.data.ender=[],this.data.lexer=[],this.data.lines=[],this.data.stack=[],this.data.token=[],this.data.types=[],this.references=[[]],this.stack=new Me(["global",-1]),this.mode=1,this.pairs.size>0&&this.pairs.clear(),this.attributes.size>0&&this.attributes.clear(),this.regions.size>0&&this.regions.clear()}get(e){return{begin:this.data.begin[e],ender:this.data.ender[e],lexer:this.data.lexer[e],lines:this.data.lines[e],stack:this.data.stack[e],token:this.data.token[e],types:this.data.types[e]}}document(e,t=3){return this.reset(),Le(e),1===t?this.data:(this.mode=3,Te(e))}external(e,t){if(1!==this.mode){if(0===this.regions.size)return this.source;let{id:t,lexer:n}=this.regions.get(this.start);this.mode=2,this.language=t,this.rules.indentLevel=e;let i=Te(n);return this.mode=3,this.rules.indentLevel=0,this.language=this.rules.language,this.lexer=l(this.language),i}{this.mode=2;let n=c(e);We.region=t,this.language=e,this.lexer=l(this.language),this.regions.set(this.count+1,{lexer:n,id:this.language}),Le(n),this.mode=1,this.lexer=l(this.rules.language),this.language=this.rules.language}}final(e){let t=this.count,n=e.begin[t];if(!("style"===e.lexer[t]&&this.rules.style.sortProperties||"script"===e.lexer[t]&&(this.rules.script.objectSort||this.rules.json.objectSort))){do{e.begin[t]===n||e.begin[e.begin[t]]===n&&e.types[t].indexOf("attribute")>-1&&e.types[t].indexOf("attribute_end")<0?e.ender[t]=this.count:t=e.begin[t],t-=1}while(t>n);t>-1&&(e.ender[t]=this.count)}}syntactic(e,t){if("liquid_start"===e.types||"start"===e.types)this.pairs.set(this.count,{index:this.count,line:this.lineNumber,token:e.token,type:"start"===e.types?2:3,stack:t});else if(this.pairs.has(this.stack.index)&&("end"===e.types||"liquid_end"===e.types)){let t=this.pairs.get(this.stack.index);3===t.type?e.token.indexOf(`end${t.stack}`)>-1?this.pairs.delete(this.stack.index):W(112,t):2===t.type&&`</${t.stack}>`===e.token&&this.pairs.delete(this.stack.index)}}replace(e,t=this.count){for(let n in e)this.data[n][t]=e[n]}push(e,n,i=t){if(e.begin.push(n.begin),e.ender.push(n.ender),e.lexer.push(n.lexer),e.stack.push(n.stack),e.token.push(n.token),e.types.push(n.types),e.lines.push(n.lines),e===this.data){if(this.count=this.count+1,"style"!==n.lexer&&i.replace(/[{}<>%]/g,t)===t&&(i="else"===n.types?"else":F(n.token)),this.lineOffset=0,"start"===n.types||n.types.indexOf("_start")>0)this.stack.push([i,this.count]),this.lineDepth=this.lineDepth+this.rules.indentSize;else if("end"===n.types||n.types.indexOf("_end")>0){let t=0,n=this.stack.length;n>2&&("else"===e.types[this.stack[n-1][1]]||e.types[this.stack[n-1][1]].indexOf("_else")>0)&&("start"===e.types[this.stack[n-2][1]]||e.types[this.stack[n-2][1]].indexOf("_start")>0)&&("else"===e.types[this.stack[n-2][1]+1]||e.types[this.stack[n-2][1]+1].indexOf("_else")>0)&&(this.stack.pop(),e.begin[this.count]=this.stack.index,e.stack[this.count]=this.stack.token,e.ender[this.count-1]=this.count,t=e.ender[e.begin[this.count]+1]),this.final(e),t>0&&(e.ender[e.begin[this.count]+1]=t),this.stack.pop(),this.lineDepth=this.lineDepth-this.rules.indentSize}else("else"===n.types||n.types.indexOf("_else")>0)&&(i===t&&(i="else"),this.count>0&&("start"===e.types[this.count-1]||e.types[this.count-1].indexOf("_start")>0)?this.stack.push([i,this.count]):(this.final(e),this.stack.update(i===t?"else":i,this.count)));null!==this.hooks.parse&&this.hooks.parse[0].call({line:this.lineNumber,stack:this.stack.entry,language:this.language},n,this.count)}}pop(e){return e===this.data&&(this.count=this.count-1),{begin:e.begin.pop(),ender:e.ender.pop(),lexer:e.lexer.pop(),lines:e.lines.pop(),stack:e.stack.pop(),token:e.token.pop(),types:e.types.pop()}}concat(e,t){e.begin=e.begin.concat(t.begin),e.ender=e.ender.concat(t.ender),e.lexer=e.lexer.concat(t.lexer),e.stack=e.stack.concat(t.stack),e.token=e.token.concat(t.token),e.types=e.types.concat(t.types),e.lines=e.lines.concat(t.lines),e===this.data&&(this.count=e.token.length-1)}splice(e){let n=this.data.begin[this.count],i=this.data.token[this.count];void 0!==e.record&&e.record.token!==t?(e.data.begin.splice(e.index,e.howmany,e.record.begin),e.data.ender.splice(e.index,e.howmany,e.record.ender),e.data.token.splice(e.index,e.howmany,e.record.token),e.data.lexer.splice(e.index,e.howmany,e.record.lexer),e.data.stack.splice(e.index,e.howmany,e.record.stack),e.data.types.splice(e.index,e.howmany,e.record.types),e.data.lines.splice(e.index,e.howmany,e.record.lines),e.data===this.data&&(this.count=this.count-e.howmany+1,(n!==this.data.begin[this.count]||i!==this.data.token[this.count])&&(this.lineOffset=0))):(e.data.begin.splice(e.index,e.howmany),e.data.ender.splice(e.index,e.howmany),e.data.token.splice(e.index,e.howmany),e.data.lexer.splice(e.index,e.howmany),e.data.stack.splice(e.index,e.howmany),e.data.types.splice(e.index,e.howmany),e.data.lines.splice(e.index,e.howmany),e.data===this.data&&(this.count=this.count-e.howmany,this.lineOffset=0))}is(e,t){return this.count>0&&this.data[e][this.count]===t}lines(e,t){return this.lineNumber=this.lineNumber+1,this.lineIndex=e,t+1}spacer(e){this.lineOffset=1;do{if(e.array[e.index]===o&&(this.lineOffset=this.lineOffset+1,this.lineNumber=this.lineNumber+1),!1===b(e.array[e.index+1]))break;e.index=e.index+1}while(e.index<e.end);return e.index}},Re=We;Re.input=t,Re.region=t;var Be=new Re;function De(e){let n=[],i=0,r=/(((var)|(let)|(const)|(function)|(import))\s+(\w|\$)+[a-zA-Z0-9]*)/.test(e)&&!1===/@import/.test(e),s=/((((final)|(public)|(private))\s+static)|(static\s+void))/.test(e);function o(){let o=1,a=t,l=!1,c=!1,u=/((public)|(private))\s+(static\s+)?(((v|V)oid)|(class)|(final))/.test(e);if(o<i)do{!1===l?h(n[o],42)&&h(n[o-1],47)?(n[o-1]=t,l=!0):!1===c&&o<i-6&&102===n[o].charCodeAt(0)&&105===n[o+1].charCodeAt(0)&&108===n[o+2].charCodeAt(0)&&116===n[o+3].charCodeAt(0)&&101===n[o+4].charCodeAt(0)&&114===n[o+5].charCodeAt(0)&&h(n[o+6],58)&&(c=!0):!0===l&&h(n[o],42)&&o!==i-1&&h(n[o+1],47)?(l=!1,n[o]=t,n[o+1]=t):!0===c&&h(n[o],59)&&(c=!1,n[o]=t),(!0===l||!0===c)&&(n[o]=t),o+=1}while(o<i);return a=n.join(t),!1===/\s\/\//.test(e)&&!1===/\/\/\s/.test(e)&&!0===/^(\s*(\{|\[)(?!%))/.test(e)&&/((\]|\})\s*)$/.test(e)&&-1!==e.indexOf(",")?{language:"json",lexer:"script"}:!0!==/((\}?(\(\))?\)*;?\s*)|([a-z0-9]("|')?\)*);?(\s*\})*)$/i.test(e)||!0!==r&&!0!==u&&!0!==/console\.log\(/.test(e)&&!0!==/export\s+default\s+class\s+/.test(e)&&!0!==/export\s+(const|var|let|class)s+/.test(e)&&!0!==/document\.get/.test(e)&&!0!==/((=|(\$\())\s*function)|(\s*function\s+(\w*\s+)?\()/.test(e)&&-1!==e.indexOf("{")&&!0!==/^(\s*if\s+\()/.test(e)?e.indexOf("{")>-1&&(/^(\s*[\u007b\u0024\u002e#@a-z0-9])/i.test(e)||/^(\s*\/(\*|\/))/.test(e)||/^(\s*\*\s*\{)/.test(e))&&!1===/^(\s*if\s*\()/.test(e)&&!1===/=\s*(\{|\[|\()/.test(a)&&(!1===/(\+|-|=|\?)=/.test(a)||/\/\/\s*=+/.test(a)||/=+('|")?\)/.test(e)&&/;\s*base64/.test(e))&&!1===/function(\s+\w+)*\s*\(/.test(a)?/:\s*(?:number|string|boolean|any|unknown)(?:\[\])?/.test(e)||/(?:public|private)\s+/.test(e)||/(?:export|declare)\s+type\s+\w+\s*=/.test(e)||/(?:namespace|interface|enum|implements|declare)\s+\w+/.test(e)||/(?:typeof|keyof|as)\s+\w+/.test(e)||/\w+\s+as\s+\w+/.test(e)||/\[\w+(?:(?::\s*\w+)|(?:\s+in\s+\w+))\]:/.test(e)||/\):\s*\w+(?:\[\])?\s*(?:=>|\{)\s+/.test(e)||/(var|const|let)\s+\w+:\s*(string|number|boolean|string|any)(\[\])?/.test(e)?{language:"typescript",lexer:"script"}:!1===/\s(class|var|const|let)\s+\w/.test(e)&&/<[a-zA-Z](?:-[a-zA-Z])?/.test(e)&&/<\/[a-zA-Z-](?:-[a-zA-Z])?/.test(e)&&(/\s?\{%/.test(e)||/{{/.test(e))?{language:"liquid",lexer:"markup"}:!1===/^(\s*[$@])/.test(e)&&/([}\]];?\s*)$/.test(e)&&(/^\s*import\s+\*\s+as\s+\w+\s+from\s+['"]/.test(e)||/module\.export\s+=\s+/.test(e)||/export\s+default\s+\{/.test(e)||/[?:]\s*[{[]/.test(e)||/^(?:\s*return;?(?:\s+[{[])?)/.test(e))?{language:"javascript",lexer:"script"}:/{%/.test(e)&&/{{/.test(e)&&/<\w/.test(e)?{language:"liquid",lexer:"markup"}:/{\s*(?:\w|\.|@|#)+\s*\{/.test(e)?{language:"less",lexer:"style"}:/\$(\w|-)/.test(e)?{language:"scss",lexer:"style"}:!0===/[;{:]\s*@\w/.test(e)?{language:"less",lexer:"style"}:{language:"css",lexer:"style"}:e.indexOf("{%")>-1?{language:"liquid",lexer:"markup"}:{language:"unknown",lexer:"text"}:e.indexOf("(")>-1||e.indexOf("=")>-1||e.indexOf(";")>-1&&e.indexOf("{")>-1?!0===s||/\w<\w+(,\s+\w+)*>/.test(e)||/(?:var|let|const)\s+\w+\s*:/.test(e)||/=\s*<\w+/.test(e)?{language:"typescript",lexer:"script"}:{language:"javascript",lexer:"script"}:{language:"unknown",lexer:"text"}}function a(){return/^(\s*<!doctype\s+html>)/i.test(e)||/^(\s*<html)/i.test(e)||/<form\s/i.test(e)&&/<label\s/i.test(e)&&/<input\s/i.test(e)||/<img(\s+\w+=['"]?\S+['"]?)*\s+src\s*=/.test(e)||/<a(\s+\w+=['"]?\S+['"]?)*\s+href\s*=/.test(e)||/<ul\s/i.test(e)&&/<li\s/i.test(e)&&/<\/li>/i.test(e)&&/<\/ul>/i.test(e)||/<head\s*>/.test(e)&&/<\/head>/.test(e)||/^(\s*<!DOCTYPE\s+((html)|(HTML))\s+PUBLIC\s+)/.test(e)&&!1===/XHTML\s+1\.1/.test(e)&&!1===/XHTML\s+1\.0\s+(S|s)((trict)|(TRICT))/.test(e)?/{%-?\s*(schema|for|if|unless|render|include)/.test(e)||/{%-?\s*end\w+/.test(e)||/{{-?\s*content_for/.test(e)||/{{-?\s*[a-zA-Z0-9_'".[\]]+\s*-?}}/.test(e)||/{%/.test(e)&&/%}/.test(e)&&/{{/.test(e)&&/}}/.test(e)?{language:"liquid",lexer:"markup"}:{language:"html",lexer:"markup"}:/\s?{[{%]-?/.test(e)?{language:"liquid",lexer:"markup"}:{language:"xml",lexer:"markup"}}return null===e||e.replace(/\s+/g,t)===t?{language:"unknown",lexer:"text"}:(/\n\s*#{1,6}\s+/.test(e)||/\n\s*(?:\*|-|(?:\d+\.))\s/.test(e))&&(/\[( |x|X)\]/.test(e)||/\s[*_~]{1,2}\w+[*_~]{1,2}/.test(e)||/\n\s*```[a-zA-Z]*?\s+/.test(e)||/-+\|(-+\|)+/.test(e))?{language:"markdown",lexer:"text"}:/^(\s*<!DOCTYPE\s+html>)/i.test(e)?a():/^\s*@(?:charset|import|include|keyframes|media|namespace|page)\b/.test(e)||!1===s&&!1===/=(>|=|-|\+|\*)/.test(e)&&!1===/^(?:\s*((if)|(for)|(function))\s*\()/.test(e)&&!1===/(?:\s|;|\})((if)|(for)|(function\s*\w*))\s*\(/.test(e)&&!1===r&&!1===/return\s*\w*\s*(;|\})/.test(e)&&(void 0===e||/^(?:\s*#(?!(!\/)))/.test(e)||/\n\s*(\.|@)\w+(\(|(\s*:))/.test(e)&&!1===/>\s*<\w/.test(e)||/^\s*:root\s*\{/.test(e)||/-{2}\w+\s*\{/.test(e)||/^\s*(?:body|button|hr|section|h[1-6]|p|strong|\*)\s+\{\s+/.test(e))?/\n\s*#+\s+/.test(e)||/^#+\s+/.test(e)?{language:"markdown",lexer:"markup"}:/\$[a-zA-Z]/.test(e)||/\{\s*(\w|\.|\$|#)+\s*\{/.test(e)||/^[.#]?[\w][\w-]+\s+\{(?:\s+[a-z][a-z-]+:\s*\S+;)+\s+[&>+]?\s+[.#:]?[\w][\w-]\s+\{/.test(e)&&!1===/:\s*@[a-zA-Z];/.test(e)?{language:"scss",lexer:"style"}:/@[a-zA-Z]:/.test(e)||/\.[a-zA-Z]\(\);/.test(e)?{language:"less",lexer:"style"}:{language:"css",lexer:"style"}:(n=e.replace(/\[[a-zA-Z][\w-]*=['"]?[a-zA-Z][\w-]*['"]?\]/g,t).split(t),i=n.length,/^(\s*({{|{%|<))/.test(e)?a():!0===s||!1===/^(?:[\s\w-]*<)/.test(e)&&!1===/(?:>[\s\w-]*)$/.test(e)?o():(/^(?:\s*<\?xml)/.test(e)||/(?:>[\w\s:]*)?<(?:\/|!|#)?[\w\s:\-[]+/.test(e)||/^\s*</.test(e)&&/<\/\w+(\w|\d)+>\s*$/.test(e))&&(/^(?:[\s\w]*<)/.test(e)||/(?:>[\s\w]*)$/.test(e))||/^(?:\s*<s((cript)|(tyle)))/i.test(e)&&/(?:<\/s((cript)|(tyle))>\s*)$/i.test(e)?!1===/^(?:[\s\w]*<)/.test(e)||!1===/(?:>[\s\w]*)$/.test(e)?o():a():{language:"unknown",lexer:"text"})}function Je(e,t,n){if("global"===e)switch(t){case"indentChar":return function(e,t,n){if("string"==typeof n)return!0;throw R({message:`Invalid ${e} rule (${t}) type "${typeof n}" provided`,option:"global"===e?t:`${e} → ${t}`,provided:n,expected:["string"]})}(e,t,n);case"preset":case"language":return Ue(e,t,n);case"crlf":case"correct":case"endNewline":return Ze(e,t,n);case"indentLevel":case"indentSize":case"preserveLine":case"wrap":case"wrapFraction":return He(e,t,n);default:return!1}else if("liquid"===e)switch(t){case"commentNewline":case"commentIndent":case"indentAttribute":case"normalizeSpacing":case"preserveComment":case"preserveInternal":return Ze(e,t,n);case"forceArgument":case"forceFilter":return He(e,t,n);case"ignoreTagList":case"dedentTagList":return Ve(e,t,n);case"lineBreakSeparator":case"delimiterPlacement":case"delimiterTrims":case"quoteConvert":return Ue(e,t,n)}else if("markup"===e)switch(t){case"forceAttribute":if(S(n))return He(e,t,n);if($(n))return Ze(e,t,n);throw R({message:`Invalid ${e} rule (${t}) type "${typeof n}" provided`,option:`${e} → ${t}`,provided:n,expected:["boolean","number"]});case"attributeSort":if($(n))return Ze(e,t,n);if(q(n))return Ve(e,t,n);throw R({message:`Invalid ${e} rule (${t}) type "${typeof n}" provided`,option:`${e} → ${t}`,provided:n,expected:["boolean","number"]});case"commentNewline":case"commentIndent":case"forceIndent":case"forceAttributeValue":case"ignoreCSS":case"ignoreJS":case"ignoreJSON":case"preserveComment":case"preserveText":case"preserveAttribute":case"selfCloseSpace":case"selfCloseSVG":case"stripAttributeLines":return Ze(e,t,n);case"attributeCasing":case"delimiterTerminus":case"lineBreakValue":case"quoteConvert":return Ue(e,t,n)}else if("style"===e)switch(t){case"correct":case"atRuleSpace":case"classPadding":case"noLeadZero":case"sortSelectors":case"sortProperties":return $(n);case"quoteConvert":return Ue(e,t,n)}else if("json"===e)switch(t){case"arrayFormat":case"objectIndent":return Ue(e,t,n);case"allowComments":case"braceAllman":case"bracePadding":case"objectSort":return Ze(e,t,n)}}function Ve(e,t,n){if(q(n)){if(0===n.length)return!0;for(let i=0;i<n.length;i++)if(!1===O(n[i]))throw R({message:`Invalid ${e} rule (${t}) type "${typeof n}" provided`,option:`${e} → ${t} (index: ${i})`,provided:n,expected:["string"]});return!0}throw R({message:`Invalid ${e} rule (${t}) type "${typeof n}" provided`,option:"global"===e?t:`${e} → ${t}`,provided:n,expected:["string[]"]})}function He(e,t,n){if(S(n)&&!1===isNaN(n))return!0;throw R({message:`Invalid ${e} rule (${t}) type "${typeof n}" provided`,option:"global"===e?t:`${e} → ${t}`,provided:n,expected:["number"]})}function Ze(e,t,n){if(S(n))return 0!==n;if($(n))return!0;throw R({message:`Invalid ${e} rule (${t}) type "${typeof n}" provided`,option:"global"===e?t:`${e} → ${t}`,provided:n,expected:["boolean"]})}function Ue(e,t,n){if(!1===O(n))throw R({message:`Invalid ${e} rule (${t}) type "${typeof n}" provided`,option:`${e} → ${t}`,provided:n,expected:["string"]});if("language"===t){switch(n){case"text":case"markup":case"html":case"liquid":case"xml":case"javascript":case"typescript":case"jsx":case"tsx":case"json":case"less":case"scss":case"sass":case"css":return!0}throw R({message:`Unsupported "${t}" identifier provided`,option:e===`${t} (global)`?t:`${e} → ${t}`,provided:n,expected:["text","auto","markup","html","liquid","xml","javascript","typescript","jsx","tsx","json","less","scss","sass","css"]})}if("preset"===t){switch(n){case"default":case"strict":case"recommended":case"warrington":case"prettier":return!0}throw R({message:`Unsupported "${t}" provided`,option:e===`${t} (global)`?t:`${e} → ${t}`,provided:n,expected:["default","strict","recommended","warrington","prettier"]})}if("attributeCasing"===t)switch(n){case"preserve":case"lowercase":case"lowercase-name":case"lowercase-value":return!0;default:throw R({message:`Invalid "${t}" option provided`,option:`${e} → ${t}`,provided:n,expected:["preserve","lowercase","lowercase-name","lowercase-value"]})}else if("delimiterTrims"===t)switch(n){case"preserve":case"never":case"always":case"tags":case"outputs":case"multiline":return!0;default:throw R({message:`Invalid "${t}" option provided`,option:`${e} → ${t}`,provided:n,expected:["preserve","never","always","tags","outputs","multiline","linebreak"]})}else if("delimiterPlacement"===t)switch(n){case"default":case"inline":case"preserve":case"consistent":case"force":case"force-multiline":return!0;default:throw R({message:`Invalid "${t}" option provided`,option:`${e} → ${t}`,provided:n,expected:["default","inline","preserve","consistent","force","force-multiline"]})}else if("lineBreakSeparator"===t)switch(n){case"preserve":case"before":case"after":return!0;default:throw R({message:`Invalid "${t}" option provided`,option:`${e} → ${t}`,provided:n,expected:["preserve","before","after"]})}else if("delimiterTerminus"===t)switch(n){case"force":case"inline":case"adapt":return!0;default:throw R({message:`Invalid "${t}" option provided`,option:`${e} → ${t}`,provided:n,expected:["force","inline","adapt"]})}else if("lineBreakValue"===t)switch(n){case"preserve":case"align":case"indent":case"force-preserve":case"force-align":case"force-indent":return!0;default:throw R({message:`Invalid "${t}" option provided`,option:`${e} → ${t}`,provided:n,expected:["preserve","align","indent","force-preserve","force-align","force-indent"]})}else if("quoteConvert"===t)switch(n){case"none":case"double":case"single":return!0;default:throw R({message:`Invalid "${t}" option provided`,option:`${e} → ${t}`,provided:n,expected:["none","double","single"]})}else if("objectIndent"===t||"arrayFormat"===t)switch(n){case"default":case"indent":case"inline":return!0;default:throw R({message:`Invalid "${t}" option provided`,option:`${e} → ${t}`,provided:n,expected:["default","indent","inline"]})}else if("endComma"===t)switch(n){case"none":case"always":case"never":return!0;default:throw R({message:`Invalid "${t}" option provided`,option:`${e} → ${t}`,provided:n,expected:["none","always","never"]})}else if("variableList"===t)switch(n){case"none":case"each":case"list":return!0;default:throw R({message:`Invalid "${t}" option provided`,option:`${e} → ${t}`,provided:n,expected:["none","each","list"]})}}var Ge=ze({preset:"recommended",language:"auto",preserveLine:2,wrap:120,wrapFraction:90,liquid:{ignoreTagList:["javascript"],indentAttribute:!0,commentNewline:!0,delimiterTrims:"tags",lineBreakSeparator:"after",quoteConvert:"double",delimiterPlacement:"consistent"},markup:{attributeCasing:"lowercase-name",commentNewline:!0,delimiterTerminus:"adapt",forceAttribute:2,forceIndent:!0,ignoreCSS:!1,ignoreJSON:!1,lineBreakValue:"indent",selfCloseSpace:!0,selfCloseSVG:!0,quoteConvert:"double"},json:{arrayFormat:"indent",objectIndent:"indent"},style:{commentNewline:!0,commentIndent:!0,quoteConvert:"double",noLeadZero:!0,sortProperties:!0}}),Xe=ze({preset:"strict",language:"auto",preserveLine:1,wrap:0,wrapFraction:80,liquid:{ignoreTagList:[],commentNewline:!0,delimiterTrims:"never",lineBreakSeparator:"before",quoteConvert:"double",forceArgument:3,forceFilter:4,delimiterPlacement:"consistent"},markup:{attributeSort:["id","class","type","name","value","href","src"],attributeCasing:"lowercase-name",commentNewline:!0,delimiterTerminus:"adapt",forceAttribute:1,forceIndent:!0,ignoreCSS:!1,ignoreJSON:!1,ignoreJS:!1,lineBreakValue:"force-indent",selfCloseSpace:!0,selfCloseSVG:!0,stripAttributeLines:!0,quoteConvert:"double"},json:{arrayFormat:"indent",objectIndent:"indent",objectSort:!0},style:{commentNewline:!0,commentIndent:!0,quoteConvert:"double",noLeadZero:!0,sortProperties:!0,sortSelectors:!0}}),Qe=ze({preset:"warrington",language:"auto",preserveLine:2,wrap:0,liquid:{ignoreTagList:["javascript"],indentAttribute:!0,lineBreakSeparator:"after",quoteConvert:"double"},markup:{commentNewline:!0,delimiterTerminus:"adapt",forceAttribute:1,forceIndent:!0,ignoreCSS:!0,ignoreJSON:!1,lineBreakValue:"indent",selfCloseSpace:!0,selfCloseSVG:!0,stripAttributeLines:!0,quoteConvert:"double"},json:{arrayFormat:"indent",objectIndent:"indent"},style:{commentIndent:!1,quoteConvert:"double"}}),Ye=ze({preset:"prettier",language:"auto",preserveLine:1,wrap:80,wrapFraction:60,liquid:{ignoreTagList:["javascript"],indentAttribute:!0,lineBreakSeparator:"after",dedentTagList:["schema"],quoteConvert:"double"},markup:{commentNewline:!0,delimiterTerminus:"force",forceAttribute:1,forceIndent:!0,ignoreJS:!0,ignoreCSS:!0,ignoreJSON:!1,lineBreakValue:"force-indent",selfCloseSpace:!0,selfCloseSVG:!0,stripAttributeLines:!0,quoteConvert:"double"},json:{arrayFormat:"indent",objectIndent:"indent"},style:{commentIndent:!1,quoteConvert:"double"}}),Ke=["correct","crlf","endNewline","indentChar","indentLevel","indentSize","preserveLine","wrap","wrapFraction"],et=["liquid","markup","style","json","script"],tt={};((t,n)=>{for(var i in n)e(t,i,{get:n[i],enumerable:!0})})(tt,{defaults:()=>Ee});var nt=new class{constructor(){this.language="auto",this.lexer="auto",this.stats=null,this.events={format:[],error:[],rules:[],parse:[]},"node"===E.env&&(E.cwd=process.cwd()),"browser"===E.env&&("esthetic"in window||ke(window,"esthetic",{configurable:!0,get:()=>nt}))}get presets(){return tt}get table(){return Be.data}get definitions(){return me}get detect(){return De}get error(){return Be.error}grammar(e){return e?(P.extend(e),this):P.extend()}config(e){if(!e)return E;for(let t in e)t in E&&(E[t]=e[t]);return"browser"===E.env&&!1===E.globalThis&&"esthetic"in window&&delete window.esthetic,this}on(e,t){return this.events[e].push(t),this}hook(e,t){Be.hooks[e]=[t]}format(e,t){if(Be.source=e,j(t)&&"language"in t&&this.language!==t.language&&Ue("global","language",t.language)&&(this.language=Be.language=Be.rules.language=t.language,this.lexer=Be.lexer=l(Be.language)),this.rules(t),"auto"===this.lexer){let e=this.detect(Be.source);this.language=Be.language=Be.rules.language=e.language,this.lexer=Be.lexer=l(e.language)}let n=c(this.language),i=E.reportStats?u(this.language,this.lexer):null,r=Be.document(n);if(null!==Be.error){if(this.events.error.length>0){for(let e of this.events.error)e(Be.error);return e}if(E.throwErrors)throw Be.error;return e}let s=null===i?null:this.stats=i(r.length);if(this.events.format.length>0)for(let t of this.events.format)if(!1===t.call({get data(){return Be.data}},{get output(){return e},get stats(){return s},get rules(){return Be.rules}}))return e;return r}parse(e,t){if(Be.source=e,j(t)&&"language"in t&&this.language!==t.language&&Ue("global","language",t.language)&&(this.language=Be.language=Be.rules.language=t.language,this.lexer=Be.lexer=l(Be.language)),this.rules(t),"auto"===this.lexer){let e=this.detect(Be.source);this.language=Be.language=Be.rules.language=e.language,this.lexer=Be.lexer=l(e.language)}let n=c(this.language),i=E.reportStats?u(this.language,this.lexer):null,r=Be.document(n,1);if(null!==Be.error){if(this.events.error.length>0){for(let e of this.events.error)e(Be.error);return[]}if(E.throwErrors)throw Be.error;return[]}let s=null===i?null:this.stats=i(Be.count);if(this.events.parse.length>0)for(let t of this.events.parse)if(!1===t({get data(){return Be.data},get stats(){return s},get rules(){return Be.rules}}))return e;return r}rules(e){return _(e)||(Be.rules=function(e,t){let n,i=e,r=v(i);t.rules.length>0&&(n={}),"preset"in i&&function(e){if(e.preset!==Be.rules.preset&&Ue("global","preset",e.preset)){if(Be.rules=ge({},Ee),Be.rules.preset=e.preset,"default"===e.preset)return;let t;switch(e.preset){case"strict":t=v(Xe);for(let e of Ke)t(e)&&(Be.rules[e]=Xe[e]);for(let e of et)t(e)&&ge(Be.rules[e],Xe[e]);break;case"recommended":t=v(Ge);for(let e of Ke)t(e)&&(Be.rules[e]=Ge[e]);for(let e of et)t(e)&&ge(Be.rules[e],Ge[e]);break;case"warrington":t=v(Qe);for(let e of Ke)t(e)&&(Be.rules[e]=Qe[e]);for(let e of et)t(e)&&ge(Be.rules[e],Qe[e]);break;case"prettier":t=v(Ye);for(let e of Ke)t(e)&&(Be.rules[e]=Ye[e]);for(let e of et)t(e)&&ge(Be.rules[e],Ye[e])}}}(i),r("language")&&Je("global","language",i.language)&&Be.language!==i.language&&(Be.language=Be.rules.language=i.language);for(let e of Ke)!1!==r(e)&&Be.rules[e]!==i[e]&&Je("global",e,i[e])&&(n&&(n[e]={from:Be.rules[e],to:i[e]}),"crlf"===e&&(Be.crlf=i[e]?"\r\n":o),"wrap"===e&&i[e]>0&&(!1===r("wrapFraction")||r("wrapFraction")&&i.wrapFraction<=0)&&(i.wrapFraction=i[e]-i[e]/4),Be.rules[e]=i[e]);for(let e of et)if(!1!==r(e)&&Be.rules[e]!==i[e]){n&&(n[e]={});for(let t in i[e])Je(e,t,i[e][t])&&(n&&(n[e][t]={old:Be.rules[e][t],now:i[e][t]}),Be.rules[e][t]=i[e][t])}if(t.rules.length>0)for(let e of t.rules)e(n,Be.rules);return Be.rules}(e,this.events),this.language=Be.language,this.lexer=Be.lexer=l(Be.language)),Be.rules}liquid(e,t){return this.language=Be.language=Be.rules.language="liquid",this.lexer=Be.lexer=l(Be.language),this.format(e,t)}html(e,t){return this.language=Be.language=Be.rules.language="html",this.lexer=Be.lexer=l(Be.language),this.format(e,t)}xml(e,t){return this.language=Be.language=Be.rules.language="xml",this.lexer=Be.lexer=l(Be.language),this.format(e,t)}css(e,t){return this.language=Be.language=Be.rules.language="css",this.lexer=Be.lexer=l(Be.language),this.format(e,t)}json(e,t){return this.language=Be.language=Be.rules.language="json",this.lexer=Be.lexer=l(Be.language),this.format(e,t)}js(e,t){return this.language=Be.language=Be.rules.language="javascript",this.lexer=Be.lexer=l(Be.language),this.format(e,t)}ts(e,t){return this.language=Be.language=Be.rules.language="typescript",this.lexer=Be.lexer=l(Be.language),this.format(e,t)}};export{nt as default};
+// src/lexical/chars.ts
+var c = "", Yt = "   ", Wt = "    ", Be = '"', st = ",", je = "'", ee = " ";
+var z = `
+`, Oi = `\r
+`;
+
+// src/rules/language.ts
+function ut(e) {
+  switch (e) {
+    case "text":
+      return "Plain Text";
+    case "html":
+      return "HTML";
+    case "liquid":
+      return "Liquid";
+    case "xml":
+      return "XML";
+    case "json":
+      return "JSON";
+    case "jsx":
+      return "JSX";
+    case "tsx":
+      return "TSX";
+    case "typescript":
+      return "TypeScript";
+    case "javascript":
+      return "JavaScript";
+    case "less":
+      return "LESS";
+    case "scss":
+      return "SCSS";
+    case "sass":
+      return "SASS";
+    case "css":
+      return "CSS";
+  }
+}
+function Ie(e) {
+  switch (e) {
+    case "text":
+      return "ignore";
+    case "auto":
+      return "auto";
+    case "markup":
+    case "html":
+    case "liquid":
+    case "xml":
+      return "markup";
+    case "json":
+    case "jsx":
+    case "tsx":
+    case "typescript":
+    case "javascript":
+      return "script";
+    case "less":
+    case "scss":
+    case "sass":
+    case "css":
+      return "style";
+  }
+}
+function St(e) {
+  switch (e) {
+    case "auto":
+      return 5;
+    case "html":
+    case "liquid":
+    case "xml":
+      return 1;
+    case "json":
+    case "jsx":
+    case "tsx":
+    case "typescript":
+    case "javascript":
+      return 2;
+    case "less":
+    case "scss":
+    case "sass":
+    case "css":
+      return 3;
+  }
+  return 4;
+}
+
+// src/lexical/regex.ts
+var Lt = /\S/, ft = /\n/, rt = /^\s+$/;
+var Xe = /\s+/g, ct = /^\s+/, We = /\s+$/;
+var Je = /^[\t\v\f\r \u00a0\u2000-\u200b\u2028-\u2029\u3000]+/, Ye = /[\t\v\f \u00a0\u2000-\u200b\u2028-\u2029\u3000]+$/, Ri = /[\t\v\r \u00a0\u2000-\u200b\u2028-\u2029\u3000]+/g, qi = /[\t\v\r \u00a0\u2000-\u200b\u2028-\u2029\u3000]/, Ct = /^\n+/, Kt = /\n+/g;
+var Ai = /\n(?!\s*\*)/;
+var Ni = /({%-?\s*(?:comment\s*-?%}|#)|<!-{2})\s*esthetic-ignore-(start|next|end)\b/, ei = /^\s*(\/[*/]|{%-?\s*(?:comment\s*-?%}|#)|<!-{2})\s*esthetic-ignore(?![a-z-][^-])/, Tt = /(\/[*/]|{%-?\s*(?:comment\s*-?%}|#)|<!-{2})\s*esthetic-ignore-start\b/, Mt = /^\/\/\s*esthetic-ignore-start\b/, Bi = /^\/\*{1,2}(?:\s*|\n\s*\*\s*)esthetic-ignore-start\b/;
+var $i = /(\/[*/]|{%-?\s*(?:comment\s*-?%}|#)|<!--)\s*esthetic-ignore-next\b/, ji = /^\s*[*-]\s/, Dt = /^\s*\d+\.\s/, ti = /^\s*(?:[*-]|\d+\.)\s/, ii = /(?!=)\/?>$/, Ot = /^<!--+/, vt = /--+>$/, ni = /[a-zA-Z0-9_$#]+/, Rt = /({%-?)(\s*)/, qt = /(\s*)(-?%})/, Ei = /{%-?|-?%}/g;
+var At = /#\s+|#/, Pi = /^{%-?\n|{%-?\s*#\n/, Wi = /\n\s*-?%}$/;
+var Ti = /comment\s*-?%}[\r\n]/;
+var si = /(\/|\\|\||\*|\[|\]|\{|\})/g;
+
+// src/utils/native.ts
+var pt = Object.assign, Fe = Object.create;
+var Mi = Object.defineProperty, Di = Object.defineProperties;
+
+// src/utils/helpers.ts
+function _e(e, ...s) {
+  let n = Ne(e);
+  return function u(A, a, C) {
+    let o = typeof C;
+    if (C && o === "object")
+      if (Ne(C))
+        for (let k of C)
+          a = u(A, a, k);
+      else
+        for (let k in C) {
+          let f = C[k];
+          gn(f) ? a[k] = f(a[k], _e) : f === void 0 ? A ? a.splice(k, 1) : delete a[k] : f === null || tt(f) === !1 || Ne(f) ? a[k] = f : typeof a[k] == "object" ? a[k] = f === a[k] ? f : _e(a[k], f) : a[k] = u(!1, {}, f);
+        }
+    else
+      o === "function" && (a = C(a, _e));
+    return a;
+  }(n, n ? e.slice() : pt({}, e), s);
+}
+function ri(e, s) {
+  let n = {
+    lexer: s,
+    language: ut(e),
+    chars: 0,
+    time: ""
+  }, u = Date.now();
+  return (A) => {
+    let a = +(Date.now() - u).toFixed(0);
+    return n.time = a > 1e3 ? `${a}s` : `${a}ms`, n.chars = A, n;
+  };
+}
+function It(...e) {
+  return e.join(z);
+}
+function bt(e, s = NaN) {
+  if (e.indexOf(z) < 0)
+    return isNaN(s) ? 0 : s;
+  let n;
+  if (Ne(e)) {
+    let u = 0;
+    do {
+      if (u = e.indexOf(z, u), u === -1)
+        break;
+      n = n + 1, u = u + 1;
+    } while (u < e.length);
+  } else
+    n = e.split(z).length;
+  return isNaN(s) ? n === 1 ? 0 : n : n === 1 ? s : (n = n - 1 + s, n > s ? n : s);
+}
+function oi(e, s = ee) {
+  if (e <= 0)
+    return s;
+  let n = c, u = 1;
+  do
+    n += s;
+  while (u++ < e);
+  return n;
+}
+function Me(e) {
+  return e ? qi.test(e) : !1;
+}
+function i(e, s) {
+  return e ? e.charCodeAt(0) === s : !1;
+}
+function Ii(e) {
+  return e[e.length - 1];
+}
+function Qe(e, s) {
+  return i(e[e.length - 1], s);
+}
+function _i(e, ...s) {
+  let n = e.length - 1, u = s.length;
+  for (; u--; )
+    if (i(e[n--], s[u]) === !1)
+      return !1;
+  return !0;
+}
+function dt(e, s, n = 2) {
+  return i(e[e.length - n], s);
+}
+function T(e, s) {
+  return i(e, s) === !1;
+}
+function li(e, s) {
+  return Qe(e, s) === !1;
+}
+function lt(e) {
+  return /\S/.test(e);
+}
+function ce(e) {
+  return /\s/.test(e);
+}
+function He(e) {
+  return /\d/.test(e);
+}
+function ai(e) {
+  return `\\${e}`;
+}
+function Qi(e) {
+  return i(e, 123) ? "{%-?\\s*" : "\\s*-?%}";
+}
+var { toString: at } = Object.prototype;
+function Hi(e) {
+  return (s) => s in e;
+}
+function Ne(e) {
+  return at.call(e).slice(8, -1) === "Array";
+}
+function tt(e) {
+  return at.call(e).slice(8, -1) === "Object";
+}
+function Nt(e) {
+  return at.call(e).slice(8, -1) === "String";
+}
+function Bt(e) {
+  return at.call(e).slice(8, -1) === "RegExp";
+}
+function gn(e) {
+  return at.call(e).slice(8, -1) === "Function";
+}
+function mt(e) {
+  return at.call(e).slice(8, -1) === "Boolean";
+}
+function kt(e) {
+  return at.call(e).slice(8, -1) === "Number";
+}
+function Ke(e) {
+  return at.call(e).slice(8, -1) === "Undefined";
+}
+
+// src/parse/sorting.ts
+function $t(e) {
+  let s = r.count, n = r.stack.index, u = 0, A = 0, a = 0, C = 0, o = 0, k = 0, f = 0, t = !0, { count: h } = r, V = r.stack.token, le = r.stack.index, m = r.lineOffset, p = e.lexer[h] === "style", w = p && V === "global", _ = p ? [";", "separator"] : [",", "separator"], I = [], d = {
+    begin: [],
+    ender: [],
+    lexer: [],
+    lines: [],
+    stack: [],
+    token: [],
+    types: []
+  };
+  function l(g, M) {
+    let L = g[0], N = M[0];
+    if (e.types[L] === "comment") {
+      do
+        L = L + 1;
+      while (L < h && e.types[L] === "comment");
+      if (e.token[L] === void 0)
+        return 1;
+    }
+    if (e.types[N] === "comment") {
+      do
+        N = N + 1;
+      while (N < h && e.types[N] === "comment");
+      if (e.token[N] === void 0)
+        return 1;
+    }
+    if (p === !0) {
+      if (e.token[L].indexOf("@import") === 0 || e.token[N].indexOf("@import") === 0)
+        return L < N ? -1 : 1;
+      if (e.types[L] !== e.types[N]) {
+        if (e.types[L] === "function")
+          return 1;
+        if (e.types[L] === "variable")
+          return -1;
+        if (e.types[L] === "selector")
+          return 1;
+        if (e.types[L] === "property" && e.types[N] !== "variable" || e.types[L] === "mixin" && e.types[N] !== "property" && e.types[N] !== "variable")
+          return -1;
+      }
+    }
+    return e.token[L].toLowerCase() > e.token[N].toLowerCase() ? 1 : -1;
+  }
+  C = s;
+  do {
+    if (e.begin[s] === n || w && s < C && i(e.token[s], 125) && e.begin[e.begin[s]] === -1) {
+      if (e.types[s].indexOf("liquid") > -1)
+        return;
+      if (e.token[s] === _[0] || p === !0 && i(e.token[s], 125) && T(e.token[s + 1], 59) ? (t = !0, o = s + 1) : p === !0 && i(e.token[s - 1], 125) && (t = !0, o = s), o === 0 && e.types[0] === "comment")
+        do
+          o = o + 1;
+        while (e.types[o] === "comment");
+      else
+        e.types[o] === "comment" && e.lines[o] < 2 && (o = o + 1);
+      t === !0 && (e.token[s] === _[0] || p === !0 && i(e.token[s - 1], 125)) && o <= C && ((p === !0 && "};".indexOf(e.token[C]) < 0 || p === !1 && T(e.token[C], 44)) && (C = C + 1), I.push([o, C]), p === !0 && i(e.token[o], 125) ? C = o : C = o - 1);
+    }
+    s = s - 1;
+  } while (s > n);
+  if (I.length > 0 && I[I.length - 1][0] > s + 1) {
+    if (u = I[I.length - 1][0] - 1, e.types[u] === "comment" && e.lines[u] > 1) {
+      do
+        u = u - 1;
+      while (u > 0 && e.types[u] === "comment");
+      I[I.length - 1][0] = u + 1;
+    }
+    if (e.types[s + 1] === "comment" && s === -1)
+      do
+        s = s + 1;
+      while (e.types[s + 1] === "comment");
+    I.push([s + 1, u]);
+  }
+  if (I.length > 1 && (p === !0 || r.language === "json" || i(e.token[s - 1], 61) || i(e.token[s - 1], 58) || i(e.token[s - 1], 40) || i(e.token[s - 1], 91) || i(e.token[s - 1], 44) || e.types[s - 1] === "word" || s === 0)) {
+    I.sort(l), f = I.length, t = !1, n = 0;
+    do {
+      if (k = I[n][1], p === !0 && (a = k, e.types[a] === "comment" && (a = a - 1), i(e.token[a], 125) ? (k = k + 1, _[0] = "}", _[1] = "end") : (_[0] = ";", _[1] = "separator")), u = I[n][0], p === !0 && e.types[k - 1] !== "end" && e.types[k] === "comment" && e.types[k + 1] !== "comment" && n < f - 1 && (k = k + 1), u < k)
+        do
+          p === !1 && n === f - 1 && u === k - 2 && i(e.token[u], 44) && e.lexer[u] === "script" && e.types[u + 1] === "comment" || r.push(d, {
+            begin: e.begin[u],
+            ender: e.begin[u],
+            lexer: e.lexer[u],
+            lines: e.lines[u],
+            stack: e.stack[u],
+            token: e.token[u],
+            types: e.types[u]
+          }, c), A = A + 1, e.token[u] === _[0] && (p === !0 || e.begin[u] === e.begin[I[n][0]]) ? t = !0 : e.token[u] !== _[0] && e.types[u] !== "comment" && (t = !1), u = u + 1;
+        while (u < k);
+      if (t === !1 && d.token[d.token.length - 1] !== "x;" && (p === !0 || n < f - 1)) {
+        if (u = d.types.length - 1, d.types[u] === "comment")
+          do
+            u = u - 1;
+          while (u > 0 && d.types[u] === "comment");
+        u = u + 1, r.splice({
+          data: d,
+          howmany: 0,
+          index: u,
+          record: {
+            begin: le,
+            stack: w ? "global" : V,
+            ender: r.count,
+            lexer: d.lexer[u - 1],
+            lines: 0,
+            token: _[0],
+            types: _[1]
+          }
+        }), A = A + 1;
+      }
+      n = n + 1;
+    } while (n < f);
+    r.splice({ data: e, howmany: A, index: s + 1 }), r.lineOffset = m, r.concat(e, d);
+  }
+}
+function ui(e, s, n) {
+  return Ne(e) === !1 ? e : s === "normal" ? Vi.call({ array: e, recursive: n }, e) : s === "descend" ? Gi.call({ recursive: n }, e) : zi.call({ recursive: n }, e);
+}
+function _t(e, s) {
+  let n = e, u = -1, { data: A } = r, a = [], C = r.stack.length < 2 ? [-1] : [r.stack[r.stack.length - 2][1]];
+  do
+    n > 0 && A.types[n].indexOf("attribute") > -1 && A.types[n].indexOf("end") < 0 && A.types[n - 1].indexOf("start") < 0 && A.types[n - 1].indexOf("attribute") < 0 && A.lexer[n] === "markup" && C.push(n - 1), n > 0 && A.types[n - 1].indexOf("attribute") > -1 && A.types[n].indexOf("attribute") < 0 && A.lexer[C[C.length - 1]] === "markup" && A.types[C[C.length - 1]].indexOf("start") < 0 && C.pop(), A.begin[n] !== C[C.length - 1] && (A.begin[n] = C.length > 0 ? C[C.length - 1] : -1), A.types[n].indexOf("else") > -1 && (C.length > 0 ? C[C.length - 1] = n : C.push(n)), A.types[n].indexOf("end") > -1 && C.pop(), A.types[n].indexOf("start") > -1 && C.push(n), n = n + 1;
+  while (n < s);
+  n = s;
+  do
+    n = n - 1, A.types[n].indexOf("end") > -1 && (a.push(n), u = u + 1), A.ender[n] = u > -1 ? a[u] : -1, A.types[n].indexOf("start") > -1 && (a.pop(), u = u - 1);
+  while (n > e);
+}
+function zi(e) {
+  let s = 0, n = e.length, u = e, A = u.map((o) => o[1]), a = () => {
+    let o = 0, k = u.length;
+    if (o < k)
+      do
+        Ne(u[o]) === !0 && (u[o] = zi.apply(this, u[o])), o = o + 1;
+      while (o < k);
+  }, C = (o = c) => {
+    let k = s, f = 0, t = 0, h = 0, V = [], le = u[s];
+    if (k < n)
+      do
+        u[k] < le ? (le = u[k], V = [k]) : u[k] === le && V.push(k), k = k + 1;
+      while (k < n);
+    if (t = V.length, k = s, f = t + s, k < f)
+      do
+        le[1] = A[k], u[V[h]] = u[k], u[k] = le, h = h + 1, k = k + 1;
+      while (k < f);
+    return s = s + t, s < n ? C() : (this.recursive === !0 && a(), e = u), o;
+  };
+  return C(), e;
+}
+function Gi(e) {
+  let s = 0, n = e.length, u = e, A = () => {
+    let C = u.length, o = 0;
+    if (o < C)
+      do
+        Ne(u[o]) && (u[o] = Gi.apply(this, u[o])), o = o + 1;
+      while (o < C);
+  }, a = (C = "") => {
+    let o = s, k = 0, f = 0, t = 0, h = u[s], V = [], le = c, m = typeof h;
+    if (o < n)
+      do
+        le = typeof u[o], u[o] > h || le > m ? (h = u[o], V = [o]) : u[o] === h && V.push(o), o = o + 1;
+      while (o < n);
+    if (f = V.length, o = s, k = f + s, o < k)
+      do
+        u[V[t]] = u[o], u[o] = h, t = t + 1, o = o + 1;
+      while (o < k);
+    return s = s + f, s < n ? a() : (this.recursive === !0 && A(), e = u), C;
+  };
+  return a(), e;
+}
+function Vi(e) {
+  let s = e, n = [e[0]], u = () => {
+    let a = 0, C = s.length;
+    if (a < C)
+      do
+        Ne(s[a]) && (s[a] = Vi.apply(this, s[a])), a = a + 1;
+      while (a < C);
+  }, A = (a) => {
+    let C = 0, o = [], k = s.length;
+    if (C < k)
+      do
+        s[C] !== a && o.push(s[C]), C = C + 1;
+      while (C < k);
+    s = o, o.length > 0 ? (n.push(o[0]), A(o[0])) : (this.recursive === !0 && u(), e = s);
+  };
+  return A(this.array[0]), e;
+}
+
+// src/parse/grammar.ts
+var fi = class {
+  constructor() {
+    this.grammar = {
+      embedded: {
+        schema: [
+          {
+            language: "json"
+          }
+        ],
+        style: [
+          {
+            language: "css"
+          }
+        ],
+        stylesheet: [
+          {
+            language: "css"
+          },
+          {
+            language: "scss",
+            argument: /['"]scss['"]/
+          }
+        ],
+        javascript: [
+          {
+            language: "javascript"
+          }
+        ]
+      },
+      tags: [
+        "form",
+        "paginate",
+        "capture",
+        "case",
+        "comment",
+        "for",
+        "if",
+        "raw",
+        "tablerow",
+        "unless",
+        "schema",
+        "style",
+        "script",
+        "stylesheet",
+        "javascript"
+      ],
+      control: [
+        "if",
+        "unless",
+        "case"
+      ],
+      else: [
+        "else",
+        "elsif",
+        "when"
+      ],
+      singletons: [
+        "include",
+        "layout",
+        "section",
+        "assign",
+        "liquid",
+        "break",
+        "continue",
+        "cycle",
+        "decrement",
+        "echo",
+        "increment",
+        "render"
+      ]
+    };
+    this.else = new Set(this.grammar.else);
+    this.control = new Set(this.grammar.control);
+    this.tags = new Set(this.grammar.tags);
+    this.singleton = new Set(this.grammar.singletons);
+    this.embed = {};
+    this.queries(this.grammar.embedded);
+  }
+  extend(s) {
+    for (let n in s)
+      if (Ne(s[n]))
+        for (let u of s[n])
+          n === "tags" && this.tags.has(u) === !1 ? (this.grammar.tags.push(u), this.tags.add(u)) : n === "else" && this.else.has(u) === !1 ? (this.grammar.else.push(u), this.else.add(u)) : n === "control" && this.control.has(u) ? (this.grammar.control.push(u), this.control.add(u)) : n === "singletons" && this.singleton.has(u) === !1 && (this.grammar.singletons.push(u), this.singleton.add(u));
+      else
+        n === "embedded" && tt(s[n]) && this.queries(s[n]);
+  }
+  /**
+   * Embedded Queries
+   *
+   * Generates embed query utility for determining
+   * different Liquid embedded type tag blocks
+   */
+  queries(s) {
+    for (let n in s)
+      for (let { language: u, argument: A = null } of s[n])
+        if (n in this.embed || (this.embed[n] = {
+          tag: n,
+          language: u,
+          args: /* @__PURE__ */ new Map([[/* @__PURE__ */ new Set(), { tag: n, language: u }]])
+        }), A) {
+          for (let [a] of this.embed[n].args)
+            if (a !== null)
+              if (Ne(A))
+                for (let C of A)
+                  a.has(C) || a.add(C);
+              else {
+                let C = new RegExp(A);
+                if (a.size > 0)
+                  for (let o of a)
+                    Bt(o) !== !1 && o.source !== C.source && a.add(C);
+                else
+                  a.add(C);
+              }
+        }
+  }
+}, ci = class {
+  constructor() {
+    this.grammar = {
+      tags: [
+        // 'a',
+        "altGlyph",
+        "altGlyphDef",
+        "altGlyphItem",
+        "animate",
+        "animateColor",
+        "animateMotion",
+        "animateTransform",
+        "circle",
+        "clipPath",
+        "color-profile",
+        "cursor",
+        "defs",
+        "desc",
+        "ellipse",
+        "feBlend",
+        "feColorMatrix",
+        "feComponentTransfer",
+        "feComposite",
+        "feConvolveMatrix",
+        "feDiffuseLighting",
+        "feDisplacementMap",
+        "feDistantLight",
+        "feFlood",
+        "feFuncA",
+        "feFuncB",
+        "feFuncG",
+        "feFuncR",
+        "feGaussianBlur",
+        "feImage",
+        "feMerge",
+        "feMergeNode",
+        "feMorphology",
+        "feOffset",
+        "fePointLight",
+        "feSpecularLighting",
+        "feSpotLight",
+        "feTile",
+        "feTurbulence",
+        "filter",
+        "font",
+        "font-face",
+        "font-face-format",
+        "font-face-name",
+        "font-face-src",
+        "font-face-uri",
+        "foreignObject",
+        "g",
+        "glyph",
+        "glyphRef",
+        "hkern",
+        "image",
+        "line",
+        "linearGradient",
+        "marker",
+        "mask",
+        "metadata",
+        "missing-glyph",
+        "mpath",
+        "path",
+        "pattern",
+        "polygon",
+        "polyline",
+        "radialGradient",
+        "rect",
+        // 'script',
+        "set",
+        "stop",
+        //  'style',
+        "switch",
+        "symbol",
+        "text",
+        "textPath",
+        "title",
+        "tref",
+        "tspan",
+        "use",
+        "view",
+        "vkern"
+      ]
+    };
+    this.tags = new Set(this.grammar.tags);
+  }
+  extend(s) {
+    for (let n in s)
+      if (Ne(s[n]))
+        for (let u of s[n])
+          n === "tags" && this.tags.has(u) === !1 && (this.grammar.tags.push(u), this.tags.add(u));
+  }
+}, pi = class {
+  constructor() {
+    this.grammar = {
+      embedded: {
+        script: [
+          {
+            language: "javascript"
+          },
+          {
+            language: "json",
+            attribute: {
+              type: [
+                "application/json",
+                "application/ld+json"
+              ]
+            }
+          },
+          {
+            language: "jsx",
+            attribute: {
+              type: [
+                "text/jsx",
+                "application/jsx"
+              ]
+            }
+          }
+        ],
+        style: [
+          {
+            language: "css"
+          }
+        ]
+      },
+      voids: [
+        "area",
+        "base",
+        "br",
+        "col",
+        "command",
+        "embed",
+        "hr",
+        "img",
+        "input",
+        "keygen",
+        "link",
+        "menuitem",
+        "meta",
+        "param",
+        "source",
+        "track",
+        "wbr"
+      ],
+      tags: [
+        "a",
+        "abbr",
+        "acronym",
+        "address",
+        "applet",
+        "article",
+        "aside",
+        "audio",
+        "b",
+        "basefont",
+        "bdi",
+        "bdo",
+        "big",
+        "blockquote",
+        "body",
+        "button",
+        "canvas",
+        "caption",
+        "center",
+        "cite",
+        "code",
+        "colgroup",
+        "data",
+        "datalist",
+        "dd",
+        "del",
+        "details",
+        "dfn",
+        "dialog",
+        "dir",
+        "div",
+        "dl",
+        "dt",
+        "em",
+        "fieldset",
+        "figcaption",
+        "figure",
+        "figure",
+        "font",
+        "footer",
+        "form",
+        "frame",
+        "frameset",
+        "h1",
+        "h6",
+        "head",
+        "header",
+        "html",
+        "i",
+        "iframe",
+        "ins",
+        "isindex",
+        "kbd",
+        "label",
+        "legend",
+        "fieldset",
+        "li",
+        "main",
+        "map",
+        "mark",
+        "marquee",
+        "menu",
+        "meter",
+        "nav",
+        "noframes",
+        "frame",
+        "noscript",
+        "object",
+        "ol",
+        "optgroup",
+        "option",
+        "output",
+        "p",
+        "object",
+        "picture",
+        "pre",
+        "progress",
+        "q",
+        "rp",
+        "rt",
+        "ruby",
+        "s",
+        "samp",
+        "script",
+        "section",
+        "select",
+        "small",
+        "picture",
+        "video",
+        "audio",
+        "span",
+        "strike",
+        "strong",
+        "style",
+        "sub",
+        "summary",
+        "details",
+        "sup",
+        "svg",
+        "table",
+        "tbody",
+        "td",
+        "template",
+        "textarea",
+        "tfoot",
+        "th",
+        "thead",
+        "time",
+        "title",
+        "tr",
+        "audio",
+        "video",
+        "tt",
+        "u",
+        "ul",
+        "var",
+        "video"
+      ]
+    };
+    this.tags = new Set(this.grammar.tags);
+    this.voids = new Set(this.grammar.voids);
+    this.embed = {};
+    this.queries(this.grammar.embedded);
+  }
+  extend(s) {
+    for (let n in s)
+      if (Ne(s[n]))
+        for (let u of s[n])
+          n === "tags" && this.tags.has(u) === !1 ? (this.grammar.tags.push(u), this.tags.add(u)) : n === "voids" && this.voids.has(u) === !1 && (this.grammar.voids.push(u), this.voids.add(u));
+      else
+        n === "embedded" && tt(s[n]) && this.queries(s[n]);
+  }
+  /**
+  * Embedded Queries
+  *
+  * Generates embed query utility for determining
+  * different HTML embedded type tag blocks
+  */
+  queries(s) {
+    for (let n in s) {
+      n in this.embed || (this.embed[n] = { tag: n, attr: /* @__PURE__ */ new Map() });
+      for (let { language: u, attribute: A } of s[n])
+        if ("language" in this.embed[n] || (this.embed[n].language = u), this.embed[n].attr.has(u) || this.embed[n].attr.set(u, { tag: n, language: u, attr: /* @__PURE__ */ new Map() }), A) {
+          let a = this.embed[n].attr.get(u);
+          for (let C in A) {
+            a.attr.has(C) || a.attr.set(C, {
+              tag: n,
+              language: u,
+              attr: C,
+              value: /* @__PURE__ */ new Set()
+            });
+            let o = this.embed[n].attr.get(u).attr.get(C);
+            if (Ne(A[C]))
+              for (let k of A[C])
+                o.value.has(k) || o.value.add(k);
+            else {
+              let k = new RegExp(A[C]);
+              if (o.value.size > 0)
+                for (let f of o.value)
+                  Bt(f) !== !1 && f.source !== k.source && o.value.add(k);
+              else
+                o.value.add(k);
+            }
+          }
+        }
+    }
+  }
+}, di = class {
+  constructor() {
+    this.grammar = {
+      units: [
+        "%",
+        "cap",
+        "ch",
+        "cm",
+        "deg",
+        "dpcm",
+        "dpi",
+        "dppx",
+        "em",
+        "ex",
+        "fr",
+        "grad",
+        "Hz",
+        "ic",
+        "in",
+        "kHz",
+        "lh",
+        "mm",
+        "ms",
+        "mS",
+        "pc",
+        "pt",
+        "px",
+        "Q",
+        "rad",
+        "rem",
+        "rlh",
+        "s",
+        "turn",
+        "vb",
+        "vh",
+        "vi",
+        "vmax",
+        "vmin",
+        "vw"
+      ],
+      atrules: [
+        "@charset",
+        "@color-profile",
+        "@counter-style",
+        "@font-face",
+        "@font-feature-values",
+        "@font-palette-values",
+        "@import",
+        "@keyframes",
+        "@layer",
+        "@media",
+        "@namespace",
+        "@page",
+        "@supports"
+      ],
+      webkit: {
+        classes: [
+          "webkit-any",
+          "webkit-any-link*",
+          "webkit-autofill"
+        ],
+        elements: [
+          "webkit-file-upload-button",
+          "webkit-inner-spin-button",
+          "webkit-input-placeholder",
+          "webkit-meter-bar",
+          "webkit-meter-even-less-good-value",
+          "webkit-meter-inner-element",
+          "webkit-meter-optimum-value",
+          "webkit-meter-suboptimum-value",
+          "webkit-outer-spin-button",
+          "webkit-progress-bar",
+          "webkit-progress-inner-element",
+          "webkit-progress-value",
+          "webkit-search-cancel-button",
+          "webkit-search-results-button",
+          "webkit-slider-runnable-track",
+          "webkit-slider-thumb"
+        ]
+      },
+      pseudo: {
+        classes: [
+          "active",
+          "any-link",
+          "checked",
+          "default",
+          "defined",
+          "disabled",
+          "empty",
+          "enabled",
+          "first",
+          "first-child",
+          "first-of-type",
+          "fullscreen",
+          "focus",
+          "focus-visible",
+          "focus-within",
+          "host",
+          "hover",
+          "indeterminate",
+          "in-range",
+          "invalid",
+          "is",
+          "lang",
+          "last-child",
+          "last-of-type",
+          "left",
+          "link",
+          "modal",
+          "not",
+          "nth-child",
+          "nth-col",
+          "nth-last-child",
+          "nth-last-of-type",
+          "nth-of-type",
+          "only-child",
+          "only-of-type",
+          "optional",
+          "out-of-range",
+          "picture-in-picture",
+          "placeholder-shown",
+          "paused",
+          "playing",
+          "read-only",
+          "read-write",
+          "required",
+          "right",
+          "root",
+          "scope",
+          "target",
+          "valid",
+          "visited",
+          "where"
+        ],
+        elements: [
+          "after",
+          "backdrop",
+          "before",
+          "cue",
+          "cue-region",
+          "first-letter",
+          "first-line",
+          "file-selector-button",
+          "marker",
+          "part",
+          "placeholder",
+          "selection",
+          "slotted"
+        ],
+        functions: [
+          "after",
+          "before",
+          "first-letter",
+          "first-line",
+          "host",
+          "host-context",
+          "part",
+          "slotted",
+          "lang",
+          "not",
+          "nth-child",
+          "nth-col",
+          "nth-last-child",
+          "nth-last-of-type",
+          "nth-of-type",
+          "where"
+        ]
+      }
+    };
+    this.units = new Set(this.grammar.units);
+    this.atRules = new Set(this.grammar.atrules);
+    this.pseudoClasses = new Set(this.grammar.pseudo.classes);
+    this.pseudoElements = new Set(this.grammar.pseudo.elements);
+    this.pseudoFunctions = new Set(this.grammar.pseudo.functions);
+    this.webkitElements = new Set(this.grammar.webkit.elements);
+    this.webkitClasses = new Set(this.grammar.webkit.classes);
+  }
+  atrules(s) {
+    return this.atRules.has(s.slice(0, s.indexOf("(")).trim());
+  }
+  extend(s) {
+    for (let n in s) {
+      if (Ne(s[n]))
+        for (let u of s[n])
+          n === "units" && !this.units.has(u) ? (this.grammar[n].push(u), this.units.add(u)) : n === "atrules" && !this.atRules.has(u) && (this.grammar[n].push(u), this.atRules.add(u));
+      if (typeof s[n] == "object") {
+        for (let u in s[n])
+          if (Ne(s[n][u]))
+            for (let A of s[n][u])
+              n === "webkit" ? u === "elements" ? (this.grammar[n][u].push(A), this.webkitElements.add(A)) : u === "classes" && (this.grammar[n][u].push(A), this.webkitClasses.add(A)) : n === "pseudo" && (u === "elements" ? (this.grammar[n][u].push(A), this.pseudoElements.add(A)) : u === "classes" ? (this.grammar[n][u].push(A), this.pseudoClasses.add(A)) : u === "functions" && (this.grammar[n][u].push(A), this.pseudoFunctions.add(A)));
+      }
+    }
+  }
+}, mi = class {
+  constructor() {
+    this.grammar = {
+      keywords: [
+        "ActiveXObject",
+        "ArrayBuffer",
+        "AudioContext",
+        "Canvas",
+        "CustomAnimation",
+        "DOMParser",
+        "DataView",
+        "Date",
+        "Error",
+        "EvalError",
+        "FadeAnimation",
+        "FileReader",
+        "Flash",
+        "Float32Array",
+        "Float64Array",
+        "FormField",
+        "Frame",
+        "Generator",
+        "HotKey",
+        "Image",
+        "Iterator",
+        "Intl",
+        "Int16Array",
+        "Int32Array",
+        "Int8Array",
+        "InternalError",
+        "Loader",
+        "Map",
+        "MenuItem",
+        "MoveAnimation",
+        "Notification",
+        "ParallelArray",
+        "Point",
+        "Promise",
+        "Proxy",
+        "RangeError",
+        "Rectangle",
+        "ReferenceError",
+        "Reflect",
+        "RegExp",
+        "ResizeAnimation",
+        "RotateAnimation",
+        "Set",
+        "SQLite",
+        "ScrollBar",
+        "Set",
+        "Shadow",
+        "StopIteration",
+        "Symbol",
+        "SyntaxError",
+        "Text",
+        "TextArea",
+        "Timer",
+        "TypeError",
+        "URL",
+        "Uint16Array",
+        "Uint32Array",
+        "Uint8Array",
+        "Uint8ClampedArray",
+        "URIError",
+        "WeakMap",
+        "WeakSet",
+        "Web",
+        "Window",
+        "XMLHttpRequest"
+      ]
+    };
+    this.keywords = new Set(this.grammar.keywords);
+  }
+  extend(s) {
+    for (let n in s)
+      if (Ne(s[n]))
+        for (let u of s[n])
+          n === "keywords" && !this.keywords.has(u) && (this.grammar[n].push(u), this.keywords.add(u));
+  }
+}, hi = class {
+  constructor() {
+    /**
+     * CSS Grammars
+     */
+    this.css = new di();
+    /**
+     * Liquid Grammars
+     */
+    this.liquid = new fi();
+    /**
+     * JavaScript Grammars
+     */
+    this.js = new mi();
+    /**
+     * HTML Grammars
+     */
+    this.html = new pi();
+    /**
+     * SVG Grammars
+     */
+    this.svg = new ci();
+  }
+  /**
+     * Extend Grammars
+     */
+  extend(s) {
+    let {
+      liquid: n,
+      html: u,
+      css: A,
+      js: a,
+      svg: C
+    } = this;
+    if (tt(s))
+      for (let o in s)
+        o === "liquid" ? n.extend(s.liquid) : o === "html" ? u.extend(s.html) : o === "css" ? A.extend(s.css) : o === "js" ? a.extend(s.js) : o === "svg" && C.extend(s.svg);
+    return {
+      get html() {
+        return u.grammar;
+      },
+      get liquid() {
+        return n.grammar;
+      },
+      get js() {
+        return a.grammar;
+      },
+      get css() {
+        return A.grammar;
+      },
+      get svg() {
+        return C.grammar;
+      }
+    };
+  }
+}, we = new hi();
+
+// src/lexical/lexing.ts
+function Ue(e, s = NaN, n) {
+  if (Nt(e) === !1)
+    return c;
+  if (T(e, 60) && T(e, 123))
+    return n || e;
+  if (i(e, 60)) {
+    let a = e.search(/[\s>]/), C = e.slice(i(e[1], 47) ? 2 : 1, a);
+    return i(C, 63) && Qe(C, 63) ? "xml" : isNaN(s) ? C : C.slice(s);
+  }
+  let A = (i(e[2], 45) ? e.slice(3).trimStart() : e.slice(2).trimStart()).split(/\s|-?[%}]}/).shift();
+  return isNaN(s) ? A : A.slice(s);
+}
+function gi(e) {
+  return (s, n, u) => {
+    let A = e, a = e;
+    return i(u[n - 1], 92) && (A = s[0]), i(s[s.length - 2], 92) && (a = s[s.length - 1]), A + s.slice(1, -1) + a;
+  };
+}
+
+// src/config.ts
+var Re = {
+  // @ts-ignore
+  version: "0.6.4-beta.1",
+  env: typeof process != "undefined" && process.versions != null ? "node" : "browser",
+  lastUpdate: (/* @__PURE__ */ new Date()).toDateString(),
+  cwd: null,
+  reportStats: !0,
+  editorConfig: !1,
+  throwErrors: !0,
+  globalThis: !0,
+  persistRules: !0,
+  logLevel: 2,
+  logColors: !0,
+  resolveConfig: "package.json"
+};
+
+// src/parse/errors.ts
+function De(e, s, n) {
+  n || (n = Ue(s));
+  let u = Xi(e, n, r.lineNumber);
+  u.language = ut(r.language), r.error = It(
+    u.message,
+    z,
+    kn(),
+    z,
+    u.details.replace(/\n/g, ee),
+    z,
+    `Language: ${ut(r.language)} `,
+    `Location: ${r.lineNumber}:${r.lineColumn}`,
+    `\xC6sthetic: Parse Failed (Code: ${u.code})`
+  );
+}
+function jt(e, s, n) {
+  n || (n = Ue(s.token));
+  let u = Xi(e, n, s.line);
+  u.language = ut(r.language), r.error = It(
+    u.message,
+    z,
+    bn(s),
+    z,
+    u.details,
+    z,
+    qe(`Language: ${ut(r.language)}`),
+    qe(`Location: ${s.line}`),
+    qe(`\xC6sthetic: Parse Failed (Code: ${e})`)
+  );
+}
+function Ee(e) {
+  return It(
+    `Rule Error: ${e.message}`,
+    z,
+    `Definition: ${e.option}`,
+    `Provided: ${e.provided} `,
+    `Expected: ${e.expected.join(", ")} `
+  );
+}
+var Ui = (e) => Re.logColors ? `\x1B[93m${"^".repeat(e)}\x1B[39m` : `${"^".repeat(e)}`;
+function bn(e) {
+  let s = e.line - r.get(e.index).lines, n = 0, u = "", A = r.source.split(z).slice(s, e.line), a = `${e.line + 1}`.length, C = [], { indentSize: o, indentChar: k } = r.rules;
+  do {
+    let f = `${s + 1}`, t = a - f.length > 0 ? Re.logColors ? ` \x1B[90m${f} |` : ` ${f} |` : Re.logColors ? `\x1B[90m${f} |` : `${f} |`;
+    if (u = A[n], n === 0) {
+      if (Ke(A[n])) {
+        Re.logColors ? C.push(`${t} \x1B[31m${e.token}\x1B[39m`) : C.push(`${t} ${e.token}`);
+        break;
+      }
+      u = A[n].trimStart(), Re.logColors ? C.push(`${t} \x1B[31m${u}\x1B[39m`) : C.push(`${t} ${u}`);
+    } else {
+      let h = u.match(/^\s*/);
+      h !== null && h[0].length > o && (u = k.repeat(o) + u.trimStart()), Re.logColors ? C.push(`${t} \x1B[31m${u}\x1B[39m`) : C.push(`${t} ${u}`);
+    }
+    n = n + 1, s = s + 1;
+  } while (n < A.length);
+  return C.join(z);
+}
+function kn(e = r.lineNumber) {
+  let s = [], n = r.source.split(z), u = e, A = `${u + 1}`.length, a = u - 1, C = "";
+  n.length > 2 && (a = u - 3), n.length === 2 && (a = u - 2);
+  do {
+    let o = `${a + 1}`, k = A - o.length > 0 ? Re.logColors ? ` \x1B[90m${o} |` : ` ${o} |` : Re.logColors ? `\x1B[90m${o} |` : `${o} |`, f = n[a].trim();
+    if (a > u)
+      break;
+    if (!f) {
+      Re.logColors ? s.push(`${k} \x1B[90m${f || "\u2424"}`) : s.push(`${k} ${f || "\u2424"}`), a = a + 1;
+      continue;
+    }
+    a === u - 1 ? f.length === 0 ? s.push(`${" ".repeat(A + 2)} ${Ui(C.length)}`) : (Re.logColors ? s.push(`${k} \x1B[31m${f}\x1B[39m`) : s.push(`${k} ${f}`), s.push(`${" ".repeat(A + 2)} ${Ui(f.length)}`)) : Re.logColors ? s.push(`${k} \x1B[90m${f || "\u2424"}`) : s.push(`${k} ${f || "\u2424"}`), a = a + 1, C = f;
+  } while (a < u);
+  return s.join(z);
+}
+function qe(...e) {
+  return Re.logColors ? `${e.join(z)}`.replace(/"(.*?)"/g, "\x1B[31m$1\x1B[39m") : e.join(z);
+}
+function Xi(e, s, n = r.lineNumber) {
+  return {
+    105: {
+      code: e,
+      message: qe(`Syntax Error (line ${n}): Missing HTML "${s}" end tag`),
+      details: qe(
+        `The "<${s}>" tag type has an incomplete HTML syntactic structure resulting in a parse error.`,
+        `To resolve the issue check that you have a closing "</${s}>" tag. For more information`,
+        "see: https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags"
+      )
+    },
+    114: {
+      code: e,
+      message: qe(`Syntax Error (line ${n}): Missing Liquid "end${s}" tag`),
+      details: qe(
+        `The Liquid "${s}" is a tag block type which requires an end tag be provided.`,
+        "For more information, see: https://shopify.dev/api/liquid/tags"
+      )
+    },
+    104: {
+      code: e,
+      message: qe(`Syntax Error (line ${n}): Missing HTML start "${s}" tag`),
+      details: qe(
+        "There is an incorrect placement or an incomplete structure resulting in a parse error.",
+        `To resolve the issue, you may need to provide a start \`<${s}>\` tag type or correct the placement. `
+      )
+    },
+    112: {
+      code: e,
+      message: qe(`Syntax Error (line ${n}): Missing Liquid start "${s}" tag`),
+      details: qe(
+        "The Liquid tag has incorrect placement or an incomplete structure resulting in a parse error.",
+        "To resolve the issue, you may need to provide a start tag type or correct the placement. "
+      )
+    },
+    113: {
+      code: e,
+      message: qe(`Syntax Error (line ${n}): Missing Close Delimiter "%}" or "}}" on liquid tag`),
+      details: qe(
+        "The Liquid tag is missing its closing delimiter resulting in malformed syntax."
+      )
+    },
+    106: {
+      code: e,
+      message: qe(`Syntax Error (line ${n}): Missing HTML ">" delimiter on end tag`),
+      details: qe(
+        "The HTML tag is missing its closing delimiter resulting in malformed syntax.",
+        'You can have Esthetic autofix syntax errors like this by setting the markup rule "correct" to true.'
+      )
+    },
+    107: {
+      code: e,
+      message: qe(`Syntax Error (line ${n}): Missing HTML "-->" comment delimiter`),
+      details: qe(
+        "An invalid HTML comment expression which has resulting in malformed syntax.",
+        "HTML Comment require ending delimiters to be passed."
+      )
+    },
+    108: {
+      code: e,
+      message: qe(`Syntax Error (line ${n}): Invalid HTML "<!--" comment delimeter`),
+      details: qe(
+        "An invalid HTML opening comment delimiter expressed resulting in malformed syntax."
+      )
+    },
+    109: {
+      code: e,
+      message: qe(`Illegal Syntax (line ${n}): Invalid HTML Comment Attribute`),
+      details: qe(
+        "HTML comments are not allowed inside tags, start or end, at all.",
+        "To resolve the issue, remove the comment or place it above the tag.",
+        "For more information see: https://html.spec.whatwg.org/multipage/syntax.html#start-tags"
+      )
+    },
+    103: {
+      code: e,
+      message: qe(`Syntax Error (line ${n}): Invalid quotation character`),
+      details: qe(
+        `Bad quotation character (\u201C, &#x201c) provided. Only single ' or double "`,
+        "quotations characters are valid in HTML (markup) languages. For more information see:",
+        "https://html.spec.whatwg.org/multipage/parsing.html#attribute-value-(double-quoted)-state"
+      )
+    },
+    110: {
+      code: e,
+      message: qe(`Syntax Error (line ${n}): Invalid CDATA Termination Sequence`),
+      details: qe(
+        "The CDATA bracket state sequence provided is invalid resulting in a parse error.",
+        "For more information see: https://html.spec.whatwg.org/multipage/parsing.html#cdata-section-bracket-state"
+      )
+    },
+    116: {
+      code: e,
+      message: qe(`Syntax Error (line ${n}): Invalid character sequence in "${s}" token`),
+      details: qe(
+        "An invalid sequence of characters defined"
+      )
+    },
+    101: {
+      code: e,
+      message: qe(`Syntax Error (line ${n}): Unterminated String`),
+      details: qe(
+        "There is an unterminated string sequence resulting in a parse error."
+      )
+    }
+  }[e];
+}
+
+// src/comments/block.ts
+function yt(e, s) {
+  let n;
+  ((se) => (se[se.Force = 0] = "Force", se[se.Inline = 1] = "Inline", se[se.Preserve = 2] = "Preserve"))(n || (n = {}));
+  let { start: u, lexer: A, end: a, ender: C } = s, { rules: o, data: k } = r, f = [], t = N(), h = s.begin.replace(si, ai), V = t !== 4 ? h : `${s.begin}\\s*#`, le = new RegExp(`^(${V}\\s*esthetic-ignore-start)`), m = new RegExp(`^(${V}\\s*esthetic-ignore-next)`), p = new RegExp(r.crlf, "g"), w = new RegExp(`(${h})`), _ = t > 2 ? new RegExp(s.ender.replace(Ei, Qi)) : new RegExp(s.ender.replace(si, ai)), I = u, d = 0, l = 0, g = c, M = s.ender.length - 1, L = s.ender.charAt(M);
+  function N() {
+    return i(s.begin[0], 123) && i(s.begin[1], 37) ? e.slice(u + s.begin.length, e.indexOf("}", u)).join(c).trimStart().charCodeAt(0) === 35 ? 4 : 3 : s.begin === "/*" ? 2 : 1;
+  }
+  function S() {
+    if (t !== 1)
+      return !1;
+    if (o.markup.commentDelimiters === "consistent")
+      return i(g.slice(4).replace(Je, c), 10) ? [0, 0] : [1, 1];
+    if (o.markup.commentDelimiters === "force")
+      return [0, 0];
+    if (o.markup.commentDelimiters === "inline" || o.markup.commentDelimiters === "inline-align")
+      return [1, 1];
+    if (o.markup.commentDelimiters === "preserve") {
+      let O = [];
+      return i(g.slice(4).replace(Je, c), 10) ? O.push(0) : O.push(1), g.slice(g.lastIndexOf(z) + 1).trimStart() === s.ender ? O.push(0) : O.push(1), O;
+    }
+  }
+  function j() {
+    if (t === 1 && o.markup.preserveComment === !1)
+      if (o.markup.commentDelimiters === "consistent") {
+        let O = e.slice(u + 4).join(c);
+        O.slice(0, O.search(Lt)).indexOf(z) > -1 ? o.markup.commentIndent ? (g = g.replace(/^<!--\s*/, `<!--${z}  `), g = g.replace(/\s*-->$/, `${z}-->`)) : (g = g.replace(/^<!--\s*/, `<!--${z}`), g = g.replace(/\s*-->$/, `${z}-->`)) : (g = g.replace(/^<!--\s*/, "<!-- "), g = g.replace(/\s*-->$/, " -->"));
+      } else if (o.markup.commentDelimiters === "force")
+        o.markup.commentIndent ? (g = g.replace(/^<!--\s*/, `<!--${z}  `), g = g.replace(/\s*-->$/, `${z}-->`)) : (g = g.replace(/^<!--\s*/, `<!--${z}`), g = g.replace(/\s*-->$/, `${z}-->`));
+      else if (o.markup.commentDelimiters === "inline" || o.markup.commentDelimiters === "inline-align")
+        g = g.replace(/^<!--\s*/, "<!-- "), g = g.replace(/\s*-->$/, " -->");
+      else {
+        let O = e.slice(u + 4).join(c);
+        O.slice(0, O.search(Lt)).indexOf(z) > -1 ? o.markup.commentIndent ? g = g.replace(/^<!--\s*/, `<!--${z}  `) : g = g.replace(/^<!--\s*/, `<!--${z}`) : g = g.replace(/^<!--\s*/, "<!-- ");
+        let ke = O.indexOf(C);
+        O.slice(O.lastIndexOf(z, ke) + 1, ke + 3).trimStart() === s.ender ? o.markup.commentIndent ? g = g.replace(/\s*-->$/, `${z}-->`) : g = g.replace(/\s*-->$/, `${z}-->`) : g = g.replace(/\s*-->$/, " -->");
+      }
+    return [g, I];
+  }
+  function D(O) {
+    if (d = 0, o.wrap > 0)
+      for (O.splice(0, 1, s.begin, O[0].replace(w, c).trim()), l = 1, d = 1; O[l] === c; )
+        O.splice(l, 1);
+    else {
+      l = -1;
+      do
+        l = l + 1;
+      while (O[l] === c || i(O[l], 35) && O[l].length === 1);
+      O.splice(0, l);
+    }
+    for (let ke = O.length; d < ke; d++)
+      T(O[d], 35) && O[d] !== c && (O[d] = `# ${O[d].trimEnd()}`);
+    if (o.wrap > 0)
+      O.push(`#${O.pop().trim().slice(1)}`, s.ender);
+    else {
+      O.splice(0, 0, s.begin), l = O.length;
+      do
+        l = l - 1;
+      while (O[l] === c || i(O[l], 35) && O[l].length === 1);
+      O.splice(l + 1, O.length - l), O.push(`#${O.pop().trim().slice(1)}`, s.ender);
+    }
+    return g = O.join(r.crlf), o.liquid.commentIndent === !1 && (g = g.replace(/^#/gm, " #")), [g, I];
+  }
+  function B() {
+    let O = c;
+    return g = f.join(c).replace(Ye, c), r.count > -1 && k.lines[r.count] > 0 && (d = e.lastIndexOf(z, r.iterator) + 1, d > 0 && (O = e.slice(d, r.iterator).join(c), O.trim() === c || (O = O.slice(0, O.search(Lt))), g = O + g)), [g, I];
+  }
+  function P() {
+    let O = z;
+    I = I + 1;
+    do {
+      if (f.push(e[I]), i(e[I], 10) && (r.lineOffset = r.lines(I, r.lineOffset)), e[I - 3] === "-" && e[I - 2] === "e" && e[I - 1] === "n" && e[I] === "d" && f.slice(f.length - 19).join(c) === "esthetic-ignore-end") {
+        t === 3 && (l = e.indexOf("{", I), i(e[l + 1], 37) && (O = e.slice(l, e.indexOf("}", l) + 1).join(c), _.test(O) && (s.ender = O))), I = I + 1, O = c;
+        break;
+      }
+      I = I + 1;
+    } while (I < a);
+    d = I, M = s.begin.length - 1, L = s.begin.charAt(M);
+    do {
+      if (t === 2 && i(e[d - 1], 47) && i(e[d], 42) || e[d] === L && e.slice(d - M, d + 1).join(c) === s.begin)
+        break;
+      d = d - 1;
+    } while (d > u);
+    if (t === 2 && i(e[d], 42) ? O = "*/" : O === c && t !== 2 && (O = s.ender), M = O.length - 1, L = O.charAt(M), T(O, 10) || T(e[I], 10))
+      do {
+        if (f.push(e[I]), i(O, 10) && i(e[I + 1], 10) || e[I] === L && e.slice(I - M, I + 1).join(c) === O)
+          break;
+        I = I + 1;
+      } while (I < a);
+    if (i(e[I], 10) && (I = I - 1), g = f.join(c).replace(We, c), ce(e[r.iterator - 1])) {
+      let ke = e.lastIndexOf(z, r.iterator);
+      ke > -1 && (g = e.slice(ke + 1, r.iterator).join(c) + g);
+    }
+    return [g, I];
+  }
+  function pe() {
+    if (I === a)
+      return !0;
+    if (t === 3 && o.liquid.preserveComment || t === 4 && o.liquid.preserveComment || t === 1 && o.markup.preserveComment) {
+      if (d = e.lastIndexOf(z, r.iterator) + 1, d > 0) {
+        let O = e.slice(d, r.iterator).join(c);
+        O.trim() === c || (O = O.slice(0, O.search(Lt))), g = O + g;
+      }
+      return !0;
+    }
+    if (t === 2 && A === "style" && o.style.preserveComment || t === 2 && A === "script" && o.script.preserveComment || t !== 3 && t !== 4 && g.length <= o.wrap && g.indexOf(z) < 0 || o.wrap < 1 && t === 3 && Ti.test(g) === !1)
+      return !0;
+    if (t === 4) {
+      if (o.wrap > 0 && g.length >= o.wrap)
+        return !1;
+      if (ft.test(g)) {
+        if (Pi.test(g))
+          return !1;
+        if (Wi.test(g) && g.slice(g.indexOf("#") + 1, g.lastIndexOf(z)).indexOf(z) < 0)
+          return o.wrap > 0 ? g = g.replace(Kt, c).replace(Rt, "$1 # ").replace(At, "# ").replace(qt, " $2") : g = g.replace(Kt, c).replace(Rt, "$1 ").replace(At, "# ").replace(qt, " $2"), !0;
+      } else
+        return o.wrap > 0 ? g = g.replace(Rt, "$1 # ").replace(At, "# ").replace(qt, " $2") : g = g.replace(Rt, "$1 ").replace(At, "# ").replace(qt, " $2"), !0;
+      return !1;
+    }
+    return o.wrap > 0 && g.length <= o.wrap && g.slice(5, -4).indexOf(z) < 0 || o.wrap < 1 && t !== 3 && g.slice(5, -4).indexOf(z) < 0 || t === 2 && g.indexOf(z) > 0 && g.replace(z, c).indexOf(z) > 0 && Ai.test(g) === !1;
+  }
+  function ge() {
+    let O = [], ke = 0;
+    if (d = u, d > 0 && T(e[d - 1], 10) && ce(e[d - 1]))
+      do
+        d = d - 1;
+      while (d > 0 && T(e[d - 1], 10) && ce(e[d - 1]));
+    let K = new RegExp(`
+${e.slice(d, u).join(c)}`, "g");
+    return g = g.replace(p, z).replace(K, z), O = g.split(z), ke = O.length, O[0] = O[0].replace(w, c), O[ke - 1] = O[ke - 1].replace(_, c), t === 4 && o.wrap < 1 ? (O = O.map((se) => se.replace(/^#\s*/m, c).trimStart()), D(O)) : (ke < 2 && (O = O[0].split(ee)), t === 3 ? O[0] === c ? O[0] = s.begin : O.splice(0, 0, s.begin) : O[0] === c ? O[0] = s.begin : O.splice(0, 0, s.begin), ke = O.length, t === 1 ? ue(O, ke - 1) : Ce(O, ke));
+  }
+  function ue(O, ke) {
+    let K = [O.shift()], se = c, J = 0;
+    o.markup.commentDelimiters === "inline-align" ? se = "     " : o.markup.commentIndent && (se = "  ");
+    let $e = !1, $ = 0;
+    do {
+      if (rt.test(O[J]) === !0 || O[J] === c)
+        $ = $ + 1, $ <= o.preserveLine && K.push(z);
+      else if ($e)
+        K.push(O[J].replace(Ye, c), z);
+      else {
+        let G = J === 0 ? O[J].trimStart().replace(Ye, c) : O[J].trim();
+        if (/<\/?[a-zA-Z]|{{|{%/.test(G))
+          $e = !0, K.push(O[J].replace(Ye, c));
+        else if (o.wrap > 0 && G.length > o.wrap) {
+          let oe = G.replace(Ri, " ").split(ee).concat(z);
+          for (let ne = 0, Y = 0, F = 0, H = oe.length; ne < H; ne++)
+            F += oe[ne].length + 1, (F > o.wrap || ne + 1 === H) && (K.push(se + oe.slice(Y, ne).join(ee) + z), Y = ne, F = 0);
+        } else
+          K.push(`${se}${G}${z}`);
+      }
+      J = J + 1;
+    } while (J < ke);
+    return g = K.join(c) + ee + s.ender, j();
+  }
+  function Ce(O, ke) {
+    let K = [], se = 0, J = 0, $e, $, G = !1, oe = !1, ne = !1, Y = !1;
+    d = 0;
+    do {
+      if ($ = d < ke - 1 ? O[d + 1].replace(Je, c) : c, rt.test(O[d]) === !0 || O[d] === c) {
+        if (rt.test(O[d + 1]) === !0 || O[d + 1] === c)
+          do
+            d = d + 1;
+          while (d < ke && (rt.test(O[d + 1]) === !0 || O[d + 1] === c));
+        d < ke - 1 && K.push(c);
+      } else if ($e = O[d].replace(Je, c), o.wrap > 0 && $e.length > o.wrap && $e.indexOf(ee) > o.wrap)
+        O[d] = $e, l = O[d].indexOf(ee), K.push(O[d].slice(0, l)), O[d] = O[d].slice(l + 1), d = d - 1;
+      else {
+        if (t === 2 && O[d].indexOf("/*") !== 0 ? O[d] = Yt + O[d].replace(Je, c).replace(Ye, c).replace(Xe, ee) : O[d] = O[d].replace(Je, c).replace(Ye, c), J = d < 1 ? o.wrap - (s.begin.length + 1) : o.wrap, se = O[d].replace(ct, c).indexOf(ee), l = O[d].length, l > J && se > 0 && se < J) {
+          l = J;
+          do
+            if (l = l - 1, ce(O[d].charAt(l)) && l <= o.wrap)
+              break;
+          while (l > 0);
+          Dt.test(O[d]) === !0 && Dt.test(O[d + 1]) === !1 && O.splice(d + 1, 0, "1. "), l < 4 ? (K.push(O[d]), Y = !0) : d === ke - 1 && (K.push(O[d].slice(0, l)), O[d] = O[d].slice(l + 1), Y = !0, d = d - 1), rt.test(O[d + 1]) === !0 || O[d + 1] === c ? (K.push(O[d].slice(0, l)), O[d] = O[d].slice(l + 1), G = !0, d = d - 1) : ji.test(O[d + 1]) ? (K.push(O[d].slice(0, l)), O[d] = O[d].slice(l + 1), oe = !0, d = d - 1) : Dt.test(O[d + 1]) ? (K.push(O[d].slice(0, l)), O[d] = O[d].slice(l + 1), ne = !0, d = d - 1) : O[d + 1].slice(0, 4) === Wt || l + $.length > o.wrap && $.indexOf(ee) < 0 ? (K.push(O[d].slice(0, l)), O[d] = O[d].slice(l + 1), Y = !0, d = d - 1) : O[d].replace(Je, c).indexOf(ee) < o.wrap && (O[d].length > o.wrap ? O[d + 1] = `${O[d].slice(l + 1)}${r.crlf}${O[d + 1]}` : O[d + 1] = `${O[d].slice(l + 1)} ${O[d + 1]}`), G === !1 && oe === !1 && ne === !1 && Y === !1 && (O[d] = O[d].slice(0, l));
+        } else
+          O[d + 1] !== void 0 && t < 3 && (O[d].length + $.indexOf(ee) > o.wrap && $.indexOf(ee) > 0 || O[d].length + $.length > o.wrap && $.indexOf(ee) < 0) ? (K.push(O[d]), o.wrap > 0 && (d = d + 1), o.wrap < 1 && t === 3 && (d = d + 1), G = !0) : O[d + 1] !== void 0 && rt.test(O[d + 1]) === !1 && O[d + 1] !== c && O[d + 1].slice(0, 4) !== Wt && ti.test(O[d + 1]) === !1 && (t === 3 ? K.push(O[d]) : O[d + 1] = `${O[d]} ${O[d + 1]}`, G = !0);
+        Y === !1 && oe === !1 && ne === !1 && (G === !0 ? G = !1 : /^\s*(\*|-|(\d+\.))\s*$/.test(O[d]) === !1 && (d < ke - 1 && O[d + 1] !== c && rt.test(O[d]) === !1 && O[d + 1].slice(0, 4) !== Wt && ti.test(O[d + 1]) === !1 ? (O[d] = `${O[d]} ${O[d + 1]}`, O.splice(d + 1, 1), ke = ke - 1, d = d - 1) : t === 2 && O[d].indexOf("/*") !== 0 ? K.push(Yt + O[d].replace(Je, c).replace(Ye, c).replace(Xe, ee)) : K.push(O[d].replace(Je, c).replace(Ye, c).replace(Xe, ee)))), Y = !1, oe = !1, ne = !1;
+      }
+      d = d + 1;
+    } while (d < ke);
+    let F = S();
+    if (K && K.length > 0)
+      if (F)
+        F[0] === 1 ? o.markup.commentIndent ? o.markup.commentDelimiters === "inline-align" ? g = `${K[0]} ${K.slice(1).join(r.crlf + "     ")}` : g = `${K[0]} ${K.slice(1).join(r.crlf + "  ")}` : g = `${K[0]} ${K.slice(1).join(r.crlf)}` : o.markup.commentIndent ? g = `${K[0] + z}  ${K.slice(1).join(r.crlf + "  ")}` : g = `${K[0] + z}  ${K.slice(1).join(r.crlf)}`, F[1] === 1 ? g += ` ${s.ender}` : g += z + s.ender;
+      else {
+        if (t !== 4 && t !== 3 && K[K.length - 1].length > o.wrap - (s.ender.length + 1))
+          K.push(s.ender);
+        else if (t === 3)
+          K.push(s.ender);
+        else {
+          if (t === 4)
+            return D(K);
+          K[K.length - 1] = `${K[K.length - 1]} ${s.ender}`;
+        }
+        g = K.join(z);
+      }
+    else
+      F ? (F[0] === 1 ? o.markup.commentIndent ? o.markup.commentDelimiters === "inline-align" ? g = `${O[0]} ${O.slice(1).join(r.crlf + "     ")}` : g = `${O[0]} ${O.slice(1).join(r.crlf + "  ")}` : g = `${O[0]} ${O.slice(1).join(r.crlf)}` : o.markup.commentIndent ? g = `${O[0] + z}  ${O.slice(1).join(r.crlf + "  ")}` : g = O.join(z), F[1] === 1 ? g += ` ${s.ender}` : g += z + s.ender) : (ke = O.length - 1, O[ke] = O[ke] + s.ender, g = O.join(z));
+    return [g, I];
+  }
+  do {
+    if (i(e[I], 10) && (r.lineOffset = r.lines(I, r.lineOffset)), i(e[I], 35) && t === 4 && o.liquid.preserveComment === !1 && o.wrap > 0 && f.slice(f.lastIndexOf(z)).join(c).trim() === c ? f.push(ee) : f.push(e[I]), e[I] === L && e.slice(I - M, I + 1).join(c) === s.ender) {
+      t === 4 && i(e[I - 2], 45) && (s.ender = "-%}", _ = new RegExp(s.ender)), g = f.join(c);
+      break;
+    }
+    I = I + 1;
+  } while (I < a);
+  return le.test(g) ? P() : m.test(g) ? B() : pe() ? j() : ge();
+}
+
+// src/comments/line.ts
+function Qt(e) {
+  let { wrap: s } = r.rules, { preserveComment: n } = r.rules[r.lexer], u = e.start, A = 0, a = c, C = [];
+  function o() {
+    let f = c;
+    do
+      if (A = A + 1, i(e.chars[A + 1], 10))
+        return;
+    while (A < e.end && ce(e.chars[A]));
+    if (e.chars[A] + e.chars[A + 1] === "//") {
+      C = [];
+      do
+        C.push(e.chars[A]), A = A + 1;
+      while (A < e.end && T(e.chars[A], 10));
+      f = C.join(c), /^\/\/ (?:[*-]|\d+\.)/.test(f) === !1 && /^\/\/\s*$/.test(f) === !1 && (a = `${a} ${f.replace(/(^\/\/\s*)/, c).replace(We, c)}`, u = A - 1, o());
+    }
+  }
+  function k() {
+    let f = [], t = {
+      ender: -1,
+      types: "comment",
+      lexer: e.lexer,
+      lines: r.lineOffset
+    };
+    r.count > -1 ? (t.begin = r.stack.index, t.stack = r.stack.token, t.token = r.data.token[r.count]) : (t.begin = -1, t.stack = "global", t.token = c);
+    let h = 0, V = 0;
+    if (a = a.replace(/\s+/g, ee).replace(We, c), V = a.length, !(s > V)) {
+      do {
+        if (h = s, T(a[h], 32)) {
+          do
+            h = h - 1;
+          while (h > 0 && T(a[h], 32));
+          if (h < 3) {
+            h = s;
+            do
+              h = h + 1;
+            while (h < V - 1 && T(a[h], 32));
+          }
+        }
+        f.push(a.slice(0, h)), a = `// ${a.slice(h).replace(ct, c)}`, V = a.length;
+      } while (s < V);
+      h = 0, V = f.length;
+      do
+        t.token = f[h], r.push(r.data, t, c), t.lines = 2, r.lineOffset = 2, h = h + 1;
+      while (h < V);
+    }
+  }
+  do
+    C.push(e.chars[u]), u = u + 1;
+  while (u < e.end && T(e.chars[u], 10));
+  if (u === e.end ? e.chars.push(z) : u = u - 1, a = C.join(c).replace(We, c), Mt.test(a) === !0) {
+    let f = z;
+    u = u + 1;
+    do
+      C.push(e.chars[u]), u = u + 1;
+    while (u < e.end && (T(e.chars[u - 1], 100) || i(e.chars[u - 1], 100) && C.slice(C.length - 19).join(c) !== "esthetic-ignore-end"));
+    A = u;
+    do
+      ;
+    while (A > e.start && i(e.chars[A - 1], 47) && (i(e.chars[A], 42) || i(e.chars[A], 47)));
+    if (i(e.chars[A], 42) && (f = "*/"), f !== z || T(e.chars[u], 10))
+      do {
+        if (C.push(e.chars[u]), f === z && i(e.chars[u + 1], 10))
+          break;
+        u = u + 1;
+      } while (u < e.end && (f === z || f === "*/" && (i(e.chars[u - 1], 42) || i(e.chars[u], 47))));
+    return e.chars[u] === z && (u = u - 1), a = C.join(c).replace(We, c), [a, u];
+  }
+  return a === "//" || n === !0 ? [a, u] : (a = a.replace(/(\/\/\s*)/, "// "), s < 1 || u === e.end - 1 && r.data.begin[r.count] < 1 ? [a, u] : (A = u + 1, o(), k(), [a, u]));
+}
+
+// src/rules/definitions.ts
+var bi = {
+  global: {
+    preset: {
+      description: "Use preset style guide as the base defaults",
+      default: "default",
+      type: "choice",
+      values: [
+        {
+          rule: "default",
+          description: "This is the default and the most unobtrusive."
+        },
+        {
+          rule: "recommended",
+          description: "This style guide is typically suited for most cases"
+        },
+        {
+          rule: "strict",
+          description: "This is a strict ruleset curated by the projects author."
+        },
+        {
+          rule: "warrington",
+          description: "This style guide preset is best suited for Shopify theme developers"
+        },
+        {
+          rule: "prettier",
+          description: "This preset replicates the Prettier style"
+        }
+      ]
+    },
+    correct: {
+      default: !1,
+      description: "Automatically correct some sloppiness in code.",
+      type: "boolean",
+      preset: {
+        default: !1,
+        prettier: !0,
+        recommended: !0,
+        strict: !0,
+        warrington: !0
+      }
+    },
+    crlf: {
+      description: "If line termination should be Windows (CRLF) format. Unix (LF) format is the default.",
+      type: "boolean",
+      default: !1,
+      preset: {
+        default: !1,
+        prettier: !1,
+        recommended: !1,
+        strict: !1,
+        warrington: !1
+      }
+    },
+    endNewline: {
+      description: "Insert an empty line at the end of output.",
+      type: "boolean",
+      default: !1,
+      preset: {
+        default: !1,
+        prettier: !1,
+        recommended: !1,
+        strict: !1,
+        warrington: !1
+      }
+    },
+    indentSize: {
+      description: "The number of character values to comprise a single indentation.",
+      type: "number",
+      default: 2,
+      preset: {
+        default: 2,
+        prettier: 2,
+        recommended: 2,
+        strict: 2,
+        warrington: 2
+      }
+    },
+    indentChar: {
+      description: "The string characters to comprise a single indentation. Any string combination is accepted.",
+      type: "string",
+      default: " ",
+      preset: {
+        default: " ",
+        prettier: " ",
+        recommended: " ",
+        strict: " ",
+        warrington: " "
+      }
+    },
+    indentLevel: {
+      default: 0,
+      type: "number",
+      description: "How much indentation padding should be applied to beautification? This is typically used internally",
+      preset: {
+        default: 0,
+        prettier: 0,
+        recommended: 0,
+        strict: 0,
+        warrington: 0
+      }
+    },
+    language: {
+      description: "The language name",
+      type: "choice",
+      default: "auto",
+      values: [
+        {
+          rule: "auto",
+          description: "Detect Language"
+        },
+        {
+          rule: "text",
+          description: "Plain Text"
+        },
+        {
+          rule: "html",
+          description: "HTML"
+        },
+        {
+          rule: "liquid",
+          description: "HTML + Liquid"
+        },
+        {
+          rule: "javascript",
+          description: "JavaScript"
+        },
+        {
+          rule: "jsx",
+          description: "JSX"
+        },
+        {
+          rule: "typescript",
+          description: "TypeScript"
+        },
+        {
+          rule: "tsx",
+          description: "TSX"
+        },
+        {
+          rule: "json",
+          description: "JSON"
+        },
+        {
+          rule: "css",
+          description: "CSS"
+        },
+        {
+          rule: "scss",
+          description: "SCSS"
+        },
+        {
+          rule: "less",
+          description: "LESS"
+        },
+        {
+          rule: "xml",
+          description: "XML"
+        }
+      ]
+    },
+    preserveLine: {
+      default: 2,
+      description: "The maximum number of consecutive empty lines to retain.",
+      type: "number",
+      preset: {
+        default: 2,
+        prettier: 2,
+        recommended: 3,
+        strict: 1,
+        warrington: 3
+      }
+    },
+    wrap: {
+      default: 0,
+      description: "Character width limit before applying word wrap. A 0 value disables this option. A negative value concatenates script strings.",
+      type: "number",
+      preset: {
+        default: 0,
+        prettier: 80,
+        recommended: 120,
+        strict: 0,
+        warrington: 100
+      }
+    },
+    wrapFraction: {
+      default: 0,
+      description: "Wrap fraction is used on internal structures as a secondary point of control. By default, it will use a 75% metric according to `wrap` defined values.",
+      type: "number",
+      preset: {
+        default: 0,
+        prettier: 80,
+        recommended: 80,
+        strict: 80,
+        warrington: 0
+      }
+    }
+  },
+  liquid: {
+    commentNewline: {
+      default: !1,
+      description: "If a blank new line should be forced above comments.",
+      type: "boolean",
+      preset: {
+        default: !1,
+        prettier: !0,
+        recommended: !0,
+        strict: !0,
+        warrington: !0
+      }
+    },
+    commentIndent: {
+      default: !1,
+      description: "This will determine whether comments should always start at position 0 of each line or if comments should be indented according to the code.",
+      type: "boolean",
+      preset: {
+        default: !1,
+        prettier: !0,
+        recommended: !0,
+        strict: !0,
+        warrington: !0
+      }
+    },
+    delimiterTrims: {
+      default: "preserve",
+      description: "How delimiter whitespace trim dashes should handled on Liquid tokens. You should avoid setting this to force in order to avoid stripping whitespace between text content.",
+      type: "choice",
+      values: [
+        {
+          rule: "preserve",
+          description: "All trim dash occurances of trims intact"
+        },
+        {
+          rule: "never",
+          description: "Removes all trim dash occurances for tags and output tokens"
+        },
+        {
+          rule: "always",
+          description: "Applies trime dashes to all tags and output tokens"
+        },
+        {
+          rule: "tags",
+          description: "Applies trim dashes to tags tokens only"
+        },
+        {
+          rule: "outputs",
+          description: "Applies trim dashes to output object tokens only"
+        },
+        {
+          rule: "multiline",
+          description: "Applies trim dashes to multline token expressions only"
+        }
+      ],
+      preset: {
+        default: "preserve",
+        prettier: "preserve",
+        recommended: "preserve",
+        strict: "multiline",
+        warrington: "preserve"
+      }
+    },
+    ignoreTagList: {
+      default: [],
+      description: "A list of liquid tag to ignore",
+      type: "array",
+      preset: {
+        default: [],
+        prettier: ["javascript", "capture"],
+        recommended: ["javascript"],
+        strict: [],
+        warrington: []
+      }
+    },
+    indentAttribute: {
+      default: !1,
+      description: "Whether or not markup tags with Liquid contained attributes should apply indentation",
+      type: "boolean",
+      preset: {
+        default: !1,
+        prettier: !0,
+        recommended: !0,
+        strict: !1,
+        warrington: !0
+      }
+    },
+    paddedTagList: {
+      default: [],
+      description: "A list of liquid tag to enforce newlines before and after",
+      type: "array",
+      preset: {
+        default: [],
+        prettier: [],
+        recommended: [],
+        strict: [],
+        warrington: []
+      }
+    },
+    preserveComment: {
+      default: !1,
+      description: "Prevent comment reformatting due to option wrap.",
+      type: "boolean",
+      preset: {
+        default: !1,
+        prettier: !1,
+        recommended: !1,
+        strict: !1,
+        warrington: !1
+      }
+    },
+    normalizeSpacing: {
+      default: !0,
+      description: "Whether or not to normalize the distributed spacing contained in Liquid tokens.",
+      type: "boolean",
+      preset: {
+        default: !0,
+        prettier: !0,
+        recommended: !0,
+        strict: !0,
+        warrington: !0
+      }
+    },
+    lineBreakSeparator: {
+      default: "default",
+      description: "Controls the placement of Liquid tag separator type characters in newline structures.",
+      type: "choice",
+      values: [
+        {
+          rule: "preserve",
+          description: "Leave line break character intace"
+        },
+        {
+          rule: "before",
+          description: "Place line break character at the start of expressions"
+        },
+        {
+          rule: "after",
+          description: "Place line break character at the end of expressions"
+        }
+      ],
+      preset: {
+        default: "preserve",
+        prettier: "after",
+        recommended: "before",
+        strict: "before",
+        warrington: "after"
+      }
+    },
+    dedentTagList: {
+      default: [],
+      description: "List of tags which will have their inner contents excluded from indentation",
+      type: "array",
+      preset: {
+        default: [],
+        prettier: ["schema"],
+        recommended: [],
+        strict: [],
+        warrington: []
+      }
+    },
+    forceArgument: {
+      default: 0,
+      description: "Forces arguments onto newlines. When this value is `0` then arguments will be forced according to wrap fraction limit.",
+      type: "number",
+      preset: {
+        default: 0,
+        prettier: 0,
+        recommended: 3,
+        strict: 3,
+        warrington: 0
+      }
+    },
+    forceFilter: {
+      default: 0,
+      description: "Forces filter pipes onto newlines. When this value is `0` then filters will be forced according to wrap fraction limit.",
+      type: "number",
+      preset: {
+        default: 0,
+        prettier: 0,
+        recommended: 5,
+        strict: 4,
+        warrington: 0
+      }
+    },
+    delimiterPlacement: {
+      default: "preserve",
+      description: "Controls the placement of Liquid delimiters",
+      type: "choice",
+      values: [
+        {
+          rule: "preserve",
+          description: "Preserve delimiters"
+        },
+        {
+          rule: "default",
+          description: "Use defaults"
+        },
+        {
+          rule: "consistent",
+          description: "Place line break character at the start of expressions"
+        },
+        {
+          rule: "inline",
+          description: "Place line break character at the end of expressions"
+        },
+        {
+          rule: "force-inline",
+          description: "Place line break character at the end of expressions"
+        },
+        {
+          rule: "force-multiline",
+          description: "Place line break character at the end of expressions"
+        }
+      ],
+      preset: {
+        default: "preserve",
+        prettier: "default",
+        recommended: "consistent",
+        strict: "force-multiline",
+        warrington: "consistent"
+      }
+    },
+    quoteConvert: {
+      description: "If the quotes should be converted to single quotes or double quotes.",
+      type: "choice",
+      default: "none",
+      values: [
+        {
+          rule: "none",
+          description: "Ignores this option"
+        },
+        {
+          rule: "single",
+          description: "Converts double quotes to single quotes"
+        },
+        {
+          rule: "double",
+          description: "Converts single quotes to double quotes"
+        }
+      ],
+      preset: {
+        default: "none",
+        prettier: "double",
+        recommended: "single",
+        strict: "single",
+        warrington: "single"
+      }
+    }
+  },
+  markup: {
+    attributeSort: {
+      default: !1,
+      description: "Alphanumerically sort markup attributes. Attribute sorting is ignored on tags that contain attributes template attributes.",
+      type: {
+        array: "A list of attributes to begin sorting order with",
+        boolean: "Whether or not to apply alphanumeric sorting"
+      },
+      preset: {
+        default: !1,
+        prettier: !1,
+        recommended: !0,
+        strict: [
+          "id",
+          "class",
+          "type",
+          "name",
+          "value"
+        ],
+        warrington: !1
+      }
+    },
+    attributeCasing: {
+      default: "preserve",
+      description: "Controls the casing of attribute values and keys.",
+      type: "choice",
+      values: [
+        {
+          rule: "preserve",
+          description: "All tag attribute keys/values are preserved and left intact."
+        },
+        {
+          rule: "lowercase",
+          description: "All tag attribute keys/values are converted to lowercase"
+        },
+        {
+          rule: "lowercase-name",
+          description: "Only attribute keys are converted to lowercase"
+        },
+        {
+          rule: "lowercase-value",
+          description: "Only attribute values are converted to lowercase"
+        }
+      ],
+      preset: {
+        default: "preserve",
+        prettier: "preserve",
+        recommended: "lowercase-name",
+        strict: "lowercase-name",
+        warrington: "preserve"
+      }
+    },
+    commentDelimiters: {
+      default: "preserve",
+      description: "Controls the formatting style of HTML and XML comment delimiters.",
+      type: "choice",
+      values: [
+        {
+          rule: "preserve",
+          description: "All comment delimiters are left intact"
+        },
+        {
+          rule: "consistent",
+          description: "Force or inline based on the starting comment delimiter placement"
+        },
+        {
+          rule: "force",
+          description: "Comment delimiters will be forced onto newlines"
+        },
+        {
+          rule: "inline",
+          description: "Comment delimiter will be inlined"
+        },
+        {
+          rule: "inline-align",
+          description: "Comment delimiters will be inlined and any newline occurances will apply aligned indentation."
+        }
+      ],
+      preset: {
+        default: "preserve",
+        prettier: "consistent",
+        recommended: "preserve",
+        strict: "force",
+        warrington: "consistent"
+      }
+    },
+    commentNewline: {
+      default: !1,
+      description: "If a blank new line should be forced above comments.",
+      type: "boolean",
+      preset: {
+        default: !1,
+        prettier: !1,
+        recommended: !0,
+        strict: !0,
+        warrington: !1
+      }
+    },
+    commentIndent: {
+      default: !1,
+      description: "This will determine whether comments should always start at position 0 of each line or if comments should be indented according to the code.",
+      type: "boolean",
+      preset: {
+        default: !1,
+        prettier: !1,
+        recommended: !0,
+        strict: !0,
+        warrington: !0
+      }
+    },
+    delimiterTerminus: {
+      description: "Whether or not ending HTML tag delimiters should be forced onto a newline. This will emulate the style of Prettier's singleAttributePerLine formatting option, wherein the last > delimiter character breaks itself onto a new line",
+      default: "inline",
+      type: "choice",
+      values: [
+        {
+          rule: "inline",
+          description: "Inline the ending delimiter"
+        },
+        {
+          rule: "force",
+          description: "Force the ending delimiter onto its own line"
+        },
+        {
+          rule: "adapt",
+          description: "Adapt the delimiter in accordance with structure"
+        }
+      ],
+      preset: {
+        default: "inline",
+        prettier: "force",
+        recommended: "adapt",
+        strict: "adapt",
+        warrington: "adapt"
+      }
+    },
+    forceAttribute: {
+      default: !1,
+      description: "If all markup attributes should be indented each onto their own line. This option accepts either a boolean or number value, depending on your preferences you can either force attributes based a count limit, disable forcing or always enable enforcing.",
+      type: {
+        number: "Optionally define an attribute force threshold. When the number of attributes exceeds this limit then they will be forced, otherwise they will be left intact.",
+        boolean: "Whether or not to enforce the rule. A value of true will always force attributes, whereas a value of false will never force attributes."
+      },
+      preset: {
+        default: !1,
+        prettier: 1,
+        recommended: 2,
+        strict: 2,
+        warrington: 2
+      }
+    },
+    forceIndent: {
+      default: !1,
+      description: "Will force indentation upon all content and tags without regard for the creation of new text nodes.",
+      type: "boolean",
+      preset: {
+        default: !1,
+        prettier: !0,
+        recommended: !0,
+        strict: !0,
+        warrington: !0
+      }
+    },
+    ignoreJS: {
+      default: !0,
+      description: "Whether to ignore embedded regions of tags identified to contain JavaScript",
+      type: "boolean",
+      preset: {
+        default: !0,
+        prettier: !0,
+        recommended: !0,
+        strict: !1,
+        warrington: !1
+      }
+    },
+    ignoreCSS: {
+      default: !1,
+      description: "Whether to ignore embedded regions of tags identified to contain CSS",
+      type: "boolean",
+      preset: {
+        default: !1,
+        prettier: !0,
+        recommended: !1,
+        strict: !1,
+        warrington: !1
+      }
+    },
+    ignoreJSON: {
+      default: !1,
+      description: "Whether HTML <script> tags annotated with a JSON identifiable attribute should be ignored from beautification.",
+      type: "boolean",
+      preset: {
+        default: !1,
+        prettier: !1,
+        recommended: !1,
+        strict: !1,
+        warrington: !1
+      }
+    },
+    preserveAttribute: {
+      default: !1,
+      description: "If markup tags should have their insides preserved. This option is only available to markup and does not support child tokens that require a different lexer.",
+      type: "boolean",
+      preset: {
+        default: !1,
+        prettier: !1,
+        recommended: !1,
+        strict: !1,
+        warrington: !1
+      }
+    },
+    preserveComment: {
+      default: !1,
+      description: "Prevent comment reformatting due to option wrap.",
+      type: "boolean",
+      preset: {
+        default: !1,
+        prettier: !1,
+        recommended: !1,
+        strict: !1,
+        warrington: !1
+      }
+    },
+    preserveText: {
+      default: !1,
+      description: "If text in the provided markup code should be preserved exactly as provided. This option eliminates beautification and wrapping of text content.",
+      type: "boolean",
+      preset: {
+        default: !1,
+        prettier: !1,
+        recommended: !1,
+        strict: !1,
+        warrington: !1
+      }
+    },
+    lineBreakValue: {
+      default: "preserve",
+      description: "Determines how \xC6sthetic should handle line break occurance sequences within attribute values",
+      type: "choice",
+      values: [
+        {
+          rule: "preserve",
+          description: "Preserve the supplied value structure sequences"
+        },
+        {
+          rule: "align",
+          description: "Align all line breaks to the starting point of attribute name"
+        },
+        {
+          rule: "indent",
+          description: "Indent all line breaks from the starting point of attribute name"
+        },
+        {
+          rule: "force-preserve",
+          description: "Force encapsulated values onto newlines but preserve inner contents"
+        },
+        {
+          rule: "force-align",
+          description: "Force encapsulated values onto newlines and apply aligned formatting"
+        },
+        {
+          rule: "force-indent",
+          description: "Force encapsulated values onto newlines and apply indentation formatting"
+        }
+      ],
+      preset: {
+        default: "preserve",
+        prettier: "indent",
+        recommended: "force-indent",
+        strict: "force-indent",
+        warrington: "force-indent"
+      }
+    },
+    selfCloseSpace: {
+      default: !1,
+      description: 'Markup self-closing tags end will end with " />" instead of "/>".',
+      type: "boolean",
+      preset: {
+        default: !1,
+        prettier: !1,
+        recommended: !1,
+        strict: !1,
+        warrington: !1
+      }
+    },
+    selfCloseSVG: {
+      default: !0,
+      description: "Whether or not SVG type tags should be converted to self closing void types.",
+      type: "boolean",
+      preset: {
+        default: !1,
+        prettier: !1,
+        recommended: !0,
+        strict: !0,
+        warrington: !0
+      }
+    },
+    stripAttributeLines: {
+      default: !1,
+      description: "Whether or not newlines contained within tag attributes should be removed or preserved.",
+      type: "boolean",
+      preset: {
+        default: !1,
+        prettier: !0,
+        recommended: !0,
+        strict: !0,
+        warrington: !1
+      }
+    },
+    quoteConvert: {
+      description: "If the quotes should be converted to single quotes or double quotes.",
+      type: "choice",
+      default: "none",
+      values: [
+        {
+          rule: "none",
+          description: "Ignores this option"
+        },
+        {
+          rule: "single",
+          description: "Converts double quotes to single quotes"
+        },
+        {
+          rule: "double",
+          description: "Converts single quotes to double quotes"
+        }
+      ],
+      preset: {
+        default: "none",
+        prettier: "double",
+        recommended: "double",
+        strict: "double",
+        warrington: "double"
+      }
+    }
+  },
+  style: {
+    classPadding: {
+      description: "Inserts new line characters between every CSS code block.",
+      default: !1,
+      type: "boolean"
+    },
+    commentNewline: {
+      default: !1,
+      description: "If a blank new line should be forced above comments.",
+      type: "boolean"
+    },
+    commentIndent: {
+      default: !1,
+      description: "This will determine whether comments should always start at position 0 of each line or if comments should be indented according to the code.",
+      type: "boolean"
+    },
+    sortSelectors: {
+      default: !1,
+      type: "boolean",
+      description: "If comma separated CSS selectors should present on a single line of code."
+    },
+    sortProperties: {
+      description: "This option will alphabetically sort CSS properties contained within classes.",
+      default: !1,
+      type: "boolean"
+    },
+    noLeadZero: {
+      description: "This will eliminate leading zeros from numbers expressed within values.",
+      default: !1,
+      type: "boolean"
+    },
+    preserveComment: {
+      default: !1,
+      description: "Prevent comment reformatting due to option wrap.",
+      type: "boolean"
+    },
+    atRuleSpace: {
+      default: !0,
+      description: "Insert a single whitespace character betwen @ rules.",
+      type: "boolean"
+    },
+    quoteConvert: {
+      description: "If the quotes should be converted to single quotes or double quotes.",
+      type: "choice",
+      default: "none",
+      values: [
+        {
+          rule: "none",
+          description: "Ignores this option"
+        },
+        {
+          rule: "single",
+          description: "Converts double quotes to single quotes"
+        },
+        {
+          rule: "double",
+          description: "Converts single quotes to double quotes"
+        }
+      ]
+    }
+  },
+  json: {
+    arrayFormat: {
+      description: "Determines if all array indexes should be indented, never indented, or left to the default",
+      type: "choice",
+      default: "default",
+      values: [
+        {
+          rule: "default",
+          description: "Default formatting"
+        },
+        {
+          rule: "indent",
+          description: "Always indent each index of an array"
+        },
+        {
+          rule: "inline",
+          description: "Ensure all array indexes appear on a single line"
+        }
+      ]
+    },
+    braceAllman: {
+      default: !1,
+      description: 'Determines if opening curly braces will exist on the same line as their condition or be forced onto a new line, otherwise known as "Allman Style" indentation.',
+      type: "boolean"
+    },
+    bracePadding: {
+      default: !1,
+      description: "This will create a newline before and after objects values",
+      type: "boolean"
+    },
+    objectIndent: {
+      description: "This option will alphabetically sort object properties in JSON objects",
+      type: "choice",
+      default: "default",
+      values: [
+        {
+          rule: "default",
+          description: "Default formatting"
+        },
+        {
+          rule: "indent",
+          description: "Always indent each index of an array"
+        },
+        {
+          rule: "inline",
+          description: "Ensure all array indexes appear on a single line"
+        }
+      ]
+    },
+    objectSort: {
+      default: !1,
+      description: "This option will alphabetically sort object properties in JSON objects",
+      type: "boolean"
+    }
+  },
+  script: {
+    arrayFormat: {
+      description: "Determines if all array indexes should be indented, never indented, or left to the default",
+      type: "choice",
+      default: "default",
+      values: [
+        {
+          rule: "default",
+          description: "Default formatting"
+        },
+        {
+          rule: "indent",
+          description: "Always indent each index of an array"
+        },
+        {
+          rule: "inline",
+          description: "Ensure all array indexes appear on a single line"
+        }
+      ]
+    },
+    braceAllman: {
+      default: !1,
+      description: 'Determines if opening curly braces will exist on the same line as their condition or be forced onto a new line, otherwise known as "Allman Style" indentation.',
+      type: "boolean"
+    },
+    bracePadding: {
+      default: !1,
+      description: "This will create a newline before and after objects values",
+      type: "boolean"
+    },
+    braceNewline: {
+      default: !1,
+      description: "If true an empty line will be inserted after opening curly braces and before closing curly braces.",
+      type: "boolean"
+    },
+    braceStyle: {
+      default: "none",
+      description: "Emulates JSBeautify's brace_style option using existing Prettify options",
+      type: "choice",
+      values: [
+        {
+          rule: "none",
+          description: "Ignores this option"
+        },
+        {
+          rule: "collapse",
+          description: "Sets formatObject to indent and neverflatten to true."
+        },
+        {
+          rule: "collapse-preserve-inline",
+          description: "Sets formatObject to inline and bracePadding to true"
+        },
+        {
+          rule: "expand",
+          description: "Sets objectIndent to indent and braceNewline + neverflatten to true."
+        }
+      ]
+    },
+    caseSpace: {
+      default: !1,
+      type: "boolean",
+      description: "If the colon separating a case's expression (of a switch/case block) from its statement should be followed by a space instead of indentation thereby keeping the case on a single line of code."
+    },
+    commentNewline: {
+      default: !1,
+      description: "If a blank new line should be forced above comments.",
+      type: "boolean"
+    },
+    commentIndent: {
+      default: !1,
+      description: "This will determine whether comments should always start at position 0 of each line or if comments should be indented according to the code.",
+      type: "boolean"
+    },
+    elseNewline: {
+      default: !1,
+      type: "boolean",
+      description: 'If keyword "else" is forced onto a new line.'
+    },
+    endComma: {
+      description: "If there should be a trailing comma in arrays and objects.",
+      type: "choice",
+      default: "none",
+      values: [
+        {
+          rule: "none",
+          description: "Ignore this option"
+        },
+        {
+          rule: "always",
+          description: "Always ensure there is a tailing comma"
+        },
+        {
+          rule: "never",
+          description: "Remove trailing commas"
+        }
+      ]
+    },
+    objectSort: {
+      default: !1,
+      description: "This option will alphabetically sort object properties in JSON objects",
+      type: "boolean"
+    },
+    objectIndent: {
+      description: "This option will alphabetically sort object properties in JSON objects",
+      type: "choice",
+      default: "default",
+      values: [
+        {
+          rule: "default",
+          description: "Default formatting"
+        },
+        {
+          rule: "indent",
+          description: "Always indent each index of an array"
+        },
+        {
+          rule: "inline",
+          description: "Ensure all array indexes appear on a single line"
+        }
+      ]
+    },
+    functionSpace: {
+      default: !0,
+      type: "boolean",
+      description: "Inserts a space following the function keyword for anonymous functions."
+    },
+    functionNameSpace: {
+      default: !0,
+      type: "boolean",
+      description: "If a space should follow a JavaScript function name."
+    },
+    methodChain: {
+      default: -1,
+      description: "When to break consecutively chained methods and properties onto separate lines. A negative value disables this option. A value of 0 ensures method chainsare never broken.",
+      type: "number"
+    },
+    preserveComment: {
+      default: !1,
+      description: "Prevent comment reformatting due to option wrap.",
+      type: "boolean"
+    },
+    ternaryLine: {
+      description: "If ternary operators in JavaScript `?` and `:` should remain on the same line.",
+      type: "boolean",
+      default: !1
+    },
+    neverFlatten: {
+      default: !0,
+      description: "If destructured lists in script should never be flattend.",
+      type: "boolean"
+    },
+    noCaseIndent: {
+      description: "If the colon separating a case's expression (of a switch/case block) from its statement should be followed by a space instead of indentation, thereby keeping the case on a single line of code.",
+      default: !1,
+      type: "boolean"
+    },
+    noSemicolon: {
+      description: "Removes semicolons that would be inserted by ASI. This option is in conflict with option `attemptCorrection` and takes precedence over conflicting features. Use of this option is a possible security/stability risk.",
+      default: !1,
+      type: "boolean"
+    },
+    quoteConvert: {
+      description: "If the quotes should be converted to single quotes or double quotes.",
+      type: "choice",
+      default: "none",
+      values: [
+        {
+          rule: "none",
+          description: "Ignores this option"
+        },
+        {
+          rule: "single",
+          description: "Converts double quotes to single quotes"
+        },
+        {
+          rule: "double",
+          description: "Converts single quotes to double quotes"
+        }
+      ]
+    },
+    variableList: {
+      description: "If consecutive JavaScript variables should be merged into a comma separated list or if variables in a list should be separated. each \u2014 Ensure each reference is a single declaration statement.",
+      type: "choice",
+      default: "none",
+      values: [
+        {
+          rule: "none",
+          description: "Ignores this option"
+        },
+        {
+          rule: "each",
+          description: "Ensure each reference is a single declaration statement"
+        },
+        {
+          rule: "list",
+          description: "Ensure consecutive declarations are a comma separated list"
+        }
+      ]
+    },
+    vertical: {
+      description: "If lists of assignments and properties should be vertically aligned",
+      type: "boolean",
+      default: !1
+    }
+  }
+};
+
+// src/parse/external.ts
+function Ht(e, s, n) {
+  if (s === "html") {
+    if (!(e in we.html.embed))
+      return !1;
+    let u = we.html.embed[e];
+    if (u.attr.size > 0)
+      for (let A of u.attr.values()) {
+        if (!n)
+          return A;
+        if (A.attr.has(n[0]) && A.attr.get(n[0]).value.has(n[1]))
+          return A.attr.get(n[0]);
+      }
+    return u.attr.has(n[0]) ? u.attr.get(n[0]).attr.has(n[1]) ? u.attr.get(n[0]).attr.get(n[1]) : u.attr.get(n[0]) : u;
+  } else if (s === "liquid") {
+    if (!(e in we.liquid.embed))
+      return !1;
+    let u = we.liquid.embed[e];
+    if (u.args.size > 0 && n) {
+      let A = n.slice(n.indexOf(e) + e.length).match(/\s*(.*)(?=\s)/)[0];
+      for (let [a, C] of u.args) {
+        if (a.has(A))
+          return C;
+        for (let o of a)
+          if (Bt(o) && o.test(A))
+            return C;
+      }
+    }
+    return u;
+  }
+}
+
+// src/lexical/liquid.ts
+function Yi(e, s) {
+  let n = i(e[2], 45) ? 3 : 2, u = e.slice(n), A;
+  return s.delimiterTrims === "never" ? A = `{${e[1]}` : s.delimiterTrims === "always" || s.delimiterTrims === "outputs" && i(e[1], 123) || s.delimiterTrims === "tags" && i(e[1], 37) ? A = `{${e[1]}-` : A = e.slice(0, n), s.delimiterPlacement === "preserve" ? A += /^\s*\n/.test(u) ? z : ee : s.delimiterPlacement === "force" ? A += z : s.delimiterPlacement === "inline" || s.delimiterPlacement === "default" || s.delimiterPlacement === "force-multiline" ? A += ee : s.delimiterPlacement === "consistent" && (/^\s*\n/.test(u) ? A += z : A += ee), A + u.trim();
+}
+function Ft(e, s, n = ee) {
+  let { delimiterTrims: u, delimiterPlacement: A } = r.rules.liquid, [a, C] = en(e), o, k = e.slice(a, C), f;
+  return u === "never" ? (o = `{${e[1]}`, f = `${e[e.length - 2]}}`) : u === "always" || u === "outputs" && i(e[1], 123) || u === "tags" && i(e[1], 37) ? (o = `{${e[1]}-`, f = `-${e[e.length - 2]}}`) : (o = e.slice(0, a), f = e.slice(C)), s || (s = k.trimStart().split(/\s/)[0] || ""), s === "else" || s === "break" || s === "continue" || s === "increment" || s === "decrement" || s.startsWith("end") ? (o += n, f = n + f) : A === "preserve" ? (o += /^\s*\n/.test(k) ? z : n, f = (/\s*\n\s*$/.test(k) ? z : n) + f) : s === "#" && A === "force-multiline" ? /\n{2,}/g.test(k.trim()) ? (o += z, f = z + f) : (o += n, f = n + f) : A === "force" ? (o += z, f = z + f) : A === "inline" || A === "default" || A === "force-multiline" ? (o += n, f = n + f) : A === "consistent" && (/^\s*\n/.test(k) ? (o += z, f = z + f) : (o += n, f = n + f)), o + k.trim() + f;
+}
+function Ki(e, s, n, {
+  wrapFraction: u,
+  liquid: {
+    forceFilter: A,
+    forceArgument: a,
+    lineBreakSeparator: C,
+    delimiterTrims: o,
+    delimiterPlacement: k
+  }
+}) {
+  let [f, t] = en(e), h, V;
+  if (o === "never" ? (h = `{${e[1]}`, V = `${e[e.length - 2]}}`) : o === "always" || o === "outputs" && i(e[1], 123) || o === "tags" && i(e[1], 37) ? (h = `{${e[1]}-`, V = `-${e[e.length - 2]}}`) : o === "preserve" ? (h = e.slice(0, f).join(c), V = e.slice(t).join(c)) : (h = `{${e[1]}`, V = `${e[e.length - 2]}}`), s === "else" || s === "break" || s === "continue" || s === "increment" || s === "decrement" || s.startsWith("end"))
+    return h += ee, V = ee + V, h + e.slice(f, t).join(c).trim() + V;
+  if (k === "preserve" ? (h += i(e[f], 10) ? z : ee, V = (i(e[t - 1], 10) ? z : ee) + V) : k === "force" ? (h += z, V = z + V) : k === "inline" || k === "default" ? (h += ee, V = ee + V) : k === "consistent" ? i(e[f], 10) ? (h += z, V = z + V) : (h += ee, V = ee + V) : (h += ee, V = ee + V), s === "liquid")
+    return h + e.slice(f, t).join(c).trim() + V;
+  if (u > 0 && e.length >= u && n.logic.length > 0 && (s === "if" || s === "elsif" || s === "unless" || s === "when")) {
+    o === "multiline" && (h = `{${e[1]}-` + h[h.length - 1], V = V[0] + `-${e[e.length - 2]}}`), k === "force-multiline" && (h = h.trimEnd() + z, V = z + V.trimStart());
+    let m = n.logic.length;
+    for (let p = 0; p < m; p++) {
+      let w = n.logic[p];
+      e[w] = z + e[w], i(e[w - 1], 32) && (e[w - 1] = c);
+    }
+    return h + e.slice(f, t).join(c).trim() + V;
+  }
+  let le = n.pipes.length;
+  if (le > 0) {
+    if (A > 0 && le >= A || A === 0 && u > 0 && e.length > u) {
+      o === "multiline" && (h = `{${e[1]}-` + h[h.length - 1], V = V[0] + `-${e[e.length - 2]}}`), k === "force-multiline" && (h = h.trimEnd() + z, V = z + V.trimStart());
+      for (let m = 0; m < le; m++) {
+        let p = n.pipes[m];
+        if (Me(e[p - 1]) && (e[p - 1] = c), e[p] = z + e[p], m === 0) {
+          let w = p - 1;
+          if (Me(e[w - 1]))
+            do
+              e[w--] = c;
+            while (Me(e[w]));
+        }
+        if (n.fargs[m] && (a > 0 && n.fargs[m].length >= a || a === 0 && u > 0 && e.slice(
+          n.fargs[m][0],
+          n.fargs[m][n.fargs[m].length - 1]
+        ).length > u)) {
+          let w = n.fargs[m].length;
+          for (let _ = 0; _ < w; _++) {
+            let I = n.fargs[m][_];
+            C === "after" ? (Me(e[I + 1]) && Me(e[I + 2]) && (e[I + 1] = c), e[i(e[I - 1], 44) ? I - 1 : I] = _ === 0 ? z + "  " : st + z + " ") : C === "before" ? (Me(e[I + 1]) && Me(e[I + 2]) && (e[I + 1] = c), i(e[I - 1], 44) ? e[I - 1] = _ === 0 ? "  " + z : z + "  " + st : e[I] = _ === 0 ? z + "  " : z + "  " + st) : e[I] = z + "  " + e[I];
+          }
+        }
+      }
+    }
+    return h + e.slice(f, t).join(c).trim() + V;
+  }
+  if (n.targs.length >= a) {
+    o === "multiline" && (h = `{${e[1]}-` + h[h.length - 1], V = V[0] + `-${e[e.length - 2]}}`);
+    for (let m = 0; m < n.targs.length; m++) {
+      let p = n.targs[m];
+      if (C === "after") {
+        let w = p;
+        for (; Me(e[w--]); )
+          e[w] = c;
+        Me(e[p + 1]) && (e[p + 1] = c), Me(e[p - 1]) && (e[p - 1] = c), e[p] = i(e[p], 44) ? st + z : z;
+      } else
+        C === "before" && (i(e[p - 1], 44) ? e[p - 1] = m === 0 ? z + st : z + st : e[p] = m === 0 ? z + st : z + st);
+    }
+  }
+  return h + e.slice(f, t).join(c).trim() + V;
+}
+function en(e) {
+  return [
+    i(e[2], 45) ? 3 : 2,
+    i(e[e.length - 3], 45) ? e.length - 3 : e.length - 2
+  ];
+}
+function tn(e, s = !0) {
+  return s ? new RegExp(`{%-?\\s*${e}\\s*-?%}`) : new RegExp(`{%-?\\s*${e}`);
+}
+function nn(e) {
+  let s = e.indexOf("{");
+  return i(e[s + 1], 123);
+}
+function zt(e) {
+  let s = e.indexOf("{");
+  if (i(e[s + 1], 37)) {
+    let n;
+    return n = e.slice(s + (i(e[s + 2], 45) ? 3 : 2)).trimStart(), n = n.slice(0, n.search(/[\s=|!<>,.[]|-?[%}]}/)), n.startsWith("end") ? !1 : we.liquid.else.has(n);
+  }
+  return !1;
+}
+function sn(e) {
+  let s = e.indexOf("=");
+  return s > -1 && (i(e[s + 1], 34) || i(e[s + 1], 39)) ? /{%-?\s*end[a-z]+/.test(e.slice(s, e.lastIndexOf(e[s + 1]))) : !1;
+}
+function ki(e) {
+  return ht(e) ? /{%-?\s*end\w+/.test(e) : !1;
+}
+function ht(e, s = !1) {
+  let n;
+  if (s)
+    return i(e[0], 123) && i(e[1], 37) && i(e[e.length - 2], 37) && i(e[e.length - 1], 125) ? (n = e.slice(i(e[2], 45) ? 3 : 2).trimStart(), i(n, 34) || i(n, 39) ? !1 : (n = n.slice(0, n.search(/[\s=|!<"'>,.[]|-?[%}]}/)), n.startsWith("end") ? !1 : we.liquid.tags.has(n))) : !1;
+  let u = e.indexOf("{");
+  if (u === -1)
+    return !1;
+  do {
+    if (i(e[u + 1], 37))
+      return n = e.slice(u + (i(e[u + 2], 45) ? 3 : 2)).trimStart(), n = n.slice(0, n.search(/[\s=|!<>,.[]|-?[%}]}/)), n.startsWith("end") ? !1 : we.liquid.tags.has(n);
+    u = e.indexOf("{", u + 1);
+  } while (u > -1);
+  return !1;
+}
+function Et(e) {
+  let s = e;
+  Array.isArray(e) && (s = e.join(c));
+  let n = s.indexOf("{");
+  return i(s[n + 1], 37) ? i(s[n + 2], 45) ? s.slice(n + 3).trimStart().startsWith("end") : s.slice(n + 2).trimStart().startsWith("end") : !1;
+}
+function Gt(e, s) {
+  if (s === 1)
+    return i(e[0], 123) && (i(e[1], 37) || i(e[1], 123));
+  if (s === 6)
+    return i(e[0], 123) && i(e[1], 37);
+  if (s === 7)
+    return i(e[0], 123) && i(e[1], 123);
+  if (s === 8)
+    return i(e[e.length - 2], 37) && i(e[e.length - 1], 125);
+  if (s === 9)
+    return i(e[e.length - 2], 125) && i(e[e.length - 1], 125);
+  if (s === 4)
+    return /{[{%]/.test(e);
+  if (s === 5)
+    return /{[{%]/.test(e) && /[%}]}/.test(e);
+  if (s === 2) {
+    let n = e.length;
+    return i(e[n - 1], 125) && (i(e[n - 2], 37) || i(e[n - 2], 125));
+  } else if (s === 3) {
+    let n = e.length;
+    return i(e[0], 123) && (i(e[1], 37) || i(e[1], 123)) && i(e[n - 1], 125) && (i(e[n - 2], 37) || i(e[n - 2], 125));
+  }
+}
+
+// src/lexers/markup.ts
+function on(e) {
+  let { data: s, rules: n } = r, u = e || r.source, A = r.language === "jsx" || r.language === "tsx", a = new Set(n.liquid.ignoreTagList), C = Ne(n.markup.attributeSort) ? n.markup.attributeSort.length : -1, o = Ne(u) ? u : u.split(c), k = o.length, f = Fe(null);
+  f.start = -1, f.tname = [], f.index = [];
+  let t = 0, h, V = !1; r.language; let m = 0;
+  function p(N) {
+    let S = Fe(null);
+    return S.lexer = "markup", S.lines = r.lineOffset, S.stack = r.stack.token !== "global" ? r.stack.token : "global", S.begin = r.stack.index, S.token = c, S.types = c, S.ender = -1, N ? pt(S, N) : S;
+  }
+  function w(N, S = c, j) {
+    if (S === c && j === void 0)
+      r.push(s, N, c);
+    else if (tt(S))
+      pt(N, S), r.push(s, N, c);
+    else if (Ne(S))
+      for (let D of S)
+        pt(N, D), r.push(s, N, c);
+    else
+      j ? (pt(N, j), r.push(s, N, S)) : console.log("isssue");
+  }
+  function _(N, S = null) {
+    return r.language !== "html" && r.language !== "liquid" && A === !1 || /(?:{[=#/]|%[>\]])|\}%[>\]]/.test(N) || !Gt(N, 3) ? N : Ft(N, S);
+  }
+  function I(N) {
+    let S = N;
+    do
+      S = S - 1;
+    while (i(o[S], 92));
+    return S = N - S, S % 2 === 1;
+  }
+  function d(N) {
+    return n.correct === !1 || i(N[N.length - 2], 47) ? N : /\/\s+>$/.test(N) ? `${N.slice(0, N.lastIndexOf("/"))}${n.markup.selfCloseSpace ? "/>" : " />"}` : `${N.slice(0, -1)}${n.markup.selfCloseSpace ? "/>" : " />"}`;
+  }
+  function l(N, S = !0) {
+    let j = N.indexOf("=");
+    if (j > 0) {
+      let D = N.indexOf(Be);
+      if (j < D && D > 0)
+        return S ? [N.slice(0, j), N.slice(j + 1)] : [N.slice(0, j), N.slice(j + 2, -1)];
+      let B = N.indexOf(je);
+      if (j < B && B > 0)
+        return S ? [N.slice(0, j), N.slice(j + 1)] : [N.slice(0, j), N.slice(j + 2, -1)];
+    }
+    return [N, c];
+  }
+  function g(N) {
+    let S = p(), j = c, D = c, B = c, P = c, pe = c, ge = !1, ue = !1, Ce = 0, O = !1, ke = !1, K = !1, se = !1, J = [];
+    function $e() {
+      return x();
+    }
+    function $() {
+      let R = u.indexOf("capture", t);
+      if (o[R - 3] === "e" && o[R - 2] === "n" && o[R - 1] === "d")
+        R = o.indexOf("}", R) + 1, S.types = B = "liquid_capture", S.token = j + u.slice(t, R), r.lineNumber = bt(j, r.lineNumber), w(S), t = R;
+      else {
+        let Q = u.indexOf("endcapture", R + 7) + 9;
+        if (Q > -1 && /[a-z]/.test(o[Q + 1]) === !1)
+          return R = o.indexOf("}", Q) + 1, j = j + u.slice(t, R), r.lineNumber = bt(j, r.lineNumber), t = R, $();
+        De(114, j, P);
+      }
+    }
+    function G() {
+      s.types[S.begin] === "start" && s.types[s.begin[S.begin]] === "liquid_start" && B === "liquid_end" ? (s.types[S.begin] = "singleton", delete r.pairs[r.stack.index]) : s.types[r.count] === "liquid_start" && B === "end" && (S.types = "singleton", delete r.pairs[r.stack.index], r.stack.pop());
+    }
+    function oe() {
+      if (S.types.indexOf("liquid") < 0)
+        return G(), $e();
+      if (S.token === c && (S.token = j), i(j[0], 123) && i(j[1], 37))
+        if (we.liquid.else.has(P))
+          S.types = B = P === "when" ? "liquid_when" : "liquid_else";
+        else if (we.liquid.tags.has(P)) {
+          if (V === !0)
+            S.types = B = "liquid_start";
+          else if (P === "capture")
+            return t = t + 1, $();
+          return S.types = B = P === "case" ? "liquid_case_start" : "liquid_start", x();
+        } else if (P.startsWith("end")) {
+          let R = P.slice(3);
+          if (we.liquid.tags.has(R))
+            S.types = B = R === "case" ? "liquid_case_end" : "liquid_end";
+          else {
+            S.stack = R, S.types = B = "liquid_end";
+            let Q = 0;
+            do {
+              if (s.types[Q] === "liquid" && s.stack[Q] === R) {
+                s.types[Q] = "liquid_start";
+                for (let W = Q, U = s.stack.length; W < U; W++)
+                  r.stack.push([s.token[W], W]);
+                break;
+              }
+              Q = s.stack.indexOf(R, Q + 1);
+            } while (Q > -1);
+          }
+          G();
+        } else
+          S.stack = P;
+      return n.liquid.quoteConvert === "double" ? S.token = j = S.token.replace(/'[^"]*?'/g, gi(Be)) : n.liquid.quoteConvert === "single" && (S.token = j = S.token.replace(/"[^']*?"/g, gi(je))), $e();
+    }
+    function ne() {
+      let R = j.indexOf("liquid") + 6, Q = c, W = c, U = 1;
+      w(S, {
+        token: Yi(j.slice(0, R), n.liquid),
+        types: "liquid_start",
+        stack: "liquid"
+      });
+      let Z = j.slice(R).split(z), ae = Z.pop().trim(), he = i(ae[ae.length - 3], 45) ? ae.length - 3 : ae.length - 2, de = ae.slice(0, he), fe = ae.slice(he);
+      de.length !== 0 && Z.push(de), R = 0;
+      do
+        Q = Z[R].trim(), W = Q.split(/\s/)[0], W.startsWith("end") ? (S.token = Q, S.types = W === "endcase" ? "liquid_case_end" : "liquid_end", S.lines = U <= 1 ? 2 : U, w(S), U = 1) : W.startsWith("#") ? (S.token = Q, S.types = "liquid", S.lines = U <= 1 ? 2 : U, w(S), U = 1) : W.startsWith("comment") ? (S.token = Q, S.types = "liquid_start", S.lines = U, w(S), U = 1) : we.liquid.tags.has(W) ? (S.token = Q, S.types = W === "case" ? "liquid_case_start" : "liquid_start", S.lines = U, w(S), U = 1) : we.liquid.else.has(W) ? (S.token = Q, S.types = W === "when" ? "liquid_when" : "liquid_else", S.lines = U, w(S), U = 1) : we.liquid.singleton.has(W) ? (S.token = Q, S.types = "liquid", S.lines = U <= 1 ? 2 : U, w(S), U = 1) : Q.trim().length > 0 && (S.token = Q, S.types = "content", S.lines = U, w(S), U = 1), R = R + 1, U = U + 1;
+      while (R < Z.length);
+      n.liquid.delimiterPlacement === "default" || n.liquid.delimiterPlacement === "force-multiline" || n.liquid.delimiterPlacement === "preserve" && /\n-?%}$/.test(j) || n.liquid.delimiterPlacement === "consistent" && /^{%-?\n/.test(j) ? w(S, {
+        token: fe,
+        types: "liquid_end",
+        lines: 2
+      }) : w(S, {
+        token: fe,
+        types: "liquid_end",
+        lines: 0
+      });
+    }
+    function Y() {
+      if (P === "svg" && (f.start = r.count + 1, S.stack = P), we.svg.tags.has(P) && f.start > -1) {
+        if (S.types === "start")
+          S.types = "singleton", S.stack = P, f.tname.push(P), f.index.push(r.count + 1);
+        else if (S.types === "end") {
+          let R = f.tname.indexOf(P), Q = f.tname.lastIndexOf(P), W;
+          if (R > -1)
+            for (Q === R ? (W = f.index[Q], s.types[f.index[Q]] = "start", f.tname.splice(Q, 1), f.index.splice(Q, 1)) : s.begin[r.count] === f.index[R] ? (W = s.begin[r.count], s.types[s.begin[r.count]] = "start", f.tname.splice(R, 1), f.index.splice(R, 1)) : (W = f.index[Q], s.types[f.index[Q]] = "start"); W < s.stack.length; W++)
+              s.stack[W] = P, r.stack.push([P, W]);
+          P === "svg" && (f.start = -1);
+        }
+      }
+      return oe();
+    }
+    function F() {
+      return se && ue === !1 && B !== "xml" && (we.html.voids.has(P) ? (S.types = B = "singleton", T(j[j.length - 2], 47) && (S.token = d(j))) : i(j[j.length - 2], 47) && i(j[j.length - 1], 62) ? S.types = B = "singleton" : S.types = B = "start"), Y();
+    }
+    function H(R, Q) {
+      let W = t, U = -1, Z = 0, ae;
+      do {
+        if ((P === "script" || P === "style") && i(o[t], 47) && (i(o[t + 1], 47) ? t = o.indexOf(z, t + 1) + 1 : i(o[t + 1], 42) && (t = u.indexOf("*/", t + 1) + 2)), i(o[t], 34) || i(o[t], 39) || i(o[t], 96)) {
+          for (U = t + 1, ae = o[t]; ae !== o[U] && U < k && (i(o[U], 92) && (U = U + 1), ae !== o[U]); )
+            U = U + 1;
+          if (U !== k)
+            t = U + 1, U = -1;
+          else
+            return De(101, u.slice(t));
+        }
+        if (Q === 3) {
+          if (i(o[t - 2], 123) && i(o[t - 1], 37)) {
+            for (i(o[t], 45) && (t = t + 1), U = t; ce(o[U]) && (U = U + 1, !lt(o[U])); )
+              ;
+            if (ae = u.slice(U, U + R.length), ae.startsWith(P)) {
+              t = U + P.length, Z = Z + 1, U = -1;
+              continue;
+            } else if (ae === R)
+              if (Z === 0) {
+                if (U = o.indexOf("}", U + R.length) + 1, U === -1)
+                  return De(113, ae, P);
+                break;
+              } else
+                Z = Z - 1, t = U + R.length;
+          }
+        } else if (u.slice(t, t + R.length) === R) {
+          j = u.slice(W, t).replace(Je, c).replace(Ye, c);
+          break;
+        }
+        t = t + 1;
+      } while (t < k);
+      if (Q === 3) {
+        let he = o.lastIndexOf(z, r.iterator) + 1;
+        S.types = B = "ignore", S.token = j = u.slice(he, U), w(S), t = U - 1, J = [];
+      } else
+        return r.lineNumber = bt(j, r.lineNumber), j.trim() !== c && (S.token = j, S.lines = r.lineOffset, S.types = "ignore", w(S)), S.types = B = "end", S.token = j = R, t = t + R.length - 1, x();
+    }
+    function b(R, Q) {
+      let W = o.lastIndexOf(Ii(s.token[r.count]), r.iterator) + 1;
+      if (Q === 3 || Q === 6) {
+        let U = -1, Z = 0, ae;
+        do {
+          if ((P === "script" || P === "style") && i(o[t], 47) && (i(o[t + 1], 47) ? t = o.indexOf(z, t + 1) + 1 : i(o[t + 1], 42) && (t = u.indexOf("*/", t + 1) + 2)), i(o[t], 34) || i(o[t], 39) || i(o[t], 96)) {
+            if (U = o.indexOf(o[t], t + 1), U > -1) {
+              r.lineNumber = bt(o.slice(t, U), r.lineNumber), t = U + 1, U = -1;
+              continue;
+            }
+            return De(101, u.slice(t));
+          }
+          if (Q === 3) {
+            if (i(o[t - 2], 123) && i(o[t - 1], 37)) {
+              if (i(o[t], 45) && (t = t + 1), ae = u.slice(t).trimStart(), ae.startsWith(P)) {
+                t = t + P.length, Z = Z + 1, U = -1;
+                continue;
+              } else if (ae.startsWith(R))
+                if (Z === 0) {
+                  if (U = o.indexOf("}", t + R.length) + 1, U === -1)
+                    return De(113, ae, P);
+                  t = U;
+                  break;
+                } else
+                  Z = Z - 1, t = t + R.length;
+            }
+          } else if (i(o[t - 1], 60) && u.slice(t, t + P.length) === P)
+            Z = Z + 1;
+          else if (i(o[t], 60) && i(o[t + 1], 47) && u.slice(t, t + R.length) === R)
+            if (Z === 0) {
+              t = t + R.length - 1;
+              break;
+            } else
+              Z = Z - 1;
+          t = t + 1;
+        } while (t < k);
+        if (Z > 0)
+          return Q === 3 ? De(114, j, P) : De(105, j, P);
+        S.types = "ignore", S.token = j = u.slice(W, t + 1), r.lineNumber = bt(j, r.lineNumber);
+      } else
+        S.types = "ignore", S.token = j = u.slice(W, t + 1);
+      J = [], ue = !1, w(S);
+    }
+    function X() {
+      return B === "script_preserve" || B === "json_preserve" || B === "style_preserve" ? (S.types = "start", S.stack = B === "style_preserve" ? "style" : "script", x(), t = t + 1, J = [], H(`</${P}>`, 2)) : s.types[r.count] === "ignore_next" ? B === "liquid_start" ? b(`end${P}`, 3) : B === "liquid" ? we.liquid.tags.has(P) ? (B = "liquid_start", b(`end${P}`, 3)) : b(N, N === "}}" ? 1 : 4) : we.html.voids.has(P) ? b(N, 7) : i(N, 62) ? b(`</${P}>`, 6) : (ue = !1, K = !1, F()) : a.has(P) ? H(`end${P}`, 3) : F();
+    }
+    function y() {
+      if (ue || i(j, 60) && i(j[1], 47))
+        return X();
+      let R = J.length - 1;
+      if (i(j, 60))
+        if (R > -1)
+          do {
+            let Q = Ht(P, "html", l(J[R][0], !1));
+            if (Q !== !1)
+              if (Q.language === "json" && n.markup.ignoreJSON) {
+                B = "json_preserve", ue = !0;
+                break;
+              } else if (Q.language === "javascript" && n.markup.ignoreJS) {
+                B = "script_preserve", ue = !0;
+                break;
+              } else if (Q.language === "css" && n.markup.ignoreCSS) {
+                B = "style_preserve", ue = !0;
+                break;
+              } else {
+                h = Q.language, B = "start", V = !0, ue = !1;
+                break;
+              }
+            R = R - 1;
+          } while (R > -1);
+        else {
+          let Q = Ht(P, "html");
+          Q !== !1 && (Q.language === "json" && n.markup.ignoreJSON ? (B = "json_preserve", ue = !0) : Q.language === "javascript" && n.markup.ignoreJS ? (B = "script_preserve", ue = !0) : Q.language === "css" && n.markup.ignoreCSS ? (B = "style_preserve", ue = !0) : (h = Q.language, B = "start", V = !0, ue = !1));
+        }
+      else if (ht(j, !0)) {
+        let Q = Ht(P, "liquid", j);
+        Q !== !1 && (a.has(P) ? (ue = !0, K = !1) : (B = "liquid_start", h = Q.language, V = !0));
+      }
+      return X();
+    }
+    function x(R = !1) {
+      if (R !== null && w(S), i(o[t], 62) && i(o[t + 1], 47))
+        return;
+      let Q = r.count, W = P.replace(/\/$/, c), U = n.markup.quoteConvert, Z = 0, ae = 0, he = 0, de = c, fe = c, re = J.length;
+      function be() {
+        r.attributes.has(Q) && Z + 1 === re && li(S.token, 62) && (S.token = S.token + ">");
+        let Pe = S.types.indexOf("liquid_attribute") > -1;
+        if (ue === !0 || U === "none" || S.types.indexOf("attribute") < 0 || Pe === !1 && U === "single" && S.token.indexOf(Be) < 0 || Pe === !1 && U === "double" && S.token.indexOf(je) < 0)
+          w(S);
+        else {
+          let Ae = 0, Se = !1, ie = S.token.split(c), Te = S.token.indexOf("="), Le = ie.length - 1;
+          if (T(ie[Te + 1], 34) && T(ie[ie.length - 1], 34) && U === "single" && Pe === !1)
+            w(S);
+          else if (T(ie[Te + 1], 39) && T(ie[ie.length - 1], 39) && U === "double" && Pe === !1)
+            w(S);
+          else {
+            if (Ae = Te + 2, Pe === !1 && (U === "double" ? (S.token.slice(Te + 2, Le).indexOf(Be) > -1 && (Se = !0), ie[Te + 1] = Be, ie[ie.length - 1] = Be) : U === "single" && (S.token.slice(Te + 2, Le).indexOf(je) > -1 && (Se = !0), ie[Te + 1] = je, ie[ie.length - 1] = je)), Se === !0 || Pe === !0) {
+              Pe = !1;
+              do
+                i(ie[Ae - 1], 123) && (i(ie[Ae], 37) || i(ie[Ae], 123)) ? Pe = !0 : i(ie[Ae], 125) && (i(ie[Ae - 1], 37) || i(ie[Ae - 1], 125)) && (Pe = !1), Pe === !0 ? i(ie[Ae], 34) && U === "double" ? ie[Ae] = je : i(ie[Ae], 39) && U === "single" && (ie[Ae] = Be) : i(ie[Ae], 39) && U === "double" ? ie[Ae] = Be : i(ie[Ae], 34) && U === "single" && (ie[Ae] = je), Ae = Ae + 1;
+              while (Ae < Le);
+            }
+            S.token = ie.join(c), w(S);
+          }
+        }
+      }
+      function xe() {
+        if (!(!A && !O && !ke))
+          return;
+        if (C === 0) {
+          J = ui(J, c, !1);
+          return;
+        }
+        let Pe = [];
+        he = 0, ae = 0, re = J.length;
+        do {
+          ae = 0;
+          do {
+            if (J.length > 0 && (de = J[ae][0].split("=")[0], n.markup.attributeSort[he] === de)) {
+              Pe.push(J[ae]), J.splice(ae, 1), re = re - 1;
+              break;
+            }
+            ae = ae + 1;
+          } while (ae < re);
+          he = he + 1;
+        } while (he < C);
+        J = ui(J, c, !1), J = Pe.concat(J), re = J.length;
+      }
+      function ve() {
+        w(S, "jsx_attribute", {
+          token: `${de}={`,
+          types: "jsx_attribute_start"
+        }), r.external("jsx", fe.slice(1, fe.length - 1)), S.begin = r.count, /\s\}$/.test(fe) ? (fe = fe.slice(0, fe.length - 1), fe = We.exec(fe)[0], S.lines = fe.indexOf(`
+`) < 0 ? 1 : fe.split(`
+`).length) : S.lines = 0, S.begin = r.stack.index, S.stack = r.stack.token, S.token = "}", S.types = "jsx_attribute_end", be();
+      }
+      function ye() {
+        if (ki(J[Z][0]))
+          S.types = "liquid_attribute_chain", S.token = J[Z][0];
+        else if (Et(J[Z][0]))
+          S.token = J[Z][0], S.types = "liquid_attribute_end", S.ender = S.begin;
+        else {
+          if (ht(J[Z][0], !0))
+            return S.types = "liquid_attribute_start", S.begin = r.count, S.token = J[Z][0], be(), !0;
+          zt(J[Z][0]) ? (S.types = "liquid_attribute_else", S.token = J[Z][0]) : (S.types = "attribute", S.token = J[Z][0]);
+        }
+        return be(), !1;
+      }
+      if (J.length < 1)
+        return R !== !0 ? void 0 : me();
+      if (i(J[J.length - 1][0], 47) && (J.pop(), j = j.replace(/>$/, "/>")), ae = J.length, he = 1, he < ae)
+        do
+          de = J[he - 1][0], i(de[de.length - 1], 61) && J[he][0].indexOf("=") < 0 && (J[he - 1][0] = de + J[he][0], J.splice(he, 1), ae = ae - 1, he = he - 1), he = he + 1;
+        while (he < ae);
+      if ((C > 0 || n.markup.attributeSort === !0) && xe(), S.begin = Q, S.stack = W, S.types = "attribute", Z < re)
+        do {
+          if (J[Z] === void 0)
+            break;
+          if (S.lines = J[Z][1], J[Z][0] = J[Z][0].replace(We, c), A === !0 && /^\/[/*]/.test(J[Z][0])) {
+            S.types = "comment_attribute", S.token = J[Z][0], be(), Z = Z + 1;
+            continue;
+          }
+          if (J[Z][1] <= 1 && ki(J[Z][0]) && !sn(J[Z][0])) {
+            S.types = "liquid_attribute_chain", S.token = J[Z][0], be(), Z = Z + 1;
+            continue;
+          }
+          if (ae = J[Z][0].indexOf("="), he = J[Z][0].indexOf(Be), ae < 0)
+            Et(J[Z][0]) ? (S.token = J[Z][0], S.types = "liquid_attribute_end", S.ender = S.begin) : ht(J[Z][0], !0) ? (S.types = "liquid_attribute_start", S.begin = r.count, S.token = J[Z][0]) : zt(J[Z][0]) ? (S.types = "liquid_attribute_else", S.token = J[Z][0]) : nn(J[Z][0]) ? (S.types = "liquid_attribute", S.token = J[Z][0]) : i(J[Z][0], 35) || i(J[Z][0], 91) || i(J[Z][0], 123) || i(J[Z][0], 40) || A === !0 ? S.token = J[Z][0] : (S.types = "liquid_attribute", S.token = n.markup.attributeCasing === "preserve" ? J[Z][0] : J[Z][0].toLowerCase()), be();
+          else if (Gt(J[Z][0], 6))
+            ye();
+          else {
+            de = J[Z][0].slice(0, ae), n.markup.lineBreakValue === "force-preserve" || n.markup.lineBreakValue === "force-indent" || n.markup.lineBreakValue === "force-align" ? fe = J[Z][0][ae + 1] + z + J[Z][0].slice(ae + 2, -1).trim() + z + J[Z][0][J[Z][0].length - 1] : fe = J[Z][0].slice(ae + 1), n.markup.attributeCasing === "lowercase-name" ? (de = de.toLowerCase(), J[Z][0] = de + "=" + fe) : n.markup.attributeCasing === "lowercase-value" ? (fe = fe.toLowerCase(), J[Z][0] = de + "=" + fe) : (n.markup.attributeCasing === "lowercase" && (de = de.toLowerCase(), fe = fe.toLowerCase()), J[Z][0] = de + "=" + fe), n.correct === !0 && T(fe, 60) && T(fe, 123) && T(fe, 61) && T(fe, 34) && T(fe, 39) && (fe = Be + fe + Be), A === !0 && /^\s*{/.test(fe) ? (ve(), S.types = "attribute", S.begin = Q, S.stack = W) : Gt(de, 6) ? ye() : (S.types = "attribute", S.token = J[Z][0], be());
+          }
+          Z = Z + 1;
+        } while (Z < re);
+      if (!R)
+        return me();
+    }
+    function q(R) {
+      r.iterator = t;
+      let Q = yt(o, {
+        end: k,
+        lexer: "markup",
+        begin: pe,
+        start: t,
+        ender: N
+      });
+      if (Q[0] === c)
+        return De(
+          107,
+          o.slice(r.iterator, r.iterator + 5).join(c),
+          "comment"
+        );
+      if (j = Q[0], t = Q[1], $i.test(j))
+        w(S, {
+          token: j,
+          types: "ignore_next"
+        });
+      else if (Ni.test(j))
+        w(S, {
+          token: j,
+          types: "ignore"
+        });
+      else {
+        if (j.startsWith(pe) && R === !1) {
+          let W = j.indexOf("%}", 2) + 2, U = j.lastIndexOf("{%");
+          j = _(j.slice(0, W), P) + j.slice(W, U) + _(j.slice(U), P);
+        }
+        return S.token = j, S.types = "comment", y();
+      }
+    }
+    function v(R) {
+      let Q = t, W = t + R;
+      do {
+        if (i(o[W], 62))
+          return t = W, u.slice(Q, W + 1);
+        W = W + 1;
+      } while (W < k);
+    }
+    function E() {
+      if (N === "---")
+        pe = "---", B = "ignore", K = !0;
+      else if (i(o[t], 60))
+        if (i(o[t + 1], 123) && (i(o[t + 2], 123) || i(o[t + 2], 37))) {
+          S.token = v(3), S.types = "liquid_bad_start", w(S);
+          return;
+        } else if (i(o[t + 1], 47))
+          if (i(o[t + 2], 123) && (i(o[t + 3], 123) || i(o[t + 3], 37))) {
+            S.token = v(3), S.types = "liquid_bad_end", w(S);
+            return;
+          } else
+            B = "end", N = ">";
+        else if (i(o[t + 1], 33))
+          if ((i(o[t + 2], 100) || i(o[t + 2], 68)) && (i(o[t + 3], 111) || i(o[t + 3], 79)) && (i(o[t + 4], 99) || i(o[t + 4], 67)) && (i(o[t + 5], 116) || i(o[t + 5], 84)) && (i(o[t + 6], 121) || i(o[t + 6], 89)) && (i(o[t + 7], 112) || i(o[t + 7], 80)) && (i(o[t + 8], 101) || i(o[t + 8], 69)))
+            N = ">", B = "doctype", K = !0;
+          else if (i(o[t + 2], 45))
+            if (i(o[t + 3], 45))
+              N = "-->", pe = "<!--", B = "comment";
+            else
+              return De(
+                108,
+                o.slice(t, t + 3).join(c),
+                "comment"
+              );
+          else
+            i(o[t + 2], 91) && o[t + 3].charCodeAt(0) === 67 && // C
+            o[t + 4].charCodeAt(0) === 68 && // D
+            o[t + 5].charCodeAt(0) === 65 && // A
+            o[t + 6].charCodeAt(0) === 84 && // T
+            o[t + 7].charCodeAt(0) === 65 && // A
+            i(o[t + 8], 91) && (N = "]]>", B = "cdata", K = !0);
+        else
+          i(o[t + 1], 63) ? (N = "?>", o[t + 2].charCodeAt(0) === 120 && // x
+          o[t + 3].charCodeAt(0) === 109 && // m
+          o[t + 4].charCodeAt(0) === 109 ? (B = "xml", se = !0) : (K = !0, B = "liquid")) : i(o[t + 1], 112) && //   p
+          i(o[t + 2], 114) && //   r
+          i(o[t + 3], 101) && // e
+          (i(o[t + 4], 62) || ce(o[t + 4])) ? (N = "</pre>", B = "ignore", K = !0) : (se = !0, N = ">");
+      else if (i(o[t], 123)) {
+        if (A) {
+          V = !0, ge = !0, r.stack.push(["script", r.count]), w(S, { token: "{", types: "script_start" });
+          return;
+        }
+        if (i(o[t + 1], 123))
+          K = !0, N = "}}", B = "liquid";
+        else if (i(o[t + 1], 37)) {
+          K = !0, N = "%}", B = "liquid", D = "}";
+          let R = u.indexOf(N, t + 3);
+          if (R === -1)
+            return De(113, u.slice(t));
+          if (i(o[t + 2], 45) ? (pe = "{%-", P = ni.exec(u.slice(t + 3, R).trimStart())[0]) : (pe = "{%", P = ni.exec(u.slice(t + 2, R).trimStart())[0]), P === "comment") {
+            B = "comment";
+            let Q = u.indexOf("endcomment", R + 2);
+            return Q === -1 ? De(114, u.slice(t, R + 2), "comment") : (pe = u.slice(t, R + 2), N = u.slice(u.lastIndexOf("{", Q), u.indexOf("}", Q + 10) + 1), q());
+          } else if (a.size > 0 && a.has(P) && (r.iterator = t, ue = !0), i(P, 35))
+            return B = "comment", q(!0);
+        } else
+          K = !0, N = o[t + 1] + "}", B = "liquid";
+      }
+      return K !== !0 && n.markup.preserveAttribute === !0 && (K = !0), r.count > -1 && s.types[r.count] === "ignore_next" && (ue = !0, r.iterator = t), D || (D = N.charAt(N.length - 1)), ge ? y() : B === "comment" ? q() : t < k ? te() : y();
+    }
+    function me() {
+      if (n.wrap > 0 && A === !0) {
+        let R = 0, Q = r.count, W = 0;
+        if (s.types[Q].indexOf("attribute") > -1) {
+          do
+            R = R + s.token[Q].length + 1, Q = Q - 1;
+          while (s.lexer[Q] !== "markup" || s.types[Q].indexOf("attribute") > -1);
+          s.lines[Q] === 1 && (R = R + s.token[Q].length + 1);
+        } else
+          s.lines[Q] === 1 && (R = s.token[Q].length + 1);
+        if (W = Q - 1, R > 0 && s.types[W] !== "script_end")
+          if (s.types[W].indexOf("attribute") > -1) {
+            do
+              R = R + s.token[W].length + 1, W = W - 1;
+            while (s.lexer[W] !== "markup" || s.types[W].indexOf("attribute") > -1);
+            s.lines[W] === 1 && (R = R + s.token[W].length + 1);
+          } else
+            s.lines[W] === 1 && (R = s.token[W].length + 1);
+      }
+      r.lineOffset = 0;
+    }
+    function te() {
+      let R = [], Q = Fe(null);
+      Q.pipes = [], Q.fargs = [], Q.targs = [], Q.logic = [];
+      let W = 0, U = 0, Z = c, ae = 0, he = 0, de = 0, fe = 0, re = c, be = c, xe = 0, ve = !1, ye = !1, Ze = !1, Pe = !1, Ae = !1, Se = NaN, ie = [];
+      function Te() {
+        if (Qe(R, 44)) {
+          if (P === "when" && Q.logic.push(R.length - 1), n.correct === !0 && /^,\s*-?[%}]}/.test(u.slice(t)))
+            return R.pop(), t = t + 1, !0;
+          Se === 44 ? Q.fargs[Q.fargs.length - 1].push(R.length - 1) : Se === 58 ? (Q.fargs[Q.fargs.length - 1][0] += 1, Q.fargs[Q.fargs.length - 1].push(R.length - 1), Se = 44) : Q.targs.push(R.length - 1);
+        } else
+          Qe(R, 124) ? (Q.pipes.push(R.length - 1), Se = 124) : Qe(R, 58) && Se === 124 && (Q.fargs.push([R.length - 1]), Se = 58);
+        if (i(o[t], 10) && P !== "liquid" && ye === !1 && R.length > 3 && !(i(o[t + 1], 45) && i(o[t + 2], 37) && i(o[t + 3], 125) || i(o[t + 1], 37) && i(o[t + 2], 125)) ? R.pop() : n.liquid.normalizeSpacing === !0 && (Me(o[t]) === !1 && (dt(R, 39) || dt(R, 34)) ? T(o[t], 44) && T(o[t], 93) ? (R.splice(R.length - 1, 1, ee, o[t]), Me(o[t + 1]) === !1 && T(o[t + 1], 61) && T(o[t + 1], 125) && R.push(ee)) : lt(o[t + 1]) && T(o[t + 1], 91) && T(o[t + 1], 46) && R.push(ee) : P !== "liquid" && ce(o[t + 1]) && ce(o[t]) && i(o[t - 1], 93) || i(o[t], 32) && i(o[t + 1], 32) ? R.pop() : R.length > 3 && i(o[t + 1], 10) && T(o[t + 2], 32) ? R.push(ee) : i(o[t], 32) && i(o[t + 1], 32) ? R.pop() : dt(R, 93) && Me(R[R.length - 1]) && T(o[t], 32) && T(o[t], 44) && T(o[t], 46) ? R.splice(R.length - 1, 1, ee, o[t]) : Me(R[R.length - 2]) && Me(o[t]) && Me(o[t + 1]) ? R.pop() : i(o[t], 44) && lt(o[t + 1]) ? R.push(ee) : i(o[t], 58) && lt(o[t + 1]) ? R.push(ee) : i(o[t], 32) && dt(R, 46) || _i(R, 91, 32) ? R.pop() : T(o[t], 32) && i(o[t + 1], 124) ? R.push(ee) : i(o[t], 124) && T(o[t + 1], 32) ? R.push(ee) : i(o[t], 32) && (i(o[t + 1], 46) || i(o[t + 1], 93) || i(o[t + 1], 91) || i(o[t + 1], 58) || i(o[t + 1], 44)) ? R.pop() : P === "assign" && (T(o[t], 32) && i(o[t + 1], 61) || i(o[t], 61) && T(o[t + 1], 32)) ? R.push(ee) : (P === "if" || P === "unless" || P === "elsif" || P === "liquid") && ((T(o[t], 32) || i(o[t], 10)) && (i(o[t + 1], 33) || i(o[t + 1], 60) || i(o[t + 1], 62) || i(o[t + 1], 61) && i(o[t + 2], 61)) ? R.push(ee) : i(o[t], 61) && (T(o[t + 1], 32) || i(o[t + 1], 10)) && (i(o[t - 1], 61) || i(o[t - 1], 60) || i(o[t - 1], 62) || i(o[t - 1], 33)) ? R.push(ee) : T(o[t + 1], 32) && T(o[t + 1], 61) && (i(o[t], 60) || i(o[t], 62)) && R.push(ee))), ce(o[t - 1])) {
+          if (Z = u.slice(t), P === "if" || P === "elsif" || P === "unless") {
+            if (ce(o[t + 2]) && Z.startsWith("or"))
+              return Q.logic.push(R.length - 1), R.pop(), R.push(Z.slice(0, 2)), t = t + 2, !0;
+            if (ce(o[t + 3]) && Z.startsWith("and"))
+              return Q.logic.push(R.length - 1), R.pop(), R.push(Z.slice(0, 3)), t = t + 3, !0;
+            if (ce(o[t + 8]) && Z.startsWith("contains"))
+              return Q.logic.push(R.length - 1), R.pop(), R.push(Z.slice(0, 8)), t = t + 8, !0;
+          } else if (P === "when" && ce(o[t + 2]) && Z.startsWith("or"))
+            return Q.logic.push(R.length - 1), R.pop(), R.push(Z.slice(0, 2)), t = t + 2, !0;
+        }
+        if (i(R[R.length - 1], 44) && i(R[R.length - 2], 44))
+          return De(
+            116,
+            R.join(c),
+            Ue(R.join(c))
+          );
+        ye = !1;
+      }
+      function Le(wt) {
+        let et, Oe = c;
+        if (wt === !0 ? (Oe = ie.join(c), et = l(Oe), re = c, et[0] === "data-esthetic-ignore" && (ue = !0)) : (Oe = ie.join(c), (A === !1 || A && li(Oe, 125)) && (Oe = Oe.replace(Xe, ee)), et = l(Oe), et[0] === "data-esthetic-ignore" && (ue = !0), A && i(ie[0], 123) && i(ie[ie.length - 1], 125) && (xe = 0)), i(Oe[0], 123) && i(Oe[1], 37) && (ke = !0), Oe = Oe.replace(/^\u0020/, c).replace(/\u0020$/, c), ie = Oe.replace(/\r\n/g, z).split(z), ie.length < 1 && (ie[0] = ie[0].replace(We, c)), Oe = _(ie.join(r.crlf), P), n.markup.stripAttributeLines === !0 && fe >= 1 && (fe = 1), J.length > 0) {
+          let Ve = J.length - 1;
+          m === 0 && (i(Oe, 61) || i(Oe, 45)) && (J[Ve][0] = J[Ve][0] + Oe, J[Ve][1] = fe, Oe = c);
+        }
+        if (wt === !1 && (ht(Oe) && (m = m + 1), Et(Oe) && (m = m - 1)), Oe !== c && Oe !== ee && J.push([Oe, fe]), J.length > 0) {
+          let [Ve] = J[J.length - 1];
+          if (Ve.indexOf("=\u201C") > 0)
+            return De(103, Ve);
+          if (Ve.indexOf("=\u201D") > 0)
+            return De(103, Ve);
+        }
+        ie = [], fe = i(o[t], 10) ? 1 : 0;
+      }
+      if (!r.error) {
+        do {
+          if (i(o[t], 10) && (fe = r.lines(t, fe)), pe === "---" && N === "---" && B === "ignore") {
+            if (R.push(o[t]), t > 3 && i(o[t], 45) && i(o[t - 1], 45) && i(o[t - 2], 45))
+              break;
+            t = t + 1;
+            continue;
+          }
+          if (K === !0 || ce(o[t]) === !1 && T(re, 125) || i(re, 125)) {
+            if (R.push(o[t]), ve === !1 && i(o[t - 1], 123) && (i(o[t], 123) || i(o[t], 37)))
+              ve = !0;
+            else if (ve === !0 && i(o[t], 125)) {
+              if (i(o[t - 1], 125) || i(o[t - 1], 37))
+                ve = !1;
+              else if ((i(o[t - 2], 125) || i(o[t - 2], 37)) && ce(o[t - 1]))
+                return De(113, R.join(c));
+            } else if (ve === !0 && i(o[t], 10) && (n.liquid.delimiterPlacement === "preserve" || n.liquid.delimiterPlacement === "consistent")) {
+              if (i(o[t - 1], 45) && i(o[t - 3], 123) && (i(o[t - 2], 123) || i(o[t - 2], 37)) || i(o[t - 2], 123) && (i(o[t - 1], 123) || i(o[t - 1], 37)))
+                ye = !0;
+              else if (/^\s*-?[%}]}/.test(u.slice(t)) === !0) {
+                for (; ce(o[t]) === !0; )
+                  t = t + 1, i(o[t], 10) && (fe = r.lines(t, fe));
+                R.push(o[t]), ye = !0;
+              }
+            }
+            if (B === "end" && R.length > 2 && i(R[0], 60) && i(R[1], 47) && (i(R[R.length - 1], 47) || i(R[R.length - 1], 60))) {
+              if (n.correct)
+                R.pop(), R.push(">");
+              else
+                return De(106, R.join(c));
+              break;
+            }
+            if (i(R[0], 60) && i(R[1], 62) && i(N, 62))
+              return w(S, "(empty)", {
+                token: "<>",
+                types: "start"
+              });
+            if (i(R[0], 60) && i(R[1], 47) && i(R[2], 62) && i(N, 62))
+              return S.token = "</>", S.token = "end", w(S);
+          }
+          if (B === "cdata" && i(o[t], 62) && i(o[t - 1], 93) && T(o[t - 2], 93))
+            return De(103, R.join(c));
+          if (B === "comment") {
+            if (re = c, o[t] === D && R.length > N.length + 1) {
+              if (U = R.length, W = N.length - 1, W > -1)
+                do {
+                  if (U = U - 1, T(R[U], N.charCodeAt(W)))
+                    break;
+                  W = W - 1;
+                } while (W > -1);
+              if (W < 0)
+                break;
+            }
+          } else if (re === c) {
+            if (i(R[0], 60) && i(R[1], 33) && B !== "cdata") {
+              if (B === "doctype" && i(o[t], 62))
+                break;
+              if (i(o[t], 91)) {
+                if (i(o[t + 1], 60)) {
+                  B = "start";
+                  break;
+                }
+                if (ce(o[t + 1]))
+                  do
+                    t = t + 1, i(o[t], 10) && (fe = r.lines(t, fe));
+                  while (t < k - 1 && ce(o[t + 1]));
+                if (i(o[t + 1], 60)) {
+                  B = "start";
+                  break;
+                }
+              }
+            }
+            if (A && (i(o[t], 123) ? xe = xe + 1 : i(o[t], 125) && (xe = xe - 1)), i(o[t], 60) && se === !0 && K === !1 && R.length > 1 && />{2,3}/.test(N) === !1) {
+              r.error = `Invalid structure detected ${o.slice(t, t + 8).join(c)}`;
+              break;
+            }
+            if (ce(o[t]) === !1 && Ze === !0 && o[t] !== D) {
+              if (Ce = 0, Ze = !1, re = be, R.pop(), t < k)
+                do {
+                  if (i(o[t], 10) && Ae === !1 && (fe = r.lines(t, fe)), n.markup.preserveAttribute === !0 ? R.push(o[t]) : ie.push(o[t]), (T(re, 34) || T(re, 39)) && (i(o[t - 1], 123) && (i(o[t], 37) || i(o[t], 123)) ? ve = !0 : i(o[t], 125) && (i(o[t - 1], 125) || i(o[t - 1], 37)) && (ve = !1)), A === !1 && Ae === !1 && ve === !0 && n.markup.preserveAttribute === !1)
+                    for (; t < k; ) {
+                      if (t = t + 1, i(o[t], 10) && (fe = r.lines(t, fe)), i(ie[0], 61) && (i(ie[1], 123) || i(ie[1], 37)) && (i(ie[ie.length - 2], 125) || i(ie[ie.length - 2], 37)) && i(ie[ie.length - 1], 125)) {
+                        ve = !1, re = c, Le(!1);
+                        break;
+                      }
+                      if (i(ie[0], 61) && T(ie[1], 123)) {
+                        ve = !1, re = c, Le(!1);
+                        break;
+                      }
+                      if (ie.push(o[t]), i(ie[0], 61) && i(o[t + 1], 62)) {
+                        ve = !1, J[J.length - 1][0] += ie.join(c), ie = [], re = c;
+                        break;
+                      }
+                      if (T(ie[0], 61) && i(o[t], 125) && (i(o[t - 1], 125) || i(o[t - 1], 37))) {
+                        ve = !1, re = c, Le(!1);
+                        break;
+                      }
+                    }
+                  if (A === !1 && (i(o[t], 60) || i(o[t], 62)) && (re === c || i(re, 62))) {
+                    if (re === c && i(o[t], 60))
+                      re = ">", ae = 1;
+                    else if (i(re, 62)) {
+                      if (i(o[t], 60))
+                        ae = ae + 1;
+                      else if (i(o[t], 62) && (ae = ae - 1, ae === 0)) {
+                        re = c, Ce = 0, Le(!1);
+                        break;
+                      }
+                    }
+                  } else if (re === c) {
+                    if (o[t + 1] === D) {
+                      (Qe(ie, 47) || Qe(ie, 63) && B === "xml") && (ie.pop(), K === !1 || R.pop(), t = t - 1), ie.length > 0 && Le(!1);
+                      break;
+                    }
+                    if (A === !1 && i(o[t], 123) && i(o[t - 1], 61) ? re = "}" : i(o[t], 34) || i(o[t], 39) ? (re = o[t], Ae === !1 && ve === !1 && (Ae = !0), i(o[t - 1], 61) && (i(o[t + 1], 60) || i(o[t + 1], 123) && i(o[t + 2], 37) || ce(o[t + 1]) && T(o[t - 1], 61)) && (Ce = t)) : i(o[t], 40) ? (re = ")", de = 1) : A ? (i(o[t - 1], 61) || ce(o[t - 1])) && i(o[t], 123) ? (re = "}", he = 1) : i(o[t], 47) && (i(o[t + 1], 42) ? re = "*/" : i(o[t + 1], 47) && (re = z)) : i(R[0], 123) && i(o[t], 123) && (i(o[t + 1], 123) || i(o[t + 1], 37)) && (re = i(o[t + 1], 123) ? "}}" : o[t + 1] + "}"), ce(o[t]) && re === c) {
+                      if (i(ie[ie.length - 2], 61) && (W = t + 1, W < k))
+                        do {
+                          if (ce(o[W]) === !1) {
+                            (i(o[W], 34) || i(o[W], 39)) && (t = W - 1, Pe = !0, ie.pop());
+                            break;
+                          }
+                          W = W + 1;
+                        } while (W < k);
+                      if (Pe === !0)
+                        Pe = !1;
+                      else if (xe === 0 || xe === 1 && i(ie[0], 123)) {
+                        ie.pop(), ie.length > 0 && Le(!1), Ze = !0;
+                        break;
+                      }
+                    }
+                  } else if (i(o[t], 40) && i(re, 41))
+                    de = de + 1;
+                  else if (i(o[t], 41) && i(re, 41)) {
+                    if (de = de - 1, de === 0 && (re = c, i(o[t + 1], N.charCodeAt(0)))) {
+                      Le(!1);
+                      break;
+                    }
+                  } else if (A === !0 && (i(re, 125) || i(re, 10) && i(o[t], 10) || i(re, 42) && i(o[t - 1], 42) && i(o[t], 47))) {
+                    if (i(o[t], 96)) {
+                      t = t + 1;
+                      do {
+                        if (ie.push(o[t]), i(o[t], 96))
+                          break;
+                        t = t + 1;
+                      } while (t < o.length);
+                    }
+                    if (i(re, 125)) {
+                      if (i(o[t], 125) && o[t] !== re)
+                        he = he + 1;
+                      else if (o[t] === re && (he = he - 1, he === 0)) {
+                        xe = 0, re = c, j = ie.join(c), n.markup.preserveAttribute === !1 && (A ? /^\s*$/.test(j) || J.push([j, fe]) : (j = j.replace(Xe, ee), j !== ee && J.push([j, fe]))), ie = [], fe = 1;
+                        break;
+                      }
+                    } else {
+                      be = c, O = !0, j = ie.join(c), j !== ee && J.push([j, fe]), ie = [], fe = i(re, 10) ? 2 : 1, re = c;
+                      break;
+                    }
+                  } else if (i(o[Ce - 1], 61) && i(o[t], 123) && i(o[t + 1], 37) && (i(re, 34) || i(re, 39)))
+                    re = re + "{%", Ce = 0;
+                  else if (i(o[t - 1], 37) && i(o[t], 125) && (re === '"{%' || re === "'{%"))
+                    re = re[0], Ce = 0;
+                  else if (i(o[t], 60) && i(N, 62) && i(o[Ce - 1], 61) && (i(re, 34) || i(re, 39)))
+                    re = re + "<", Ce = 0;
+                  else if (i(o[t], 62) && (re === '"<' || re === "'<"))
+                    re = re.charAt(0), Ce = 0;
+                  else if (Ce === 0 && T(re, 62) && (re.length < 2 || T(re, 34) && T(re, 39))) {
+                    if (U = 0, W = re.length - 1, W > -1)
+                      do {
+                        if (T(o[t - U], re.charCodeAt(W)))
+                          break;
+                        U = U + 1, W = W - 1;
+                      } while (W > -1);
+                    if (W < 0 && ve === !1 && Ae === !0 && (Ae = !1, Le(!0), o[t + 1] === D))
+                      break;
+                    W === 0 && i(o[t], 62);
+                  } else
+                    Ce > 0 && ce(o[t]) === !1 && (Ce = 0);
+                  t = t + 1;
+                } while (t < k);
+            } else if (i(N, 10) === !1 && (i(o[t], 34) || i(o[t], 39)))
+              re = o[t];
+            else if (t > 0 && ve === !0 && T(re, 34) && T(re, 39)) {
+              if (Te() === !0)
+                continue;
+            } else if (B !== "comment" && T(N, 10) && i(o[t], 60) && i(o[t + 1], 33) && i(o[t + 2], 45) && i(o[t + 3], 45) && s.types[r.count] !== "conditional")
+              re = "-->";
+            else if (i(o[t], 123) && T(R[0], 123) && T(N, 10) && (i(o[t + 1], 123) || i(o[t + 1], 37))) {
+              if (i(o[t + 1], 123))
+                re = "}}";
+              else if (re = o[t + 1] + "}", ie.length < 1 && (J.length < 1 || ce(o[t - 1]))) {
+                R.pop();
+                do
+                  i(o[t], 10) && (fe = fe + 1), ie.push(o[t]), t = t + 1;
+                while (t < k && o[t - 1] + o[t] !== re);
+                ie.push("}"), J.push([ie.join(c), fe]), ie = [], fe = 1, re = c;
+              }
+              re === N && (re = c);
+            } else if (se && T(N, 10) && T(o[t - 1], 60) && ce(o[t]))
+              Ze = !0;
+            else if (se && A && i(o[t], 47) && (i(o[t + 1], 42) || i(o[t + 1], 47)))
+              Ze = !0, R[R.length - 1] = ee, be = i(o[t + 1], 42) ? "*/" : z, ie.push(o[t]);
+            else if (ve === !1 && (o[t] === D || i(N, 10) && i(o[t + 1], 60)) && (R.length > N.length + 1 || i(R[0], 93)) && (A === !1 || xe === 0)) {
+              if (i(N, 10)) {
+                if (ce(R[R.length - 1]))
+                  do
+                    R.pop(), t = t - 1;
+                  while (ce(R[R.length - 1]));
+                break;
+              }
+              if (U = R.length, W = N.length - 1, W > -1)
+                do {
+                  if (U = U - 1, R[U] !== N.charAt(W))
+                    break;
+                  W = W - 1;
+                } while (W > -1);
+              if (W < 0) {
+                i(R[U], 62) && i(o[t], 62) && i(o[t - 1], 125) && ce(o[t + 1]) && J.length > 0 && J[J.length - 1][1] === 0 && (J[J.length - 1][1] = i(o[t + 1], 32) ? 1 : 2);
+                break;
+              }
+            }
+          } else if (i(o[t], re.charCodeAt(re.length - 1)) && T(o[t - 1], 92) && (A === !0 && i(N, 125) && I(t) === !1 || A === !1 || T(N, 125))) {
+            if (U = 0, W = re.length - 1, W > -1)
+              do {
+                if (T(o[t - U], re.charCodeAt(W)))
+                  break;
+                U = U + 1, W = W - 1;
+              } while (W > -1);
+            W < 0 && (re = c);
+          }
+          t = t + 1;
+        } while (t < k);
+        if (Ce = 0, P || (P = Ue(R.join(c))), ue === !1)
+          if (B === "liquid") {
+            if (j = Ki(R, P, Q, n), n.liquid.normalizeSpacing, P === "liquid")
+              return ne();
+          } else
+            j = R.join(c);
+        else
+          j = R.join(c);
+        return S.token = j, S.types = B, K === !1 && A === !1 && (j = j.replace(Xe, ee)), y();
+      }
+    }
+    return E();
+  }
+  function M() {
+    let N = [], S = t, j = A === !0 && i(s.token[r.count], 123), D = "([{!=,;.?:&<>", B = c, P = r.lineOffset, pe = 2, ge = c, ue = p({
+      begin: r.stack.index,
+      stack: Ue(r.stack.token) || "global",
+      types: "content"
+    });
+    j === !0 ? ge = "script" : r.stack.index > -1 ? (ge = Ue(s.token[r.stack.index]), s.types[r.stack.index].startsWith("liquid_") && (pe = 3)) : (ge = Ue(s.token[s.begin[r.count]]), s.types[s.begin[r.count]].startsWith("liquid_") && (pe = 3)), V === !0 && (pe === 3 ? u.slice(t, u.lastIndexOf("{", u.indexOf(`end${ge}`, t))).trim() === c && (V = !1, ue.types = "liquid_end") : pe === 2 && (ge === "script" || ge === "style") && (u.slice(t, u.indexOf("</script>", t)).trim() === c || u.slice(t, u.indexOf("</style>", t)).trim() === c) && (V = !1, ue.types = "end"));
+    function Ce() {
+      return s.types[r.count] === "liquid_start" && s.token[r.count].indexOf("<!") === 0 && s.token[r.count].indexOf("<![") < 0 && s.token[r.count].charCodeAt(s.token[r.count].length - 1) === 91;
+    }
+    function O() {
+      let K = t - 1, se = 0;
+      if (T(o[t - 1], 92))
+        return !1;
+      if (K > -1)
+        do {
+          if (T(o[K], 92))
+            break;
+          se = se + 1, K = K - 1;
+        } while (K > -1);
+      return se % 2 === 1;
+    }
+    if (t < k) {
+      let K = c, se = c, J = c, $e = 0;
+      do {
+        if (i(o[t], 10) && (P = r.lines(t, P)), V === !0) {
+          if (pe === 3) {
+            let $ = `end${ge}`, G = u.indexOf($, t);
+            if (G > -1) {
+              let oe = o.lastIndexOf("{", G), ne = o.indexOf("}", G + $.length) + 1;
+              if (K = u.slice(oe, ne), tn($).test(K)) {
+                P = 1, J = u.slice(t, oe), r.external(h, J), P !== r.lineOffset && (P = r.lineOffset), ue.token = _(K), ue.types = "liquid_end", ue.lines = P, w(ue), t = ne - 1, V = !1;
+                break;
+              }
+            }
+          }
+          if (se === c) {
+            if (i(o[t], 47))
+              i(o[t + 1], 42) ? se = "*" : i(o[t + 1], 47) ? se = "/" : !A && ge === "script" && T(o[t - 1], 60) && D.indexOf(o[t - 1]) > -1 && (se = "r");
+            else if (O() === !1 && (i(o[t], 34) || i(o[t], 39) || i(o[t], 96)))
+              se = o[t];
+            else if (i(o[t], 123) && j === !0)
+              $e = $e + 1;
+            else if (i(o[t], 125) && j === !0) {
+              if ($e === 0) {
+                J = N.join(c).replace(ct, c).replace(We, c), r.external(h, J), r.stack.update(r.stack.index + 1), s.types[r.count] === "end" && s.lexer[s.begin[r.count] - 1] === "script" && (w(ue, {
+                  lexer: "script",
+                  types: "separator",
+                  token: n.correct === !0 ? ";" : "x;"
+                }), ue.lexer = "markup"), w(ue, {
+                  token: "}",
+                  types: "script_end"
+                }), r.stack.pop();
+                break;
+              }
+              $e = $e - 1;
+            }
+            if (ge === "script" && i(o[t], 60) && i(o[t + 1], 47)) {
+              if (K = u.slice(t, t + 9).toLowerCase(), K === "</script>") {
+                if (N.length < 1)
+                  break;
+                J = N.join(c).trimEnd(), Ot.test(J) && vt.test(J) ? (w(ue, { token: "<!--", types: "comment" }), J = J.replace(Ot, c).replace(vt, c), r.external("javascript", J), w(ue, { token: "-->" })) : (r.external(h, J), ue.token = K, ue.types = "end", t = t - 1);
+                break;
+              }
+            } else if (ge === "style" && i(o[t], 60) && i(o[t + 1], 47) && (K = u.slice(t, t + 8).toLowerCase(), K === "</style>")) {
+              if (N.length < 1)
+                break;
+              J = N.join(c).trimEnd(), Ot.test(J) && vt.test(J) ? (w(ue, { token: "<!--", types: "comment" }), J = J.replace(Ot, c).replace(vt, c), r.external("css", J), w(ue, { token: "-->" })) : (r.external(h, J), ue.token = K, ue.types = "end", t = t - 1);
+              break;
+            }
+          } else
+            se === o[t] && O() === !1 && (i(se, 34) || i(se, 39) || i(se, 96) || i(se, 42) && i(o[t + 1], 47)) ? se = c : i(se, 96) && i(o[t], 36) && i(o[t + 1], 123) && O() === !1 ? se = "}" : i(se, 125) && i(o[t], 125) && O() === !1 ? se = "`" : i(se, 47) && (i(o[t], 10) || i(o[t], 13)) ? se = c : se === "r" && i(o[t], 47) && O() === !1 ? se = c : i(se, 47) && i(o[t], 62) && i(o[t - 1], 45) && i(o[t - 2], 45) && (K = u.slice(t + 1, t + 11).toLowerCase(), K = K.slice(0, K.length - 2), ge === "script" && K === "</" && (se = c), K = K.slice(0, K.length - 1), ge === "style" && K === "</style" && (se = c));
+        }
+        if (Ce() === !0 && i(o[t], 93)) {
+          t = t - 1, P = 0, B = N.join(c).replace(We, c), w(ue, { token: B });
+          break;
+        }
+        if (V === !1 && N.length > 0 && (i(o[t], 60) && T(o[t + 1], 61) && He(o[t + 1]) === !1 && lt(o[t + 1]) || i(o[t], 123) && i(o[t + 1], 37) || i(o[t], 123) && (A === !0 || i(o[t + 1], 123) || i(o[t + 1], 37)))) {
+          if (t = t - 1, P = 0, B = r.stack.token === "comment" ? N.join(c) : N.join(c).replace(We, c), ue.token = B, n.wrap > 0 && n.markup.preserveText === !1) {
+            let ne = function() {
+              if (i(B[$], 32)) {
+                oe.push(B.slice(0, $)), B = B.slice($ + 1), G = B.length, $ = n.wrap;
+                return;
+              }
+              do
+                $ = $ - 1;
+              while ($ > 0 && T(B[$], 32));
+              if ($ > 0)
+                oe.push(B.slice(0, $)), B = B.slice($ + 1), G = B.length, $ = n.wrap;
+              else {
+                $ = n.wrap;
+                do
+                  $ = $ + 1;
+                while ($ < G && T(B[$], 32));
+                oe.push(B.slice(0, $)), B = B.slice($ + 1), G = B.length, $ = n.wrap;
+              }
+            };
+            let $ = n.wrap, G = B.length, oe = [];
+            if (s.token[s.begin[r.count]] === "<a>" && s.token[s.begin[s.begin[r.count]]] === "<li>" && s.lines[s.begin[r.count]] === 0 && r.lineOffset === 0 && B.length < n.wrap) {
+              w(ue);
+              break;
+            }
+            if (G < n.wrap) {
+              w(ue);
+              break;
+            }
+            if (r.lineOffset < 1 && r.count > -1) {
+              let Y = r.count;
+              do {
+                if ($ = $ - s.token[Y].length, s.types[Y].indexOf("attribute") > -1 && ($ = $ - 1), s.lines[Y] > 0 && s.types[Y].indexOf("attribute") < 0)
+                  break;
+                Y = Y - 1;
+              } while (Y > 0 && $ > 0);
+              $ < 1 && ($ = B.indexOf(ee));
+            }
+            B = N.join(c).replace(ct, c).replace(We, c).replace(Xe, ee);
+            do
+              ne();
+            while ($ < G);
+            B !== c && T(B, 32) && oe.push(B), B = oe.join(r.crlf), B = c + B + c;
+          } else {
+            let $ = B.indexOf(z);
+            $ > -1 && (w(ue, { token: B.slice(0, $) }), B = B.slice($), Ct.test(B) ? ue.lines = 1 : (ue.lines = 2, B = B.replace(Je, c)));
+          }
+          P = 0, ue.token = B, w(ue);
+          break;
+        }
+        N.push(o[t]), t = t + 1;
+      } while (t < k);
+    }
+    if (t > S && t < k)
+      if (ce(o[t])) {
+        let K = t;
+        r.lineOffset = r.lineOffset + 1;
+        do
+          i(o[K], 10) && (r.lineNumber = r.lineNumber + 1, r.lineOffset = r.lineOffset + 1), K = K - 1;
+        while (K > S && ce(o[K]));
+      } else
+        r.lineOffset = 0;
+    else
+      (t !== S || t === S && V === !1) && (pe === 3 && ue.types === "liquid_end" ? B = _(N.join(c).replace(We, c)) : B = N.join(c).replace(We, c), P = 0, ue.token !== B && (pe === 3 && ue.types === "liquid_end" && (B = _(B)), ue.token = B, w(ue), r.lineOffset = 0));
+    V = !1;
+  }
+  function L() {
+    r.lineOffset = 1;
+    do {
+      if (i(o[t], 10) && (r.lineIndex = t, r.lineOffset = r.lineOffset + 1, r.lineNumber = r.lineNumber + 1), ce(o[t + 1]) === !1)
+        break;
+      t = t + 1;
+    } while (t < k);
+  }
+  (r.language === "html" || r.language === "liquid") && ("html");
+  do {
+    if (r.error)
+      return s;
+    if (ce(o[t]) ? L() : V ? M() : i(o[t], 60) ? g(c) : i(o[t], 123) && (i(o[t + 1], 123) || i(o[t + 1], 37)) ? g(c) : A && i(o[t], 123) ? g(c) : i(o[t], 45) && i(o[t + 1], 45) && i(o[t + 2], 45) ? g("---") : M(), t = t + 1, t === k && r.stack.index in r.pairs) {
+      let N = r.pairs[r.stack.index];
+      N.type === 2 && jt(105, N);
+    }
+  } while (t < k);
+  return s;
+}
+
+// src/lexers/script.ts
+function ln() {
+  let { data: e, references: s, rules: n, source: u } = r, A = r.language === "json" ? n.json : n.script, a = Ne(u) ? u : u.split(c), C = a.length, o = [], k = [], f = [], t = [0, c], h = [!1], V = { count: [], index: [], word: [] }, le = -1, m = 0, p = c, w = c, _ = [], I = 0, d = -1, l = -1, g = [], M, L, N, S = [
+    "autoescape",
+    "block",
+    "capture",
+    "case",
+    "comment",
+    "embed",
+    "filter",
+    "for",
+    "form",
+    "if",
+    "macro",
+    "paginate",
+    "raw",
+    "sandbox",
+    "spaceless",
+    "tablerow",
+    "unless",
+    "verbatim"
+  ];
+  function j() {
+    V.count.pop(), V.index.pop(), V.word.pop(), le = le - 1;
+  }
+  function D(y = c) {
+    let x = {
+      begin: r.stack.index,
+      ender: -1,
+      lexer: "script",
+      lines: r.lineOffset,
+      stack: r.stack.token,
+      token: p,
+      types: w
+    };
+    r.push(e, x, y);
+  }
+  function B(y, x) {
+    let q = x === !0 ? m : m + 1, v = c;
+    if ((typeof y != "number" || y < 1) && (y = 1), i(a[m], 47) && (i(a[m + 1], 47) ? v = z : i(a[m + 1], 42) && (v = "/")), q < C)
+      do {
+        if (ce(a[q]) === !1) {
+          if (i(a[q], 47) && (v === c ? i(a[q + 1], 47) ? v = z : i(a[q + 1], 42) && (v = "/") : i(v, 47) && i(a[q - 1], 42) && (v = c)), v === c && a[q - 1] + a[q] !== "*/")
+            return a.slice(q, q + y).join(c);
+        } else
+          i(v, 10) && i(a[q], 10) && (v = c);
+        q = q + 1;
+      } while (q < C);
+    return c;
+  }
+  function P(y) {
+    let x = y;
+    do
+      y = y - 1;
+    while (i(a[y], 92) && y > 0);
+    return (x - y) % 2 === 1;
+  }
+  function pe(y) {
+    let x = B(1, !1), q = r.stack.length === 0 ? c : r.stack.token, v = {
+      begin: e.begin[r.count],
+      ender: e.begin[r.count],
+      lexer: e.lexer[r.count],
+      lines: e.lines[r.count],
+      stack: e.stack[r.count],
+      token: e.token[r.count],
+      types: e.types[r.count]
+    };
+    if (Tt.test(p) || w === "start" || w === "type_start" || r.language === "json" || i(x, 123) || i(v.token, 59) || i(v.token, 44) || v.stack === "class" || v.stack === "map" || v.stack === "attribute" || e.types[v.begin - 1] === "generic" || q === "initializer" || i(v.token, 125) && e.stack[v.begin - 1] === "global" && e.types[v.begin - 1] !== "operator" && v.stack === e.stack[r.count - 1] || v.stack === "array" && T(v.token, 93) || i(e.token[e.begin[r.count]], 123) && v.stack === "data_type" || v.types !== void 0 && v.types.indexOf("liquid") > -1 && v.types.indexOf("template_string") < 0 || i(x, 59) && y === !1 || e.lexer[r.count - 1] !== "script" && (m < C && C === u.length - 1 || C < u.length - 1))
+      return;
+    let E = 0;
+    if (i(v.token, 125) && (v.stack === "function" || v.stack === "if" || v.stack === "else" || v.stack === "for" || v.stack === "do" || v.stack === "while" || v.stack === "switch" || v.stack === "class" || v.stack === "try" || v.stack === "catch" || v.stack === "finally" || v.stack === "block")) {
+      if (v.stack === "function" && (e.stack[v.begin - 1] === "data_type" || e.types[v.begin - 1] === "type")) {
+        E = v.begin;
+        do
+          E = E - 1;
+        while (E > 0 && T(e.token[E], 41) && e.stack[E] !== "arguments");
+        E = e.begin[E];
+      } else
+        E = e.begin[v.begin - 1];
+      if (i(e.token[E], 40)) {
+        if (E = E - 1, e.token[E - 1] === "function" && (E = E - 1), e.stack[E - 1] === "object" || e.stack[E - 1] === "switch" || T(e.token[E - 1], 61) && T(e.token[E - 1], 58) && e.token[E - 1] !== "return")
+          return;
+      } else
+        return;
+    }
+    if (!(v.types === "comment" || q === "method" || q === "paren" || q === "expression" || q === "array" || q === "object" || q === "switch" && v.stack !== "method" && i(e.token[e.begin[r.count]], 40) && e.token[e.begin[r.count] - 1] !== "return" && e.types[e.begin[r.count] - 1] !== "operator") && !(e.stack[r.count] === "expression" && (e.token[e.begin[r.count] - 1] !== "while" || e.token[e.begin[r.count] - 1] === "while" && e.stack[e.begin[r.count] - 2] !== "do")) && !(x !== c && "=<>+*?|^:&%~,.()]".indexOf(x) > -1 && y === !1)) {
+      if (v.types === "comment") {
+        E = r.count;
+        do
+          E = E - 1;
+        while (E > 0 && e.types[E] === "comment");
+        if (E < 1)
+          return;
+        v.token = e.token[E], v.types = e.types[E], v.stack = e.stack[E];
+      }
+      v.token === void 0 || v.types === "start" || v.types === "separator" || v.types === "operator" && v.token !== "++" && v.token !== "--" || v.token === "x}" || v.token === "var" || v.token === "let" || v.token === "const" || v.token === "else" || v.token.indexOf("#!/") === 0 || v.token === "instanceof" || v.stack === "method" && (e.token[v.begin - 1] === "function" || e.token[v.begin - 2] === "function") || (A.variableList === "list" && (V.index[le] = r.count), p = n.correct === !0 ? ";" : "x;", w = "separator", E = r.lineOffset, r.lineOffset = 0, D(), r.lineOffset = E, oe());
+    }
+  }
+  function ge() {
+    let y = r.count;
+    if (e.types[y] === "comment")
+      do
+        y = y - 1;
+      while (y > 0 && e.types[y] === "comment");
+    e.token[y] === "from" && (y = y - 2), e.token[y] === "x;" && r.splice({ data: e, howmany: 1, index: y });
+  }
+  function ue() {
+    let y = r.count;
+    do
+      y = y - 1;
+    while (y > -1 && e.token[y] === "x}");
+    if (e.stack[y] === "else")
+      return D();
+    y = y + 1, r.splice({
+      data: e,
+      howmany: 0,
+      index: y,
+      record: {
+        begin: e.begin[y],
+        ender: -1,
+        lexer: "script",
+        lines: r.lineOffset,
+        stack: e.stack[y],
+        token: p,
+        types: w
+      }
+    }), D();
+  }
+  function Ce() {
+    pe(!1), d > -1 && b(), N = yt(a, {
+      end: C,
+      lexer: "script",
+      begin: "/*",
+      start: m,
+      ender: "*/"
+    }), m = N[1], e.token[r.count] === "var" || e.token[r.count] === "let" || e.token[r.count] === "const" ? (M = r.pop(e), D(), r.push(e, M, c), e.lines[r.count - 2] === 0 && (e.lines[r.count - 2] = e.lines[r.count]), e.lines[r.count] = 0) : N[0] !== c && (p = N[0], w = Tt.test(p) ? "ignore" : "comment", p.indexOf("# sourceMappingURL=") === 2 && (t[0] = r.count + 1, t[1] = p), r.push(e, {
+      begin: r.stack.index,
+      ender: -1,
+      lexer: "script",
+      lines: r.lineOffset,
+      stack: r.stack.token,
+      token: p,
+      types: w
+    }, c)), /\/\*\s*global\s+/.test(e.token[r.count]) && e.types.indexOf("word") < 0 && (s[0] = e.token[r.count].replace(/\/\*\s*global\s+/, c).replace("*/", c).replace(/,\s+/g, ",").split(","));
+  }
+  function O() {
+    pe(!1), oe(), d > -1 && b(), N = Qt({
+      chars: a,
+      end: C,
+      lexer: "script",
+      begin: "//",
+      start: m,
+      ender: z
+    }), m = N[1], N[0] !== c && (p = N[0], w = Tt.test(p) ? "ignore" : "comment", p.indexOf("# sourceMappingURL=") === 2 && (t[0] = r.count + 1, t[1] = p), r.push(e, {
+      begin: r.stack.index,
+      ender: -1,
+      lexer: "script",
+      lines: r.lineOffset,
+      stack: r.stack.token,
+      token: p,
+      types: w
+    }, c));
+  }
+  function ke() {
+    let y = 0, x = 0, q = m + 1, v = !1, E = C, me = ["/"];
+    if (q < E)
+      do {
+        if (me.push(a[q]), (T(a[q - 1], 92) || i(a[q - 2], 92)) && (i(a[q], 91) && (v = !0), i(a[q], 93) && (v = !1)), i(a[q], 47) && v === !1)
+          if (i(a[q - 1], 92)) {
+            if (x = 0, y = q - 1, y > 0)
+              do {
+                if (i(a[y], 92))
+                  x = x + 1;
+                else
+                  break;
+                y = y - 1;
+              } while (y > 0);
+            if (x % 2 === 0)
+              break;
+          } else
+            break;
+        q = q + 1;
+      } while (q < E);
+    return a[q + 1] === "g" || a[q + 1] === "i" || a[q + 1] === "m" || a[q + 1] === "y" || a[q + 1] === "u" ? (me.push(a[q + 1]), a[q + 2] !== a[q + 1] && (a[q + 2] === "g" || a[q + 2] === "i" || a[q + 2] === "m" || a[q + 2] === "y" || a[q + 2] === "u") ? (me.push(a[q + 2]), a[q + 3] !== a[q + 1] && a[q + 3] !== a[q + 2] && (a[q + 3] === "g" || a[q + 3] === "i" || a[q + 3] === "m" || a[q + 3] === "y" || a[q + 3] === "u") ? (me.push(a[q + 3]), a[q + 4] !== a[q + 1] && a[q + 4] !== a[q + 2] && a[q + 4] !== a[q + 3] && (a[q + 4] === "g" || a[q + 4] === "i" || a[q + 4] === "m" || a[q + 4] === "y" || a[q + 4] === "u") ? (me.push(a[q + 4]), a[q + 5] !== a[q + 1] && a[q + 5] !== a[q + 2] && a[q + 5] !== a[q + 3] && a[q + 5] !== a[q + 4] && (a[q + 5] === "g" || a[q + 5] === "i" || a[q + 5] === "m" || a[q + 5] === "y" || a[q + 5] === "u") ? (me.push(a[q + 4]), m = q + 5) : m = q + 4) : m = q + 3) : m = q + 2) : m = q + 1) : m = q, me.join(c);
+  }
+  function K() {
+    let y = [a[m]], x = 0, q = i(y[0], 46), v = /zz/;
+    if (m < C - 2 && a[m] === "0" && (a[m + 1] === "x" ? v = /[0-9a-fA-F]/ : a[m + 1] === "o" ? v = /[0-9]/ : a[m + 1] === "b" && (v = /0|1/), v.test(a[m + 2]))) {
+      y.push(a[m + 1]), x = m + 1;
+      do
+        x = x + 1, y.push(a[x]);
+      while (v.test(a[x + 1]));
+      return m = x, y.join(c);
+    }
+    if (x = m + 1, x < C)
+      do {
+        if (He(a[x]) || i(a[x], 46) && q === !1)
+          y.push(a[x]), i(a[x], 46) && (q = !0);
+        else
+          break;
+        x = x + 1;
+      } while (x < C);
+    if (x < C - 1 && (He(a[x - 1]) || He(a[x - 2]) && (i(a[x - 1], 45) || i(a[x - 1], 43))) && (a[x] === "e" || a[x] === "E") && (y.push(a[x]), (i(a[x + 1], 45) || i(a[x + 1], 43)) && (y.push(a[x + 1]), x = x + 1), q = !1, x = x + 1, x < C))
+      do {
+        if (He(a[x]) || i(a[x], 46) && q === !1)
+          y.push(a[x]), i(a[x], 46) && (q = !0);
+        else
+          break;
+        x = x + 1;
+      } while (x < C);
+    return m = x - 1, y.join(c);
+  }
+  function se() {
+    let y = 0, x = 0, q = C, v = c, E = [
+      "=",
+      "<",
+      ">",
+      "+",
+      "*",
+      "?",
+      "|",
+      "^",
+      ":",
+      "&",
+      "%",
+      "~"
+    ], me = E.length;
+    if (d > -1 && b(), i(a[m], 47) && r.count > -1 && (w !== "word" && w !== "reference" || p === "typeof" || p === "return" || p === "else") && w !== "number" && w !== "string" && w !== "end")
+      return p === "return" || p === "typeof" || p === "else" || w !== "word" ? (p = ke(), w = "regex") : (p = "/", w = "operator"), D(), "regex";
+    if (i(a[m], 63) && ("+-*/.?".indexOf(a[m + 1]) > -1 || i(a[m + 1], 58) && E.join(c).indexOf(a[m + 2]) < 0) && (i(a[m + 1], 46) && He(a[m + 2]) === !1 ? v = "?." : i(a[m + 1], 63) && (v = "??"), v === c))
+      return "?";
+    if (i(a[m], 58) && "+-*/".indexOf(a[m + 1]) > -1)
+      return ":";
+    if (m < C - 1) {
+      if (T(a[m], 60) && i(a[m + 1], 60))
+        return a[m];
+      if (i(a[m], 33) && i(a[m + 1], 47))
+        return "!";
+      if (i(a[m], 45) && (h[h.length - 1] = !1, i(a[m + 1], 45) ? v = "--" : i(a[m + 1], 61) ? v = "-=" : i(a[m + 1], 62) && (v = "->"), v === c))
+        return "-";
+      if (i(a[m], 43) && (h[h.length - 1] = !1, i(a[m + 1], 43) ? v = "++" : i(a[m + 1], 61) && (v = "+="), v === c))
+        return "+";
+      if (i(a[m], 61) && T(a[m + 1], 61) && T(a[m + 1], 33) && T(a[m + 1], 62))
+        return h[h.length - 1] = !1, "=";
+    }
+    if (i(a[m], 59))
+      if (r.language === "typescript") {
+        if (e.stack[r.count] === "arguments")
+          e.token[r.count] === "?" && (r.pop(e), v = "?:", m = m - 1), h[h.length - 1] = !0;
+        else if (i(p, 41) && (e.token[e.begin[r.count] - 1] === "function" || e.token[e.begin[r.count] - 2] === "function"))
+          h[h.length - 1] = !0;
+        else if (w === "reference") {
+          y = r.count;
+          let te = !1;
+          do {
+            if (e.begin[y] === e.begin[r.count]) {
+              if (y < r.count && e.token[y] === ":" && e.types[y + 1] !== "type" && (te = !0), e.token[y] === "?" && te === !1 || e.token[y] === ";" || e.token[y] === "x;")
+                break;
+              if (e.token[y] === "var" || e.token[y] === "let" || e.token[y] === "const" || e.types[y] === "type") {
+                h[h.length - 1] = !0;
+                break;
+              }
+            } else {
+              if (e.types[y] === "type_end") {
+                h[h.length - 1] = !0;
+                break;
+              }
+              y = e.begin[y];
+            }
+            y = y - 1;
+          } while (y > e.begin[r.count]);
+        }
+      } else
+        e.token[r.count - 1] === "[" && (e.types[r.count] === "word" || e.types[r.count] === "reference") && (r.stack.update("attribute"), e.stack[r.count] = "attribute");
+    if (v === c)
+      if (i(a[m + 1], 43) && i(a[m + 2], 43) || i(a[m + 1], 45) && i(a[m + 2], 45))
+        v = a[m];
+      else {
+        let te = [a[m]];
+        if (y = m + 1, y < q)
+          do {
+            if (i(a[y], 43) && i(a[y + 1], 43) || i(a[y], 45) && i(a[y + 1], 45))
+              break;
+            if (x = 0, x < me)
+              do {
+                if (a[y] === E[x]) {
+                  te.push(E[x]);
+                  break;
+                }
+                x = x + 1;
+              } while (x < me);
+            if (x === me)
+              break;
+            y = y + 1;
+          } while (y < q);
+        v = te.join(c);
+      }
+    if (m = m + (v.length - 1), v === "=>" && i(p, 41)) {
+      y = r.count, q = e.begin[y];
+      do
+        e.begin[y] === q && (e.stack[y] = "method"), y = y - 1;
+      while (y > q - 1);
+    }
+    return v;
+  }
+  function J() {
+    let y = [a[m]];
+    if (m = m + 1, m < C)
+      do {
+        if (y.push(a[m]), i(a[m], 96) && (T(a[m - 1], 92) || !P(m - 1)) || i(a[m - 1], 36) && i(a[m], 123) && (T(a[m - 2], 92) || !P(m - 2)))
+          break;
+        m = m + 1;
+      } while (m < C);
+    return y.join(c);
+  }
+  function $e() {
+    let y = 0, x = !1, q = !1, v = 0, E = 0, me = 0, te = c, R = c, Q = c, W = [], U = h[h.length - 1], Z = "0123456789=<>+-*?|^:&.,;%(){}[]~";
+    function ae() {
+      i(p, 40) && r.stack.update("paren", r.count), r.external("html", W.join(c));
+    }
+    if (d > -1 && b(), R = r.count > 0 ? e.token[r.count - 1] : c, Q = r.count > 0 ? e.types[r.count - 1] : c, te = B(1, !1), r.language !== "jsx" && r.language !== "tsx" && He(te) === !1 && (p === "function" || R === "=>" || R === "void" || R === "." || p === "return" || w === "operator" || e.stack[r.count] === "arguments" || w === "type" && R === "type" || w === "reference" && (Q === "operator" || R === "function" || R === "class" || R === "new") || w === "type" && Q === "operator")) {
+      let he = [], de = 0, fe = 0;
+      y = m;
+      do {
+        if (he.push(a[y]), i(a[y], 60))
+          de = de + 1;
+        else if (i(a[y], 62) && (de = de - 1, de < 1))
+          break;
+        y = y + 1;
+      } while (y < C);
+      if (fe = m, m = y, te = B(1, !1), i(a[y], 62) && (U === !0 || R === "=>" || R === "." || Q !== "operator" || Q === "operator" && (i(te, 40) || i(te, 61)))) {
+        w = "generic", p = he.join(c).replace(/^<\s+/, "<").replace(/\s+>$/, ">").replace(/,\s*/g, ", "), D();
+        return;
+      }
+      m = fe;
+    }
+    if (y = r.count, e.types[y] === "comment")
+      do
+        y = y - 1;
+      while (y > 0 && e.types[y] === "comment");
+    if (U === !1 && B(1, !1) !== ">" && (T(a[m], 60) && Z.indexOf(a[m + 1]) > -1 || e.token[y] === "++" || e.token[y] === "--" || ce(a[m + 1]) === !0 || He(a[m + 1]) === !0 && (w === "operator" || w === "string" || w === "number" || w === "reference" || w === "word" && p !== "return")))
+      return w = "operator", p = se(), D();
+    if (r.language !== "typescript" && (e.token[y] === "return" || e.types[y] === "operator" || e.types[y] === "start" || e.types[y] === "separator" || e.types[y] === "jsx_attribute_start" || i(e.token[y], 125) && r.stack.token === "global")) {
+      w = "markup", r.language = "jsx";
+      do {
+        if (W.push(a[m]), i(a[m], 123))
+          E = E + 1, x = !0;
+        else if (i(a[m], 125))
+          E = E - 1, E === 0 && (x = !1);
+        else if (i(a[m], 60) && x === !1) {
+          if (i(a[m + 1], 60))
+            do
+              W.push(a[m]), m = m + 1;
+            while (m < C && i(a[m + 1], 60));
+          v = v + 1, i(B(1, !1), 47) && (q = !0);
+        } else if (i(a[m], 62) && x === !1) {
+          if (i(a[m + 1], 62))
+            do
+              W.push(a[m]), m = m + 1;
+            while (i(a[m + 1], 62));
+          if (v = v - 1, q === !0 ? me = me - 1 : T(a[m - 1], 47) && (me = me + 1), v === 0 && E === 0 && me < 1) {
+            if (te = B(2, !1), T(te, 60))
+              return ae();
+            if (i(te, 60) && Z.indexOf(te.charAt(1)) < 0 && ce(te.charAt(1)) === !1) {
+              y = m + 1;
+              do {
+                if (y = y + 1, i(a[y], 62) || ce(a[y - 1]) && Z.indexOf(a[y]) < 0)
+                  break;
+                if (Z.indexOf(a[y]) > -1)
+                  return ae();
+              } while (y < C);
+            } else
+              return ae();
+          }
+          q = !1;
+        }
+        m = m + 1;
+      } while (m < C);
+      return ae();
+    }
+    w = "operator", p = se(), D();
+  }
+  function $() {
+    let y = !0, x = "+", q = c, v = c, E = c, me = c, te = 0, R = 0, Q = 0, W = [];
+    function U() {
+      R = e.begin[R] - 1, e.types[R] === "end" ? U() : i(e.token[R - 1], 46) && Z();
+    }
+    function Z() {
+      R = R - 2, e.types[R] === "end" ? U() : i(e.token[R - 1], 46) && Z();
+    }
+    function ae() {
+      let de = 0;
+      if (de < W.length)
+        do
+          r.push(e, W[de], c), de = de + 1;
+        while (de < W.length);
+    }
+    function he(de) {
+      return {
+        begin: e.begin[de],
+        ender: e.ender[de],
+        lexer: e.lexer[de],
+        lines: e.lines[de],
+        stack: e.stack[de],
+        token: e.token[de],
+        types: e.types[de]
+      };
+    }
+    if (q = e.token[r.count], v = e.token[r.count - 1], E = e.token[r.count - 2], q !== "++" && q !== "--" && v !== "++" && v !== "--" && (R = r.count, e.types[R] === "end" ? U() : i(e.token[R - 1], 46) && Z()), e.token[R - 1] === "++" || e.token[R - 1] === "--") {
+      if ("startendoperator".indexOf(e.types[R - 2]) > -1)
+        return;
+      if (Q = R, Q < r.count + 1) {
+        do
+          W.push(he(Q)), Q = Q + 1;
+        while (Q < r.count + 1);
+        r.splice({ data: e, howmany: r.count - R, index: R });
+      }
+    } else {
+      if (n.correct === !1 || q !== "++" && q !== "--" && v !== "++" && v !== "--")
+        return;
+      if (me = B(1, !1), (q === "++" || q === "--") && (i(a[m], 59) || i(me, 59) || i(a[m], 125) || i(me, 125) || i(a[m], 41) || i(me, 41))) {
+        if (x = e.stack[r.count], x === "array" || x === "method" || x === "object" || x === "paren" || x === "notation" || e.token[e.begin[r.count] - 1] === "while" && x !== "while")
+          return;
+        Q = r.count;
+        do {
+          if (Q = Q - 1, e.token[Q] === "return")
+            return;
+          if (e.types[Q] === "end")
+            do
+              Q = e.begin[Q] - 1;
+            while (e.types[Q] === "end" && Q > 0);
+        } while (Q > 0 && (i(e.token[Q], 46) || e.types[Q] === "word" || e.types[Q] === "reference" || e.types[Q] === "end"));
+        if (i(e.token[Q], 44) && T(a[m], 59) && T(me, 59) && T(a[m], 125) && T(me, 125) && T(a[m], 41) && T(me, 41))
+          return;
+        if (e.types[Q] === "operator")
+          if (e.stack[Q] === "switch" && i(e.token[Q], 58))
+            do {
+              if (Q = Q - 1, e.types[Q] === "start") {
+                if (te = te - 1, te < 0)
+                  break;
+              } else
+                e.types[Q] === "end" && (te = te + 1);
+              if (i(e.token[Q], 63) && te === 0)
+                return;
+            } while (Q > 0);
+          else
+            return;
+        y = !1, x = q === "--" ? "-" : "+";
+      } else if (i(E, 91) || i(E, 59) || i(E, 123) || i(E, 125) || i(E, 40) || i(E, 41) || i(E, 44) || E === "return" || E === "x;")
+        if (q === "++" || q === "--") {
+          if (i(E, 91) || i(E, 40) || i(E, 44) || E === "return")
+            return;
+          q === "--" && (x = "-"), y = !1;
+        } else
+          (v === "--" || q === "--") && (x = "-");
+      else
+        return;
+      if (y === !1 && (M = r.pop(e)), R = r.count, e.types[R] === "end" ? U() : i(e.token[R - 1], 46) && Z(), Q = R, Q < r.count + 1)
+        do
+          W.push(he(Q)), Q = Q + 1;
+        while (Q < r.count + 1);
+    }
+    y === !0 ? (r.splice({
+      data: e,
+      howmany: 1,
+      index: R - 1
+    }), p = "=", w = "operator", D(), ae(), p = x, w = "operator", D(), p = "1", w = "number", D()) : (p = "=", w = "operator", D(), ae(), p = x, w = "operator", D(), p = "1", w = "number", D()), p = e.token[r.count], w = e.types[r.count], i(me, 125) && T(a[m], 59) && pe(!1);
+  }
+  function G(y, x, q) {
+    let v = 0, E = !1, me = !1, te = [y], R, Q = x.split(c), W = Q.length, U = m, Z = m + y.length, ae = A.quoteConvert;
+    function he() {
+      let fe = 0;
+      if (te = [], w = q, v = m, q === "string" && ce(a[v + 1])) {
+        fe = 1;
+        do
+          v = v + 1, i(a[v], 10) && (fe = fe + 1);
+        while (v < C && ce(a[v + 1]) === !0);
+        r.lineOffset = fe;
+      }
+    }
+    function de() {
+      let fe = c;
+      function re(be) {
+        if (r.language !== "javascript" && r.language !== "typescript" && r.language !== "jsx" && r.language !== "tsx") {
+          let xe = (ye) => ye.replace(/\s*$/, " "), ve = (ye) => ye.replace(/^\s*/, " ");
+          return /\{(#|\/|(%>)|(%\]))/.test(be) || /\}%(>|\])/.test(be) || (be = be.replace(/\{((\{+)|%-?)\s*/g, xe), be = be.replace(/\s*((\}\}+)|(-?%\}))/g, ve)), be;
+        }
+        return be;
+      }
+      if (i(y, 34) && ae === "single" ? (te[0] = je, te[te.length - 1] = je) : i(y, 39) && ae === "double" ? (te[0] = Be, te[te.length - 1] = Be) : E === !0 && (fe = te[te.length - 1], te.pop(), te.pop(), te.push(fe)), m = v, x === z && (m = m - 1, te.pop()), p = te.join(c), (i(y, 34) || i(y, 39) || y === "{{" || y === "{%") && (p = re(p)), y === "{%" || y === "{{") {
+        R = H(p), w = R[0], D(R[1]);
+        return;
+      }
+      if (q === "string") {
+        if (w = "string", r.language === "json")
+          p = p.replace(/\\u[\dA-F]{4}/gi, (be) => String.fromCharCode(parseInt(be.replace(/\\u/g, ""), 16)));
+        else if (y.indexOf("#!") === 0)
+          p = p.slice(0, p.length - 1), r.lineOffset = 2;
+        else if ((r.stack.token !== "object" || r.stack.token === "object" && T(B(1, !1), 58) && T(e.token[r.count], 44) && T(e.token[r.count], 123)) && (p.length > n.wrap && n.wrap > 0 || n.wrap !== 0 && i(e.token[r.count], 43) && (i(e.token[r.count - 1], 46) || i(e.token[r.count - 1], 39)))) {
+          let be = p, xe = c, ve = ae === "double" ? Be : ae === "single" ? je : be.charAt(0), ye = n.wrap, Ze = /u[0-9a-fA-F]{4}/, Pe = /x[0-9a-fA-F]{2}/;
+          if (be = be.slice(1, be.length - 1), i(e.token[r.count], 43) && (i(e.token[r.count - 1], 46) || i(e.token[r.count - 1], 39)) && (r.pop(e), ve = e.token[r.count].charAt(0), be = e.token[r.count].slice(1, e.token[r.count].length - 1) + be, r.pop(e)), be.length > ye && ye > 0)
+            do
+              xe = be.slice(0, ye), i(xe[ye - 5], 92) && Ze.test(be.slice(ye - 4, ye + 1)) ? xe = xe.slice(0, ye - 5) : i(xe[ye - 4], 92) && Ze.test(be.slice(ye - 3, ye + 2)) ? xe = xe.slice(0, ye - 4) : i(xe[ye - 3], 92) && (Ze.test(be.slice(ye - 2, ye + 3)) || Pe.test(be.slice(ye - 2, ye + 1))) ? xe = xe.slice(0, ye - 3) : i(xe[ye - 2], 92) && (Ze.test(be.slice(ye - 1, ye + 4)) || Pe.test(be.slice(ye - 1, ye + 2))) ? xe = xe.slice(0, ye - 2) : i(xe[ye - 1], 92) && (xe = xe.slice(0, ye - 1)), xe = ve + xe + ve, be = be.slice(xe.length - 2), p = xe, w = "string", D(c), r.lineOffset = 0, p = "+", w = "operator", D(c);
+            while (be.length > ye);
+          p = be === c ? ve + ve : ve + be + ve, w = "string";
+        }
+      } else
+        /\{\s*\?>$/.test(p) ? w = "liquid_start" : w = q;
+      p.length > 0 && D(c);
+    }
+    if (d > -1 && b(), i(a[m - 1], 92) && P(m - 1) === !0 && (i(a[m], 34) || i(a[m], 39)))
+      if (r.pop(e), i(e.token[0], 123))
+        i(a[m], 34) ? (y = Be, x = '\\"', te = [Be]) : (y = je, x = "\\'", te = [je]), E = !0;
+      else {
+        if (i(a[m], 34)) {
+          te = ['\\"'], de();
+          return;
+        }
+        te = ["\\'"], de();
+        return;
+      }
+    if (v = Z, v < C)
+      do {
+        if (T(e.token[0], 123) && T(e.token[0], 91) && ae !== "none" && (i(a[v], 34) || i(a[v], 39)) ? (i(a[v - 1], 92) ? P(v - 1) === !0 && (ae === "double" && i(a[v], 39) || ae === "single" && i(a[v], 34)) && te.pop() : ae === "double" && i(a[v], 34) && i(a[m], 39) ? a[v] = Be : ae === "single" && i(a[v], 39) && i(a[m], 34) && (a[v] = je), te.push(a[v])) : v > U ? (me = !0, i(a[v], 123) && i(a[v + 1], 37) && a[v + 2] !== y ? (de(), G("{%", "%}", "liquid"), he()) : i(a[v], 123) && i(a[v + 1], 123) && a[v + 2] !== y ? (de(), G("{{", "}}", "liquid"), he()) : (me = !1, te.push(a[v]))) : te.push(a[v]), r.language !== "json" && r.language !== "javascript" && (i(y, 34) || i(y, 39)) && (me === !0 || v > U) && T(a[v - 1], 92) && T(a[v], 34) && T(a[v], 39) && (i(a[v], 10) || v === C - 1)) {
+          r.error = "Unterminated string in script on line number " + r.lineNumber;
+          break;
+        }
+        if (a[v] === Q[W - 1] && (T(a[v - 1], 92) || P(v - 1) === !1) && (W === 1 || te[v - Z] === Q[0] && te.slice(v - Z - W + 2).join(c) === x))
+          break;
+        v = v + 1;
+      } while (v < C);
+    de();
+  }
+  function oe() {
+    let y = c, x = B(5, !1), q = r.count, v = r.lineOffset;
+    if (!(r.language === "json" || k.length < 1 || k[k.length - 1].charAt(0) !== "x" || /^x?(;|\}|\))$/.test(p) === !1) && !(e.stack[r.count] === "do" && x === "while" && i(e.token[r.count], 125))) {
+      if (i(p, 59) && e.token[q - 1] === "x{") {
+        if (y = e.token[e.begin[q - 2] - 1], e.token[q - 2] === "do" || i(e.token[q - 2], 41) && "ifforwhilecatch".indexOf(y) > -1) {
+          M = r.pop(e), p = n.correct === !0 ? "}" : "x}", w = "end", L = r.stack.entry, D(), k.pop(), r.lineOffset = v;
+          return;
+        }
+        M = r.pop(e), p = n.correct === !0 ? "}" : "x}", w = "end", L = r.stack.entry, D(), k.pop(), p = ";", w = "end", r.push(e, M, c), r.lineOffset = v;
+        return;
+      }
+      if (p = n.correct === !0 ? "}" : "x}", w = "end", e.token[r.count] !== "x}") {
+        if (x === "else" && e.stack[r.count] === "if" && (i(e.token[r.count], 59) || e.token[r.count] === "x;")) {
+          L = r.stack.entry, D(), k.pop(), r.lineOffset = v;
+          return;
+        }
+        do
+          if (L = r.stack.entry, D(), k.pop(), e.stack[r.count] === "do")
+            break;
+        while (k[k.length - 1] === "x{");
+        r.lineOffset = v;
+      }
+    }
+  }
+  function ne() {
+    let y = r.count;
+    if (e.stack[y] === "object" && A.objectSort === !0)
+      p = ",", w = "separator", ge(), D();
+    else {
+      do
+        y = y - 1;
+      while (y > 0 && e.types[y - 1] === "comment");
+      r.splice({
+        data: e,
+        howmany: 0,
+        index: y,
+        record: {
+          begin: e.begin[y],
+          ender: -1,
+          lexer: "script",
+          lines: r.lineOffset,
+          stack: e.stack[y],
+          token: ",",
+          types: "separator"
+        }
+      }), D();
+    }
+  }
+  function Y(y) {
+    let x = !1, q = !1, v = B(1, !1), E = i(e.token[r.count], 40) ? r.count : e.begin[r.count];
+    function me() {
+      let te = 0, R = e.token[E - 1] === "Array", Q = R ? "[" : "{", W = R ? "]" : "}", U = R ? "array" : "object";
+      if (R === !0 && e.types[r.count] === "number" && (te = Number(e.token[r.count]), M = r.pop(e)), M = r.pop(e), M = r.pop(e), M = r.pop(e), r.stack.pop(), p = Q, w = "start", D(U), te > 0) {
+        p = ",", w = "separator";
+        do
+          D(), te = te - 1;
+        while (te > 0);
+      }
+      p = W, w = "end", D();
+    }
+    if (d > -1 && b(), f.length > 0 && (f[f.length - 1] === 0 ? f.pop() : f[f.length - 1] = f[f.length - 1] - 1), (i(y, 41) || y === "x)" || i(y, 93)) && (n.correct === !0 && $(), ge()), (i(y, 41) || y === "x)") && pe(!1), le > -1 && (i(y, 125) && (A.variableList === "list" && V.count[le] === 0 || e.token[r.count] === "x;" && A.variableList === "each") && j(), V.count[le] = V.count[le] - 1, V.count[le] < 0 && j()), i(p, 44) && e.stack[r.count] !== "initializer" && (i(y, 93) && i(e.token[r.count - 1], 91) || i(y, 125)) && (M = r.pop(e)), i(y, 41) || y === "x)" ? (p = y, o.length > 0 && (_ = o[o.length - 1], _.length > 1 && T(v, 123) && (_[0] === "if" || _[0] === "for" || _[0] === "with" || _[0] === "while" && e.stack[_[1] - 2] !== void 0 && e.stack[_[1] - 2] !== "do") && (x = !0))) : i(y, 93) ? p = "]" : i(y, 125) && (T(p, 44) && n.correct === !0 && $(), r.stack.length > 0 && r.stack.token !== "object" && pe(!0), A.objectSort === !0 && r.stack.token === "object" && $t(e), w === "comment" && (p = e.token[r.count], w = e.types[r.count]), p = "}"), r.stack.token === "data_type" ? w = "type_end" : w = "end", o.pop(), L = r.stack.entry, i(y, 41) && n.correct === !0 && E - r.count < 2 && (i(e.token[r.count], 40) || e.types[r.count] === "number") && (e.token[E - 1] === "Array" || e.token[E - 1] === "Object") && e.token[E - 2] === "new" && (me(), q = !0), k[k.length - 1] === "x{" && i(y, 125) ? (oe(), k.pop(), e.stack[r.count] !== "try" && T(v, 58) && T(v, 59) && e.token[e.begin[m] - 1] !== "?" && oe(), p = "}") : k.pop(), A.endComma !== void 0 && A.endComma !== "none" && r.stack.token === "array" || r.stack.token === "object" || r.stack.token === "data_type")
+      if (A.endComma === "always" && T(e.token[r.count], 44)) {
+        let te = r.stack.index, R = r.count;
+        do {
+          if (e.begin[R] === te) {
+            if (i(e.token[R], 44))
+              break;
+          } else
+            R = e.begin[R];
+          R = R - 1;
+        } while (R > te);
+        if (R > te) {
+          let Q = w, W = p;
+          p = ",", w = "separator", D(), p = W, w = Q;
+        }
+      } else
+        A.endComma === "never" && i(e.token[r.count], 44) && r.pop(e);
+    q === !1 && (D(), i(p, 125) && e.stack[r.count] !== "object" && e.stack[r.count] !== "class" && e.stack[r.count] !== "data_type" && (s.pop(), oe())), x === !0 && (p = n.correct === !0 ? "{" : "x{", w = "start", D(_[0]), k.push("x{"), _[1] = r.count), h.pop(), r.stack.token !== "data_type" && (h[h.length - 1] = !1);
+  }
+  function F(y) {
+    let x = r.count, q = c, v = c, E = c, me = !1;
+    if (k.push(y), i(y, 123) && (e.types[r.count] === "type" || e.types[r.count] === "type_end" || e.types[r.count] === "generic")) {
+      let te = 0;
+      e.types[r.count] === "type_end" && (x = e.begin[r.count]), te = x;
+      do
+        if (x = x - 1, e.begin[x] !== te && e.begin[x] !== -1 || i(e.token[x], 58))
+          break;
+      while (x > e.begin[x]);
+      i(e.token[x], 58) && e.stack[x - 1] === "arguments" ? (h.push(!1), me = !0) : h.push(h[h.length - 1]), x = r.count;
+    } else
+      i(y, 91) && e.types[r.count] === "type_end" ? h.push(!0) : h.push(h[h.length - 1]);
+    if (d > -1 && (b(), x = r.count), le > -1 && (V.count[le] = V.count[le] + 1), e.token[x - 1] === "function" ? o.push(["function", x + 1]) : o.push([p, x + 1]), p = y, h[h.length - 1] === !0 ? w = "type_start" : w = "start", i(y, 40) || y === "x(" ? ge() : i(y, 91) && (l > -1 ? (e.begin[l - 1] === e.begin[e.begin[x] - 1] || e.token[e.begin[x]] === "x(") && (l = -1, n.correct === !0 ? Y(")") : Y("x)"), ge(), p = "{", w = "start") : i(p, 41) && ge(), w === "comment" && i(e.token[x - 1], 41) && (p = e.token[x], e.token[x] = "{", w = e.types[x], e.types[x] = "start")), q = (() => {
+      let te = r.count;
+      if (e.types[te] === "comment")
+        do
+          te = te - 1;
+        while (te > 0 && e.types[te] === "comment");
+      return e.token[te];
+    })(), v = e.stack[x] === void 0 ? c : (() => {
+      let te = r.count;
+      if (e.types[te] === "comment")
+        do
+          te = te - 1;
+        while (te > 0 && e.types[te] === "comment");
+      return e.token[e.begin[te] - 1];
+    })(), i(p, 123) && (e.types[x] === "word" || i(e.token[x], 93))) {
+      let te = x;
+      if (i(e.token[te], 93))
+        do
+          te = e.begin[te] - 1;
+        while (i(e.token[te], 93));
+      do {
+        if (e.types[te] === "start" || e.types[te] === "end" || e.types[te] === "operator")
+          break;
+        te = te - 1;
+      } while (te > 0);
+      i(e.token[te], 58) && e.stack[te - 1] === "arguments" && (E = "function", s.push(g), g = []);
+    }
+    if (w === "type_start")
+      E = "data_type";
+    else if (E === c && (i(p, 123) || p === "x{")) {
+      if (q === "else" || q === "do" || q === "try" || q === "finally" || q === "switch")
+        E = q;
+      else if (f[f.length - 1] === 0 && q !== "return")
+        f.pop(), E = "class";
+      else if (e.token[x - 1] === "class")
+        E = "class";
+      else if (i(e.token[x], 93) && i(e.token[x - 1], 91))
+        E = "array";
+      else if ((e.types[x] === "word" || e.types[x] === "reference") && (e.types[x - 1] === "word" || e.types[x - 1] === "reference" || e.token[x - 1] === "?" && (e.types[x - 2] === "word" || e.types[x - 2] === "reference")) && e.token[x] !== "in" && e.token[x - 1] !== "export" && e.token[x - 1] !== "import")
+        E = "map";
+      else if (e.stack[x] === "method" && e.types[x] === "end" && (e.types[e.begin[x] - 1] === "word" || e.types[e.begin[x] - 1] === "reference") && e.token[e.begin[x] - 2] === "new")
+        E = "initializer";
+      else if (i(p, 123) && (i(q, 41) || q === "x)") && (e.types[e.begin[x] - 1] === "word" || e.types[e.begin[x] - 1] === "reference" || e.token[e.begin[x] - 1] === "]"))
+        v === "if" ? E = "if" : v === "for" ? E = "for" : v === "while" ? E = "while" : v === "class" ? E = "class" : v === "switch" || e.token[e.begin[x] - 1] === "switch" ? E = "switch" : v === "catch" ? E = "catch" : E = "function";
+      else if (i(p, 123) && (i(q, 59) || q === "x;"))
+        E = "block";
+      else if (i(p, 123) && i(e.token[x], 58) && e.stack[x] === "switch")
+        E = "block";
+      else if (e.token[x - 1] === "import" || e.token[x - 2] === "import" || e.token[x - 1] === "export" || e.token[x - 2] === "export")
+        E = "object";
+      else if (i(q, 41) && (_[0] === "function" || _[0] === "if" || _[0] === "for" || _[0] === "class" || _[0] === "while" || _[0] === "switch" || _[0] === "catch"))
+        E = _[0];
+      else if (e.stack[x] === "notation")
+        E = "function";
+      else if ((e.types[x] === "number" || e.types[x] === "string" || e.types[x] === "word" || e.types[x] === "reference") && (e.types[x - 1] === "word" || e.types[x - 1] === "reference") && e.token[e.begin[x] - 1] !== "for")
+        E = "function";
+      else if (r.stack.length > 0 && T(e.token[x], 58) && r.stack.token === "object" && (i(e.token[e.begin[x] - 2], 123) || i(e.token[e.begin[x] - 2], 44)))
+        E = "function";
+      else if (e.types[_[1] - 1] === "markup" && e.token[_[1] - 3] === "function")
+        E = "function";
+      else if (q === "=>")
+        E = "function";
+      else if (me === !0 || e.types[r.count] === "type_end" && e.stack[e.begin[r.count] - 2] === "arguments")
+        E = "function";
+      else if (i(q, 41) && e.stack[x] === "method" && (e.types[e.begin[x] - 1] === "word" || e.types[e.begin[x] - 1] === "property" || e.types[e.begin[x] - 1] === "reference"))
+        E = "function";
+      else if (i(p, 123) && e.types[x] === "word" && e.token[x] !== "return" && e.token[x] !== "in" && e.token[x] !== "import" && e.token[x] !== "const" && e.token[x] !== "let" && e.token[x] !== c)
+        E = "block";
+      else if (i(p, 123) && "if|else|for|while|function|class|switch|catch|finally".indexOf(e.stack[x]) > -1 && (e.token[x] === "x}" || i(e.token[x], 125)))
+        E = "block";
+      else if (e.stack[x] === "arguments")
+        E = "function";
+      else if (e.types[x] === "generic")
+        do {
+          if (x = x - 1, e.token[x] === "function" || e.stack[x] === "arguments") {
+            E = "function";
+            break;
+          }
+          if (e.token[x] === "interface") {
+            E = "map";
+            break;
+          }
+          if (i(e.token[x], 59)) {
+            E = "object";
+            break;
+          }
+        } while (x > e.begin[r.count]);
+      else
+        E = "object";
+      E !== "object" && E !== "class" && (E === "function" ? (s.push(g), g = []) : s.push([]));
+    } else
+      i(p, 91) ? E = "array" : (i(p, 40) || p === "x(") && (q === "function" || e.token[x - 1] === "function" || e.token[x - 1] === "function*" || e.token[x - 2] === "function" ? E = "arguments" : i(e.token[x - 1], 46) || i(e.token[e.begin[x] - 2], 46) || e.types[x] === "generic" || i(e.token[x], 125) && e.stack[x] === "function" ? E = "method" : q === "if" || q === "for" || q === "class" || q === "while" || q === "catch" || q === "finally" || q === "switch" || q === "with" ? E = "expression" : e.types[x] === "word" || e.types[x] === "property" || e.types[x] === "reference" ? E = "method" : E = "paren");
+    D(E), f.length > 0 && (f[f.length - 1] = f[f.length - 1] + 1);
+  }
+  function H(y) {
+    let x = 2, q = 0, v = c, E = y.slice(0, 2), me = y.length;
+    if (i(y[2], 45) && (x = x + 1), ce(y.charAt(x)) === !0)
+      do
+        x = x + 1;
+      while (ce(y.charAt(x)) === !0 && x < me);
+    q = x;
+    do
+      q = q + 1;
+    while (ce(y.charAt(q)) === !1 && y.charAt(q) !== "(" && q < me);
+    if (q === me && (q = y.length - 2), v = y.slice(x, q), v === "else" || E === "{%" && (v === "elseif" || v === "when" || v === "elif" || v === "elsif"))
+      return ["liquid_else", `liquid_${v}`];
+    if (E === "{{")
+      return v === "end" ? ["liquid_end", c] : (
+        //  (name === 'block' && (/\{%\s*\w/).test(source) === false) ||
+        v === "define" || v === "form" || v === "if" || v === "unless" || v === "range" || v === "with" ? ["liquid_start", `liquid_${v}`] : ["liquid", c]
+      );
+    if (q = S.length - 1, q > -1)
+      do {
+        if (v === S[q] && v !== "block")
+          return ["liquid_start", `liquid_${v}`];
+        if (v === "end" + S[q])
+          return [
+            "liquid_end",
+            c
+          ];
+        q = q - 1;
+      } while (q > -1);
+    return ["liquid", c];
+  }
+  function b() {
+    let y = d, x = 1, q = c, v = c, E = p, me = w, te = [];
+    function R() {
+      k.push("x{"), r.splice({
+        data: e,
+        howmany: 1,
+        index: r.count - 3
+      });
+    }
+    function Q(W, U, Z) {
+      let ae = e.begin[W], he = 0;
+      do {
+        if (e.token[W] === U && e.types[W] === "word") {
+          if (Z === !0)
+            e.types[W] = "reference";
+          else if (e.begin[W] > ae && e.token[e.begin[W]] === "{" && e.stack[W] !== "object" && e.stack[W] !== "class" && e.stack[W] !== "data_type")
+            if (e.stack[W] === "function")
+              e.types[W] = "reference";
+            else {
+              he = e.begin[W];
+              do {
+                if (e.stack[he] === "function") {
+                  e.types[W] = "reference";
+                  break;
+                }
+                he = e.begin[he];
+              } while (he > ae);
+            }
+        }
+        W = W - 1;
+      } while (W > ae);
+    }
+    do
+      te.push(a[y]), i(a[y], 92), y = y + 1;
+    while (y < m);
+    if (p.charAt(0) === "\u201C" ? r.error = `Quote looking character (\u201C, \\u201c) used instead of actual quotes on line number ${r.lineNumber}` : p.charAt(0) === "\u201D" && (r.error = `Quote looking character (\u201D, \\u201d) used instead of actual quotes on line number ${r.lineNumber}`), q = te.join(c), d = -1, r.count > 0 && q === "function" && i(e.token[r.count], 40) && (i(e.token[r.count - 1], 123) || e.token[r.count - 1] === "x{") && (e.types[r.count] = "start"), r.count > 1 && q === "function" && i(p, 40) && (i(e.token[r.count - 1], 125) || e.token[r.count - 1] === "x}"))
+      if (i(e.token[r.count - 1], 125)) {
+        if (y = r.count - 2, y > -1)
+          do {
+            if (e.types[y] === "end" ? x = x + 1 : (e.types[y] === "start" || e.types[y] === "end") && (x = x - 1), x === 0)
+              break;
+            y = y - 1;
+          } while (y > -1);
+        if (i(e.token[y], 123) && i(e.token[y - 1], 41)) {
+          if (x = 1, y = y - 2, y > -1)
+            do {
+              if (e.types[y] === "end" ? x = x + 1 : (e.types[y] === "start" || e.types[y] === "end") && (x = x - 1), x === 0)
+                break;
+              y = y - 1;
+            } while (y > -1);
+          e.token[y - 1] !== "function" && e.token[y - 2] !== "function" && (e.types[r.count] = "start");
+        }
+      } else
+        e.types[r.count] = "start";
+    if (n.correct === !0 && (q === "Object" || q === "Array") && i(a[m + 1], 40) && i(a[m + 2], 41) && i(e.token[r.count - 1], 61) && e.token[r.count] === "new")
+      q === "Object" ? (e.token[r.count] = "{", p = "}", e.stack[r.count] = "object", r.stack.update("object")) : (e.token[r.count] = "[", p = "]", e.stack[r.count] = "array", r.stack.update("array")), e.types[r.count] = "start", w = "end", a[m + 1] = c, a[m + 2] = c, m = m + 2;
+    else {
+      if (x = r.count, y = x, A.variableList !== "none" && (q === "var" || q === "let" || q === "const")) {
+        if (e.types[x] === "comment")
+          do
+            x = x - 1;
+          while (x > 0 && e.types[x] === "comment");
+        if (A.variableList === "list" && le > -1 && V.index[le] === x && q === V.word[le]) {
+          p = ",", w = "separator", e.token[x] = p, e.types[x] = w, V.count[le] = 0, V.index[le] = x, V.word[le] = q;
+          return;
+        }
+        le = le + 1, V.count.push(0), V.index.push(x), V.word.push(q), x = y;
+      } else
+        le > -1 && q !== V.word[le] && r.count === V.index[le] && i(e.token[V.index[le]], 59) && p !== V.word[le] && A.variableList === "list" && j();
+      if (q === "from" && e.token[r.count] === "x;" && i(e.token[r.count - 1], 125) && ge(), q === "while" && e.token[r.count] === "x;" && i(e.token[r.count - 1], 125)) {
+        let W = 0, U = r.count - 2;
+        if (U > -1)
+          do {
+            if (e.types[U] === "end" ? W = W + 1 : e.types[U] === "start" && (W = W - 1), W < 0) {
+              i(e.token[U], 123) && e.token[U - 1] === "do" && ge();
+              return;
+            }
+            U = U - 1;
+          } while (U > -1);
+      }
+      if (me === "comment") {
+        let W = r.count;
+        do
+          W = W - 1;
+        while (W > 0 && e.types[W] === "comment");
+        me = e.types[W], E = e.token[W];
+      }
+      if (v = B(2, !1), q === "void")
+        E === ":" && e.stack[r.count - 1] === "arguments" ? w = "type" : w = "word";
+      else if ((r.stack.token === "object" || r.stack.token === "class" || r.stack.token === "data_type") && (i(e.token[r.count], 123) || i(e.token[e.begin[r.count]], 123) && i(e.token[r.count], 44) || e.types[r.count] === "liquid_end" && (i(e.token[e.begin[r.count] - 1], 123) || i(e.token[e.begin[r.count] - 1], 44))))
+        q === "return" || q === "break" ? w = "word" : w = "property";
+      else if (h[h.length - 1] === !0 || (r.language === "typescript" || r.language === "flow") && E === "type")
+        w = "type";
+      else if (s.length > 0 && (E === "function" || E === "class" || E === "const" || E === "let" || E === "var" || E === "new" || E === "void"))
+        w = "reference", s[s.length - 1].push(q), r.language === "javascript" || r.language === "jsx" || r.language === "typescript" || r.language === "tsx" ? E === "var" || E === "function" && e.types[r.count - 1] !== "operator" && e.types[r.count - 1] !== "start" && e.types[r.count - 1] !== "end" ? Q(r.count, q, !0) : Q(r.count, q, !1) : Q(r.count, q, !1);
+      else if (r.stack.token === "arguments" && w !== "operator")
+        w = "reference", g.push(q);
+      else if (i(E, 44) && e.stack[r.count] !== "method" && (e.stack[r.count] !== "expression" || e.token[e.begin[r.count] - 1] === "for")) {
+        let W = r.count, U = r.stack.index;
+        do {
+          if (e.begin[W] === U) {
+            if (e.token[W] === ";" || e.token[W] === "var" || e.token[W] === "let" || e.token[W] === "const" || e.token[W] === "type")
+              break;
+          } else
+            e.types[W] === "end" && (W = e.begin[W]);
+          W = W - 1;
+        } while (W > U);
+        s.length > 0 && e.token[W] === "var" ? (w = "reference", s[s.length - 1].push(q), r.language === "javascript" || r.language === "jsx" || r.language === "typescript" || r.language === "tsx" ? Q(W, q, !0) : Q(W, q, !1)) : s.length > 0 && (e.token[W] === "let" || e.token[W] === "const" || e.token[W] === "type" && (r.language === "typescript" || r.language === "tsx")) ? (w = "reference", s[s.length - 1].push(q), Q(W, q, !1)) : w = "word";
+      } else if (r.stack.token !== "object" || r.stack.token === "object" && p !== "," && p !== "{") {
+        let W = s.length, U = 0;
+        if (W > 0) {
+          do
+            if (W = W - 1, U = s[W].length, U > 0) {
+              do
+                if (U = U - 1, q === s[W][U])
+                  break;
+              while (U > 0);
+              if (q === s[W][U])
+                break;
+            }
+          while (W > 0);
+          s[W][U] === q && E !== "." ? w = "reference" : w = "word";
+        } else
+          w = "word";
+      } else
+        w = "word";
+      p = q, q === "from" && e.token[r.count] === "}" && ge();
+    }
+    if (D(), q === "class" && f.push(0), q === "do" && (v = B(1, !0), v !== "{" && (p = n.correct === !0 ? "{" : "x{", w = "start", k.push("x{"), D("do"))), q === "else") {
+      v = B(2, !0);
+      let W = r.count - 1;
+      if (e.types[W] === "comment")
+        do
+          W = W - 1;
+        while (W > 0 && e.types[W] === "comment");
+      e.token[W] === "x}" && (e.token[r.count] === "else" ? e.stack[r.count - 1] !== "if" && e.types[r.count - 1] !== "comment" && e.stack[r.count - 1] !== "else" ? (k.pop(), r.splice({
+        data: e,
+        howmany: 0,
+        index: r.count - 1,
+        record: {
+          begin: e.begin[e.begin[e.begin[r.count - 1] - 1] - 1],
+          ender: -1,
+          lexer: "script",
+          lines: 0,
+          stack: "if",
+          token: n.correct === !0 ? "}" : "x}",
+          types: "end"
+        }
+      }), r.stack.length > 1 && (r.stack.splice(r.stack.length - 2, 1), r.stack.update(r.count))) : (e.token[r.count - 2] === "x}" && L[0] !== "if" && e.stack[r.count] === "else" || e.token[r.count - 2] === "}" && e.stack[r.count - 2] === "if" && L[0] === "if" && e.token[L[1] - 1] !== "if" && e.token[e.begin[r.count - 1]] === "x{") && R() : e.token[r.count] === "x}" && e.stack[r.count] === "if" && R()), v !== "if" && T(v, 123) && (p = n.correct === !0 ? "{" : "x{", w = "start", k.push("x{"), D("else"));
+    }
+    (q === "for" || q === "if" || q === "switch" || q === "catch") && e.token[r.count - 1] !== "." && (v = B(1, !0), v !== "(" && (l = r.count, n.correct === !0 ? F("(") : F("x(")));
+  }
+  function X() {
+    r.lineOffset = 1;
+    do {
+      if (i(a[m], 10) && (r.lineIndex = m, r.lineOffset = r.lineOffset + 1, r.lineNumber = r.lineNumber + 1), ce(a[m + 1]) === !1)
+        break;
+      m = m + 1;
+    } while (m < C);
+  }
+  do
+    ce(a[m]) ? (d > -1 && b(), X(), r.lineOffset > 1 && I < r.count && T(a[m + 1], 59) && T(a[m + 1], 125) && (pe(!1), I = r.count)) : i(a[m], 123) && i(a[m + 1], 37) ? G("{%", "%}", "liquid") : i(a[m], 123) && i(a[m + 1], 123) ? G("{{", "}}", "liquid") : i(a[m], 60) && i(a[m + 1], 33) && i(a[m + 2], 45) && i(a[m + 3], 45) ? G("<!--", "-->", "comment") : i(a[m], 60) ? $e() : i(a[m], 47) && (m === C - 1 || i(a[m + 1], 42)) ? Ce() : (r.count < 0 || e.lines[r.count] > 0) && i(a[m], 35) && i(a[m + 1], 33) && (i(a[m + 2], 47) || i(a[m + 3], 91)) ? G("#!" + a[m + 2], z, "string") : i(a[m], 47) && (m === C - 1 || i(a[m + 1], 47)) ? O() : i(a[m], 96) || i(a[m], 125) && r.stack.token === "template_string" ? (d > -1 && b(), p = J(), i(p, 125) && p.slice(p.length - 2) === "${" ? (w = "template_string_else", D("template_string")) : p.slice(p.length - 2) === "${" ? (w = "template_string_start", D("template_string")) : i(p[0], 125) ? (w = "template_string_end", D()) : (w = "string", D())) : i(a[m], 34) || i(a[m], 39) ? G(a[m], a[m], "string") : i(a[m], 45) && m < C - 1 && T(a[m + 1], 61) && T(a[m + 1], 45) && (w === "number" || w === "word" || w === "reference") && p !== "return" && (w === "word" || w === "reference" || w === "number" || i(p, 41) || i(p, 93)) ? (d > -1 && b(), p = "-", w = "operator", D()) : d === -1 && (a[m] !== "0" || a[m] === "0" && a[m + 1] !== "b") && (He(a[m]) || m !== C - 2 && i(a[m], 45) && i(a[m + 1], 46) && He(a[m + 2]) || m !== C - 1 && (i(a[m], 45) || i(a[m], 46)) && He(a[m + 1])) ? (d > -1 && b(), w === "end" && i(a[m], 45) ? (p = "-", w = "operator") : (p = K(), w = "number"), D()) : i(a[m], 58) && i(a[m + 1], 58) ? (d > -1 && b(), n.correct === !0 && $(), ge(), m = m + 1, p = "::", w = "separator", D()) : i(a[m], 44) ? (d > -1 && b(), n.correct === !0 && $(), h[h.length - 1] === !0 && e.stack[r.count].indexOf("type") < 0 && (h[h.length - 1] = !1), w === "comment" ? ne() : le > -1 && V.count[le] === 0 && A.variableList === "each" ? (ge(), p = ";", w = "separator", D(), p = V.word[le], w = "word", D(), V.index[le] = r.count) : (p = ",", w = "separator", ge(), D())) : i(a[m], 46) ? (d > -1 && b(), h[h.length - 1] = !1, i(a[m + 1], 46) && i(a[m + 2], 46) ? (p = "...", w = "operator", m = m + 2) : (ge(), p = ".", w = "separator"), ce(a[m - 1]) && (r.lineOffset = 1), D()) : i(a[m], 59) ? (d > -1 && b(), h[h.length - 1] === !0 && e.stack[r.count].indexOf("type") < 0 && (h[h.length - 1] = !1), f[f.length - 1] === 0 && f.pop(), le > -1 && V.count[le] === 0 && (A.variableList === "each" ? j() : V.index[le] = r.count + 1), n.correct === !0 && $(), p = ";", w = "separator", e.token[r.count] === "x}" ? ue() : D(), oe()) : i(a[m], 40) || i(a[m], 91) || i(a[m], 123) ? F(a[m]) : i(a[m], 41) || i(a[m], 93) || i(a[m], 125) ? Y(a[m]) : d < 0 && e.stack[r.count] === "object" && i(a[m], 42) && T(a[m + 1], 61) && He(a[m + 1]) === !1 && ce(a[m + 1]) === !1 ? d = m : i(a[m], 61) || i(a[m], 38) || i(a[m], 60) || i(a[m], 62) || i(a[m], 43) || i(a[m], 45) || i(a[m], 42) || i(a[m], 47) || i(a[m], 33) || i(a[m], 63) || i(a[m], 124) || i(a[m], 94) || i(a[m], 58) || i(a[m], 37) || i(a[m], 94) ? (p = se(), p === "regex" ? p = e.token[r.count] : i(p, 42) && e.token[r.count] === "function" ? e.token[r.count] = "function*" : (w = "operator", T(p, 33) && p !== "++" && p !== "--" && ge(), D())) : d < 0 && a[m] !== c && (d = m), le > -1 && r.count === V.index[le] + 1 && i(e.token[V.index[le]], 59) && p !== V.word[le] && w !== "comment" && A.variableList === "list" && j(), m = m + 1;
+  while (m < C);
+  return d > -1 && b(), (T(e.token[r.count], 125) && i(e.token[0], 123) || T(e.token[0], 123)) && (T(e.token[r.count], 93) && i(e.token[0], 91) || T(e.token[0], 91)) && pe(!1), t[0] === r.count && (p = z + t[1], w = "string", D()), e.token[r.count] === "x;" && (i(e.token[r.count - 1], 125) || i(e.token[r.count - 1], 93)) && e.begin[r.count - 1] === 0 && r.pop(e), A.objectSort && e.begin.length > 0 && _t(0, r.count + 1), e;
+}
+
+// src/lexers/style.ts
+function an() {
+  let { data: e, rules: s, source: n } = r, u = n.split(c), A = n.length, a = [], C = [], o = 0, k = c, f = c;
+  function t(l) {
+    r.push(e, {
+      begin: r.stack.index,
+      ender: -1,
+      lexer: "style",
+      lines: r.lineOffset,
+      stack: r.stack.token,
+      token: f,
+      types: k
+    }, l);
+  }
+  function h(l) {
+    let g = l;
+    do
+      l = l - 1;
+    while (i(u[l], 92) && l > 0);
+    return (g - l) % 2 === 1;
+  }
+  function V(l) {
+    let g = l.replace(/\s*!important/, " !important").split(c), M = /-?transition$/.test(e.token[r.count - 2]), L = [], N = /(\s|\(|,)-?0+\.?\d+([a-z]|\)|,|\s)/g, S = /(\s|\(|,)-?\.?\d+([a-z]|\)|,|\s)/g, j = 0, D = 0, B = c, P = g.length, pe = [], ge = (se) => se;
+    function ue(se) {
+      return se = se.replace(/\s*/g, c), /\/\d/.test(se) && l.indexOf("url(") === 0 ? se : ` ${se.charAt(0)} ${se.charAt(1)}`;
+    }
+    function Ce(se) {
+      return s.style.noLeadZero === !0 ? se.replace(/^-?\D0+(\.|\d)/, (J) => J.replace(/0+/, c)) : /0*\./.test(se) ? se.replace(/0*\./, "0.") : /0+/.test(/\d+/.exec(se)[0]) ? /^\D*0+\D*$/.test(se) ? se.replace(/0+/, "0") : se.replace(/\d+/.exec(se)[0], /\d+/.exec(se)[0].replace(/^0+/, c)) : se;
+    }
+    function O(se) {
+      return se.replace(",", ", ");
+    }
+    function ke(se) {
+      return `${se} `;
+    }
+    function K() {
+      let se = j - 1, J = se;
+      if (se < 1)
+        return !0;
+      do
+        J = J - 1;
+      while (J > 0 && i(g[J], 92));
+      return (se - J) % 2 === 1;
+    }
+    if (j < P)
+      do
+        pe.push(g[j]), (T(g[j - 1], 92) || K() === !1) && (B === c ? i(g[j], 34) ? (B = Be, D = D + 1) : i(g[j], 39) ? (B = je, D = D + 1) : i(g[j], 40) ? (B = ")", D = D + 1) : i(g[j], 91) && (B = "]", D = D + 1) : i(g[j], 40) && i(B, 41) || i(g[j], 91) && i(B, 93) ? D = D + 1 : g[j] === B && (D = D - 1, D === 0 && (B = c))), B === c && i(g[j], 32) && (pe.pop(), L.push(ge(pe.join(c))), pe = []), j = j + 1;
+      while (j < P);
+    if (L.push(ge(pe.join(c))), P = L.length, j = 0, j < P)
+      do
+        s.style.noLeadZero === !0 && /^-?0+\.\d+[a-z]/.test(L[j]) === !0 ? L[j] = L[j].replace(/0+\./, ".") : s.style.noLeadZero === !1 && /^-?\.\d+[a-z]/.test(L[j]) ? L[j] = L[j].replace(".", "0.") : N.test(L[j]) || S.test(L[j]) ? L[j] = L[j].replace(N, Ce).replace(S, Ce) : /^(0+([a-z]{2,3}|%))$/.test(L[j]) && M === !1 ? L[j] = "0" : /^(0+)/.test(L[j]) ? (L[j] = L[j].replace(/0+/, "0"), /\d/.test(L[j].charAt(1)) && (L[j] = L[j].substr(1))) : /^url\((?!('|"))/.test(L[j]) && L[j].charCodeAt(L[j].length - 1) === 41 && (B = L[j].charAt(L[j].indexOf("url(") + 4), B !== "@" && T(B, 40) && T(B, 60) && (s.style.quoteConvert === "double" ? L[j] = L[j].replace(/url\(/, 'url("').replace(/\)$/, '")') : L[j] = L[j].replace(/url\(/, "url('").replace(/\)$/, "')"))), /^(\+|-)?\d+(\.\d+)?(e-?\d+)?\D+$/.test(L[j]) && (we.css.units.has(L[j].replace(/(\+|-)?\d+(\.\d+)?(e-?\d+)?/, c)) || (L[j] = L[j].replace(/(\+|-)?\d+(\.\d+)?(e-?\d+)?/, ke))), /^\w+\(/.test(L[j]) && L[j].charAt(L[j].length - 1) === ")" && (L[j].indexOf("url(") !== 0 || L[j].indexOf("url(") === 0 && L[j].indexOf(ee) > 0) && (L[j] = L[j].replace(/,\S/g, O)), j = j + 1;
+      while (j < P);
+    return B = L.join(ee), B.charAt(0) + B.slice(1).replace(/\s*(\/|\+|\*)\s*(\d|\$)/, ue);
+  }
+  function le() {
+    let l = [], g = [], M = s.style.quoteConvert, L = o, N = 0, S = c, j = null, D = !1;
+    function B() {
+      if (g.push(u[L]), ce(u[L + 1]))
+        do
+          L = L + 1;
+        while (L < A && ce(u[L + 1]));
+    }
+    if (L < A)
+      do {
+        if (i(u[L], 34) || i(u[L], 39) ? (j === null && (j = !1), l[l.length - 1] === u[L] && (T(u[L - 1], 92) || h(L - 1) === !1) ? (l.pop(), M === "double" ? u[L] = Be : M === "single" && (u[L] = je)) : T(l[l.length - 1], 34) && T(l[l.length - 1], 39) && (T(u[L - 1], 92) || h(L - 1) === !1) ? (l.push(u[L]), M === "double" ? u[L] = Be : M === "single" && (u[L] = je)) : i(u[L - 1], 92) && M !== "none" ? h(L - 1) === !0 && (M === "double" && i(u[L], 39) || M === "single" && i(u[L], 34)) && g.pop() : M === "double" && i(u[L], 34) ? u[L] = '\\"' : M === "single" && i(u[L], 39) && (u[L] = "\\'"), g.push(u[L])) : T(u[L - 1], 92) || h(L - 1) === !1 ? i(u[L], 40) ? (j === null && (j = !0), l.push(")"), B()) : i(u[L], 91) ? (j = !1, l.push("]"), B()) : (i(u[L], 35) || i(u[L], 64)) && i(u[L + 1], 123) ? (j = !1, g.push(u[L]), L = L + 1, l.push("}"), B()) : u[L] === l[l.length - 1] ? (g.push(u[L]), l.pop()) : g.push(u[L]) : g.push(u[L]), r.stack.token === "map" && l.length === 0 && (i(u[L + 1], 44) || i(u[L + 1], 41)))
+          if (i(u[L + 1], 41) && i(e.token[r.count], 40))
+            r.pop(e), r.stack.pop(), g.splice(0, 0, "(");
+          else
+            break;
+        if (i(u[L + 1], 58)) {
+          if (N = L, ce(u[N]))
+            do
+              N = N - 1;
+            while (ce(u[N]));
+          e.types[r.count] !== "start" && (S = u.slice(N - 6, N + 1).join(c), (S.indexOf("filter") === S.length - 6 || S.indexOf("progid") === S.length - 6) && (S = "filter"));
+        }
+        if (l.length === 0) {
+          if (i(u[L + 1], 59) && h(L + 1) === !0 || i(u[L + 1], 58) && T(u[L], 58) && T(u[L + 2], 58) && S !== "filter" && S !== "progid" || i(u[L + 1], 123) || i(u[L + 1], 125) || i(u[L + 1], 47) && (i(u[L + 2], 42) || i(u[L + 2], 47))) {
+            if (N = g.length - 1, ce(g[N]))
+              do
+                N = N - 1, L = L - 1, g.pop();
+              while (ce(g[N]));
+            break;
+          }
+          if (i(u[L + 1], 44))
+            break;
+        }
+        L = L + 1;
+      } while (L < A);
+    o = L, r.stack.token === "map" && i(g[0], 40) && (a[a.length - 1] = a[a.length - 1] - 1), f = g.join(c).replace(/\s+/g, ee).replace(/^\s/, c).replace(/\s$/, c), j === !0 && (r.count > -1 && we.css.atrules(f) && s.style.atRuleSpace === !0 ? e.token[r.count] = e.token[r.count].replace(/\s*\(/g, " (").replace(/\s*\)\s*/g, ") ").replace(/,\(/g, ", (") : f = f.replace(/\s+\(/g, "(").replace(/\s+\)/g, ")").replace(/,\(/g, ", (")), k === "colon" && e.types[r.count - 1] === "start" ? we.css.pseudoClasses.has(f) && (e.token[r.count] = f = ":" + f, k = "pseudo", D = !0) : r.count > -1 && e.token[r.count].indexOf("extend(") === 0 ? k = "pseudo" : j === !0 && He(f.charAt(0)) === !1 && /^rgba?\(/.test(f) === !1 && f.indexOf("url(") !== 0 && (f.indexOf(ee) < 0 || f.indexOf(ee) > f.indexOf("(")) && f.charAt(f.length - 1) === ")" ? (i(e.token[r.count], 58) ? k = "value" : (f = f.replace(/,\u0020?/g, ", "), k = "function"), f = V(f)) : r.count > -1 && je.indexOf(e.token[r.count].charAt(0)) > -1 && e.types[r.count] === "variable" ? k = "item" : i(g[0], 64) || g[0] === "$" ? (e.types[r.count] === "colon" && s.language === "css" && (e.types[r.count - 1] === "property" || e.types[r.count - 1] === "variable") ? k = "value" : r.count > -1 && (k = "item", S = e.token[r.count], L = S.indexOf("("), i(S[S.length - 1], 41) && L > 0 && (S = S.slice(L + 1, S.length - 1), e.token[r.count] = e.token[r.count].slice(0, L + 1) + V(S) + ")")), f = V(f)) : k = "item", D === !1 ? t(c) : D = !1;
+  }
+  function m(l) {
+    let g = r.count, M = 0, L = c, N = [];
+    function S() {
+      if (!(r.count < 0)) {
+        if (g > 0 && (e.types[g] === "comment" || e.types[g] === "ignore"))
+          do
+            g = g - 1, N.push(e.token[g]);
+          while (g > 0 && e.lexer[g] === "style" && (e.types[g] === "comment" || e.types[g] === "ignore"));
+        if (M = g - 1, M > 0 && (e.types[M] === "comment" || e.types[M] === "ignore"))
+          do
+            M = M - 1;
+          while (M > 0 && e.lexer[g] === "style" && (e.types[M] === "comment" || e.types[M] === "ignore"));
+        M < 0 && (M = 0), g < 0 && (g = 0), L = e.token[g][0];
+      }
+    }
+    function j(B) {
+      return B.replace(/\s*&/, " &").replace(/\s*&\s*{/, " & {").replace(/\s*>\s*/g, " > ").replace(/\s*\+\s*/g, " + ");
+    }
+    function D(B) {
+      let P = B, pe = e.begin[P];
+      if (e.token[B] = e.token[B].replace(/\s*&/, " &").replace(/\s*&\s*{/, " & {").replace(/\s*>\s*/g, " > ").replace(/\s*\+\s*/g, " + ").replace(/:\s+/g, ": ").replace(/^\s+/, c).replace(/\s+$/, c).replace(/\s+::\s+/, "::"), i(e.token[P], 64) && (e.token[B] = e.token[B].replace(/(\(\s*[a-z-]+\s*)(:)(\S)/g, "$1$2 $3")), T(e.token[P], 44) && e.types[P] !== "comment" && (e.types[P] = "selector"), i(e.token[P - 1], 44) || i(e.token[P - 1], 58) || e.types[P - 1] === "comment" || e.types[P - 1] === "pseudo")
+        if (e.types[P - 1] === "colon" && (e.types[P] === "selector" || e.types[P] === "at_rule") && (e.types[P - 2] === "template" || e.types[P - 2] === "liquid_start" || e.types[P - 2] === "liquid_else" || e.types[P - 2] === "liquid_end"))
+          e.token[P - 1] = ":" + e.token[P] + ee, e.types[P - 1] = "selector", r.splice({
+            data: e,
+            howmany: 1,
+            index: P
+          });
+        else if (e.types[P - 1] === "pseudo")
+          e.token[P - 1] = `${e.token[P - 1]}${e.token[P]}`, e.types[P - 1] = "selector", r.splice({
+            data: e,
+            howmany: 1,
+            index: P
+          });
+        else if (e.types[P - 2] === "comment")
+          e.token[P - 1] = j(`${e.token[P - 1]}${e.token[P]}`), e.types[P - 1] = "selector", r.splice({
+            data: e,
+            howmany: 1,
+            index: P
+          });
+        else
+          do
+            if (P = P - 1, e.begin[P] === pe) {
+              if (i(e.token[P], 59))
+                break;
+              T(e.token[P], 44) && e.types[P] !== "comment" && (e.types[P] = "selector"), e.token[P] === ":" && T(e.token[P - 1], 59) && (e.token[P - 1] = j(`${e.token[P - 1]}:${e.token[P + 1]}`), r.splice({
+                data: e,
+                howmany: 2,
+                index: P
+              }));
+            } else
+              break;
+          while (P > 0);
+      if (P = r.count, s.style.sortSelectors === !0 && i(e.token[P - 1], 44)) {
+        let ge = [e.token[P]];
+        do {
+          if (P = P - 1, e.types[P] === "comment" || e.types[P] === "ignore")
+            do
+              P = P - 1;
+            while (P > 0 && (e.types[P] === "comment" || e.types[P] === "ignore"));
+          i(e.token[P], 44) && (P = P - 1), ge.push(e.token[P]);
+        } while (P > 0 && (i(e.token[P - 1], 44) || e.types[P - 1] === "selector" || e.types[P - 1] === "comment" || e.types[P - 1] === "ignore"));
+        ge.sort(), P = r.count, e.token[P] = ge.pop();
+        do {
+          if (P = P - 1, e.types[P] === "comment" || e.types[P] === "ignore")
+            do
+              P = P - 1;
+            while (P > 0 && (e.types[P] === "comment" || e.types[P] === "ignore"));
+          i(e.token[P], 44) && (P = P - 1), e.token[P] = ge.pop();
+        } while (P > 0 && (i(e.token[P - 1], 44) || e.types[P - 1] === "selector" || e.types[P - 1] === "comment" || e.types[P - 1] === "ignore"));
+      }
+      g = r.count, S();
+    }
+    if (S(), l === "start" && (e.types[g] === "value" || e.types[g] === "variable") && (e.types[g] = "item"), e.lexer[r.count - 1] !== "style" || M < 0)
+      l === "colon" ? i(L, 36) || i(L, 64) ? e.types[g] = "variable" : e.stack[g] !== "global" && (e.types[g] !== "comment" || e.types[g] !== "ignore") && (e.types[g] = "property") : e.lexer[g] === "style" && (e.types[g] = "selector", D(g));
+    else if (l === "start" && e.types[g] === "function" && e.lexer[g] === "style")
+      e.types[g] = "selector", D(g);
+    else if (e.types[g] === "item" && e.lexer[g] === "style")
+      if (l === "start")
+        D(g), e.types[g] = "selector", e.token[g] === ":" && (e.types[M] = "selector"), e.token[g].indexOf("=\u201C") > 0 ? r.error = `Invalid Quote (\u201C, \\201c) used on line number ${r.lineNumber}` : e.token[g].indexOf("=\u201D") > 0 && (r.error = `Invalid Quote (\u201D, \\201d) used on line number ${r.lineNumber}`);
+      else if (l === "end")
+        i(L, 36) || i(L, 64) ? e.types[g] = "variable" : e.types[g] = "value", e.token[g] = V(e.token[g]);
+      else if (l === "separator")
+        if (e.types[M] === "colon" || i(e.token[M], 44) || i(e.token[M], 123)) {
+          if (T(u[o], 59) && (e.types[M] === "selector" || e.types[M] === "at_rule" || i(e.token[M], 123)))
+            e.types[g] = "selector", D(g);
+          else if (i(e.token[g], 36) || i(e.token[g], 64))
+            e.types[g] = "variable";
+          else if (i(e.token[M], 58) && e.token[g] === "root") {
+            e.types[M] = "selector", e.token[M] = e.token[M] + e.token[g], r.pop(e);
+            return;
+          } else
+            e.types[g] = "value";
+          e.token[g] = V(e.token[g]), e.token[g].charAt(0) === "\u201C" ? r.error = `Invalid Quote (\u201C, \\201c) used on line number ${r.lineNumber}` : e.token[g].charAt(0) === "\u201D" && (r.error = `Invalid (\u201D, \\201d) used on line number ${r.lineNumber}`);
+        } else
+          i(L, 36) || i(L, 64) ? e.types[g] = "variable" : e.types[M] === "value" || e.types[M] === "variable" ? (e.token[M] = e.token[M] + e.token[g], r.pop(e)) : e.types[g] = "value";
+      else
+        l === "colon" ? i(L, 36) || i(L, 64) ? e.types[g] = "variable" : e.types[g] = "property" : i(e.token[M], 64) && (e.types[M - 2] !== "variable" && e.types[M - 2] !== "property" || e.types[M - 1] === "separator") ? (e.types[M] = "variable", k = "variable", e.token[M] = V(e.token[M])) : l === "comment" && (i(L, 46) || i(L, 35)) && (e.types[g] = "selector");
+  }
+  function p() {
+    let l = r.count;
+    do
+      l = l - 1;
+    while (l > 0 && e.types[l] === "comment");
+    e.token[l] !== ";" && r.splice({
+      data: e,
+      howmany: 0,
+      index: l + 1,
+      record: {
+        begin: r.stack.index,
+        ender: -1,
+        lexer: "style",
+        lines: r.lineOffset,
+        stack: r.stack.token,
+        token: ";",
+        types: "separator"
+      }
+    });
+  }
+  function w(l, g) {
+    let M = [], L = c, N = c, S = 0, j = l.length;
+    function D(B) {
+      let P = r.count > 0 ? e.types[r.count - 1] : e.types[r.count];
+      k === "item" && (P === "colon" ? e.types[r.count] = "value" : m(P)), i(u[o + 1], 32), k = B, f = Ft(f, N), k.indexOf("start") > -1 || k.indexOf("else") > -1 ? t(f) : t(c);
+    }
+    if (C[C.length - 1] = !0, o < A)
+      do {
+        if (M.push(u[o]), L === c) {
+          if (i(u[o], 34))
+            L = Be;
+          else if (i(u[o], 39))
+            L = je;
+          else if (i(u[o], 47))
+            i(u[o + 1], 47) ? L = "/" : i(u[o + 1], 42) && (L = "*");
+          else if (i(g, u[o + 1].charCodeAt(0))) {
+            do
+              S = S + 1, o = o + 1, M.push(u[o]);
+            while (o < A && S < g.length && u[o + 1] === g.charAt(S));
+            if (S === g.length) {
+              if (L = M.join(c), ce(L.charAt(j)))
+                do
+                  j = j + 1;
+                while (ce(L.charAt(j)));
+              S = j;
+              do
+                S = S + 1;
+              while (S < g.length && !ce(L.charAt(S)));
+              if (S === L.length && (S = S - g.length), l === "{%" && (N = Ue(L)), k === "item" && e.types[r.count - 1] === "colon" && (e.types[r.count - 2] === "property" || e.types[r.count - 2] === "variable")) {
+                k = "value", e.types[r.count] = "value", Number.isNaN(Number(e.token[r.count])) === !0 && e.token[r.count].charAt(e.token[r.count].length - 1) !== ")" ? e.token[r.count] = e.token[r.count] + L : e.token[r.count] = e.token[r.count] + ee + L;
+                return;
+              }
+              if (f = L, l === "{%") {
+                let B = Array.from(we.liquid.tags), P = B.length - 1, pe = N.slice(0, N.indexOf(ee) + 1);
+                if (pe.indexOf("(") > 0 && (N = pe.slice(0, pe.indexOf("("))), we.liquid.else.has(N)) {
+                  D("liquid_else");
+                  return;
+                }
+                if (P = B.length - 1, P > -1)
+                  do {
+                    if (N === B[P]) {
+                      D("liquid_start");
+                      return;
+                    }
+                    if (N === "end" + B[P]) {
+                      D("liquid_end");
+                      return;
+                    }
+                    P = P - 1;
+                  } while (P > -1);
+              } else if (l === "{{") {
+                let B = L.slice(2), P = B.length, pe = 0;
+                do
+                  pe = pe + 1;
+                while (pe < P && ce(B.charAt(pe)) === !1 && B.charCodeAt(j) !== 40);
+                if (B = B.slice(0, pe), i(B[B.length - 2], 125) && (B = B.slice(0, B.length - 2)), B === "end") {
+                  D("liquid_end");
+                  return;
+                }
+              }
+              D("liquid");
+              return;
+            }
+            S = 0;
+          }
+        } else
+          L === u[o] && (i(L, 34) || i(L, 39) ? L = c : i(L, 47) && (i(u[o], 13) || i(u[o], 10)) ? L = c : i(L, 42) && i(u[o + 1], 47) && (L = c));
+        o = o + 1;
+      } while (o < A);
+  }
+  function _(l) {
+    let g;
+    l ? (g = Qt({
+      chars: u,
+      start: o,
+      end: A,
+      lexer: "style",
+      begin: "//",
+      ender: z
+    }), f = g[0], k = Mt.test(f) ? "ignore" : "comment") : (g = yt(u, {
+      start: o,
+      end: A,
+      lexer: "style",
+      begin: "/*",
+      ender: "*/"
+    }), f = g[0], k = Bi.test(f) ? "ignore" : "comment"), t(c), o = g[1];
+  }
+  function I() {
+    let l = r.lineOffset, g = {
+      data: {
+        margin: [
+          c,
+          c,
+          c,
+          c,
+          !1
+        ],
+        padding: [
+          c,
+          c,
+          c,
+          c,
+          !1
+        ]
+      },
+      last: {
+        margin: 0,
+        padding: 0
+      },
+      removes: []
+    }, M = r.stack.index;
+    function L(D) {
+      if (e.token[S - 2] === D) {
+        let B = e.token[S].replace(/\s*!important\s*/g, c).split(ee), P = B.length;
+        e.token[S].indexOf("!important") > -1 && (g.data[D[4]] = !0), P > 3 ? (g.data[D][0] === c && (g.data[D][0] = B[0]), g.data[D][1] === c && (g.data[D][1] = B[1]), g.data[D][2] === c && (g.data[D][2] = B[2]), g.data[D][3] === c && (g.data[D][3] = B[3])) : P > 2 ? (g.data[D][0] === c && (g.data[D][0] = B[0]), g.data[D][1] === c && (g.data[D][1] = B[1]), g.data[D][2] === c && (g.data[D][2] = B[2]), g.data[D][3] === c && (g.data[D][3] = B[1])) : P > 1 ? (g.data[D][0] === c && (g.data[D][0] = B[0]), g.data[D][1] === c && (g.data[D][1] = B[1]), g.data[D][2] === c && (g.data[D][2] = B[0]), g.data[D][3] === c && (g.data[D][3] = B[1])) : (g.data[D][0] === c && (g.data[D][0] = B[0]), g.data[D][1] === c && (g.data[D][1] = B[0]), g.data[D][2] === c && (g.data[D][2] = B[0]), g.data[D][3] === c && (g.data[D][3] = B[0]));
+      } else if (e.token[S - 2] === `${D}-bottom`)
+        g.data[D][2] === c && (g.data[D][2] = e.token[S]);
+      else if (e.token[S - 2] === `${D}-left`)
+        g.data[D][3] === c && (g.data[D][3] = e.token[S]);
+      else if (e.token[S - 2] === `${D}-right`)
+        g.data[D][1] === c && (g.data[D][1] = e.token[S]);
+      else if (e.token[S - 2] === `${D}-top`)
+        g.data[D][0] === c && (g.data[D][0] = e.token[S]);
+      else
+        return;
+      g.removes.push([S, D]), g.last[D] = S;
+    }
+    function N() {
+      let D = 0, B = c, P = /^(0+([a-z]+|%))/, pe = g.removes.length, ge = g.data.margin[0] !== c && g.data.margin[1] !== c && g.data.margin[2] !== c && g.data.margin[3] !== c, ue = g.data.padding[0] !== c && g.data.padding[1] !== c && g.data.padding[2] !== c && g.data.padding[3] !== c;
+      function Ce(O) {
+        if (P.test(g.data[O][0]) === !0 && (g.data[O][0] = "0"), P.test(g.data[O][1]) === !0 && (g.data[O][1] = "0"), P.test(g.data[O][2]) === !0 && (g.data[O][2] = "0"), P.test(g.data[O][3]) === !0 && (g.data[O][3] = "0"), g.data[O][0] === g.data[O][1] && g.data[O][0] === g.data[O][2] && g.data[O][0] === g.data[O][3] ? B = g.data[O][0] : g.data[O][0] === g.data[O][2] && g.data[O][1] === g.data[O][3] && g.data[O][0] !== g.data[O][1] ? B = `${g.data[O][0]} ${g.data[O][1]}` : g.data[O][1] === g.data[O][3] && g.data[O][0] !== g.data[O][2] ? B = `${g.data[O][0]} ${g.data[O][1]} ${g.data[O][2]}` : B = `${g.data[O][0]} ${g.data[O][1]} ${g.data[O][2]} ${g.data[O][3]}`, g.data[O[4]] === !0 && (B = `${B.replace(" !important", c)} !important`), g.last[O] > r.count) {
+          D = M < 1 ? 1 : M + 1;
+          do {
+            if (e.begin[D] === M && e.types[D] === "value" && e.token[D - 2].indexOf(O) === 0) {
+              g.last[O] = D;
+              break;
+            }
+            D = D + 1;
+          } while (D < r.count);
+        }
+        e.token[g.last[O]] = B, e.token[g.last[O] - 2] = O;
+      }
+      if (pe > 1 && (ge === !0 || ue === !0))
+        do
+          g.removes[D][0] !== g.last.margin && g.removes[D][0] !== g.last.padding && (ge === !0 && g.removes[D][1] === "margin" || ue === !0 && g.removes[D][1] === "padding") && r.splice({
+            data: e,
+            howmany: e.types[g.removes[D][0] + 1] === "separator" ? 4 : 3,
+            index: g.removes[D][0] - 2
+          }), D = D + 1;
+        while (D < pe - 1);
+      ge === !0 && Ce("margin"), ue === !0 && Ce("padding"), j === !0 && (M < 0 ? r.error = "Brace mismatch. There appears to be more closing braces than starting braces." : _t(M, r.count + 1));
+    }
+    let S = r.count, j = !1;
+    do
+      S = S - 1, e.begin[S] === M ? e.types[S] === "value" && e.types[S - 2] === "property" && (e.token[S - 2].indexOf("margin") === 0 ? L("margin") : e.token[S - 2].indexOf("padding") === 0 && L("padding")) : (j = !0, S = e.begin[S]);
+    while (S > M);
+    N(), r.lineOffset = l;
+  }
+  function d() {
+    r.lineOffset = 1;
+    do {
+      if (i(u[o], 10) && (r.lineIndex = o, r.lineOffset = r.lineOffset + 1, r.lineNumber = r.lineNumber + 1), ce(u[o + 1]) === !1)
+        break;
+      o = o + 1;
+    } while (o < A);
+  }
+  do
+    ce(u[o]) ? d() : i(u[o], 47) && i(u[o + 1], 42) ? _(!1) : i(u[o], 47) && i(u[o + 1], 47) ? _(!0) : i(u[o], 123) && i(u[o + 1], 37) ? w("{%", "%}") : i(u[o], 123) && i(u[o + 1], 123) ? w("{{", "}}") : i(u[o], 123) || i(u[o], 40) && i(e.token[r.count], 58) && e.types[r.count - 1] === "variable" ? (m("start"), k = "start", f = u[o], i(u[o], 40) ? (t("map"), a.push(0)) : e.types[r.count] === "at_rule" || e.types[r.count] === "selector" || e.types[r.count] === "variable" ? i(e.token[r.count], 64) ? (e.types[r.count] = "at_rule", t(e.token[r.count])) : t(e.token[r.count]) : e.types[r.count] === "colon" ? t(e.token[r.count - 1]) : t("block"), C.push(!1)) : i(u[o], 125) || u[o] === ")" && r.stack.token === "map" && a[a.length - 1] === 0 ? i(u[o], 125) && i(e.token[r.count - 1], 123) && e.types[r.count] === "item" && e.token[r.count - 2] !== void 0 && e.token[r.count - 2].charCodeAt(e.token[r.count - 2].length - 1) === 64 ? (e.token[r.count - 2] = e.token[r.count - 2] + "{" + e.token[r.count] + "}", r.pop(e), r.pop(e), r.stack.pop()) : (i(u[o], 41) && a.pop(), m("end"), i(u[o], 125) && T(e.token[r.count], 59) && (e.types[r.count] === "value" || e.types[r.count] === "function" || e.types[r.count] === "variable" && (i(e.token[r.count - 1], 58) || i(e.token[r.count - 1], 59)) ? (s.correct === !0 ? f = ";" : f = "x;", k = "separator", t(c)) : e.types[r.count] === "comment" && p()), C.pop(), f = u[o], k = "end", i(u[o], 125) && I(), s.style.sortProperties === !0 && i(u[o], 125) && $t(e), t(c)) : i(u[o], 59) || i(u[o], 44) ? (e.types[r.count - 1] === "selector" || e.types[r.count - 1] === "at_rule" || e.types[r.count] !== "function" && i(e.token[r.count - 1], 125) ? m("start") : m("separator"), e.types[r.count] !== "separator" && h(o) === !0 && (f = u[o], k = "separator", t(c))) : r.count > -1 && i(u[o], 58) && e.types[r.count] !== "end" ? (m("colon"), f = ":", k = "colon", t(c)) : (r.stack.token === "map" && i(u[o], 40) && (a[a.length - 1] = a[a.length - 1] + 1), le()), o = o + 1;
+  while (o < A);
+  return s.style.sortProperties === !0 && $t(e), e;
+}
+
+// src/lexers/index.ts
+function yi(e) {
+  if (e === 1)
+    return on();
+  if (e === 3)
+    return an();
+  if (e === 2)
+    return ln();
+}
+
+// src/format/markup.ts
+function un() {
+  let { rules: e } = r, { lineBreakValue: s } = e.markup, n = r.start, u, A = -1, a = 0, C = 0, o = 0, k = isNaN(e.indentLevel) ? 0 : e.indentLevel, f = r.data, t = r.ender < 1 || r.ender > f.token.length ? f.token.length : r.ender + 1, h = Fe(null), V = e.language === "jsx" || e.language === "tsx", le = new Set(e.liquid.dedentTagList), m = /* @__PURE__ */ new Map(), p = r.start > 0 ? Array(r.start).fill(0, 0, r.start) : [], w = ke(), _ = S(), I = [];
+  function d($, G) {
+    return f.types[$] === G;
+  }
+  function l($, G) {
+    return f.stack[$] === G;
+  }
+  function g($, G) {
+    return f.token[$] === G;
+  }
+  function M($, G) {
+    return $ > -1 && (f.types[$] || c).indexOf(G);
+  }
+  function L($, G = !0, oe = !0) {
+    let ne = [], Y = e.preserveLine + 1, F = Math.min(f.lines[n + 1] - 1, Y), H = 0;
+    if ($ < 0 && ($ = 0), G)
+      do
+        ne.push(r.crlf), H = H + 1;
+      while (H < F);
+    if ($ > 0 && oe) {
+      H = 0;
+      do
+        ne.push(_), H = H + 1;
+      while (H < $);
+    }
+    return ne.join(c);
+  }
+  function N() {
+    let $, G = f.lines[n + 1]; T(f.token[n][1], 37) && e.markup.commentIndent === !0 && (e.markup.commentDelimiters === "inline" || e.markup.commentDelimiters === "consistent" && /<!--\n/.test(f.token[n]) === !1);
+    $ = f.token[n].split(r.crlf);
+    let ne = d(n, "attribute"), Y = $.length - 1, F = w[n - 1] > -1 ? ne ? w[n - 1] + 1 : w[n - 1] : (() => {
+      let b = n - 1, X = b > -1 && M(b, "start") > -1;
+      if (d(n, "comment") && T(f.token[n][1], 37))
+        return w[n] - 1;
+      if (w[n] > -1 && d(n, "attribute"))
+        return w[n] + 1;
+      do {
+        if (b = b - 1, w[b] > -1)
+          return d(n, "content") && X === !1 ? w[b] : w[b] + 1;
+        M(b, "start") > -1 && (X = !0);
+      } while (b > 0);
+      return b === -2 ? 0 : 1;
+    })(), H = 0;
+    f.lines[n + 1] = 0;
+    do
+      d(n, "comment") ? (H === 0 && (i(f.token[n][1], 37) && e.liquid.commentNewline === !0 || i(f.token[n][1], 37) === !1 && e.markup.commentNewline === !0) && (e.preserveLine === 0 || I.length > 0 && I[I.length - 1].lastIndexOf(z) + 1 < 2) && I.push(L(F)), $[H] !== c ? (H > 0 && (i(f.token[n][1], 37) && e.liquid.commentIndent === !0 || i(f.token[n][1], 37) === !1 && e.markup.commentIndent === !0) && I.push(_), $[H + 1].trimStart() !== c ? I.push($[H], L(F)) : I.push($[H], z)) : $[H + 1].trimStart() === c ? I.push(z) : I.push(L(F))) : ne ? s === "align" || s === "force-align" ? I.push($[H].trim(), L(w[n])) : s === "indent" || s === "force-indent" ? H + 1 === Y ? I.push($[H].trimEnd(), L(w[n])) : H === 0 ? I.push($[H].replace(/(["'])\s+/, "$1" + L(F)).trim(), L(F)) : I.push($[H], L(F)) : (I.push($[H]), s === "force-preserve" && (H + 1 === Y || H === 0) ? I.push(L(w[n])) : I.push(r.crlf)) : I.push($[H], L(F)), H = H + 1;
+    while (H < Y);
+    if (ne && T($[Y], 60) && m.get(n - 1) >= 2 && Qe($[Y], 62) && e.markup.delimiterTerminus !== "inline") {
+      m.delete(n - 1);
+      let b = L(w[n - 1] - 1);
+      I[I.length - 1] === b && I.push(e.indentChar.repeat(e.indentSize)), d(n - 1, "singleton") && dt($[Y], 47) ? I.push($[Y].slice(0, -2), b, "/>") : I.push($[Y].slice(0, -1), b, ">");
+    } else
+      I.push($[Y]);
+    f.lines[n + 1] = G, d(n, "comment") && (d(n + 1, "liquid_end") || d(n - 1, "liquid_end")) ? I.push(L(w[n])) : w[n] === -10 ? I.push(ee) : I.push(L(w[n]));
+  }
+  function S() {
+    let $ = [e.indentChar], G = e.indentSize - 1, oe = 0;
+    if (oe < G)
+      do
+        $.push(e.indentChar), oe = oe + 1;
+      while (oe < G);
+    return $.join(c);
+  }
+  function j() {
+    C > 0 && (a = C - 1);
+    let $ = n + 1, G = 0;
+    if (d($, void 0))
+      return $ - 1;
+    if (d($, "comment") || n < t - 1 && M($, "attribute") > -1)
+      do {
+        if (d($, "jsx_attribute_start")) {
+          G = $;
+          do {
+            if (d($, "jsx_attribute_end") && f.begin[$] === G)
+              break;
+            $ = $ + 1;
+          } while ($ < t);
+        } else if (d($, "comment") === !1 && M($, "attribute") < 0)
+          return $;
+        $ = $ + 1;
+      } while ($ < t);
+    return $;
+  }
+  function D() {
+    let $ = f.token[n], G = ii.exec($);
+    if (G === null)
+      return;
+    let oe = n + 1, ne = !1, Y = e.markup.selfCloseSpace === !0 && G[0] === "/>" ? ee : c;
+    f.token[n] = $.replace(ii, c);
+    do {
+      if (d(oe, "jsx_attribute_end") && f.begin[f.begin[oe]] === n)
+        ne = !1;
+      else if (f.begin[oe] === n) {
+        if (d(oe, "jsx_attribute_start"))
+          ne = !0;
+        else if (M(oe, "attribute") < 0 && ne === !1)
+          break;
+      } else if (ne === !1 && (f.begin[oe] < n || M(oe, "attribute") < 0))
+        break;
+      oe = oe + 1;
+    } while (oe < t);
+    d(oe - 1, "comment_attribute") && (Y = L(w[oe - 2] - 1)), f.token[oe - 1] = `${f.token[oe - 1]}${Y}${G[0]}`, d(oe, "comment");
+  }
+  function B() {
+    if (d(n, "end") === !1 && Qe(f.token[n], 62) && T(f.token[n], 60) && m.get(f.begin[n]) >= 2) {
+      m.delete(f.begin[n]);
+      let $ = L(w[n - 1] - 1).replace(/\n+/, z), G = `${f.token[n].slice(0, -1)}${$}>`;
+      d(f.begin[n], "singleton") && i(f.token[n][f.token[n].length - 2], 47) ? f.token[n] = `${f.token[n].slice(0, -2)}${$}/>` : f.token[n] = G;
+    }
+  }
+  function P() {
+    let $ = f.begin[n], G = n;
+    do
+      if (G = G - 1, g(G, "</li>") && g(G - 1, "</a>") && f.begin[f.begin[G]] === $ && f.begin[G - 1] === f.begin[G] + 1)
+        G = f.begin[G];
+      else
+        return;
+    while (G > $ + 1);
+    G = n;
+    do
+      G = G - 1, d(G + 1, "attribute") ? p[G] = -10 : g(G, "</li>") === !1 && (p[G] = -20);
+    while (G > $ + 1);
+  }
+  function pe() {
+    let $ = n, G = !1;
+    if (f.lines[n + 1] === 0 && e.markup.forceIndent === !1) {
+      do {
+        if (f.lines[$] > 0) {
+          G = !0;
+          break;
+        }
+        $ = $ - 1;
+      } while ($ > A);
+      $ = n;
+    } else
+      G = !0;
+    if (G === !0) {
+      d(f.begin[$] - 1, "liquid") && (p[f.begin[$] - 1] = k);
+      do
+        p.push(k), $ = $ - 1;
+      while ($ > A);
+      p[n] = k, (d($, "attribute") || d($, "liquid_attribute") || d($, "jsx_attribute_start") || d($, "start")) && d(n + 1, "comment") === !1 && d(n + 1, "start") === !1 && f.types[n + 1].startsWith("liquid") === !1 || d(n + 1, "liquid_end") ? p[$] = k + 1 : d(n + 1, "liquid_else") ? p[$] = k - 1 : d(C, "liquid") && (p[a] = k - 1, p[n - 1] = k);
+    } else {
+      do
+        p.push(-20), $ = $ - 1;
+      while ($ > A);
+      p[$] = -20;
+    }
+    A = -1;
+  }
+  function ge() {
+    if (e.markup.forceIndent === !0 || e.markup.forceAttribute === !0) {
+      p.push(k);
+      return;
+    }
+    let $ = k;
+    if (C < t && (M(C, "end") > -1 || M(C, "start") > -1) && f.lines[C] > 0 ? (p.push(k), $ = $ + 1, n > 0 && d(n, "singleton") && M(n - 1, "attribute") > -1 && d(f.begin[n - 1], "singleton") && (f.begin[n] < 0 || d(f.begin[n - 1], "singleton") && f.begin[f.ender[n] - 1] !== n ? p[n - 1] = k : p[n - 1] = k + 1)) : n > 0 && d(n, "singleton") && M(n - 1, "attribute") > -1 ? (p[n - 1] = k, o = f.token[n].length, p.push(-10)) : f.lines[C] === 0 ? p.push(-20) : (e.wrap === 0 || n < t - 2 && f.token[n] !== void 0 && f.token[n + 1] !== void 0 && f.token[n + 2] !== void 0 && f.token[n].length + f.token[n + 1].length + f.token[n + 2].length + 1 > e.wrap && M(n + 2, "attribute") > -1 || f.token[n] !== void 0 && f.token[n + 1] !== void 0 && f.token[n].length + f.token[n + 1].length > e.wrap) && (d(n + 1, "singleton") || d(n + 1, "liquid")) ? p.push(k) : (o = o + 1, p.push(-10)), n > 0 && M(n - 1, "attribute") > -1 && f.lines[n] < 1 && (p[n - 1] = -20), o > e.wrap) {
+      let G = n, oe = Math.max(f.begin[n], 0);
+      if (d(n, "content") && e.markup.preserveText === !1) {
+        let ne = 0, Y = f.token[n].replace(Xe, ee).split(ee);
+        do
+          if (G = G - 1, p[G] < 0)
+            ne = ne + f.token[G].length, p[G] === -10 && (ne = ne + 1);
+          else
+            break;
+        while (G > 0);
+        G = 0, oe = Y.length;
+        do
+          Y[G].length + ne > e.wrap ? (Y[G] = r.crlf + Y[G], ne = Y[G].length) : (Y[G] = ` ${Y[G]}`, ne = ne + Y[G].length), G = G + 1;
+        while (G < oe);
+        i(Y[0], 32) ? f.token[n] = Y.join(c).slice(1) : (p[n - 1] = $, f.token[n] = Y.join(c).replace(r.crlf, c)), f.token[n].indexOf(r.crlf) > 0 && (o = f.token[n].length - f.token[n].lastIndexOf(r.crlf));
+      } else {
+        do {
+          if (G = G - 1, p[G] > -1) {
+            o = f.token[n].length, f.lines[n + 1] > 0 && (o = o + 1);
+            return;
+          }
+          if (M(G, "start") > -1) {
+            o = 0;
+            return;
+          }
+          if (f.lines[G + 1] > 0 && (d(G, "attribute") === !1 || d(G, "attribute") && d(G + 1, "attribute")) && (d(G, "singleton") === !1 || d(G, "attribute") && d(G + 1, "attribute"))) {
+            o = f.token[n].length, f.lines[n + 1] > 0 && (o = o + 1);
+            break;
+          }
+        } while (G > oe);
+        p[G] = $;
+      }
+    }
+  }
+  function ue() {
+    let $ = n;
+    f.types[$ - 1] === "script_start" && i(f.token[$ - 1], 123) && (p[$ - 1] = -20);
+    do {
+      if (f.lexer[n + 1] === "markup" && f.begin[n + 1] < $ && d(n + 1, "start") === !1 && d(n + 1, "singleton") === !1)
+        break;
+      p.push(0), n = n + 1;
+    } while (n < t);
+    h[$] = n, f.types[n + 1] === "script_end" && f.token[n + 1] === "}" ? p.push(-20) : (f.types[n + 1], p.push(k - 1)), C = j(), f.lexer[C] === "markup" && f.stack[n].indexOf("attribute") < 0 && (f.types[C] === "end" || f.types[C] === "liquid_end") && (k = k - 1);
+  }
+  function Ce($) {
+    let G = f.token[$].replace(/\s+/g, ee).split(ee), oe = G.length, ne = 1, Y = G[0].length;
+    do
+      Y + G[ne].length > e.wrap ? (Y = G[ne].length, G[ne] = r.crlf + G[ne]) : (G[ne] = ` ${G[ne]}`, Y = Y + G[ne].length), ne = ne + 1;
+    while (ne < oe);
+    f.token[$] = G.join(c);
+  }
+  function O() {
+    let $ = n - 1, G = n, oe = !1, ne = !1, Y = M($ + 1, "end"), F = f.token[$].length + 1, H = 0, b = (() => {
+      if (M(n, "start") > 0) {
+        let y = n;
+        do {
+          if (d(y, "end") && f.begin[y] === n && y < t - 1 && M(y + 1, "attribute") > -1) {
+            oe = !0;
+            break;
+          }
+          y = y + 1;
+        } while (y < t);
+      } else
+        n < t - 1 && M(n + 1, "attribute") > -1 && (oe = !0);
+      return d(C, "end") || d(C, "liquid_end") || d(C, "liquid_when") && e.markup.forceIndent === !0 ? d($, "singleton") ? k + 2 : k + 1 : d($, "singleton") ? k + 1 : k;
+    })();
+    if (oe === !1 && d(n, "comment_attribute")) {
+      p.push(k), p[$] = f.types[$] === "singleton" ? k + 1 : k;
+      return;
+    }
+    function X(y) {
+      e.markup.forceAttribute === !1 ? p.push(-10) : e.markup.forceAttribute === !0 || y >= e.markup.forceAttribute ? e.liquid.indentAttribute === !0 ? (d(n - 1, "liquid_attribute_start") && (p[n - 1] = b + H), p.push(b + H)) : p.push(b) : p.push(-10);
+    }
+    b < 1 && (b = 1), Y = 0;
+    do
+      Y = Y + 1;
+    while (M(n + Y, "attribute") > -1 && (d(n + Y, "end") === !1 || d(n + Y, "liquid_when") === !1 || d(n + Y, "singleton") === !1 || d(n + Y, "start") === !1 || d(n + Y, "comment") === !1));
+    (s === "force-preserve" || s === "force-align" || s === "force-indent") && (mt(e.markup.forceAttribute) && e.markup.forceAttribute === !1 || kt(e.markup.forceAttribute) && Y <= e.markup.forceAttribute) && (Y = 1 / 0);
+    do {
+      if (o = o + f.token[n].length + 1, f.types[n].indexOf("attribute") > 0)
+        d(n, "comment_attribute") ? p.push(b) : M(n, "start") > 0 && M(n, "liquid") < 0 ? (ne = !0, n < t - 2 && f.types[n + 2].indexOf("attribute") > 0 ? (p.push(-20), n = n + 1, h[n] = n) : ($ === n - 1 && oe === !1 ? V ? p.push(-20) : p.push(b) : V ? p.push(-20) : p.push(b + 1), f.lexer[n + 1] !== "markup" && (n = n + 1, ue()))) : e.liquid.indentAttribute === !0 ? d(n, "liquid_attribute_start") ? (H > 0 ? p.push(b + H) : p.push(b), H = H + 1) : d(n, "liquid_attribute_else") ? p[n - 1] = b + H - 1 : d(n, "liquid_attribute_end") ? (H = H - 1, p[n - 1] = b + H) : X(Y) : M(n, "end") > 0 && d(n, "liquid_attribute_end") === !1 ? (p[n - 1] !== -20 && (p[n - 1] = p[f.begin[n]] - 1), f.lexer[n + 1] !== "markup" ? p.push(-20) : p.push(b)) : M(n, "liquid_attribute") > -1 ? (F = F + f.token[n].length + 1, e.markup.preserveAttribute === !0 ? p.push(-10) : e.markup.forceAttribute === !0 || e.markup.forceAttribute >= 1 || ne === !0 || n < t - 1 && M(n + 1, "attribute") > -1 ? X(Y) : p.push(-10)) : p.push(b);
+      else if (d(n, "attribute"))
+        F = F + f.token[n].length + 1, e.markup.preserveAttribute === !0 ? p.push(-10) : e.markup.forceAttribute === !0 || e.markup.forceAttribute >= 1 || ne === !0 || n < t - 1 && M(n + 1, "attribute") > -1 ? X(Y) : p.push(-10);
+      else if (f.begin[n] < $ + 1)
+        break;
+      n = n + 1;
+    } while (n < t);
+    if (n = n - 1, M(n, "liquid") < 0 && M(n, "end") > -1 && M(n, "attribute") > 0 && d($, "singleton") === !1 && p[n - 1] > 0 && oe === !0 && (p[n - 1] = p[n - 1] - 1), p[n] !== -20 && (V === !0 && M($, "start") > -1 && d(n + 1, "script_start") ? p[n] = b : g(n, "/") && p[n - 1] !== 10 ? p[n - 1] = -10 : p[n] = p[$]), e.markup.forceAttribute === !0)
+      o = 0, p[$] = b, Y >= 2 && e.markup.delimiterTerminus === "force" && m.set($, Y);
+    else if (e.markup.forceAttribute >= 1)
+      if (Y >= e.markup.forceAttribute) {
+        p[$] = b;
+        let y = n - 1;
+        do
+          (d(y, "liquid") && p[y] === -10 || d(y, "attribute") && p[y] === -10) && (p[y] = b), y = y - 1;
+        while (y > $);
+        (e.markup.delimiterTerminus === "force" && Y >= 2 || e.markup.delimiterTerminus === "adapt" && Y === 1 / 0) && m.set($, Y);
+      } else
+        p[$] = -10;
+    else
+      p[$] = -10;
+    if (e.markup.preserveAttribute === !0 || g($, "<%xml%>") || g($, "<?xml?>")) {
+      o = 0;
+      return;
+    }
+    if (G = n, G > $ + 1) {
+      if (e.markup.selfCloseSpace === !1 && (F = F - 1), F > e.wrap && e.wrap > 0 && e.markup.forceAttribute === !1) {
+        p[$] = b, o = f.token[n].length, G = G - 1;
+        do
+          f.token[G].length > e.wrap && ce(f.token[G]) && Ce(G), (M(G, "liquid") > -1 && p[G] === -10 || d(G, "attribute") && p[G] === -10) && (p[G] = b), G = G - 1;
+        while (G > $);
+      }
+    } else
+      e.wrap > 0 && d(n, "attribute") && f.token[n].length > e.wrap && ce(f.token[n]) && Ce(n);
+  }
+  function ke() {
+    do
+      f.lexer[n] === "markup" ? (d(n, "doctype") && (p[n - 1] = k), M(n, "attribute") > -1 ? O() : d(n, "comment") ? (A < 0 && (A = n), pe()) : d(n, "comment") === !1 && (C = j(), (d(C, "end") || d(C, "liquid_case_end") || d(C, "liquid_end") && d(n, "liquid_else") === !1) && (k > -1 && (k = k - 1), (g(n, "</ol>") || g(n, "</ul>") || g(n, "</dl>")) && P()), d(n, "script_end") && d(C, "end") ? f.lines[C] < 1 ? p.push(-20) : f.lines[C] > 1 ? p.push(k) : p.push(-10) : (e.markup.forceIndent === !1 || e.markup.forceIndent === !0 && d(C, "script_start")) && (d(n, "content") || d(n, "singleton") || d(n, "liquid")) ? (o = o + f.token[n].length, f.lines[C] > 0 && d(C, "script_start") ? p.push(-10) : e.wrap > 0 && d(n, "singleton") === !1 && (M(n, "liquid") < 0 || C < t && M(n, "liquid") > -1 && M(C, "liquid") < 0) ? ge() : C < t && (M(C, "end") > -1 || M(C, "start") > -1) && (f.lines[C] > 0 || M(n, "liquid_") > -1) ? (d(C, "liquid_case_end") && le.has("case") === !1 && (k = k - 1), p.push(k)) : f.lines[C] === 0 ? p.push(-20) : f.lines[C] === 1 ? p.push(-10) : (d(C, "liquid_when") && (d(n, "liquid") || d(n, "content")) && (k = k - 1), p.push(k))) : d(n, "start") || d(n, "liquid_start") || d(n, "liquid_bad_start") ? (k = k + 1, V === !0 && i(f.token[n + 1], 123) ? f.lines[C] === 0 ? p.push(-20) : f.lines[C] > 1 ? p.push(k) : p.push(-10) : d(n, "start") && d(C, "end") ? f.stack[n] === "liquid" || M(C - 1, "comment") > -1 ? p.push(k) : p.push(-20) : d(n, "start") && d(C, "script_start") ? p.push(-10) : f.lines[C] === 0 && (d(C, "content") || d(C, "singleton") || d(n, "start") && d(C, "liquid") && e.markup.forceIndent === !1) ? p.push(-20) : p.push(k)) : e.markup.forceIndent === !1 && f.lines[C] === 0 && (d(C, "content") || d(C, "singleton")) || d(n + 2, "script_end") ? p.push(-20) : d(n, "liquid_else") && d(C, "liquid_end") ? (k = k - 1, p[n - 1] = k, p.push(k)) : d(n, "liquid_else") && d(C, "liquid_else") ? (p[n - 1] = k - 1, p.push(k - 1)) : d(n, "liquid_else") && (d(C, "content") || d(C, "liquid")) ? (p[n - 1] = k - 1, p.push(k)) : e.markup.forceIndent === !0 && (d(n, "content") && (d(C, "liquid") || d(C, "content")) || d(n, "liquid") && (d(C, "content") || d(C, "liquid"))) ? f.lines[C] < 1 ? p.push(-20) : f.lines[C] > 1 ? p.push(k) : p.push(-10) : d(n, "liquid_bad_start") ? (k = k + 1, p.push(k)) : d(C, "liquid_bad_end") ? (k = k - 1, p.push(k)) : d(C, "liquid_else") && p[n - 1] === k ? p.push(k - 1) : d(n, "liquid_else") && p[n - 1] === k && e.markup.forceIndent === !1 ? (p[n - 1] = k - 1, p.push(k)) : d(a, "liquid_start") && d(C, "liquid_end") && f.lines[C] === 0 ? p[n - 1] = -20 : d(n, "liquid_case_start") ? (le.has("case") === !1 && (k = k + 1), p.push(k)) : d(n, "liquid_when") && d(C, "liquid_when") === !1 ? (d(a, "attribute") && e.markup.forceIndent === !1 ? p[n - 1] = k - 1 : k = k + 1, p.push(k)) : d(C, "liquid_when") && d(n, "liquid_when") === !1 ? (k = k - 1, p.push(k)) : (d(C, "liquid_case_end") && le.has("case") === !1 && (k = k - 1), p.push(k))), d(n, "content") === !1 && d(n, "singleton") === !1 && d(n, "liquid") === !1 && d(n, "liquid_when") === !1 && d(n, "attribute") === !1 && (o = 0)) : (o = 0, ue()), n = n + 1;
+    while (n < t);
+    return p;
+  }
+  function K() {
+    let $ = f.token[n].split(z), G = e.indentChar.repeat(e.indentSize), oe = $.length, ne = 0, Y = z;
+    Y += L(w[n - 1], !1) + G;
+    do {
+      if (ne === 0)
+        if (ne + 1 === oe - 1 && ($[ne + 1].length === 2 || $[ne + 1].length === 3)) {
+          Y.length > 1 && (Y = Y.slice(0, -2)), I.push($[ne], Y, $[ne + 1]);
+          break;
+        } else
+          I.push($[ne], Y);
+      else
+        ne === oe - 1 ? I.push($[ne]) : (ne + 1 === oe - 1 && ($[ne + 1].length === 2 || $[ne + 1].length === 3) && (Y = Y.slice(0, -2)), I.push($[ne], Y));
+      ne = ne + 1;
+    } while (ne < oe);
+  }
+  function se() {
+    let $ = f.token[n].split(r.crlf), G = $.length, oe = L(w[n - 1], !1), ne = 0, Y = 0;
+    do
+      $[ne] !== c ? (isNaN(Y) || (I.push(Y === 0 ? z : z.repeat(Y)), Y = NaN), $[ne].startsWith(oe) || ($[ne] = oe + $[ne])) : isNaN(Y) || (Y = Y + 1), ne = ne + 1;
+    while (ne < G);
+    Y = -1;
+    do {
+      if (ne = ne - 1, $[ne] !== c)
+        break;
+      Y = Y + 1;
+    } while (ne > -1);
+    if (Y === -1)
+      I.push($.join(r.crlf).replace(Ct, c)), I.push(L(w[n]));
+    else {
+      let F = $.join(r.crlf).replace(Ct, c).replace(We, c);
+      Y === 0 ? I.push(F, L(w[n])) : I.push(F, z.repeat(Y), L(w[n]));
+    }
+  }
+  function J() {
+    if (ft.test(f.token[n])) {
+      let $ = f.token[n].split(z), G = $.length, oe = 0;
+      do
+        $[oe] === c ? oe + 1 !== G && $[oe + 1] !== c ? I.push(z, L(w[n], !1, !0)) : I.push(z) : oe + 1 === G ? I.push($[oe], z, L(w[n], !1, !0)) : I.push($[oe], z, L(w[n], !1, !0)), oe = oe + 1;
+      while (oe < G);
+    } else
+      I.push(f.token[n], L(w[n]));
+  }
+  function $e() {
+    n = r.start, u = e.indentLevel, I.length === 0 && u > 0 && I.push(L(w[n], !1, !0));
+    do {
+      if (f.lexer[n] === "markup")
+        n < t - 1 && (d(n, "start") || d(n, "singleton") || d(n, "xml")) && M(n, "attribute") < 0 && Ke(f.types[n + 1]) === !1 && M(n + 1, "attribute") > -1 && D(), d(n, "comment") && i(f.token[n].trimStart()[1], 37) && e.liquid.preserveComment === !0 ? (I.push(f.token[n]), (d(n + 1, "comment") && i(f.token[n + 1].trimStart()[1], 37) && e.liquid.preserveComment === !0) === !1 ? I.push(L(w[n])) : I.push(L(w[n], !0, !1))) : d(n, "comment") && i(f.token[n].trimStart()[1], 33) && e.markup.preserveComment === !0 ? I.push(f.token[n]) : Ke(f.token[n]) === !1 && f.token[n].indexOf(r.crlf) > 0 && (d(n, "content") && e.markup.preserveText === !1 || d(n, "comment") && T(f.token[n].trimStart()[1], 33) || d(n, "attribute")) ? N() : d(n, "comment") ? J() : d(n, "liquid_capture") ? I.push(f.token[n], L(w[n])) : d(n, "ignore") ? l(n, "script") || l(n, "style") ? se() : (I.push(f.token[n]), d(n + 1, "ignore") === !1 ? d(n + 1, "ignore_next") ? I.push(L(w[n], !0, !1)) : I.push(L(w[n])) : I.push(L(w[n], !0, !1))) : e.markup.forceIndent === !1 && d(n, "liquid") && d(n + 1, "end") && f.lines[n] === 0 ? I.push(f.token[n]) : (u = w[n], e.markup.delimiterTerminus === "force" && B(), ft.test(f.token[n]) && M(n, "liquid") > -1 && d(n, "liquid_end") === !1 ? K() : I.push(f.token[n]), w[n] === -10 && n < t - 1 ? I.push(ee) : w[n] > -1 && (d(n, "ignore") === !1 && d(n + 1, "ignore_next") === !0 || d(n, "ignore") === !1 && d(n, "ignore_next") === !1 && d(n + 1, "ignore") === !0 && l(n + 1, "script") === !1 && l(n + 1, "style") === !1 ? I.push(L(w[n], !0, !1)) : d(n, "ignore") && d(n + 1, "ignore") === !1 && d(n + 1, "ignore_next") === !1 ? I.push(L(w[n])) : d(n + 1, "comment") && e.markup.preserveComment === !0 && i(f.token[n + 1].trimStart()[1], 33) || d(n + 1, "comment") && e.liquid.preserveComment === !0 && i(f.token[n + 1].trimStart()[1], 37) ? I.push(L(w[n], !0, !1)) : d(n + 1, "ignore") === !1 && d(n + 1, "ignore_next") === !1 && I.push(L(w[n]))));
+      else {
+        r.start = n, r.ender = h[n], u > 0 && e.liquid.dedentTagList.includes(f.stack[n]) && (I.splice(I.length - 1, 1, L(w[n] - 1)), u = u - 1);
+        let $ = r.external(u);
+        (e.language === "jsx" || e.language === "tsx") && (f.types[n - 1] === "template_string_end" || f.types[n - 1] === "jsx_attribute_start" || f.types[n - 1] === "script_start") ? I.push($) : (I.push($), (e.markup.forceIndent || w[r.iterator] > -1 && n in h) && (h[n] > n && (n = r.iterator), I.push(L(w[n])))), n !== r.iterator && (n = r.iterator);
+      }
+      n = n + 1;
+    } while (n < t);
+    return r.iterator = t - 1, e.endNewline === !0 ? I.join(c).replace(/\s*$/, r.crlf) : I.join(c).trimEnd();
+  }
+  return $e();
+}
+
+// src/format/script.ts
+function fn() {
+  let { data: e, rules: s } = r, n = r.language === "json" ? s.json : s.script, A = 0, a = {}, C = "script", o = r.ender < 1 || r.ender > e.token.length ? e.token.length : r.ender + 1, k = (() => {
+    let t = r.start, h = s.indentLevel, V = !1, le = !1, m = c, p = c, w = e.types[0], _ = e.token[0], I = [-1], d = [], l = r.start > 0 ? Array(r.start).fill(0, 0, r.start) : [], g = [], M = [[]], L = [], N = [], S = [], j = [!1], D = [], B = [];
+    function P() {
+      pe(!1, !1);
+      let F = n.commentIndent === !0 ? h : 0;
+      if (V === !1 && /\/\u002a\s*global\s/.test(e.token[t])) {
+        let H = e.token[t].replace(/\/\u002a\s*global\s+/, c).replace(/\s*\u002a\/$/, c).split(","), b = H.length;
+        do
+          b = b - 1, H[b] = H[b].replace(/\s+/g, c), H[b] !== c && r.stack.push([H[b], -1]);
+        while (b > 0);
+      }
+      if (e.types[t - 1] === "comment" || e.types[t + 1] === "comment")
+        l[t - 1] = F;
+      else if (e.lines[t] < 2) {
+        let H = t + 1;
+        if (e.types[H] === "comment")
+          do
+            H = H + 1;
+          while (H < o && e.types[H] === "comment");
+        if (t < o - 1 && e.stack[H] !== "block" && (i(e.token[H], 123) || e.token[H] === "x{")) {
+          let b = r.stack.length;
+          if (e.begin.splice(t, 0, e.begin[H]), e.ender.splice(t, 0, e.ender[H]), e.lexer.splice(t, 0, e.lexer[H]), e.lines.splice(t, 0, e.lines[H]), e.stack.splice(t, 0, e.stack[H]), e.token.splice(t, 0, e.token[H]), e.types.splice(t, 0, e.types[H]), b > 0)
+            do
+              if (b = b - 1, r.stack[b][1] === H)
+                r.stack[b][1] = t;
+              else if (r.stack[b][1] < t)
+                break;
+            while (b > 0);
+          H = H + 1, e.begin.splice(H, 1), e.ender.splice(H, 1), e.lexer.splice(H, 1), e.lines.splice(H, 1), e.stack.splice(H, 1), e.token.splice(H, 1), e.types.splice(H, 1), b = t + 1;
+          do
+            e.begin[b] = t, e.stack[b] = e.stack[H], b = b + 1;
+          while (b < H);
+          b = b + 1;
+          do {
+            if (e.begin[b] === e.begin[H] && (e.begin[b] = t, e.types[b] === "end"))
+              break;
+            b = b + 1;
+          } while (b < o - 1);
+          e.begin[H] = t, t = t - 1;
+        } else
+          l[t - 1] = -10, e.stack[t] === "paren" || e.stack[t] === "method" ? l.push(h + 2) : l.push(h), n.commentIndent === !0 && l[t] > -1 && e.lines[t] < 3 && (e.lines[t] = 3);
+        e.types[t + 1] !== "comment" && (V = !0);
+        return;
+      } else
+        i(e.token[t - 1], 44) ? l[t - 1] = F : i(_, 61) && e.types[t - 1] !== "comment" && /^\/\*{2}\s*@[A-Za-z_]+/.test(p) === !0 ? l[t - 1] = -10 : i(_, 123) && e.types[t - 1] !== "comment" && e.lines[0] < 2 ? e.stack[t] === "function" ? l[t - 1] = F : l[t - 1] = /\n/.test(p) ? F : -10 : l[t - 1] = F;
+      e.types[t + 1] !== "comment" && (V = !0), i(e.token[e.begin[t]], 40) ? l.push(h + 1) : l.push(h), l[t] > -1 && e.lines[t] < 3 && (e.types[t - 1] === "comment" && p.startsWith("//") ? e.lines[t] = 2 : e.lines[t] = 3), n.commentNewline === !0 && p.startsWith("//") === !1 && e.lines[t] >= 3 && (e.lines[t] = 2);
+    }
+    function pe(F, H) {
+      let b = t - 1, X = F === !0 ? 0 : 1, y = M[M.length - 1] === void 0 ? [] : M[M.length - 1], x = H === !1 && e.stack[t] === "array" && F === !0 && T(p, 91);
+      if (!(N[N.length - 1] === !1 || e.stack[t] === "array" && n.arrayFormat === "inline" || e.stack[t] === "object" && n.objectIndent === "inline")) {
+        N[N.length - 1] = !1;
+        do {
+          if (e.types[b] === "end" ? X = X + 1 : e.types[b] === "start" && (X = X - 1), e.stack[b] === "global")
+            break;
+          if (X === 0) {
+            if (e.stack[t] === "class" || e.stack[t] === "map" || x === !1 && (F === !1 && e.token[b] !== "(" && e.token[b] !== "x(" || F === !0 && i(e.token[b], 44)))
+              e.types[b + 1] === "liquid_start" ? e.lines[b] < 1 ? l[b] = -20 : l[b] = h - 1 : y.length > 0 && y[y.length - 1] > -1 ? l[b] = h - 1 : l[b] = h;
+            else if (e.stack[t] === "array" && e.types[t] === "operator" && (i(e.token[b], 44) && (l[b] = h), b === e.begin[t]))
+              break;
+            if (F === !1)
+              break;
+          }
+          if (X < 0) {
+            e.types[b + 1] === "liquid_start" || e.types[b + 1] === "template_string_start" ? e.lines[b] < 1 ? l[b] = -20 : l[b] = h - 1 : y.length > 0 && y[y.length - 1] > -1 ? l[b] = h - 1 : l[b] = h;
+            break;
+          }
+          b = b - 1;
+        } while (b > -1);
+      }
+    }
+    function ge() {
+      let F = Ke(M[M.length - 1]) ? [] : M[M.length - 1];
+      function H() {
+        let b = t, X = !1, y = e.begin[b];
+        do {
+          if (b = b - 1, e.lexer[b] === "markup") {
+            X = !0;
+            break;
+          }
+          e.begin[b] !== y && (b = e.begin[b]);
+        } while (b > y);
+        if (X === !0) {
+          b = t;
+          do
+            b = b - 1, e.begin[b] !== y ? b = e.begin[b] : i(e.token[b], 44) && (l[b] = h + 1);
+          while (b > y);
+          l[y] = h + 1, l[t - 1] = h;
+        } else
+          l[t - 1] = -20;
+      }
+      if (i(p, 41) && i(e.token[t + 1], 46) && T(e.token[F[0]], 58) && F[F.length - 1] > -1) {
+        let b = e.begin[t], X = !1, y = !1;
+        do
+          b = b - 1;
+        while (b > 0 && l[b] < -9);
+        X = l[b] === h, b = t + 1;
+        do {
+          if (b = b + 1, i(e.token[b], 123)) {
+            y = !0;
+            break;
+          }
+          if (e.begin[b] === e.begin[t + 1] && (e.types[b] === "separator" || e.types[b] === "end"))
+            break;
+        } while (b < o);
+        X === !1 && y === !0 && M.length > 1 && (M[M.length - 2].push(e.begin[t]), h = h + 1);
+      }
+      if (w !== "separator" && O(), i(e.token[t + 1], 58) && (e.stack[t] === "object" || e.stack[t] === "array") && pe(!0, !1), i(e.token[e.begin[t] - 1], 44) && (i(e.token[t + 1], 125) || i(e.token[t + 1], 93)) && (e.stack[t] === "object" || e.stack[t] === "array") && pe(!0, !1), e.stack[t] !== "attribute" && (T(p, 41) && p !== "x)" && (e.lexer[t - 1] !== "markup" || e.lexer[t - 1] === "markup" && e.token[t - 2] !== "return") && (h = h - 1), i(p, 125) && e.stack[t] === "switch" && n.noCaseIndent === !1 && (h = h - 1)), i(p, 125) || p === "x}") {
+        if (e.types[t - 1] !== "comment" && _ !== "{" && _ !== "x{" && w !== "end" && w !== "string" && w !== "number" && w !== "separator" && _ !== "++" && _ !== "--" && (t < 2 || e.token[t - 2] !== ";" || e.token[t - 2] !== "x;" || _ === "break" || _ === "return")) {
+          let b = t - 1, X = !1, y = e.begin[t], x = d.length;
+          do {
+            if (e.begin[b] === y) {
+              if ((i(e.token[b], 61) || i(e.token[b], 59) || e.token[b] === "x;") && (X = !0), i(e.token[b], 46) && l[b - 1] > -1) {
+                N[N.length - 1] = !1, l[y] = h + 1, l[t - 1] = h;
+                break;
+              }
+              if (b > 0 && e.token[b] === "return" && (e.token[b - 1] === ")" || e.token[b - 1] === "x)" || e.token[b - 1] === "{" || e.token[b - 1] === "x{" || e.token[b - 1] === "}" || e.token[b - 1] === "x}" || e.token[b - 1] === ";" || e.token[b - 1] === "x;")) {
+                h = h - 1, l[t - 1] = h;
+                break;
+              }
+              if (i(e.token[b], 58) && g.length === 0 || i(e.token[b], 44) && X === !1)
+                break;
+              if (b === 0 || e.token[b - 1] === "{" || e.token[b - 1] === "x{" || e.token[b] === "for" || e.token[b] === "if" || e.token[b] === "do" || e.token[b] === "function" || e.token[b] === "while" || e.token[b] === "var" || e.token[b] === "let" || e.token[b] === "const" || e.token[b] === "with") {
+                d[x - 1] === !1 && x > 1 && (t === o - 1 || e.token[t + 1] !== ")" && e.token[t + 1] !== "x)") && e.stack[t] !== "object" && (h = h - 1);
+                break;
+              }
+            } else
+              b = e.begin[b];
+            b = b - 1;
+          } while (b > y);
+        }
+        I.pop();
+      }
+      if (n.bracePadding === !1 && p !== "}" && p !== "]" && w !== "markup" && w !== "liquid" && (l[t - 1] = -20), n.bracePadding === !0 && w !== "start" && _ !== ";" && (l[e.begin[t]] < -9 || N[N.length - 1] === !0))
+        l[e.begin[t]] = -10, l[t - 1] = -10, l.push(-20);
+      else if (e.stack[t] === "attribute")
+        l[t - 1] = -20, l.push(h);
+      else if (e.stack[t] === "array" && (F.length > 0 || L[L.length - 1] === !0))
+        ue(), N[N.length - 1] = !1, l[e.begin[t]] = h + 1, l[t - 1] = h, l.push(-20);
+      else if (F.length > 0 && (e.stack[t] === "object" || e.begin[t] === 0 && i(p, 125)))
+        ue(), N[N.length - 1] = !1, l[e.begin[t]] = h + 1, l[t - 1] = h, l.push(-20);
+      else if (p === ")" || p === "x)") {
+        let b = p === ")" && T(_, 40) && B.length > 0 ? B.pop() + 1 : 0, X = e.token[e.begin[t] - 1] === "if" ? (() => {
+          let y = t;
+          do
+            if (y = y - 1, e.token[y] === ")" && l[y - 1] > -1)
+              return b;
+          while (y > e.begin[t]);
+          return b + 5;
+        })() : b;
+        if (b > 0 && (r.language !== "jsx" || r.language === "jsx" && e.token[e.begin[t] - 1] !== "render")) {
+          let y = s.wrap, x = e.begin[t], q = B.length, v = t - 2;
+          if (X > y) {
+            l[e.begin[t]] = h + 1, l[t - 1] = h;
+            do
+              e.begin[v] === x ? e.token[v] === "&&" || e.token[v] === "||" ? l[v] = h + 1 : l[v] > -1 && e.types[v] !== "comment" && e.token[v + 1] !== "." && (l[v] = l[v] + 1) : l[v] > -1 && e.token[v + 1] !== "." && (l[v] = l[v] + 1), v = v - 1;
+            while (v > x);
+          } else
+            q > 0 && (B[q - 1] = B[q - 1] + b);
+        } else if (p === ")" && t > e.begin[t] + 2 && e.lexer[e.begin[t] + 1] === C && e.token[e.begin[t] + 1] !== "function") {
+          let y = e.begin[t] < 0 ? 0 : e.begin[t], x = s.wrap, q = F.length, v = 0, E = 0, me = 0, te = 0, R = 0, Q = !1, W = !1, U = h + 1, Z = !1, ae = !1, he = !1;
+          if (l[y] < -9) {
+            E = y;
+            do
+              E = E + 1;
+            while (E < t && l[E] < -9);
+            te = E;
+            do
+              v = v + e.token[E].length, l[E] === -10 && (v = v + 1), e.token[E] === "(" && me > 0 && me < x - 1 && te === t && (me = -1), e.token[E] === ")" ? R = R - 1 : e.token[E] === "(" && (R = R + 1), E === y && R > 0 && (me = v), E = E - 1;
+            while (E > y && l[E] < -9);
+            if (e.token[E + 1] === "." && (U = l[E] + 1), v > x - 1 && x > 0 && T(_, 40) && me !== -1 && N[N.length - 2] === !1 && (e.token[y - 1] === "if" && d[d.length - 1] === !0 || e.token[y - 1] !== "if") && (l[y] = U, e.token[y - 1] === "for")) {
+              E = y;
+              do
+                E = E + 1, i(e.token[E], 59) && e.begin[E] === y && (l[E] = U);
+              while (E < t);
+            }
+          }
+          E = t, v = 0;
+          do
+            E = E - 1, e.stack[E] === "function" ? E = e.begin[E] : e.begin[E] === y ? (i(e.token[E], 63) ? he = !0 : i(e.token[E], 44) && Q === !1 ? (Q = !0, v >= x && x > 0 && (Z = !0)) : e.types[E] === "markup" && ae === !1 && (ae = !0), l[E] > -9 && T(e.token[E], 44) && e.types[E] !== "markup" ? v = 0 : (l[E] === -10 && (v = v + 1), v = v + e.token[E].length, v >= x && x > 0 && (Q === !0 || ae === !0) && (Z = !0))) : l[E] > -9 ? v = 0 : (v = v + e.token[E].length, v >= x && x > 0 && (Q === !0 || ae === !0) && (Z = !0));
+          while (E > y && Z === !1);
+          if (Q === !1 && i(e.token[e.begin[t] + 1], 96))
+            l[e.begin[t]] = -20, l[t - 1] = -20;
+          else if ((Q === !0 || ae === !0) && v >= x && x > 0 || l[y] > -9) {
+            if (he === !0) {
+              if (U = l[y], i(e.token[y - 1], 91)) {
+                E = t;
+                do
+                  if (E = E + 1, e.types[E] === "end" || i(e.token[E], 44) || i(e.token[E], 59))
+                    break;
+                while (E < o);
+                i(e.token[E], 93) && (U = U - 1, W = !0);
+              }
+            } else
+              q > 0 && F[q - 1] > E && (U = U - q);
+            N[N.length - 1] = !1, E = t;
+            do
+              if (E = E - 1, e.begin[E] === y)
+                if (e.token[E].indexOf("=") > -1 && e.types[E] === "operator" && e.token[E].indexOf("!") < 0 && e.token[E].indexOf("==") < 0 && e.token[E] !== "<=" && e.token[E].indexOf(">") < 0) {
+                  v = E;
+                  do
+                    if (v = v - 1, e.begin[v] === y && (e.token[v] === ";" || e.token[v] === "," || v === y))
+                      break;
+                  while (v > y);
+                } else
+                  i(e.token[E], 44) ? l[E] = U : l[E] > -9 && W === !1 && (e.token[y - 1] !== "for" || e.token[E + 1] === "?" || e.token[E + 1] === ":") && (e.token[e.begin[t]] !== "(" || e.token[E] !== "+") && (l[E] = l[E] + 1);
+              else
+                l[E] > -9 && W === !1 && (l[E] = l[E] + 1);
+            while (E > y);
+            l[y] = U, l[t - 1] = U - 1;
+          } else
+            l[t - 1] = -20;
+          e.token[e.begin[t] - 1] === "+" && l[e.begin[t]] > -9 && (l[e.begin[t] - 1] = -10);
+        } else
+          r.language === "jsx" || r.language === "tsx" ? H() : l[t - 1] = -20;
+        l.push(-20);
+      } else if (N[N.length - 1] === !0)
+        i(p, 93) && e.begin[t] - 1 > 0 && e.token[e.begin[e.begin[t] - 1]] === "[" && (N[N.length - 2] = !1), e.begin[t] < l.length && (l[e.begin[t]] = -20), r.language === "jsx" || r.language === "tsx" ? H() : i(p, 93) && l[e.begin[t]] > -1 ? l[t - 1] = l[e.begin[t]] - 1 : l[t - 1] = -20, l.push(-20);
+      else if (e.types[t - 1] === "comment" && e.token[t - 1].substring(0, 2) === "//")
+        e.token[t - 2] === "x}" && (l[t - 3] = h + 1), l[t - 1] = h, l.push(-20);
+      else if (w.indexOf("liquid") < 0 && // PATCH SO LIQUID TOKENS DONT END WITH: }}} (3 LCB)
+      e.types[t - 1] !== "comment" && (i(_, 123) && i(p, 125) || i(_, 91) && i(p, 93)))
+        l[t - 1] = -20, l.push(-20);
+      else if (i(p, 93)) {
+        if (d[d.length - 1] === !0 && N[N.length - 1] === !1 && n.arrayFormat !== "inline" || i(_, 93) && l[t - 2] === h + 1 ? (l[t - 1] = h, l[e.begin[t]] = h + 1) : l[t - 1] === -10 && (l[t - 1] = -20), e.token[e.begin[t] + 1] === "function")
+          l[t - 1] = h;
+        else if (d[d.length - 1] === !1) {
+          (i(_, 125) || _ === "x}") && (l[t - 1] = h);
+          let b = t - 1, X = 1;
+          do {
+            if (i(e.token[b], 93) && (X = X + 1), i(e.token[b], 91) && (X = X - 1, X === 0)) {
+              if (b > 0 && (i(e.token[b + 1], 123) || i(e.token[b + 1], 91) || e.token[b + 1] === "x{")) {
+                l[b] = h + 1;
+                break;
+              }
+              if (T(e.token[b + 1], 91) || le === !1) {
+                l[b] = -20;
+                break;
+              }
+              break;
+            }
+            X === 1 && e.token[b] === "+" && l[b] > 1 && (l[b] = l[b] - 1), b = b - 1;
+          } while (b > -1);
+        } else
+          (r.language === "jsx" || r.language === "tsx") && H();
+        if (n.arrayFormat === "inline") {
+          let b = t, X = e.begin[t];
+          do
+            if (b = b - 1, e.types[b] === "end")
+              break;
+          while (b > X);
+          b > X ? (l[e.begin[t]] = h + 1, l[t - 1] = h) : (l[e.begin[t]] = -20, l[t - 1] = -20);
+        } else
+          l[e.begin[t]] > -1 && (l[t - 1] = l[e.begin[t]] - 1);
+        l.push(-20);
+      } else
+        i(p, 125) || p === "x}" || d[d.length - 1] === !0 ? (i(p, 125) && _ === "x}" && e.token[t + 1] === "else" ? (l[t - 2] = h + 2, l.push(-20)) : l.push(h), l[t - 1] = h) : l.push(-20);
+      e.types[t - 1] === "comment" && (l[t - 1] = h), ue(), le = d[d.length - 1], d.pop(), M.pop(), L.pop(), S.pop(), D.pop(), N.pop(), j.pop();
+    }
+    function ue() {
+      let F = 0, H = M[M.length - 1];
+      if (H !== void 0) {
+        if (F = H.length - 1, F < 1 && H[F] < 0 && (i(p, 59) || p === "x;" || i(p, 41) || p === "x)" || i(p, 125) || p === "x}")) {
+          H.pop();
+          return;
+        }
+        if (!(F < 0 || H[F] < 0)) {
+          if (i(p, 58)) {
+            if (T(e.token[H[F]], 63))
+              do
+                H.pop(), F = F - 1, h = h - 1;
+              while (F > -1 && H[F] > -1 && T(e.token[H[F]], 63));
+            H[F] = t, l[t - 1] = h;
+          } else
+            do
+              H.pop(), F = F - 1, h = h - 1;
+            while (F > -1 && H[F] > -1);
+          (e.stack[t] === "array" || i(p, 44)) && H.length < 1 && H.push(-1);
+        }
+      }
+    }
+    function Ce() {
+      let F = t;
+      do {
+        if (e.lexer[t + 1] === C && e.begin[t + 1] < F || e.token[F - 1] === "return" && e.types[t] === "end" && e.begin[t] === F)
+          break;
+        l.push(0), t = t + 1;
+      } while (t < o);
+      a[F] = t, l.push(h - 1);
+    }
+    function O() {
+      let F = t - 1, H = e.begin[t];
+      if (!(h < 1))
+        do {
+          if (H !== e.begin[F])
+            F = e.begin[F];
+          else if (e.types[F] === "separator" || e.types[F] === "operator") {
+            e.token[F] === "." && l[F - 1] > 0 && (e.token[H - 1] === "if" ? h = h - 2 : h = h - 1);
+            break;
+          }
+          F = F - 1;
+        } while (F > 0 && F > H);
+    }
+    function ke() {
+      (e.token[t + 1] !== "," && p.indexOf("/>") !== p.length - 2 || e.token[t + 1] === "," && e.token[e.begin[t] - 3] !== "React") && pe(!1, !1), _ === "return" || _ === "?" || _ === ":" ? (l[t - 1] = -10, l.push(-20)) : w === "start" || e.token[t - 2] === "return" && e.stack[t - 1] === "method" ? l.push(h) : l.push(-20);
+    }
+    function K() {
+      let F = Ke(M[M.length - 1]) ? [] : M[M.length - 1];
+      function H() {
+        let b = e.token[t + 1], X = 0, y = 0, x = t, q = p === "+" ? h + 2 : h, v = 0;
+        if (s.wrap < 1) {
+          l.push(-10);
+          return;
+        }
+        do {
+          if (x = x - 1, i(e.token[e.begin[t]], 40) && (x === e.begin[t] && (v = X), i(e.token[x], 44) && e.begin[x] === e.begin[t] && d[d.length - 1] === !0) || X > s.wrap - 1 || l[x] > -9 || e.types[x] === "operator" && e.token[x] !== "=" && e.token[x] !== "+" && e.begin[x] === e.begin[t] || (X = X + e.token[x].length, x === e.begin[t] && e.token[x] === "[" && X < s.wrap - 1) || e.token[x] === "." && l[x] > -9)
+            break;
+          l[x] === -10 && (X = X + 1);
+        } while (x > 0);
+        if (v > 0 && (v = v + b.length), X = X + b.length, y = x, X > s.wrap - 1 && l[x] < -9)
+          do
+            y = y - 1;
+          while (y > 0 && l[y] < -9);
+        if (e.token[y + 1] === "." && e.begin[t] <= e.begin[y] ? q = q + 1 : e.types[y] === "operator" && (q = l[y]), y = b.length, X + y < s.wrap) {
+          l.push(-10);
+          return;
+        }
+        if (i(e.token[e.begin[t]], 40) && (e.token[F[0]] === ":" || e.token[F[0]] === "?") ? q = h + 3 : e.stack[t] === "method" ? (l[e.begin[t]] = h, d[d.length - 1] === !0 ? q = h + 3 : q = h + 1) : (e.stack[t] === "object" || e.stack[t] === "array") && pe(!0, !1), (e.token[x] === "var" || e.token[x] === "let" || e.token[x] === "const") && (X = X - s.indentSize * s.indentChar.length * 2), v > 0 ? x = s.wrap - v : x = s.wrap - X, x > 0 && x < 5) {
+          l.push(q), (e.token[t].charAt(0) === '"' || e.token[t].charAt(0) === "'") && (t = t + 1, l.push(-10));
+          return;
+        }
+        if (e.token[e.begin[t]] !== "(" || v > s.wrap - 1 || v === 0) {
+          if (v > 0 && (X = v), X - b.length < s.wrap - 1 && (b.charAt(0) === '"' || b.charAt(0) === "'")) {
+            if (t = t + 1, X = X + 3, X - b.length > s.wrap - 4) {
+              l.push(q);
+              return;
+            }
+            l.push(-10);
+            return;
+          }
+          l.push(q);
+          return;
+        }
+        l.push(-10);
+      }
+      if (O(), F.length > 0 && F[F.length - 1] > -1 && e.stack[t] === "array" && (L[L.length - 1] = !0), p !== ":" && (e.token[e.begin[t]] !== "(" && e.token[e.begin[t]] !== "x(" && N.length > 0 && pe(!0, !1), p !== "?" && e.token[F[F.length - 1]] === ".")) {
+        let b = 0, X = t, y = e.begin[X];
+        do {
+          if (e.begin[X] === y) {
+            if (e.token[X + 1] === "{" || e.token[X + 1] === "[" || e.token[X] === "function")
+              break;
+            if (i(e.token[X], 44) || i(e.token[X], 59) || e.types[X] === "end" || i(e.token[X], 58)) {
+              F.pop(), h = h - 1;
+              break;
+            }
+            if (e.token[X] === "?" || i(e.token[X], 58)) {
+              e.token[F[F.length - 1]] === "." && b < 2 && (F[F.length - 1] = y + 1);
+              break;
+            }
+            e.token[X] === "." && (b = b + 1);
+          }
+          X = X + 1;
+        } while (X < o);
+      }
+      if (p === "!" || p === "...") {
+        (i(_, 125) || _ === "x}") && (l[t - 1] = h), l.push(-20);
+        return;
+      }
+      if (_ === ";" || _ === "x;") {
+        e.token[e.begin[t] - 1] !== "for" && (l[t - 1] = h), l.push(-20);
+        return;
+      }
+      if (p === "*") {
+        _ === "function" || _ === "yield" ? l[t - 1] = -20 : l[t - 1] = -10, l.push(-10);
+        return;
+      }
+      if (p === "?") {
+        if (e.lines[t] === 0 && e.types[t - 2] === "word" && e.token[t - 2] !== "return" && e.token[t - 2] !== "in" && e.token[t - 2] !== "instanceof" && e.token[t - 2] !== "typeof" && (w === "reference" || w === "word") && (e.types[t + 1] === "word" || e.types[t + 1] === "reference" || (i(e.token[t + 1], 40) || e.token[t + 1] === "x(") && e.token[t - 2] === "new")) {
+          if (l[t - 1] = -20, e.types[t + 1] === "word" || e.types[t + 1] === "reference") {
+            l.push(-10);
+            return;
+          }
+          l.push(-20);
+          return;
+        }
+        if (e.token[t + 1] === ":") {
+          l[t - 1] = -20, l.push(-20);
+          return;
+        }
+        if (g.push(t), n.ternaryLine === !0)
+          l[t - 1] = -10;
+        else {
+          let b = t - 1;
+          do
+            b = b - 1;
+          while (b > -1 && l[b] < -9);
+          if (F.push(t), h = h + 1, l[b] === h && e.token[b + 1] !== ":" && (h = h + 1, F.push(t)), l[t - 1] = h, i(e.token[e.begin[t]], 40) && (F.length < 2 || F[0] === F[1])) {
+            N[N.length - 1] = !1, t - 2 === e.begin[t] ? l[e.begin[t]] = h - 1 : l[e.begin[t]] = h, b = t - 2;
+            do {
+              if (e.types[b] === "end" && l[b - 1] > -1)
+                break;
+              l[b] > -1 && (l[b] = l[b] + 1), b = b - 1;
+            } while (b > e.begin[t]);
+          }
+        }
+        l.push(-10);
+        return;
+      }
+      if (p === ":") {
+        if (e.stack[t] === "map" || e.types[t + 1] === "type" || e.types[t + 1] === "type_start") {
+          l[t - 1] = -20, l.push(-10);
+          return;
+        }
+        if (g.length > 0 && e.begin[g[g.length - 1]] === e.begin[t]) {
+          let b = t, X = e.begin[t];
+          do
+            if (b = b - 1, e.begin[b] === X) {
+              if (i(e.token[b], 44) || i(e.token[b], 59)) {
+                l[t - 1] = -20;
+                break;
+              }
+              if (e.token[b] === "?") {
+                g.pop(), ue(), n.ternaryLine === !0 && (l[t - 1] = -10), l.push(-10);
+                return;
+              }
+            } else
+              e.types[b] === "end" && (b = e.begin[b]);
+          while (b > X);
+        }
+        if (e.token[t - 2] === "where" && e.stack[t - 2] === e.stack[t]) {
+          l[t - 1] = -10, l.push(-10);
+          return;
+        }
+        if (w === "reference" && e.token[e.begin[t]] !== "(" && e.token[e.begin[t]] !== "x(") {
+          l[t - 1] = -20, l.push(-10);
+          return;
+        }
+        if ((i(_, 41) || _ === "x)") && e.token[e.begin[t - 1] - 2] === "function") {
+          l[t - 1] = -20, l.push(-10);
+          return;
+        }
+        if (e.stack[t] === "attribute") {
+          l[t - 1] = -20, l.push(-10);
+          return;
+        }
+        if (e.token[e.begin[t]] !== "(" && e.token[e.begin[t]] !== "x(" && (w === "reference" || i(_, 41) || i(_, 93) || _ === "?") && (e.stack[t] === "map" || e.stack[t] === "class" || e.types[t + 1] === "reference") && (g.length === 0 || g[g.length - 1] < e.begin[t]) && ("mapclassexpressionmethodglobalparen".indexOf(e.stack[t]) > -1 || e.types[t - 2] === "word" && e.stack[t] !== "switch")) {
+          l[t - 1] = -20, l.push(-10);
+          return;
+        }
+        if (e.stack[t] === "switch" && (g.length < 1 || g[g.length - 1] < e.begin[t])) {
+          l[t - 1] = -20, n.caseSpace === !0 ? l.push(-10) : l.push(h);
+          return;
+        }
+        e.stack[t] === "object" ? l[t - 1] = -20 : g.length > 0 ? l[t - 1] = h : l[t - 1] = -10, l.push(-10);
+        return;
+      }
+      if (p === "++" || p === "--") {
+        w === "number" || w === "reference" ? (l[t - 1] = -20, l.push(-10)) : t < o - 1 && (e.types[t + 1] === "number" || e.types[t + 1] === "reference") ? l.push(-20) : l.push(-10);
+        return;
+      }
+      if (p === "+") {
+        if (w === "start" ? l[t - 1] = -20 : l[t - 1] = -10, s.wrap < 1 || e.token[e.begin[t]] === "x(") {
+          l.push(-10);
+          return;
+        }
+        let b = e.token[t + 1];
+        if (b === void 0) {
+          l.push(-10);
+          return;
+        }
+        if (e.types[t - 1] === "operator" || e.types[t - 1] === "start") {
+          if (e.types[t + 1] === "reference" || b === "(" || b === "[") {
+            l.push(-20);
+            return;
+          }
+          if (Number(b.slice(1, -1)) > -1 && (/\d/.test(b.charAt(1)) === !0 || b.charAt(1) === "." || b.charAt(1) === "-" || b.charAt(1) === "+")) {
+            l.push(-20);
+            return;
+          }
+        }
+        return H();
+      }
+      if (e.types[t - 1] !== "comment" && (i(_, 40) ? l[t - 1] = -20 : p === "*" && e.stack[t] === "object" && e.types[t + 1] === "reference" && (i(_, 123) || i(_, 44)) ? l[t - 1] = h : (p !== "?" || g.length === 0) && (l[t - 1] = -10)), p.indexOf("=") > -1 && p !== "==" && p !== "===" && p !== "!=" && p !== "!==" && p !== ">=" && p !== "<=" && p !== "=>" && e.stack[t] !== "method" && e.stack[t] !== "object") {
+        let b = t + 1, X = 0, y = !1, x = c;
+        if ((i(e.token[e.begin[t]], 40) || e.token[e.begin[t]] === "x(") && e.token[t + 1] !== "function")
+          return;
+        do {
+          if (e.types[b] === "start") {
+            if (y === !0 && e.token[b] !== "[") {
+              j[j.length - 1] === !0 && (j[j.length - 1] = !1);
+              break;
+            }
+            X = X + 1;
+          }
+          if (e.types[b] === "end" && (X = X - 1), X < 0) {
+            j[j.length - 1] === !0 && (j[j.length - 1] = !1);
+            break;
+          }
+          if (X === 0) {
+            if (x = e.token[b], y === !0) {
+              if (e.types[b] === "operator" || i(e.token[b], 59) || e.token[b] === "x;" || e.token[b] === "?" || e.token[b] === "var" || e.token[b] === "let" || e.token[b] === "const") {
+                x !== void 0 && (x === "?" || x.indexOf("=") > -1 && x !== "==" && x !== "===" && x !== "!=" && x !== "!==" && x !== ">=" && x !== "<=") && j[j.length - 1] === !1 && (j[j.length - 1] = !0), (x === ";" || x === "x;" || x === "var" || x === "let" || x === "const") && j[j.length - 1] === !0 && (j[j.length - 1] = !1);
+                break;
+              }
+              j[j.length - 1] === !0 && (x === "return" || x === "break" || x === "continue" || x === "throw") && (j[j.length - 1] = !1);
+            }
+            (x === ";" || x === "x;" || x === ",") && (y = !0);
+          }
+          b = b + 1;
+        } while (b < o);
+        l.push(-10);
+        return;
+      }
+      if (p === "-" && _ === "return" || i(_, 61)) {
+        l.push(-20);
+        return;
+      }
+      if (w === "operator" && e.types[t + 1] === "reference" && _ !== "--" && _ !== "++" && p !== "&&" && p !== "||") {
+        l.push(-20);
+        return;
+      }
+      return H();
+    }
+    function se() {
+      let F = () => {
+        let H = e.begin[t];
+        if (H < 0)
+          r.stack.push([e.token[t], -1]);
+        else {
+          if (e.stack[H + 1] !== "function")
+            do
+              H = e.begin[H];
+            while (H > -1 && e.stack[H + 1] !== "function");
+          r.stack.push([e.token[t], H]);
+        }
+      };
+      if (e.types[t - 1] === "comment" ? l[t - 1] = h : w === "end" && _ !== ")" && e.token[e.begin[t - 1] - 1] !== ")" ? l[t - 1] = -10 : w !== "separator" && w !== "start" && w !== "end" && w.indexOf("template_string") < 0 && (w === "word" || w === "operator" || w === "property" || w === "type" || w === "reference" ? l[t - 1] = -10 : l[t - 1] = -20), _ === "var" && e.lexer[t - 1] === C)
+        F();
+      else if (_ === "function")
+        r.stack.push([e.token[t], t]);
+      else if (_ === "let" || _ === "const")
+        r.stack.push([e.token[t], t]);
+      else if (e.stack[t] === "arguments")
+        r.stack.push([e.token[t], t]);
+      else if (i(_, 44)) {
+        let H = t;
+        do
+          H = H - 1;
+        while (H > e.begin[t] && e.token[H] !== "var" && e.token[H] !== "let" && e.token[H] !== "const");
+        e.token[H] === "var" ? F() : (e.token[H] === "let" || e.token[H] === "const") && r.stack.push([e.token[t], t]);
+      }
+      l.push(-10);
+    }
+    function J() {
+      let F = Ke(M[M.length - 1]) ? [] : M[M.length - 1], H = () => {
+        if (n.methodChain > 0) {
+          let b = t, X = e.begin[t], y = [t], x = e.token[X - 1] === "if";
+          do
+            if (b = b - 1, e.types[b] === "end" && (b = e.begin[b]), e.begin[b] === X) {
+              if (e.types[b] === "string" && e.token[b].indexOf("${") === e.token[b].length - 2)
+                break;
+              if (e.token[b] === ".") {
+                if (l[b - 1] > 0) {
+                  l[t - 1] = x === !0 ? h + 1 : h;
+                  return;
+                }
+                y.push(b);
+              } else if (e.token[b] === ";" || e.token[b] === "," || e.types[b] === "operator" || (e.types[b] === "word" || e.types[b] === "reference") && (e.types[b - 1] === "word" || e.types[b - 1] === "reference"))
+                break;
+            }
+          while (b > X);
+          if (y.length < n.methodChain) {
+            l[t - 1] = -20;
+            return;
+          }
+          b = 0, X = y.length;
+          do
+            l[y[b] - 1] = x === !0 ? h + 1 : h, b = b + 1;
+          while (b < X);
+          b = y[y.length - 1] - 1;
+          do
+            l[b] > -1 && (l[b] = l[b] + 1), b = b + 1;
+          while (b < t);
+          h = x === !0 ? h + 2 : h + 1;
+        }
+        l[t - 1] = h;
+      };
+      if (p === "::") {
+        l[t - 1] = -20, l.push(-20);
+        return;
+      }
+      if (p === ".") {
+        e.token[e.begin[t]] !== "(" && e.token[e.begin[t]] !== "x(" && F.length > 0 && (e.stack[t] === "object" || e.stack[t] === "array" ? pe(!0, !1) : pe(!1, !1)), n.methodChain === 0 ? l[t - 1] = -20 : n.methodChain < 0 ? e.lines[t] > 0 ? H() : l[t - 1] = -20 : H(), l.push(-20);
+        return;
+      }
+      if (p === ",") {
+        if (O(), d[d.length - 1] === !1 && (e.stack[t] === "object" || e.stack[t] === "array" || e.stack[t] === "paren" || e.stack[t] === "expression" || e.stack[t] === "method") && (d[d.length - 1] = !0, i(e.token[e.begin[t]], 40))) {
+          let b = t;
+          do
+            b = b - 1, e.begin[b] === e.begin[t] && e.token[b] === "+" && l[b] > -9 && (l[b] = l[b] + 2);
+          while (b > e.begin[t]);
+        }
+        if (e.stack[t] === "array" && n.arrayFormat === "indent") {
+          l[t - 1] = -20, l.push(h);
+          return;
+        }
+        if (e.stack[t] === "array" && n.arrayFormat === "inline") {
+          l[t - 1] = -20, l.push(-10);
+          return;
+        }
+        if (e.stack[t] === "object" && n.objectIndent === "indent") {
+          l[t - 1] = -20, l.push(h);
+          return;
+        }
+        if (e.stack[t] === "object" && n.objectIndent === "inline") {
+          l[t - 1] = -20, l.push(-10);
+          return;
+        }
+        if (F.length > 0) {
+          F[F.length - 1] > -1 && ue(), l[t - 1] = -20, l.push(h);
+          return;
+        }
+        if (e.token[t - 2] === ":" && e.token[t - 4] === "where") {
+          l[t - 1] = -20, l.push(-10);
+          return;
+        }
+        if (l[t - 1] = -20, e.types[t + 1] !== "end" && (S[S.length - 1] = S[S.length - 1] + 1), (i(e.token[e.begin[t]], 40) || e.token[e.begin[t]] === "x(") && r.language !== "jsx" && e.stack[t] !== "global" && (e.types[t - 1] !== "string" && e.types[t - 1] !== "number" || e.token[t - 2] !== "+" || e.types[t - 1] === "string" && e.types[t - 1] !== "number" && i(e.token[t - 2], 43) && e.types[t - 3] !== "string" && e.types[t - 3] !== "number")) {
+          l.push(-10);
+          return;
+        }
+        if (w === "reference" && e.types[t - 2] === "word" && "var-let-const-from".indexOf(e.token[t - 2]) < 0 && (e.types[t - 3] === "end" || e.token[t - 3] === ";")) {
+          D[D.length - 1] = !0, l.push(-10);
+          return;
+        }
+        if (D[D.length - 1] === !0 || e.stack[t] === "notation") {
+          l.push(-10);
+          return;
+        }
+        if (S[S.length - 1] > 3 && (e.stack[t] === "array" || e.stack[t] === "object")) {
+          if (N[N.length - 1] === !0 && pe(!0, !0), l[t - 1] = -20, L[L.length - 1] === !0) {
+            l.push(h);
+            return;
+          }
+          let b = e.begin[t], X = t;
+          do
+            e.types[X] === "end" ? X = e.begin[X] : i(e.token[X], 44) && e.types[X + 1] !== "comment" && (l[X] = h), X = X - 1;
+          while (X > b);
+          l[b] = h, L[L.length - 1] = !0;
+          return;
+        }
+        if (e.stack[t] === "object" && N[N.length - 1] === !0 && e.types[e.begin[t] - 1] !== "word" && e.types[e.begin[t] - 1] !== "reference" && e.token[e.begin[t] - 1] !== "(" && e.token[e.begin[t] - 1] !== "x(") {
+          let b = e.begin[t], X = t - 1;
+          do {
+            if (e.begin[X] === b) {
+              if (i(e.token[X], 44))
+                break;
+              if (i(e.token[X], 58)) {
+                pe(!0, !1);
+                break;
+              }
+            }
+            X = X - 1;
+          } while (X > b);
+        }
+        if (N[N.length - 1] === !1 || i(e.token[t - 2], 43) && (w === "string" || w === "number") && l[t - 2] > 0 && (i(_, 34) || i(_, 39))) {
+          if (e.stack[t] === "method") {
+            if (i(e.token[t - 2], 43) && (i(_, 34) || i(_, 39)) && (e.token[t - 3].charAt(0) === '"' || e.token[t - 3].charAt(0) === "'")) {
+              l.push(h + 2);
+              return;
+            }
+            if (e.token[t - 2] !== "+") {
+              l.push(-10);
+              return;
+            }
+          }
+          l.push(h);
+          return;
+        }
+        if (N[N.length - 1] === !0 && e.stack[t] !== "object") {
+          l.push(-10);
+          return;
+        }
+        if (S[S.length - 1] < 4 && (e.stack[t] === "array" || e.stack[t] === "object")) {
+          l.push(-10);
+          return;
+        }
+        l.push(h);
+        return;
+      }
+      if (i(p, 59) || p === "x;") {
+        if (O(), e.token[t + 1] !== void 0 && e.types[t + 1].indexOf("attribute") > 0 && e.types[t + 1].indexOf("end") > 0) {
+          l[t - 1] = -20, l.push(h - 1);
+          return;
+        }
+        if (I[I.length - 1] > -1 && e.stack[I[I.length - 1]] !== "expression") {
+          let b = t;
+          do {
+            if (b = b - 1, i(e.token[b], 59))
+              break;
+            if (i(e.token[b], 44)) {
+              h = h - 1;
+              break;
+            }
+            e.types[b] === "end" && (b = e.begin[b]);
+          } while (b > 0 && b > e.begin[t]);
+        }
+        if (I[I.length - 1] = -1, ue(), e.token[e.begin[t] - 1] !== "for" && pe(!1, !1), D[D.length - 1] = !1, l[t - 1] = -20, e.begin[t] > 0 && e.token[e.begin[t] - 1] === "for" && e.stack[t] !== "for") {
+          l.push(-10);
+          return;
+        }
+        l.push(h);
+        return;
+      }
+      l.push(-20);
+    }
+    function $e() {
+      let F = e.stack[t + 1], H = t === 0 ? e.stack[t] : e.stack[t - 1];
+      if ((i(_, 41) || T(_, 93) && (H === "object" || H === "array")) && (F !== "method" || F === "method" && T(e.token[t + 1], 41) && T(e.token[t + 2], 41)) && (i(_, 41) && (F !== "function" || i(e.token[e.begin[e.begin[t - 1] - 1]], 40) || e.token[e.begin[e.begin[t - 1] - 1]] === "x(") ? pe(!1, !1) : e.types[t + 1] !== "end" && e.types[t + 2] !== "end" && pe(!0, !1)), d.push(!1), M.push([]), j.push(!1), L.push(!1), D.push(!1), S.push(0), n.neverFlatten === !0 || F === "attribute" || w === "generic" || n.arrayFormat === "indent" && F === "array" || F === "class" && T(_, 40) && _ !== "x(" || i(p, 91) && e.token[t + 1] === "function" ? N.push(!1) : F === "expression" || F === "method" || (F === "object" || F === "class") && (i(_, 40) || _ === "x(" || w === "word" || w === "reference") || F === "array" || i(p, 40) || p === "x(" || i(p, 123) && F === "object" && w !== "operator" && w !== "start" && w !== "string" && w !== "number" && H !== "object" && H !== "array" && t > 0 ? N.push(!0) : N.push(!1), T(p, 40) && p !== "x(" && e.stack[t + 1] !== "attribute" && (h = h + 1), i(p, 123) || p === "x{") {
+        if (I.push(-1), e.types[t - 1] !== "comment" && (w === "markup" ? l[t - 1] = h : n.braceAllman === !0 && w !== "operator" && _ !== "return" ? l[t - 1] = h - 1 : e.stack[t + 1] !== "block" && (F === "function" || i(_, 41) || _ === "x)" || i(_, 44) || i(_, 125) || w === "markup") ? l[t - 1] = -10 : (i(_, 123) || _ === "x{" || i(_, 91) || i(_, 125) || _ === "x}") && (l[t - 1] = h - 1)), F === "object") {
+          if (n.objectIndent === "indent") {
+            N[N.length - 1] = !1, l.push(h);
+            return;
+          }
+          if (n.objectIndent === "inline") {
+            N[N.length - 1] = !0, l.push(-20);
+            return;
+          }
+        }
+        if (F === "switch") {
+          if (n.noCaseIndent === !0) {
+            l.push(h - 1);
+            return;
+          }
+          h = h + 1, l.push(h);
+          return;
+        }
+        if (N[N.length - 1] === !0 && w !== "word" && w !== "reference") {
+          l.push(-20);
+          return;
+        }
+        l.push(h);
+        return;
+      }
+      if (i(p, 40) || p === "x(") {
+        if (s.wrap > 0 && i(p, 40) && e.token[t + 1] !== ")" && B.push(1), i(_, 45) && (i(e.token[t - 2], 40) || e.token[t - 2] === "x(") && (l[t - 2] = -20), w === "end" && H !== "if" && H !== "for" && H !== "catch" && H !== "else" && H !== "do" && H !== "try" && H !== "finally" && H !== "catch" && (e.types[t - 1] === "comment" ? l[t - 1] = h : l[t - 1] = -20), _ === "async" ? l[t - 1] = -10 : (F === "method" || e.token[t - 2] === "function" && w === "reference") && (_ === "import" || _ === "in" || n.functionNameSpace === !0 ? l[t - 1] = -10 : i(_, 125) && e.stack[t - 1] === "function" || w === "word" || w === "reference" || w === "property" ? l[t - 1] = -20 : H !== "method" && F !== "method" && (l[t - 1] = h)), i(_, 43) && (i(e.token[t - 2], 34) || i(e.token[t - 2], 39))) {
+          l.push(h);
+          return;
+        }
+        if (i(_, 125) || _ === "x}") {
+          l.push(-20);
+          return;
+        }
+        (i(_, 45) && (t < 2 || T(e.token[t - 2], 41) && T(e.token[t - 2], 93) && e.token[t - 2] !== "x)" && e.types[t - 2] !== "reference" && e.types[t - 2] !== "string" && e.types[t - 2] !== "number") || n.functionSpace === !1 && _ === "function") && (l[t - 1] = -20), l.push(-20);
+        return;
+      }
+      if (i(p, 91)) {
+        if (i(_, 91) && (d[d.length - 2] = !0), _ === "return" || _ === "var" || _ === "let" || _ === "const" ? l[t - 1] = -10 : e.types[t - 1] !== "comment" && e.stack[t - 1] !== "attribute" && (w === "end" || w === "word" || w === "reference") ? l[t - 1] = -20 : (i(_, 91) || i(_, 123) || _ === "x{") && (l[t - 1] = h - 1), e.stack[t] === "attribute") {
+          l.push(-20);
+          return;
+        }
+        if (n.arrayFormat === "indent") {
+          N[N.length - 1] = !1, l.push(h);
+          return;
+        }
+        if (n.arrayFormat === "inline") {
+          N[N.length - 1] = !0, l.push(-20);
+          return;
+        }
+        if (F === "method" || N[N.length - 1] === !0) {
+          l.push(-20);
+          return;
+        }
+        let b = t + 1;
+        do {
+          if (i(e.token[b], 93)) {
+            l.push(-20);
+            return;
+          }
+          if (i(e.token[b], 44)) {
+            l.push(h);
+            return;
+          }
+          b = b + 1;
+        } while (b < o);
+        l.push(-20);
+      }
+    }
+    function $() {
+      p.length === 1 ? (l.push(-20), e.lines[t] === 0 && (l[t - 1] = -20)) : p.indexOf("#!/") === 0 ? l.push(h) : w === "liquid" ? l[t - 1] = -10 : l.push(-10), (i(_, 44) || w === "start") && (e.stack[t] === "object" || e.stack[t] === "array") && N[N.length - 1] === !1 && t > 0 && (l[t - 1] = h);
+    }
+    function G() {
+      m === "liquid_start" ? w === "string" ? (e.lines[t - 1] <= 1 && (l[t - 1] = -20), e.lines[t] > 1 ? (h = h + 1, l.push(h)) : l.push(-10)) : e.lines[t] > 1 ? (h = h + 1, l.push(h)) : e.lines[t] === 1 ? l.push(-10) : (l[t - 1] = -20, l.push(-20)) : m === "liquid_else" ? w === "string" ? (e.lines[t - 1] <= 1 && (l[t - 1] = -20), e.lines[t] > 0 ? (h = h - 1, l.push(h)) : l.push(-20)) : e.lines[t] > 1 ? (l[t - 1] = h - 1, l.push(h)) : e.lines[t] === 1 ? l.push(-10) : l.push(-20) : m === "liquid_end" ? w === "string" ? (e.lines[t - 1] <= 1 && (l[t - 1] = -20), e.lines[t] > 1 ? (l[t - 1] = h - 1, l.push(h)) : l.push(-10)) : w === "liquid" && e.lines[t] < 2 ? l.push(-10) : e.lines[t] > 1 ? (l[t - 1] = h, l.push(h)) : e.lines[t] === 0 ? (l[t - 1] = -20, h = h - 1, l.push(-20)) : (h = h - 1, l.push(h)) : m === "liquid" && (i(_, 58) && l[t - 2] === -10 && (l[t - 2] = -20), w === "string" && l[t - 2] === -10 ? (l[t - 1] = -20, l.push(-10)) : e.lines[t] > 1 ? l.push(h) : e.lines[t] === 1 ? l.push(-10) : l.push(-20));
+    }
+    function oe() {
+      m === "template_string_start" ? (h = h + 1, l.push(h)) : m === "template_string_else" ? (O(), l[t - 1] = h - 1, l.push(h)) : (O(), h = h - 1, l[t - 1] = h, l.push(-10)), t > 2 && (e.types[t - 2] === "template_string_else" || e.types[t - 2] === "template_string_start") && (n.bracePadding === !0 ? (l[t - 2] = -10, l[t - 1] = -10) : (l[t - 2] = -20, l[t - 1] = -20));
+    }
+    function ne() {
+      i(e.token[t - 1], 44) || i(e.token[t - 1], 58) && e.stack[t - 1] !== "data_type" ? l[t - 1] = -10 : l[t - 1] = -20, (e.types[t] === "type" || e.types[t] === "type_end") && l.push(-10), e.types[t] === "type_start" && l.push(-20);
+    }
+    function Y() {
+      if ((i(_, 41) || _ === "x)") && e.stack[t] === "class" && (e.token[e.begin[t - 1] - 1] === "static" || e.token[e.begin[t - 1] - 1] === "final" || e.token[e.begin[t - 1] - 1] === "void") && (l[t - 1] = -10, l[e.begin[t - 1] - 1] = -10), i(_, 93) && (l[t - 1] = -10), p === "else" && i(_, 125) && (e.token[t - 2] === "x}" && (l[t - 3] = l[t - 3] - 1), (n.braceAllman === !0 || n.elseNewline === !0) && (l[t - 1] = h)), p === "new" && we.js.keywords.has(e.token[t + 1]) && (A = A + 1), p === "from" && w === "end" && t > 0 && (e.token[e.begin[t - 1] - 1] === "import" || i(e.token[e.begin[t - 1] - 1], 44)) && (l[t - 1] = -10), p === "function") {
+        if (n.functionSpace === !1 && t < o - 1 && (i(e.token[t + 1], 40) || e.token[t + 1] === "x(")) {
+          l.push(-20);
+          return;
+        }
+        l.push(-10);
+        return;
+      }
+      if (i(_, 45) && t > 1)
+        e.types[t - 2] === "operator" || i(e.token[t - 2], 44) ? l[t - 1] = -20 : e.types[t - 2] === "start" && (l[t - 2] = -20, l[t - 1] = -20);
+      else if (p === "while" && (i(_, 125) || _ === "x}")) {
+        let F = t - 1, H = 0;
+        do {
+          if ((i(e.token[F], 125) || e.token[F] === "x}") && (H = H + 1), (i(e.token[F], 123) || e.token[F] === "x{") && (H = H - 1), H === 0) {
+            if (e.token[F - 1] === "do") {
+              l[t - 1] = -10;
+              break;
+            }
+            l[t - 1] = h;
+            break;
+          }
+          F = F - 1;
+        } while (F > -1);
+      } else if (p === "in" || (i(_, 125) || _ === "x}") && (p === "catch" || p === "else" && n.elseNewline === !1 && n.braceAllman === !1))
+        l[t - 1] = -10;
+      else if (p === "var" || p === "let" || p === "const") {
+        if (I[I.length - 1] = t, w === "end" && (l[t - 1] = h), e.token[e.begin[t] - 1] !== "for") {
+          let F = t + 1, H = 0;
+          do {
+            if (e.types[F] === "end" && (H = H - 1), e.types[F] === "start" && (H = H + 1), H < 0 || H === 0 && (i(e.token[F], 59) || i(e.token[F], 44)))
+              break;
+            F = F + 1;
+          } while (F < o);
+          i(e.token[F], 44) && (h = h + 1);
+        }
+        l.push(-10);
+        return;
+      }
+      if (w !== "word" && e.stack[t] === "switch" && (p === "default" || p === "case")) {
+        l[t - 1] = h - 1, l.push(-10);
+        return;
+      }
+      if (p === "catch" && _ === ".") {
+        l[t - 1] = -20, l.push(-20);
+        return;
+      }
+      if (p === "catch" || p === "finally") {
+        l[t - 1] = -10, l.push(-10);
+        return;
+      }
+      if (n.bracePadding === !1 && t < o - 1 && i(e.token[t + 1], 125)) {
+        l.push(-20);
+        return;
+      }
+      if (e.stack[t] === "object" && (i(_, 123) || i(_, 44)) && (i(e.token[t + 1], 40) || e.token[t + 1] === "x(")) {
+        l.push(-20);
+        return;
+      }
+      e.types[t - 1] === "comment" && i(e.token[e.begin[t]], 40) && (l[t - 1] = h + 1), s.script.inlineReturn === !0 && p === "return" && w === "start" && e.stack[t] === "if" && _ === "x{" ? (l[t - 1] = -20, l.push(-20)) : l.push(-10);
+    }
+    do
+      e.lexer[t] === C ? (m = e.types[t], p = e.token[t], m === "comment" ? P() : m === "regex" ? l.push(-20) : m === "string" ? $() : m.indexOf("template_string") === 0 ? oe() : m === "separator" ? J() : m === "start" ? $e() : m === "end" ? ge() : m === "type" || m === "type_start" || m === "type_end" ? ne() : m === "operator" ? K() : m === "word" ? Y() : m === "reference" ? se() : m === "markup" ? ke() : m.indexOf("liquid") > -1 ? G() : m === "generic" ? (T(_, 35) && _ !== "return" && w !== "operator" && _ !== "public" && _ !== "private" && _ !== "static" && _ !== "final" && _ !== "implements" && _ !== "class" && _ !== "void" && (l[t - 1] = -20), i(e.token[t + 1], 40) || e.token[t + 1] === "x(" ? l.push(-20) : l.push(-10)) : l.push(-10), m !== "comment" && (w = m, _ = p), B.length > 0 && T(e.token[t], 41) && (e.types[t] === "comment" && B[B.length - 1] > -1 ? B[B.length - 1] = s.wrap + 1 : l[t] > -1 || i(e.token[t], 96) && e.token[t].indexOf(z) > 0 ? B[B.length - 1] = -1 : B[B.length - 1] > -1 && (B[B.length - 1] = B[B.length - 1] + e.token[t].length, l[t] === -10 && (B[B.length - 1] = B[B.length - 1] + 1)))) : Ce(), t = t + 1;
+    while (t < o);
+    return l;
+  })();
+  return (() => {
+    let t = [], h = s.indentChar.repeat(s.indentSize), V = s.preserveLine + 1, le = [
+      "x;",
+      "x}",
+      "x{",
+      "x(",
+      "x)"
+    ], m = r.start, p = s.indentLevel;
+    function w(I) {
+      let d = (() => m === o - 1 ? 1 : e.lines[m + 1] - 1 > V ? V : e.lines[m + 1] > 1 ? e.lines[m + 1] - 1 : 1)();
+      return r.crlf.repeat(d) + h.repeat(I);
+    }
+    if (n.vertical === !0) {
+      let I = function(d) {
+        let l = 0, g = 0, M = d - 1, L = 0, N = 0, S = e.begin[m], j = [];
+        do {
+          if ((e.begin[M] === S || i(e.token[M], 93) || i(e.token[M], 41)) && (i(e.token[M + 1], 61) || i(e.token[M + 1], 59) && e.stack[M] === "object")) {
+            L = M, g = 0;
+            do {
+              if (e.begin[L] === S) {
+                if (i(e.token[L], 58) || i(e.token[L], 59) || e.token[L] === "x;" || k[L] > -1 && e.types[L] !== "comment") {
+                  i(e.token[L + 1], 46) && (g = g + s.indentSize * s.indentChar.length);
+                  break;
+                }
+              } else if (k[L] > -1)
+                break;
+              e.types[L] !== "comment" && (k[L - 1] === -10 && (g = g + 1), g = e.token[L].length + g), L = L - 1;
+            } while (L > S);
+            if (N = L, i(e.token[N], 44) && i(e.token[M + 1], 61))
+              do {
+                if (e.types[N] === "end" && (N = e.begin[N]), e.begin[N] === S) {
+                  if (i(e.token[N], 59) || e.token[N] === "x;")
+                    break;
+                  if (e.token[N] === "var" || e.token[N] === "const" || e.token[N] === "let") {
+                    g = g + s.indentSize * s.indentChar.length;
+                    break;
+                  }
+                }
+                N = N - 1;
+              } while (N > S);
+            g > l && (l = g), j.push([M, g]), M = L;
+          } else
+            e.types[M] === "end" && (M = e.begin[M]);
+          M = M - 1;
+        } while (M > S);
+        if (M = j.length, M > 0)
+          do
+            if (M = M - 1, L = j[M][1], L < l)
+              do
+                e.token[j[M][0]] = e.token[j[M][0]] + ee, L = L + 1;
+              while (L < l);
+          while (M > 0);
+      };
+      m = o;
+      do
+        m = m - 1, e.lexer[m] === "script" && i(e.token[m], 125) && T(e.token[m - 1], 123) && k[e.begin[m]] > 0 ? I(m) : m = e.begin[m];
+      while (m > 0);
+    }
+    m = r.start;
+    do {
+      if (e.lexer[m] === C) {
+        if (e.types[m] === "comment" && n.commentIndent === !0 && ft.test(e.token[m])) {
+          let I = e.begin[m] > -1 ? i(e.token[m][2], 42) ? oi(k[m], h) + s.indentChar : oi(k[m], h) : s.indentChar, d = e.token[m].split(z), l = 1;
+          do
+            d[l] = I + d[l].trimStart(), l = l + 1;
+          while (l < d.length);
+          e.token.splice(m, 1, d.join(z));
+        }
+        le.indexOf(e.token[m]) < 0 && (T(e.token[m], 59) || n.noSemicolon === !1 ? t.push(e.token[m]) : k[m] < 0 && e.types[m + 1] !== "comment" && t.push(";")), m < o - 1 && e.lexer[m + 1] !== C && e.begin[m] === e.begin[m + 1] && e.types[m + 1].indexOf("end") < 0 && T(e.token[m], 44) ? t.push(ee) : k[m] > -1 ? ((k[m] > -1 && i(e.token[m], 123) || k[m] > -1 && i(e.token[m + 1], 125)) && e.lines[m] < 3 && n.braceNewline === !0 && e.lines[m + 1] < 3 && t.push(w(0)), r.mode === 2 ? r.ender !== m && t.push(w(k[m])) : m !== o - 1 && t.push(w(k[m])), p = k[m]) : k[m] === -10 && (t.push(ee), e.lexer[m + 1] !== C && (p = p + 1));
+      } else if (a[m] === m)
+        t.push(e.token[m]);
+      else {
+        r.ender = a[m], r.start = m;
+        let I = r.external(p);
+        t.push(I), m = r.iterator, k[m] === -10 ? t.push(ee) : k[m] > -1 && t.push(w(k[m]));
+      }
+      m = m + 1;
+    } while (m < o);
+    return r.iterator = o - 1, t.join(c);
+  })();
+}
+
+// src/format/style.ts
+function cn() {
+  let e = [], { data: s, rules: n, crlf: u } = r, A = Fe(null), a = r.ender > 0 ? r.ender + 1 : s.token.length, C = n.preserveLine + 1, o = n.indentChar.repeat(n.indentSize), k = n.indentLevel, f = r.start, t = [c, c];
+  function h(le, m) {
+    return s.types[le] === m;
+  }
+  function V(le) {
+    let m = [], p = (() => f === a - 1 ? 1 : s.lines[f + 1] - 1 > C ? C : s.lines[f + 1] > 1 ? s.lines[f + 1] - 1 : 1)(), w = 0;
+    le < 0 && (le = 0);
+    do
+      m.push(u), w = w + 1;
+    while (w < p);
+    if (le > 0) {
+      w = 0;
+      do
+        m.push(o), w = w + 1;
+      while (w < le);
+    }
+    e.push(m.join(c));
+  }
+  do {
+    switch ((h(f + 1, "end") || h(f + 1, "liquid_end") || h(f + 1, "liquid_else")) && k > 0 && (k = k - 1), h(f, "liquid") ? (h(f - 1, "separator") && V(k), e.push(s.token[f]), h(f + 1, "separator") === !1 && T(s.token[f + 1], 59) && we.css.units.has(s.token[f + 1]) === !1 && (h(f + 1, "start") ? e.push(ee) : h(f + 1, "colon") === !1 && V(k))) : h(f - 1, "selector") && h(f, "liquid") && h(f + 1, "selector") ? (e.push(s.token[f]), Qe(s.token[f - 1], 45) && (i(s.token[f + 1], 46) || i(s.token[f + 1], 35) || i(s.token[f + 1], 38)) && e.push(ee)) : h(f, "liquid_else") ? (e.push(s.token[f]), h(f + 1, "property") && (k = k + 1), s.lines[f + 1] === 1 ? e.push(ee) : s.lines[f + 1] > 1 && V(k)) : h(f, "liquid_start") ? (e.push(s.token[f]), s.lines[f + 1] === 1 ? e.push(ee) : (s.lines[f + 1] > 1 || (h(f + 1, "liquid") || h(f + 1, "selector")) && h(f + 2, "start")) && (k = k + 1, V(k))) : h(f, "liquid_end") ? (e.push(s.token[f]), h(f + 1, "start") ? e.push(ee) : s.lines[f + 1] !== 0 && V(k)) : h(f, "start") ? (e.push(s.token[f]), (h(f + 1, "property") || h(f + 1, "selector") || h(f + 1, "comment") || h(f + 1, "liquid") || h(f + 1, "liquid_start")) && (k = k + 1), h(f + 1, "end") === !1 && V(k)) : i(s.token[f], 59) ? (e.push(s.token[f]), h(f + 1, "property") && ((h(f - 2, "liquid") || h(f - 2, "liquid_end")) && h(f - 1, "value") || h(f - 1, "liquid_end")) && (k = k + 1, k > A.property && (k = A.property)), V(k)) : h(f, "end") || h(f, "comment") ? (e.push(s.token[f]), h(f + 1, "value") ? s.lines[f + 1] === 1 ? e.push(ee) : s.lines[f + 1] > 1 && V(k) : h(f - 1, "liquid_end") && h(f, "separator") && h(f + 1, "property") ? (k = k + 1, V(k)) : h(f + 1, "separator") === !1 ? h(f + 1, "comment") === !1 || h(f + 1, "comment") && s.lines[f + 1] > 1 ? V(k) : e.push(ee) : h(f, "comment") && h(f + 1, "comment") === !1 && s.lines[f] > 1 && V(k)) : i(s.token[f], 58) ? (e.push(s.token[f]), h(f + 1, "selector") === !1 && T(s.token[f + 1], 44) && e.push(ee)) : h(f, "selector") || h(f, "at_rule") ? (n.style.classPadding === !0 && h(f - 1, "end") && s.lines[f] < 3 && V(k), s.token[f].indexOf("and(") > 0 ? (s.token[f] = s.token[f].replace(/and\(/, "and ("), e.push(s.token[f])) : s.token[f].indexOf("when(") > 0 ? (t = s.token[f].split("when("), e.push(t[0].replace(/\s+$/, c)), V(k + 1), e.push(`when (${t[1]}`)) : e.push(s.token[f]), h(f + 1, "start") ? (e.push(ee), h(f, "at_rule") && h(f + 2, "colon") && (k = k + 1)) : s.types[f + 1].indexOf("liquid") > -1 && s.lines[f + 1] === 0 && (e.push(s.token[f + 1]), f = f + 1, h(f + 1, "start") && e.push(ee), h(f + 1, "selector") && i(s.token[f + 1], 46) && e.push(ee))) : i(s.token[f], 44) ? (h(f + 1, "value") && V(k), e.push(s.token[f]), h(f + 1, "selector") || h(f + 1, "property") ? V(k) : e.push(ee), h(f - 1, "selector") && h(f + 1, "liquid_end") && V(k)) : s.stack[f] === "map" && i(s.token[f + 1], 41) && f - s.begin[f] > 5 ? (e.push(s.token[f]), V(k)) : s.token[f] === "x;" ? V(k) : (h(f, "variable") || h(f, "function")) && n.style.classPadding === !0 && h(f - 1, "end") && s.lines[f] < 3 ? (e.push(u), e.push(s.token[f])) : T(s.token[f], 59) && (e.push(s.token[f]), (h(f + 1, "liquid_end") || h(f + 1, "liquid_else")) && (s.lines[f + 1] === 1 ? e.push(ee) : s.lines[f + 1] > 1 && V(k))), s.types[f + 1]) {
+      case "property":
+        A.property = k;
+        break;
+      case "end":
+        A.property = k - 1;
+        break;
+      case "selector":
+        s.types[f] === "selector" && (A.property = k);
+        break;
+    }
+    f = f + 1;
+  } while (f < a);
+  return r.iterator = a - 1, (e[0] === r.crlf || i(e[0], 32)) && (e[0] = c), r.mode === 2 ? e.join(c).trimEnd() : n.endNewline === !0 ? e.join(c).replace(/\s*$/, r.crlf) : e.join(c).trimEnd();
+}
+
+// src/format/index.ts
+function wi(e) {
+  if (e === 1)
+    return un();
+  if (e === 3)
+    return cn();
+  if (e === 2)
+    return fn();
+}
+
+// src/rules/presets/default.ts
+var Ge = {
+  crlf: !1,
+  correct: !1,
+  preset: "default",
+  language: "auto",
+  endNewline: !1,
+  indentChar: " ",
+  indentLevel: 0,
+  indentSize: 2,
+  preserveLine: 2,
+  wrap: 0,
+  wrapFraction: 0,
+  liquid: {
+    commentNewline: !1,
+    commentIndent: !0,
+    delimiterTrims: "preserve",
+    delimiterPlacement: "preserve",
+    forceFilter: 0,
+    forceArgument: 0,
+    ignoreTagList: [],
+    indentAttribute: !1,
+    lineBreakSeparator: "before",
+    normalizeSpacing: !0,
+    paddedTagList: [],
+    preserveComment: !1,
+    dedentTagList: [],
+    quoteConvert: "none"
+  },
+  markup: {
+    attributeCasing: "preserve",
+    attributeSort: !1,
+    commentDelimiters: "preserve",
+    commentNewline: !1,
+    commentIndent: !0,
+    delimiterTerminus: "inline",
+    forceAttribute: 3,
+    forceAttributeValue: !0,
+    forceIndent: !1,
+    ignoreCSS: !1,
+    ignoreJS: !0,
+    ignoreJSON: !1,
+    lineBreakValue: "preserve",
+    preserveComment: !1,
+    preserveText: !1,
+    preserveAttribute: !1,
+    selfCloseSpace: !0,
+    selfCloseSVG: !0,
+    stripAttributeLines: !1,
+    quoteConvert: "none"
+  },
+  json: {
+    arrayFormat: "default",
+    braceAllman: !1,
+    bracePadding: !1,
+    objectIndent: "default",
+    objectSort: !1,
+    braceStyle: "none",
+    caseSpace: !1,
+    commentIndent: !1,
+    commentNewline: !1,
+    correct: !1,
+    elseNewline: !1,
+    functionNameSpace: !1,
+    functionSpace: !1,
+    methodChain: 4,
+    neverFlatten: !1,
+    noCaseIndent: !1,
+    preserveComment: !1,
+    styleGuide: "none",
+    ternaryLine: !1,
+    variableList: "none",
+    quoteConvert: "double",
+    endComma: "never",
+    noSemicolon: !0,
+    vertical: !1
+  },
+  style: {
+    commentIndent: !1,
+    commentNewline: !1,
+    atRuleSpace: !0,
+    classPadding: !1,
+    noLeadZero: !1,
+    preserveComment: !1,
+    sortSelectors: !1,
+    sortProperties: !1,
+    quoteConvert: "none"
+  },
+  script: {
+    arrayFormat: "default",
+    braceNewline: !1,
+    bracePadding: !1,
+    braceStyle: "none",
+    braceAllman: !1,
+    caseSpace: !1,
+    commentIndent: !1,
+    commentNewline: !1,
+    elseNewline: !1,
+    endComma: "never",
+    functionNameSpace: !1,
+    functionSpace: !1,
+    inlineReturn: !0,
+    methodChain: 4,
+    neverFlatten: !1,
+    noCaseIndent: !1,
+    noSemicolon: !1,
+    objectSort: !1,
+    objectIndent: "default",
+    preserveComment: !1,
+    quoteConvert: "none",
+    styleGuide: "none",
+    ternaryLine: !1,
+    variableList: "none",
+    vertical: !1
+  }
+};
+
+// src/parse/parser.ts
+var Si = class extends Array {
+  get entry() {
+    return this[this.length - 1];
+  }
+  get token() {
+    return this[this.length - 1][0];
+  }
+  get index() {
+    return this[this.length - 1][1];
+  }
+  update(s, n) {
+    let u = this.length - 1;
+    return u > 0 ? (n === void 0 ? typeof s == "string" ? this[u][0] = s : this[u][1] = s : (this[u][0] = s, this[u][1] = n), this[u]) : (this.push([s, n]), this[u + 1]);
+  }
+  pop() {
+    let s = this.length - 1, n = this[s];
+    return s > 0 && this.splice(s, 1), n;
+  }
+}, it = class it {
+  constructor() {
+    /**
+     * Hooks
+     *
+     * Event Listeners which will trigger during traversal and the
+     * formatting cycle. This is a future feature to allow consumers
+     * to augment and adjust tokens.
+     */
+    this.hooks = { parse: null, format: null };
+    /**
+     * Hard coded line numbers
+     */
+    this.numbers = [];
+    /**
+     * Reference to a starting index within the data structure. This is
+     * used for external regions, but can also provide incremental support.
+     */
+    this.start = 0;
+    /**
+     * Reference to a ender index within the data structure. This is
+     * used for external regions, but can also provide incremental support.
+     */
+    this.ender = 0;
+    /**
+     * A reference to `a` which holds index reference. This is not always identical
+     * to the current index when lexing, instead it acts as a universal store
+     * when specific position reference indexes need to be referred.
+     */
+    this.iterator = 0;
+    /**
+     * Reference of attributes of newline values with containing Liquid block tokens.
+     * It maintains a store which is generated in the markup lexer and used within
+     * the beautification cycle
+     */
+    this.attributes = /* @__PURE__ */ new Map();
+    /**
+     * External language regions, typically embedded tokens which use a different
+     * lexer. This map maintains stores during the lexing process for switching.
+     */
+    this.regions = /* @__PURE__ */ new Map();
+    /**
+     * Holds a store reference to markup start/end pairs. This is used for potential
+     * parse errors and keeps track of paired sequences for syntactic reporting.
+     */
+    this.pairs = Fe(null);
+    /**
+     * Parse Error reference. Defaults to `null` and will be assigned an object reference exception
+     */
+    this.error = null;
+    /**
+     * Hardcoded string reference to CRLF rule
+     */
+    this.crlf = z;
+    /**
+     * Stores the declared variable names for the script lexer. This must be stored outside
+     * the script lexer since some languages recursive use of the script lexer
+     */
+    this.references = [[]];
+    /**
+     * Stores the final index location of the data arrays
+     */
+    this.count = -1;
+    /**
+     * The current line column character starting from left side of the
+     * beginning of a newline. For example
+     *
+     * ```
+     *
+     * 1 | xxx
+     * 2 | hello world
+     *               ^   // Column 11
+     *
+     * ```
+     *
+     * In the example above, the column reference equals `[11]` and points
+     * to the letter `d` in cases where we need this context, it exists
+     * at this point.
+     */
+    this.lineColumn = 0;
+    /**
+     * The current line number. Line numbers start at index `1` instead of `0`,
+     * which is something to keep in mind if referencing. This is used in errors
+     * and counts the number of lines as we have spanned during traversal. For example:
+     *
+     * ```
+     *
+     * 1 | hello  // Line 1
+     * 2 | world  // Line 2
+     *
+     *
+     * ```
+     */
+    this.lineNumber = 1;
+    /**
+     * The current line depth. This keep a reference to the indentation
+     * depth currently traversed and used to capture the left most indent level.
+     *
+     * ```
+     *
+     * 1 | <div>        // 2
+     * 2 | <ul>         // 4
+     * 3 | <li>         // 6
+     * 4 | {{ HERE }}   // 8
+     * 5 | </li>        // 6
+     * 6 | </ul>        // 4
+     * 7 | </div>       // 2
+     *
+     * ```
+     *
+     * In the example above, it is assumed that `indentChar` is set to a value
+     * of `2` (default). For every `start` token, the depth increases.
+     */
+    this.lineDepth = 2;
+    /**
+     * The record `lines` value count before the next token, for example:
+     *
+     * ```
+     *
+     * 1 | foo  // line offset is: 0
+     * 2 | bar  // line offset is: 2
+     * 3
+     * 4 | baz  // line offset is: 3
+     * 5
+     * 6
+     * 7 | qux  // line offset is: 4
+     * 8 | xxx  // line offset is: 2
+     *
+     *
+     * ```
+     *
+     * Where `foo` is `0` as it exists on line `1` but `bar` is `2` because
+     * it counts line `1` as a single line and given it exists on line `2`
+     * another line offset increment is applies. The word `baz` is similar to
+     * `bar` but has a count of `3` given a newline exists above it and this
+     * pattern follows as we progress to `qux` which has 2 newlines, equating
+     * to a value line offset of `4` whereas `xxx` only has `2` so on and so forth.
+     */
+    this.lineOffset = 0;
+    /**
+     * The character index of the last known newline, for example:
+     *
+     * ```
+     *
+     * 1 | abcdefgh
+     * 2 | ijklmnop
+     *     ^
+     *
+     * ```
+     *
+     * Where character `i` is index `[8]` and index `[8]` is the
+     * beginning of line `2`.
+     *
+     */
+    this.lineIndex = 0;
+    /**
+     * The formatting and parse rules
+     */
+    this.rules = Ge;
+    /**
+     * The parse table data structure
+     */
+    this.data = {
+      begin: [],
+      ender: [],
+      lexer: [],
+      lines: [],
+      stack: [],
+      token: [],
+      types: []
+    };
+  }
+  /**
+   * The document source `input` reference
+   */
+  get source() {
+    return this.mode === 2 ? it.region : Re.env === "node" && Buffer.isBuffer(it.input) ? it.input.toString() : it.input;
+  }
+  /**
+   * Set the source `input` reference
+   */
+  set source(s) {
+    it.input = Re.env !== "node" || Buffer.isBuffer(s) ? s : Buffer.from(s);
+  }
+  get current() {
+    return {
+      begin: this.data.begin[this.count],
+      ender: this.data.ender[this.count],
+      lexer: this.data.lexer[this.count],
+      lines: this.data.lines[this.count],
+      stack: this.data.stack[this.count],
+      token: this.data.token[this.count],
+      types: this.data.types[this.count]
+    };
+  }
+  /**
+   * Reset
+   *
+   * Resets the current stores for clean parse structures
+   */
+  reset() {
+    this.error = null, this.count = -1, this.start = 0, this.ender = 0, this.lineColumn = 0, this.lineNumber = 1, this.lineDepth = 2, this.lineIndex = 0, this.lineOffset = 0, this.numbers = [], this.data.begin = [], this.data.ender = [], this.data.lexer = [], this.data.lines = [], this.data.stack = [], this.data.token = [], this.data.types = [], this.references = [[]], this.stack = new Si(["global", -1]), this.mode = 1, this.pairs = Fe(null), this.attributes.size > 0 && this.attributes.clear(), this.regions.size > 0 && this.regions.clear();
+  }
+  /**
+   * Get Record
+   *
+   * Returns a record at the give index
+   */
+  get(s) {
+    return {
+      begin: this.data.begin[s],
+      ender: this.data.ender[s],
+      lexer: this.data.lexer[s],
+      lines: this.data.lines[s],
+      stack: this.data.stack[s],
+      token: this.data.token[s],
+      types: this.data.types[s]
+    };
+  }
+  /**
+   * Document Parse
+   *
+   * Executes a full parse - top to bottom.
+   */
+  document(s, n = 3) {
+    return ei.test(this.source) ? this.source : (this.reset(), yi(s), n === 1 ? this.data : (this.mode = 3, wi(s)));
+  }
+  /**
+   * Switch
+   *
+   * Used to switch between lexers and formatters when
+   * dealing with embedded regions.
+   */
+  external(s, n) {
+    if (this.mode === 1) {
+      this.mode = 2;
+      let u = St(s);
+      it.region = n, this.language = s, this.lexer = Ie(this.language), this.regions.set(this.count + 1, { lexer: u, id: this.language }), yi(u), this.mode = 1, this.lexer = Ie(this.rules.language), this.language = this.rules.language;
+    } else {
+      if (this.regions.size === 0)
+        return this.source;
+      let { id: u, lexer: A } = this.regions.get(this.start);
+      this.mode = 2, this.language = u, this.rules.indentLevel = s;
+      let a = wi(A);
+      return this.mode = 3, this.rules.indentLevel = 0, this.language = this.rules.language, this.lexer = Ie(this.language), a;
+    }
+  }
+  /**
+   * Push Final
+   *
+   * The final conclusion for the data strucuture uniform.
+   */
+  final(s) {
+    let n = this.count, u = s.begin[n];
+    if (!(s.lexer[n] === "style" && (this.rules.style.sortProperties || this.rules.style.sortSelectors) || s.lexer[n] === "script" && (this.rules.script.objectSort || this.rules.json.objectSort))) {
+      do
+        s.begin[n] === u || s.begin[s.begin[n]] === u && s.types[n].indexOf("attribute") > -1 && s.types[n].indexOf("attribute_end") < 0 ? s.ender[n] = this.count : n = s.begin[n], n = n - 1;
+      while (n > u);
+      n > -1 && (s.ender[n] = this.count);
+    }
+  }
+  /**
+   * Syntactical Tracking
+   *
+   * This is a store The `parse.data.begin` index. This will typically
+   * reference the `parse.count` value, incremented by `1`
+   */
+  syntactic(s, n) {
+    if (s.types === "liquid_start" || s.types === "start")
+      this.pairs[this.count] = {
+        index: this.count,
+        line: this.lineNumber,
+        token: s.token,
+        skip: !1,
+        type: s.types === "start" ? 2 : 3,
+        stack: n
+      };
+    else if (this.stack.index in this.pairs && (s.types === "end" || s.types === "liquid_end")) {
+      let u = this.pairs[this.stack.index];
+      u.skip && delete this.pairs[this.stack.index], u.type === 3 ? s.token.indexOf(`end${u.stack}`) > -1 ? delete this.pairs[this.stack.index] : s.stack === "liquid" && (s.token === "%}" || s.token === "-%}") ? delete this.pairs[this.stack.index] : jt(114, u) : u.type === 2 && (`</${u.stack}>` === s.token ? delete this.pairs[this.stack.index] : jt(105, u));
+    }
+  }
+  /**
+   * Replace Record
+   *
+   * Replaces a single record at the provided index. If no index is
+   * passed it will use the last known record reference.
+   */
+  replace(s, n = this.count) {
+    for (let u in s)
+      this.data[u][n] = s[u];
+  }
+  /**
+   * Push Structure
+   *
+   * An extension of `Array.prototype.push` to work across the parse table data structure
+   */
+  push(s, n, u = c) {
+    if (s.begin.push(n.begin), s.ender.push(n.ender), s.lexer.push(n.lexer), s.stack.push(n.stack), s.token.push(n.token), s.types.push(n.types), s.lines.push(n.lines), this.numbers.push(this.lineNumber), s === this.data) {
+      if (this.count = this.count + 1, n.lexer !== "style" && u.replace(/[{}<>%]/g, c) === c && (u = n.types === "else" ? "else" : Ue(n.token)), n.lexer === "markup" && n.stack !== "liquid" && this.syntactic(n, u), this.lineOffset = 0, n.types === "start" || n.types.indexOf("_start") > 0)
+        this.stack.push([u, this.count]), this.lineDepth = this.lineDepth + this.rules.indentSize;
+      else if (n.types === "end" || n.types.indexOf("_end") > 0) {
+        let A = 0, a = this.stack.length;
+        a > 2 && (s.types[this.stack[a - 1][1]] === "else" || s.types[this.stack[a - 1][1]].indexOf("_else") > 0) && (s.types[this.stack[a - 2][1]] === "start" || s.types[this.stack[a - 2][1]].indexOf("_start") > 0) && (s.types[this.stack[a - 2][1] + 1] === "else" || s.types[this.stack[a - 2][1] + 1].indexOf("_else") > 0) && (this.stack.pop(), s.begin[this.count] = this.stack.index, s.stack[this.count] = this.stack.token, s.ender[this.count - 1] = this.count, A = s.ender[s.begin[this.count] + 1]), this.final(s), A > 0 && (s.ender[s.begin[this.count] + 1] = A), this.stack.pop(), this.lineDepth = this.lineDepth - this.rules.indentSize;
+      } else
+        (n.types === "else" || n.types.indexOf("_else") > 0) && (u === c && (u = "else"), this.count > 0 && (s.types[this.count - 1] === "start" || s.types[this.count - 1].indexOf("_start") > 0) ? this.stack.push([u, this.count]) : (this.final(s), this.stack.update(u === c ? "else" : u, this.count)));
+      this.hooks.parse !== null && this.hooks.parse[0].call({
+        line: this.lineNumber,
+        stack: this.stack.entry,
+        language: this.language
+      }, n, this.count);
+    }
+  }
+  /**
+   * Pop Structure
+   *
+   * An extension of `Array.prototype.pop` to work across the data
+   * structure
+   */
+  pop(s) {
+    return s === this.data && (this.count = this.count - 1), this.numbers.pop(), {
+      begin: s.begin.pop(),
+      ender: s.ender.pop(),
+      lexer: s.lexer.pop(),
+      lines: s.lines.pop(),
+      stack: s.stack.pop(),
+      token: s.token.pop(),
+      types: s.types.pop()
+    };
+  }
+  /**
+   * Concat Structure
+   *
+   * An extension of `Array.prototype.concat` to work across
+   * the data structure. This is an expensive operation.
+   */
+  concat(s, n) {
+    s.begin = s.begin.concat(n.begin), s.ender = s.ender.concat(n.ender), s.lexer = s.lexer.concat(n.lexer), s.stack = s.stack.concat(n.stack), s.token = s.token.concat(n.token), s.types = s.types.concat(n.types), s.lines = s.lines.concat(n.lines), s === this.data && (this.count = s.token.length - 1);
+  }
+  /**
+   * Splice Structure
+   *
+   * An extension of `Array.prototype.splice` to work across the data structure
+   */
+  splice(s) {
+    let n = this.data.begin[this.count], u = this.data.token[this.count];
+    s.record !== void 0 && s.record.token !== c ? (s.data.begin.splice(s.index, s.howmany, s.record.begin), s.data.ender.splice(s.index, s.howmany, s.record.ender), s.data.token.splice(s.index, s.howmany, s.record.token), s.data.lexer.splice(s.index, s.howmany, s.record.lexer), s.data.stack.splice(s.index, s.howmany, s.record.stack), s.data.types.splice(s.index, s.howmany, s.record.types), s.data.lines.splice(s.index, s.howmany, s.record.lines), s.data === this.data && (this.count = this.count - s.howmany + 1, (n !== this.data.begin[this.count] || u !== this.data.token[this.count]) && (this.lineOffset = 0))) : (s.data.begin.splice(s.index, s.howmany), s.data.ender.splice(s.index, s.howmany), s.data.token.splice(s.index, s.howmany), s.data.lexer.splice(s.index, s.howmany), s.data.stack.splice(s.index, s.howmany), s.data.types.splice(s.index, s.howmany), s.data.lines.splice(s.index, s.howmany), s.data === this.data && (this.count = this.count - s.howmany, this.lineOffset = 0));
+  }
+  /**
+   * Is Checksum
+   *
+   * Checks a record value on the last know entry in the
+   * parse table data strcuture
+   */
+  is(s, n) {
+    return this.count > 0 ? this.data[s][this.count] === n : !1;
+  }
+  /**
+   * Line Increment
+   *
+   * A small helper for incrementing newlines. Expects an `index` which
+   * matches the current iteration point and an optional `lines` parameter
+   * which will be incremented by `1` and the returning value.
+   */
+  lines(s, n) {
+    return this.lineNumber = this.lineNumber + 1, this.lineIndex = s, n + 1;
+  }
+  spacer(s) {
+    this.lineOffset = 1;
+    do {
+      if (i(s.array[s.index], 10) && (this.lineIndex = s.index, this.lineOffset = this.lineOffset + 1, this.lineNumber = this.lineNumber + 1), lt(s.array[s.index + 1]))
+        break;
+      s.index = s.index + 1;
+    } while (s.index < s.end);
+    return s.index;
+  }
+};
+/**
+ * Static reference of the provided input
+ */
+it.input = c, /**
+ * Static reference to the current external region input
+ */
+it.region = c;
+var Li = it, r = new Li();
+
+// src/parse/detection.ts
+function pn(e) {
+  let s = [], n = 0, u = /(((var)|(let)|(const)|(function)|(import))\s+(\w|\$)+[a-zA-Z0-9]*)/.test(e) && /@import/.test(e) === !1, A = /((((final)|(public)|(private))\s+static)|(static\s+void))/.test(e);
+  function a() {
+    return /\n\s*#+\s+/.test(e) || /^#+\s+/.test(e) ? {
+      language: "markdown",
+      lexer: "markup"
+    } : /\$[a-zA-Z]/.test(e) || /\{\s*(\w|\.|\$|#)+\s*\{/.test(e) || /^[.#]?[\w][\w-]+\s+\{(?:\s+[a-z][a-z-]+:\s*\S+;)+\s+[&>+]?\s+[.#:]?[\w][\w-]\s+\{/.test(e) && /:\s*@[a-zA-Z];/.test(e) === !1 ? {
+      language: "scss",
+      lexer: "style"
+    } : /@[a-zA-Z]:/.test(e) || /\.[a-zA-Z]\(\);/.test(e) ? {
+      language: "less",
+      lexer: "style"
+    } : {
+      language: "css",
+      lexer: "style"
+    };
+  }
+  function C() {
+    let k = 1, f = c, t = !1, h = !1, V = /((public)|(private))\s+(static\s+)?(((v|V)oid)|(class)|(final))/.test(e);
+    function le() {
+      return e.indexOf("(") > -1 || e.indexOf("=") > -1 || e.indexOf(";") > -1 && e.indexOf("{") > -1 ? A === !0 || /\w<\w+(,\s+\w+)*>/.test(e) || /(?:var|let|const)\s+\w+\s*:/.test(e) || /=\s*<\w+/.test(e) ? {
+        language: "typescript",
+        lexer: "script"
+      } : {
+        language: "javascript",
+        lexer: "script"
+      } : {
+        language: "unknown",
+        lexer: "text"
+      };
+    }
+    function m() {
+      return /:\s*(?:number|string|boolean|any|unknown)(?:\[\])?/.test(e) || /(?:public|private)\s+/.test(e) || /(?:export|declare)\s+type\s+\w+\s*=/.test(e) || /(?:namespace|interface|enum|implements|declare)\s+\w+/.test(e) || /(?:typeof|keyof|as)\s+\w+/.test(e) || /\w+\s+as\s+\w+/.test(e) || /\[\w+(?:(?::\s*\w+)|(?:\s+in\s+\w+))\]:/.test(e) || /\):\s*\w+(?:\[\])?\s*(?:=>|\{)\s+/.test(e) || /(var|const|let)\s+\w+:\s*(string|number|boolean|string|any)(\[\])?/.test(e) ? {
+        language: "typescript",
+        lexer: "script"
+      } : /\s(class|var|const|let)\s+\w/.test(e) === !1 && /<[a-zA-Z](?:-[a-zA-Z])?/.test(e) && /<\/[a-zA-Z-](?:-[a-zA-Z])?/.test(e) && (/\s?\{%/.test(e) || /{{/.test(e)) ? {
+        language: "liquid",
+        lexer: "markup"
+      } : /^(\s*[$@])/.test(e) === !1 && /([}\]];?\s*)$/.test(e) && (/^\s*import\s+\*\s+as\s+\w+\s+from\s+['"]/.test(e) || /module\.export\s+=\s+/.test(e) || /export\s+default\s+\{/.test(e) || /[?:]\s*[{[]/.test(e) || /^(?:\s*return;?(?:\s+[{[])?)/.test(e)) ? {
+        language: "javascript",
+        lexer: "script"
+      } : /{%/.test(e) && /{{/.test(e) && /<\w/.test(e) ? {
+        language: "liquid",
+        lexer: "markup"
+      } : /{\s*(?:\w|\.|@|#)+\s*\{/.test(e) ? {
+        language: "less",
+        lexer: "style"
+      } : /\$(\w|-)/.test(e) ? {
+        language: "scss",
+        lexer: "style"
+      } : /[;{:]\s*@\w/.test(e) === !0 ? {
+        language: "less",
+        lexer: "style"
+      } : {
+        language: "css",
+        lexer: "style"
+      };
+    }
+    if (k < n)
+      do
+        t === !1 ? i(s[k], 42) && i(s[k - 1], 47) ? (s[k - 1] = c, t = !0) : h === !1 && k < n - 6 && s[k].charCodeAt(0) === 102 && //     f
+        s[k + 1].charCodeAt(0) === 105 && // i
+        s[k + 2].charCodeAt(0) === 108 && // l
+        s[k + 3].charCodeAt(0) === 116 && // t
+        s[k + 4].charCodeAt(0) === 101 && // e
+        s[k + 5].charCodeAt(0) === 114 && // r
+        i(s[k + 6], 58) && (h = !0) : t === !0 && i(s[k], 42) && k !== n - 1 && i(s[k + 1], 47) ? (t = !1, s[k] = c, s[k + 1] = c) : h === !0 && i(s[k], 59) && (h = !1, s[k] = c), (t === !0 || h === !0) && (s[k] = c), k = k + 1;
+      while (k < n);
+    return f = s.join(c), /\s\/\//.test(e) === !1 && /\/\/\s/.test(e) === !1 && /^(\s*(\{|\[)(?!%))/.test(e) === !0 && /((\]|\})\s*)$/.test(e) && e.indexOf(",") !== -1 ? {
+      language: "json",
+      lexer: "script"
+    } : /((\}?(\(\))?\)*;?\s*)|([a-z0-9]("|')?\)*);?(\s*\})*)$/i.test(e) === !0 && (u === !0 || V === !0 || /console\.log\(/.test(e) === !0 || /export\s+default\s+class\s+/.test(e) === !0 || /export\s+(const|var|let|class)s+/.test(e) === !0 || /document\.get/.test(e) === !0 || /((=|(\$\())\s*function)|(\s*function\s+(\w*\s+)?\()/.test(e) === !0 || e.indexOf("{") === -1 || /^(\s*if\s+\()/.test(e) === !0) ? le() : e.indexOf("{") > -1 && (/^(\s*[\u007b\u0024\u002e#@a-z0-9])/i.test(e) || /^(\s*\/(\*|\/))/.test(e) || /^(\s*\*\s*\{)/.test(e)) && /^(\s*if\s*\()/.test(e) === !1 && /=\s*(\{|\[|\()/.test(f) === !1 && (/(\+|-|=|\?)=/.test(f) === !1 || /\/\/\s*=+/.test(f) || /=+('|")?\)/.test(e) && /;\s*base64/.test(e)) && /function(\s+\w+)*\s*\(/.test(f) === !1 ? m() : e.indexOf("{%") > -1 ? {
+      language: "liquid",
+      lexer: "markup"
+    } : {
+      language: "unknown",
+      lexer: "text"
+    };
+  }
+  function o() {
+    function k() {
+      return /{%-?\s*(schema|for|if|unless|render|include)/.test(e) || /{%-?\s*end\w+/.test(e) || /{{-?\s*content_for/.test(e) || /{{-?\s*[a-zA-Z0-9_'".[\]]+\s*-?}}/.test(e) || /{%/.test(e) && /%}/.test(e) && /{{/.test(e) && /}}/.test(e) ? {
+        language: "liquid",
+        lexer: "markup"
+      } : {
+        language: "html",
+        lexer: "markup"
+      };
+    }
+    return /^(\s*<!doctype\s+html>)/i.test(e) || /^(\s*<html)/i.test(e) || /<form\s/i.test(e) && /<label\s/i.test(e) && /<input\s/i.test(e) || /<img(\s+\w+=['"]?\S+['"]?)*\s+src\s*=/.test(e) || /<a(\s+\w+=['"]?\S+['"]?)*\s+href\s*=/.test(e) || /<ul\s/i.test(e) && /<li\s/i.test(e) && /<\/li>/i.test(e) && /<\/ul>/i.test(e) || /<head\s*>/.test(e) && /<\/head>/.test(e) || /^(\s*<!DOCTYPE\s+((html)|(HTML))\s+PUBLIC\s+)/.test(e) && /XHTML\s+1\.1/.test(e) === !1 && /XHTML\s+1\.0\s+(S|s)((trict)|(TRICT))/.test(e) === !1 ? k() : /\s?{[{%]-?/.test(e) ? {
+      language: "liquid",
+      lexer: "markup"
+    } : {
+      language: "xml",
+      lexer: "markup"
+    };
+  }
+  return e === null || e.replace(/\s+/g, c) === c ? {
+    language: "unknown",
+    lexer: "text"
+  } : (/\n\s*#{1,6}\s+/.test(e) || /\n\s*(?:\*|-|(?:\d+\.))\s/.test(e)) && (/\[( |x|X)\]/.test(e) || /\s[*_~]{1,2}\w+[*_~]{1,2}/.test(e) || /\n\s*```[a-zA-Z]*?\s+/.test(e) || /-+\|(-+\|)+/.test(e)) ? {
+    language: "markdown",
+    lexer: "text"
+  } : /^(\s*<!DOCTYPE\s+html>)/i.test(e) ? o() : /^\s*@(?:charset|import|include|keyframes|media|namespace|page)\b/.test(e) || /**
+   * Final Statics Test
+   */
+  A === !1 && /=(>|=|-|\+|\*)/.test(e) === !1 && /^(?:\s*((if)|(for)|(function))\s*\()/.test(e) === !1 && /(?:\s|;|\})((if)|(for)|(function\s*\w*))\s*\(/.test(e) === !1 && u === !1 && /return\s*\w*\s*(;|\})/.test(e) === !1 && (e === void 0 || /^(?:\s*#(?!(!\/)))/.test(e) || /\n\s*(\.|@)\w+(\(|(\s*:))/.test(e) && />\s*<\w/.test(e) === !1 || /^\s*:root\s*\{/.test(e) || /-{2}\w+\s*\{/.test(e) || /^\s*(?:body|button|hr|section|h[1-6]|p|strong|\*)\s+\{\s+/.test(e)) ? a() : (s = e.replace(/\[[a-zA-Z][\w-]*=['"]?[a-zA-Z][\w-]*['"]?\]/g, c).split(c), n = s.length, /^(\s*({{|{%|<))/.test(e) ? o() : A === !0 || /^(?:[\s\w-]*<)/.test(e) === !1 && /(?:>[\s\w-]*)$/.test(e) === !1 ? C() : (/^(?:\s*<\?xml)/.test(e) || /(?:>[\w\s:]*)?<(?:\/|!|#)?[\w\s:\-[]+/.test(e) || /^\s*</.test(e) && /<\/\w+(\w|\d)+>\s*$/.test(e)) && (/^(?:[\s\w]*<)/.test(e) || /(?:>[\s\w]*)$/.test(e)) || /^(?:\s*<s((cript)|(tyle)))/i.test(e) && /(?:<\/s((cript)|(tyle))>\s*)$/i.test(e) ? /^(?:[\s\w]*<)/.test(e) === !1 || /(?:>[\s\w]*)$/.test(e) === !1 ? C() : o() : {
+    language: "unknown",
+    lexer: "text"
+  });
+}
+
+// src/rules/validate.ts
+function Vt(e, s, n) {
+  if (e === "global")
+    switch (s) {
+      case "indentChar":
+        return wn(e, s, n);
+      case "preset":
+      case "language":
+        return nt(e, s, n);
+      case "crlf":
+      case "correct":
+      case "endNewline":
+        return xt(e, s, n);
+      case "indentLevel":
+      case "indentSize":
+      case "preserveLine":
+      case "wrap":
+      case "wrapFraction":
+        return Ci(e, s, n);
+      default:
+        return !1;
+    }
+  else if (e === "liquid")
+    switch (s) {
+      case "commentNewline":
+      case "commentIndent":
+      case "indentAttribute":
+      case "normalizeSpacing":
+      case "preserveComment":
+        return xt(e, s, n);
+      case "forceArgument":
+      case "forceFilter":
+        return Ci(e, s, n);
+      case "ignoreTagList":
+      case "dedentTagList":
+      case "paddedTagList":
+        return dn(e, s, n);
+      case "lineBreakSeparator":
+      case "delimiterPlacement":
+      case "delimiterTrims":
+      case "quoteConvert":
+        return nt(e, s, n);
+    }
+  else if (e === "markup")
+    switch (s) {
+      case "forceAttribute":
+        if (kt(n))
+          return Ci(e, s, n);
+        if (mt(n))
+          return xt(e, s, n);
+        throw Ee({
+          message: `Invalid ${e} rule (${s}) type "${typeof n}" provided`,
+          option: `${e} \u2192 ${s}`,
+          provided: n,
+          expected: [
+            "boolean",
+            "number"
+          ]
+        });
+      case "attributeSort":
+        if (mt(n))
+          return xt(e, s, n);
+        if (Ne(n))
+          return dn(e, s, n);
+        throw Ee({
+          message: `Invalid ${e} rule (${s}) type "${typeof n}" provided`,
+          option: `${e} \u2192 ${s}`,
+          provided: n,
+          expected: [
+            "boolean",
+            "string[]"
+          ]
+        });
+      case "commentNewline":
+      case "commentIndent":
+      case "forceIndent":
+      case "forceAttributeValue":
+      case "ignoreCSS":
+      case "ignoreJS":
+      case "ignoreJSON":
+      case "preserveComment":
+      case "preserveText":
+      case "preserveAttribute":
+      case "selfCloseSpace":
+      case "selfCloseSVG":
+      case "stripAttributeLines":
+        return xt(e, s, n);
+      case "attributeCasing":
+      case "commentDelimiters":
+      case "delimiterTerminus":
+      case "lineBreakValue":
+      case "quoteConvert":
+        return nt(e, s, n);
+    }
+  else if (e === "style")
+    switch (s) {
+      case "correct":
+      case "atRuleSpace":
+      case "classPadding":
+      case "noLeadZero":
+      case "sortSelectors":
+      case "sortProperties":
+        return mt(n);
+      case "quoteConvert":
+        return nt(e, s, n);
+    }
+  else if (e === "json")
+    switch (s) {
+      case "arrayFormat":
+      case "objectIndent":
+        return nt(e, s, n);
+      case "allowComments":
+      case "braceAllman":
+      case "bracePadding":
+      case "objectSort":
+        return xt(e, s, n);
+    }
+}
+function dn(e, s, n) {
+  if (Ne(n)) {
+    if (n.length === 0)
+      return !0;
+    for (let u = 0, A = n.length; u < A; u++)
+      if (Nt(n[u]) === !1)
+        throw Ee({
+          message: `Invalid ${e} rule (${s}) type "${typeof n}" provided`,
+          option: `${e} \u2192 ${s} (index: ${u})`,
+          provided: n,
+          expected: [
+            "string"
+          ]
+        });
+    return !0;
+  }
+  throw Ee({
+    message: `Invalid ${e} rule (${s}) type "${typeof n}" provided`,
+    option: e === "global" ? s : `${e} \u2192 ${s}`,
+    provided: n,
+    expected: [
+      "string[]"
+    ]
+  });
+}
+function wn(e, s, n) {
+  if (typeof n == "string")
+    return !0;
+  throw Ee({
+    message: `Invalid ${e} rule (${s}) type "${typeof n}" provided`,
+    option: e === "global" ? s : `${e} \u2192 ${s}`,
+    provided: n,
+    expected: [
+      "string"
+    ]
+  });
+}
+function Ci(e, s, n) {
+  if (kt(n) && isNaN(n) === !1)
+    return !0;
+  throw Ee({
+    message: `Invalid ${e} rule (${s}) type "${typeof n}" provided`,
+    option: e === "global" ? s : `${e} \u2192 ${s}`,
+    provided: n,
+    expected: [
+      "number"
+    ]
+  });
+}
+function xt(e, s, n) {
+  if (kt(n))
+    return n !== 0;
+  if (mt(n))
+    return !0;
+  throw Ee({
+    message: `Invalid ${e} rule (${s}) type "${typeof n}" provided`,
+    option: e === "global" ? s : `${e} \u2192 ${s}`,
+    provided: n,
+    expected: [
+      "boolean"
+    ]
+  });
+}
+function nt(e, s, n) {
+  if (Nt(n) === !1)
+    throw Ee({
+      message: `Invalid ${e} rule (${s}) type "${typeof n}" provided`,
+      option: `${e} \u2192 ${s}`,
+      provided: n,
+      expected: [
+        "string"
+      ]
+    });
+  if (s === "language") {
+    switch (n) {
+      case "text":
+      case "markup":
+      case "html":
+      case "liquid":
+      case "xml":
+      case "javascript":
+      case "typescript":
+      case "jsx":
+      case "tsx":
+      case "json":
+      case "less":
+      case "scss":
+      case "sass":
+      case "css":
+        return !0;
+    }
+    throw Ee({
+      message: `Unsupported "${s}" identifier provided`,
+      option: e === `${s} (global)` ? s : `${e} \u2192 ${s}`,
+      provided: n,
+      expected: [
+        "text",
+        "auto",
+        "markup",
+        "html",
+        "liquid",
+        "xml",
+        "javascript",
+        "typescript",
+        "jsx",
+        "tsx",
+        "json",
+        "less",
+        "scss",
+        "sass",
+        "css"
+      ]
+    });
+  } else if (s === "preset") {
+    switch (n) {
+      case "default":
+      case "strict":
+      case "recommended":
+      case "warrington":
+      case "prettier":
+        return !0;
+    }
+    throw Ee({
+      message: `Unsupported "${s}" provided`,
+      option: e === `${s} (global)` ? s : `${e} \u2192 ${s}`,
+      provided: n,
+      expected: [
+        "default",
+        "strict",
+        "recommended",
+        "warrington",
+        "prettier"
+      ]
+    });
+  } else if (s === "attributeCasing")
+    switch (n) {
+      case "preserve":
+      case "lowercase":
+      case "lowercase-name":
+      case "lowercase-value":
+        return !0;
+      default:
+        throw Ee({
+          message: `Invalid "${s}" option provided`,
+          option: `${e} \u2192 ${s}`,
+          provided: n,
+          expected: [
+            "preserve",
+            "lowercase",
+            "lowercase-name",
+            "lowercase-value"
+          ]
+        });
+    }
+  else if (s === "commentDelimiters")
+    switch (n) {
+      case "preserve":
+      case "consistent":
+      case "inline":
+      case "inline-align":
+      case "force":
+        return !0;
+      default:
+        throw Ee({
+          message: `Invalid "${s}" option provided`,
+          option: `${e} \u2192 ${s}`,
+          provided: n,
+          expected: [
+            "preserve",
+            "consistent",
+            "force",
+            "inline",
+            "inline-align"
+          ]
+        });
+    }
+  else if (s === "delimiterTrims")
+    switch (n) {
+      case "preserve":
+      case "never":
+      case "always":
+      case "tags":
+      case "outputs":
+      case "multiline":
+        return !0;
+      default:
+        throw Ee({
+          message: `Invalid "${s}" option provided`,
+          option: `${e} \u2192 ${s}`,
+          provided: n,
+          expected: [
+            "preserve",
+            "never",
+            "always",
+            "tags",
+            "outputs",
+            "multiline",
+            "linebreak"
+          ]
+        });
+    }
+  else if (s === "delimiterPlacement")
+    switch (n) {
+      case "default":
+      case "inline":
+      case "preserve":
+      case "consistent":
+      case "force":
+      case "force-multiline":
+        return !0;
+      default:
+        throw Ee({
+          message: `Invalid "${s}" option provided`,
+          option: `${e} \u2192 ${s}`,
+          provided: n,
+          expected: [
+            "default",
+            "inline",
+            "preserve",
+            "consistent",
+            "force",
+            "force-multiline"
+          ]
+        });
+    }
+  else if (s === "lineBreakSeparator")
+    switch (n) {
+      case "preserve":
+      case "before":
+      case "after":
+        return !0;
+      default:
+        throw Ee({
+          message: `Invalid "${s}" option provided`,
+          option: `${e} \u2192 ${s}`,
+          provided: n,
+          expected: [
+            "preserve",
+            "before",
+            "after"
+          ]
+        });
+    }
+  else if (s === "delimiterTerminus")
+    switch (n) {
+      case "force":
+      case "inline":
+      case "adapt":
+        return !0;
+      default:
+        throw Ee({
+          message: `Invalid "${s}" option provided`,
+          option: `${e} \u2192 ${s}`,
+          provided: n,
+          expected: [
+            "force",
+            "inline",
+            "adapt"
+          ]
+        });
+    }
+  else if (s === "lineBreakValue")
+    switch (n) {
+      case "preserve":
+      case "align":
+      case "indent":
+      case "force-preserve":
+      case "force-align":
+      case "force-indent":
+        return !0;
+      default:
+        throw Ee({
+          message: `Invalid "${s}" option provided`,
+          option: `${e} \u2192 ${s}`,
+          provided: n,
+          expected: [
+            "preserve",
+            "align",
+            "indent",
+            "force-preserve",
+            "force-align",
+            "force-indent"
+          ]
+        });
+    }
+  else if (s === "quoteConvert")
+    switch (n) {
+      case "none":
+      case "double":
+      case "single":
+        return !0;
+      default:
+        throw Ee({
+          message: `Invalid "${s}" option provided`,
+          option: `${e} \u2192 ${s}`,
+          provided: n,
+          expected: [
+            "none",
+            "double",
+            "single"
+          ]
+        });
+    }
+  else if (s === "objectIndent" || s === "arrayFormat")
+    switch (n) {
+      case "default":
+      case "indent":
+      case "inline":
+        return !0;
+      default:
+        throw Ee({
+          message: `Invalid "${s}" option provided`,
+          option: `${e} \u2192 ${s}`,
+          provided: n,
+          expected: [
+            "default",
+            "indent",
+            "inline"
+          ]
+        });
+    }
+  else if (s === "endComma")
+    switch (n) {
+      case "none":
+      case "always":
+      case "never":
+        return !0;
+      default:
+        throw Ee({
+          message: `Invalid "${s}" option provided`,
+          option: `${e} \u2192 ${s}`,
+          provided: n,
+          expected: [
+            "none",
+            "always",
+            "never"
+          ]
+        });
+    }
+  else if (s === "variableList")
+    switch (n) {
+      case "none":
+      case "each":
+      case "list":
+        return !0;
+      default:
+        throw Ee({
+          message: `Invalid "${s}" option provided`,
+          option: `${e} \u2192 ${s}`,
+          provided: n,
+          expected: [
+            "none",
+            "each",
+            "list"
+          ]
+        });
+    }
+}
+
+// src/rules/presets/recommended.ts
+var Jt = _e(Ge, {
+  preset: "recommended",
+  language: "auto",
+  preserveLine: 2,
+  wrap: 120,
+  wrapFraction: 90,
+  liquid: {
+    ignoreTagList: ["javascript"],
+    indentAttribute: !0,
+    commentNewline: !0,
+    delimiterTrims: "preserve",
+    lineBreakSeparator: "after",
+    quoteConvert: "double",
+    delimiterPlacement: "consistent"
+  },
+  markup: {
+    attributeCasing: "lowercase-name",
+    commentDelimiters: "preserve",
+    commentNewline: !0,
+    delimiterTerminus: "adapt",
+    forceAttribute: 2,
+    forceIndent: !0,
+    ignoreCSS: !1,
+    ignoreJSON: !1,
+    lineBreakValue: "indent",
+    selfCloseSpace: !0,
+    selfCloseSVG: !0,
+    quoteConvert: "double"
+  },
+  json: {
+    arrayFormat: "indent",
+    objectIndent: "indent"
+  },
+  style: {
+    commentNewline: !0,
+    commentIndent: !0,
+    quoteConvert: "double",
+    noLeadZero: !0,
+    sortProperties: !0
+  }
+});
+
+// src/rules/presets/strict.ts
+var Ut = _e(Ge, {
+  preset: "strict",
+  language: "auto",
+  preserveLine: 1,
+  wrap: 0,
+  wrapFraction: 80,
+  liquid: {
+    ignoreTagList: [],
+    commentNewline: !0,
+    delimiterTrims: "never",
+    lineBreakSeparator: "before",
+    quoteConvert: "double",
+    forceArgument: 3,
+    forceFilter: 4,
+    delimiterPlacement: "consistent"
+  },
+  markup: {
+    attributeSort: [
+      "id",
+      "class",
+      "type",
+      "name",
+      "value",
+      "href",
+      "src"
+    ],
+    attributeCasing: "lowercase-name",
+    commentDelimiters: "force",
+    commentNewline: !0,
+    delimiterTerminus: "adapt",
+    forceAttribute: 1,
+    forceIndent: !0,
+    ignoreCSS: !1,
+    ignoreJSON: !1,
+    ignoreJS: !1,
+    lineBreakValue: "force-indent",
+    selfCloseSpace: !0,
+    selfCloseSVG: !0,
+    stripAttributeLines: !0,
+    quoteConvert: "double"
+  },
+  json: {
+    arrayFormat: "indent",
+    objectIndent: "indent",
+    objectSort: !0
+  },
+  style: {
+    commentNewline: !0,
+    commentIndent: !0,
+    quoteConvert: "double",
+    noLeadZero: !0,
+    sortProperties: !0,
+    sortSelectors: !0
+  }
+});
+
+// src/rules/presets/warrington.ts
+var Zt = _e(Ge, {
+  preset: "warrington",
+  language: "auto",
+  preserveLine: 2,
+  wrap: 0,
+  liquid: {
+    ignoreTagList: ["javascript"],
+    indentAttribute: !0,
+    lineBreakSeparator: "after",
+    quoteConvert: "double"
+  },
+  markup: {
+    commentNewline: !0,
+    commentDelimiters: "consistent",
+    delimiterTerminus: "adapt",
+    forceAttribute: 1,
+    forceIndent: !0,
+    ignoreCSS: !0,
+    ignoreJSON: !1,
+    lineBreakValue: "indent",
+    selfCloseSpace: !0,
+    selfCloseSVG: !0,
+    stripAttributeLines: !0,
+    quoteConvert: "double"
+  },
+  json: {
+    arrayFormat: "indent",
+    objectIndent: "indent"
+  },
+  style: {
+    commentIndent: !1,
+    quoteConvert: "double"
+  }
+});
+
+// src/rules/presets/prettier.ts
+var Xt = _e(Ge, {
+  preset: "prettier",
+  language: "auto",
+  preserveLine: 1,
+  wrap: 80,
+  wrapFraction: 60,
+  liquid: {
+    ignoreTagList: ["javascript"],
+    indentAttribute: !0,
+    lineBreakSeparator: "after",
+    dedentTagList: ["schema"],
+    quoteConvert: "double"
+  },
+  markup: {
+    commentDelimiters: "consistent",
+    commentIndent: !0,
+    delimiterTerminus: "force",
+    forceAttribute: 1,
+    forceIndent: !0,
+    ignoreJS: !0,
+    ignoreCSS: !0,
+    ignoreJSON: !1,
+    lineBreakValue: "force-indent",
+    selfCloseSpace: !0,
+    selfCloseSVG: !0,
+    stripAttributeLines: !0,
+    quoteConvert: "double"
+  },
+  json: {
+    arrayFormat: "indent",
+    objectIndent: "indent"
+  },
+  style: {
+    commentIndent: !1,
+    quoteConvert: "double"
+  }
+});
+
+// src/rules/define.ts
+var Sn = [
+  "correct",
+  "crlf",
+  "endNewline",
+  "indentChar",
+  "indentLevel",
+  "indentSize",
+  "preserveLine",
+  "wrap",
+  "wrapFraction"
+], Ln = [
+  "liquid",
+  "markup",
+  "style",
+  "json",
+  "script"
+];
+function Cn(e) {
+  if (e.preset === r.rules.preset)
+    return e;
+  if (nt("global", "preset", e.preset))
+    switch (e.preset) {
+      case "default":
+        return _e(Ge, e);
+      case "strict":
+        return _e(Ut, e);
+      case "recommended":
+        return _e(Jt, e);
+      case "warrington":
+        return _e(Zt, e);
+      case "prettier":
+        return _e(Xt, e);
+    }
+  return e;
+}
+function mn(e, s) {
+  let n = Hi(e), u = n("preset") ? Cn(e) : e, A;
+  s.rules.length > 0 && (A = {}), n("language") && Vt("global", "language", u.language) && r.language !== u.language && (r.language = r.rules.language = u.language);
+  for (let a of Sn)
+    n(a) !== !1 && r.rules[a] !== u[a] && Vt("global", a, u[a]) && (A && (A[a] = { from: r.rules[a], to: u[a] }), a === "crlf" && (r.crlf = u[a] ? Oi : z), a === "wrap" && u[a] > 0 && (n("wrapFraction") === !1 || n("wrapFraction") && u.wrapFraction <= 0) && (u.wrapFraction = u[a] - u[a] / 4), r.rules[a] = u[a]);
+  for (let a of Ln)
+    if (n(a) !== !1 && r.rules[a] !== u[a]) {
+      A && (A[a] = Fe(null));
+      for (let C in u[a])
+        Vt(a, C, u[a][C]) && (A && (A[a][C] = Fe(null), A[a][C].old = r.rules[a][C], A[a][C].new = u[a][C]), r.rules[a][C] = u[a][C]);
+    }
+  if (s.rules.length > 0)
+    for (let a of s.rules)
+      a(A, r.rules);
+}
+
+// src/cli/utils.ts
+function Pt(e, ...s) {
+  let n = Array.isArray(e);
+  return function u(A, a, C) {
+    let o = typeof C;
+    if (C && o === "object")
+      if (Array.isArray(C))
+        for (let k of C)
+          a = u(A, a, k);
+      else
+        for (let k in C) {
+          let f = C[k];
+          typeof f == "function" ? a[k] = f(a[k], Pt) : f === void 0 ? A ? a.splice(k, 1) : delete a[k] : f === null || typeof f != "object" || Array.isArray(f) ? a[k] = f : typeof a[k] == "object" ? a[k] = f === a[k] ? f : Pt(a[k], f) : a[k] = u(!1, {}, f);
+        }
+    else
+      o === "function" && (a = C(a, Pt));
+    return a;
+  }(n, n ? e.slice() : Object.assign({}, e), s);
+}
+
+// src/esthetic.ts
+var hn = new class {
+  constructor() {
+    this.language = "auto";
+    this.lexer = "auto";
+    this.stats = null;
+    this.events = {
+      format: [],
+      error: [],
+      rules: [],
+      parse: []
+    };
+    Re.env === "node" && (Re.cwd = process.cwd()), Re.env === "browser" && ("esthetic" in window || Mi(window, "esthetic", {
+      configurable: !0,
+      get() {
+        return hn;
+      }
+    })), Di(this.preset, {
+      default: { get() {
+        return Ge;
+      } },
+      warrington: { get() {
+        return Zt;
+      } },
+      prettier: { get() {
+        return Xt;
+      } },
+      strict: { get() {
+        return Ut;
+      } },
+      recommended: { get() {
+        return Jt;
+      } }
+    });
+  }
+  preset(s, n) {
+    return Pt(this.preset[s], n);
+  }
+  get table() {
+    return r.data;
+  }
+  get definitions() {
+    return bi;
+  }
+  get detect() {
+    return pn;
+  }
+  get error() {
+    return r.error;
+  }
+  get lines() {
+    return r.numbers;
+  }
+  grammar(s) {
+    return s ? (we.extend(s), this) : we.extend();
+  }
+  settings(s) {
+    if (!s)
+      return Re;
+    for (let n in s)
+      n in Re && (Re[n] = s[n]);
+    return Re.env === "browser" && Re.globalThis === !1 && "esthetic" in window && delete window.esthetic, this;
+  }
+  on(s, n) {
+    return this.events[s].push(n), this;
+  }
+  hook(s, n) {
+    r.hooks[s] = [n];
+  }
+  format(s, n) {
+    if (r.source = s, tt(n) && "language" in n && this.language !== n.language && nt("global", "language", n.language) && (this.language = r.language = r.rules.language = n.language, this.lexer = r.lexer = Ie(r.language)), this.rules(n), this.lexer === "auto") {
+      let o = this.detect(r.source);
+      this.language = r.language = r.rules.language = o.language, this.lexer = r.lexer = Ie(o.language);
+    }
+    let u = St(this.language), A = Re.reportStats ? ri(this.language, this.lexer) : null, a = r.document(u);
+    if (r.error !== null)
+      if (this.events.error.length > 0) {
+        for (let o of this.events.error)
+          o(r.error);
+        return s;
+      } else {
+        if (Re.throwErrors)
+          throw new Error(r.error);
+        return s;
+      }
+    let C = A === null ? null : this.stats = A(a.length);
+    if (this.events.format.length > 0) {
+      for (let o of this.events.format)
+        if (o.call({ get data() {
+          return r.data;
+        } }, {
+          get output() {
+            return s;
+          },
+          get stats() {
+            return C;
+          },
+          get rules() {
+            return r.rules;
+          }
+        }) === !1)
+          return s;
+    }
+    return a;
+  }
+  parse(s, n) {
+    if (r.source = s, tt(n) && "language" in n && this.language !== n.language && nt("global", "language", n.language) && (this.language = r.language = r.rules.language = n.language, this.lexer = r.lexer = Ie(r.language)), this.rules(n), this.lexer === "auto") {
+      let o = this.detect(r.source);
+      this.language = r.language = r.rules.language = o.language, this.lexer = r.lexer = Ie(o.language);
+    }
+    let u = St(this.language), A = Re.reportStats ? ri(this.language, this.lexer) : null, a = r.document(u, 1);
+    if (r.error !== null)
+      if (this.events.error.length > 0) {
+        for (let o of this.events.error)
+          o(r.error);
+        return [];
+      } else {
+        if (Re.throwErrors)
+          throw r.error;
+        return [];
+      }
+    let C = A === null ? null : this.stats = A(r.count);
+    if (this.events.parse.length > 0) {
+      for (let o of this.events.parse)
+        if (o({
+          get data() {
+            return r.data;
+          },
+          get stats() {
+            return C;
+          },
+          get rules() {
+            return r.rules;
+          }
+        }) === !1)
+          return s;
+    }
+    return a;
+  }
+  rules(s) {
+    return Ke(s) ? r.rules : (mn(s, this.events), this.language = r.language, this.lexer = r.lexer = Ie(r.language), r.rules);
+  }
+  liquid(s, n) {
+    return this.language = r.language = r.rules.language = "liquid", this.lexer = r.lexer = Ie(r.language), this.format(s, n);
+  }
+  html(s, n) {
+    return this.language = r.language = r.rules.language = "html", this.lexer = r.lexer = Ie(r.language), this.format(s, n);
+  }
+  xml(s, n) {
+    return this.language = r.language = r.rules.language = "xml", this.lexer = r.lexer = Ie(r.language), this.format(s, n);
+  }
+  css(s, n) {
+    return this.language = r.language = r.rules.language = "css", this.lexer = r.lexer = Ie(r.language), this.format(s, n);
+  }
+  json(s, n) {
+    return this.language = r.language = r.rules.language = "json", this.lexer = r.lexer = Ie(r.language), this.format(s, n);
+  }
+  js(s, n) {
+    return this.language = r.language = r.rules.language = "javascript", this.lexer = r.lexer = Ie(r.language), this.format(s, n);
+  }
+  ts(s, n) {
+    return this.language = r.language = r.rules.language = "typescript", this.lexer = r.lexer = Ie(r.language), this.format(s, n);
+  }
+}();
+
+export { hn as default };

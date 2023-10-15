@@ -39,13 +39,20 @@ export const Preview: Component<IAttrs> = {
   },
   onremove: (
     {
-      attrs
+      attrs,
+      dom
     }
   ) => {
 
+    attrs.preview.width = dom.clientWidth;
     attrs.preview.editor.dispose();
 
   },
-  view: () => m('div', { style: <Style>{ height: '100%' } })
+  view: () => m('div', {
+
+    style: <Style>{
+      height: '100%'
+    }
+  })
 
 };

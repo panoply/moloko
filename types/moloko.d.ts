@@ -78,6 +78,10 @@ export interface ISidebar {
      */
     rules?: IActions;
     /**
+     * Whether or not to show parse table
+     */
+    table?: IActions;
+    /**
      * Whether or not to activate preview pane
      */
     preview?: IActions;

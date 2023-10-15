@@ -20,6 +20,13 @@ export declare const moloko: {
   mount(element: Element | HTMLElement, options?: IConfig): IAttrs;
 
   /**
+   * **Moloko Hash**
+   *
+   * Returns the hash reference
+   */
+  hash(): string;
+
+  /**
    * **Moloko Render**
    *
    * Renders the text edtior to the provided element.

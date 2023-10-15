@@ -1,6 +1,6 @@
 {
   "name": "moloko",
-  "version": "0.2.2-beta.1",
+  "version": "0.3.0-beta.1",
   "description": "Moloko is an embedded web based code editor built atop of Monaco",
   "main": "dist/moloko.js",
   "module": "dist/moloko.js",
@@ -54,22 +54,23 @@
   "devDependencies": {
     "@liquify/eslint-config": "workspace:*",
     "@liquify/prettier-config": "workspace:*",
+    "@liquify/schema": "workspace:*",
     "@sissel/stylelint-config": "^1.1.0",
-    "@types/mithril": "^2.0.12",
-    "@types/node": "^20.4.2",
-    "ansis": "^1.5.5",
-    "concurrently": "^8.2.0",
+    "@types/mithril": "^2.2.2",
+    "@types/node": "^20.8.6",
+    "ansis": "^1.5.6",
+    "concurrently": "^8.2.1",
     "csstype": "^3.1.2",
-    "esthetic": "workspace:^",
+    "esthetic": "workspace:*",
     "http-server": "^14.1.1",
     "mithril": "^2.2.2",
-    "monaco-editor": "^0.40.0",
-    "sass": "^1.63.6",
-    "terser": "^5.19.0",
-    "tsup": "^7.1.0"
+    "monaco-editor": "^0.44.0",
+    "sass": "^1.69.3",
+    "terser": "^5.21.0",
+    "tsup": "^7.2.0"
   },
   "dependencies": {
-    "@brixtol/bootstrap": "^1.6.0",
+    "@brixtol/bootstrap": "^1.7.0",
     "bss": "^1.6.4",
     "lz-string": "^1.5.0",
     "mergerino": "^0.4.0",
@@ -77,10 +78,10 @@
     "url-join": "^5.0.0"
   },
   "peerDependencies": {
-    "esthetic": "workspace:^",
+    "esthetic": "workspace:*",
     "mithril": "^2.2.2"
   },
   "optionalDependencies": {
-    "liquidjs": "^10.8.4"
+    "liquidjs": "^10.9.2"
   }
 }

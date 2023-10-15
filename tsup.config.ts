@@ -1,5 +1,15 @@
 import type { Options } from 'tsup';
-import { copyFileSync, mkdirSync } from 'node:fs';
+import { copyFileSync, mkdirSync, writeFileSync } from 'node:fs';
+import { join } from 'node:path';
+
+const cwd = process.cwd();
+
+const store = [
+  '/* eslint-disable */',
+  `export const schema = ${JSON.stringify(require('./node_modules/@liquify/schema/esthetic.json'), null, 2)}`
+].join('\n');
+
+writeFileSync(join(cwd, 'src/monaco/schema.ts'), store);
 
 const PROD = process.env.NODE_ENV === 'production';
 const BUILD: Options[] = [

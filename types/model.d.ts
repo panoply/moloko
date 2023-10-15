@@ -3,28 +3,7 @@
 import { LanguageName, Rules } from 'esthetic';
 import type { editor } from 'monaco-editor';
 import { IConfig } from './moloko';
-
-export enum Mode {
-  /**
-   * Formatted Input Result
-   */
-  Formatted = 1,
-  /**
-   * Æsthetic Parse Error
-   */
-  ParseError,
-  /**
-   * Æsthetic Parse Table
-   */
-  ParseTable,
-  /**
-   * Runtime iFrame
-   *
-   * **NOT YET AVAILABLE**
-   */
-  Runtime,
-
-}
+import { Mode } from 'utils/enums';
 
 export enum State {
   /**

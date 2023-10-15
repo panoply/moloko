@@ -1,106 +1,105 @@
 import type { IConfig } from 'types';
 import type { IAttrs } from 'types/model';
 import { State, Mode } from 'utils/enums';
-import { esthetic } from 'modules';
 import merge from 'mergerino';
 import join from 'url-join';
 
 export function model (options: IConfig): IAttrs {
 
   const rules = {
-    "crlf": false,
-    "correct": false,
-    "preset": "default",
-    "language": "liquid",
-    "endNewline": false,
-    "indentChar": " ",
-    "indentLevel": 0,
-    "indentSize": 2,
-    "preserveLine": 2,
-    "wrap": 0,
-    "wrapFraction": 0,
-    "liquid": {
-      "commentNewline": false,
-      "commentIndent": true,
-      "delimiterTrims": "preserve",
-      "delimiterPlacement": "preserve",
-      "forceFilter": 0,
-      "forceArgument": 0,
-      "ignoreTagList": [],
-      "indentAttribute": false,
-      "lineBreakSeparator": "before",
-      "normalizeSpacing": true,
-      "preserveComment": false,
-      "preserveInternal": false,
-      "dedentTagList": [],
-      "quoteConvert": "none"
+    crlf: false,
+    correct: false,
+    preset: 'default',
+    language: 'liquid',
+    endNewline: false,
+    indentChar: ' ',
+    indentLevel: 0,
+    indentSize: 2,
+    preserveLine: 2,
+    wrap: 0,
+    wrapFraction: 0,
+    liquid: {
+      commentNewline: false,
+      commentIndent: true,
+      delimiterTrims: 'preserve',
+      delimiterPlacement: 'preserve',
+      forceFilter: 0,
+      forceArgument: 0,
+      ignoreTagList: [],
+      indentAttribute: false,
+      lineBreakSeparator: 'before',
+      normalizeSpacing: true,
+      preserveComment: false,
+      preserveInternal: false,
+      dedentTagList: [],
+      quoteConvert: 'none'
     },
-    "markup": {
-      "attributeCasing": "preserve",
-      "attributeSort": false,
-      "commentNewline": false,
-      "commentIndent": true,
-      "delimiterTerminus": "inline",
-      "forceAttribute": 3,
-      "forceIndent": false,
-      "ignoreCSS": false,
-      "ignoreJS": true,
-      "ignoreJSON": false,
-      "lineBreakValue": "preserve",
-      "preserveComment": false,
-      "preserveText": false,
-      "preserveAttribute": false,
-      "selfCloseSpace": true,
-      "selfCloseSVG": true,
-      "stripAttributeLines": false,
-      "quoteConvert": "none"
+    markup: {
+      attributeCasing: 'preserve',
+      attributeSort: false,
+      commentNewline: false,
+      commentIndent: true,
+      delimiterTerminus: 'inline',
+      forceAttribute: 3,
+      forceIndent: false,
+      ignoreCSS: false,
+      ignoreJS: true,
+      ignoreJSON: false,
+      lineBreakValue: 'preserve',
+      preserveComment: false,
+      preserveText: false,
+      preserveAttribute: false,
+      selfCloseSpace: true,
+      selfCloseSVG: true,
+      stripAttributeLines: false,
+      quoteConvert: 'none'
     },
-    "json": {
-      "arrayFormat": "default",
-      "braceAllman": false,
-      "bracePadding": false,
-      "objectIndent": "default",
-      "objectSort": false
+    json: {
+      arrayFormat: 'default',
+      braceAllman: false,
+      bracePadding: false,
+      objectIndent: 'default',
+      objectSort: false
     },
-    "style": {
-      "commentIndent": false,
-      "commentNewline": false,
-      "atRuleSpace": true,
-      "classPadding": false,
-      "noLeadZero": false,
-      "preserveComment": false,
-      "sortSelectors": false,
-      "sortProperties": false,
-      "quoteConvert": "none"
+    style: {
+      commentIndent: false,
+      commentNewline: false,
+      atRuleSpace: true,
+      classPadding: false,
+      noLeadZero: false,
+      preserveComment: false,
+      sortSelectors: false,
+      sortProperties: false,
+      quoteConvert: 'none'
     },
-    "script": {
-      "arrayFormat": "default",
-      "braceNewline": false,
-      "bracePadding": false,
-      "braceStyle": "none",
-      "braceAllman": false,
-      "caseSpace": false,
-      "commentIndent": false,
-      "commentNewline": false,
-      "elseNewline": false,
-      "endComma": "never",
-      "functionNameSpace": false,
-      "functionSpace": false,
-      "inlineReturn": true,
-      "methodChain": 4,
-      "neverFlatten": false,
-      "noCaseIndent": false,
-      "noSemicolon": false,
-      "objectSort": false,
-      "objectIndent": "default",
-      "preserveComment": false,
-      "quoteConvert": "none",
-      "styleGuide": "none",
-      "ternaryLine": false,
-      "variableList": false,
-      "vertical": false
+    script: {
+      arrayFormat: 'default',
+      braceNewline: false,
+      bracePadding: false,
+      braceStyle: 'none',
+      braceAllman: false,
+      caseSpace: false,
+      commentIndent: false,
+      commentNewline: false,
+      elseNewline: false,
+      endComma: 'never',
+      functionNameSpace: false,
+      functionSpace: false,
+      inlineReturn: true,
+      methodChain: 4,
+      neverFlatten: false,
+      noCaseIndent: false,
+      noSemicolon: false,
+      objectSort: false,
+      objectIndent: 'default',
+      preserveComment: false,
+      quoteConvert: 'none',
+      styleGuide: 'none',
+      ternaryLine: false,
+      variableList: false,
+      vertical: false
     }
-  }
+  };
 
   /**
    * Internal state reference.
@@ -139,7 +138,7 @@ export function model (options: IConfig): IAttrs {
       disableMonospaceOptimizations: true,
       fontVariations: true,
       fontSize: 13.7,
-      letterSpacing: .3,
+      letterSpacing: 0.3,
       lineHeight: 1.7,
       cursorBlinking: 'blink',
       cursorStyle: 'line-thin',
@@ -166,6 +165,11 @@ export function model (options: IConfig): IAttrs {
           active: false,
           icon: 'rules',
           tooltip: 'Formatting Rules'
+        },
+        table: {
+          active: false,
+          icon: 'table',
+          tooltip: 'Parse Table'
         },
         preview: {
           active: false,

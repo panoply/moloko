@@ -3,7 +3,7 @@ import type { IAttrs } from 'types/model';
 import type { ClosureComponent } from 'mithril';
 import { m } from 'modules';
 import { file, icon } from '../utils/icons';
-import { State } from 'utils/enums';
+import { Mode, State } from 'utils/enums';
 import { formatCode, isOpen, pixels } from 'utils/helpers';
 
 export function ghissue (options = {}) {
@@ -48,23 +48,23 @@ export const Sidebar: ClosureComponent<IAttrs> = ({ attrs }) => {
 
   const onEsthetic = () => {
 
-    if(attrs.language.state === State.Opened) {
+    if (attrs.language.state === State.Opened) {
 
       attrs.language.state = State.Toggle;
 
       setTimeout(() => {
 
-        attrs.language.state = State.Hidden
+        attrs.language.state = State.Hidden;
 
         if (isOpen(attrs.preview.state)) {
           attrs.input.editor.layout({ width: pixels(50, 75), height: window.innerHeight });
         } else {
-          attrs.input.editor.layout({ width: pixels(100, 75),  height: window.innerHeight });
+          attrs.input.editor.layout({ width: pixels(100, 75), height: window.innerHeight });
         }
 
-        onEsthetic()
+        onEsthetic();
 
-      }, 300)
+      }, 300);
 
     } else {
 
@@ -74,29 +74,26 @@ export const Sidebar: ClosureComponent<IAttrs> = ({ attrs }) => {
 
         setTimeout(() => {
 
-          attrs.esthetic.state = State.Hidden
-
+          attrs.esthetic.state = State.Hidden;
 
           if (isOpen(attrs.preview.state)) {
             attrs.input.editor.layout({ width: pixels(50, 75), height: window.innerHeight });
           } else {
-            attrs.input.editor.layout({ width: pixels(100, 75),  height: window.innerHeight });
+            attrs.input.editor.layout({ width: pixels(100, 75), height: window.innerHeight });
           }
 
+          last = '';
+          m.redraw();
 
-          last = ''
-          m.redraw()
-
-        }, 300)
-
+        }, 300);
 
       } else if (attrs.esthetic.state === State.Hidden) {
 
         attrs.esthetic.state = State.Opened;
         attrs.input.editor.layout({ width: pixels(100, 675), height: window.innerHeight });
 
-        last = 'rules'
-        m.redraw()
+        last = 'rules';
+        m.redraw();
 
       }
 
@@ -105,13 +102,13 @@ export const Sidebar: ClosureComponent<IAttrs> = ({ attrs }) => {
 
   const onLanguage = () => {
 
-    if(attrs.esthetic.state === State.Opened) {
+    if (attrs.esthetic.state === State.Opened) {
 
       attrs.esthetic.state = State.Toggle;
 
       setTimeout(() => {
 
-        attrs.esthetic.state = State.Hidden
+        attrs.esthetic.state = State.Hidden;
 
         if (isOpen(attrs.preview.state)) {
           attrs.input.editor.layout({ width: pixels(50, 75), height: window.innerHeight });
@@ -119,10 +116,10 @@ export const Sidebar: ClosureComponent<IAttrs> = ({ attrs }) => {
           attrs.input.editor.layout({ width: pixels(100, 75), height: window.innerHeight });
         }
 
-      last = ''
-       onLanguage()
+        last = '';
+        onLanguage();
 
-      }, 300)
+      }, 300);
 
     } else {
 
@@ -132,18 +129,17 @@ export const Sidebar: ClosureComponent<IAttrs> = ({ attrs }) => {
 
         setTimeout(() => {
 
-          attrs.language.state = State.Hidden
+          attrs.language.state = State.Hidden;
 
           if (isOpen(attrs.preview.state)) {
             attrs.input.editor.layout({ width: pixels(50, 75), height: window.innerHeight });
           } else {
-            attrs.input.editor.layout({ width: pixels(100, 75),  height: window.innerHeight });
+            attrs.input.editor.layout({ width: pixels(100, 75), height: window.innerHeight });
           }
 
+          m.redraw();
 
-          m.redraw()
-
-        }, 300)
+        }, 300);
 
       } else if (attrs.language.state === State.Hidden) {
 
@@ -151,8 +147,7 @@ export const Sidebar: ClosureComponent<IAttrs> = ({ attrs }) => {
         attrs.language.state = State.Opened;
         attrs.input.editor.layout({ width: pixels(100, 275), height: window.innerHeight });
 
-        m.redraw()
-
+        m.redraw();
 
       }
 
@@ -169,8 +164,12 @@ export const Sidebar: ClosureComponent<IAttrs> = ({ attrs }) => {
       }
     ) => [
       m(
-        'button.btn-language[type="button"]'
-        , { onclick: onLanguage }
+        'button.btn-language[type="button"][data-tooltip="right"]'
+        , {
+          dataTooltip: 'right',
+          ariaLabel: 'Change Language',
+          onclick: onLanguage
+        }
         , file(attrs.language.current)
       )
       , actions.map(
@@ -190,7 +189,7 @@ export const Sidebar: ClosureComponent<IAttrs> = ({ attrs }) => {
             class: last === key ? 'active' : '',
             onclick: () => {
 
-              console.log(key)
+              console.log(key);
 
               if (key === 'file') {
 
@@ -200,33 +199,56 @@ export const Sidebar: ClosureComponent<IAttrs> = ({ attrs }) => {
 
                 onEsthetic();
 
-              } else if (key === 'preview') {
+              } else if (key === 'preview' || key === 'table') {
 
-                if(attrs.language.state === State.Opened) {
-                  onLanguage()
+                if (attrs.language.state === State.Opened) {
+                  onLanguage();
                 } else if (attrs.esthetic.state === State.Opened) {
-                  onEsthetic()
+                  onEsthetic();
                 }
 
-                if (attrs.preview.state === State.Opened) {
+                if (key === 'table') {
 
-                  attrs.preview.state = State.Hidden;
-                  attrs.preview.editor.getContainerDomNode().style.display = 'none';
-                  attrs.input.editor.layout({ width: pixels(100, 75), height: window.innerHeight });
+                  if (attrs.preview.state === State.Hidden) {
 
-                } else if (attrs.preview.state === State.Hidden) {
+                    attrs.preview.state = State.Opened;
+                    attrs.preview.editor.getContainerDomNode().style.display = '';
+                    attrs.input.editor.layout({ width: pixels(50, 75), height: window.innerHeight });
 
-                  attrs.preview.state = State.Opened;
-                  attrs.preview.editor.getContainerDomNode().style.display = '';
-                  attrs.input.editor.layout({ width: pixels(50, 75), height: window.innerHeight });
+                    formatCode(attrs);
 
-                  formatCode(attrs);
+                  }
+
+                  if (attrs.preview.mode !== Mode.ParseTable) {
+                    attrs.preview.mode = Mode.ParseTable;
+                    last = key;
+                  } else {
+                    attrs.preview.mode = Mode.Formatted;
+                  }
+
+                } else {
+
+                  if (attrs.preview.state === State.Opened) {
+
+                    attrs.preview.state = State.Hidden;
+                    attrs.preview.editor.getContainerDomNode().style.display = 'none';
+                    attrs.input.editor.layout({ width: pixels(100, 75), height: window.innerHeight });
+
+                  } else if (attrs.preview.state === State.Hidden) {
+
+                    attrs.preview.state = State.Opened;
+                    attrs.preview.editor.getContainerDomNode().style.display = '';
+                    attrs.input.editor.layout({ width: pixels(50, 75), height: window.innerHeight });
+
+                    formatCode(attrs);
+
+                  }
 
                 }
               } else if (key === 'github') {
                 window.open(ghissue({
                   title: '',
-                  labels: [`${attrs.config.language}`],
+                  labels: [ `${attrs.config.language}` ],
                   body: [
                     '<!-- DESCRIBE THE ISSUE -->',
                     '',
@@ -235,9 +257,9 @@ export const Sidebar: ClosureComponent<IAttrs> = ({ attrs }) => {
                     '  DO NOT EDIT BELOW THIS LINE AS IT CONTAINS PLAYGROUND LINK',
                     '-->',
                     '',
-                    `[ÆSTHETIC PLAYGROUND](${window.location.href})`,
+                    `[ÆSTHETIC PLAYGROUND LINK](${window.location.href})`
                   ].join('\n')
-                }), "_blank");
+                }), '_blank');
               }
 
             }

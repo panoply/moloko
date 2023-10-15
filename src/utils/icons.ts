@@ -99,7 +99,7 @@ export const icon = (name: Icons, size = '24') => m(
         '<path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7m0-18H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7m0-18v18"></path>'
       ),
       table: (
-        '<path stroke="none" d="M0 0h24v24H0z" fill="none"/><line x1="4" y1="6" x2="9.5" y2="6" /><line x1="4" y1="10" x2="9.5" y2="10" /><line x1="4" y1="14" x2="9.5" y2="14" /><line x1="4" y1="18" x2="9.5" y2="18" /><line x1="14.5" y1="6" x2="20" y2="6" /><line x1="14.5" y1="10" x2="20" y2="10" /><line x1="14.5" y1="14" x2="20" y2="14" /><line x1="14.5" y1="18" x2="20" y2="18" />'
+        '<path stroke="none" d="M0 0h24v24H0z" fill="none"/><line x1="0" y1="7" x2="9.5" y2="7"></line><line x1="0" y1="11" x2="9.5" y2="11"></line><line x1="0" y1="15" x2="9.5" y2="15"></line><line x1="0" y1="19" x2="9.5" y2="19"></line><line x1="12" y1="7" x2="21" y2="7"></line><line x1="12" y1="11" x2="21" y2="11"></line><line x1="12" y1="15" x2="21" y2="15"></line><line x1="12" y1="19" x2="21" y2="19"></line><line x1="12" y1="23" x2="21" y2="23"></line><line x1="0" y1="23" x2="9.5" y2="23"></line>'
       ),
       plus: (
         '<line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>'

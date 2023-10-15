@@ -1,5 +1,5 @@
 import type { IConfig, Style } from 'types';
-import * as hash from 'editor/hash';
+import * as hashed from 'editor/hash';
 import { model } from 'src/model';
 import { Sidebar } from 'src/components/sidebar';
 import { Input } from 'editor/input';
@@ -8,8 +8,9 @@ import { Preview } from 'editor/preview';
 import { IAttrs } from 'types/model';
 import { Esthetic, EstheticStatic } from 'editor/esthetic';
 import { Language } from './components/language';
-import { State } from 'utils/enums';
+import { Mode, State } from 'utils/enums';
 import { load, esthetic, m } from 'modules';
+import { ParseTable } from 'editor/table';
 
 /**
  * Quickly checks if the editor session is
@@ -17,7 +18,7 @@ import { load, esthetic, m } from 'modules';
  */
 function setMolokoOptions (attrs: IAttrs) {
 
-  esthetic.config({ logColors: false });
+  esthetic.settings({ logColors: false });
 
   if (attrs.config.hash) {
     const { hash } = window.location;
@@ -28,7 +29,7 @@ function setMolokoOptions (attrs: IAttrs) {
 
   if (attrs.hash) {
 
-    const store = hash.decode(attrs.hash);
+    const store = hashed.decode(attrs.hash);
 
     attrs.language = store.language;
     attrs.input.model = getInputModel(attrs.language.current, store.input.value);
@@ -103,6 +104,12 @@ export async function render (element: HTMLElement, options: IConfig = {}) {
 
 }
 
+export function hash () {
+
+  return window.location.hash;
+
+}
+
 /**
  * Moloko Initialize
  */
@@ -111,12 +118,12 @@ export async function mount (element: HTMLElement, options: IConfig = {}) {
   const { attrs } = await loader(options);
 
   const toggles = (prop: string) => {
-   return attrs[prop].state === State.Opened
-    ? '.open'
-    : attrs[prop].state === State.Toggle
-      ? '.close'
-    : ''
-  }
+    return attrs[prop].state === State.Opened
+      ? '.open'
+      : attrs[prop].state === State.Toggle
+        ? '.close'
+        : '';
+  };
 
   m.mount(element, {
     view: () => m(
@@ -128,12 +135,12 @@ export async function mount (element: HTMLElement, options: IConfig = {}) {
           , m(Sidebar, attrs)
         ) : null
         ,
-         m(
+        m(
           'aside.moloko-language' + toggles('language')
           , m(Language, attrs)
         )
         ,
-         m(
+        m(
           'section.moloko-esthetic' + toggles('esthetic')
           , m(Esthetic, attrs)
         )
@@ -145,7 +152,8 @@ export async function mount (element: HTMLElement, options: IConfig = {}) {
         ,
         attrs.config.preview.enable && attrs.preview.state === State.Opened ? m(
           'section.moloko-preview'
-          , m(Preview, attrs)
+          ,
+          attrs.preview.mode === Mode.Formatted ? m(Preview, attrs) : m(ParseTable, attrs)
         ) : null
       ]
     )

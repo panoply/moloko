@@ -98,10 +98,10 @@ export const Esthetic: ClosureComponent<IAttrs> = (
 
     attrs.esthetic.editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => {
 
-      attrs.esthetic.rules = JSON.parse(attrs.esthetic.model.getValue())
+      attrs.esthetic.rules = JSON.parse(attrs.esthetic.model.getValue());
       esthetic.rules(attrs.esthetic.rules);
 
-      encode(attrs)
+      encode(attrs);
 
       attrs.esthetic.editor.trigger(
         'editor',
@@ -117,8 +117,7 @@ export const Esthetic: ClosureComponent<IAttrs> = (
 
     });
 
-
-  }
+  };
 
   return {
     oncreate: (
