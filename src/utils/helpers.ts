@@ -2,6 +2,7 @@ import { IAttrs } from 'types/model';
 import join from 'url-join';
 import { State } from './enums';
 import { esthetic, m } from 'modules';
+import { encode } from 'editor/hash';
 
 export function loadExternalCSS (path: string) {
 
@@ -25,6 +26,31 @@ export function loadExternalCSS (path: string) {
 
     }
   }
+}
+
+export function delay (ms: number) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve('WAIT');
+    }, ms);
+  });
+}
+
+export function copyUrl () {
+
+  const el = document.createElement('textarea');
+  el.value = window.location.href;
+
+  el.setAttribute('readonly', '');
+  el.style.position = 'absolute';
+  el.style.left = '-9999px';
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand('copy');
+  document.body.removeChild(el);
+
+  return true;
+
 }
 
 export function isOpen (state: State) {

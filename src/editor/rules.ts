@@ -36,6 +36,10 @@ export function EstheticStatic (dom: HTMLElement, attrs: IAttrs) {
     mount: () => {
 
       attrs.esthetic.editor = monaco.editor.create(dom as HTMLElement, options);
+      attrs.esthetic.editor.updateOptions({
+        theme: 'potion-light'
+      });
+
       attrs.esthetic.editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => {
 
         esthetic.rules(JSON.parse(attrs.esthetic.model.getValue()));
@@ -128,6 +132,10 @@ export const Esthetic: ClosureComponent<IAttrs> = (
 
       attrs.esthetic.editor = monaco.editor.create(dom as HTMLElement, options);
       attrs.esthetic.editor.onDidFocusEditorText(() => addCommand());
+
+      const { style } = attrs.esthetic.editor.getDomNode();
+      style.setProperty('--vscode-editor-background', '#121418');
+      style.setProperty('--vscode-editorGutter-background', '#121418');
 
     },
     view: () => m('div', { style: { height: '100%' } })

@@ -10,6 +10,8 @@ Moloko is an embedded web based code editor built atop of [Monaco](https://githu
 
 Moloko has peer dependencies on [mithril.js](https://mithril.js.org) and [Æsthetic](https://github.com/panoply/esthetic). Both these modules need to be installed in order for moloko to be used.
 
+[Live Example](https://molokojs.netlify.app)
+
 ```bash
 pnpm add moloko
 ```

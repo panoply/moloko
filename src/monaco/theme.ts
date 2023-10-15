@@ -54,6 +54,11 @@ const liquid: editor.ITokenThemeRule[] = [
     token: 'delimiter.liquid'
   },
   {
+    // {% in {% tag %}
+    foreground: '888888',
+    token: 'delimiter.attr.liquid'
+  },
+  {
     // - in {%- or {{-
     foreground: 'E91E63',
     token: 'delimiter.whitespace.liquid'

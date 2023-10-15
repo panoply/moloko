@@ -1,3 +1,6 @@
+@use "sass:math";
+@use "sass:string";
+
 html {
   box-sizing: border-box;
 }
@@ -30,11 +33,11 @@ table.parse-table {
   display: block;
   width: 100%;
   height: 100%;
+  overflow: scroll;
   color: #000;
   font-size: .65rem;
   font-family: $moloko-font-title;
   border-collapse: collapse;
-  overflow: scroll;
 
 
   .index{
@@ -75,6 +78,7 @@ table.parse-table {
 
   thead {
     background-color: #fee;
+
     tr {
       font-weight: 600;
     }
@@ -82,9 +86,9 @@ table.parse-table {
 
 
   th {
-    background-color: #db94ae;
     position: sticky;
     top: 0;
+    background-color: #db94ae;
     border-bottom: 0.01rem solid $moloko-border-color;
   }
 
@@ -136,8 +140,6 @@ table.parse-table {
     }
 
 
-
-
     &:hover {
       background-color: #ffa !important;
       cursor: pointer;
@@ -186,6 +188,7 @@ table.parse-table {
   top: 0;
   bottom: 0;
   left: 0;
+  z-index: 300;
   width: 200px;
   height: 100%;
   margin-left: 75px;
@@ -273,9 +276,59 @@ table.parse-table {
   justify-content: space-evenly;
   margin: 0;
   padding: 0;
+  padding-left: 75px;
   overflow: hidden;
   background-color: $moloko-background-editor;
   -webkit-font-smoothing: antialiased;
+}
+
+@function divide($dividend, $divisor, $precision: 10) {
+  $sign: if($dividend > 0 and $divisor > 0 or $dividend < 0 and $divisor < 0, 1, -1);
+  $dividend: math.abs($dividend);
+  $divisor: math.abs($divisor);
+
+  @if $dividend == 0 {
+    @return 0;
+  }
+
+  @if $divisor == 0 {
+    @error "Cannot divide by 0";
+  }
+  $remainder: $dividend;
+  $result: 0;
+  $factor: 10;
+
+  @while  $remainder > 0 and $precision >= 0 {
+    $quotient: 0;
+
+    @while  $remainder >= $divisor {
+      $remainder: $remainder - $divisor;
+      $quotient: $quotient + 1;
+    }
+    $result: $result * 10 + $quotient;
+    $factor: $factor * .1;
+    $remainder: $remainder * 10;
+    $precision: $precision - 1;
+
+    @if  $precision < 0 and $remainder >= $divisor * 5 {
+      $result: $result + 1;
+    }
+  }
+  $result: $result * $factor * $sign;
+  $dividend-unit: math.unit($dividend);
+  $divisor-unit: math.unit($divisor);
+  $unit-map: (
+    "px": 1px,
+    "rem": 1rem,
+    "em": 1em,
+    "%": 1%
+  );
+
+  @return $result;
+}
+
+@function percent($target, $parent: "") {
+  @return string.unquote($parent + divide($target, 16px) + "%");
 }
 
 .moloko-esthetic {
@@ -284,9 +337,9 @@ table.parse-table {
   bottom: 0;
   left: 75px;
   flex-grow: 1;
-  width: 600px;
+  width: percent(600px);
   background-color: #12161d;
-  transform: translateX(-600px);
+  transform: translateX(percent(-600px));
 
   &.close,
   &.open {
@@ -321,10 +374,10 @@ table.parse-table {
   top: 0;
   bottom: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 400;
   display: flex;
   flex-flow: column wrap;
-  width: 75px;
+  width: percent(75px);
   height: 100%;
   background-color: $moloko-background-sidebar;
   border-right: 0.01rem solid $moloko-border-color;
@@ -371,13 +424,9 @@ table.parse-table {
   &-input,
   &-preview {
     flex-grow: 1;
-    margin-left: 75px;
-  }
-
-  &-input,
-  &-preview {
     width: 50%;
   }
+
 
   &-input + &-preview {
     margin-left: 0;
@@ -389,34 +438,66 @@ table.parse-table {
   /* -------------------------------------------- */
 
   &-language.open + &-esthetic + &-input {
-    margin-left: 275px;
+    z-index: 300;
+    margin-left: percent(200px);
     transition: margin-left 300ms;
   }
 
 
   &-language.close + &-esthetic + &-input {
-    margin-left: 75px;
+    z-index: 300;
     transition: margin-left 300ms;
   }
+
 
   /* -------------------------------------------- */
   /* SIDEBAR TOGGLE                               */
   /* -------------------------------------------- */
 
   &-esthetic.open + &-input {
-    margin-left: 675px;
+    margin-left: 37.5%;
     transition: margin-left 300ms,
   }
 
-  &-esthetic.close + &-input {
-    margin-left: 75px;
+  &-esthetic.close + &-input,
+  &-esthetic.close + &-input + &-preview {
     transition: margin-left 300ms,
   }
 
 
-  &-language.open + &-esthetic + &-input + &-preview,
   &-esthetic.open + &-input + &-preview {
-    display: none;
+    margin-left: -59.5%;
+    transition: margin-left 300ms;
   }
+
+
+}
+
+
+$spinner-width: 3rem;
+$spinner-height: $spinner-width;
+$spinner-border-width: .3rem;
+$spinner-width-sm: 1rem;
+$spinner-height-sm: $spinner-width-sm;
+$spinner-border-width-sm: .15rem;
+$spinner-vertical-align: -.125em;
+$spinner-border-color: $moloko-button-active;
+$spinner-animation-speed: .65s;
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg) #{"/* rtl:ignore */"};
+  }
+}
+
+.spinner {
+  display: inline-block;
+  width: $spinner-width;
+  height: $spinner-height;
+  vertical-align: $spinner-vertical-align;
+  border: $spinner-border-width solid #42434E;
+  border-right-color: $spinner-border-color;
+  border-radius: 50%;
+  animation: $spinner-animation-speed linear infinite spin;
 }
 

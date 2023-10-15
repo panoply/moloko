@@ -16,12 +16,13 @@ export const Preview: Component<IAttrs> = {
     const options = Object.assign<editor.IEditorOptions, editor.IEditorOverrideServices>({}, attrs.config.monaco);
 
     options.model = attrs.preview.model;
-    options.lineNumbers = 'off';
+    options.lineNumbers = 'on';
     options.readOnly = true;
     options.renderLineHighlight = 'none';
     options.cursorStyle = 'line-thin';
 
     attrs.preview.editor = monaco.editor.create(dom as HTMLElement, options);
+
     attrs.input.editor.onDidScrollChange((
       {
         scrollLeft,

@@ -342,15 +342,27 @@ export const liquid: languages.IMonarchLanguage = {
     ],
 
     LiquidTag: [
-      [ /%}/, 'delimiter.liquid', '@pop' ],
+      [ /%}/, 'delimiter', '@pop' ],
       { include: 'expression' }
+    ],
+
+    LiquidTagAttr: [
+      [ /%}/, 'delimiter.attr', '@pop' ],
+      { include: 'expression' }
+
     ],
 
     /**
     * Variable Tag Handling
     */
     LiquidOutput: [
-      [ /}}/, 'delimiter.liquid', '@pop' ],
+      [ /}}/, 'delimiter', '@pop' ],
+      { include: 'expression' }
+
+    ],
+
+    LiquidOutputAttr: [
+      [ /}}/, 'delimiter.attr', '@pop' ],
       { include: 'expression' }
 
     ],
@@ -432,8 +444,8 @@ export const liquid: languages.IMonarchLanguage = {
     ],
 
     LiquidAttributeString: [
-      [ /\s*{{-?/, 'delimiter.liquid', '@LiquidOutput' ],
-      [ /\s*{%-?/, 'delimiter.output.liquid', '@LiquidTag' ],
+      [ /\s*{{-?/, 'delimiter.attr', '@LiquidOutputAttr' ],
+      [ /\s*{%-?/, 'delimiter.attr', '@LiquidTagAttr' ],
       [ /"/, 'attribute.value.html', '@pop' ],
       [ /./, 'attribute.value.html' ]
     ],

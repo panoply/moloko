@@ -1,16 +1,18 @@
 import type { IConfig, Style } from 'types';
 import * as hashed from 'editor/hash';
 import { model } from 'src/model';
-import { Sidebar } from 'src/components/sidebar';
+import { Sidebar } from './components/sidebar';
 import { Input } from 'editor/input';
 import { getMonacoModule, getInputModel, getRulesModel } from './monaco';
 import { Preview } from 'editor/preview';
 import { IAttrs } from 'types/model';
-import { Esthetic, EstheticStatic } from 'editor/esthetic';
+import { Esthetic, EstheticStatic } from 'editor/rules';
 import { Language } from './components/language';
 import { Mode, State } from 'utils/enums';
 import { load, esthetic, m } from 'modules';
 import { ParseTable } from 'editor/table';
+import { Splash } from './components/splash';
+import { delay } from 'utils/helpers';
 
 /**
  * Quickly checks if the editor session is
@@ -53,6 +55,12 @@ function setMolokoOptions (attrs: IAttrs) {
     attrs.input.model = getInputModel(attrs.language.current);
     attrs.esthetic.model = getRulesModel(attrs.language.current, attrs.esthetic.rules);
 
+    if (attrs.config.hash) {
+      attrs.hash = hashed.encode(attrs);
+    }
+
+    return true;
+
   }
 };
 
@@ -64,7 +72,7 @@ export async function loader (options: IConfig = {}): Promise<{
   };
 }> {
 
-  const attrs = model(options);
+  const attrs = model.update(options);
 
   await load(attrs);
 
@@ -74,7 +82,9 @@ export async function loader (options: IConfig = {}): Promise<{
     throw new Error('Failed to load Monaco', e);
   }
 
-  setMolokoOptions(attrs);
+  const splash = setMolokoOptions(attrs);
+
+  if (splash) await delay(2000);
 
   return {
     get attrs () {
@@ -118,6 +128,7 @@ export async function mount (element: HTMLElement, options: IConfig = {}) {
   const { attrs } = await loader(options);
 
   const toggles = (prop: string) => {
+
     return attrs[prop].state === State.Opened
       ? '.open'
       : attrs[prop].state === State.Toggle
@@ -151,9 +162,8 @@ export async function mount (element: HTMLElement, options: IConfig = {}) {
         )
         ,
         attrs.config.preview.enable && attrs.preview.state === State.Opened ? m(
-          'section.moloko-preview'
-          ,
-          attrs.preview.mode === Mode.Formatted ? m(Preview, attrs) : m(ParseTable, attrs)
+          `section.moloko-preview[aria-label=${attrs.preview.mode === Mode.Formatted ? 'preview' : ''}]`
+          , attrs.preview.mode === Mode.Formatted ? m(Preview, attrs) : m(ParseTable, attrs)
         ) : null
       ]
     )

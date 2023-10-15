@@ -30,6 +30,10 @@ export interface IAttrs {
    */
   path: string;
   /**
+   * the current open sidebar item
+   */
+  open: string;
+  /**
    * The current hash reference
    *
    * @default null
@@ -51,13 +55,16 @@ export interface IAttrs {
     width: number;
     model: editor.ITextModel;
     editor: editor.IStandaloneCodeEditor;
+    node: HTMLElement;
+    state: State;
   };
   preview: {
     state: State;
     mode: Mode;
     width: number;
     model: editor.ITextModel;
-    editor: editor.IStandaloneCodeEditor
+    editor: editor.IStandaloneCodeEditor,
+    node: HTMLElement
   };
   esthetic: {
     state: State;
@@ -65,6 +72,7 @@ export interface IAttrs {
     model: editor.ITextModel;
     editor: editor.IStandaloneCodeEditor;
     rules: Rules;
+    node: HTMLElement
   }
 }
 

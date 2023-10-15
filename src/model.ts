@@ -4,113 +4,19 @@ import { State, Mode } from 'utils/enums';
 import merge from 'mergerino';
 import join from 'url-join';
 
-export function model (options: IConfig): IAttrs {
-
-  const rules = {
-    crlf: false,
-    correct: false,
-    preset: 'default',
-    language: 'liquid',
-    endNewline: false,
-    indentChar: ' ',
-    indentLevel: 0,
-    indentSize: 2,
-    preserveLine: 2,
-    wrap: 0,
-    wrapFraction: 0,
-    liquid: {
-      commentNewline: false,
-      commentIndent: true,
-      delimiterTrims: 'preserve',
-      delimiterPlacement: 'preserve',
-      forceFilter: 0,
-      forceArgument: 0,
-      ignoreTagList: [],
-      indentAttribute: false,
-      lineBreakSeparator: 'before',
-      normalizeSpacing: true,
-      preserveComment: false,
-      preserveInternal: false,
-      dedentTagList: [],
-      quoteConvert: 'none'
-    },
-    markup: {
-      attributeCasing: 'preserve',
-      attributeSort: false,
-      commentNewline: false,
-      commentIndent: true,
-      delimiterTerminus: 'inline',
-      forceAttribute: 3,
-      forceIndent: false,
-      ignoreCSS: false,
-      ignoreJS: true,
-      ignoreJSON: false,
-      lineBreakValue: 'preserve',
-      preserveComment: false,
-      preserveText: false,
-      preserveAttribute: false,
-      selfCloseSpace: true,
-      selfCloseSVG: true,
-      stripAttributeLines: false,
-      quoteConvert: 'none'
-    },
-    json: {
-      arrayFormat: 'default',
-      braceAllman: false,
-      bracePadding: false,
-      objectIndent: 'default',
-      objectSort: false
-    },
-    style: {
-      commentIndent: false,
-      commentNewline: false,
-      atRuleSpace: true,
-      classPadding: false,
-      noLeadZero: false,
-      preserveComment: false,
-      sortSelectors: false,
-      sortProperties: false,
-      quoteConvert: 'none'
-    },
-    script: {
-      arrayFormat: 'default',
-      braceNewline: false,
-      bracePadding: false,
-      braceStyle: 'none',
-      braceAllman: false,
-      caseSpace: false,
-      commentIndent: false,
-      commentNewline: false,
-      elseNewline: false,
-      endComma: 'never',
-      functionNameSpace: false,
-      functionSpace: false,
-      inlineReturn: true,
-      methodChain: 4,
-      neverFlatten: false,
-      noCaseIndent: false,
-      noSemicolon: false,
-      objectSort: false,
-      objectIndent: 'default',
-      preserveComment: false,
-      quoteConvert: 'none',
-      styleGuide: 'none',
-      ternaryLine: false,
-      variableList: false,
-      vertical: false
-    }
-  };
+export const model = new class Model implements IAttrs {
 
   /**
-   * Internal state reference.
+   * Internal state reference defaults, immutable
    */
-  const defaults: IConfig = {
+  static config: IConfig = {
     resolve: {
       origin: window.location.origin,
       path: '',
       mithril: true,
       esthetic: true
     },
+    splash: true,
     tabs: false,
     monaco: {
       automaticLayout: false,
@@ -150,6 +56,103 @@ export function model (options: IConfig): IAttrs {
     },
     preview: {
       enable: true
+    },
+    esthetic: {
+      enable: true,
+      rules: {
+        crlf: false,
+        correct: false,
+        preset: 'default',
+        language: 'liquid',
+        endNewline: false,
+        indentChar: ' ',
+        indentLevel: 0,
+        indentSize: 2,
+        preserveLine: 2,
+        wrap: 0,
+        wrapFraction: 0,
+        liquid: {
+          commentNewline: false,
+          commentIndent: true,
+          delimiterTrims: 'preserve',
+          delimiterPlacement: 'preserve',
+          forceFilter: 0,
+          forceArgument: 0,
+          ignoreTagList: [],
+          indentAttribute: false,
+          lineBreakSeparator: 'before',
+          normalizeSpacing: true,
+          preserveComment: false,
+          dedentTagList: [],
+          quoteConvert: 'none'
+        },
+        markup: {
+          attributeCasing: 'preserve',
+          attributeSort: false,
+          commentNewline: false,
+          commentIndent: true,
+          commentDelimiters: 'force',
+          delimiterTerminus: 'inline',
+          forceAttribute: 3,
+          forceIndent: false,
+          ignoreCSS: false,
+          ignoreJS: true,
+          ignoreJSON: false,
+          lineBreakValue: 'preserve',
+          preserveComment: false,
+          preserveText: false,
+          preserveAttribute: false,
+          selfCloseSpace: true,
+          selfCloseSVG: true,
+          stripAttributeLines: false,
+          quoteConvert: 'none'
+        },
+        json: {
+          arrayFormat: 'default',
+          braceAllman: false,
+          bracePadding: false,
+          objectIndent: 'default',
+          objectSort: false
+        },
+        style: {
+          commentIndent: false,
+          commentNewline: false,
+          atRuleSpace: true,
+          classPadding: false,
+          noLeadZero: false,
+          preserveComment: false,
+          sortSelectors: false,
+          sortProperties: false,
+          quoteConvert: 'none'
+        },
+        script: {
+          arrayFormat: 'default',
+          braceNewline: false,
+          bracePadding: false,
+          braceStyle: 'none',
+          braceAllman: false,
+          caseSpace: false,
+          commentIndent: false,
+          commentNewline: false,
+          elseNewline: false,
+          endComma: 'never',
+          functionNameSpace: false,
+          functionSpace: false,
+          inlineReturn: true,
+          methodChain: 4,
+          neverFlatten: false,
+          noCaseIndent: false,
+          noSemicolon: false,
+          objectSort: false,
+          objectIndent: 'default',
+          preserveComment: false,
+          quoteConvert: 'none',
+          styleGuide: 'none',
+          ternaryLine: false,
+          variableList: 'none',
+          vertical: false
+        }
+      }
     },
     offset: 0,
     detect: true,
@@ -217,39 +220,54 @@ export function model (options: IConfig): IAttrs {
     }
   };
 
-  const config = Object.assign(defaults, merge(defaults, options));
+  public config: IConfig = Model.config;
+  public hash = '';
+  public open = null;
+  public path = join(Model.config.resolve.origin, Model.config.resolve.path);
 
-  /**
-   * Internal state reference.
-   */
-  return {
-    hash: config.hash ? '' : null,
-    path: join(config.resolve.origin, config.resolve.path),
-    get config () { return config; },
-    language: {
-      state: State.Hidden,
-      current: config.language || 'auto',
-      detect: config.detect
-    },
-    input: {
-      width: -1,
-      editor: null,
-      model: null
-    },
-    preview: {
-      width: -1,
-      editor: null,
-      mode: Mode.Formatted,
-      state: State.Opened,
-      model: null
-    },
-    esthetic: {
-      width: -1,
-      editor: null,
-      model: null,
-      state: State.Hidden,
-      rules
-    }
+  public language = {
+    state: State.Hidden,
+    current: 'auto',
+    detect: true
   };
 
-}
+  public input = {
+    width: -1,
+    editor: null,
+    model: null,
+    node: null,
+    state: State.Opened
+  };
+
+  public preview = {
+    width: -1,
+    editor: null,
+    mode: Mode.Formatted,
+    state: State.Opened,
+    model: null,
+    node: null
+  };
+
+  public esthetic = {
+    width: -1,
+    editor: null,
+    model: null,
+    state: State.Hidden,
+    rules: Model.config.esthetic.rules,
+    node: null
+  };
+
+  update (options: IConfig) {
+
+    this.config = merge(this.config, options);
+    this.hash = this.config.hash ? '' : null;
+    this.path = join(this.config.resolve.origin, this.config.resolve.path);
+    this.language.current = this.config.language || 'auto';
+    this.language.detect = this.config.detect;
+    this.esthetic.rules = this.config.esthetic.rules;
+
+    return this;
+
+  }
+
+}();

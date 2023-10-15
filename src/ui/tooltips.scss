@@ -102,7 +102,7 @@ button[aria-label] {
       @include base-effects;
 
       position: absolute;
-      z-index: 10;
+      z-index: 400;
       content: "";
     }
 

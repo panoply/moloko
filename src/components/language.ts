@@ -44,6 +44,8 @@ export const Language: Component<IAttrs> = {
             attrs.input.model.dispose();
             attrs.input.model = monaco.editor.createModel(value, language);
             attrs.input.editor.setModel(attrs.input.model);
+            attrs.language.current = language;
+            attrs.language.detect = true;
 
           }
         }

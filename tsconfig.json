@@ -12,33 +12,57 @@
     "src",
     "types",
     "tsup.ts"
- ],
+  ],
   "typeAcquisition": {
     "enable": true,
-    "include": ["node"],
+    "include": [
+      "node"
+    ],
   },
   "compilerOptions": {
     "incremental": false,
-    "types": ["node"],
+    "types": [
+      "node"
+    ],
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "declaration": true,
     "removeComments": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
     "module": "ESNext",
     "target": "ES6",
     "emitDeclarationOnly": true,
     "isolatedModules": true,
     "baseUrl": ".",
     "paths": {
-      "types": ["./index.d.ts"],
-      "utils/*": ["./src/utils/*"],
-      "attrs": ["src/model.ts"],
-      "actions": ["./src/actions.ts"],
-      "editor/*": ["./src/editor/*"],
-      "monaco/*": ["./src/monaco/*"],
-      "modules": ["./src/modules.ts"],
-      "bss": ["./types/bss.d.ts"]
+      "types": [
+        "./index.d.ts"
+      ],
+      "utils/*": [
+        "./src/utils/*"
+      ],
+      "attrs": [
+        "./src/model.ts"
+      ],
+      "actions": [
+        "./src/actions.ts"
+      ],
+      "editor/*": [
+        "./src/editor/*"
+      ],
+      "monaco/*": [
+        "./src/monaco/*"
+      ],
+      "modules": [
+        "./src/modules.ts"
+      ],
+      "bss": [
+        "./types/bss.d.ts"
+      ]
     }
   }
 }

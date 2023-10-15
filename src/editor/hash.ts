@@ -28,6 +28,8 @@ export function encode (attrs: IAttrs) {
 
   window.location.hash = attrs.hash;
 
+  return attrs.hash;
+
 }
 
 /**

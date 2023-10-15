@@ -376,6 +376,12 @@ export interface IConfig {
 
   };
   /**
+   * Splash screen loading for when moloko intializes
+   *
+   * @default true
+   */
+  splash?: boolean
+  /**
    * Monaco Editor Options
    *
    * These will be defined at runtime as defaults.
@@ -399,6 +405,10 @@ export interface IConfig {
      * @default true
      */
     enable?: boolean;
+    /**
+     * Pass Æsthetic rules for startup instance
+     */
+    rules?: Rules;
   };
   /**
    * The code preview pane
