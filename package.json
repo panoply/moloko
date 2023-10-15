@@ -13,7 +13,7 @@
     "import": "./dist/moloko.js"
   },
   "scripts": {
-    "dev": "concurrently \"sass ./src/styles.scss:./dist/moloko.css --watch\" \"tsup --watch\" \"http-server -o\"",
+    "dev": "concurrently \"sass ./src/styles.scss:./dist/moloko.css --watch\" \"tsup --watch\" \"http-server ./dist -o\"",
     "build": "rm -rf dist && sass ./src/styles.scss:./dist/moloko.css --no-source-map --style=compressed && NODE_ENV=production tsup --minify"
   },
   "keywords": [],
