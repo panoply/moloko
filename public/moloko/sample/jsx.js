@@ -1,4 +1,5 @@
-var o=`
+// src/samples/jsx.ts
+var jsx_default = `
 
 function foo (prop) {
 
@@ -8,4 +9,4 @@ function foo (prop) {
 
 `;
 
-export { o as default };
+export { jsx_default as default };

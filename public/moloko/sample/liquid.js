@@ -1,4 +1,5 @@
-var e=`
+// src/samples/liquid.ts
+var liquid_default = `
 {% liquid
 
   assign sample = false
@@ -88,4 +89,4 @@ var e=`
 </header>
 `;
 
-export { e as default };
+export { liquid_default as default };

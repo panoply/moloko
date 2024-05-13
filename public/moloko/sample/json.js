@@ -1,4 +1,5 @@
-var e=`
+// src/samples/json.ts
+var json_default = `
 {
   "boolean": true,
   "string": "string" /* block comment */,
@@ -13,4 +14,4 @@ var e=`
 }
 `;
 
-export { e as default };
+export { json_default as default };

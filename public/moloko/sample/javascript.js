@@ -1,4 +1,5 @@
-var e=`
+// src/samples/javascript.ts
+var javascript_default = `
 
 function example (param, object) {
 
@@ -26,4 +27,4 @@ function example (param, object) {
 
 `;
 
-export { e as default };
+export { javascript_default as default };

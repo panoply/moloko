@@ -1,4 +1,5 @@
-var e=`
+// src/samples/css.ts
+var css_default = `
 
   :root {
     --some-variable: #fff;
@@ -22,4 +23,4 @@ var e=`
 
 `;
 
-export { e as default };
+export { css_default as default };

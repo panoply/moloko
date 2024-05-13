@@ -1,4 +1,5 @@
-var e=`
+// src/samples/plaintext.ts
+var plaintext_default = `
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Maecenas pharetra convallis posuere morbi leo urna molestie at elementum. Gravida in fermentum et sollicitudin. Vel pretium lectus quam id. Sodales ut eu sem integer vitae justo eget. Mollis aliquam ut porttitor leo a diam sollicitudin. Suspendisse in est ante in. Eleifend quam adipiscing vitae proin sagittis nisl. Orci porta non pulvinar neque laoreet. Quisque id diam vel quam elementum pulvinar etiam non. Nibh cras pulvinar mattis nunc. Nam libero justo laoreet sit.
 
 Congue mauris rhoncus aenean
@@ -16,4 +17,4 @@ Interdum consectetur libero id faucibus nisl. Aliquet nec ullamcorper sit amet r
 Nisi scelerisque eu ultrices vitae auctor eu augue. Diam quis enim lobortis scelerisque. Suspendisse in est ante in nibh. Sit amet consectetur adipiscing elit pellentesque habitant. Commodo ullamcorper a lacus vestibulum sed. Luctus accumsan tortor posuere ac ut consequat. In nisl nisi scelerisque eu ultrices vitae auctor eu. Volutpat commodo sed egestas egestas fringilla. Quam adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus urna. Sagittis vitae et leo duis. Porta nibh venenatis cras sed felis eget. Amet consectetur adipiscing elit pellentesque habitant. Bibendum ut tristique et egestas quis. Tellus cras adipiscing enim eu turpis. Duis convallis convallis tellus id interdum velit laoreet id donec. Sapien et ligula ullamcorper malesuada proin libero nunc consequat interdum. Convallis posuere morbi leo urna molestie at elementum eu facilisis. Non enim praesent elementum facilisis. Dictum fusce ut placerat orci.
 `;
 
-export { e as default };
+export { plaintext_default as default };

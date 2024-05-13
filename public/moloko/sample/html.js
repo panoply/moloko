@@ -1,4 +1,5 @@
-var t=`
+// src/samples/html.ts
+var html_default = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,4 +20,4 @@ var t=`
 </html>
 `;
 
-export { t as default };
+export { html_default as default };

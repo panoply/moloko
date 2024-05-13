@@ -1,4 +1,5 @@
-var n=`
+// src/samples/tsx.ts
+var tsx_default = `
 
 
 function foo (prop: { name: string }) {
@@ -9,4 +10,4 @@ function foo (prop: { name: string }) {
 
 `;
 
-export { n as default };
+export { tsx_default as default };

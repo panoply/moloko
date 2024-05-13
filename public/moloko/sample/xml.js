@@ -1,4 +1,5 @@
-var e=`
+// src/samples/xml.ts
+var xml_default = `
 
 <?xml version="1.0" encoding="UTF-8"?>
 <table summary="Product Sales Summary" border="1">
@@ -14,4 +15,4 @@ var e=`
 
 `;
 
-export { e as default };
+export { xml_default as default };

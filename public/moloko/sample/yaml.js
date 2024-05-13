@@ -1,4 +1,5 @@
-var e=`
+// src/samples/yaml.ts
+var yaml_default = `
 
 #Comment: Student record
 #Describes some characteristics and preferences
@@ -23,4 +24,4 @@ favorite_food:
 
 `;
 
-export { e as default };
+export { yaml_default as default };

@@ -1,4 +1,5 @@
-var t=`
+// src/samples/typescript.ts
+var typescript_default = `
 
 export interface IAttrs {
   foo: string;
@@ -33,4 +34,4 @@ function example <T extends string>(param: IAttrs, arg: T): void {
 
 `;
 
-export { t as default };
+export { typescript_default as default };

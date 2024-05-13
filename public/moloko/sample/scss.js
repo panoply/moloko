@@ -1,4 +1,5 @@
-var e=`
+// src/samples/scss.ts
+var scss_default = `
 
 @each $color, $value in $button-colors {
   .xxx-#{$color} {
@@ -29,4 +30,4 @@ var e=`
 
 `;
 
-export { e as default };
+export { scss_default as default };
