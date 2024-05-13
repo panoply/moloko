@@ -1,11 +1,22 @@
-import { Style } from 'types';
-import { IAttrs } from 'types/model';
 import type { editor } from 'monaco-editor';
-import { Component } from 'mithril';
-import { monaco } from '../monaco';
+import type { Component } from 'mithril';
+import type { Style } from 'types';
+import type { IAttrs } from 'types/model';
 import { m } from 'modules';
+import { monaco } from '../monaco';
+import { assign } from './utils';
+import { State } from './enums';
 
-export const Preview: Component<IAttrs> = {
+export const Preview: Component<IAttrs> = ({
+  onremove: (
+    {
+      attrs
+    }
+  ) => {
+
+    attrs.preview.editor.dispose();
+
+  },
   oncreate: (
     {
       dom,
@@ -13,16 +24,21 @@ export const Preview: Component<IAttrs> = {
     }
   ) => {
 
-    const options = Object.assign<editor.IEditorOptions, editor.IEditorOverrideServices>({}, attrs.config.monaco);
+    attrs.preview.node = dom as HTMLElement;
+
+    const options = assign<editor.IEditorOptions, editor.IEditorOverrideServices>(
+      {},
+      attrs.config.monaco
+    );
 
     options.model = attrs.preview.model;
     options.lineNumbers = 'on';
     options.readOnly = true;
+    options.domReadOnly = true;
     options.renderLineHighlight = 'none';
     options.cursorStyle = 'line-thin';
 
     attrs.preview.editor = monaco.editor.create(dom as HTMLElement, options);
-
     attrs.input.editor.onDidScrollChange((
       {
         scrollLeft,
@@ -38,22 +54,17 @@ export const Preview: Component<IAttrs> = {
     });
 
   },
-  onremove: (
+  view: (
     {
-      attrs,
-      dom
+      attrs
     }
-  ) => {
-
-    attrs.preview.width = dom.clientWidth;
-    attrs.preview.editor.dispose();
-
-  },
-  view: () => m('div', {
-
-    style: <Style>{
-      height: '100%'
+  ) => m(
+    'moloko-preview'
+    , {
+      ariaLabel: attrs.preview.state === State.Opened ? 'Output Preview' : '',
+      style: <Style>{
+        flex: attrs.preview.width
+      }
     }
-  })
-
-};
+  )
+});

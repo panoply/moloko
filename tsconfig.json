@@ -35,6 +35,8 @@
     ],
     "module": "ESNext",
     "target": "ES6",
+    "strictNullChecks": false,
+    "resolveJsonModule": true,
     "emitDeclarationOnly": true,
     "isolatedModules": true,
     "baseUrl": ".",
@@ -42,26 +44,11 @@
       "types": [
         "./index.d.ts"
       ],
-      "utils/*": [
-        "./src/utils/*"
-      ],
-      "attrs": [
-        "./src/model.ts"
-      ],
-      "actions": [
-        "./src/actions.ts"
-      ],
-      "editor/*": [
-        "./src/editor/*"
-      ],
       "monaco/*": [
         "./src/monaco/*"
       ],
       "modules": [
         "./src/modules.ts"
-      ],
-      "bss": [
-        "./types/bss.d.ts"
       ]
     }
   }

@@ -1,14 +1,15 @@
-$moloko-font-title: consolas, monaco, "Andale Mono", "Ubuntu Mono",
-  monospace;
+$moloko-height: 100vh;
+$moloko-width: 100vw;
+
+$moloko-font-title: consolas, monaco, "Andale Mono", "Ubuntu Mono", monospace;
+
+$moloko-toggle-transition: 400ms;
+$moloko-hover-transition: linear 0.15s;
 
 $moloko-button-color: #fafafa;
 $moloko-button-hover: #e45589;
 $moloko-button-active: #e45589;
-
-$moloko-tab-height: 40px;
-$moloko-tab-color: #fafafa;
-$moloko-tab-active: #0f1215;
-$moloko-tab-inactive: #13171a;
+$moloko-button-disable: #fafafa11;
 
 $moloko-background-sidebar: #0f1215;
 $moloko-background-editor: #0f1215;
@@ -16,8 +17,59 @@ $moloko-background-language: #13171a;
 
 $moloko-border-color: #2d333a;
 $moloko-border-width: 0.01rem;
+$moloko-border: $moloko-border-width solid $moloko-border-color;
 
-$moloko-zindex-sidebar: 100;
-$moloko-zindex-editor: 200;
-$moloko-zindex-preview: 300;
-$moloko-zindex-rules: 300;
+$moloko-spinner-width: 3rem;
+$moloko-spinner-height: $moloko-spinner-width;
+$moloko-spinner-border-width: .3rem;
+$moloko-spinner-vertical-align: -.125em;
+$moloko-spinner-border-color: $moloko-button-active;
+$moloko-spinner-animation-speed: .65s;
+
+$moloko-tooltip-bg: #000;
+$moloko-tooltip-font-family: system-ui, sans-serif;
+$moloko-tooltip-font-style: normal;
+$moloko-tooltip-font-size: 0.6rem;
+$moloko-tooltip-font-color: #fafafa;
+$moloko-tooltip-padding-y: 0.3rem;
+$moloko-tooltip-padding-x: 0.6rem;
+$moloko-tooltip-arrow-size: 9px;
+$moloko-tooltip-radius: 0;
+$moloko-tooltip-border-width: 0.03rem;
+$moloko-tooltip-animation: true;
+$moloko-tooltip-use-outline: false;
+$moloko-tooltip-arrow-directions: (
+  bottom: top,
+  top: bottom,
+  left: right,
+  right: left
+);
+
+
+moloko-editor {
+  --moloko-height: #{$moloko-height};
+  --moloko-width: #{$moloko-width};
+  --moloko-font-title: #{$moloko-font-title};
+  --moloko-toggle-transition: #{$moloko-toggle-transition};
+  --moloko-hover-transition: #{$moloko-hover-transition};
+  --moloko-button-color: #{$moloko-button-color};
+  --moloko-button-hover: #{$moloko-button-hover};
+  --moloko-button-active: #{$moloko-button-active};
+  --moloko-button-disable: #{$moloko-button-disable};
+  --moloko-background-sidebar: #{$moloko-background-sidebar};
+  --moloko-background-editor: #{$moloko-background-editor};
+  --moloko-background-language: #{$moloko-background-language};
+  --moloko-border-color: #{$moloko-border-color};
+  --moloko-border-width: #{$moloko-border-width};
+  --moloko-border: #{$moloko-border};
+  --moloko-tooltip-bg: #{$moloko-tooltip-bg};
+  --moloko-tooltip-font-family: #{$moloko-tooltip-font-family};
+  --moloko-tooltip-font-size: #{$moloko-tooltip-font-size};
+  --moloko-tooltip-font-color: #{$moloko-tooltip-font-color};
+  --moloko-tooltip-padding-y: #{$moloko-tooltip-padding-y};
+  --moloko-tooltip-padding-x: #{$moloko-tooltip-padding-x};
+  --moloko-tooltip-arrow-size: #{$moloko-tooltip-arrow-size};
+  --moloko-tooltip-radius: #{$moloko-tooltip-radius};
+  --moloko-tooltip-border-width: #{$moloko-tooltip-border-width};
+
+}

@@ -1,12 +1,12 @@
 import type { Options } from 'tsup';
-import { copyFileSync, mkdirSync, writeFileSync } from 'node:fs';
+import { copyFileSync, mkdirSync, writeFileSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const cwd = process.cwd();
-
+const json = readFileSync('./node_modules/@liquify/schema/esthetic.json', 'utf-8');
 const store = [
   '/* eslint-disable */',
-  `export const schema = ${JSON.stringify(require('./node_modules/@liquify/schema/esthetic.json'), null, 2)}`
+  `export const schema = ${json}`
 ].join('\n');
 
 writeFileSync(join(cwd, 'src/monaco/schema.ts'), store);
@@ -15,7 +15,19 @@ const PROD = process.env.NODE_ENV === 'production';
 const BUILD: Options[] = [
   {
     entry: {
-      moloko: './src/index.ts'
+      moloko: './src/index.ts',
+      'sample/plaintext': './src/samples/plaintext.ts',
+      'sample/html': './src/samples/html.ts',
+      'sample/xml': './src/samples/xml.ts',
+      'sample/liquid': './src/samples/liquid.ts',
+      'sample/css': './src/samples/css.ts',
+      'sample/json': './src/samples/json.ts',
+      'sample/scss': './src/samples/scss.ts',
+      'sample/javascript': './src/samples/javascript.ts',
+      'sample/typescript': './src/samples/typescript.ts',
+      'sample/jsx': './src/samples/jsx.ts',
+      'sample/tsx': './src/samples/tsx.ts',
+      'sample/yaml': './src/samples/yaml.ts'
     },
     clean: false,
     platform: 'browser',
@@ -25,12 +37,27 @@ const BUILD: Options[] = [
       'lz-string',
       'mergerino'
     ],
-    minify: PROD ? 'terser' : false,
+    minify: PROD,
     treeshake: 'smallest',
     splitting: false,
     shims: false,
-    target: 'es6',
+    target: 'es2018',
     bundle: true,
+    format: [ 'esm' ]
+  },
+  {
+    entry: {
+      'functions/shortner': './src/functions/shortner.ts'
+    },
+    outDir: 'public',
+    clean: false,
+    platform: 'node',
+    name: 'Functions',
+    minify: true,
+    splitting: false,
+    external: [
+      '@octokit/core'
+    ],
     format: [ 'esm' ]
   }
 ];
@@ -51,12 +78,12 @@ if (PROD) {
     name: 'Moloko',
     outDir: 'dist/monaco',
     clean: false,
+    minify: PROD,
     platform: 'browser',
-    minify: 'terser',
     treeshake: 'smallest',
     splitting: false,
     shims: false,
-    target: 'es6',
+    target: 'es2018',
     bundle: true,
     format: [ 'esm' ],
     outExtension () {
@@ -67,7 +94,7 @@ if (PROD) {
   },
   {
     entry: {
-      monaco: './node_modules/monaco-editor/esm/vs/editor/editor.main.js',
+      monaco: './node_modules/monaco-editor/esm/vs/editor/edcore.main.js',
       'workers/json': './node_modules/monaco-editor/esm/vs/language/json/json.worker.js',
       'workers/css': './node_modules/monaco-editor/esm/vs/language/css/css.worker.js',
       'workers/html': './node_modules/monaco-editor/esm/vs/language/html/html.worker.js',
@@ -77,12 +104,12 @@ if (PROD) {
     name: 'Moloko',
     outDir: 'dist/monaco',
     clean: false,
+    minify: PROD,
     platform: 'browser',
-    minify: 'terser',
     treeshake: 'smallest',
     splitting: false,
     shims: false,
-    target: 'es6',
+    target: 'es2018',
     bundle: true,
     format: [ 'iife' ],
     outExtension () {

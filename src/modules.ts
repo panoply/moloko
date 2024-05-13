@@ -60,6 +60,34 @@ export async function load (attrs: IAttrs) {
     }
   }
 
+  if (typeof attrs.config.samples === 'boolean') {
+    if (attrs.config.samples === true) {
+      for (const language in attrs.documents) {
+        try {
+          const code = await import(join(attrs.path, `sample/${language}.js`));
+          // @ts-ignore
+          attrs.documents[language].sample = code.default;
+        } catch (e) {
+          throw new Error(`Failed to import ${language} code sample`, e);
+        }
+      }
+    }
+  } else if (typeof attrs.config.samples === 'object') {
+    for (const language in attrs.config.samples) {
+      if (attrs.config.samples[language] === true) {
+        try {
+
+          console.log(join(attrs.path, `sample/${language}.js`));
+          const code = await import(join(attrs.path, `sample/${language}.js`));
+          // @ts-ignore
+          attrs.documents[language].sample = code.default;
+        } catch (e) {
+          throw new Error(`Failed to import ${language} code sample`, e);
+        }
+      }
+    }
+  }
+
 }
 
 export { esthetic, m };

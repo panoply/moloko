@@ -1,0 +1,16 @@
+@keyframes spin {
+  to {
+    transform: rotate(360deg) #{"/* rtl:ignore */"};
+  }
+}
+
+.spinner {
+  display: inline-block;
+  width: $moloko-spinner-width;
+  height: $moloko-spinner-height;
+  vertical-align: $moloko-spinner-vertical-align;
+  border: $moloko-spinner-border-width solid #42434E;
+  border-right-color: $moloko-spinner-border-color;
+  border-radius: 50%;
+  animation: $moloko-spinner-animation-speed linear infinite spin;
+}

@@ -1,11 +1,11 @@
-import { IAttrs } from 'types/model';
+import type { IAttrs } from 'types/model';
 import type { editor } from 'monaco-editor';
-import { Style } from 'types';
-import * as hash from 'editor/hash';
 import type { ClosureComponent } from 'mithril';
+import type { Style } from 'types';
+import { encode } from './hash';
 import { monaco } from '../monaco';
-import { State } from 'utils/enums';
-import { formatCode } from 'utils/helpers';
+import { State } from './enums';
+import { formatCode } from './utils';
 import { esthetic, m } from 'modules';
 
 export const Input: ClosureComponent<IAttrs> = (
@@ -42,11 +42,11 @@ export const Input: ClosureComponent<IAttrs> = (
 
       formatCode(attrs);
 
-      if (attrs.hash !== null) hash.encode(attrs);
+      if (attrs.hash !== null) encode(attrs);
 
     } else if (attrs.hash !== null) {
 
-      hash.encode(attrs);
+      encode(attrs);
 
     }
 
@@ -59,6 +59,7 @@ export const Input: ClosureComponent<IAttrs> = (
       }
     ) => {
 
+      attrs.input.node = dom as HTMLElement;
       attrs.input.editor = monaco.editor.create(dom as HTMLElement, options);
 
       attrs.input.editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => {
@@ -70,7 +71,14 @@ export const Input: ClosureComponent<IAttrs> = (
       });
 
     },
-    view: () => m('div', { style: <Style>{ height: '100%' } })
+    view: () => m(
+      'moloko-input'
+      , {
+        style: <Style>{
+          flex: attrs.input.width
+        }
+      }
+    )
   };
 
 };

@@ -1,11 +1,11 @@
 // src/lexical/chars.ts
-var c = "", Yt = "   ", Wt = "    ", Be = '"', st = ",", je = "'", ee = " ";
-var z = `
-`, Oi = `\r
+var c = "", Kt = "   ", Wt = "    ", Be = '"', rt = ",", $e = "'", ie = " ";
+var H = `
+`, vi = `\r
 `;
 
 // src/rules/language.ts
-function ut(e) {
+function ft(e) {
   switch (e) {
     case "text":
       return "Plain Text";
@@ -35,7 +35,7 @@ function ut(e) {
       return "CSS";
   }
 }
-function Ie(e) {
+function De(e) {
   switch (e) {
     case "text":
       return "ignore";
@@ -59,7 +59,7 @@ function Ie(e) {
       return "style";
   }
 }
-function St(e) {
+function Lt(e) {
   switch (e) {
     case "auto":
       return 5;
@@ -83,70 +83,70 @@ function St(e) {
 }
 
 // src/lexical/regex.ts
-var Lt = /\S/, ft = /\n/, rt = /^\s+$/;
-var Xe = /\s+/g, ct = /^\s+/, We = /\s+$/;
-var Je = /^[\t\v\f\r \u00a0\u2000-\u200b\u2028-\u2029\u3000]+/, Ye = /[\t\v\f \u00a0\u2000-\u200b\u2028-\u2029\u3000]+$/, Ri = /[\t\v\r \u00a0\u2000-\u200b\u2028-\u2029\u3000]+/g, qi = /[\t\v\r \u00a0\u2000-\u200b\u2028-\u2029\u3000]/, Ct = /^\n+/, Kt = /\n+/g;
-var Ai = /\n(?!\s*\*)/;
-var Ni = /({%-?\s*(?:comment\s*-?%}|#)|<!-{2})\s*esthetic-ignore-(start|next|end)\b/, ei = /^\s*(\/[*/]|{%-?\s*(?:comment\s*-?%}|#)|<!-{2})\s*esthetic-ignore(?![a-z-][^-])/, Tt = /(\/[*/]|{%-?\s*(?:comment\s*-?%}|#)|<!-{2})\s*esthetic-ignore-start\b/, Mt = /^\/\/\s*esthetic-ignore-start\b/, Bi = /^\/\*{1,2}(?:\s*|\n\s*\*\s*)esthetic-ignore-start\b/;
-var $i = /(\/[*/]|{%-?\s*(?:comment\s*-?%}|#)|<!--)\s*esthetic-ignore-next\b/, ji = /^\s*[*-]\s/, Dt = /^\s*\d+\.\s/, ti = /^\s*(?:[*-]|\d+\.)\s/, ii = /(?!=)\/?>$/, Ot = /^<!--+/, vt = /--+>$/, ni = /[a-zA-Z0-9_$#]+/, Rt = /({%-?)(\s*)/, qt = /(\s*)(-?%})/, Ei = /{%-?|-?%}/g;
-var At = /#\s+|#/, Pi = /^{%-?\n|{%-?\s*#\n/, Wi = /\n\s*-?%}$/;
-var Ti = /comment\s*-?%}[\r\n]/;
-var si = /(\/|\\|\||\*|\[|\]|\{|\})/g;
+var Ct = /\S/, ct = /\n/, ot = /^\s+$/;
+var Xe = /\s+/g, pt = /^\s+/, Pe = /\s+$/;
+var Je = /^[\t\v\f\r \u00a0\u2000-\u200b\u2028-\u2029\u3000]+/, Ye = /[\t\v\f \u00a0\u2000-\u200b\u2028-\u2029\u3000]+$/, qi = /[\t\v\r \u00a0\u2000-\u200b\u2028-\u2029\u3000]+/g, Ai = /[\t\v\r \u00a0\u2000-\u200b\u2028-\u2029\u3000]/, Ot = /^\n+/, ei = /\n+/g;
+var Ni = /\n(?!\s*\*)/;
+var Bi = /({%-?\s*(?:comment\s*-?%}|#)|<!-{2})\s*esthetic-ignore-(start|next|end)\b/, ti = /^\s*(\/[*/]|{%-?\s*(?:comment\s*-?%}|#)|<!-{2})\s*esthetic-ignore(?![a-z-][^-])/, Mt = /(\/[*/]|{%-?\s*(?:comment\s*-?%}|#)|<!-{2})\s*esthetic-ignore-start\b/, It = /^\/\/\s*esthetic-ignore-start\b/, $i = /^\/\*{1,2}(?:\s*|\n\s*\*\s*)esthetic-ignore-start\b/;
+var ji = /(\/[*/]|{%-?\s*(?:comment\s*-?%}|#)|<!--)\s*esthetic-ignore-next\b/, Ei = /^\s*[*-]\s/, Dt = /^\s*\d+\.\s/, ii = /^\s*(?:[*-]|\d+\.)\s/, ni = /(?!=)\/?>$/, vt = /^<!--+/, Rt = /--+>$/, si = /[a-zA-Z0-9_$#]+/, qt = /({%-?)(\s*)/, At = /(\s*)(-?%})/, Pi = /{%-?|-?%}/g;
+var Nt = /#\s+|#/, Ti = /^{%-?\n|{%-?\s*#\n/, Wi = /\n\s*-?%}$/;
+var Mi = /comment\s*-?%}[\r\n]/;
+var ri = /(\/|\\|\||\*|\[|\]|\{|\})/g;
 
 // src/utils/native.ts
-var pt = Object.assign, Fe = Object.create;
-var Mi = Object.defineProperty, Di = Object.defineProperties;
+var dt = Object.assign, Fe = Object.create;
+var Ii = Object.defineProperty, Di = Object.defineProperties;
 
 // src/utils/helpers.ts
 function _e(e, ...s) {
   let n = Ne(e);
-  return function u(A, a, C) {
-    let o = typeof C;
-    if (C && o === "object")
-      if (Ne(C))
-        for (let k of C)
-          a = u(A, a, k);
+  return function u(N, l, O) {
+    let o = typeof O;
+    if (O && o === "object")
+      if (Ne(O))
+        for (let b of O)
+          l = u(N, l, b);
       else
-        for (let k in C) {
-          let f = C[k];
-          gn(f) ? a[k] = f(a[k], _e) : f === void 0 ? A ? a.splice(k, 1) : delete a[k] : f === null || tt(f) === !1 || Ne(f) ? a[k] = f : typeof a[k] == "object" ? a[k] = f === a[k] ? f : _e(a[k], f) : a[k] = u(!1, {}, f);
+        for (let b in O) {
+          let f = O[b];
+          kn(f) ? l[b] = f(l[b], _e) : f === void 0 ? N ? l.splice(b, 1) : delete l[b] : f === null || tt(f) === !1 || Ne(f) ? l[b] = f : typeof l[b] == "object" ? l[b] = f === l[b] ? f : _e(l[b], f) : l[b] = u(!1, {}, f);
         }
     else
-      o === "function" && (a = C(a, _e));
-    return a;
-  }(n, n ? e.slice() : pt({}, e), s);
+      o === "function" && (l = O(l, _e));
+    return l;
+  }(n, n ? e.slice() : dt({}, e), s);
 }
-function ri(e, s) {
+function oi(e, s) {
   let n = {
     lexer: s,
-    language: ut(e),
+    language: ft(e),
     chars: 0,
     time: ""
   }, u = Date.now();
-  return (A) => {
-    let a = +(Date.now() - u).toFixed(0);
-    return n.time = a > 1e3 ? `${a}s` : `${a}ms`, n.chars = A, n;
+  return (N) => {
+    let l = +(Date.now() - u).toFixed(0);
+    return n.time = l > 1e3 ? `${l}s` : `${l}ms`, n.chars = N, n;
   };
 }
-function It(...e) {
-  return e.join(z);
+function _t(...e) {
+  return e.join(H);
 }
-function bt(e, s = NaN) {
-  if (e.indexOf(z) < 0)
+function kt(e, s = NaN) {
+  if (e.indexOf(H) < 0)
     return isNaN(s) ? 0 : s;
   let n;
   if (Ne(e)) {
     let u = 0;
     do {
-      if (u = e.indexOf(z, u), u === -1)
+      if (u = e.indexOf(H, u), u === -1)
         break;
       n = n + 1, u = u + 1;
     } while (u < e.length);
   } else
-    n = e.split(z).length;
+    n = e.split(H).length;
   return isNaN(s) ? n === 1 ? 0 : n : n === 1 ? s : (n = n - 1 + s, n > s ? n : s);
 }
-function oi(e, s = ee) {
+function li(e, s = ie) {
   if (e <= 0)
     return s;
   let n = c, u = 1;
@@ -155,81 +155,84 @@ function oi(e, s = ee) {
   while (u++ < e);
   return n;
 }
-function Me(e) {
-  return e ? qi.test(e) : !1;
+function Te(e) {
+  return e ? Ai.test(e) : !1;
 }
 function i(e, s) {
   return e ? e.charCodeAt(0) === s : !1;
 }
-function Ii(e) {
+function _i(e) {
   return e[e.length - 1];
+}
+function Qi(e, ...s) {
+  return e ? s.some((n) => e[0].charCodeAt(0) === n) : !1;
 }
 function Qe(e, s) {
   return i(e[e.length - 1], s);
 }
-function _i(e, ...s) {
+function Hi(e, ...s) {
   let n = e.length - 1, u = s.length;
   for (; u--; )
     if (i(e[n--], s[u]) === !1)
       return !1;
   return !0;
 }
-function dt(e, s, n = 2) {
+function mt(e, s, n = 2) {
   return i(e[e.length - n], s);
 }
-function T(e, s) {
+function M(e, s) {
   return i(e, s) === !1;
 }
-function li(e, s) {
+function ai(e, s) {
   return Qe(e, s) === !1;
 }
-function lt(e) {
+function at(e) {
   return /\S/.test(e);
 }
-function ce(e) {
+function ue(e) {
   return /\s/.test(e);
 }
 function He(e) {
   return /\d/.test(e);
 }
-function ai(e) {
+function ui(e) {
   return `\\${e}`;
 }
-function Qi(e) {
+function Fi(e) {
   return i(e, 123) ? "{%-?\\s*" : "\\s*-?%}";
 }
-var { toString: at } = Object.prototype;
-function Hi(e) {
+var { toString: ut } = Object.prototype;
+function zi(e) {
   return (s) => s in e;
 }
 function Ne(e) {
-  return at.call(e).slice(8, -1) === "Array";
+  return ut.call(e).slice(8, -1) === "Array";
 }
 function tt(e) {
-  return at.call(e).slice(8, -1) === "Object";
-}
-function Nt(e) {
-  return at.call(e).slice(8, -1) === "String";
+  return ut.call(e).slice(8, -1) === "Object";
 }
 function Bt(e) {
-  return at.call(e).slice(8, -1) === "RegExp";
+  return ut.call(e).slice(8, -1) === "String";
 }
-function gn(e) {
-  return at.call(e).slice(8, -1) === "Function";
+function $t(e) {
+  return ut.call(e).slice(8, -1) === "RegExp";
 }
-function mt(e) {
-  return at.call(e).slice(8, -1) === "Boolean";
+function kn(e) {
+  return ut.call(e).slice(8, -1) === "Function";
 }
-function kt(e) {
-  return at.call(e).slice(8, -1) === "Number";
+function ht(e) {
+  return ut.call(e).slice(8, -1) === "Boolean";
+}
+function yt(e) {
+  return ut.call(e).slice(8, -1) === "Number";
 }
 function Ke(e) {
-  return at.call(e).slice(8, -1) === "Undefined";
+  return ut.call(e).slice(8, -1) === "Undefined";
 }
 
 // src/parse/sorting.ts
-function $t(e) {
-  let s = r.count, n = r.stack.index, u = 0, A = 0, a = 0, C = 0, o = 0, k = 0, f = 0, t = !0, { count: h } = r, V = r.stack.token, le = r.stack.index, m = r.lineOffset, p = e.lexer[h] === "style", w = p && V === "global", _ = p ? [";", "separator"] : [",", "separator"], I = [], d = {
+function jt(e) {
+  let s = r.count, n = r.stack.index, u = 0, N = 0, l = 0, O = 0, o = 0, b = 0, f = 0, t = !0, { count: h } = r, F = r.stack.token, le = r.stack.index, m = r.lineOffset, p = e.lexer[h] === "style", S = p && F === "global", D = p ? [";", "separator"] : [",", "separator"], I = [], d = {
     begin: [],
     ender: [],
     lexer: [],
@@ -238,50 +241,50 @@ function $t(e) {
     token: [],
     types: []
   };
-  function l(g, M) {
-    let L = g[0], N = M[0];
-    if (e.types[L] === "comment") {
+  function a(g, W) {
+    let C = g[0], U = W[0];
+    if (e.types[C] === "comment") {
       do
-        L = L + 1;
-      while (L < h && e.types[L] === "comment");
-      if (e.token[L] === void 0)
+        C = C + 1;
+      while (C < h && e.types[C] === "comment");
+      if (e.token[C] === void 0)
         return 1;
     }
-    if (e.types[N] === "comment") {
+    if (e.types[U] === "comment") {
       do
-        N = N + 1;
-      while (N < h && e.types[N] === "comment");
-      if (e.token[N] === void 0)
+        U = U + 1;
+      while (U < h && e.types[U] === "comment");
+      if (e.token[U] === void 0)
         return 1;
     }
     if (p === !0) {
-      if (e.token[L].indexOf("@import") === 0 || e.token[N].indexOf("@import") === 0)
-        return L < N ? -1 : 1;
-      if (e.types[L] !== e.types[N]) {
-        if (e.types[L] === "function")
+      if (e.token[C].indexOf("@import") === 0 || e.token[U].indexOf("@import") === 0)
+        return C < U ? -1 : 1;
+      if (e.types[C] !== e.types[U]) {
+        if (e.types[C] === "function")
           return 1;
-        if (e.types[L] === "variable")
+        if (e.types[C] === "variable")
           return -1;
-        if (e.types[L] === "selector")
+        if (e.types[C] === "selector")
           return 1;
-        if (e.types[L] === "property" && e.types[N] !== "variable" || e.types[L] === "mixin" && e.types[N] !== "property" && e.types[N] !== "variable")
+        if (e.types[C] === "property" && e.types[U] !== "variable" || e.types[C] === "mixin" && e.types[U] !== "property" && e.types[U] !== "variable")
           return -1;
       }
     }
-    return e.token[L].toLowerCase() > e.token[N].toLowerCase() ? 1 : -1;
+    return e.token[C].toLowerCase() > e.token[U].toLowerCase() ? 1 : -1;
   }
-  C = s;
+  O = s;
   do {
-    if (e.begin[s] === n || w && s < C && i(e.token[s], 125) && e.begin[e.begin[s]] === -1) {
+    if (e.begin[s] === n || S && s < O && i(e.token[s], 125) && e.begin[e.begin[s]] === -1) {
       if (e.types[s].indexOf("liquid") > -1)
         return;
-      if (e.token[s] === _[0] || p === !0 && i(e.token[s], 125) && T(e.token[s + 1], 59) ? (t = !0, o = s + 1) : p === !0 && i(e.token[s - 1], 125) && (t = !0, o = s), o === 0 && e.types[0] === "comment")
+      if (e.token[s] === D[0] || p === !0 && i(e.token[s], 125) && M(e.token[s + 1], 59) ? (t = !0, o = s + 1) : p === !0 && i(e.token[s - 1], 125) && (t = !0, o = s), o === 0 && e.types[0] === "comment")
         do
           o = o + 1;
         while (e.types[o] === "comment");
       else
         e.types[o] === "comment" && e.lines[o] < 2 && (o = o + 1);
-      t === !0 && (e.token[s] === _[0] || p === !0 && i(e.token[s - 1], 125)) && o <= C && ((p === !0 && "};".indexOf(e.token[C]) < 0 || p === !1 && T(e.token[C], 44)) && (C = C + 1), I.push([o, C]), p === !0 && i(e.token[o], 125) ? C = o : C = o - 1);
+      t === !0 && (e.token[s] === D[0] || p === !0 && i(e.token[s - 1], 125)) && o <= O && ((p === !0 && "};".indexOf(e.token[O]) < 0 || p === !1 && M(e.token[O], 44)) && (O = O + 1), I.push([o, O]), p === !0 && i(e.token[o], 125) ? O = o : O = o - 1);
     }
     s = s - 1;
   } while (s > n);
@@ -299,11 +302,11 @@ function $t(e) {
     I.push([s + 1, u]);
   }
   if (I.length > 1 && (p === !0 || r.language === "json" || i(e.token[s - 1], 61) || i(e.token[s - 1], 58) || i(e.token[s - 1], 40) || i(e.token[s - 1], 91) || i(e.token[s - 1], 44) || e.types[s - 1] === "word" || s === 0)) {
-    I.sort(l), f = I.length, t = !1, n = 0;
+    I.sort(a), f = I.length, t = !1, n = 0;
     do {
-      if (k = I[n][1], p === !0 && (a = k, e.types[a] === "comment" && (a = a - 1), i(e.token[a], 125) ? (k = k + 1, _[0] = "}", _[1] = "end") : (_[0] = ";", _[1] = "separator")), u = I[n][0], p === !0 && e.types[k - 1] !== "end" && e.types[k] === "comment" && e.types[k + 1] !== "comment" && n < f - 1 && (k = k + 1), u < k)
+      if (b = I[n][1], p === !0 && (l = b, e.types[l] === "comment" && (l = l - 1), i(e.token[l], 125) ? (b = b + 1, D[0] = "}", D[1] = "end") : (D[0] = ";", D[1] = "separator")), u = I[n][0], p === !0 && e.types[b - 1] !== "end" && e.types[b] === "comment" && e.types[b + 1] !== "comment" && n < f - 1 && (b = b + 1), u < b)
         do
-          p === !1 && n === f - 1 && u === k - 2 && i(e.token[u], 44) && e.lexer[u] === "script" && e.types[u + 1] === "comment" || r.push(d, {
+          p === !1 && n === f - 1 && u === b - 2 && i(e.token[u], 44) && e.lexer[u] === "script" && e.types[u + 1] === "comment" || r.push(d, {
             begin: e.begin[u],
             ender: e.begin[u],
             lexer: e.lexer[u],
@@ -311,8 +314,8 @@ function $t(e) {
             stack: e.stack[u],
             token: e.token[u],
             types: e.types[u]
-          }, c), A = A + 1, e.token[u] === _[0] && (p === !0 || e.begin[u] === e.begin[I[n][0]]) ? t = !0 : e.token[u] !== _[0] && e.types[u] !== "comment" && (t = !1), u = u + 1;
-        while (u < k);
+          }, c), N = N + 1, e.token[u] === D[0] && (p === !0 || e.begin[u] === e.begin[I[n][0]]) ? t = !0 : e.token[u] !== D[0] && e.types[u] !== "comment" && (t = !1), u = u + 1;
+        while (u < b);
       if (t === !1 && d.token[d.token.length - 1] !== "x;" && (p === !0 || n < f - 1)) {
         if (u = d.types.length - 1, d.types[u] === "comment")
           do
@@ -324,95 +327,95 @@ function $t(e) {
           index: u,
           record: {
             begin: le,
-            stack: w ? "global" : V,
+            stack: S ? "global" : F,
             ender: r.count,
             lexer: d.lexer[u - 1],
             lines: 0,
-            token: _[0],
-            types: _[1]
+            token: D[0],
+            types: D[1]
           }
-        }), A = A + 1;
+        }), N = N + 1;
       }
       n = n + 1;
     } while (n < f);
-    r.splice({ data: e, howmany: A, index: s + 1 }), r.lineOffset = m, r.concat(e, d);
+    r.splice({ data: e, howmany: N, index: s + 1 }), r.lineOffset = m, r.concat(e, d);
   }
 }
-function ui(e, s, n) {
-  return Ne(e) === !1 ? e : s === "normal" ? Vi.call({ array: e, recursive: n }, e) : s === "descend" ? Gi.call({ recursive: n }, e) : zi.call({ recursive: n }, e);
+function fi(e, s, n) {
+  return Ne(e) === !1 ? e : s === "normal" ? Ui.call({ array: e, recursive: n }, e) : s === "descend" ? Ji.call({ recursive: n }, e) : Vi.call({ recursive: n }, e);
 }
-function _t(e, s) {
-  let n = e, u = -1, { data: A } = r, a = [], C = r.stack.length < 2 ? [-1] : [r.stack[r.stack.length - 2][1]];
+function Qt(e, s) {
+  let n = e, u = -1, { data: N } = r, l = [], O = r.stack.length < 2 ? [-1] : [r.stack[r.stack.length - 2][1]];
   do
-    n > 0 && A.types[n].indexOf("attribute") > -1 && A.types[n].indexOf("end") < 0 && A.types[n - 1].indexOf("start") < 0 && A.types[n - 1].indexOf("attribute") < 0 && A.lexer[n] === "markup" && C.push(n - 1), n > 0 && A.types[n - 1].indexOf("attribute") > -1 && A.types[n].indexOf("attribute") < 0 && A.lexer[C[C.length - 1]] === "markup" && A.types[C[C.length - 1]].indexOf("start") < 0 && C.pop(), A.begin[n] !== C[C.length - 1] && (A.begin[n] = C.length > 0 ? C[C.length - 1] : -1), A.types[n].indexOf("else") > -1 && (C.length > 0 ? C[C.length - 1] = n : C.push(n)), A.types[n].indexOf("end") > -1 && C.pop(), A.types[n].indexOf("start") > -1 && C.push(n), n = n + 1;
+    n > 0 && N.types[n].indexOf("attribute") > -1 && N.types[n].indexOf("end") < 0 && N.types[n - 1].indexOf("start") < 0 && N.types[n - 1].indexOf("attribute") < 0 && N.lexer[n] === "markup" && O.push(n - 1), n > 0 && N.types[n - 1].indexOf("attribute") > -1 && N.types[n].indexOf("attribute") < 0 && N.lexer[O[O.length - 1]] === "markup" && N.types[O[O.length - 1]].indexOf("start") < 0 && O.pop(), N.begin[n] !== O[O.length - 1] && (N.begin[n] = O.length > 0 ? O[O.length - 1] : -1), N.types[n].indexOf("else") > -1 && (O.length > 0 ? O[O.length - 1] = n : O.push(n)), N.types[n].indexOf("end") > -1 && O.pop(), N.types[n].indexOf("start") > -1 && O.push(n), n = n + 1;
   while (n < s);
   n = s;
   do
-    n = n - 1, A.types[n].indexOf("end") > -1 && (a.push(n), u = u + 1), A.ender[n] = u > -1 ? a[u] : -1, A.types[n].indexOf("start") > -1 && (a.pop(), u = u - 1);
+    n = n - 1, N.types[n].indexOf("end") > -1 && (l.push(n), u = u + 1), N.ender[n] = u > -1 ? l[u] : -1, N.types[n].indexOf("start") > -1 && (l.pop(), u = u - 1);
   while (n > e);
 }
-function zi(e) {
-  let s = 0, n = e.length, u = e, A = u.map((o) => o[1]), a = () => {
-    let o = 0, k = u.length;
-    if (o < k)
+function Vi(e) {
+  let s = 0, n = e.length, u = e, N = u.map((o) => o[1]), l = () => {
+    let o = 0, b = u.length;
+    if (o < b)
       do
-        Ne(u[o]) === !0 && (u[o] = zi.apply(this, u[o])), o = o + 1;
-      while (o < k);
-  }, C = (o = c) => {
-    let k = s, f = 0, t = 0, h = 0, V = [], le = u[s];
-    if (k < n)
+        Ne(u[o]) === !0 && (u[o] = Vi.apply(this, u[o])), o = o + 1;
+      while (o < b);
+  }, O = (o = c) => {
+    let b = s, f = 0, t = 0, h = 0, F = [], le = u[s];
+    if (b < n)
       do
-        u[k] < le ? (le = u[k], V = [k]) : u[k] === le && V.push(k), k = k + 1;
-      while (k < n);
-    if (t = V.length, k = s, f = t + s, k < f)
+        u[b] < le ? (le = u[b], F = [b]) : u[b] === le && F.push(b), b = b + 1;
+      while (b < n);
+    if (t = F.length, b = s, f = t + s, b < f)
       do
-        le[1] = A[k], u[V[h]] = u[k], u[k] = le, h = h + 1, k = k + 1;
-      while (k < f);
-    return s = s + t, s < n ? C() : (this.recursive === !0 && a(), e = u), o;
+        le[1] = N[b], u[F[h]] = u[b], u[b] = le, h = h + 1, b = b + 1;
+      while (b < f);
+    return s = s + t, s < n ? O() : (this.recursive === !0 && l(), e = u), o;
   };
-  return C(), e;
+  return O(), e;
 }
-function Gi(e) {
-  let s = 0, n = e.length, u = e, A = () => {
-    let C = u.length, o = 0;
-    if (o < C)
+function Ji(e) {
+  let s = 0, n = e.length, u = e, N = () => {
+    let O = u.length, o = 0;
+    if (o < O)
       do
-        Ne(u[o]) && (u[o] = Gi.apply(this, u[o])), o = o + 1;
-      while (o < C);
-  }, a = (C = "") => {
-    let o = s, k = 0, f = 0, t = 0, h = u[s], V = [], le = c, m = typeof h;
+        Ne(u[o]) && (u[o] = Ji.apply(this, u[o])), o = o + 1;
+      while (o < O);
+  }, l = (O = "") => {
+    let o = s, b = 0, f = 0, t = 0, h = u[s], F = [], le = c, m = typeof h;
     if (o < n)
       do
-        le = typeof u[o], u[o] > h || le > m ? (h = u[o], V = [o]) : u[o] === h && V.push(o), o = o + 1;
+        le = typeof u[o], u[o] > h || le > m ? (h = u[o], F = [o]) : u[o] === h && F.push(o), o = o + 1;
       while (o < n);
-    if (f = V.length, o = s, k = f + s, o < k)
+    if (f = F.length, o = s, b = f + s, o < b)
       do
-        u[V[t]] = u[o], u[o] = h, t = t + 1, o = o + 1;
-      while (o < k);
-    return s = s + f, s < n ? a() : (this.recursive === !0 && A(), e = u), C;
+        u[F[t]] = u[o], u[o] = h, t = t + 1, o = o + 1;
+      while (o < b);
+    return s = s + f, s < n ? l() : (this.recursive === !0 && N(), e = u), O;
   };
-  return a(), e;
+  return l(), e;
 }
-function Vi(e) {
+function Ui(e) {
   let s = e, n = [e[0]], u = () => {
-    let a = 0, C = s.length;
-    if (a < C)
+    let l = 0, O = s.length;
+    if (l < O)
       do
-        Ne(s[a]) && (s[a] = Vi.apply(this, s[a])), a = a + 1;
-      while (a < C);
-  }, A = (a) => {
-    let C = 0, o = [], k = s.length;
-    if (C < k)
+        Ne(s[l]) && (s[l] = Ui.apply(this, s[l])), l = l + 1;
+      while (l < O);
+  }, N = (l) => {
+    let O = 0, o = [], b = s.length;
+    if (O < b)
       do
-        s[C] !== a && o.push(s[C]), C = C + 1;
-      while (C < k);
-    s = o, o.length > 0 ? (n.push(o[0]), A(o[0])) : (this.recursive === !0 && u(), e = s);
+        s[O] !== l && o.push(s[O]), O = O + 1;
+      while (O < b);
+    s = o, o.length > 0 ? (n.push(o[0]), N(o[0])) : (this.recursive === !0 && u(), e = s);
   };
-  return A(this.array[0]), e;
+  return N(this.array[0]), e;
 }
 
 // src/parse/grammar.ts
-var fi = class {
+var ci = class {
   constructor() {
     this.grammar = {
       embedded: {
@@ -506,28 +509,28 @@ var fi = class {
    */
   queries(s) {
     for (let n in s)
-      for (let { language: u, argument: A = null } of s[n])
+      for (let { language: u, argument: N = null } of s[n])
         if (n in this.embed || (this.embed[n] = {
           tag: n,
           language: u,
           args: /* @__PURE__ */ new Map([[/* @__PURE__ */ new Set(), { tag: n, language: u }]])
-        }), A) {
-          for (let [a] of this.embed[n].args)
-            if (a !== null)
-              if (Ne(A))
-                for (let C of A)
-                  a.has(C) || a.add(C);
+        }), N) {
+          for (let [l] of this.embed[n].args)
+            if (l !== null)
+              if (Ne(N))
+                for (let O of N)
+                  l.has(O) || l.add(O);
               else {
-                let C = new RegExp(A);
-                if (a.size > 0)
-                  for (let o of a)
-                    Bt(o) !== !1 && o.source !== C.source && a.add(C);
+                let O = new RegExp(N);
+                if (l.size > 0)
+                  for (let o of l)
+                    $t(o) !== !1 && o.source !== O.source && l.add(O);
                 else
-                  a.add(C);
+                  l.add(O);
               }
         }
   }
-}, ci = class {
+}, pi = class {
   constructor() {
     this.grammar = {
       tags: [
@@ -620,7 +623,7 @@ var fi = class {
         for (let u of s[n])
           n === "tags" && this.tags.has(u) === !1 && (this.grammar.tags.push(u), this.tags.add(u));
   }
-}, pi = class {
+}, di = class {
   constructor() {
     this.grammar = {
       embedded: {
@@ -814,33 +817,33 @@ var fi = class {
   queries(s) {
     for (let n in s) {
       n in this.embed || (this.embed[n] = { tag: n, attr: /* @__PURE__ */ new Map() });
-      for (let { language: u, attribute: A } of s[n])
-        if ("language" in this.embed[n] || (this.embed[n].language = u), this.embed[n].attr.has(u) || this.embed[n].attr.set(u, { tag: n, language: u, attr: /* @__PURE__ */ new Map() }), A) {
-          let a = this.embed[n].attr.get(u);
-          for (let C in A) {
-            a.attr.has(C) || a.attr.set(C, {
+      for (let { language: u, attribute: N } of s[n])
+        if ("language" in this.embed[n] || (this.embed[n].language = u), this.embed[n].attr.has(u) || this.embed[n].attr.set(u, { tag: n, language: u, attr: /* @__PURE__ */ new Map() }), N) {
+          let l = this.embed[n].attr.get(u);
+          for (let O in N) {
+            l.attr.has(O) || l.attr.set(O, {
               tag: n,
               language: u,
-              attr: C,
+              attr: O,
               value: /* @__PURE__ */ new Set()
             });
-            let o = this.embed[n].attr.get(u).attr.get(C);
-            if (Ne(A[C]))
-              for (let k of A[C])
-                o.value.has(k) || o.value.add(k);
+            let o = this.embed[n].attr.get(u).attr.get(O);
+            if (Ne(N[O]))
+              for (let b of N[O])
+                o.value.has(b) || o.value.add(b);
             else {
-              let k = new RegExp(A[C]);
+              let b = new RegExp(N[O]);
               if (o.value.size > 0)
                 for (let f of o.value)
-                  Bt(f) !== !1 && f.source !== k.source && o.value.add(k);
+                  $t(f) !== !1 && f.source !== b.source && o.value.add(b);
               else
-                o.value.add(k);
+                o.value.add(b);
             }
           }
         }
     }
   }
-}, di = class {
+}, mi = class {
   constructor() {
     this.grammar = {
       units: [
@@ -1028,12 +1031,12 @@ var fi = class {
       if (typeof s[n] == "object") {
         for (let u in s[n])
           if (Ne(s[n][u]))
-            for (let A of s[n][u])
-              n === "webkit" ? u === "elements" ? (this.grammar[n][u].push(A), this.webkitElements.add(A)) : u === "classes" && (this.grammar[n][u].push(A), this.webkitClasses.add(A)) : n === "pseudo" && (u === "elements" ? (this.grammar[n][u].push(A), this.pseudoElements.add(A)) : u === "classes" ? (this.grammar[n][u].push(A), this.pseudoClasses.add(A)) : u === "functions" && (this.grammar[n][u].push(A), this.pseudoFunctions.add(A)));
+            for (let N of s[n][u])
+              n === "webkit" ? u === "elements" ? (this.grammar[n][u].push(N), this.webkitElements.add(N)) : u === "classes" && (this.grammar[n][u].push(N), this.webkitClasses.add(N)) : n === "pseudo" && (u === "elements" ? (this.grammar[n][u].push(N), this.pseudoElements.add(N)) : u === "classes" ? (this.grammar[n][u].push(N), this.pseudoClasses.add(N)) : u === "functions" && (this.grammar[n][u].push(N), this.pseudoFunctions.add(N)));
       }
     }
   }
-}, mi = class {
+}, hi = class {
   constructor() {
     this.grammar = {
       keywords: [
@@ -1112,28 +1115,28 @@ var fi = class {
         for (let u of s[n])
           n === "keywords" && !this.keywords.has(u) && (this.grammar[n].push(u), this.keywords.add(u));
   }
-}, hi = class {
+}, gi = class {
   constructor() {
     /**
      * CSS Grammars
      */
-    this.css = new di();
+    this.css = new mi();
     /**
      * Liquid Grammars
      */
-    this.liquid = new fi();
+    this.liquid = new ci();
     /**
      * JavaScript Grammars
      */
-    this.js = new mi();
+    this.js = new hi();
     /**
      * HTML Grammars
      */
-    this.html = new pi();
+    this.html = new di();
     /**
      * SVG Grammars
      */
-    this.svg = new ci();
+    this.svg = new pi();
   }
   /**
      * Extend Grammars
@@ -1142,13 +1145,13 @@ var fi = class {
     let {
       liquid: n,
       html: u,
-      css: A,
-      js: a,
-      svg: C
+      css: N,
+      js: l,
+      svg: O
     } = this;
     if (tt(s))
       for (let o in s)
-        o === "liquid" ? n.extend(s.liquid) : o === "html" ? u.extend(s.html) : o === "css" ? A.extend(s.css) : o === "js" ? a.extend(s.js) : o === "svg" && C.extend(s.svg);
+        o === "liquid" ? n.extend(s.liquid) : o === "html" ? u.extend(s.html) : o === "css" ? N.extend(s.css) : o === "js" ? l.extend(s.js) : o === "svg" && O.extend(s.svg);
     return {
       get html() {
         return u.grammar;
@@ -1157,42 +1160,42 @@ var fi = class {
         return n.grammar;
       },
       get js() {
-        return a.grammar;
+        return l.grammar;
       },
       get css() {
-        return A.grammar;
+        return N.grammar;
       },
       get svg() {
-        return C.grammar;
+        return O.grammar;
       }
     };
   }
-}, we = new hi();
+}, Le = new gi();
 
 // src/lexical/lexing.ts
 function Ue(e, s = NaN, n) {
-  if (Nt(e) === !1)
+  if (Bt(e) === !1)
     return c;
-  if (T(e, 60) && T(e, 123))
+  if (M(e, 60) && M(e, 123))
     return n || e;
   if (i(e, 60)) {
-    let a = e.search(/[\s>]/), C = e.slice(i(e[1], 47) ? 2 : 1, a);
-    return i(C, 63) && Qe(C, 63) ? "xml" : isNaN(s) ? C : C.slice(s);
+    let l = e.search(/[\s>]/), O = e.slice(i(e[1], 47) ? 2 : 1, l);
+    return i(O, 63) && Qe(O, 63) ? "xml" : isNaN(s) ? O : O.slice(s);
   }
-  let A = (i(e[2], 45) ? e.slice(3).trimStart() : e.slice(2).trimStart()).split(/\s|-?[%}]}/).shift();
-  return isNaN(s) ? A : A.slice(s);
+  let N = (i(e[2], 45) ? e.slice(3).trimStart() : e.slice(2).trimStart()).split(/\s|-?[%}]}/).shift();
+  return isNaN(s) ? N : N.slice(s);
 }
-function gi(e) {
+function bi(e) {
   return (s, n, u) => {
-    let A = e, a = e;
-    return i(u[n - 1], 92) && (A = s[0]), i(s[s.length - 2], 92) && (a = s[s.length - 1]), A + s.slice(1, -1) + a;
+    let N = e, l = e;
+    return i(u[n - 1], 92) && (N = s[0]), i(s[s.length - 2], 92) && (l = s[s.length - 1]), N + s.slice(1, -1) + l;
   };
 }
 
 // src/config.ts
 var Re = {
   // @ts-ignore
-  version: "0.6.4-beta.1",
+  version: "0.7.0-beta.1",
   env: typeof process != "undefined" && process.versions != null ? "node" : "browser",
   lastUpdate: (/* @__PURE__ */ new Date()).toDateString(),
   cwd: null,
@@ -1207,83 +1210,83 @@ var Re = {
 };
 
 // src/parse/errors.ts
-function De(e, s, n) {
+function Ie(e, s, n) {
   n || (n = Ue(s));
-  let u = Xi(e, n, r.lineNumber);
-  u.language = ut(r.language), r.error = It(
+  let u = Ki(e, n, r.lineNumber);
+  u.language = ft(r.language), r.error = _t(
     u.message,
-    z,
-    kn(),
-    z,
-    u.details.replace(/\n/g, ee),
-    z,
-    `Language: ${ut(r.language)} `,
+    H,
+    xn(),
+    H,
+    u.details.replace(/\n/g, ie),
+    H,
+    `Language: ${ft(r.language)} `,
     `Location: ${r.lineNumber}:${r.lineColumn}`,
     `\xC6sthetic: Parse Failed (Code: ${u.code})`
   );
 }
-function jt(e, s, n) {
+function Et(e, s, n) {
   n || (n = Ue(s.token));
-  let u = Xi(e, n, s.line);
-  u.language = ut(r.language), r.error = It(
+  let u = Ki(e, n, s.line);
+  u.language = ft(r.language), r.error = _t(
     u.message,
-    z,
-    bn(s),
-    z,
+    H,
+    yn(s),
+    H,
     u.details,
-    z,
-    qe(`Language: ${ut(r.language)}`),
+    H,
+    qe(`Language: ${ft(r.language)}`),
     qe(`Location: ${s.line}`),
     qe(`\xC6sthetic: Parse Failed (Code: ${e})`)
   );
 }
-function Ee(e) {
-  return It(
+function je(e) {
+  return _t(
     `Rule Error: ${e.message}`,
-    z,
+    H,
     `Definition: ${e.option}`,
     `Provided: ${e.provided} `,
     `Expected: ${e.expected.join(", ")} `
   );
 }
-var Ui = (e) => Re.logColors ? `\x1B[93m${"^".repeat(e)}\x1B[39m` : `${"^".repeat(e)}`;
-function bn(e) {
-  let s = e.line - r.get(e.index).lines, n = 0, u = "", A = r.source.split(z).slice(s, e.line), a = `${e.line + 1}`.length, C = [], { indentSize: o, indentChar: k } = r.rules;
+var Xi = (e) => Re.logColors ? `\x1B[93m${"^".repeat(e)}\x1B[39m` : `${"^".repeat(e)}`;
+function yn(e) {
+  let s = e.line - r.get(e.index).lines, n = 0, u = "", N = r.source.split(H).slice(s, e.line), l = `${e.line + 1}`.length, O = [], { indentSize: o, indentChar: b } = r.rules;
   do {
-    let f = `${s + 1}`, t = a - f.length > 0 ? Re.logColors ? ` \x1B[90m${f} |` : ` ${f} |` : Re.logColors ? `\x1B[90m${f} |` : `${f} |`;
-    if (u = A[n], n === 0) {
-      if (Ke(A[n])) {
-        Re.logColors ? C.push(`${t} \x1B[31m${e.token}\x1B[39m`) : C.push(`${t} ${e.token}`);
+    let f = `${s + 1}`, t = l - f.length > 0 ? Re.logColors ? ` \x1B[90m${f} |` : ` ${f} |` : Re.logColors ? `\x1B[90m${f} |` : `${f} |`;
+    if (u = N[n], n === 0) {
+      if (Ke(N[n])) {
+        Re.logColors ? O.push(`${t} \x1B[31m${e.token}\x1B[39m`) : O.push(`${t} ${e.token}`);
         break;
       }
-      u = A[n].trimStart(), Re.logColors ? C.push(`${t} \x1B[31m${u}\x1B[39m`) : C.push(`${t} ${u}`);
+      u = N[n].trimStart(), Re.logColors ? O.push(`${t} \x1B[31m${u}\x1B[39m`) : O.push(`${t} ${u}`);
     } else {
       let h = u.match(/^\s*/);
-      h !== null && h[0].length > o && (u = k.repeat(o) + u.trimStart()), Re.logColors ? C.push(`${t} \x1B[31m${u}\x1B[39m`) : C.push(`${t} ${u}`);
+      h !== null && h[0].length > o && (u = b.repeat(o) + u.trimStart()), Re.logColors ? O.push(`${t} \x1B[31m${u}\x1B[39m`) : O.push(`${t} ${u}`);
     }
     n = n + 1, s = s + 1;
-  } while (n < A.length);
-  return C.join(z);
+  } while (n < N.length);
+  return O.join(H);
 }
-function kn(e = r.lineNumber) {
-  let s = [], n = r.source.split(z), u = e, A = `${u + 1}`.length, a = u - 1, C = "";
-  n.length > 2 && (a = u - 3), n.length === 2 && (a = u - 2);
+function xn(e = r.lineNumber) {
+  let s = [], n = r.source.split(H), u = e, N = `${u + 1}`.length, l = u - 1, O = "";
+  n.length > 2 && (l = u - 3), n.length === 2 && (l = u - 2);
   do {
-    let o = `${a + 1}`, k = A - o.length > 0 ? Re.logColors ? ` \x1B[90m${o} |` : ` ${o} |` : Re.logColors ? `\x1B[90m${o} |` : `${o} |`, f = n[a].trim();
-    if (a > u)
+    let o = `${l + 1}`, b = N - o.length > 0 ? Re.logColors ? ` \x1B[90m${o} |` : ` ${o} |` : Re.logColors ? `\x1B[90m${o} |` : `${o} |`, f = n[l].trim();
+    if (l > u)
       break;
     if (!f) {
-      Re.logColors ? s.push(`${k} \x1B[90m${f || "\u2424"}`) : s.push(`${k} ${f || "\u2424"}`), a = a + 1;
+      Re.logColors ? s.push(`${b} \x1B[90m${f || "\u2424"}`) : s.push(`${b} ${f || "\u2424"}`), l = l + 1;
       continue;
     }
-    a === u - 1 ? f.length === 0 ? s.push(`${" ".repeat(A + 2)} ${Ui(C.length)}`) : (Re.logColors ? s.push(`${k} \x1B[31m${f}\x1B[39m`) : s.push(`${k} ${f}`), s.push(`${" ".repeat(A + 2)} ${Ui(f.length)}`)) : Re.logColors ? s.push(`${k} \x1B[90m${f || "\u2424"}`) : s.push(`${k} ${f || "\u2424"}`), a = a + 1, C = f;
-  } while (a < u);
-  return s.join(z);
+    l === u - 1 ? f.length === 0 ? s.push(`${" ".repeat(N + 2)} ${Xi(O.length)}`) : (Re.logColors ? s.push(`${b} \x1B[31m${f}\x1B[39m`) : s.push(`${b} ${f}`), s.push(`${" ".repeat(N + 2)} ${Xi(f.length)}`)) : Re.logColors ? s.push(`${b} \x1B[90m${f || "\u2424"}`) : s.push(`${b} ${f || "\u2424"}`), l = l + 1, O = f;
+  } while (l < u);
+  return s.join(H);
 }
 function qe(...e) {
-  return Re.logColors ? `${e.join(z)}`.replace(/"(.*?)"/g, "\x1B[31m$1\x1B[39m") : e.join(z);
+  return Re.logColors ? `${e.join(H)}`.replace(/"(.*?)"/g, "\x1B[31m$1\x1B[39m") : e.join(H);
 }
-function Xi(e, s, n = r.lineNumber) {
+function Ki(e, s, n = r.lineNumber) {
   return {
     105: {
       code: e,
@@ -1392,14 +1395,14 @@ function Xi(e, s, n = r.lineNumber) {
 }
 
 // src/comments/block.ts
-function yt(e, s) {
+function xt(e, s) {
   let n;
-  ((se) => (se[se.Force = 0] = "Force", se[se.Inline = 1] = "Inline", se[se.Preserve = 2] = "Preserve"))(n || (n = {}));
-  let { start: u, lexer: A, end: a, ender: C } = s, { rules: o, data: k } = r, f = [], t = N(), h = s.begin.replace(si, ai), V = t !== 4 ? h : `${s.begin}\\s*#`, le = new RegExp(`^(${V}\\s*esthetic-ignore-start)`), m = new RegExp(`^(${V}\\s*esthetic-ignore-next)`), p = new RegExp(r.crlf, "g"), w = new RegExp(`(${h})`), _ = t > 2 ? new RegExp(s.ender.replace(Ei, Qi)) : new RegExp(s.ender.replace(si, ai)), I = u, d = 0, l = 0, g = c, M = s.ender.length - 1, L = s.ender.charAt(M);
-  function N() {
+  ((te) => (te[te.Force = 0] = "Force", te[te.Inline = 1] = "Inline", te[te.Preserve = 2] = "Preserve"))(n || (n = {}));
+  let { start: u, lexer: N, end: l, ender: O } = s, { rules: o, data: b } = r, f = [], t = U(), h = s.begin.replace(ri, ui), F = t !== 4 ? h : `${s.begin}\\s*#`, le = new RegExp(`^(${F}\\s*esthetic-ignore-start)`), m = new RegExp(`^(${F}\\s*esthetic-ignore-next)`), p = new RegExp(r.crlf, "g"), S = new RegExp(`(${h})`), D = t > 2 ? new RegExp(s.ender.replace(Pi, Fi)) : new RegExp(s.ender.replace(ri, ui)), I = u, d = 0, a = 0, g = c, W = s.ender.length - 1, C = s.ender.charAt(W);
+  function U() {
     return i(s.begin[0], 123) && i(s.begin[1], 37) ? e.slice(u + s.begin.length, e.indexOf("}", u)).join(c).trimStart().charCodeAt(0) === 35 ? 4 : 3 : s.begin === "/*" ? 2 : 1;
   }
-  function S() {
+  function j() {
     if (t !== 1)
       return !1;
     if (o.markup.commentDelimiters === "consistent")
@@ -1409,217 +1412,217 @@ function yt(e, s) {
     if (o.markup.commentDelimiters === "inline" || o.markup.commentDelimiters === "inline-align")
       return [1, 1];
     if (o.markup.commentDelimiters === "preserve") {
-      let O = [];
-      return i(g.slice(4).replace(Je, c), 10) ? O.push(0) : O.push(1), g.slice(g.lastIndexOf(z) + 1).trimStart() === s.ender ? O.push(0) : O.push(1), O;
+      let L = [];
+      return i(g.slice(4).replace(Je, c), 10) ? L.push(0) : L.push(1), g.slice(g.lastIndexOf(H) + 1).trimStart() === s.ender ? L.push(0) : L.push(1), L;
     }
   }
-  function j() {
+  function y() {
     if (t === 1 && o.markup.preserveComment === !1)
       if (o.markup.commentDelimiters === "consistent") {
-        let O = e.slice(u + 4).join(c);
-        O.slice(0, O.search(Lt)).indexOf(z) > -1 ? o.markup.commentIndent ? (g = g.replace(/^<!--\s*/, `<!--${z}  `), g = g.replace(/\s*-->$/, `${z}-->`)) : (g = g.replace(/^<!--\s*/, `<!--${z}`), g = g.replace(/\s*-->$/, `${z}-->`)) : (g = g.replace(/^<!--\s*/, "<!-- "), g = g.replace(/\s*-->$/, " -->"));
+        let L = e.slice(u + 4).join(c);
+        L.slice(0, L.search(Ct)).indexOf(H) > -1 ? o.markup.commentIndent ? (g = g.replace(/^<!--\s*/, `<!--${H}  `), g = g.replace(/\s*-->$/, `${H}-->`)) : (g = g.replace(/^<!--\s*/, `<!--${H}`), g = g.replace(/\s*-->$/, `${H}-->`)) : (g = g.replace(/^<!--\s*/, "<!-- "), g = g.replace(/\s*-->$/, " -->"));
       } else if (o.markup.commentDelimiters === "force")
-        o.markup.commentIndent ? (g = g.replace(/^<!--\s*/, `<!--${z}  `), g = g.replace(/\s*-->$/, `${z}-->`)) : (g = g.replace(/^<!--\s*/, `<!--${z}`), g = g.replace(/\s*-->$/, `${z}-->`));
+        o.markup.commentIndent ? (g = g.replace(/^<!--\s*/, `<!--${H}  `), g = g.replace(/\s*-->$/, `${H}-->`)) : (g = g.replace(/^<!--\s*/, `<!--${H}`), g = g.replace(/\s*-->$/, `${H}-->`));
       else if (o.markup.commentDelimiters === "inline" || o.markup.commentDelimiters === "inline-align")
         g = g.replace(/^<!--\s*/, "<!-- "), g = g.replace(/\s*-->$/, " -->");
       else {
-        let O = e.slice(u + 4).join(c);
-        O.slice(0, O.search(Lt)).indexOf(z) > -1 ? o.markup.commentIndent ? g = g.replace(/^<!--\s*/, `<!--${z}  `) : g = g.replace(/^<!--\s*/, `<!--${z}`) : g = g.replace(/^<!--\s*/, "<!-- ");
-        let ke = O.indexOf(C);
-        O.slice(O.lastIndexOf(z, ke) + 1, ke + 3).trimStart() === s.ender ? o.markup.commentIndent ? g = g.replace(/\s*-->$/, `${z}-->`) : g = g.replace(/\s*-->$/, `${z}-->`) : g = g.replace(/\s*-->$/, " -->");
+        let L = e.slice(u + 4).join(c);
+        L.slice(0, L.search(Ct)).indexOf(H) > -1 ? o.markup.commentIndent ? g = g.replace(/^<!--\s*/, `<!--${H}  `) : g = g.replace(/^<!--\s*/, `<!--${H}`) : g = g.replace(/^<!--\s*/, "<!-- ");
+        let ye = L.indexOf(O);
+        L.slice(L.lastIndexOf(H, ye) + 1, ye + 3).trimStart() === s.ender ? o.markup.commentIndent ? g = g.replace(/\s*-->$/, `${H}-->`) : g = g.replace(/\s*-->$/, `${H}-->`) : g = g.replace(/\s*-->$/, " -->");
       }
     return [g, I];
   }
-  function D(O) {
+  function q(L) {
     if (d = 0, o.wrap > 0)
-      for (O.splice(0, 1, s.begin, O[0].replace(w, c).trim()), l = 1, d = 1; O[l] === c; )
-        O.splice(l, 1);
+      for (L.splice(0, 1, s.begin, L[0].replace(S, c).trim()), a = 1, d = 1; L[a] === c; )
+        L.splice(a, 1);
     else {
-      l = -1;
+      a = -1;
       do
-        l = l + 1;
-      while (O[l] === c || i(O[l], 35) && O[l].length === 1);
-      O.splice(0, l);
+        a = a + 1;
+      while (L[a] === c || i(L[a], 35) && L[a].length === 1);
+      L.splice(0, a);
     }
-    for (let ke = O.length; d < ke; d++)
-      T(O[d], 35) && O[d] !== c && (O[d] = `# ${O[d].trimEnd()}`);
+    for (let ye = L.length; d < ye; d++)
+      M(L[d], 35) && L[d] !== c && (L[d] = `# ${L[d].trimEnd()}`);
     if (o.wrap > 0)
-      O.push(`#${O.pop().trim().slice(1)}`, s.ender);
+      L.push(`#${L.pop().trim().slice(1)}`, s.ender);
     else {
-      O.splice(0, 0, s.begin), l = O.length;
+      L.splice(0, 0, s.begin), a = L.length;
       do
-        l = l - 1;
-      while (O[l] === c || i(O[l], 35) && O[l].length === 1);
-      O.splice(l + 1, O.length - l), O.push(`#${O.pop().trim().slice(1)}`, s.ender);
+        a = a - 1;
+      while (L[a] === c || i(L[a], 35) && L[a].length === 1);
+      L.splice(a + 1, L.length - a), L.push(`#${L.pop().trim().slice(1)}`, s.ender);
     }
-    return g = O.join(r.crlf), o.liquid.commentIndent === !1 && (g = g.replace(/^#/gm, " #")), [g, I];
+    return g = L.join(r.crlf), o.liquid.commentIndent === !1 && (g = g.replace(/^#/gm, " #")), [g, I];
+  }
+  function G() {
+    let L = c;
+    return g = f.join(c).replace(Ye, c), r.count > -1 && b.lines[r.count] > 0 && (d = e.lastIndexOf(H, r.iterator) + 1, d > 0 && (L = e.slice(d, r.iterator).join(c), L.trim() === c || (L = L.slice(0, L.search(Ct))), g = L + g)), [g, I];
   }
   function B() {
-    let O = c;
-    return g = f.join(c).replace(Ye, c), r.count > -1 && k.lines[r.count] > 0 && (d = e.lastIndexOf(z, r.iterator) + 1, d > 0 && (O = e.slice(d, r.iterator).join(c), O.trim() === c || (O = O.slice(0, O.search(Lt))), g = O + g)), [g, I];
-  }
-  function P() {
-    let O = z;
+    let L = H;
     I = I + 1;
     do {
       if (f.push(e[I]), i(e[I], 10) && (r.lineOffset = r.lines(I, r.lineOffset)), e[I - 3] === "-" && e[I - 2] === "e" && e[I - 1] === "n" && e[I] === "d" && f.slice(f.length - 19).join(c) === "esthetic-ignore-end") {
-        t === 3 && (l = e.indexOf("{", I), i(e[l + 1], 37) && (O = e.slice(l, e.indexOf("}", l) + 1).join(c), _.test(O) && (s.ender = O))), I = I + 1, O = c;
+        t === 3 && (a = e.indexOf("{", I), i(e[a + 1], 37) && (L = e.slice(a, e.indexOf("}", a) + 1).join(c), D.test(L) && (s.ender = L))), I = I + 1, L = c;
         break;
       }
       I = I + 1;
-    } while (I < a);
-    d = I, M = s.begin.length - 1, L = s.begin.charAt(M);
+    } while (I < l);
+    d = I, W = s.begin.length - 1, C = s.begin.charAt(W);
     do {
-      if (t === 2 && i(e[d - 1], 47) && i(e[d], 42) || e[d] === L && e.slice(d - M, d + 1).join(c) === s.begin)
+      if (t === 2 && i(e[d - 1], 47) && i(e[d], 42) || e[d] === C && e.slice(d - W, d + 1).join(c) === s.begin)
         break;
       d = d - 1;
     } while (d > u);
-    if (t === 2 && i(e[d], 42) ? O = "*/" : O === c && t !== 2 && (O = s.ender), M = O.length - 1, L = O.charAt(M), T(O, 10) || T(e[I], 10))
+    if (t === 2 && i(e[d], 42) ? L = "*/" : L === c && t !== 2 && (L = s.ender), W = L.length - 1, C = L.charAt(W), M(L, 10) || M(e[I], 10))
       do {
-        if (f.push(e[I]), i(O, 10) && i(e[I + 1], 10) || e[I] === L && e.slice(I - M, I + 1).join(c) === O)
+        if (f.push(e[I]), i(L, 10) && i(e[I + 1], 10) || e[I] === C && e.slice(I - W, I + 1).join(c) === L)
           break;
         I = I + 1;
-      } while (I < a);
-    if (i(e[I], 10) && (I = I - 1), g = f.join(c).replace(We, c), ce(e[r.iterator - 1])) {
-      let ke = e.lastIndexOf(z, r.iterator);
-      ke > -1 && (g = e.slice(ke + 1, r.iterator).join(c) + g);
+      } while (I < l);
+    if (i(e[I], 10) && (I = I - 1), g = f.join(c).replace(Pe, c), ue(e[r.iterator - 1])) {
+      let ye = e.lastIndexOf(H, r.iterator);
+      ye > -1 && (g = e.slice(ye + 1, r.iterator).join(c) + g);
     }
     return [g, I];
   }
-  function pe() {
-    if (I === a)
+  function V() {
+    if (I === l)
       return !0;
     if (t === 3 && o.liquid.preserveComment || t === 4 && o.liquid.preserveComment || t === 1 && o.markup.preserveComment) {
-      if (d = e.lastIndexOf(z, r.iterator) + 1, d > 0) {
-        let O = e.slice(d, r.iterator).join(c);
-        O.trim() === c || (O = O.slice(0, O.search(Lt))), g = O + g;
+      if (d = e.lastIndexOf(H, r.iterator) + 1, d > 0) {
+        let L = e.slice(d, r.iterator).join(c);
+        L.trim() === c || (L = L.slice(0, L.search(Ct))), g = L + g;
       }
       return !0;
     }
-    if (t === 2 && A === "style" && o.style.preserveComment || t === 2 && A === "script" && o.script.preserveComment || t !== 3 && t !== 4 && g.length <= o.wrap && g.indexOf(z) < 0 || o.wrap < 1 && t === 3 && Ti.test(g) === !1)
+    if (t === 2 && N === "style" && o.style.preserveComment || t === 2 && N === "script" && o.script.preserveComment || t !== 3 && t !== 4 && g.length <= o.wrap && g.indexOf(H) < 0 || o.wrap < 1 && t === 3 && Mi.test(g) === !1)
       return !0;
     if (t === 4) {
       if (o.wrap > 0 && g.length >= o.wrap)
         return !1;
-      if (ft.test(g)) {
-        if (Pi.test(g))
+      if (ct.test(g)) {
+        if (Ti.test(g))
           return !1;
-        if (Wi.test(g) && g.slice(g.indexOf("#") + 1, g.lastIndexOf(z)).indexOf(z) < 0)
-          return o.wrap > 0 ? g = g.replace(Kt, c).replace(Rt, "$1 # ").replace(At, "# ").replace(qt, " $2") : g = g.replace(Kt, c).replace(Rt, "$1 ").replace(At, "# ").replace(qt, " $2"), !0;
+        if (Wi.test(g) && g.slice(g.indexOf("#") + 1, g.lastIndexOf(H)).indexOf(H) < 0)
+          return o.wrap > 0 ? g = g.replace(ei, c).replace(qt, "$1 # ").replace(Nt, "# ").replace(At, " $2") : g = g.replace(ei, c).replace(qt, "$1 ").replace(Nt, "# ").replace(At, " $2"), !0;
       } else
-        return o.wrap > 0 ? g = g.replace(Rt, "$1 # ").replace(At, "# ").replace(qt, " $2") : g = g.replace(Rt, "$1 ").replace(At, "# ").replace(qt, " $2"), !0;
+        return o.wrap > 0 ? g = g.replace(qt, "$1 # ").replace(Nt, "# ").replace(At, " $2") : g = g.replace(qt, "$1 ").replace(Nt, "# ").replace(At, " $2"), !0;
       return !1;
     }
-    return o.wrap > 0 && g.length <= o.wrap && g.slice(5, -4).indexOf(z) < 0 || o.wrap < 1 && t !== 3 && g.slice(5, -4).indexOf(z) < 0 || t === 2 && g.indexOf(z) > 0 && g.replace(z, c).indexOf(z) > 0 && Ai.test(g) === !1;
+    return o.wrap > 0 && g.length <= o.wrap && g.slice(5, -4).indexOf(H) < 0 || o.wrap < 1 && t !== 3 && g.slice(5, -4).indexOf(H) < 0 || t === 2 && g.indexOf(H) > 0 && g.replace(H, c).indexOf(H) > 0 && Ni.test(g) === !1;
   }
-  function ge() {
-    let O = [], ke = 0;
-    if (d = u, d > 0 && T(e[d - 1], 10) && ce(e[d - 1]))
+  function ke() {
+    let L = [], ye = 0;
+    if (d = u, d > 0 && M(e[d - 1], 10) && ue(e[d - 1]))
       do
         d = d - 1;
-      while (d > 0 && T(e[d - 1], 10) && ce(e[d - 1]));
-    let K = new RegExp(`
+      while (d > 0 && M(e[d - 1], 10) && ue(e[d - 1]));
+    let me = new RegExp(`
 ${e.slice(d, u).join(c)}`, "g");
-    return g = g.replace(p, z).replace(K, z), O = g.split(z), ke = O.length, O[0] = O[0].replace(w, c), O[ke - 1] = O[ke - 1].replace(_, c), t === 4 && o.wrap < 1 ? (O = O.map((se) => se.replace(/^#\s*/m, c).trimStart()), D(O)) : (ke < 2 && (O = O[0].split(ee)), t === 3 ? O[0] === c ? O[0] = s.begin : O.splice(0, 0, s.begin) : O[0] === c ? O[0] = s.begin : O.splice(0, 0, s.begin), ke = O.length, t === 1 ? ue(O, ke - 1) : Ce(O, ke));
+    return g = g.replace(p, H).replace(me, H), L = g.split(H), ye = L.length, L[0] = L[0].replace(S, c), L[ye - 1] = L[ye - 1].replace(D, c), t === 4 && o.wrap < 1 ? (L = L.map((te) => te.replace(/^#\s*/m, c).trimStart()), q(L)) : (ye < 2 && (L = L[0].split(ie)), t === 3 ? L[0] === c ? L[0] = s.begin : L.splice(0, 0, s.begin) : L[0] === c ? L[0] = s.begin : L.splice(0, 0, s.begin), ye = L.length, t === 1 ? we(L, ye - 1) : ae(L, ye));
   }
-  function ue(O, ke) {
-    let K = [O.shift()], se = c, J = 0;
-    o.markup.commentDelimiters === "inline-align" ? se = "     " : o.markup.commentIndent && (se = "  ");
-    let $e = !1, $ = 0;
+  function we(L, ye) {
+    let me = [L.shift()], te = c, ce = 0;
+    o.markup.commentDelimiters === "inline-align" ? te = "     " : o.markup.commentIndent && (te = "  ");
+    let J = !1, P = 0;
     do {
-      if (rt.test(O[J]) === !0 || O[J] === c)
-        $ = $ + 1, $ <= o.preserveLine && K.push(z);
-      else if ($e)
-        K.push(O[J].replace(Ye, c), z);
+      if (ot.test(L[ce]) === !0 || L[ce] === c)
+        P = P + 1, P <= o.preserveLine && me.push(H);
+      else if (J)
+        me.push(L[ce].replace(Ye, c), H);
       else {
-        let G = J === 0 ? O[J].trimStart().replace(Ye, c) : O[J].trim();
-        if (/<\/?[a-zA-Z]|{{|{%/.test(G))
-          $e = !0, K.push(O[J].replace(Ye, c));
-        else if (o.wrap > 0 && G.length > o.wrap) {
-          let oe = G.replace(Ri, " ").split(ee).concat(z);
-          for (let ne = 0, Y = 0, F = 0, H = oe.length; ne < H; ne++)
-            F += oe[ne].length + 1, (F > o.wrap || ne + 1 === H) && (K.push(se + oe.slice(Y, ne).join(ee) + z), Y = ne, F = 0);
+        let T = ce === 0 ? L[ce].trimStart().replace(Ye, c) : L[ce].trim();
+        if (/<\/?[a-zA-Z]|{{|{%/.test(T))
+          J = !0, me.push(L[ce].replace(Ye, c));
+        else if (o.wrap > 0 && T.length > o.wrap) {
+          let oe = T.replace(qi, " ").split(ie).concat(H);
+          for (let se = 0, ee = 0, _ = 0, Q = oe.length; se < Q; se++)
+            _ += oe[se].length + 1, (_ > o.wrap || se + 1 === Q) && (me.push(te + oe.slice(ee, se).join(ie) + H), ee = se, _ = 0);
         } else
-          K.push(`${se}${G}${z}`);
+          me.push(`${te}${T}${H}`);
       }
-      J = J + 1;
-    } while (J < ke);
-    return g = K.join(c) + ee + s.ender, j();
+      ce = ce + 1;
+    } while (ce < ye);
+    return g = me.join(c) + ie + s.ender, y();
   }
-  function Ce(O, ke) {
-    let K = [], se = 0, J = 0, $e, $, G = !1, oe = !1, ne = !1, Y = !1;
+  function ae(L, ye) {
+    let me = [], te = 0, ce = 0, J, P, T = !1, oe = !1, se = !1, ee = !1;
     d = 0;
     do {
-      if ($ = d < ke - 1 ? O[d + 1].replace(Je, c) : c, rt.test(O[d]) === !0 || O[d] === c) {
-        if (rt.test(O[d + 1]) === !0 || O[d + 1] === c)
+      if (P = d < ye - 1 ? L[d + 1].replace(Je, c) : c, ot.test(L[d]) === !0 || L[d] === c) {
+        if (ot.test(L[d + 1]) === !0 || L[d + 1] === c)
           do
             d = d + 1;
-          while (d < ke && (rt.test(O[d + 1]) === !0 || O[d + 1] === c));
-        d < ke - 1 && K.push(c);
-      } else if ($e = O[d].replace(Je, c), o.wrap > 0 && $e.length > o.wrap && $e.indexOf(ee) > o.wrap)
-        O[d] = $e, l = O[d].indexOf(ee), K.push(O[d].slice(0, l)), O[d] = O[d].slice(l + 1), d = d - 1;
+          while (d < ye && (ot.test(L[d + 1]) === !0 || L[d + 1] === c));
+        d < ye - 1 && me.push(c);
+      } else if (J = L[d].replace(Je, c), o.wrap > 0 && J.length > o.wrap && J.indexOf(ie) > o.wrap)
+        L[d] = J, a = L[d].indexOf(ie), me.push(L[d].slice(0, a)), L[d] = L[d].slice(a + 1), d = d - 1;
       else {
-        if (t === 2 && O[d].indexOf("/*") !== 0 ? O[d] = Yt + O[d].replace(Je, c).replace(Ye, c).replace(Xe, ee) : O[d] = O[d].replace(Je, c).replace(Ye, c), J = d < 1 ? o.wrap - (s.begin.length + 1) : o.wrap, se = O[d].replace(ct, c).indexOf(ee), l = O[d].length, l > J && se > 0 && se < J) {
-          l = J;
+        if (t === 2 && L[d].indexOf("/*") !== 0 ? L[d] = Kt + L[d].replace(Je, c).replace(Ye, c).replace(Xe, ie) : L[d] = L[d].replace(Je, c).replace(Ye, c), ce = d < 1 ? o.wrap - (s.begin.length + 1) : o.wrap, te = L[d].replace(pt, c).indexOf(ie), a = L[d].length, a > ce && te > 0 && te < ce) {
+          a = ce;
           do
-            if (l = l - 1, ce(O[d].charAt(l)) && l <= o.wrap)
+            if (a = a - 1, ue(L[d].charAt(a)) && a <= o.wrap)
               break;
-          while (l > 0);
-          Dt.test(O[d]) === !0 && Dt.test(O[d + 1]) === !1 && O.splice(d + 1, 0, "1. "), l < 4 ? (K.push(O[d]), Y = !0) : d === ke - 1 && (K.push(O[d].slice(0, l)), O[d] = O[d].slice(l + 1), Y = !0, d = d - 1), rt.test(O[d + 1]) === !0 || O[d + 1] === c ? (K.push(O[d].slice(0, l)), O[d] = O[d].slice(l + 1), G = !0, d = d - 1) : ji.test(O[d + 1]) ? (K.push(O[d].slice(0, l)), O[d] = O[d].slice(l + 1), oe = !0, d = d - 1) : Dt.test(O[d + 1]) ? (K.push(O[d].slice(0, l)), O[d] = O[d].slice(l + 1), ne = !0, d = d - 1) : O[d + 1].slice(0, 4) === Wt || l + $.length > o.wrap && $.indexOf(ee) < 0 ? (K.push(O[d].slice(0, l)), O[d] = O[d].slice(l + 1), Y = !0, d = d - 1) : O[d].replace(Je, c).indexOf(ee) < o.wrap && (O[d].length > o.wrap ? O[d + 1] = `${O[d].slice(l + 1)}${r.crlf}${O[d + 1]}` : O[d + 1] = `${O[d].slice(l + 1)} ${O[d + 1]}`), G === !1 && oe === !1 && ne === !1 && Y === !1 && (O[d] = O[d].slice(0, l));
+          while (a > 0);
+          Dt.test(L[d]) === !0 && Dt.test(L[d + 1]) === !1 && L.splice(d + 1, 0, "1. "), a < 4 ? (me.push(L[d]), ee = !0) : d === ye - 1 && (me.push(L[d].slice(0, a)), L[d] = L[d].slice(a + 1), ee = !0, d = d - 1), ot.test(L[d + 1]) === !0 || L[d + 1] === c ? (me.push(L[d].slice(0, a)), L[d] = L[d].slice(a + 1), T = !0, d = d - 1) : Ei.test(L[d + 1]) ? (me.push(L[d].slice(0, a)), L[d] = L[d].slice(a + 1), oe = !0, d = d - 1) : Dt.test(L[d + 1]) ? (me.push(L[d].slice(0, a)), L[d] = L[d].slice(a + 1), se = !0, d = d - 1) : L[d + 1].slice(0, 4) === Wt || a + P.length > o.wrap && P.indexOf(ie) < 0 ? (me.push(L[d].slice(0, a)), L[d] = L[d].slice(a + 1), ee = !0, d = d - 1) : L[d].replace(Je, c).indexOf(ie) < o.wrap && (L[d].length > o.wrap ? L[d + 1] = `${L[d].slice(a + 1)}${r.crlf}${L[d + 1]}` : L[d + 1] = `${L[d].slice(a + 1)} ${L[d + 1]}`), T === !1 && oe === !1 && se === !1 && ee === !1 && (L[d] = L[d].slice(0, a));
         } else
-          O[d + 1] !== void 0 && t < 3 && (O[d].length + $.indexOf(ee) > o.wrap && $.indexOf(ee) > 0 || O[d].length + $.length > o.wrap && $.indexOf(ee) < 0) ? (K.push(O[d]), o.wrap > 0 && (d = d + 1), o.wrap < 1 && t === 3 && (d = d + 1), G = !0) : O[d + 1] !== void 0 && rt.test(O[d + 1]) === !1 && O[d + 1] !== c && O[d + 1].slice(0, 4) !== Wt && ti.test(O[d + 1]) === !1 && (t === 3 ? K.push(O[d]) : O[d + 1] = `${O[d]} ${O[d + 1]}`, G = !0);
-        Y === !1 && oe === !1 && ne === !1 && (G === !0 ? G = !1 : /^\s*(\*|-|(\d+\.))\s*$/.test(O[d]) === !1 && (d < ke - 1 && O[d + 1] !== c && rt.test(O[d]) === !1 && O[d + 1].slice(0, 4) !== Wt && ti.test(O[d + 1]) === !1 ? (O[d] = `${O[d]} ${O[d + 1]}`, O.splice(d + 1, 1), ke = ke - 1, d = d - 1) : t === 2 && O[d].indexOf("/*") !== 0 ? K.push(Yt + O[d].replace(Je, c).replace(Ye, c).replace(Xe, ee)) : K.push(O[d].replace(Je, c).replace(Ye, c).replace(Xe, ee)))), Y = !1, oe = !1, ne = !1;
+          L[d + 1] !== void 0 && t < 3 && (L[d].length + P.indexOf(ie) > o.wrap && P.indexOf(ie) > 0 || L[d].length + P.length > o.wrap && P.indexOf(ie) < 0) ? (me.push(L[d]), o.wrap > 0 && (d = d + 1), o.wrap < 1 && t === 3 && (d = d + 1), T = !0) : L[d + 1] !== void 0 && ot.test(L[d + 1]) === !1 && L[d + 1] !== c && L[d + 1].slice(0, 4) !== Wt && ii.test(L[d + 1]) === !1 && (t === 3 ? me.push(L[d]) : L[d + 1] = `${L[d]} ${L[d + 1]}`, T = !0);
+        ee === !1 && oe === !1 && se === !1 && (T === !0 ? T = !1 : /^\s*(\*|-|(\d+\.))\s*$/.test(L[d]) === !1 && (d < ye - 1 && L[d + 1] !== c && ot.test(L[d]) === !1 && L[d + 1].slice(0, 4) !== Wt && ii.test(L[d + 1]) === !1 ? (L[d] = `${L[d]} ${L[d + 1]}`, L.splice(d + 1, 1), ye = ye - 1, d = d - 1) : t === 2 && L[d].indexOf("/*") !== 0 ? me.push(Kt + L[d].replace(Je, c).replace(Ye, c).replace(Xe, ie)) : me.push(L[d].replace(Je, c).replace(Ye, c).replace(Xe, ie)))), ee = !1, oe = !1, se = !1;
       }
       d = d + 1;
-    } while (d < ke);
-    let F = S();
-    if (K && K.length > 0)
-      if (F)
-        F[0] === 1 ? o.markup.commentIndent ? o.markup.commentDelimiters === "inline-align" ? g = `${K[0]} ${K.slice(1).join(r.crlf + "     ")}` : g = `${K[0]} ${K.slice(1).join(r.crlf + "  ")}` : g = `${K[0]} ${K.slice(1).join(r.crlf)}` : o.markup.commentIndent ? g = `${K[0] + z}  ${K.slice(1).join(r.crlf + "  ")}` : g = `${K[0] + z}  ${K.slice(1).join(r.crlf)}`, F[1] === 1 ? g += ` ${s.ender}` : g += z + s.ender;
+    } while (d < ye);
+    let _ = j();
+    if (me && me.length > 0)
+      if (_)
+        _[0] === 1 ? o.markup.commentIndent ? o.markup.commentDelimiters === "inline-align" ? g = `${me[0]} ${me.slice(1).join(r.crlf + "     ")}` : g = `${me[0]} ${me.slice(1).join(r.crlf + "  ")}` : g = `${me[0]} ${me.slice(1).join(r.crlf)}` : o.markup.commentIndent ? g = `${me[0] + H}  ${me.slice(1).join(r.crlf + "  ")}` : g = `${me[0] + H}  ${me.slice(1).join(r.crlf)}`, _[1] === 1 ? g += ` ${s.ender}` : g += H + s.ender;
       else {
-        if (t !== 4 && t !== 3 && K[K.length - 1].length > o.wrap - (s.ender.length + 1))
-          K.push(s.ender);
+        if (t !== 4 && t !== 3 && me[me.length - 1].length > o.wrap - (s.ender.length + 1))
+          me.push(s.ender);
         else if (t === 3)
-          K.push(s.ender);
+          me.push(s.ender);
         else {
           if (t === 4)
-            return D(K);
-          K[K.length - 1] = `${K[K.length - 1]} ${s.ender}`;
+            return q(me);
+          me[me.length - 1] = `${me[me.length - 1]} ${s.ender}`;
         }
-        g = K.join(z);
+        g = me.join(H);
       }
     else
-      F ? (F[0] === 1 ? o.markup.commentIndent ? o.markup.commentDelimiters === "inline-align" ? g = `${O[0]} ${O.slice(1).join(r.crlf + "     ")}` : g = `${O[0]} ${O.slice(1).join(r.crlf + "  ")}` : g = `${O[0]} ${O.slice(1).join(r.crlf)}` : o.markup.commentIndent ? g = `${O[0] + z}  ${O.slice(1).join(r.crlf + "  ")}` : g = O.join(z), F[1] === 1 ? g += ` ${s.ender}` : g += z + s.ender) : (ke = O.length - 1, O[ke] = O[ke] + s.ender, g = O.join(z));
+      _ ? (_[0] === 1 ? o.markup.commentIndent ? o.markup.commentDelimiters === "inline-align" ? g = `${L[0]} ${L.slice(1).join(r.crlf + "     ")}` : g = `${L[0]} ${L.slice(1).join(r.crlf + "  ")}` : g = `${L[0]} ${L.slice(1).join(r.crlf)}` : o.markup.commentIndent ? g = `${L[0] + H}  ${L.slice(1).join(r.crlf + "  ")}` : g = L.join(H), _[1] === 1 ? g += ` ${s.ender}` : g += H + s.ender) : (ye = L.length - 1, L[ye] = L[ye] + s.ender, g = L.join(H));
     return [g, I];
   }
   do {
-    if (i(e[I], 10) && (r.lineOffset = r.lines(I, r.lineOffset)), i(e[I], 35) && t === 4 && o.liquid.preserveComment === !1 && o.wrap > 0 && f.slice(f.lastIndexOf(z)).join(c).trim() === c ? f.push(ee) : f.push(e[I]), e[I] === L && e.slice(I - M, I + 1).join(c) === s.ender) {
-      t === 4 && i(e[I - 2], 45) && (s.ender = "-%}", _ = new RegExp(s.ender)), g = f.join(c);
+    if (i(e[I], 10) && (r.lineOffset = r.lines(I, r.lineOffset)), i(e[I], 35) && t === 4 && o.liquid.preserveComment === !1 && o.wrap > 0 && f.slice(f.lastIndexOf(H)).join(c).trim() === c ? f.push(ie) : f.push(e[I]), e[I] === C && e.slice(I - W, I + 1).join(c) === s.ender) {
+      t === 4 && i(e[I - 2], 45) && (s.ender = "-%}", D = new RegExp(s.ender)), g = f.join(c);
       break;
     }
     I = I + 1;
-  } while (I < a);
-  return le.test(g) ? P() : m.test(g) ? B() : pe() ? j() : ge();
+  } while (I < l);
+  return le.test(g) ? B() : m.test(g) ? G() : V() ? y() : ke();
 }
 
 // src/comments/line.ts
-function Qt(e) {
-  let { wrap: s } = r.rules, { preserveComment: n } = r.rules[r.lexer], u = e.start, A = 0, a = c, C = [];
+function Ht(e) {
+  let { wrap: s } = r.rules, { preserveComment: n } = r.rules[r.lexer], u = e.start, N = 0, l = c, O = [];
   function o() {
     let f = c;
     do
-      if (A = A + 1, i(e.chars[A + 1], 10))
+      if (N = N + 1, i(e.chars[N + 1], 10))
         return;
-    while (A < e.end && ce(e.chars[A]));
-    if (e.chars[A] + e.chars[A + 1] === "//") {
-      C = [];
+    while (N < e.end && ue(e.chars[N]));
+    if (e.chars[N] + e.chars[N + 1] === "//") {
+      O = [];
       do
-        C.push(e.chars[A]), A = A + 1;
-      while (A < e.end && T(e.chars[A], 10));
-      f = C.join(c), /^\/\/ (?:[*-]|\d+\.)/.test(f) === !1 && /^\/\/\s*$/.test(f) === !1 && (a = `${a} ${f.replace(/(^\/\/\s*)/, c).replace(We, c)}`, u = A - 1, o());
+        O.push(e.chars[N]), N = N + 1;
+      while (N < e.end && M(e.chars[N], 10));
+      f = O.join(c), /^\/\/ (?:[*-]|\d+\.)/.test(f) === !1 && /^\/\/\s*$/.test(f) === !1 && (l = `${l} ${f.replace(/(^\/\/\s*)/, c).replace(Pe, c)}`, u = N - 1, o());
     }
   }
-  function k() {
+  function b() {
     let f = [], t = {
       ender: -1,
       types: "comment",
@@ -1627,54 +1630,54 @@ function Qt(e) {
       lines: r.lineOffset
     };
     r.count > -1 ? (t.begin = r.stack.index, t.stack = r.stack.token, t.token = r.data.token[r.count]) : (t.begin = -1, t.stack = "global", t.token = c);
-    let h = 0, V = 0;
-    if (a = a.replace(/\s+/g, ee).replace(We, c), V = a.length, !(s > V)) {
+    let h = 0, F = 0;
+    if (l = l.replace(/\s+/g, ie).replace(Pe, c), F = l.length, !(s > F)) {
       do {
-        if (h = s, T(a[h], 32)) {
+        if (h = s, M(l[h], 32)) {
           do
             h = h - 1;
-          while (h > 0 && T(a[h], 32));
+          while (h > 0 && M(l[h], 32));
           if (h < 3) {
             h = s;
             do
               h = h + 1;
-            while (h < V - 1 && T(a[h], 32));
+            while (h < F - 1 && M(l[h], 32));
           }
         }
-        f.push(a.slice(0, h)), a = `// ${a.slice(h).replace(ct, c)}`, V = a.length;
-      } while (s < V);
-      h = 0, V = f.length;
+        f.push(l.slice(0, h)), l = `// ${l.slice(h).replace(pt, c)}`, F = l.length;
+      } while (s < F);
+      h = 0, F = f.length;
       do
         t.token = f[h], r.push(r.data, t, c), t.lines = 2, r.lineOffset = 2, h = h + 1;
-      while (h < V);
+      while (h < F);
     }
   }
   do
-    C.push(e.chars[u]), u = u + 1;
-  while (u < e.end && T(e.chars[u], 10));
-  if (u === e.end ? e.chars.push(z) : u = u - 1, a = C.join(c).replace(We, c), Mt.test(a) === !0) {
-    let f = z;
+    O.push(e.chars[u]), u = u + 1;
+  while (u < e.end && M(e.chars[u], 10));
+  if (u === e.end ? e.chars.push(H) : u = u - 1, l = O.join(c).replace(Pe, c), It.test(l) === !0) {
+    let f = H;
     u = u + 1;
     do
-      C.push(e.chars[u]), u = u + 1;
-    while (u < e.end && (T(e.chars[u - 1], 100) || i(e.chars[u - 1], 100) && C.slice(C.length - 19).join(c) !== "esthetic-ignore-end"));
-    A = u;
+      O.push(e.chars[u]), u = u + 1;
+    while (u < e.end && (M(e.chars[u - 1], 100) || i(e.chars[u - 1], 100) && O.slice(O.length - 19).join(c) !== "esthetic-ignore-end"));
+    N = u;
     do
       ;
-    while (A > e.start && i(e.chars[A - 1], 47) && (i(e.chars[A], 42) || i(e.chars[A], 47)));
-    if (i(e.chars[A], 42) && (f = "*/"), f !== z || T(e.chars[u], 10))
+    while (N > e.start && i(e.chars[N - 1], 47) && (i(e.chars[N], 42) || i(e.chars[N], 47)));
+    if (i(e.chars[N], 42) && (f = "*/"), f !== H || M(e.chars[u], 10))
       do {
-        if (C.push(e.chars[u]), f === z && i(e.chars[u + 1], 10))
+        if (O.push(e.chars[u]), f === H && i(e.chars[u + 1], 10))
           break;
         u = u + 1;
-      } while (u < e.end && (f === z || f === "*/" && (i(e.chars[u - 1], 42) || i(e.chars[u], 47))));
-    return e.chars[u] === z && (u = u - 1), a = C.join(c).replace(We, c), [a, u];
+      } while (u < e.end && (f === H || f === "*/" && (i(e.chars[u - 1], 42) || i(e.chars[u], 47))));
+    return e.chars[u] === H && (u = u - 1), l = O.join(c).replace(Pe, c), [l, u];
   }
-  return a === "//" || n === !0 ? [a, u] : (a = a.replace(/(\/\/\s*)/, "// "), s < 1 || u === e.end - 1 && r.data.begin[r.count] < 1 ? [a, u] : (A = u + 1, o(), k(), [a, u]));
+  return l === "//" || n === !0 ? [l, u] : (l = l.replace(/(\/\/\s*)/, "// "), s < 1 || u === e.end - 1 && r.data.begin[r.count] < 1 ? [l, u] : (N = u + 1, o(), b(), [l, u]));
 }
 
 // src/rules/definitions.ts
-var bi = {
+var ki = {
   global: {
     preset: {
       description: "Use preset style guide as the base defaults",
@@ -2781,31 +2784,31 @@ var bi = {
 };
 
 // src/parse/external.ts
-function Ht(e, s, n) {
+function Ft(e, s, n) {
   if (s === "html") {
-    if (!(e in we.html.embed))
+    if (!(e in Le.html.embed))
       return !1;
-    let u = we.html.embed[e];
+    let u = Le.html.embed[e];
     if (u.attr.size > 0)
-      for (let A of u.attr.values()) {
+      for (let N of u.attr.values()) {
         if (!n)
-          return A;
-        if (A.attr.has(n[0]) && A.attr.get(n[0]).value.has(n[1]))
-          return A.attr.get(n[0]);
+          return N;
+        if (N.attr.has(n[0]) && N.attr.get(n[0]).value.has(n[1]))
+          return N.attr.get(n[0]);
       }
     return u.attr.has(n[0]) ? u.attr.get(n[0]).attr.has(n[1]) ? u.attr.get(n[0]).attr.get(n[1]) : u.attr.get(n[0]) : u;
   } else if (s === "liquid") {
-    if (!(e in we.liquid.embed))
+    if (!(e in Le.liquid.embed))
       return !1;
-    let u = we.liquid.embed[e];
+    let u = Le.liquid.embed[e];
     if (u.args.size > 0 && n) {
-      let A = n.slice(n.indexOf(e) + e.length).match(/\s*(.*)(?=\s)/)[0];
-      for (let [a, C] of u.args) {
-        if (a.has(A))
-          return C;
-        for (let o of a)
-          if (Bt(o) && o.test(A))
-            return C;
+      let N = n.slice(n.indexOf(e) + e.length).match(/\s*(.*)(?=\s)/)[0];
+      for (let [l, O] of u.args) {
+        if (l.has(N))
+          return O;
+        for (let o of l)
+          if ($t(o) && o.test(N))
+            return O;
       }
     }
     return u;
@@ -2813,129 +2816,129 @@ function Ht(e, s, n) {
 }
 
 // src/lexical/liquid.ts
-function Yi(e, s) {
-  let n = i(e[2], 45) ? 3 : 2, u = e.slice(n), A;
-  return s.delimiterTrims === "never" ? A = `{${e[1]}` : s.delimiterTrims === "always" || s.delimiterTrims === "outputs" && i(e[1], 123) || s.delimiterTrims === "tags" && i(e[1], 37) ? A = `{${e[1]}-` : A = e.slice(0, n), s.delimiterPlacement === "preserve" ? A += /^\s*\n/.test(u) ? z : ee : s.delimiterPlacement === "force" ? A += z : s.delimiterPlacement === "inline" || s.delimiterPlacement === "default" || s.delimiterPlacement === "force-multiline" ? A += ee : s.delimiterPlacement === "consistent" && (/^\s*\n/.test(u) ? A += z : A += ee), A + u.trim();
+function en(e, s) {
+  let n = i(e[2], 45) ? 3 : 2, u = e.slice(n), N;
+  return s.delimiterTrims === "never" ? N = `{${e[1]}` : s.delimiterTrims === "always" || s.delimiterTrims === "outputs" && i(e[1], 123) || s.delimiterTrims === "tags" && i(e[1], 37) ? N = `{${e[1]}-` : N = e.slice(0, n), s.delimiterPlacement === "preserve" ? N += /^\s*\n/.test(u) ? H : ie : s.delimiterPlacement === "force" ? N += H : s.delimiterPlacement === "inline" || s.delimiterPlacement === "default" || s.delimiterPlacement === "force-multiline" ? N += ie : s.delimiterPlacement === "consistent" && (/^\s*\n/.test(u) ? N += H : N += ie), N + u.trim();
 }
-function Ft(e, s, n = ee) {
-  let { delimiterTrims: u, delimiterPlacement: A } = r.rules.liquid, [a, C] = en(e), o, k = e.slice(a, C), f;
-  return u === "never" ? (o = `{${e[1]}`, f = `${e[e.length - 2]}}`) : u === "always" || u === "outputs" && i(e[1], 123) || u === "tags" && i(e[1], 37) ? (o = `{${e[1]}-`, f = `-${e[e.length - 2]}}`) : (o = e.slice(0, a), f = e.slice(C)), s || (s = k.trimStart().split(/\s/)[0] || ""), s === "else" || s === "break" || s === "continue" || s === "increment" || s === "decrement" || s.startsWith("end") ? (o += n, f = n + f) : A === "preserve" ? (o += /^\s*\n/.test(k) ? z : n, f = (/\s*\n\s*$/.test(k) ? z : n) + f) : s === "#" && A === "force-multiline" ? /\n{2,}/g.test(k.trim()) ? (o += z, f = z + f) : (o += n, f = n + f) : A === "force" ? (o += z, f = z + f) : A === "inline" || A === "default" || A === "force-multiline" ? (o += n, f = n + f) : A === "consistent" && (/^\s*\n/.test(k) ? (o += z, f = z + f) : (o += n, f = n + f)), o + k.trim() + f;
+function zt(e, s, n = ie) {
+  let { delimiterTrims: u, delimiterPlacement: N } = r.rules.liquid, [l, O] = nn(e), o, b = e.slice(l, O), f;
+  return u === "never" ? (o = `{${e[1]}`, f = `${e[e.length - 2]}}`) : u === "always" || u === "outputs" && i(e[1], 123) || u === "tags" && i(e[1], 37) ? (o = `{${e[1]}-`, f = `-${e[e.length - 2]}}`) : (o = e.slice(0, l), f = e.slice(O)), s || (s = b.trimStart().split(/\s/)[0] || ""), s === "else" || s === "break" || s === "continue" || s === "increment" || s === "decrement" || s.startsWith("end") ? (o += n, f = n + f) : N === "preserve" ? (o += /^\s*\n/.test(b) ? H : n, f = (/\s*\n\s*$/.test(b) ? H : n) + f) : s === "#" && N === "force-multiline" ? /\n{2,}/g.test(b.trim()) ? (o += H, f = H + f) : (o += n, f = n + f) : N === "force" ? (o += H, f = H + f) : N === "inline" || N === "default" || N === "force-multiline" ? (o += n, f = n + f) : N === "consistent" && (/^\s*\n/.test(b) ? (o += H, f = H + f) : (o += n, f = n + f)), o + b.trim() + f;
 }
-function Ki(e, s, n, {
+function tn(e, s, n, {
   wrapFraction: u,
   liquid: {
-    forceFilter: A,
-    forceArgument: a,
-    lineBreakSeparator: C,
+    forceFilter: N,
+    forceArgument: l,
+    lineBreakSeparator: O,
     delimiterTrims: o,
-    delimiterPlacement: k
+    delimiterPlacement: b
   }
 }) {
-  let [f, t] = en(e), h, V;
-  if (o === "never" ? (h = `{${e[1]}`, V = `${e[e.length - 2]}}`) : o === "always" || o === "outputs" && i(e[1], 123) || o === "tags" && i(e[1], 37) ? (h = `{${e[1]}-`, V = `-${e[e.length - 2]}}`) : o === "preserve" ? (h = e.slice(0, f).join(c), V = e.slice(t).join(c)) : (h = `{${e[1]}`, V = `${e[e.length - 2]}}`), s === "else" || s === "break" || s === "continue" || s === "increment" || s === "decrement" || s.startsWith("end"))
-    return h += ee, V = ee + V, h + e.slice(f, t).join(c).trim() + V;
-  if (k === "preserve" ? (h += i(e[f], 10) ? z : ee, V = (i(e[t - 1], 10) ? z : ee) + V) : k === "force" ? (h += z, V = z + V) : k === "inline" || k === "default" ? (h += ee, V = ee + V) : k === "consistent" ? i(e[f], 10) ? (h += z, V = z + V) : (h += ee, V = ee + V) : (h += ee, V = ee + V), s === "liquid")
-    return h + e.slice(f, t).join(c).trim() + V;
+  let [f, t] = nn(e), h, F;
+  if (o === "never" ? (h = `{${e[1]}`, F = `${e[e.length - 2]}}`) : o === "always" || o === "outputs" && i(e[1], 123) || o === "tags" && i(e[1], 37) ? (h = `{${e[1]}-`, F = `-${e[e.length - 2]}}`) : o === "preserve" ? (h = e.slice(0, f).join(c), F = e.slice(t).join(c)) : (h = `{${e[1]}`, F = `${e[e.length - 2]}}`), s === "else" || s === "break" || s === "continue" || s === "increment" || s === "decrement" || s.startsWith("end"))
+    return h += ie, F = ie + F, h + e.slice(f, t).join(c).trim() + F;
+  if (b === "preserve" ? (h += i(e[f], 10) ? H : ie, F = (i(e[t - 1], 10) ? H : ie) + F) : b === "force" ? (h += H, F = H + F) : b === "inline" || b === "default" ? (h += ie, F = ie + F) : b === "consistent" ? i(e[f], 10) ? (h += H, F = H + F) : (h += ie, F = ie + F) : (h += ie, F = ie + F), s === "liquid")
+    return h + e.slice(f, t).join(c).trim() + F;
   if (u > 0 && e.length >= u && n.logic.length > 0 && (s === "if" || s === "elsif" || s === "unless" || s === "when")) {
-    o === "multiline" && (h = `{${e[1]}-` + h[h.length - 1], V = V[0] + `-${e[e.length - 2]}}`), k === "force-multiline" && (h = h.trimEnd() + z, V = z + V.trimStart());
+    o === "multiline" && (h = `{${e[1]}-` + h[h.length - 1], F = F[0] + `-${e[e.length - 2]}}`), b === "force-multiline" && (h = h.trimEnd() + H, F = H + F.trimStart());
     let m = n.logic.length;
     for (let p = 0; p < m; p++) {
-      let w = n.logic[p];
-      e[w] = z + e[w], i(e[w - 1], 32) && (e[w - 1] = c);
+      let S = n.logic[p];
+      e[S] = H + e[S], i(e[S - 1], 32) && (e[S - 1] = c);
     }
-    return h + e.slice(f, t).join(c).trim() + V;
+    return h + e.slice(f, t).join(c).trim() + F;
   }
   let le = n.pipes.length;
   if (le > 0) {
-    if (A > 0 && le >= A || A === 0 && u > 0 && e.length > u) {
-      o === "multiline" && (h = `{${e[1]}-` + h[h.length - 1], V = V[0] + `-${e[e.length - 2]}}`), k === "force-multiline" && (h = h.trimEnd() + z, V = z + V.trimStart());
+    if (N > 0 && le >= N || N === 0 && u > 0 && e.length > u) {
+      o === "multiline" && (h = `{${e[1]}-` + h[h.length - 1], F = F[0] + `-${e[e.length - 2]}}`), b === "force-multiline" && (h = h.trimEnd() + H, F = H + F.trimStart());
       for (let m = 0; m < le; m++) {
         let p = n.pipes[m];
-        if (Me(e[p - 1]) && (e[p - 1] = c), e[p] = z + e[p], m === 0) {
-          let w = p - 1;
-          if (Me(e[w - 1]))
+        if (Te(e[p - 1]) && (e[p - 1] = c), e[p] = H + e[p], m === 0) {
+          let S = p - 1;
+          if (Te(e[S - 1]))
             do
-              e[w--] = c;
-            while (Me(e[w]));
+              e[S--] = c;
+            while (Te(e[S]));
         }
-        if (n.fargs[m] && (a > 0 && n.fargs[m].length >= a || a === 0 && u > 0 && e.slice(
+        if (n.fargs[m] && (l > 0 && n.fargs[m].length >= l || l === 0 && u > 0 && e.slice(
           n.fargs[m][0],
           n.fargs[m][n.fargs[m].length - 1]
         ).length > u)) {
-          let w = n.fargs[m].length;
-          for (let _ = 0; _ < w; _++) {
-            let I = n.fargs[m][_];
-            C === "after" ? (Me(e[I + 1]) && Me(e[I + 2]) && (e[I + 1] = c), e[i(e[I - 1], 44) ? I - 1 : I] = _ === 0 ? z + "  " : st + z + " ") : C === "before" ? (Me(e[I + 1]) && Me(e[I + 2]) && (e[I + 1] = c), i(e[I - 1], 44) ? e[I - 1] = _ === 0 ? "  " + z : z + "  " + st : e[I] = _ === 0 ? z + "  " : z + "  " + st) : e[I] = z + "  " + e[I];
+          let S = n.fargs[m].length;
+          for (let D = 0; D < S; D++) {
+            let I = n.fargs[m][D];
+            O === "after" ? (Te(e[I + 1]) && Te(e[I + 2]) && (e[I + 1] = c), e[i(e[I - 1], 44) ? I - 1 : I] = D === 0 ? H + "  " : rt + H + " ") : O === "before" ? (Te(e[I + 1]) && Te(e[I + 2]) && (e[I + 1] = c), i(e[I - 1], 44) ? e[I - 1] = D === 0 ? "  " + H : H + "  " + rt : e[I] = D === 0 ? H + "  " : H + "  " + rt) : e[I] = H + "  " + e[I];
           }
         }
       }
     }
-    return h + e.slice(f, t).join(c).trim() + V;
+    return h + e.slice(f, t).join(c).trim() + F;
   }
-  if (n.targs.length >= a) {
-    o === "multiline" && (h = `{${e[1]}-` + h[h.length - 1], V = V[0] + `-${e[e.length - 2]}}`);
+  if (n.targs.length >= l) {
+    o === "multiline" && (h = `{${e[1]}-` + h[h.length - 1], F = F[0] + `-${e[e.length - 2]}}`);
     for (let m = 0; m < n.targs.length; m++) {
       let p = n.targs[m];
-      if (C === "after") {
-        let w = p;
-        for (; Me(e[w--]); )
-          e[w] = c;
-        Me(e[p + 1]) && (e[p + 1] = c), Me(e[p - 1]) && (e[p - 1] = c), e[p] = i(e[p], 44) ? st + z : z;
+      if (O === "after") {
+        let S = p;
+        for (; Te(e[S--]); )
+          e[S] = c;
+        Te(e[p + 1]) && (e[p + 1] = c), Te(e[p - 1]) && (e[p - 1] = c), e[p] = i(e[p], 44) ? rt + H : H;
       } else
-        C === "before" && (i(e[p - 1], 44) ? e[p - 1] = m === 0 ? z + st : z + st : e[p] = m === 0 ? z + st : z + st);
+        O === "before" && (i(e[p - 1], 44) ? e[p - 1] = m === 0 ? H + rt : H + rt : e[p] = m === 0 ? H + rt : H + rt);
     }
   }
-  return h + e.slice(f, t).join(c).trim() + V;
+  return h + e.slice(f, t).join(c).trim() + F;
 }
-function en(e) {
+function nn(e) {
   return [
     i(e[2], 45) ? 3 : 2,
     i(e[e.length - 3], 45) ? e.length - 3 : e.length - 2
   ];
 }
-function tn(e, s = !0) {
+function sn(e, s = !0) {
   return s ? new RegExp(`{%-?\\s*${e}\\s*-?%}`) : new RegExp(`{%-?\\s*${e}`);
 }
-function nn(e) {
+function rn(e) {
   let s = e.indexOf("{");
   return i(e[s + 1], 123);
 }
-function zt(e) {
+function Gt(e) {
   let s = e.indexOf("{");
   if (i(e[s + 1], 37)) {
     let n;
-    return n = e.slice(s + (i(e[s + 2], 45) ? 3 : 2)).trimStart(), n = n.slice(0, n.search(/[\s=|!<>,.[]|-?[%}]}/)), n.startsWith("end") ? !1 : we.liquid.else.has(n);
+    return n = e.slice(s + (i(e[s + 2], 45) ? 3 : 2)).trimStart(), n = n.slice(0, n.search(/[\s=|!<>,.[]|-?[%}]}/)), n.startsWith("end") ? !1 : Le.liquid.else.has(n);
   }
   return !1;
 }
-function sn(e) {
+function on(e) {
   let s = e.indexOf("=");
   return s > -1 && (i(e[s + 1], 34) || i(e[s + 1], 39)) ? /{%-?\s*end[a-z]+/.test(e.slice(s, e.lastIndexOf(e[s + 1]))) : !1;
 }
-function ki(e) {
-  return ht(e) ? /{%-?\s*end\w+/.test(e) : !1;
+function yi(e) {
+  return gt(e) ? /{%-?\s*end\w+/.test(e) : !1;
 }
-function ht(e, s = !1) {
+function gt(e, s = !1) {
   let n;
   if (s)
-    return i(e[0], 123) && i(e[1], 37) && i(e[e.length - 2], 37) && i(e[e.length - 1], 125) ? (n = e.slice(i(e[2], 45) ? 3 : 2).trimStart(), i(n, 34) || i(n, 39) ? !1 : (n = n.slice(0, n.search(/[\s=|!<"'>,.[]|-?[%}]}/)), n.startsWith("end") ? !1 : we.liquid.tags.has(n))) : !1;
+    return i(e[0], 123) && i(e[1], 37) && i(e[e.length - 2], 37) && i(e[e.length - 1], 125) ? (n = e.slice(i(e[2], 45) ? 3 : 2).trimStart(), i(n, 34) || i(n, 39) ? !1 : (n = n.slice(0, n.search(/[\s=|!<"'>,.[]|-?[%}]}/)), n.startsWith("end") ? !1 : Le.liquid.tags.has(n))) : !1;
   let u = e.indexOf("{");
   if (u === -1)
     return !1;
   do {
     if (i(e[u + 1], 37))
-      return n = e.slice(u + (i(e[u + 2], 45) ? 3 : 2)).trimStart(), n = n.slice(0, n.search(/[\s=|!<>,.[]|-?[%}]}/)), n.startsWith("end") ? !1 : we.liquid.tags.has(n);
+      return n = e.slice(u + (i(e[u + 2], 45) ? 3 : 2)).trimStart(), n = n.slice(0, n.search(/[\s=|!<>,.[]|-?[%}]}/)), n.startsWith("end") ? !1 : Le.liquid.tags.has(n);
     u = e.indexOf("{", u + 1);
   } while (u > -1);
   return !1;
 }
-function Et(e) {
+function Pt(e) {
   let s = e;
   Array.isArray(e) && (s = e.join(c));
   let n = s.indexOf("{");
   return i(s[n + 1], 37) ? i(s[n + 2], 45) ? s.slice(n + 3).trimStart().startsWith("end") : s.slice(n + 2).trimStart().startsWith("end") : !1;
 }
-function Gt(e, s) {
+function Vt(e, s) {
   if (s === 1)
     return i(e[0], 123) && (i(e[1], 37) || i(e[1], 123));
   if (s === 6)
@@ -2960,207 +2963,211 @@ function Gt(e, s) {
 }
 
 // src/lexers/markup.ts
-function on(e) {
-  let { data: s, rules: n } = r, u = e || r.source, A = r.language === "jsx" || r.language === "tsx", a = new Set(n.liquid.ignoreTagList), C = Ne(n.markup.attributeSort) ? n.markup.attributeSort.length : -1, o = Ne(u) ? u : u.split(c), k = o.length, f = Fe(null);
+function an(e) {
+  let { data: s, rules: n } = r, u = e || r.source, N = r.language === "jsx" || r.language === "tsx", l = new Set(n.liquid.ignoreTagList), O = Ne(n.markup.attributeSort) ? n.markup.attributeSort.length : -1, o = Ne(u) ? u : u.split(c), b = o.length, f = Fe(null);
   f.start = -1, f.tname = [], f.index = [];
-  let t = 0, h, V = !1; r.language; let m = 0;
-  function p(N) {
-    let S = Fe(null);
-    return S.lexer = "markup", S.lines = r.lineOffset, S.stack = r.stack.token !== "global" ? r.stack.token : "global", S.begin = r.stack.index, S.token = c, S.types = c, S.ender = -1, N ? pt(S, N) : S;
+  let t = 0, h, F = !1; r.language; let m = 0;
+  function p(j) {
+    let y = Fe(null);
+    return y.lexer = "markup", y.lines = r.lineOffset, y.stack = r.stack.token !== "global" ? r.stack.token : "global", y.begin = r.stack.index, y.token = c, y.types = c, y.ender = -1, j ? dt(y, j) : y;
   }
-  function w(N, S = c, j) {
-    if (S === c && j === void 0)
-      r.push(s, N, c);
-    else if (tt(S))
-      pt(N, S), r.push(s, N, c);
-    else if (Ne(S))
-      for (let D of S)
-        pt(N, D), r.push(s, N, c);
+  function S(j, y = c, q) {
+    if (y === c && q === void 0)
+      r.push(s, j, c);
+    else if (tt(y))
+      dt(j, y), r.push(s, j, c);
+    else if (Ne(y))
+      for (let G of y)
+        dt(j, G), r.push(s, j, c);
     else
-      j ? (pt(N, j), r.push(s, N, S)) : console.log("isssue");
+      q ? (dt(j, q), r.push(s, j, y)) : console.log("isssue");
   }
-  function _(N, S = null) {
-    return r.language !== "html" && r.language !== "liquid" && A === !1 || /(?:{[=#/]|%[>\]])|\}%[>\]]/.test(N) || !Gt(N, 3) ? N : Ft(N, S);
+  function D(j, y = null) {
+    return r.language !== "html" && r.language !== "liquid" && N === !1 || /(?:{[=#/]|%[>\]])|\}%[>\]]/.test(j) || !Vt(j, 3) ? j : zt(j, y);
   }
-  function I(N) {
-    let S = N;
+  function I(j) {
+    let y = j;
     do
-      S = S - 1;
-    while (i(o[S], 92));
-    return S = N - S, S % 2 === 1;
+      y = y - 1;
+    while (i(o[y], 92));
+    return y = j - y, y % 2 === 1;
   }
-  function d(N) {
-    return n.correct === !1 || i(N[N.length - 2], 47) ? N : /\/\s+>$/.test(N) ? `${N.slice(0, N.lastIndexOf("/"))}${n.markup.selfCloseSpace ? "/>" : " />"}` : `${N.slice(0, -1)}${n.markup.selfCloseSpace ? "/>" : " />"}`;
+  function d(j) {
+    return n.correct === !1 || i(j[j.length - 2], 47) ? j : /\/\s+>$/.test(j) ? `${j.slice(0, j.lastIndexOf("/"))}${n.markup.selfCloseSpace ? "/>" : " />"}` : `${j.slice(0, -1)}${n.markup.selfCloseSpace ? "/>" : " />"}`;
   }
-  function l(N, S = !0) {
-    let j = N.indexOf("=");
-    if (j > 0) {
-      let D = N.indexOf(Be);
-      if (j < D && D > 0)
-        return S ? [N.slice(0, j), N.slice(j + 1)] : [N.slice(0, j), N.slice(j + 2, -1)];
-      let B = N.indexOf(je);
-      if (j < B && B > 0)
-        return S ? [N.slice(0, j), N.slice(j + 1)] : [N.slice(0, j), N.slice(j + 2, -1)];
+  function a(j) {
+    let y = o.slice(o.lastIndexOf(H, j) + 1, j);
+    return Te(y[0]) ? (y = y.join(c), y.trim() === c ? y : c) : c;
+  }
+  function g(j, y = !0) {
+    let q = j.indexOf("=");
+    if (q > 0) {
+      let G = j.indexOf(Be);
+      if (q < G && G > 0)
+        return y ? [j.slice(0, q), j.slice(q + 1)] : [j.slice(0, q), j.slice(q + 2, -1)];
+      let B = j.indexOf($e);
+      if (q < B && B > 0)
+        return y ? [j.slice(0, q), j.slice(q + 1)] : [j.slice(0, q), j.slice(q + 2, -1)];
     }
-    return [N, c];
+    return [j, c];
   }
-  function g(N) {
-    let S = p(), j = c, D = c, B = c, P = c, pe = c, ge = !1, ue = !1, Ce = 0, O = !1, ke = !1, K = !1, se = !1, J = [];
-    function $e() {
-      return x();
+  function W(j) {
+    let y = p(), q = c, G = c, B = c, V = c, ke = c, we = !1, ae = !1, L = 0, ye = !1, me = !1, te = !1, ce = !1, J = [];
+    function P() {
+      return A();
     }
-    function $() {
+    function T() {
       let R = u.indexOf("capture", t);
       if (o[R - 3] === "e" && o[R - 2] === "n" && o[R - 1] === "d")
-        R = o.indexOf("}", R) + 1, S.types = B = "liquid_capture", S.token = j + u.slice(t, R), r.lineNumber = bt(j, r.lineNumber), w(S), t = R;
+        R = o.indexOf("}", R) + 1, y.types = B = "liquid_capture", y.token = q + u.slice(t, R), r.lineNumber = kt(q, r.lineNumber), S(y), t = R;
       else {
-        let Q = u.indexOf("endcapture", R + 7) + 9;
-        if (Q > -1 && /[a-z]/.test(o[Q + 1]) === !1)
-          return R = o.indexOf("}", Q) + 1, j = j + u.slice(t, R), r.lineNumber = bt(j, r.lineNumber), t = R, $();
-        De(114, j, P);
+        let E = u.indexOf("endcapture", R + 7) + 9;
+        if (E > -1 && /[a-z]/.test(o[E + 1]) === !1)
+          return R = o.indexOf("}", E) + 1, q = q + u.slice(t, R), r.lineNumber = kt(q, r.lineNumber), t = R, T();
+        Ie(114, q, V);
       }
     }
-    function G() {
-      s.types[S.begin] === "start" && s.types[s.begin[S.begin]] === "liquid_start" && B === "liquid_end" ? (s.types[S.begin] = "singleton", delete r.pairs[r.stack.index]) : s.types[r.count] === "liquid_start" && B === "end" && (S.types = "singleton", delete r.pairs[r.stack.index], r.stack.pop());
-    }
     function oe() {
-      if (S.types.indexOf("liquid") < 0)
-        return G(), $e();
-      if (S.token === c && (S.token = j), i(j[0], 123) && i(j[1], 37))
-        if (we.liquid.else.has(P))
-          S.types = B = P === "when" ? "liquid_when" : "liquid_else";
-        else if (we.liquid.tags.has(P)) {
-          if (V === !0)
-            S.types = B = "liquid_start";
-          else if (P === "capture")
-            return t = t + 1, $();
-          return S.types = B = P === "case" ? "liquid_case_start" : "liquid_start", x();
-        } else if (P.startsWith("end")) {
-          let R = P.slice(3);
-          if (we.liquid.tags.has(R))
-            S.types = B = R === "case" ? "liquid_case_end" : "liquid_end";
+      s.types[y.begin] === "start" && s.types[s.begin[y.begin]] === "liquid_start" && B === "liquid_end" ? (s.types[y.begin] = "singleton", delete r.pairs[r.stack.index]) : s.types[r.count] === "liquid_start" && B === "end" && (y.types = "singleton", delete r.pairs[r.stack.index], r.stack.pop());
+    }
+    function se() {
+      if (y.types.indexOf("liquid") < 0)
+        return oe(), P();
+      if (y.token === c && (y.token = q), i(q[0], 123) && i(q[1], 37))
+        if (Le.liquid.else.has(V))
+          y.types = B = V === "when" ? "liquid_when" : "liquid_else";
+        else if (Le.liquid.tags.has(V)) {
+          if (F === !0)
+            y.types = B = "liquid_start";
+          else if (V === "capture")
+            return t = t + 1, T();
+          return y.types = B = V === "case" ? "liquid_case_start" : "liquid_start", A();
+        } else if (V.startsWith("end")) {
+          let R = V.slice(3);
+          if (Le.liquid.tags.has(R))
+            y.types = B = R === "case" ? "liquid_case_end" : "liquid_end";
           else {
-            S.stack = R, S.types = B = "liquid_end";
-            let Q = 0;
+            y.stack = R, y.types = B = "liquid_end";
+            let E = 0;
             do {
-              if (s.types[Q] === "liquid" && s.stack[Q] === R) {
-                s.types[Q] = "liquid_start";
-                for (let W = Q, U = s.stack.length; W < U; W++)
-                  r.stack.push([s.token[W], W]);
+              if (s.types[E] === "liquid" && s.stack[E] === R) {
+                s.types[E] = "liquid_start";
+                for (let z = E, Y = s.stack.length; z < Y; z++)
+                  r.stack.push([s.token[z], z]);
                 break;
               }
-              Q = s.stack.indexOf(R, Q + 1);
-            } while (Q > -1);
+              E = s.stack.indexOf(R, E + 1);
+            } while (E > -1);
           }
-          G();
+          oe();
         } else
-          S.stack = P;
-      return n.liquid.quoteConvert === "double" ? S.token = j = S.token.replace(/'[^"]*?'/g, gi(Be)) : n.liquid.quoteConvert === "single" && (S.token = j = S.token.replace(/"[^']*?"/g, gi(je))), $e();
+          y.stack = V;
+      return n.liquid.quoteConvert === "double" ? y.token = q = y.token.replace(/'[^"]*?'/g, bi(Be)) : n.liquid.quoteConvert === "single" && (y.token = q = y.token.replace(/"[^']*?"/g, bi($e))), P();
     }
-    function ne() {
-      let R = j.indexOf("liquid") + 6, Q = c, W = c, U = 1;
-      w(S, {
-        token: Yi(j.slice(0, R), n.liquid),
+    function ee() {
+      let R = q.indexOf("liquid") + 6, E = c, z = c, Y = 1;
+      S(y, {
+        token: en(q.slice(0, R), n.liquid),
         types: "liquid_start",
         stack: "liquid"
       });
-      let Z = j.slice(R).split(z), ae = Z.pop().trim(), he = i(ae[ae.length - 3], 45) ? ae.length - 3 : ae.length - 2, de = ae.slice(0, he), fe = ae.slice(he);
-      de.length !== 0 && Z.push(de), R = 0;
+      let Z = q.slice(R).split(H), fe = Z.pop().trim(), he = i(fe[fe.length - 3], 45) ? fe.length - 3 : fe.length - 2, xe = fe.slice(0, he), de = fe.slice(he);
+      xe.length !== 0 && Z.push(xe), R = 0;
       do
-        Q = Z[R].trim(), W = Q.split(/\s/)[0], W.startsWith("end") ? (S.token = Q, S.types = W === "endcase" ? "liquid_case_end" : "liquid_end", S.lines = U <= 1 ? 2 : U, w(S), U = 1) : W.startsWith("#") ? (S.token = Q, S.types = "liquid", S.lines = U <= 1 ? 2 : U, w(S), U = 1) : W.startsWith("comment") ? (S.token = Q, S.types = "liquid_start", S.lines = U, w(S), U = 1) : we.liquid.tags.has(W) ? (S.token = Q, S.types = W === "case" ? "liquid_case_start" : "liquid_start", S.lines = U, w(S), U = 1) : we.liquid.else.has(W) ? (S.token = Q, S.types = W === "when" ? "liquid_when" : "liquid_else", S.lines = U, w(S), U = 1) : we.liquid.singleton.has(W) ? (S.token = Q, S.types = "liquid", S.lines = U <= 1 ? 2 : U, w(S), U = 1) : Q.trim().length > 0 && (S.token = Q, S.types = "content", S.lines = U, w(S), U = 1), R = R + 1, U = U + 1;
+        E = Z[R].trim(), z = E.split(/\s/)[0], z.startsWith("end") ? (y.token = E, y.types = z === "endcase" ? "liquid_case_end" : "liquid_end", y.lines = Y <= 1 ? 2 : Y, S(y), Y = 1) : z.startsWith("#") ? (y.token = E, y.types = "liquid", y.lines = Y <= 1 ? 2 : Y, S(y), Y = 1) : z.startsWith("comment") ? (y.token = E, y.types = "liquid_start", y.lines = Y, S(y), Y = 1) : Le.liquid.tags.has(z) ? (y.token = E, y.types = z === "case" ? "liquid_case_start" : "liquid_start", y.lines = Y, S(y), Y = 1) : Le.liquid.else.has(z) ? (y.token = E, y.types = z === "when" ? "liquid_when" : "liquid_else", y.lines = Y, S(y), Y = 1) : Le.liquid.singleton.has(z) ? (y.token = E, y.types = "liquid", y.lines = Y <= 1 ? 2 : Y, S(y), Y = 1) : E.trim().length > 0 && (y.token = E, y.types = "content", y.lines = Y, S(y), Y = 1), R = R + 1, Y = Y + 1;
       while (R < Z.length);
-      n.liquid.delimiterPlacement === "default" || n.liquid.delimiterPlacement === "force-multiline" || n.liquid.delimiterPlacement === "preserve" && /\n-?%}$/.test(j) || n.liquid.delimiterPlacement === "consistent" && /^{%-?\n/.test(j) ? w(S, {
-        token: fe,
+      n.liquid.delimiterPlacement === "default" || n.liquid.delimiterPlacement === "force-multiline" || n.liquid.delimiterPlacement === "preserve" && /\n-?%}$/.test(q) || n.liquid.delimiterPlacement === "consistent" && /^{%-?\n/.test(q) ? S(y, {
+        token: de,
         types: "liquid_end",
         lines: 2
-      }) : w(S, {
-        token: fe,
+      }) : S(y, {
+        token: de,
         types: "liquid_end",
         lines: 0
       });
     }
-    function Y() {
-      if (P === "svg" && (f.start = r.count + 1, S.stack = P), we.svg.tags.has(P) && f.start > -1) {
-        if (S.types === "start")
-          S.types = "singleton", S.stack = P, f.tname.push(P), f.index.push(r.count + 1);
-        else if (S.types === "end") {
-          let R = f.tname.indexOf(P), Q = f.tname.lastIndexOf(P), W;
+    function _() {
+      if (V === "svg" && (f.start = r.count + 1, y.stack = V), Le.svg.tags.has(V) && f.start > -1) {
+        if (y.types === "start")
+          y.types = "singleton", y.stack = V, f.tname.push(V), f.index.push(r.count + 1);
+        else if (y.types === "end") {
+          let R = f.tname.indexOf(V), E = f.tname.lastIndexOf(V), z;
           if (R > -1)
-            for (Q === R ? (W = f.index[Q], s.types[f.index[Q]] = "start", f.tname.splice(Q, 1), f.index.splice(Q, 1)) : s.begin[r.count] === f.index[R] ? (W = s.begin[r.count], s.types[s.begin[r.count]] = "start", f.tname.splice(R, 1), f.index.splice(R, 1)) : (W = f.index[Q], s.types[f.index[Q]] = "start"); W < s.stack.length; W++)
-              s.stack[W] = P, r.stack.push([P, W]);
-          P === "svg" && (f.start = -1);
+            for (E === R ? (z = f.index[E], s.types[f.index[E]] = "start", f.tname.splice(E, 1), f.index.splice(E, 1)) : s.begin[r.count] === f.index[R] ? (z = s.begin[r.count], s.types[s.begin[r.count]] = "start", f.tname.splice(R, 1), f.index.splice(R, 1)) : (z = f.index[E], s.types[f.index[E]] = "start"); z < s.stack.length; z++)
+              s.stack[z] = V, r.stack.push([V, z]);
+          V === "svg" && (f.start = -1);
         }
       }
-      return oe();
+      return se();
     }
-    function F() {
-      return se && ue === !1 && B !== "xml" && (we.html.voids.has(P) ? (S.types = B = "singleton", T(j[j.length - 2], 47) && (S.token = d(j))) : i(j[j.length - 2], 47) && i(j[j.length - 1], 62) ? S.types = B = "singleton" : S.types = B = "start"), Y();
+    function Q() {
+      return ce && ae === !1 && B !== "xml" && (Le.html.voids.has(V) ? (y.types = B = "singleton", M(q[q.length - 2], 47) && (y.token = d(q))) : i(q[q.length - 2], 47) && i(q[q.length - 1], 62) ? y.types = B = "singleton" : y.types = B = "start"), _();
     }
-    function H(R, Q) {
-      let W = t, U = -1, Z = 0, ae;
+    function k(R, E) {
+      let z = t, Y = -1, Z = 0, fe;
       do {
-        if ((P === "script" || P === "style") && i(o[t], 47) && (i(o[t + 1], 47) ? t = o.indexOf(z, t + 1) + 1 : i(o[t + 1], 42) && (t = u.indexOf("*/", t + 1) + 2)), i(o[t], 34) || i(o[t], 39) || i(o[t], 96)) {
-          for (U = t + 1, ae = o[t]; ae !== o[U] && U < k && (i(o[U], 92) && (U = U + 1), ae !== o[U]); )
-            U = U + 1;
-          if (U !== k)
-            t = U + 1, U = -1;
+        if ((V === "script" || V === "style") && i(o[t], 47) && (i(o[t + 1], 47) ? t = o.indexOf(H, t + 1) + 1 : i(o[t + 1], 42) && (t = u.indexOf("*/", t + 1) + 2)), i(o[t], 34) || i(o[t], 39) || i(o[t], 96)) {
+          for (Y = t + 1, fe = o[t]; fe !== o[Y] && Y < b && (i(o[Y], 92) && (Y = Y + 1), fe !== o[Y]); )
+            Y = Y + 1;
+          if (Y !== b)
+            t = Y + 1, Y = -1;
           else
-            return De(101, u.slice(t));
+            return Ie(101, u.slice(t));
         }
-        if (Q === 3) {
+        if (E === 3) {
           if (i(o[t - 2], 123) && i(o[t - 1], 37)) {
-            for (i(o[t], 45) && (t = t + 1), U = t; ce(o[U]) && (U = U + 1, !lt(o[U])); )
+            for (i(o[t], 45) && (t = t + 1), Y = t; ue(o[Y]) && (Y = Y + 1, !at(o[Y])); )
               ;
-            if (ae = u.slice(U, U + R.length), ae.startsWith(P)) {
-              t = U + P.length, Z = Z + 1, U = -1;
+            if (fe = u.slice(Y, Y + R.length), fe.startsWith(V)) {
+              t = Y + V.length, Z = Z + 1, Y = -1;
               continue;
-            } else if (ae === R)
+            } else if (fe === R)
               if (Z === 0) {
-                if (U = o.indexOf("}", U + R.length) + 1, U === -1)
-                  return De(113, ae, P);
+                if (Y = o.indexOf("}", Y + R.length) + 1, Y === -1)
+                  return Ie(113, fe, V);
                 break;
               } else
-                Z = Z - 1, t = U + R.length;
+                Z = Z - 1, t = Y + R.length;
           }
         } else if (u.slice(t, t + R.length) === R) {
-          j = u.slice(W, t).replace(Je, c).replace(Ye, c);
+          q = u.slice(z, t).replace(Je, c).replace(Ye, c);
           break;
         }
         t = t + 1;
-      } while (t < k);
-      if (Q === 3) {
-        let he = o.lastIndexOf(z, r.iterator) + 1;
-        S.types = B = "ignore", S.token = j = u.slice(he, U), w(S), t = U - 1, J = [];
+      } while (t < b);
+      if (E === 3) {
+        let he = o.lastIndexOf(H, r.iterator) + 1;
+        y.types = B = "ignore", y.token = q = u.slice(he, Y), S(y), t = Y - 1, J = [];
       } else
-        return r.lineNumber = bt(j, r.lineNumber), j.trim() !== c && (S.token = j, S.lines = r.lineOffset, S.types = "ignore", w(S)), S.types = B = "end", S.token = j = R, t = t + R.length - 1, x();
+        return r.lineNumber = kt(q, r.lineNumber), q.trim() !== c && (y.token = q, y.lines = r.lineOffset, y.types = "ignore", S(y)), y.types = B = "end", y.token = q = R, t = t + R.length - 1, A();
     }
-    function b(R, Q) {
-      let W = o.lastIndexOf(Ii(s.token[r.count]), r.iterator) + 1;
-      if (Q === 3 || Q === 6) {
-        let U = -1, Z = 0, ae;
+    function K(R, E) {
+      let z = o.lastIndexOf(_i(s.token[r.count]), r.iterator) + 1;
+      if (E === 3 || E === 6) {
+        let Y = -1, Z = 0, fe;
         do {
-          if ((P === "script" || P === "style") && i(o[t], 47) && (i(o[t + 1], 47) ? t = o.indexOf(z, t + 1) + 1 : i(o[t + 1], 42) && (t = u.indexOf("*/", t + 1) + 2)), i(o[t], 34) || i(o[t], 39) || i(o[t], 96)) {
-            if (U = o.indexOf(o[t], t + 1), U > -1) {
-              r.lineNumber = bt(o.slice(t, U), r.lineNumber), t = U + 1, U = -1;
+          if ((V === "script" || V === "style") && i(o[t], 47) && (i(o[t + 1], 47) ? t = o.indexOf(H, t + 1) + 1 : i(o[t + 1], 42) && (t = u.indexOf("*/", t + 1) + 2)), i(o[t], 34) || i(o[t], 39) || i(o[t], 96)) {
+            if (Y = o.indexOf(o[t], t + 1), Y > -1) {
+              r.lineNumber = kt(o.slice(t, Y), r.lineNumber), t = Y + 1, Y = -1;
               continue;
             }
-            return De(101, u.slice(t));
+            return Ie(101, u.slice(t));
           }
-          if (Q === 3) {
+          if (E === 3) {
             if (i(o[t - 2], 123) && i(o[t - 1], 37)) {
-              if (i(o[t], 45) && (t = t + 1), ae = u.slice(t).trimStart(), ae.startsWith(P)) {
-                t = t + P.length, Z = Z + 1, U = -1;
+              if (i(o[t], 45) && (t = t + 1), fe = u.slice(t).trimStart(), fe.startsWith(V)) {
+                t = t + V.length, Z = Z + 1, Y = -1;
                 continue;
-              } else if (ae.startsWith(R))
+              } else if (fe.startsWith(R))
                 if (Z === 0) {
-                  if (U = o.indexOf("}", t + R.length) + 1, U === -1)
-                    return De(113, ae, P);
-                  t = U;
+                  if (Y = o.indexOf("}", t + R.length) + 1, Y === -1)
+                    return Ie(113, fe, V);
+                  t = Y;
                   break;
                 } else
                   Z = Z - 1, t = t + R.length;
             }
-          } else if (i(o[t - 1], 60) && u.slice(t, t + P.length) === P)
+          } else if (i(o[t - 1], 60) && u.slice(t, t + V.length) === V)
             Z = Z + 1;
           else if (i(o[t], 60) && i(o[t + 1], 47) && u.slice(t, t + R.length) === R)
             if (Z === 0) {
@@ -3169,211 +3176,211 @@ function on(e) {
             } else
               Z = Z - 1;
           t = t + 1;
-        } while (t < k);
+        } while (t < b);
         if (Z > 0)
-          return Q === 3 ? De(114, j, P) : De(105, j, P);
-        S.types = "ignore", S.token = j = u.slice(W, t + 1), r.lineNumber = bt(j, r.lineNumber);
+          return E === 3 ? Ie(114, q, V) : Ie(105, q, V);
+        y.types = "ignore", y.token = q = u.slice(z, t + 1), r.lineNumber = kt(q, r.lineNumber);
       } else
-        S.types = "ignore", S.token = j = u.slice(W, t + 1);
-      J = [], ue = !1, w(S);
+        y.types = "ignore", y.token = q = u.slice(z, t + 1);
+      J = [], ae = !1, S(y);
     }
-    function X() {
-      return B === "script_preserve" || B === "json_preserve" || B === "style_preserve" ? (S.types = "start", S.stack = B === "style_preserve" ? "style" : "script", x(), t = t + 1, J = [], H(`</${P}>`, 2)) : s.types[r.count] === "ignore_next" ? B === "liquid_start" ? b(`end${P}`, 3) : B === "liquid" ? we.liquid.tags.has(P) ? (B = "liquid_start", b(`end${P}`, 3)) : b(N, N === "}}" ? 1 : 4) : we.html.voids.has(P) ? b(N, 7) : i(N, 62) ? b(`</${P}>`, 6) : (ue = !1, K = !1, F()) : a.has(P) ? H(`end${P}`, 3) : F();
+    function x() {
+      return B === "script_preserve" || B === "json_preserve" || B === "style_preserve" ? (y.types = "start", y.stack = B === "style_preserve" ? "style" : "script", A(), t = t + 1, J = [], k(`</${V}>`, 2)) : s.types[r.count] === "ignore_next" ? B === "liquid_start" ? K(`end${V}`, 3) : B === "liquid" ? Le.liquid.tags.has(V) ? (B = "liquid_start", K(`end${V}`, 3)) : K(j, j === "}}" ? 1 : 4) : Le.html.voids.has(V) ? K(j, 7) : i(j, 62) ? K(`</${V}>`, 6) : (ae = !1, te = !1, Q()) : l.has(V) ? k(`end${V}`, 3) : Q();
     }
-    function y() {
-      if (ue || i(j, 60) && i(j[1], 47))
-        return X();
+    function w() {
+      if (ae || i(q, 60) && i(q[1], 47))
+        return x();
       let R = J.length - 1;
-      if (i(j, 60))
+      if (i(q, 60))
         if (R > -1)
           do {
-            let Q = Ht(P, "html", l(J[R][0], !1));
-            if (Q !== !1)
-              if (Q.language === "json" && n.markup.ignoreJSON) {
-                B = "json_preserve", ue = !0;
+            let E = Ft(V, "html", g(J[R][0], !1));
+            if (E !== !1)
+              if (E.language === "json" && n.markup.ignoreJSON) {
+                B = "json_preserve", ae = !0;
                 break;
-              } else if (Q.language === "javascript" && n.markup.ignoreJS) {
-                B = "script_preserve", ue = !0;
+              } else if (E.language === "javascript" && n.markup.ignoreJS) {
+                B = "script_preserve", ae = !0;
                 break;
-              } else if (Q.language === "css" && n.markup.ignoreCSS) {
-                B = "style_preserve", ue = !0;
+              } else if (E.language === "css" && n.markup.ignoreCSS) {
+                B = "style_preserve", ae = !0;
                 break;
               } else {
-                h = Q.language, B = "start", V = !0, ue = !1;
+                h = E.language, B = "start", F = !0, ae = !1;
                 break;
               }
             R = R - 1;
           } while (R > -1);
         else {
-          let Q = Ht(P, "html");
-          Q !== !1 && (Q.language === "json" && n.markup.ignoreJSON ? (B = "json_preserve", ue = !0) : Q.language === "javascript" && n.markup.ignoreJS ? (B = "script_preserve", ue = !0) : Q.language === "css" && n.markup.ignoreCSS ? (B = "style_preserve", ue = !0) : (h = Q.language, B = "start", V = !0, ue = !1));
+          let E = Ft(V, "html");
+          E !== !1 && (E.language === "json" && n.markup.ignoreJSON ? (B = "json_preserve", ae = !0) : E.language === "javascript" && n.markup.ignoreJS ? (B = "script_preserve", ae = !0) : E.language === "css" && n.markup.ignoreCSS ? (B = "style_preserve", ae = !0) : (h = E.language, B = "start", F = !0, ae = !1));
         }
-      else if (ht(j, !0)) {
-        let Q = Ht(P, "liquid", j);
-        Q !== !1 && (a.has(P) ? (ue = !0, K = !1) : (B = "liquid_start", h = Q.language, V = !0));
+      else if (gt(q, !0)) {
+        let E = Ft(V, "liquid", q);
+        E !== !1 && (l.has(V) ? (ae = !0, te = !1) : (B = "liquid_start", h = E.language, F = !0));
       }
-      return X();
+      return x();
     }
-    function x(R = !1) {
-      if (R !== null && w(S), i(o[t], 62) && i(o[t + 1], 47))
+    function A(R = !1) {
+      if (R !== null && S(y), i(o[t], 62) && i(o[t + 1], 47))
         return;
-      let Q = r.count, W = P.replace(/\/$/, c), U = n.markup.quoteConvert, Z = 0, ae = 0, he = 0, de = c, fe = c, re = J.length;
-      function be() {
-        r.attributes.has(Q) && Z + 1 === re && li(S.token, 62) && (S.token = S.token + ">");
-        let Pe = S.types.indexOf("liquid_attribute") > -1;
-        if (ue === !0 || U === "none" || S.types.indexOf("attribute") < 0 || Pe === !1 && U === "single" && S.token.indexOf(Be) < 0 || Pe === !1 && U === "double" && S.token.indexOf(je) < 0)
-          w(S);
+      let E = r.count, z = V.replace(/\/$/, c), Y = n.markup.quoteConvert, Z = 0, fe = 0, he = 0, xe = c, de = c, X = J.length;
+      function Se() {
+        r.attributes.has(E) && Z + 1 === X && ai(y.token, 62) && (y.token = y.token + ">");
+        let We = y.types.indexOf("liquid_attribute") > -1;
+        if (ae === !0 || Y === "none" || y.types.indexOf("attribute") < 0 || We === !1 && Y === "single" && y.token.indexOf(Be) < 0 || We === !1 && Y === "double" && y.token.indexOf($e) < 0)
+          S(y);
         else {
-          let Ae = 0, Se = !1, ie = S.token.split(c), Te = S.token.indexOf("="), Le = ie.length - 1;
-          if (T(ie[Te + 1], 34) && T(ie[ie.length - 1], 34) && U === "single" && Pe === !1)
-            w(S);
-          else if (T(ie[Te + 1], 39) && T(ie[ie.length - 1], 39) && U === "double" && Pe === !1)
-            w(S);
+          let Ae = 0, Ce = !1, re = y.token.split(c), Me = y.token.indexOf("="), Oe = re.length - 1;
+          if (M(re[Me + 1], 34) && M(re[re.length - 1], 34) && Y === "single" && We === !1)
+            S(y);
+          else if (M(re[Me + 1], 39) && M(re[re.length - 1], 39) && Y === "double" && We === !1)
+            S(y);
           else {
-            if (Ae = Te + 2, Pe === !1 && (U === "double" ? (S.token.slice(Te + 2, Le).indexOf(Be) > -1 && (Se = !0), ie[Te + 1] = Be, ie[ie.length - 1] = Be) : U === "single" && (S.token.slice(Te + 2, Le).indexOf(je) > -1 && (Se = !0), ie[Te + 1] = je, ie[ie.length - 1] = je)), Se === !0 || Pe === !0) {
-              Pe = !1;
+            if (Ae = Me + 2, We === !1 && (Y === "double" ? (y.token.slice(Me + 2, Oe).indexOf(Be) > -1 && (Ce = !0), re[Me + 1] = Be, re[re.length - 1] = Be) : Y === "single" && (y.token.slice(Me + 2, Oe).indexOf($e) > -1 && (Ce = !0), re[Me + 1] = $e, re[re.length - 1] = $e)), Ce === !0 || We === !0) {
+              We = !1;
               do
-                i(ie[Ae - 1], 123) && (i(ie[Ae], 37) || i(ie[Ae], 123)) ? Pe = !0 : i(ie[Ae], 125) && (i(ie[Ae - 1], 37) || i(ie[Ae - 1], 125)) && (Pe = !1), Pe === !0 ? i(ie[Ae], 34) && U === "double" ? ie[Ae] = je : i(ie[Ae], 39) && U === "single" && (ie[Ae] = Be) : i(ie[Ae], 39) && U === "double" ? ie[Ae] = Be : i(ie[Ae], 34) && U === "single" && (ie[Ae] = je), Ae = Ae + 1;
-              while (Ae < Le);
+                i(re[Ae - 1], 123) && (i(re[Ae], 37) || i(re[Ae], 123)) ? We = !0 : i(re[Ae], 125) && (i(re[Ae - 1], 37) || i(re[Ae - 1], 125)) && (We = !1), We === !0 ? i(re[Ae], 34) && Y === "double" ? re[Ae] = $e : i(re[Ae], 39) && Y === "single" && (re[Ae] = Be) : i(re[Ae], 39) && Y === "double" ? re[Ae] = Be : i(re[Ae], 34) && Y === "single" && (re[Ae] = $e), Ae = Ae + 1;
+              while (Ae < Oe);
             }
-            S.token = ie.join(c), w(S);
+            y.token = re.join(c), S(y);
           }
         }
       }
-      function xe() {
-        if (!(!A && !O && !ke))
+      function Ee() {
+        if (!(!N && !ye && !me))
           return;
-        if (C === 0) {
-          J = ui(J, c, !1);
+        if (O === 0) {
+          J = fi(J, c, !1);
           return;
         }
-        let Pe = [];
-        he = 0, ae = 0, re = J.length;
+        let We = [];
+        he = 0, fe = 0, X = J.length;
         do {
-          ae = 0;
+          fe = 0;
           do {
-            if (J.length > 0 && (de = J[ae][0].split("=")[0], n.markup.attributeSort[he] === de)) {
-              Pe.push(J[ae]), J.splice(ae, 1), re = re - 1;
+            if (J.length > 0 && (xe = J[fe][0].split("=")[0], n.markup.attributeSort[he] === xe)) {
+              We.push(J[fe]), J.splice(fe, 1), X = X - 1;
               break;
             }
-            ae = ae + 1;
-          } while (ae < re);
+            fe = fe + 1;
+          } while (fe < X);
           he = he + 1;
-        } while (he < C);
-        J = ui(J, c, !1), J = Pe.concat(J), re = J.length;
+        } while (he < O);
+        J = fi(J, c, !1), J = We.concat(J), X = J.length;
       }
-      function ve() {
-        w(S, "jsx_attribute", {
-          token: `${de}={`,
+      function be() {
+        S(y, "jsx_attribute", {
+          token: `${xe}={`,
           types: "jsx_attribute_start"
-        }), r.external("jsx", fe.slice(1, fe.length - 1)), S.begin = r.count, /\s\}$/.test(fe) ? (fe = fe.slice(0, fe.length - 1), fe = We.exec(fe)[0], S.lines = fe.indexOf(`
-`) < 0 ? 1 : fe.split(`
-`).length) : S.lines = 0, S.begin = r.stack.index, S.stack = r.stack.token, S.token = "}", S.types = "jsx_attribute_end", be();
+        }), r.external("jsx", de.slice(1, de.length - 1)), y.begin = r.count, /\s\}$/.test(de) ? (de = de.slice(0, de.length - 1), de = Pe.exec(de)[0], y.lines = de.indexOf(`
+`) < 0 ? 1 : de.split(`
+`).length) : y.lines = 0, y.begin = r.stack.index, y.stack = r.stack.token, y.token = "}", y.types = "jsx_attribute_end", Se();
       }
-      function ye() {
-        if (ki(J[Z][0]))
-          S.types = "liquid_attribute_chain", S.token = J[Z][0];
-        else if (Et(J[Z][0]))
-          S.token = J[Z][0], S.types = "liquid_attribute_end", S.ender = S.begin;
+      function Ze() {
+        if (yi(J[Z][0]))
+          y.types = "liquid_attribute_chain", y.token = J[Z][0];
+        else if (Pt(J[Z][0]))
+          y.token = J[Z][0], y.types = "liquid_attribute_end", y.ender = y.begin;
         else {
-          if (ht(J[Z][0], !0))
-            return S.types = "liquid_attribute_start", S.begin = r.count, S.token = J[Z][0], be(), !0;
-          zt(J[Z][0]) ? (S.types = "liquid_attribute_else", S.token = J[Z][0]) : (S.types = "attribute", S.token = J[Z][0]);
+          if (gt(J[Z][0], !0))
+            return y.types = "liquid_attribute_start", y.begin = r.count, y.token = J[Z][0], Se(), !0;
+          Gt(J[Z][0]) ? (y.types = "liquid_attribute_else", y.token = J[Z][0]) : (y.types = "attribute", y.token = J[Z][0]);
         }
-        return be(), !1;
+        return Se(), !1;
       }
       if (J.length < 1)
-        return R !== !0 ? void 0 : me();
-      if (i(J[J.length - 1][0], 47) && (J.pop(), j = j.replace(/>$/, "/>")), ae = J.length, he = 1, he < ae)
+        return R !== !0 ? void 0 : ne();
+      if (i(J[J.length - 1][0], 47) && (J.pop(), q = q.replace(/>$/, "/>")), fe = J.length, he = 1, he < fe)
         do
-          de = J[he - 1][0], i(de[de.length - 1], 61) && J[he][0].indexOf("=") < 0 && (J[he - 1][0] = de + J[he][0], J.splice(he, 1), ae = ae - 1, he = he - 1), he = he + 1;
-        while (he < ae);
-      if ((C > 0 || n.markup.attributeSort === !0) && xe(), S.begin = Q, S.stack = W, S.types = "attribute", Z < re)
+          xe = J[he - 1][0], i(xe[xe.length - 1], 61) && J[he][0].indexOf("=") < 0 && (J[he - 1][0] = xe + J[he][0], J.splice(he, 1), fe = fe - 1, he = he - 1), he = he + 1;
+        while (he < fe);
+      if ((O > 0 || n.markup.attributeSort === !0) && Ee(), y.begin = E, y.stack = z, y.types = "attribute", Z < X)
         do {
           if (J[Z] === void 0)
             break;
-          if (S.lines = J[Z][1], J[Z][0] = J[Z][0].replace(We, c), A === !0 && /^\/[/*]/.test(J[Z][0])) {
-            S.types = "comment_attribute", S.token = J[Z][0], be(), Z = Z + 1;
+          if (y.lines = J[Z][1], J[Z][0] = J[Z][0].replace(Pe, c), N === !0 && /^\/[/*]/.test(J[Z][0])) {
+            y.types = "comment_attribute", y.token = J[Z][0], Se(), Z = Z + 1;
             continue;
           }
-          if (J[Z][1] <= 1 && ki(J[Z][0]) && !sn(J[Z][0])) {
-            S.types = "liquid_attribute_chain", S.token = J[Z][0], be(), Z = Z + 1;
+          if (J[Z][1] <= 1 && yi(J[Z][0]) && !on(J[Z][0])) {
+            y.types = "liquid_attribute_chain", y.token = J[Z][0], Se(), Z = Z + 1;
             continue;
           }
-          if (ae = J[Z][0].indexOf("="), he = J[Z][0].indexOf(Be), ae < 0)
-            Et(J[Z][0]) ? (S.token = J[Z][0], S.types = "liquid_attribute_end", S.ender = S.begin) : ht(J[Z][0], !0) ? (S.types = "liquid_attribute_start", S.begin = r.count, S.token = J[Z][0]) : zt(J[Z][0]) ? (S.types = "liquid_attribute_else", S.token = J[Z][0]) : nn(J[Z][0]) ? (S.types = "liquid_attribute", S.token = J[Z][0]) : i(J[Z][0], 35) || i(J[Z][0], 91) || i(J[Z][0], 123) || i(J[Z][0], 40) || A === !0 ? S.token = J[Z][0] : (S.types = "liquid_attribute", S.token = n.markup.attributeCasing === "preserve" ? J[Z][0] : J[Z][0].toLowerCase()), be();
-          else if (Gt(J[Z][0], 6))
-            ye();
+          if (fe = J[Z][0].indexOf("="), he = J[Z][0].indexOf(Be), fe < 0)
+            Pt(J[Z][0]) ? (y.token = J[Z][0], y.types = "liquid_attribute_end", y.ender = y.begin) : gt(J[Z][0], !0) ? (y.types = "liquid_attribute_start", y.begin = r.count, y.token = J[Z][0]) : Gt(J[Z][0]) ? (y.types = "liquid_attribute_else", y.token = J[Z][0]) : rn(J[Z][0]) ? (y.types = "liquid_attribute", y.token = J[Z][0]) : i(J[Z][0], 35) || i(J[Z][0], 91) || i(J[Z][0], 123) || i(J[Z][0], 40) || N === !0 ? y.token = J[Z][0] : (y.types = "liquid_attribute", y.token = n.markup.attributeCasing === "preserve" ? J[Z][0] : J[Z][0].toLowerCase()), Se();
+          else if (Vt(J[Z][0], 6))
+            Ze();
           else {
-            de = J[Z][0].slice(0, ae), n.markup.lineBreakValue === "force-preserve" || n.markup.lineBreakValue === "force-indent" || n.markup.lineBreakValue === "force-align" ? fe = J[Z][0][ae + 1] + z + J[Z][0].slice(ae + 2, -1).trim() + z + J[Z][0][J[Z][0].length - 1] : fe = J[Z][0].slice(ae + 1), n.markup.attributeCasing === "lowercase-name" ? (de = de.toLowerCase(), J[Z][0] = de + "=" + fe) : n.markup.attributeCasing === "lowercase-value" ? (fe = fe.toLowerCase(), J[Z][0] = de + "=" + fe) : (n.markup.attributeCasing === "lowercase" && (de = de.toLowerCase(), fe = fe.toLowerCase()), J[Z][0] = de + "=" + fe), n.correct === !0 && T(fe, 60) && T(fe, 123) && T(fe, 61) && T(fe, 34) && T(fe, 39) && (fe = Be + fe + Be), A === !0 && /^\s*{/.test(fe) ? (ve(), S.types = "attribute", S.begin = Q, S.stack = W) : Gt(de, 6) ? ye() : (S.types = "attribute", S.token = J[Z][0], be());
+            xe = J[Z][0].slice(0, fe), n.markup.lineBreakValue === "force-preserve" || n.markup.lineBreakValue === "force-indent" || n.markup.lineBreakValue === "force-align" ? de = J[Z][0][fe + 1] + H + J[Z][0].slice(fe + 2, -1).trim() + H + J[Z][0][J[Z][0].length - 1] : de = J[Z][0].slice(fe + 1), n.markup.attributeCasing === "lowercase-name" ? (xe = xe.toLowerCase(), J[Z][0] = xe + "=" + de) : n.markup.attributeCasing === "lowercase-value" ? (de = de.toLowerCase(), J[Z][0] = xe + "=" + de) : (n.markup.attributeCasing === "lowercase" && (xe = xe.toLowerCase(), de = de.toLowerCase()), J[Z][0] = xe + "=" + de), n.correct === !0 && M(de, 60) && M(de, 123) && M(de, 61) && M(de, 34) && M(de, 39) && (de = Be + de + Be), N === !0 && /^\s*{/.test(de) ? (be(), y.types = "attribute", y.begin = E, y.stack = z) : Vt(xe, 6) ? Ze() : (y.types = "attribute", y.token = J[Z][0], Se());
           }
           Z = Z + 1;
-        } while (Z < re);
+        } while (Z < X);
       if (!R)
-        return me();
+        return ne();
     }
-    function q(R) {
+    function v(R) {
       r.iterator = t;
-      let Q = yt(o, {
-        end: k,
+      let E = xt(o, {
+        end: b,
         lexer: "markup",
-        begin: pe,
+        begin: ke,
         start: t,
-        ender: N
+        ender: j
       });
-      if (Q[0] === c)
-        return De(
+      if (E[0] === c)
+        return Ie(
           107,
           o.slice(r.iterator, r.iterator + 5).join(c),
           "comment"
         );
-      if (j = Q[0], t = Q[1], $i.test(j))
-        w(S, {
-          token: j,
+      if (q = E[0], t = E[1], ji.test(q))
+        S(y, {
+          token: q,
           types: "ignore_next"
         });
-      else if (Ni.test(j))
-        w(S, {
-          token: j,
+      else if (Bi.test(q))
+        S(y, {
+          token: q,
           types: "ignore"
         });
       else {
-        if (j.startsWith(pe) && R === !1) {
-          let W = j.indexOf("%}", 2) + 2, U = j.lastIndexOf("{%");
-          j = _(j.slice(0, W), P) + j.slice(W, U) + _(j.slice(U), P);
+        if (q.startsWith(ke) && R === !1) {
+          let z = q.indexOf("%}", 2) + 2, Y = q.lastIndexOf("{%");
+          q = D(q.slice(0, z), V) + q.slice(z, Y) + D(q.slice(Y), V);
         }
-        return S.token = j, S.types = "comment", y();
+        return y.token = q, y.types = "comment", w();
       }
     }
-    function v(R) {
-      let Q = t, W = t + R;
+    function $(R) {
+      let E = t, z = t + R;
       do {
-        if (i(o[W], 62))
-          return t = W, u.slice(Q, W + 1);
-        W = W + 1;
-      } while (W < k);
+        if (i(o[z], 62))
+          return t = z, u.slice(E, z + 1);
+        z = z + 1;
+      } while (z < b);
     }
-    function E() {
-      if (N === "---")
-        pe = "---", B = "ignore", K = !0;
+    function ge() {
+      if (j === "---")
+        ke = "---", B = "ignore", te = !0;
       else if (i(o[t], 60))
         if (i(o[t + 1], 123) && (i(o[t + 2], 123) || i(o[t + 2], 37))) {
-          S.token = v(3), S.types = "liquid_bad_start", w(S);
+          y.token = $(3), y.types = "liquid_bad_start", S(y);
           return;
         } else if (i(o[t + 1], 47))
           if (i(o[t + 2], 123) && (i(o[t + 3], 123) || i(o[t + 3], 37))) {
-            S.token = v(3), S.types = "liquid_bad_end", w(S);
+            y.token = $(3), y.types = "liquid_bad_end", S(y);
             return;
           } else
-            B = "end", N = ">";
+            B = "end", j = ">";
         else if (i(o[t + 1], 33))
           if ((i(o[t + 2], 100) || i(o[t + 2], 68)) && (i(o[t + 3], 111) || i(o[t + 3], 79)) && (i(o[t + 4], 99) || i(o[t + 4], 67)) && (i(o[t + 5], 116) || i(o[t + 5], 84)) && (i(o[t + 6], 121) || i(o[t + 6], 89)) && (i(o[t + 7], 112) || i(o[t + 7], 80)) && (i(o[t + 8], 101) || i(o[t + 8], 69)))
-            N = ">", B = "doctype", K = !0;
+            j = ">", B = "doctype", te = !0;
           else if (i(o[t + 2], 45))
             if (i(o[t + 3], 45))
-              N = "-->", pe = "<!--", B = "comment";
+              j = "-->", ke = "<!--", B = "comment";
             else
-              return De(
+              return Ie(
                 108,
                 o.slice(t, t + 3).join(c),
                 "comment"
@@ -3384,157 +3391,157 @@ function on(e) {
             o[t + 5].charCodeAt(0) === 65 && // A
             o[t + 6].charCodeAt(0) === 84 && // T
             o[t + 7].charCodeAt(0) === 65 && // A
-            i(o[t + 8], 91) && (N = "]]>", B = "cdata", K = !0);
+            i(o[t + 8], 91) && (j = "]]>", B = "cdata", te = !0);
         else
-          i(o[t + 1], 63) ? (N = "?>", o[t + 2].charCodeAt(0) === 120 && // x
+          i(o[t + 1], 63) ? (j = "?>", o[t + 2].charCodeAt(0) === 120 && // x
           o[t + 3].charCodeAt(0) === 109 && // m
-          o[t + 4].charCodeAt(0) === 109 ? (B = "xml", se = !0) : (K = !0, B = "liquid")) : i(o[t + 1], 112) && //   p
+          o[t + 4].charCodeAt(0) === 109 ? (B = "xml", ce = !0) : (te = !0, B = "liquid")) : i(o[t + 1], 112) && //   p
           i(o[t + 2], 114) && //   r
           i(o[t + 3], 101) && // e
-          (i(o[t + 4], 62) || ce(o[t + 4])) ? (N = "</pre>", B = "ignore", K = !0) : (se = !0, N = ">");
+          (i(o[t + 4], 62) || ue(o[t + 4])) ? (j = "</pre>", B = "ignore", te = !0) : (ce = !0, j = ">");
       else if (i(o[t], 123)) {
-        if (A) {
-          V = !0, ge = !0, r.stack.push(["script", r.count]), w(S, { token: "{", types: "script_start" });
+        if (N) {
+          F = !0, we = !0, r.stack.push(["script", r.count]), S(y, { token: "{", types: "script_start" });
           return;
         }
         if (i(o[t + 1], 123))
-          K = !0, N = "}}", B = "liquid";
+          te = !0, j = "}}", B = "liquid";
         else if (i(o[t + 1], 37)) {
-          K = !0, N = "%}", B = "liquid", D = "}";
-          let R = u.indexOf(N, t + 3);
+          te = !0, j = "%}", B = "liquid", G = "}";
+          let R = u.indexOf(j, t + 3);
           if (R === -1)
-            return De(113, u.slice(t));
-          if (i(o[t + 2], 45) ? (pe = "{%-", P = ni.exec(u.slice(t + 3, R).trimStart())[0]) : (pe = "{%", P = ni.exec(u.slice(t + 2, R).trimStart())[0]), P === "comment") {
+            return Ie(113, u.slice(t));
+          if (i(o[t + 2], 45) ? (ke = "{%-", V = si.exec(u.slice(t + 3, R).trimStart())[0]) : (ke = "{%", V = si.exec(u.slice(t + 2, R).trimStart())[0]), V === "comment") {
             B = "comment";
-            let Q = u.indexOf("endcomment", R + 2);
-            return Q === -1 ? De(114, u.slice(t, R + 2), "comment") : (pe = u.slice(t, R + 2), N = u.slice(u.lastIndexOf("{", Q), u.indexOf("}", Q + 10) + 1), q());
-          } else if (a.size > 0 && a.has(P) && (r.iterator = t, ue = !0), i(P, 35))
-            return B = "comment", q(!0);
+            let E = u.indexOf("endcomment", R + 2);
+            return E === -1 ? Ie(114, u.slice(t, R + 2), "comment") : (ke = u.slice(t, R + 2), j = u.slice(u.lastIndexOf("{", E), u.indexOf("}", E + 10) + 1), v());
+          } else if (l.size > 0 && l.has(V) && (r.iterator = t, ae = !0), i(V, 35))
+            return B = "comment", v(!0);
         } else
-          K = !0, N = o[t + 1] + "}", B = "liquid";
+          te = !0, j = o[t + 1] + "}", B = "liquid";
       }
-      return K !== !0 && n.markup.preserveAttribute === !0 && (K = !0), r.count > -1 && s.types[r.count] === "ignore_next" && (ue = !0, r.iterator = t), D || (D = N.charAt(N.length - 1)), ge ? y() : B === "comment" ? q() : t < k ? te() : y();
+      return te !== !0 && n.markup.preserveAttribute === !0 && (te = !0), r.count > -1 && s.types[r.count] === "ignore_next" && (ae = !0, r.iterator = t), G || (G = j.charAt(j.length - 1)), we ? w() : B === "comment" ? v() : t < b ? pe() : w();
     }
-    function me() {
-      if (n.wrap > 0 && A === !0) {
-        let R = 0, Q = r.count, W = 0;
-        if (s.types[Q].indexOf("attribute") > -1) {
+    function ne() {
+      if (n.wrap > 0 && N === !0) {
+        let R = 0, E = r.count, z = 0;
+        if (s.types[E].indexOf("attribute") > -1) {
           do
-            R = R + s.token[Q].length + 1, Q = Q - 1;
-          while (s.lexer[Q] !== "markup" || s.types[Q].indexOf("attribute") > -1);
-          s.lines[Q] === 1 && (R = R + s.token[Q].length + 1);
+            R = R + s.token[E].length + 1, E = E - 1;
+          while (s.lexer[E] !== "markup" || s.types[E].indexOf("attribute") > -1);
+          s.lines[E] === 1 && (R = R + s.token[E].length + 1);
         } else
-          s.lines[Q] === 1 && (R = s.token[Q].length + 1);
-        if (W = Q - 1, R > 0 && s.types[W] !== "script_end")
-          if (s.types[W].indexOf("attribute") > -1) {
+          s.lines[E] === 1 && (R = s.token[E].length + 1);
+        if (z = E - 1, R > 0 && s.types[z] !== "script_end")
+          if (s.types[z].indexOf("attribute") > -1) {
             do
-              R = R + s.token[W].length + 1, W = W - 1;
-            while (s.lexer[W] !== "markup" || s.types[W].indexOf("attribute") > -1);
-            s.lines[W] === 1 && (R = R + s.token[W].length + 1);
+              R = R + s.token[z].length + 1, z = z - 1;
+            while (s.lexer[z] !== "markup" || s.types[z].indexOf("attribute") > -1);
+            s.lines[z] === 1 && (R = R + s.token[z].length + 1);
           } else
-            s.lines[W] === 1 && (R = s.token[W].length + 1);
+            s.lines[z] === 1 && (R = s.token[z].length + 1);
       }
       r.lineOffset = 0;
     }
-    function te() {
-      let R = [], Q = Fe(null);
-      Q.pipes = [], Q.fargs = [], Q.targs = [], Q.logic = [];
-      let W = 0, U = 0, Z = c, ae = 0, he = 0, de = 0, fe = 0, re = c, be = c, xe = 0, ve = !1, ye = !1, Ze = !1, Pe = !1, Ae = !1, Se = NaN, ie = [];
-      function Te() {
+    function pe() {
+      let R = [], E = Fe(null);
+      E.pipes = [], E.fargs = [], E.targs = [], E.logic = [];
+      let z = 0, Y = 0, Z = c, fe = 0, he = 0, xe = 0, de = 0, X = c, Se = c, Ee = 0, be = !1, Ze = !1, st = !1, We = !1, Ae = !1, Ce = NaN, re = [];
+      function Me() {
         if (Qe(R, 44)) {
-          if (P === "when" && Q.logic.push(R.length - 1), n.correct === !0 && /^,\s*-?[%}]}/.test(u.slice(t)))
+          if (V === "when" && E.logic.push(R.length - 1), n.correct === !0 && /^,\s*-?[%}]}/.test(u.slice(t)))
             return R.pop(), t = t + 1, !0;
-          Se === 44 ? Q.fargs[Q.fargs.length - 1].push(R.length - 1) : Se === 58 ? (Q.fargs[Q.fargs.length - 1][0] += 1, Q.fargs[Q.fargs.length - 1].push(R.length - 1), Se = 44) : Q.targs.push(R.length - 1);
+          Ce === 44 ? E.fargs[E.fargs.length - 1].push(R.length - 1) : Ce === 58 ? (E.fargs[E.fargs.length - 1][0] += 1, E.fargs[E.fargs.length - 1].push(R.length - 1), Ce = 44) : E.targs.push(R.length - 1);
         } else
-          Qe(R, 124) ? (Q.pipes.push(R.length - 1), Se = 124) : Qe(R, 58) && Se === 124 && (Q.fargs.push([R.length - 1]), Se = 58);
-        if (i(o[t], 10) && P !== "liquid" && ye === !1 && R.length > 3 && !(i(o[t + 1], 45) && i(o[t + 2], 37) && i(o[t + 3], 125) || i(o[t + 1], 37) && i(o[t + 2], 125)) ? R.pop() : n.liquid.normalizeSpacing === !0 && (Me(o[t]) === !1 && (dt(R, 39) || dt(R, 34)) ? T(o[t], 44) && T(o[t], 93) ? (R.splice(R.length - 1, 1, ee, o[t]), Me(o[t + 1]) === !1 && T(o[t + 1], 61) && T(o[t + 1], 125) && R.push(ee)) : lt(o[t + 1]) && T(o[t + 1], 91) && T(o[t + 1], 46) && R.push(ee) : P !== "liquid" && ce(o[t + 1]) && ce(o[t]) && i(o[t - 1], 93) || i(o[t], 32) && i(o[t + 1], 32) ? R.pop() : R.length > 3 && i(o[t + 1], 10) && T(o[t + 2], 32) ? R.push(ee) : i(o[t], 32) && i(o[t + 1], 32) ? R.pop() : dt(R, 93) && Me(R[R.length - 1]) && T(o[t], 32) && T(o[t], 44) && T(o[t], 46) ? R.splice(R.length - 1, 1, ee, o[t]) : Me(R[R.length - 2]) && Me(o[t]) && Me(o[t + 1]) ? R.pop() : i(o[t], 44) && lt(o[t + 1]) ? R.push(ee) : i(o[t], 58) && lt(o[t + 1]) ? R.push(ee) : i(o[t], 32) && dt(R, 46) || _i(R, 91, 32) ? R.pop() : T(o[t], 32) && i(o[t + 1], 124) ? R.push(ee) : i(o[t], 124) && T(o[t + 1], 32) ? R.push(ee) : i(o[t], 32) && (i(o[t + 1], 46) || i(o[t + 1], 93) || i(o[t + 1], 91) || i(o[t + 1], 58) || i(o[t + 1], 44)) ? R.pop() : P === "assign" && (T(o[t], 32) && i(o[t + 1], 61) || i(o[t], 61) && T(o[t + 1], 32)) ? R.push(ee) : (P === "if" || P === "unless" || P === "elsif" || P === "liquid") && ((T(o[t], 32) || i(o[t], 10)) && (i(o[t + 1], 33) || i(o[t + 1], 60) || i(o[t + 1], 62) || i(o[t + 1], 61) && i(o[t + 2], 61)) ? R.push(ee) : i(o[t], 61) && (T(o[t + 1], 32) || i(o[t + 1], 10)) && (i(o[t - 1], 61) || i(o[t - 1], 60) || i(o[t - 1], 62) || i(o[t - 1], 33)) ? R.push(ee) : T(o[t + 1], 32) && T(o[t + 1], 61) && (i(o[t], 60) || i(o[t], 62)) && R.push(ee))), ce(o[t - 1])) {
-          if (Z = u.slice(t), P === "if" || P === "elsif" || P === "unless") {
-            if (ce(o[t + 2]) && Z.startsWith("or"))
-              return Q.logic.push(R.length - 1), R.pop(), R.push(Z.slice(0, 2)), t = t + 2, !0;
-            if (ce(o[t + 3]) && Z.startsWith("and"))
-              return Q.logic.push(R.length - 1), R.pop(), R.push(Z.slice(0, 3)), t = t + 3, !0;
-            if (ce(o[t + 8]) && Z.startsWith("contains"))
-              return Q.logic.push(R.length - 1), R.pop(), R.push(Z.slice(0, 8)), t = t + 8, !0;
-          } else if (P === "when" && ce(o[t + 2]) && Z.startsWith("or"))
-            return Q.logic.push(R.length - 1), R.pop(), R.push(Z.slice(0, 2)), t = t + 2, !0;
+          Qe(R, 124) ? (E.pipes.push(R.length - 1), Ce = 124) : Qe(R, 58) && Ce === 124 && (E.fargs.push([R.length - 1]), Ce = 58);
+        if (i(o[t], 10) && V !== "liquid" && Ze === !1 && R.length > 3 && !(i(o[t + 1], 45) && i(o[t + 2], 37) && i(o[t + 3], 125) || i(o[t + 1], 37) && i(o[t + 2], 125)) ? R.pop() : n.liquid.normalizeSpacing === !0 && (Te(o[t]) === !1 && (mt(R, 39) || mt(R, 34)) ? M(o[t], 44) && M(o[t], 93) ? (R.splice(R.length - 1, 1, ie, o[t]), Te(o[t + 1]) === !1 && M(o[t + 1], 61) && M(o[t + 1], 125) && R.push(ie)) : at(o[t + 1]) && M(o[t + 1], 91) && M(o[t + 1], 46) && R.push(ie) : V !== "liquid" && ue(o[t + 1]) && ue(o[t]) && i(o[t - 1], 93) || i(o[t], 32) && i(o[t + 1], 32) ? R.pop() : R.length > 3 && i(o[t + 1], 10) && M(o[t + 2], 32) ? R.push(ie) : i(o[t], 32) && i(o[t + 1], 32) ? R.pop() : mt(R, 93) && Te(R[R.length - 1]) && M(o[t], 32) && M(o[t], 44) && M(o[t], 46) ? R.splice(R.length - 1, 1, ie, o[t]) : Te(R[R.length - 2]) && Te(o[t]) && Te(o[t + 1]) ? R.pop() : i(o[t], 44) && at(o[t + 1]) ? R.push(ie) : i(o[t], 58) && at(o[t + 1]) ? R.push(ie) : i(o[t], 32) && mt(R, 46) || Hi(R, 91, 32) ? R.pop() : M(o[t], 32) && i(o[t + 1], 124) ? R.push(ie) : i(o[t], 124) && M(o[t + 1], 32) ? R.push(ie) : i(o[t], 32) && (i(o[t + 1], 46) || i(o[t + 1], 93) || i(o[t + 1], 91) || i(o[t + 1], 58) || i(o[t + 1], 44)) ? R.pop() : V === "assign" && (M(o[t], 32) && i(o[t + 1], 61) || i(o[t], 61) && M(o[t + 1], 32)) ? R.push(ie) : (V === "if" || V === "unless" || V === "elsif" || V === "liquid") && ((M(o[t], 32) || i(o[t], 10)) && (i(o[t + 1], 33) || i(o[t + 1], 60) || i(o[t + 1], 62) || i(o[t + 1], 61) && i(o[t + 2], 61)) ? R.push(ie) : i(o[t], 61) && (M(o[t + 1], 32) || i(o[t + 1], 10)) && (i(o[t - 1], 61) || i(o[t - 1], 60) || i(o[t - 1], 62) || i(o[t - 1], 33)) ? R.push(ie) : M(o[t + 1], 32) && M(o[t + 1], 61) && (i(o[t], 60) || i(o[t], 62)) && R.push(ie))), ue(o[t - 1])) {
+          if (Z = u.slice(t), V === "if" || V === "elsif" || V === "unless") {
+            if (ue(o[t + 2]) && Z.startsWith("or"))
+              return E.logic.push(R.length - 1), R.pop(), R.push(Z.slice(0, 2)), t = t + 2, !0;
+            if (ue(o[t + 3]) && Z.startsWith("and"))
+              return E.logic.push(R.length - 1), R.pop(), R.push(Z.slice(0, 3)), t = t + 3, !0;
+            if (ue(o[t + 8]) && Z.startsWith("contains"))
+              return E.logic.push(R.length - 1), R.pop(), R.push(Z.slice(0, 8)), t = t + 8, !0;
+          } else if (V === "when" && ue(o[t + 2]) && Z.startsWith("or"))
+            return E.logic.push(R.length - 1), R.pop(), R.push(Z.slice(0, 2)), t = t + 2, !0;
         }
         if (i(R[R.length - 1], 44) && i(R[R.length - 2], 44))
-          return De(
+          return Ie(
             116,
             R.join(c),
             Ue(R.join(c))
           );
-        ye = !1;
+        Ze = !1;
       }
-      function Le(wt) {
-        let et, Oe = c;
-        if (wt === !0 ? (Oe = ie.join(c), et = l(Oe), re = c, et[0] === "data-esthetic-ignore" && (ue = !0)) : (Oe = ie.join(c), (A === !1 || A && li(Oe, 125)) && (Oe = Oe.replace(Xe, ee)), et = l(Oe), et[0] === "data-esthetic-ignore" && (ue = !0), A && i(ie[0], 123) && i(ie[ie.length - 1], 125) && (xe = 0)), i(Oe[0], 123) && i(Oe[1], 37) && (ke = !0), Oe = Oe.replace(/^\u0020/, c).replace(/\u0020$/, c), ie = Oe.replace(/\r\n/g, z).split(z), ie.length < 1 && (ie[0] = ie[0].replace(We, c)), Oe = _(ie.join(r.crlf), P), n.markup.stripAttributeLines === !0 && fe >= 1 && (fe = 1), J.length > 0) {
+      function Oe(St) {
+        let et, ve = c;
+        if (St === !0 ? (ve = re.join(c), et = g(ve), X = c, et[0] === "data-esthetic-ignore" && (ae = !0)) : (ve = re.join(c), (N === !1 || N && ai(ve, 125)) && (ve = ve.replace(Xe, ie)), et = g(ve), et[0] === "data-esthetic-ignore" && (ae = !0), N && i(re[0], 123) && i(re[re.length - 1], 125) && (Ee = 0)), i(ve[0], 123) && i(ve[1], 37) && (me = !0), ve = ve.replace(/^\u0020/, c).replace(/\u0020$/, c), re = ve.replace(/\r\n/g, H).split(H), re.length < 1 && (re[0] = re[0].replace(Pe, c)), ve = D(re.join(r.crlf), V), n.markup.stripAttributeLines === !0 && de >= 1 && (de = 1), J.length > 0) {
           let Ve = J.length - 1;
-          m === 0 && (i(Oe, 61) || i(Oe, 45)) && (J[Ve][0] = J[Ve][0] + Oe, J[Ve][1] = fe, Oe = c);
+          m === 0 && (i(ve, 61) || i(ve, 45)) && (J[Ve][0] = J[Ve][0] + ve, J[Ve][1] = de, ve = c);
         }
-        if (wt === !1 && (ht(Oe) && (m = m + 1), Et(Oe) && (m = m - 1)), Oe !== c && Oe !== ee && J.push([Oe, fe]), J.length > 0) {
+        if (St === !1 && (gt(ve) && (m = m + 1), Pt(ve) && (m = m - 1)), ve !== c && ve !== ie && J.push([ve, de]), J.length > 0) {
           let [Ve] = J[J.length - 1];
           if (Ve.indexOf("=\u201C") > 0)
-            return De(103, Ve);
+            return Ie(103, Ve);
           if (Ve.indexOf("=\u201D") > 0)
-            return De(103, Ve);
+            return Ie(103, Ve);
         }
-        ie = [], fe = i(o[t], 10) ? 1 : 0;
+        re = [], de = i(o[t], 10) ? 1 : 0;
       }
       if (!r.error) {
         do {
-          if (i(o[t], 10) && (fe = r.lines(t, fe)), pe === "---" && N === "---" && B === "ignore") {
+          if (i(o[t], 10) && (de = r.lines(t, de)), ke === "---" && j === "---" && B === "ignore") {
             if (R.push(o[t]), t > 3 && i(o[t], 45) && i(o[t - 1], 45) && i(o[t - 2], 45))
               break;
             t = t + 1;
             continue;
           }
-          if (K === !0 || ce(o[t]) === !1 && T(re, 125) || i(re, 125)) {
-            if (R.push(o[t]), ve === !1 && i(o[t - 1], 123) && (i(o[t], 123) || i(o[t], 37)))
-              ve = !0;
-            else if (ve === !0 && i(o[t], 125)) {
+          if (te === !0 || ue(o[t]) === !1 && M(X, 125) || i(X, 125)) {
+            if (R.push(o[t]), be === !1 && i(o[t - 1], 123) && (i(o[t], 123) || i(o[t], 37)))
+              be = !0;
+            else if (be === !0 && i(o[t], 125)) {
               if (i(o[t - 1], 125) || i(o[t - 1], 37))
-                ve = !1;
-              else if ((i(o[t - 2], 125) || i(o[t - 2], 37)) && ce(o[t - 1]))
-                return De(113, R.join(c));
-            } else if (ve === !0 && i(o[t], 10) && (n.liquid.delimiterPlacement === "preserve" || n.liquid.delimiterPlacement === "consistent")) {
+                be = !1;
+              else if ((i(o[t - 2], 125) || i(o[t - 2], 37)) && ue(o[t - 1]))
+                return Ie(113, R.join(c));
+            } else if (be === !0 && i(o[t], 10) && (n.liquid.delimiterPlacement === "preserve" || n.liquid.delimiterPlacement === "consistent")) {
               if (i(o[t - 1], 45) && i(o[t - 3], 123) && (i(o[t - 2], 123) || i(o[t - 2], 37)) || i(o[t - 2], 123) && (i(o[t - 1], 123) || i(o[t - 1], 37)))
-                ye = !0;
+                Ze = !0;
               else if (/^\s*-?[%}]}/.test(u.slice(t)) === !0) {
-                for (; ce(o[t]) === !0; )
-                  t = t + 1, i(o[t], 10) && (fe = r.lines(t, fe));
-                R.push(o[t]), ye = !0;
+                for (; ue(o[t]) === !0; )
+                  t = t + 1, i(o[t], 10) && (de = r.lines(t, de));
+                R.push(o[t]), Ze = !0;
               }
             }
             if (B === "end" && R.length > 2 && i(R[0], 60) && i(R[1], 47) && (i(R[R.length - 1], 47) || i(R[R.length - 1], 60))) {
               if (n.correct)
                 R.pop(), R.push(">");
               else
-                return De(106, R.join(c));
+                return Ie(106, R.join(c));
               break;
             }
-            if (i(R[0], 60) && i(R[1], 62) && i(N, 62))
-              return w(S, "(empty)", {
+            if (i(R[0], 60) && i(R[1], 62) && i(j, 62))
+              return S(y, "(empty)", {
                 token: "<>",
                 types: "start"
               });
-            if (i(R[0], 60) && i(R[1], 47) && i(R[2], 62) && i(N, 62))
-              return S.token = "</>", S.token = "end", w(S);
+            if (i(R[0], 60) && i(R[1], 47) && i(R[2], 62) && i(j, 62))
+              return y.token = "</>", y.token = "end", S(y);
           }
-          if (B === "cdata" && i(o[t], 62) && i(o[t - 1], 93) && T(o[t - 2], 93))
-            return De(103, R.join(c));
+          if (B === "cdata" && i(o[t], 62) && i(o[t - 1], 93) && M(o[t - 2], 93))
+            return Ie(103, R.join(c));
           if (B === "comment") {
-            if (re = c, o[t] === D && R.length > N.length + 1) {
-              if (U = R.length, W = N.length - 1, W > -1)
+            if (X = c, o[t] === G && R.length > j.length + 1) {
+              if (Y = R.length, z = j.length - 1, z > -1)
                 do {
-                  if (U = U - 1, T(R[U], N.charCodeAt(W)))
+                  if (Y = Y - 1, M(R[Y], j.charCodeAt(z)))
                     break;
-                  W = W - 1;
-                } while (W > -1);
-              if (W < 0)
+                  z = z - 1;
+                } while (z > -1);
+              if (z < 0)
                 break;
             }
-          } else if (re === c) {
+          } else if (X === c) {
             if (i(R[0], 60) && i(R[1], 33) && B !== "cdata") {
               if (B === "doctype" && i(o[t], 62))
                 break;
@@ -3543,354 +3550,356 @@ function on(e) {
                   B = "start";
                   break;
                 }
-                if (ce(o[t + 1]))
+                if (ue(o[t + 1]))
                   do
-                    t = t + 1, i(o[t], 10) && (fe = r.lines(t, fe));
-                  while (t < k - 1 && ce(o[t + 1]));
+                    t = t + 1, i(o[t], 10) && (de = r.lines(t, de));
+                  while (t < b - 1 && ue(o[t + 1]));
                 if (i(o[t + 1], 60)) {
                   B = "start";
                   break;
                 }
               }
             }
-            if (A && (i(o[t], 123) ? xe = xe + 1 : i(o[t], 125) && (xe = xe - 1)), i(o[t], 60) && se === !0 && K === !1 && R.length > 1 && />{2,3}/.test(N) === !1) {
+            if (N && (i(o[t], 123) ? Ee = Ee + 1 : i(o[t], 125) && (Ee = Ee - 1)), i(o[t], 60) && ce === !0 && te === !1 && R.length > 1 && />{2,3}/.test(j) === !1) {
               r.error = `Invalid structure detected ${o.slice(t, t + 8).join(c)}`;
               break;
             }
-            if (ce(o[t]) === !1 && Ze === !0 && o[t] !== D) {
-              if (Ce = 0, Ze = !1, re = be, R.pop(), t < k)
+            if (ue(o[t]) === !1 && st === !0 && o[t] !== G) {
+              if (L = 0, st = !1, X = Se, R.pop(), t < b)
                 do {
-                  if (i(o[t], 10) && Ae === !1 && (fe = r.lines(t, fe)), n.markup.preserveAttribute === !0 ? R.push(o[t]) : ie.push(o[t]), (T(re, 34) || T(re, 39)) && (i(o[t - 1], 123) && (i(o[t], 37) || i(o[t], 123)) ? ve = !0 : i(o[t], 125) && (i(o[t - 1], 125) || i(o[t - 1], 37)) && (ve = !1)), A === !1 && Ae === !1 && ve === !0 && n.markup.preserveAttribute === !1)
-                    for (; t < k; ) {
-                      if (t = t + 1, i(o[t], 10) && (fe = r.lines(t, fe)), i(ie[0], 61) && (i(ie[1], 123) || i(ie[1], 37)) && (i(ie[ie.length - 2], 125) || i(ie[ie.length - 2], 37)) && i(ie[ie.length - 1], 125)) {
-                        ve = !1, re = c, Le(!1);
+                  if (i(o[t], 10) && Ae === !1 && (de = r.lines(t, de)), n.markup.preserveAttribute === !0 ? R.push(o[t]) : re.push(o[t]), (M(X, 34) || M(X, 39)) && (i(o[t - 1], 123) && (i(o[t], 37) || i(o[t], 123)) ? be = !0 : i(o[t], 125) && (i(o[t - 1], 125) || i(o[t - 1], 37)) && (be = !1)), N === !1 && Ae === !1 && be === !0 && n.markup.preserveAttribute === !1)
+                    for (; t < b; ) {
+                      if (t = t + 1, i(o[t], 10) && (de = r.lines(t, de)), i(re[0], 61) && (i(re[1], 123) || i(re[1], 37)) && (i(re[re.length - 2], 125) || i(re[re.length - 2], 37)) && i(re[re.length - 1], 125)) {
+                        be = !1, X = c, Oe(!1);
                         break;
                       }
-                      if (i(ie[0], 61) && T(ie[1], 123)) {
-                        ve = !1, re = c, Le(!1);
+                      if (i(re[0], 61) && M(re[1], 123)) {
+                        be = !1, X = c, Oe(!1);
                         break;
                       }
-                      if (ie.push(o[t]), i(ie[0], 61) && i(o[t + 1], 62)) {
-                        ve = !1, J[J.length - 1][0] += ie.join(c), ie = [], re = c;
+                      if (re.push(o[t]), i(re[0], 61) && i(o[t + 1], 62)) {
+                        be = !1, J[J.length - 1][0] += re.join(c), re = [], X = c;
                         break;
                       }
-                      if (T(ie[0], 61) && i(o[t], 125) && (i(o[t - 1], 125) || i(o[t - 1], 37))) {
-                        ve = !1, re = c, Le(!1);
+                      if (M(re[0], 61) && i(o[t], 125) && (i(o[t - 1], 125) || i(o[t - 1], 37))) {
+                        be = !1, X = c, Oe(!1);
                         break;
                       }
                     }
-                  if (A === !1 && (i(o[t], 60) || i(o[t], 62)) && (re === c || i(re, 62))) {
-                    if (re === c && i(o[t], 60))
-                      re = ">", ae = 1;
-                    else if (i(re, 62)) {
+                  if (N === !1 && (i(o[t], 60) || i(o[t], 62)) && (X === c || i(X, 62))) {
+                    if (X === c && i(o[t], 60))
+                      X = ">", fe = 1;
+                    else if (i(X, 62)) {
                       if (i(o[t], 60))
-                        ae = ae + 1;
-                      else if (i(o[t], 62) && (ae = ae - 1, ae === 0)) {
-                        re = c, Ce = 0, Le(!1);
+                        fe = fe + 1;
+                      else if (i(o[t], 62) && (fe = fe - 1, fe === 0)) {
+                        X = c, L = 0, Oe(!1);
                         break;
                       }
                     }
-                  } else if (re === c) {
-                    if (o[t + 1] === D) {
-                      (Qe(ie, 47) || Qe(ie, 63) && B === "xml") && (ie.pop(), K === !1 || R.pop(), t = t - 1), ie.length > 0 && Le(!1);
+                  } else if (X === c) {
+                    if (o[t + 1] === G) {
+                      (Qe(re, 47) || Qe(re, 63) && B === "xml") && (re.pop(), te === !1 || R.pop(), t = t - 1), re.length > 0 && Oe(!1);
                       break;
                     }
-                    if (A === !1 && i(o[t], 123) && i(o[t - 1], 61) ? re = "}" : i(o[t], 34) || i(o[t], 39) ? (re = o[t], Ae === !1 && ve === !1 && (Ae = !0), i(o[t - 1], 61) && (i(o[t + 1], 60) || i(o[t + 1], 123) && i(o[t + 2], 37) || ce(o[t + 1]) && T(o[t - 1], 61)) && (Ce = t)) : i(o[t], 40) ? (re = ")", de = 1) : A ? (i(o[t - 1], 61) || ce(o[t - 1])) && i(o[t], 123) ? (re = "}", he = 1) : i(o[t], 47) && (i(o[t + 1], 42) ? re = "*/" : i(o[t + 1], 47) && (re = z)) : i(R[0], 123) && i(o[t], 123) && (i(o[t + 1], 123) || i(o[t + 1], 37)) && (re = i(o[t + 1], 123) ? "}}" : o[t + 1] + "}"), ce(o[t]) && re === c) {
-                      if (i(ie[ie.length - 2], 61) && (W = t + 1, W < k))
+                    if (N === !1 && i(o[t], 123) && i(o[t - 1], 61) ? X = "}" : i(o[t], 34) || i(o[t], 39) ? (X = o[t], Ae === !1 && be === !1 && (Ae = !0), i(o[t - 1], 61) && (i(o[t + 1], 60) || i(o[t + 1], 123) && i(o[t + 2], 37) || ue(o[t + 1]) && M(o[t - 1], 61)) && (L = t)) : i(o[t], 40) ? (X = ")", xe = 1) : N ? (i(o[t - 1], 61) || ue(o[t - 1])) && i(o[t], 123) ? (X = "}", he = 1) : i(o[t], 47) && (i(o[t + 1], 42) ? X = "*/" : i(o[t + 1], 47) && (X = H)) : i(R[0], 123) && i(o[t], 123) && (i(o[t + 1], 123) || i(o[t + 1], 37)) && (X = i(o[t + 1], 123) ? "}}" : o[t + 1] + "}"), ue(o[t]) && X === c) {
+                      if (i(re[re.length - 2], 61) && (z = t + 1, z < b))
                         do {
-                          if (ce(o[W]) === !1) {
-                            (i(o[W], 34) || i(o[W], 39)) && (t = W - 1, Pe = !0, ie.pop());
+                          if (ue(o[z]) === !1) {
+                            (i(o[z], 34) || i(o[z], 39)) && (t = z - 1, We = !0, re.pop());
                             break;
                           }
-                          W = W + 1;
-                        } while (W < k);
-                      if (Pe === !0)
-                        Pe = !1;
-                      else if (xe === 0 || xe === 1 && i(ie[0], 123)) {
-                        ie.pop(), ie.length > 0 && Le(!1), Ze = !0;
+                          z = z + 1;
+                        } while (z < b);
+                      if (We === !0)
+                        We = !1;
+                      else if (Ee === 0 || Ee === 1 && i(re[0], 123)) {
+                        re.pop(), re.length > 0 && Oe(!1), st = !0;
                         break;
                       }
                     }
-                  } else if (i(o[t], 40) && i(re, 41))
-                    de = de + 1;
-                  else if (i(o[t], 41) && i(re, 41)) {
-                    if (de = de - 1, de === 0 && (re = c, i(o[t + 1], N.charCodeAt(0)))) {
-                      Le(!1);
+                  } else if (i(o[t], 40) && i(X, 41))
+                    xe = xe + 1;
+                  else if (i(o[t], 41) && i(X, 41)) {
+                    if (xe = xe - 1, xe === 0 && (X = c, i(o[t + 1], j.charCodeAt(0)))) {
+                      Oe(!1);
                       break;
                     }
-                  } else if (A === !0 && (i(re, 125) || i(re, 10) && i(o[t], 10) || i(re, 42) && i(o[t - 1], 42) && i(o[t], 47))) {
+                  } else if (N === !0 && (i(X, 125) || i(X, 10) && i(o[t], 10) || i(X, 42) && i(o[t - 1], 42) && i(o[t], 47))) {
                     if (i(o[t], 96)) {
                       t = t + 1;
                       do {
-                        if (ie.push(o[t]), i(o[t], 96))
+                        if (re.push(o[t]), i(o[t], 96))
                           break;
                         t = t + 1;
                       } while (t < o.length);
                     }
-                    if (i(re, 125)) {
-                      if (i(o[t], 125) && o[t] !== re)
+                    if (i(X, 125)) {
+                      if (i(o[t], 125) && o[t] !== X)
                         he = he + 1;
-                      else if (o[t] === re && (he = he - 1, he === 0)) {
-                        xe = 0, re = c, j = ie.join(c), n.markup.preserveAttribute === !1 && (A ? /^\s*$/.test(j) || J.push([j, fe]) : (j = j.replace(Xe, ee), j !== ee && J.push([j, fe]))), ie = [], fe = 1;
+                      else if (o[t] === X && (he = he - 1, he === 0)) {
+                        Ee = 0, X = c, q = re.join(c), n.markup.preserveAttribute === !1 && (N ? /^\s*$/.test(q) || J.push([q, de]) : (q = q.replace(Xe, ie), q !== ie && J.push([q, de]))), re = [], de = 1;
                         break;
                       }
                     } else {
-                      be = c, O = !0, j = ie.join(c), j !== ee && J.push([j, fe]), ie = [], fe = i(re, 10) ? 2 : 1, re = c;
+                      Se = c, ye = !0, q = re.join(c), q !== ie && J.push([q, de]), re = [], de = i(X, 10) ? 2 : 1, X = c;
                       break;
                     }
-                  } else if (i(o[Ce - 1], 61) && i(o[t], 123) && i(o[t + 1], 37) && (i(re, 34) || i(re, 39)))
-                    re = re + "{%", Ce = 0;
-                  else if (i(o[t - 1], 37) && i(o[t], 125) && (re === '"{%' || re === "'{%"))
-                    re = re[0], Ce = 0;
-                  else if (i(o[t], 60) && i(N, 62) && i(o[Ce - 1], 61) && (i(re, 34) || i(re, 39)))
-                    re = re + "<", Ce = 0;
-                  else if (i(o[t], 62) && (re === '"<' || re === "'<"))
-                    re = re.charAt(0), Ce = 0;
-                  else if (Ce === 0 && T(re, 62) && (re.length < 2 || T(re, 34) && T(re, 39))) {
-                    if (U = 0, W = re.length - 1, W > -1)
+                  } else if (i(o[L - 1], 61) && i(o[t], 123) && i(o[t + 1], 37) && (i(X, 34) || i(X, 39)))
+                    X = X + "{%", L = 0;
+                  else if (i(o[t - 1], 37) && i(o[t], 125) && (X === '"{%' || X === "'{%"))
+                    X = X[0], L = 0;
+                  else if (i(o[t], 60) && i(j, 62) && i(o[L - 1], 61) && (i(X, 34) || i(X, 39)))
+                    X = X + "<", L = 0;
+                  else if (i(o[t], 62) && (X === '"<' || X === "'<"))
+                    X = X.charAt(0), L = 0;
+                  else if (L === 0 && M(X, 62) && (X.length < 2 || M(X, 34) && M(X, 39))) {
+                    if (Y = 0, z = X.length - 1, z > -1)
                       do {
-                        if (T(o[t - U], re.charCodeAt(W)))
+                        if (M(o[t - Y], X.charCodeAt(z)))
                           break;
-                        U = U + 1, W = W - 1;
-                      } while (W > -1);
-                    if (W < 0 && ve === !1 && Ae === !0 && (Ae = !1, Le(!0), o[t + 1] === D))
+                        Y = Y + 1, z = z - 1;
+                      } while (z > -1);
+                    if (z < 0 && be === !1 && Ae === !0 && (Ae = !1, Oe(!0), o[t + 1] === G))
                       break;
-                    W === 0 && i(o[t], 62);
+                    z === 0 && i(o[t], 62);
                   } else
-                    Ce > 0 && ce(o[t]) === !1 && (Ce = 0);
+                    L > 0 && ue(o[t]) === !1 && (L = 0);
                   t = t + 1;
-                } while (t < k);
-            } else if (i(N, 10) === !1 && (i(o[t], 34) || i(o[t], 39)))
-              re = o[t];
-            else if (t > 0 && ve === !0 && T(re, 34) && T(re, 39)) {
-              if (Te() === !0)
+                } while (t < b);
+            } else if (i(j, 10) === !1 && (i(o[t], 34) || i(o[t], 39)))
+              X = o[t];
+            else if (t > 0 && be === !0 && M(X, 34) && M(X, 39)) {
+              if (Me() === !0)
                 continue;
-            } else if (B !== "comment" && T(N, 10) && i(o[t], 60) && i(o[t + 1], 33) && i(o[t + 2], 45) && i(o[t + 3], 45) && s.types[r.count] !== "conditional")
-              re = "-->";
-            else if (i(o[t], 123) && T(R[0], 123) && T(N, 10) && (i(o[t + 1], 123) || i(o[t + 1], 37))) {
+            } else if (B !== "comment" && M(j, 10) && i(o[t], 60) && i(o[t + 1], 33) && i(o[t + 2], 45) && i(o[t + 3], 45) && s.types[r.count] !== "conditional")
+              X = "-->";
+            else if (i(o[t], 123) && M(R[0], 123) && M(j, 10) && (i(o[t + 1], 123) || i(o[t + 1], 37))) {
               if (i(o[t + 1], 123))
-                re = "}}";
-              else if (re = o[t + 1] + "}", ie.length < 1 && (J.length < 1 || ce(o[t - 1]))) {
+                X = "}}";
+              else if (X = o[t + 1] + "}", re.length < 1 && (J.length < 1 || ue(o[t - 1]))) {
                 R.pop();
                 do
-                  i(o[t], 10) && (fe = fe + 1), ie.push(o[t]), t = t + 1;
-                while (t < k && o[t - 1] + o[t] !== re);
-                ie.push("}"), J.push([ie.join(c), fe]), ie = [], fe = 1, re = c;
+                  i(o[t], 10) && (de = de + 1), re.push(o[t]), t = t + 1;
+                while (t < b && o[t - 1] + o[t] !== X);
+                re.push("}"), J.push([re.join(c), de]), re = [], de = 1, X = c;
               }
-              re === N && (re = c);
-            } else if (se && T(N, 10) && T(o[t - 1], 60) && ce(o[t]))
-              Ze = !0;
-            else if (se && A && i(o[t], 47) && (i(o[t + 1], 42) || i(o[t + 1], 47)))
-              Ze = !0, R[R.length - 1] = ee, be = i(o[t + 1], 42) ? "*/" : z, ie.push(o[t]);
-            else if (ve === !1 && (o[t] === D || i(N, 10) && i(o[t + 1], 60)) && (R.length > N.length + 1 || i(R[0], 93)) && (A === !1 || xe === 0)) {
-              if (i(N, 10)) {
-                if (ce(R[R.length - 1]))
+              X === j && (X = c);
+            } else if (ce && M(j, 10) && M(o[t - 1], 60) && ue(o[t]))
+              st = !0;
+            else if (ce && N && i(o[t], 47) && (i(o[t + 1], 42) || i(o[t + 1], 47)))
+              st = !0, R[R.length - 1] = ie, Se = i(o[t + 1], 42) ? "*/" : H, re.push(o[t]);
+            else if (be === !1 && (o[t] === G || i(j, 10) && i(o[t + 1], 60)) && (R.length > j.length + 1 || i(R[0], 93)) && (N === !1 || Ee === 0)) {
+              if (i(j, 10)) {
+                if (ue(R[R.length - 1]))
                   do
                     R.pop(), t = t - 1;
-                  while (ce(R[R.length - 1]));
+                  while (ue(R[R.length - 1]));
                 break;
               }
-              if (U = R.length, W = N.length - 1, W > -1)
+              if (Y = R.length, z = j.length - 1, z > -1)
                 do {
-                  if (U = U - 1, R[U] !== N.charAt(W))
+                  if (Y = Y - 1, R[Y] !== j.charAt(z))
                     break;
-                  W = W - 1;
-                } while (W > -1);
-              if (W < 0) {
-                i(R[U], 62) && i(o[t], 62) && i(o[t - 1], 125) && ce(o[t + 1]) && J.length > 0 && J[J.length - 1][1] === 0 && (J[J.length - 1][1] = i(o[t + 1], 32) ? 1 : 2);
+                  z = z - 1;
+                } while (z > -1);
+              if (z < 0) {
+                i(R[Y], 62) && i(o[t], 62) && i(o[t - 1], 125) && ue(o[t + 1]) && J.length > 0 && J[J.length - 1][1] === 0 && (J[J.length - 1][1] = i(o[t + 1], 32) ? 1 : 2);
                 break;
               }
             }
-          } else if (i(o[t], re.charCodeAt(re.length - 1)) && T(o[t - 1], 92) && (A === !0 && i(N, 125) && I(t) === !1 || A === !1 || T(N, 125))) {
-            if (U = 0, W = re.length - 1, W > -1)
+          } else if (i(o[t], X.charCodeAt(X.length - 1)) && M(o[t - 1], 92) && (N === !0 && i(j, 125) && I(t) === !1 || N === !1 || M(j, 125))) {
+            if (Y = 0, z = X.length - 1, z > -1)
               do {
-                if (T(o[t - U], re.charCodeAt(W)))
+                if (M(o[t - Y], X.charCodeAt(z)))
                   break;
-                U = U + 1, W = W - 1;
-              } while (W > -1);
-            W < 0 && (re = c);
+                Y = Y + 1, z = z - 1;
+              } while (z > -1);
+            z < 0 && (X = c);
           }
           t = t + 1;
-        } while (t < k);
-        if (Ce = 0, P || (P = Ue(R.join(c))), ue === !1)
+        } while (t < b);
+        if (L = 0, V || (V = Ue(R.join(c))), ae === !1)
           if (B === "liquid") {
-            if (j = Ki(R, P, Q, n), n.liquid.normalizeSpacing, P === "liquid")
-              return ne();
+            if (q = tn(R, V, E, n), n.liquid.normalizeSpacing, V === "liquid")
+              return ee();
           } else
-            j = R.join(c);
+            q = R.join(c);
         else
-          j = R.join(c);
-        return S.token = j, S.types = B, K === !1 && A === !1 && (j = j.replace(Xe, ee)), y();
+          q = R.join(c);
+        return y.token = q, y.types = B, te === !1 && N === !1 && (q = q.replace(Xe, ie)), w();
       }
     }
-    return E();
+    return ge();
   }
-  function M() {
-    let N = [], S = t, j = A === !0 && i(s.token[r.count], 123), D = "([{!=,;.?:&<>", B = c, P = r.lineOffset, pe = 2, ge = c, ue = p({
+  function C() {
+    let j = [], y = t, q = N === !0 && i(s.token[r.count], 123), G = "([{!=,;.?:&<>", B = c, V = r.lineOffset, ke = 2, we = c, ae = p({
       begin: r.stack.index,
       stack: Ue(r.stack.token) || "global",
       types: "content"
     });
-    j === !0 ? ge = "script" : r.stack.index > -1 ? (ge = Ue(s.token[r.stack.index]), s.types[r.stack.index].startsWith("liquid_") && (pe = 3)) : (ge = Ue(s.token[s.begin[r.count]]), s.types[s.begin[r.count]].startsWith("liquid_") && (pe = 3)), V === !0 && (pe === 3 ? u.slice(t, u.lastIndexOf("{", u.indexOf(`end${ge}`, t))).trim() === c && (V = !1, ue.types = "liquid_end") : pe === 2 && (ge === "script" || ge === "style") && (u.slice(t, u.indexOf("</script>", t)).trim() === c || u.slice(t, u.indexOf("</style>", t)).trim() === c) && (V = !1, ue.types = "end"));
-    function Ce() {
+    q === !0 ? we = "script" : r.stack.index > -1 ? (we = Ue(s.token[r.stack.index]), s.types[r.stack.index].startsWith("liquid_") && (ke = 3)) : (we = Ue(s.token[s.begin[r.count]]), s.begin[r.count] > -1 && s.types[s.begin[r.count]].startsWith("liquid_") && (ke = 3)), F === !0 && (ke === 3 ? u.slice(t, u.lastIndexOf("{", u.indexOf(`end${we}`, t))).trim() === c && (F = !1, ae.types = "liquid_end") : ke === 2 && (we === "script" || we === "style") && (u.slice(t, u.indexOf("</script>", t)).trim() === c || u.slice(t, u.indexOf("</style>", t)).trim() === c) && (F = !1, ae.types = "end"));
+    function L() {
       return s.types[r.count] === "liquid_start" && s.token[r.count].indexOf("<!") === 0 && s.token[r.count].indexOf("<![") < 0 && s.token[r.count].charCodeAt(s.token[r.count].length - 1) === 91;
     }
-    function O() {
-      let K = t - 1, se = 0;
-      if (T(o[t - 1], 92))
+    function ye() {
+      let te = t - 1, ce = 0;
+      if (M(o[t - 1], 92))
         return !1;
-      if (K > -1)
+      if (te > -1)
         do {
-          if (T(o[K], 92))
+          if (M(o[te], 92))
             break;
-          se = se + 1, K = K - 1;
-        } while (K > -1);
-      return se % 2 === 1;
+          ce = ce + 1, te = te - 1;
+        } while (te > -1);
+      return ce % 2 === 1;
     }
-    if (t < k) {
-      let K = c, se = c, J = c, $e = 0;
+    if (t < b) {
+      let te = c, ce = c, J = c, P = 0;
       do {
-        if (i(o[t], 10) && (P = r.lines(t, P)), V === !0) {
-          if (pe === 3) {
-            let $ = `end${ge}`, G = u.indexOf($, t);
-            if (G > -1) {
-              let oe = o.lastIndexOf("{", G), ne = o.indexOf("}", G + $.length) + 1;
-              if (K = u.slice(oe, ne), tn($).test(K)) {
-                P = 1, J = u.slice(t, oe), r.external(h, J), P !== r.lineOffset && (P = r.lineOffset), ue.token = _(K), ue.types = "liquid_end", ue.lines = P, w(ue), t = ne - 1, V = !1;
+        if (i(o[t], 10) && (V = r.lines(t, V)), F === !0) {
+          if (ke === 3) {
+            let T = `end${we}`, oe = u.indexOf(T, t);
+            if (oe > -1) {
+              let se = o.lastIndexOf("{", oe), ee = o.indexOf("}", oe + T.length) + 1;
+              if (te = u.slice(se, ee), sn(T).test(te)) {
+                V = 1, J = u.slice(t, se), r.external(h, J), V !== r.lineOffset && (V = r.lineOffset), ae.token = D(te), ae.types = "liquid_end", ae.lines = V, S(ae), t = ee - 1, F = !1;
                 break;
               }
             }
           }
-          if (se === c) {
+          if (ce === c) {
             if (i(o[t], 47))
-              i(o[t + 1], 42) ? se = "*" : i(o[t + 1], 47) ? se = "/" : !A && ge === "script" && T(o[t - 1], 60) && D.indexOf(o[t - 1]) > -1 && (se = "r");
-            else if (O() === !1 && (i(o[t], 34) || i(o[t], 39) || i(o[t], 96)))
-              se = o[t];
-            else if (i(o[t], 123) && j === !0)
-              $e = $e + 1;
-            else if (i(o[t], 125) && j === !0) {
-              if ($e === 0) {
-                J = N.join(c).replace(ct, c).replace(We, c), r.external(h, J), r.stack.update(r.stack.index + 1), s.types[r.count] === "end" && s.lexer[s.begin[r.count] - 1] === "script" && (w(ue, {
+              i(o[t + 1], 42) ? ce = "*" : i(o[t + 1], 47) ? ce = "/" : !N && we === "script" && M(o[t - 1], 60) && G.indexOf(o[t - 1]) > -1 && (ce = "r");
+            else if (ye() === !1 && (i(o[t], 34) || i(o[t], 39) || i(o[t], 96)))
+              ce = o[t];
+            else if (i(o[t], 123) && q === !0)
+              P = P + 1;
+            else if (i(o[t], 125) && q === !0) {
+              if (P === 0) {
+                J = j.join(c).replace(pt, c).replace(Pe, c), r.external(h, J), r.stack.update(r.stack.index + 1), s.types[r.count] === "end" && s.lexer[s.begin[r.count] - 1] === "script" && (S(ae, {
                   lexer: "script",
                   types: "separator",
                   token: n.correct === !0 ? ";" : "x;"
-                }), ue.lexer = "markup"), w(ue, {
+                }), ae.lexer = "markup"), S(ae, {
                   token: "}",
                   types: "script_end"
                 }), r.stack.pop();
                 break;
               }
-              $e = $e - 1;
+              P = P - 1;
             }
-            if (ge === "script" && i(o[t], 60) && i(o[t + 1], 47)) {
-              if (K = u.slice(t, t + 9).toLowerCase(), K === "</script>") {
-                if (N.length < 1)
+            if (we === "script" && i(o[t], 60) && i(o[t + 1], 47)) {
+              if (te = u.slice(t, t + 9).toLowerCase(), te === "</script>") {
+                if (j.length < 1)
                   break;
-                J = N.join(c).trimEnd(), Ot.test(J) && vt.test(J) ? (w(ue, { token: "<!--", types: "comment" }), J = J.replace(Ot, c).replace(vt, c), r.external("javascript", J), w(ue, { token: "-->" })) : (r.external(h, J), ue.token = K, ue.types = "end", t = t - 1);
+                J = j.join(c).trimEnd(), vt.test(J) && Rt.test(J) ? (S(ae, { token: "<!--", types: "comment" }), J = J.replace(vt, c).replace(Rt, c), r.external("javascript", J), S(ae, { token: "-->" })) : (r.external(h, J), ae.token = te, ae.types = "end", t = t - 1);
                 break;
               }
-            } else if (ge === "style" && i(o[t], 60) && i(o[t + 1], 47) && (K = u.slice(t, t + 8).toLowerCase(), K === "</style>")) {
-              if (N.length < 1)
+            } else if (we === "style" && i(o[t], 60) && i(o[t + 1], 47) && (te = u.slice(t, t + 8).toLowerCase(), te === "</style>")) {
+              if (j.length < 1)
                 break;
-              J = N.join(c).trimEnd(), Ot.test(J) && vt.test(J) ? (w(ue, { token: "<!--", types: "comment" }), J = J.replace(Ot, c).replace(vt, c), r.external("css", J), w(ue, { token: "-->" })) : (r.external(h, J), ue.token = K, ue.types = "end", t = t - 1);
+              J = j.join(c).trimEnd(), vt.test(J) && Rt.test(J) ? (S(ae, { token: "<!--", types: "comment" }), J = J.replace(vt, c).replace(Rt, c), r.external("css", J), S(ae, { token: "-->" })) : (r.external(h, J), ae.token = te, ae.types = "end", t = t - 1);
               break;
             }
           } else
-            se === o[t] && O() === !1 && (i(se, 34) || i(se, 39) || i(se, 96) || i(se, 42) && i(o[t + 1], 47)) ? se = c : i(se, 96) && i(o[t], 36) && i(o[t + 1], 123) && O() === !1 ? se = "}" : i(se, 125) && i(o[t], 125) && O() === !1 ? se = "`" : i(se, 47) && (i(o[t], 10) || i(o[t], 13)) ? se = c : se === "r" && i(o[t], 47) && O() === !1 ? se = c : i(se, 47) && i(o[t], 62) && i(o[t - 1], 45) && i(o[t - 2], 45) && (K = u.slice(t + 1, t + 11).toLowerCase(), K = K.slice(0, K.length - 2), ge === "script" && K === "</" && (se = c), K = K.slice(0, K.length - 1), ge === "style" && K === "</style" && (se = c));
+            ce === o[t] && ye() === !1 && (i(ce, 34) || i(ce, 39) || i(ce, 96) || i(ce, 42) && i(o[t + 1], 47)) ? ce = c : i(ce, 96) && i(o[t], 36) && i(o[t + 1], 123) && ye() === !1 ? ce = "}" : i(ce, 125) && i(o[t], 125) && ye() === !1 ? ce = "`" : i(ce, 47) && (i(o[t], 10) || i(o[t], 13)) ? ce = c : ce === "r" && i(o[t], 47) && ye() === !1 ? ce = c : i(ce, 47) && i(o[t], 62) && i(o[t - 1], 45) && i(o[t - 2], 45) && (te = u.slice(t + 1, t + 11).toLowerCase(), te = te.slice(0, te.length - 2), we === "script" && te === "</" && (ce = c), te = te.slice(0, te.length - 1), we === "style" && te === "</style" && (ce = c));
         }
-        if (Ce() === !0 && i(o[t], 93)) {
-          t = t - 1, P = 0, B = N.join(c).replace(We, c), w(ue, { token: B });
+        if (L() === !0 && i(o[t], 93)) {
+          t = t - 1, V = 0, B = j.join(c).replace(Pe, c), S(ae, { token: B });
           break;
         }
-        if (V === !1 && N.length > 0 && (i(o[t], 60) && T(o[t + 1], 61) && He(o[t + 1]) === !1 && lt(o[t + 1]) || i(o[t], 123) && i(o[t + 1], 37) || i(o[t], 123) && (A === !0 || i(o[t + 1], 123) || i(o[t + 1], 37)))) {
-          if (t = t - 1, P = 0, B = r.stack.token === "comment" ? N.join(c) : N.join(c).replace(We, c), ue.token = B, n.wrap > 0 && n.markup.preserveText === !1) {
-            let ne = function() {
-              if (i(B[$], 32)) {
-                oe.push(B.slice(0, $)), B = B.slice($ + 1), G = B.length, $ = n.wrap;
+        if (F === !1 && j.length > 0 && (i(o[t], 60) && M(o[t + 1], 61) && He(o[t + 1]) === !1 && at(o[t + 1]) || i(o[t], 123) && i(o[t + 1], 37) || i(o[t], 123) && (N === !0 || i(o[t + 1], 123) || i(o[t + 1], 37)))) {
+          if (t = t - 1, V = 0, B = r.stack.token === "comment" ? j.join(c) : j.join(c).replace(Pe, c), ae.token = B, n.wrap > 0 && n.markup.preserveText === !1) {
+            let ee = function() {
+              if (i(B[T], 32)) {
+                se.push(B.slice(0, T)), B = B.slice(T + 1), oe = B.length, T = n.wrap;
                 return;
               }
               do
-                $ = $ - 1;
-              while ($ > 0 && T(B[$], 32));
-              if ($ > 0)
-                oe.push(B.slice(0, $)), B = B.slice($ + 1), G = B.length, $ = n.wrap;
+                T = T - 1;
+              while (T > 0 && M(B[T], 32));
+              if (T > 0)
+                se.push(B.slice(0, T)), B = B.slice(T + 1), oe = B.length, T = n.wrap;
               else {
-                $ = n.wrap;
+                T = n.wrap;
                 do
-                  $ = $ + 1;
-                while ($ < G && T(B[$], 32));
-                oe.push(B.slice(0, $)), B = B.slice($ + 1), G = B.length, $ = n.wrap;
+                  T = T + 1;
+                while (T < oe && M(B[T], 32));
+                se.push(B.slice(0, T)), B = B.slice(T + 1), oe = B.length, T = n.wrap;
               }
             };
-            let $ = n.wrap, G = B.length, oe = [];
+            let T = n.wrap, oe = B.length, se = [];
             if (s.token[s.begin[r.count]] === "<a>" && s.token[s.begin[s.begin[r.count]]] === "<li>" && s.lines[s.begin[r.count]] === 0 && r.lineOffset === 0 && B.length < n.wrap) {
-              w(ue);
+              S(ae);
               break;
             }
-            if (G < n.wrap) {
-              w(ue);
+            if (oe < n.wrap) {
+              S(ae);
               break;
             }
             if (r.lineOffset < 1 && r.count > -1) {
-              let Y = r.count;
+              let _ = r.count;
               do {
-                if ($ = $ - s.token[Y].length, s.types[Y].indexOf("attribute") > -1 && ($ = $ - 1), s.lines[Y] > 0 && s.types[Y].indexOf("attribute") < 0)
+                if (T = T - s.token[_].length, s.types[_].indexOf("attribute") > -1 && (T = T - 1), s.lines[_] > 0 && s.types[_].indexOf("attribute") < 0)
                   break;
-                Y = Y - 1;
-              } while (Y > 0 && $ > 0);
-              $ < 1 && ($ = B.indexOf(ee));
+                _ = _ - 1;
+              } while (_ > 0 && T > 0);
+              T < 1 && (T = B.indexOf(ie));
             }
-            B = N.join(c).replace(ct, c).replace(We, c).replace(Xe, ee);
+            B = j.join(c).replace(pt, c).replace(Pe, c).replace(Xe, ie);
             do
-              ne();
-            while ($ < G);
-            B !== c && T(B, 32) && oe.push(B), B = oe.join(r.crlf), B = c + B + c;
+              ee();
+            while (T < oe);
+            B !== c && M(B, 32) && se.push(B), B = se.join(r.crlf), B = c + B + c;
           } else {
-            let $ = B.indexOf(z);
-            $ > -1 && (w(ue, { token: B.slice(0, $) }), B = B.slice($), Ct.test(B) ? ue.lines = 1 : (ue.lines = 2, B = B.replace(Je, c)));
+            n.markup.preserveText === !0 && (B = a(y) + B);
+            let T = B.indexOf(H);
+            T > -1 && (S(ae, { token: B.slice(0, T) }), B = B.slice(T), Ot.test(B) ? ae.lines = 0 : (ae.lines = 2, B = B.replace(Je, c)));
           }
-          P = 0, ue.token = B, w(ue);
+          V = 0, ae.token = B, S(ae);
           break;
         }
-        N.push(o[t]), t = t + 1;
-      } while (t < k);
+        j.push(o[t]), t = t + 1;
+      } while (t < b);
+      ae.types === "content" && n.markup.preserveText === !0 && j.unshift(a(y));
     }
-    if (t > S && t < k)
-      if (ce(o[t])) {
-        let K = t;
+    if (t > y && t < b)
+      if (ue(o[t])) {
+        let te = t;
         r.lineOffset = r.lineOffset + 1;
         do
-          i(o[K], 10) && (r.lineNumber = r.lineNumber + 1, r.lineOffset = r.lineOffset + 1), K = K - 1;
-        while (K > S && ce(o[K]));
+          i(o[te], 10) && (r.lineNumber = r.lineNumber + 1, r.lineOffset = r.lineOffset + 1), te = te - 1;
+        while (te > y && ue(o[te]));
       } else
         r.lineOffset = 0;
     else
-      (t !== S || t === S && V === !1) && (pe === 3 && ue.types === "liquid_end" ? B = _(N.join(c).replace(We, c)) : B = N.join(c).replace(We, c), P = 0, ue.token !== B && (pe === 3 && ue.types === "liquid_end" && (B = _(B)), ue.token = B, w(ue), r.lineOffset = 0));
-    V = !1;
+      (t !== y || t === y && F === !1) && (ke === 3 && ae.types === "liquid_end" ? B = D(j.join(c).replace(Pe, c)) : B = j.join(c).replace(Pe, c), V = 0, ae.token !== B && (ke === 3 && ae.types === "liquid_end" && (B = D(B)), ae.token = B, S(ae), r.lineOffset = 0));
+    F = !1;
   }
-  function L() {
+  function U() {
     r.lineOffset = 1;
     do {
-      if (i(o[t], 10) && (r.lineIndex = t, r.lineOffset = r.lineOffset + 1, r.lineNumber = r.lineNumber + 1), ce(o[t + 1]) === !1)
+      if (i(o[t], 10) && (r.lineIndex = t, r.lineOffset = r.lineOffset + 1, r.lineNumber = r.lineNumber + 1), ue(o[t + 1]) === !1)
         break;
       t = t + 1;
-    } while (t < k);
+    } while (t < b);
   }
   (r.language === "html" || r.language === "liquid") && ("html");
   do {
     if (r.error)
       return s;
-    if (ce(o[t]) ? L() : V ? M() : i(o[t], 60) ? g(c) : i(o[t], 123) && (i(o[t + 1], 123) || i(o[t + 1], 37)) ? g(c) : A && i(o[t], 123) ? g(c) : i(o[t], 45) && i(o[t + 1], 45) && i(o[t + 2], 45) ? g("---") : M(), t = t + 1, t === k && r.stack.index in r.pairs) {
-      let N = r.pairs[r.stack.index];
-      N.type === 2 && jt(105, N);
+    if (ue(o[t]) ? U() : F ? C() : i(o[t], 60) ? W(c) : i(o[t], 123) && (i(o[t + 1], 123) || i(o[t + 1], 37)) ? W(c) : N && i(o[t], 123) ? W(c) : i(o[t], 45) && i(o[t + 1], 45) && i(o[t + 2], 45) ? W("---") : C(), t = t + 1, t === b && r.stack.index in r.pairs) {
+      let j = r.pairs[r.stack.index];
+      j.type === 2 && Et(105, j);
     }
-  } while (t < k);
+  } while (t < b);
   return s;
 }
 
 // src/lexers/script.ts
-function ln() {
-  let { data: e, references: s, rules: n, source: u } = r, A = r.language === "json" ? n.json : n.script, a = Ne(u) ? u : u.split(c), C = a.length, o = [], k = [], f = [], t = [0, c], h = [!1], V = { count: [], index: [], word: [] }, le = -1, m = 0, p = c, w = c, _ = [], I = 0, d = -1, l = -1, g = [], M, L, N, S = [
+function un() {
+  let { data: e, references: s, rules: n, source: u } = r, N = r.language === "json" ? n.json : n.script, l = Ne(u) ? u : u.split(c), O = l.length, o = [], b = [], f = [], t = [0, c], h = [!1], F = { count: [], index: [], word: [] }, le = -1, m = 0, p = c, S = c, D = [], I = 0, d = -1, a = -1, g = [], W, C, U, j = [
     "autoescape",
     "block",
     "capture",
@@ -3910,43 +3919,43 @@ function ln() {
     "unless",
     "verbatim"
   ];
-  function j() {
-    V.count.pop(), V.index.pop(), V.word.pop(), le = le - 1;
+  function y() {
+    F.count.pop(), F.index.pop(), F.word.pop(), le = le - 1;
   }
-  function D(y = c) {
-    let x = {
+  function q(x = c) {
+    let w = {
       begin: r.stack.index,
       ender: -1,
       lexer: "script",
       lines: r.lineOffset,
       stack: r.stack.token,
       token: p,
-      types: w
+      types: S
     };
-    r.push(e, x, y);
+    r.push(e, w, x);
   }
-  function B(y, x) {
-    let q = x === !0 ? m : m + 1, v = c;
-    if ((typeof y != "number" || y < 1) && (y = 1), i(a[m], 47) && (i(a[m + 1], 47) ? v = z : i(a[m + 1], 42) && (v = "/")), q < C)
+  function G(x, w) {
+    let A = w === !0 ? m : m + 1, v = c;
+    if ((typeof x != "number" || x < 1) && (x = 1), i(l[m], 47) && (i(l[m + 1], 47) ? v = H : i(l[m + 1], 42) && (v = "/")), A < O)
       do {
-        if (ce(a[q]) === !1) {
-          if (i(a[q], 47) && (v === c ? i(a[q + 1], 47) ? v = z : i(a[q + 1], 42) && (v = "/") : i(v, 47) && i(a[q - 1], 42) && (v = c)), v === c && a[q - 1] + a[q] !== "*/")
-            return a.slice(q, q + y).join(c);
+        if (ue(l[A]) === !1) {
+          if (i(l[A], 47) && (v === c ? i(l[A + 1], 47) ? v = H : i(l[A + 1], 42) && (v = "/") : i(v, 47) && i(l[A - 1], 42) && (v = c)), v === c && l[A - 1] + l[A] !== "*/")
+            return l.slice(A, A + x).join(c);
         } else
-          i(v, 10) && i(a[q], 10) && (v = c);
-        q = q + 1;
-      } while (q < C);
+          i(v, 10) && i(l[A], 10) && (v = c);
+        A = A + 1;
+      } while (A < O);
     return c;
   }
-  function P(y) {
-    let x = y;
+  function B(x) {
+    let w = x;
     do
-      y = y - 1;
-    while (i(a[y], 92) && y > 0);
-    return (x - y) % 2 === 1;
+      x = x - 1;
+    while (i(l[x], 92) && x > 0);
+    return (w - x) % 2 === 1;
   }
-  function pe(y) {
-    let x = B(1, !1), q = r.stack.length === 0 ? c : r.stack.token, v = {
+  function V(x) {
+    let w = G(1, !1), A = r.stack.length === 0 ? c : r.stack.token, v = {
       begin: e.begin[r.count],
       ender: e.begin[r.count],
       lexer: e.lexer[r.count],
@@ -3955,153 +3964,153 @@ function ln() {
       token: e.token[r.count],
       types: e.types[r.count]
     };
-    if (Tt.test(p) || w === "start" || w === "type_start" || r.language === "json" || i(x, 123) || i(v.token, 59) || i(v.token, 44) || v.stack === "class" || v.stack === "map" || v.stack === "attribute" || e.types[v.begin - 1] === "generic" || q === "initializer" || i(v.token, 125) && e.stack[v.begin - 1] === "global" && e.types[v.begin - 1] !== "operator" && v.stack === e.stack[r.count - 1] || v.stack === "array" && T(v.token, 93) || i(e.token[e.begin[r.count]], 123) && v.stack === "data_type" || v.types !== void 0 && v.types.indexOf("liquid") > -1 && v.types.indexOf("template_string") < 0 || i(x, 59) && y === !1 || e.lexer[r.count - 1] !== "script" && (m < C && C === u.length - 1 || C < u.length - 1))
+    if (Mt.test(p) || S === "start" || S === "type_start" || r.language === "json" || i(w, 123) || i(v.token, 59) || i(v.token, 44) || v.stack === "class" || v.stack === "map" || v.stack === "attribute" || e.types[v.begin - 1] === "generic" || A === "initializer" || i(v.token, 125) && e.stack[v.begin - 1] === "global" && e.types[v.begin - 1] !== "operator" && v.stack === e.stack[r.count - 1] || v.stack === "array" && M(v.token, 93) || i(e.token[e.begin[r.count]], 123) && v.stack === "data_type" || v.types !== void 0 && v.types.indexOf("liquid") > -1 && v.types.indexOf("template_string") < 0 || i(w, 59) && x === !1 || e.lexer[r.count - 1] !== "script" && (m < O && O === u.length - 1 || O < u.length - 1))
       return;
-    let E = 0;
+    let $ = 0;
     if (i(v.token, 125) && (v.stack === "function" || v.stack === "if" || v.stack === "else" || v.stack === "for" || v.stack === "do" || v.stack === "while" || v.stack === "switch" || v.stack === "class" || v.stack === "try" || v.stack === "catch" || v.stack === "finally" || v.stack === "block")) {
       if (v.stack === "function" && (e.stack[v.begin - 1] === "data_type" || e.types[v.begin - 1] === "type")) {
-        E = v.begin;
+        $ = v.begin;
         do
-          E = E - 1;
-        while (E > 0 && T(e.token[E], 41) && e.stack[E] !== "arguments");
-        E = e.begin[E];
+          $ = $ - 1;
+        while ($ > 0 && M(e.token[$], 41) && e.stack[$] !== "arguments");
+        $ = e.begin[$];
       } else
-        E = e.begin[v.begin - 1];
-      if (i(e.token[E], 40)) {
-        if (E = E - 1, e.token[E - 1] === "function" && (E = E - 1), e.stack[E - 1] === "object" || e.stack[E - 1] === "switch" || T(e.token[E - 1], 61) && T(e.token[E - 1], 58) && e.token[E - 1] !== "return")
+        $ = e.begin[v.begin - 1];
+      if (i(e.token[$], 40)) {
+        if ($ = $ - 1, e.token[$ - 1] === "function" && ($ = $ - 1), e.stack[$ - 1] === "object" || e.stack[$ - 1] === "switch" || M(e.token[$ - 1], 61) && M(e.token[$ - 1], 58) && e.token[$ - 1] !== "return")
           return;
       } else
         return;
     }
-    if (!(v.types === "comment" || q === "method" || q === "paren" || q === "expression" || q === "array" || q === "object" || q === "switch" && v.stack !== "method" && i(e.token[e.begin[r.count]], 40) && e.token[e.begin[r.count] - 1] !== "return" && e.types[e.begin[r.count] - 1] !== "operator") && !(e.stack[r.count] === "expression" && (e.token[e.begin[r.count] - 1] !== "while" || e.token[e.begin[r.count] - 1] === "while" && e.stack[e.begin[r.count] - 2] !== "do")) && !(x !== c && "=<>+*?|^:&%~,.()]".indexOf(x) > -1 && y === !1)) {
+    if (!(v.types === "comment" || A === "method" || A === "paren" || A === "expression" || A === "array" || A === "object" || A === "switch" && v.stack !== "method" && i(e.token[e.begin[r.count]], 40) && e.token[e.begin[r.count] - 1] !== "return" && e.types[e.begin[r.count] - 1] !== "operator") && !(e.stack[r.count] === "expression" && (e.token[e.begin[r.count] - 1] !== "while" || e.token[e.begin[r.count] - 1] === "while" && e.stack[e.begin[r.count] - 2] !== "do")) && !(w !== c && "=<>+*?|^:&%~,.()]".indexOf(w) > -1 && x === !1)) {
       if (v.types === "comment") {
-        E = r.count;
+        $ = r.count;
         do
-          E = E - 1;
-        while (E > 0 && e.types[E] === "comment");
-        if (E < 1)
+          $ = $ - 1;
+        while ($ > 0 && e.types[$] === "comment");
+        if ($ < 1)
           return;
-        v.token = e.token[E], v.types = e.types[E], v.stack = e.stack[E];
+        v.token = e.token[$], v.types = e.types[$], v.stack = e.stack[$];
       }
-      v.token === void 0 || v.types === "start" || v.types === "separator" || v.types === "operator" && v.token !== "++" && v.token !== "--" || v.token === "x}" || v.token === "var" || v.token === "let" || v.token === "const" || v.token === "else" || v.token.indexOf("#!/") === 0 || v.token === "instanceof" || v.stack === "method" && (e.token[v.begin - 1] === "function" || e.token[v.begin - 2] === "function") || (A.variableList === "list" && (V.index[le] = r.count), p = n.correct === !0 ? ";" : "x;", w = "separator", E = r.lineOffset, r.lineOffset = 0, D(), r.lineOffset = E, oe());
+      v.token === void 0 || v.types === "start" || v.types === "separator" || v.types === "operator" && v.token !== "++" && v.token !== "--" || v.token === "x}" || v.token === "var" || v.token === "let" || v.token === "const" || v.token === "else" || v.token.indexOf("#!/") === 0 || v.token === "instanceof" || v.stack === "method" && (e.token[v.begin - 1] === "function" || e.token[v.begin - 2] === "function") || (N.variableList === "list" && (F.index[le] = r.count), p = n.correct === !0 ? ";" : "x;", S = "separator", $ = r.lineOffset, r.lineOffset = 0, q(), r.lineOffset = $, oe());
     }
   }
-  function ge() {
-    let y = r.count;
-    if (e.types[y] === "comment")
+  function ke() {
+    let x = r.count;
+    if (e.types[x] === "comment")
       do
-        y = y - 1;
-      while (y > 0 && e.types[y] === "comment");
-    e.token[y] === "from" && (y = y - 2), e.token[y] === "x;" && r.splice({ data: e, howmany: 1, index: y });
+        x = x - 1;
+      while (x > 0 && e.types[x] === "comment");
+    e.token[x] === "from" && (x = x - 2), e.token[x] === "x;" && r.splice({ data: e, howmany: 1, index: x });
   }
-  function ue() {
-    let y = r.count;
+  function we() {
+    let x = r.count;
     do
-      y = y - 1;
-    while (y > -1 && e.token[y] === "x}");
-    if (e.stack[y] === "else")
-      return D();
-    y = y + 1, r.splice({
+      x = x - 1;
+    while (x > -1 && e.token[x] === "x}");
+    if (e.stack[x] === "else")
+      return q();
+    x = x + 1, r.splice({
       data: e,
       howmany: 0,
-      index: y,
+      index: x,
       record: {
-        begin: e.begin[y],
+        begin: e.begin[x],
         ender: -1,
         lexer: "script",
         lines: r.lineOffset,
-        stack: e.stack[y],
+        stack: e.stack[x],
         token: p,
-        types: w
+        types: S
       }
-    }), D();
+    }), q();
   }
-  function Ce() {
-    pe(!1), d > -1 && b(), N = yt(a, {
-      end: C,
+  function ae() {
+    V(!1), d > -1 && k(), U = xt(l, {
+      end: O,
       lexer: "script",
       begin: "/*",
       start: m,
       ender: "*/"
-    }), m = N[1], e.token[r.count] === "var" || e.token[r.count] === "let" || e.token[r.count] === "const" ? (M = r.pop(e), D(), r.push(e, M, c), e.lines[r.count - 2] === 0 && (e.lines[r.count - 2] = e.lines[r.count]), e.lines[r.count] = 0) : N[0] !== c && (p = N[0], w = Tt.test(p) ? "ignore" : "comment", p.indexOf("# sourceMappingURL=") === 2 && (t[0] = r.count + 1, t[1] = p), r.push(e, {
+    }), m = U[1], e.token[r.count] === "var" || e.token[r.count] === "let" || e.token[r.count] === "const" ? (W = r.pop(e), q(), r.push(e, W, c), e.lines[r.count - 2] === 0 && (e.lines[r.count - 2] = e.lines[r.count]), e.lines[r.count] = 0) : U[0] !== c && (p = U[0], S = Mt.test(p) ? "ignore" : "comment", p.indexOf("# sourceMappingURL=") === 2 && (t[0] = r.count + 1, t[1] = p), r.push(e, {
       begin: r.stack.index,
       ender: -1,
       lexer: "script",
       lines: r.lineOffset,
       stack: r.stack.token,
       token: p,
-      types: w
+      types: S
     }, c)), /\/\*\s*global\s+/.test(e.token[r.count]) && e.types.indexOf("word") < 0 && (s[0] = e.token[r.count].replace(/\/\*\s*global\s+/, c).replace("*/", c).replace(/,\s+/g, ",").split(","));
   }
-  function O() {
-    pe(!1), oe(), d > -1 && b(), N = Qt({
-      chars: a,
-      end: C,
+  function L() {
+    V(!1), oe(), d > -1 && k(), U = Ht({
+      chars: l,
+      end: O,
       lexer: "script",
       begin: "//",
       start: m,
-      ender: z
-    }), m = N[1], N[0] !== c && (p = N[0], w = Tt.test(p) ? "ignore" : "comment", p.indexOf("# sourceMappingURL=") === 2 && (t[0] = r.count + 1, t[1] = p), r.push(e, {
+      ender: H
+    }), m = U[1], U[0] !== c && (p = U[0], S = Mt.test(p) ? "ignore" : "comment", p.indexOf("# sourceMappingURL=") === 2 && (t[0] = r.count + 1, t[1] = p), r.push(e, {
       begin: r.stack.index,
       ender: -1,
       lexer: "script",
       lines: r.lineOffset,
       stack: r.stack.token,
       token: p,
-      types: w
+      types: S
     }, c));
   }
-  function ke() {
-    let y = 0, x = 0, q = m + 1, v = !1, E = C, me = ["/"];
-    if (q < E)
+  function ye() {
+    let x = 0, w = 0, A = m + 1, v = !1, $ = O, ge = ["/"];
+    if (A < $)
       do {
-        if (me.push(a[q]), (T(a[q - 1], 92) || i(a[q - 2], 92)) && (i(a[q], 91) && (v = !0), i(a[q], 93) && (v = !1)), i(a[q], 47) && v === !1)
-          if (i(a[q - 1], 92)) {
-            if (x = 0, y = q - 1, y > 0)
+        if (ge.push(l[A]), (M(l[A - 1], 92) || i(l[A - 2], 92)) && (i(l[A], 91) && (v = !0), i(l[A], 93) && (v = !1)), i(l[A], 47) && v === !1)
+          if (i(l[A - 1], 92)) {
+            if (w = 0, x = A - 1, x > 0)
               do {
-                if (i(a[y], 92))
-                  x = x + 1;
+                if (i(l[x], 92))
+                  w = w + 1;
                 else
                   break;
-                y = y - 1;
-              } while (y > 0);
-            if (x % 2 === 0)
+                x = x - 1;
+              } while (x > 0);
+            if (w % 2 === 0)
               break;
           } else
             break;
-        q = q + 1;
-      } while (q < E);
-    return a[q + 1] === "g" || a[q + 1] === "i" || a[q + 1] === "m" || a[q + 1] === "y" || a[q + 1] === "u" ? (me.push(a[q + 1]), a[q + 2] !== a[q + 1] && (a[q + 2] === "g" || a[q + 2] === "i" || a[q + 2] === "m" || a[q + 2] === "y" || a[q + 2] === "u") ? (me.push(a[q + 2]), a[q + 3] !== a[q + 1] && a[q + 3] !== a[q + 2] && (a[q + 3] === "g" || a[q + 3] === "i" || a[q + 3] === "m" || a[q + 3] === "y" || a[q + 3] === "u") ? (me.push(a[q + 3]), a[q + 4] !== a[q + 1] && a[q + 4] !== a[q + 2] && a[q + 4] !== a[q + 3] && (a[q + 4] === "g" || a[q + 4] === "i" || a[q + 4] === "m" || a[q + 4] === "y" || a[q + 4] === "u") ? (me.push(a[q + 4]), a[q + 5] !== a[q + 1] && a[q + 5] !== a[q + 2] && a[q + 5] !== a[q + 3] && a[q + 5] !== a[q + 4] && (a[q + 5] === "g" || a[q + 5] === "i" || a[q + 5] === "m" || a[q + 5] === "y" || a[q + 5] === "u") ? (me.push(a[q + 4]), m = q + 5) : m = q + 4) : m = q + 3) : m = q + 2) : m = q + 1) : m = q, me.join(c);
+        A = A + 1;
+      } while (A < $);
+    return l[A + 1] === "g" || l[A + 1] === "i" || l[A + 1] === "m" || l[A + 1] === "y" || l[A + 1] === "u" ? (ge.push(l[A + 1]), l[A + 2] !== l[A + 1] && (l[A + 2] === "g" || l[A + 2] === "i" || l[A + 2] === "m" || l[A + 2] === "y" || l[A + 2] === "u") ? (ge.push(l[A + 2]), l[A + 3] !== l[A + 1] && l[A + 3] !== l[A + 2] && (l[A + 3] === "g" || l[A + 3] === "i" || l[A + 3] === "m" || l[A + 3] === "y" || l[A + 3] === "u") ? (ge.push(l[A + 3]), l[A + 4] !== l[A + 1] && l[A + 4] !== l[A + 2] && l[A + 4] !== l[A + 3] && (l[A + 4] === "g" || l[A + 4] === "i" || l[A + 4] === "m" || l[A + 4] === "y" || l[A + 4] === "u") ? (ge.push(l[A + 4]), l[A + 5] !== l[A + 1] && l[A + 5] !== l[A + 2] && l[A + 5] !== l[A + 3] && l[A + 5] !== l[A + 4] && (l[A + 5] === "g" || l[A + 5] === "i" || l[A + 5] === "m" || l[A + 5] === "y" || l[A + 5] === "u") ? (ge.push(l[A + 4]), m = A + 5) : m = A + 4) : m = A + 3) : m = A + 2) : m = A + 1) : m = A, ge.join(c);
   }
-  function K() {
-    let y = [a[m]], x = 0, q = i(y[0], 46), v = /zz/;
-    if (m < C - 2 && a[m] === "0" && (a[m + 1] === "x" ? v = /[0-9a-fA-F]/ : a[m + 1] === "o" ? v = /[0-9]/ : a[m + 1] === "b" && (v = /0|1/), v.test(a[m + 2]))) {
-      y.push(a[m + 1]), x = m + 1;
+  function me() {
+    let x = [l[m]], w = 0, A = i(x[0], 46), v = /zz/;
+    if (m < O - 2 && l[m] === "0" && (l[m + 1] === "x" ? v = /[0-9a-fA-F]/ : l[m + 1] === "o" ? v = /[0-9]/ : l[m + 1] === "b" && (v = /0|1/), v.test(l[m + 2]))) {
+      x.push(l[m + 1]), w = m + 1;
       do
-        x = x + 1, y.push(a[x]);
-      while (v.test(a[x + 1]));
-      return m = x, y.join(c);
+        w = w + 1, x.push(l[w]);
+      while (v.test(l[w + 1]));
+      return m = w, x.join(c);
     }
-    if (x = m + 1, x < C)
+    if (w = m + 1, w < O)
       do {
-        if (He(a[x]) || i(a[x], 46) && q === !1)
-          y.push(a[x]), i(a[x], 46) && (q = !0);
+        if (He(l[w]) || i(l[w], 46) && A === !1)
+          x.push(l[w]), i(l[w], 46) && (A = !0);
         else
           break;
-        x = x + 1;
-      } while (x < C);
-    if (x < C - 1 && (He(a[x - 1]) || He(a[x - 2]) && (i(a[x - 1], 45) || i(a[x - 1], 43))) && (a[x] === "e" || a[x] === "E") && (y.push(a[x]), (i(a[x + 1], 45) || i(a[x + 1], 43)) && (y.push(a[x + 1]), x = x + 1), q = !1, x = x + 1, x < C))
+        w = w + 1;
+      } while (w < O);
+    if (w < O - 1 && (He(l[w - 1]) || He(l[w - 2]) && (i(l[w - 1], 45) || i(l[w - 1], 43))) && (l[w] === "e" || l[w] === "E") && (x.push(l[w]), (i(l[w + 1], 45) || i(l[w + 1], 43)) && (x.push(l[w + 1]), w = w + 1), A = !1, w = w + 1, w < O))
       do {
-        if (He(a[x]) || i(a[x], 46) && q === !1)
-          y.push(a[x]), i(a[x], 46) && (q = !0);
+        if (He(l[w]) || i(l[w], 46) && A === !1)
+          x.push(l[w]), i(l[w], 46) && (A = !0);
         else
           break;
-        x = x + 1;
-      } while (x < C);
-    return m = x - 1, y.join(c);
+        w = w + 1;
+      } while (w < O);
+    return m = w - 1, x.join(c);
   }
-  function se() {
-    let y = 0, x = 0, q = C, v = c, E = [
+  function te() {
+    let x = 0, w = 0, A = O, v = c, $ = [
       "=",
       "<",
       ">",
@@ -4114,664 +4123,664 @@ function ln() {
       "&",
       "%",
       "~"
-    ], me = E.length;
-    if (d > -1 && b(), i(a[m], 47) && r.count > -1 && (w !== "word" && w !== "reference" || p === "typeof" || p === "return" || p === "else") && w !== "number" && w !== "string" && w !== "end")
-      return p === "return" || p === "typeof" || p === "else" || w !== "word" ? (p = ke(), w = "regex") : (p = "/", w = "operator"), D(), "regex";
-    if (i(a[m], 63) && ("+-*/.?".indexOf(a[m + 1]) > -1 || i(a[m + 1], 58) && E.join(c).indexOf(a[m + 2]) < 0) && (i(a[m + 1], 46) && He(a[m + 2]) === !1 ? v = "?." : i(a[m + 1], 63) && (v = "??"), v === c))
+    ], ge = $.length;
+    if (d > -1 && k(), i(l[m], 47) && r.count > -1 && (S !== "word" && S !== "reference" || p === "typeof" || p === "return" || p === "else") && S !== "number" && S !== "string" && S !== "end")
+      return p === "return" || p === "typeof" || p === "else" || S !== "word" ? (p = ye(), S = "regex") : (p = "/", S = "operator"), q(), "regex";
+    if (i(l[m], 63) && ("+-*/.?".indexOf(l[m + 1]) > -1 || i(l[m + 1], 58) && $.join(c).indexOf(l[m + 2]) < 0) && (i(l[m + 1], 46) && He(l[m + 2]) === !1 ? v = "?." : i(l[m + 1], 63) && (v = "??"), v === c))
       return "?";
-    if (i(a[m], 58) && "+-*/".indexOf(a[m + 1]) > -1)
+    if (i(l[m], 58) && "+-*/".indexOf(l[m + 1]) > -1)
       return ":";
-    if (m < C - 1) {
-      if (T(a[m], 60) && i(a[m + 1], 60))
-        return a[m];
-      if (i(a[m], 33) && i(a[m + 1], 47))
+    if (m < O - 1) {
+      if (M(l[m], 60) && i(l[m + 1], 60))
+        return l[m];
+      if (i(l[m], 33) && i(l[m + 1], 47))
         return "!";
-      if (i(a[m], 45) && (h[h.length - 1] = !1, i(a[m + 1], 45) ? v = "--" : i(a[m + 1], 61) ? v = "-=" : i(a[m + 1], 62) && (v = "->"), v === c))
+      if (i(l[m], 45) && (h[h.length - 1] = !1, i(l[m + 1], 45) ? v = "--" : i(l[m + 1], 61) ? v = "-=" : i(l[m + 1], 62) && (v = "->"), v === c))
         return "-";
-      if (i(a[m], 43) && (h[h.length - 1] = !1, i(a[m + 1], 43) ? v = "++" : i(a[m + 1], 61) && (v = "+="), v === c))
+      if (i(l[m], 43) && (h[h.length - 1] = !1, i(l[m + 1], 43) ? v = "++" : i(l[m + 1], 61) && (v = "+="), v === c))
         return "+";
-      if (i(a[m], 61) && T(a[m + 1], 61) && T(a[m + 1], 33) && T(a[m + 1], 62))
+      if (i(l[m], 61) && M(l[m + 1], 61) && M(l[m + 1], 33) && M(l[m + 1], 62))
         return h[h.length - 1] = !1, "=";
     }
-    if (i(a[m], 59))
+    if (i(l[m], 59))
       if (r.language === "typescript") {
         if (e.stack[r.count] === "arguments")
           e.token[r.count] === "?" && (r.pop(e), v = "?:", m = m - 1), h[h.length - 1] = !0;
         else if (i(p, 41) && (e.token[e.begin[r.count] - 1] === "function" || e.token[e.begin[r.count] - 2] === "function"))
           h[h.length - 1] = !0;
-        else if (w === "reference") {
-          y = r.count;
-          let te = !1;
+        else if (S === "reference") {
+          x = r.count;
+          let ne = !1;
           do {
-            if (e.begin[y] === e.begin[r.count]) {
-              if (y < r.count && e.token[y] === ":" && e.types[y + 1] !== "type" && (te = !0), e.token[y] === "?" && te === !1 || e.token[y] === ";" || e.token[y] === "x;")
+            if (e.begin[x] === e.begin[r.count]) {
+              if (x < r.count && e.token[x] === ":" && e.types[x + 1] !== "type" && (ne = !0), e.token[x] === "?" && ne === !1 || e.token[x] === ";" || e.token[x] === "x;")
                 break;
-              if (e.token[y] === "var" || e.token[y] === "let" || e.token[y] === "const" || e.types[y] === "type") {
+              if (e.token[x] === "var" || e.token[x] === "let" || e.token[x] === "const" || e.types[x] === "type") {
                 h[h.length - 1] = !0;
                 break;
               }
             } else {
-              if (e.types[y] === "type_end") {
+              if (e.types[x] === "type_end") {
                 h[h.length - 1] = !0;
                 break;
               }
-              y = e.begin[y];
+              x = e.begin[x];
             }
-            y = y - 1;
-          } while (y > e.begin[r.count]);
+            x = x - 1;
+          } while (x > e.begin[r.count]);
         }
       } else
         e.token[r.count - 1] === "[" && (e.types[r.count] === "word" || e.types[r.count] === "reference") && (r.stack.update("attribute"), e.stack[r.count] = "attribute");
     if (v === c)
-      if (i(a[m + 1], 43) && i(a[m + 2], 43) || i(a[m + 1], 45) && i(a[m + 2], 45))
-        v = a[m];
+      if (i(l[m + 1], 43) && i(l[m + 2], 43) || i(l[m + 1], 45) && i(l[m + 2], 45))
+        v = l[m];
       else {
-        let te = [a[m]];
-        if (y = m + 1, y < q)
+        let ne = [l[m]];
+        if (x = m + 1, x < A)
           do {
-            if (i(a[y], 43) && i(a[y + 1], 43) || i(a[y], 45) && i(a[y + 1], 45))
+            if (i(l[x], 43) && i(l[x + 1], 43) || i(l[x], 45) && i(l[x + 1], 45))
               break;
-            if (x = 0, x < me)
+            if (w = 0, w < ge)
               do {
-                if (a[y] === E[x]) {
-                  te.push(E[x]);
+                if (l[x] === $[w]) {
+                  ne.push($[w]);
                   break;
                 }
-                x = x + 1;
-              } while (x < me);
-            if (x === me)
+                w = w + 1;
+              } while (w < ge);
+            if (w === ge)
               break;
-            y = y + 1;
-          } while (y < q);
-        v = te.join(c);
+            x = x + 1;
+          } while (x < A);
+        v = ne.join(c);
       }
     if (m = m + (v.length - 1), v === "=>" && i(p, 41)) {
-      y = r.count, q = e.begin[y];
+      x = r.count, A = e.begin[x];
       do
-        e.begin[y] === q && (e.stack[y] = "method"), y = y - 1;
-      while (y > q - 1);
+        e.begin[x] === A && (e.stack[x] = "method"), x = x - 1;
+      while (x > A - 1);
     }
     return v;
   }
-  function J() {
-    let y = [a[m]];
-    if (m = m + 1, m < C)
+  function ce() {
+    let x = [l[m]];
+    if (m = m + 1, m < O)
       do {
-        if (y.push(a[m]), i(a[m], 96) && (T(a[m - 1], 92) || !P(m - 1)) || i(a[m - 1], 36) && i(a[m], 123) && (T(a[m - 2], 92) || !P(m - 2)))
+        if (x.push(l[m]), i(l[m], 96) && (M(l[m - 1], 92) || !B(m - 1)) || i(l[m - 1], 36) && i(l[m], 123) && (M(l[m - 2], 92) || !B(m - 2)))
           break;
         m = m + 1;
-      } while (m < C);
-    return y.join(c);
+      } while (m < O);
+    return x.join(c);
   }
-  function $e() {
-    let y = 0, x = !1, q = !1, v = 0, E = 0, me = 0, te = c, R = c, Q = c, W = [], U = h[h.length - 1], Z = "0123456789=<>+-*?|^:&.,;%(){}[]~";
-    function ae() {
-      i(p, 40) && r.stack.update("paren", r.count), r.external("html", W.join(c));
+  function J() {
+    let x = 0, w = !1, A = !1, v = 0, $ = 0, ge = 0, ne = c, pe = c, R = c, E = [], z = h[h.length - 1], Y = "0123456789=<>+-*?|^:&.,;%(){}[]~";
+    function Z() {
+      i(p, 40) && r.stack.update("paren", r.count), r.external("html", E.join(c));
     }
-    if (d > -1 && b(), R = r.count > 0 ? e.token[r.count - 1] : c, Q = r.count > 0 ? e.types[r.count - 1] : c, te = B(1, !1), r.language !== "jsx" && r.language !== "tsx" && He(te) === !1 && (p === "function" || R === "=>" || R === "void" || R === "." || p === "return" || w === "operator" || e.stack[r.count] === "arguments" || w === "type" && R === "type" || w === "reference" && (Q === "operator" || R === "function" || R === "class" || R === "new") || w === "type" && Q === "operator")) {
-      let he = [], de = 0, fe = 0;
-      y = m;
+    if (d > -1 && k(), pe = r.count > 0 ? e.token[r.count - 1] : c, R = r.count > 0 ? e.types[r.count - 1] : c, ne = G(1, !1), r.language !== "jsx" && r.language !== "tsx" && He(ne) === !1 && (p === "function" || pe === "=>" || pe === "void" || pe === "." || p === "return" || S === "operator" || e.stack[r.count] === "arguments" || S === "type" && pe === "type" || S === "reference" && (R === "operator" || pe === "function" || pe === "class" || pe === "new") || S === "type" && R === "operator")) {
+      let fe = [], he = 0, xe = 0;
+      x = m;
       do {
-        if (he.push(a[y]), i(a[y], 60))
-          de = de + 1;
-        else if (i(a[y], 62) && (de = de - 1, de < 1))
+        if (fe.push(l[x]), i(l[x], 60))
+          he = he + 1;
+        else if (i(l[x], 62) && (he = he - 1, he < 1))
           break;
-        y = y + 1;
-      } while (y < C);
-      if (fe = m, m = y, te = B(1, !1), i(a[y], 62) && (U === !0 || R === "=>" || R === "." || Q !== "operator" || Q === "operator" && (i(te, 40) || i(te, 61)))) {
-        w = "generic", p = he.join(c).replace(/^<\s+/, "<").replace(/\s+>$/, ">").replace(/,\s*/g, ", "), D();
+        x = x + 1;
+      } while (x < O);
+      if (xe = m, m = x, ne = G(1, !1), i(l[x], 62) && (z === !0 || pe === "=>" || pe === "." || R !== "operator" || R === "operator" && (i(ne, 40) || i(ne, 61)))) {
+        S = "generic", p = fe.join(c).replace(/^<\s+/, "<").replace(/\s+>$/, ">").replace(/,\s*/g, ", "), q();
         return;
       }
-      m = fe;
+      m = xe;
     }
-    if (y = r.count, e.types[y] === "comment")
+    if (x = r.count, e.types[x] === "comment")
       do
-        y = y - 1;
-      while (y > 0 && e.types[y] === "comment");
-    if (U === !1 && B(1, !1) !== ">" && (T(a[m], 60) && Z.indexOf(a[m + 1]) > -1 || e.token[y] === "++" || e.token[y] === "--" || ce(a[m + 1]) === !0 || He(a[m + 1]) === !0 && (w === "operator" || w === "string" || w === "number" || w === "reference" || w === "word" && p !== "return")))
-      return w = "operator", p = se(), D();
-    if (r.language !== "typescript" && (e.token[y] === "return" || e.types[y] === "operator" || e.types[y] === "start" || e.types[y] === "separator" || e.types[y] === "jsx_attribute_start" || i(e.token[y], 125) && r.stack.token === "global")) {
-      w = "markup", r.language = "jsx";
+        x = x - 1;
+      while (x > 0 && e.types[x] === "comment");
+    if (z === !1 && G(1, !1) !== ">" && (M(l[m], 60) && Y.indexOf(l[m + 1]) > -1 || e.token[x] === "++" || e.token[x] === "--" || ue(l[m + 1]) === !0 || He(l[m + 1]) === !0 && (S === "operator" || S === "string" || S === "number" || S === "reference" || S === "word" && p !== "return")))
+      return S = "operator", p = te(), q();
+    if (r.language !== "typescript" && (e.token[x] === "return" || e.types[x] === "operator" || e.types[x] === "start" || e.types[x] === "separator" || e.types[x] === "jsx_attribute_start" || i(e.token[x], 125) && r.stack.token === "global")) {
+      S = "markup", r.language = "jsx";
       do {
-        if (W.push(a[m]), i(a[m], 123))
-          E = E + 1, x = !0;
-        else if (i(a[m], 125))
-          E = E - 1, E === 0 && (x = !1);
-        else if (i(a[m], 60) && x === !1) {
-          if (i(a[m + 1], 60))
+        if (E.push(l[m]), i(l[m], 123))
+          $ = $ + 1, w = !0;
+        else if (i(l[m], 125))
+          $ = $ - 1, $ === 0 && (w = !1);
+        else if (i(l[m], 60) && w === !1) {
+          if (i(l[m + 1], 60))
             do
-              W.push(a[m]), m = m + 1;
-            while (m < C && i(a[m + 1], 60));
-          v = v + 1, i(B(1, !1), 47) && (q = !0);
-        } else if (i(a[m], 62) && x === !1) {
-          if (i(a[m + 1], 62))
+              E.push(l[m]), m = m + 1;
+            while (m < O && i(l[m + 1], 60));
+          v = v + 1, i(G(1, !1), 47) && (A = !0);
+        } else if (i(l[m], 62) && w === !1) {
+          if (i(l[m + 1], 62))
             do
-              W.push(a[m]), m = m + 1;
-            while (i(a[m + 1], 62));
-          if (v = v - 1, q === !0 ? me = me - 1 : T(a[m - 1], 47) && (me = me + 1), v === 0 && E === 0 && me < 1) {
-            if (te = B(2, !1), T(te, 60))
-              return ae();
-            if (i(te, 60) && Z.indexOf(te.charAt(1)) < 0 && ce(te.charAt(1)) === !1) {
-              y = m + 1;
+              E.push(l[m]), m = m + 1;
+            while (i(l[m + 1], 62));
+          if (v = v - 1, A === !0 ? ge = ge - 1 : M(l[m - 1], 47) && (ge = ge + 1), v === 0 && $ === 0 && ge < 1) {
+            if (ne = G(2, !1), M(ne, 60))
+              return Z();
+            if (i(ne, 60) && Y.indexOf(ne.charAt(1)) < 0 && ue(ne.charAt(1)) === !1) {
+              x = m + 1;
               do {
-                if (y = y + 1, i(a[y], 62) || ce(a[y - 1]) && Z.indexOf(a[y]) < 0)
+                if (x = x + 1, i(l[x], 62) || ue(l[x - 1]) && Y.indexOf(l[x]) < 0)
                   break;
-                if (Z.indexOf(a[y]) > -1)
-                  return ae();
-              } while (y < C);
+                if (Y.indexOf(l[x]) > -1)
+                  return Z();
+              } while (x < O);
             } else
-              return ae();
+              return Z();
           }
-          q = !1;
+          A = !1;
         }
         m = m + 1;
-      } while (m < C);
-      return ae();
+      } while (m < O);
+      return Z();
     }
-    w = "operator", p = se(), D();
+    S = "operator", p = te(), q();
   }
-  function $() {
-    let y = !0, x = "+", q = c, v = c, E = c, me = c, te = 0, R = 0, Q = 0, W = [];
-    function U() {
-      R = e.begin[R] - 1, e.types[R] === "end" ? U() : i(e.token[R - 1], 46) && Z();
+  function P() {
+    let x = !0, w = "+", A = c, v = c, $ = c, ge = c, ne = 0, pe = 0, R = 0, E = [];
+    function z() {
+      pe = e.begin[pe] - 1, e.types[pe] === "end" ? z() : i(e.token[pe - 1], 46) && Y();
+    }
+    function Y() {
+      pe = pe - 2, e.types[pe] === "end" ? z() : i(e.token[pe - 1], 46) && Y();
     }
     function Z() {
-      R = R - 2, e.types[R] === "end" ? U() : i(e.token[R - 1], 46) && Z();
-    }
-    function ae() {
-      let de = 0;
-      if (de < W.length)
+      let he = 0;
+      if (he < E.length)
         do
-          r.push(e, W[de], c), de = de + 1;
-        while (de < W.length);
+          r.push(e, E[he], c), he = he + 1;
+        while (he < E.length);
     }
-    function he(de) {
+    function fe(he) {
       return {
-        begin: e.begin[de],
-        ender: e.ender[de],
-        lexer: e.lexer[de],
-        lines: e.lines[de],
-        stack: e.stack[de],
-        token: e.token[de],
-        types: e.types[de]
+        begin: e.begin[he],
+        ender: e.ender[he],
+        lexer: e.lexer[he],
+        lines: e.lines[he],
+        stack: e.stack[he],
+        token: e.token[he],
+        types: e.types[he]
       };
     }
-    if (q = e.token[r.count], v = e.token[r.count - 1], E = e.token[r.count - 2], q !== "++" && q !== "--" && v !== "++" && v !== "--" && (R = r.count, e.types[R] === "end" ? U() : i(e.token[R - 1], 46) && Z()), e.token[R - 1] === "++" || e.token[R - 1] === "--") {
-      if ("startendoperator".indexOf(e.types[R - 2]) > -1)
+    if (A = e.token[r.count], v = e.token[r.count - 1], $ = e.token[r.count - 2], A !== "++" && A !== "--" && v !== "++" && v !== "--" && (pe = r.count, e.types[pe] === "end" ? z() : i(e.token[pe - 1], 46) && Y()), e.token[pe - 1] === "++" || e.token[pe - 1] === "--") {
+      if ("startendoperator".indexOf(e.types[pe - 2]) > -1)
         return;
-      if (Q = R, Q < r.count + 1) {
+      if (R = pe, R < r.count + 1) {
         do
-          W.push(he(Q)), Q = Q + 1;
-        while (Q < r.count + 1);
-        r.splice({ data: e, howmany: r.count - R, index: R });
+          E.push(fe(R)), R = R + 1;
+        while (R < r.count + 1);
+        r.splice({ data: e, howmany: r.count - pe, index: pe });
       }
     } else {
-      if (n.correct === !1 || q !== "++" && q !== "--" && v !== "++" && v !== "--")
+      if (n.correct === !1 || A !== "++" && A !== "--" && v !== "++" && v !== "--")
         return;
-      if (me = B(1, !1), (q === "++" || q === "--") && (i(a[m], 59) || i(me, 59) || i(a[m], 125) || i(me, 125) || i(a[m], 41) || i(me, 41))) {
-        if (x = e.stack[r.count], x === "array" || x === "method" || x === "object" || x === "paren" || x === "notation" || e.token[e.begin[r.count] - 1] === "while" && x !== "while")
+      if (ge = G(1, !1), (A === "++" || A === "--") && (i(l[m], 59) || i(ge, 59) || i(l[m], 125) || i(ge, 125) || i(l[m], 41) || i(ge, 41))) {
+        if (w = e.stack[r.count], w === "array" || w === "method" || w === "object" || w === "paren" || w === "notation" || e.token[e.begin[r.count] - 1] === "while" && w !== "while")
           return;
-        Q = r.count;
+        R = r.count;
         do {
-          if (Q = Q - 1, e.token[Q] === "return")
+          if (R = R - 1, e.token[R] === "return")
             return;
-          if (e.types[Q] === "end")
+          if (e.types[R] === "end")
             do
-              Q = e.begin[Q] - 1;
-            while (e.types[Q] === "end" && Q > 0);
-        } while (Q > 0 && (i(e.token[Q], 46) || e.types[Q] === "word" || e.types[Q] === "reference" || e.types[Q] === "end"));
-        if (i(e.token[Q], 44) && T(a[m], 59) && T(me, 59) && T(a[m], 125) && T(me, 125) && T(a[m], 41) && T(me, 41))
+              R = e.begin[R] - 1;
+            while (e.types[R] === "end" && R > 0);
+        } while (R > 0 && (i(e.token[R], 46) || e.types[R] === "word" || e.types[R] === "reference" || e.types[R] === "end"));
+        if (i(e.token[R], 44) && M(l[m], 59) && M(ge, 59) && M(l[m], 125) && M(ge, 125) && M(l[m], 41) && M(ge, 41))
           return;
-        if (e.types[Q] === "operator")
-          if (e.stack[Q] === "switch" && i(e.token[Q], 58))
+        if (e.types[R] === "operator")
+          if (e.stack[R] === "switch" && i(e.token[R], 58))
             do {
-              if (Q = Q - 1, e.types[Q] === "start") {
-                if (te = te - 1, te < 0)
+              if (R = R - 1, e.types[R] === "start") {
+                if (ne = ne - 1, ne < 0)
                   break;
               } else
-                e.types[Q] === "end" && (te = te + 1);
-              if (i(e.token[Q], 63) && te === 0)
+                e.types[R] === "end" && (ne = ne + 1);
+              if (i(e.token[R], 63) && ne === 0)
                 return;
-            } while (Q > 0);
+            } while (R > 0);
           else
             return;
-        y = !1, x = q === "--" ? "-" : "+";
-      } else if (i(E, 91) || i(E, 59) || i(E, 123) || i(E, 125) || i(E, 40) || i(E, 41) || i(E, 44) || E === "return" || E === "x;")
-        if (q === "++" || q === "--") {
-          if (i(E, 91) || i(E, 40) || i(E, 44) || E === "return")
+        x = !1, w = A === "--" ? "-" : "+";
+      } else if (i($, 91) || i($, 59) || i($, 123) || i($, 125) || i($, 40) || i($, 41) || i($, 44) || $ === "return" || $ === "x;")
+        if (A === "++" || A === "--") {
+          if (i($, 91) || i($, 40) || i($, 44) || $ === "return")
             return;
-          q === "--" && (x = "-"), y = !1;
+          A === "--" && (w = "-"), x = !1;
         } else
-          (v === "--" || q === "--") && (x = "-");
+          (v === "--" || A === "--") && (w = "-");
       else
         return;
-      if (y === !1 && (M = r.pop(e)), R = r.count, e.types[R] === "end" ? U() : i(e.token[R - 1], 46) && Z(), Q = R, Q < r.count + 1)
+      if (x === !1 && (W = r.pop(e)), pe = r.count, e.types[pe] === "end" ? z() : i(e.token[pe - 1], 46) && Y(), R = pe, R < r.count + 1)
         do
-          W.push(he(Q)), Q = Q + 1;
-        while (Q < r.count + 1);
+          E.push(fe(R)), R = R + 1;
+        while (R < r.count + 1);
     }
-    y === !0 ? (r.splice({
+    x === !0 ? (r.splice({
       data: e,
       howmany: 1,
-      index: R - 1
-    }), p = "=", w = "operator", D(), ae(), p = x, w = "operator", D(), p = "1", w = "number", D()) : (p = "=", w = "operator", D(), ae(), p = x, w = "operator", D(), p = "1", w = "number", D()), p = e.token[r.count], w = e.types[r.count], i(me, 125) && T(a[m], 59) && pe(!1);
+      index: pe - 1
+    }), p = "=", S = "operator", q(), Z(), p = w, S = "operator", q(), p = "1", S = "number", q()) : (p = "=", S = "operator", q(), Z(), p = w, S = "operator", q(), p = "1", S = "number", q()), p = e.token[r.count], S = e.types[r.count], i(ge, 125) && M(l[m], 59) && V(!1);
   }
-  function G(y, x, q) {
-    let v = 0, E = !1, me = !1, te = [y], R, Q = x.split(c), W = Q.length, U = m, Z = m + y.length, ae = A.quoteConvert;
-    function he() {
-      let fe = 0;
-      if (te = [], w = q, v = m, q === "string" && ce(a[v + 1])) {
-        fe = 1;
+  function T(x, w, A) {
+    let v = 0, $ = !1, ge = !1, ne = [x], pe, R = w.split(c), E = R.length, z = m, Y = m + x.length, Z = N.quoteConvert;
+    function fe() {
+      let xe = 0;
+      if (ne = [], S = A, v = m, A === "string" && ue(l[v + 1])) {
+        xe = 1;
         do
-          v = v + 1, i(a[v], 10) && (fe = fe + 1);
-        while (v < C && ce(a[v + 1]) === !0);
-        r.lineOffset = fe;
+          v = v + 1, i(l[v], 10) && (xe = xe + 1);
+        while (v < O && ue(l[v + 1]) === !0);
+        r.lineOffset = xe;
       }
     }
-    function de() {
-      let fe = c;
-      function re(be) {
+    function he() {
+      let xe = c;
+      function de(X) {
         if (r.language !== "javascript" && r.language !== "typescript" && r.language !== "jsx" && r.language !== "tsx") {
-          let xe = (ye) => ye.replace(/\s*$/, " "), ve = (ye) => ye.replace(/^\s*/, " ");
-          return /\{(#|\/|(%>)|(%\]))/.test(be) || /\}%(>|\])/.test(be) || (be = be.replace(/\{((\{+)|%-?)\s*/g, xe), be = be.replace(/\s*((\}\}+)|(-?%\}))/g, ve)), be;
+          let Se = (be) => be.replace(/\s*$/, " "), Ee = (be) => be.replace(/^\s*/, " ");
+          return /\{(#|\/|(%>)|(%\]))/.test(X) || /\}%(>|\])/.test(X) || (X = X.replace(/\{((\{+)|%-?)\s*/g, Se), X = X.replace(/\s*((\}\}+)|(-?%\}))/g, Ee)), X;
         }
-        return be;
+        return X;
       }
-      if (i(y, 34) && ae === "single" ? (te[0] = je, te[te.length - 1] = je) : i(y, 39) && ae === "double" ? (te[0] = Be, te[te.length - 1] = Be) : E === !0 && (fe = te[te.length - 1], te.pop(), te.pop(), te.push(fe)), m = v, x === z && (m = m - 1, te.pop()), p = te.join(c), (i(y, 34) || i(y, 39) || y === "{{" || y === "{%") && (p = re(p)), y === "{%" || y === "{{") {
-        R = H(p), w = R[0], D(R[1]);
+      if (i(x, 34) && Z === "single" ? (ne[0] = $e, ne[ne.length - 1] = $e) : i(x, 39) && Z === "double" ? (ne[0] = Be, ne[ne.length - 1] = Be) : $ === !0 && (xe = ne[ne.length - 1], ne.pop(), ne.pop(), ne.push(xe)), m = v, w === H && (m = m - 1, ne.pop()), p = ne.join(c), (i(x, 34) || i(x, 39) || x === "{{" || x === "{%") && (p = de(p)), x === "{%" || x === "{{") {
+        pe = Q(p), S = pe[0], q(pe[1]);
         return;
       }
-      if (q === "string") {
-        if (w = "string", r.language === "json")
-          p = p.replace(/\\u[\dA-F]{4}/gi, (be) => String.fromCharCode(parseInt(be.replace(/\\u/g, ""), 16)));
-        else if (y.indexOf("#!") === 0)
+      if (A === "string") {
+        if (S = "string", r.language === "json")
+          p = p.replace(/\\u[\dA-F]{4}/gi, (X) => String.fromCharCode(parseInt(X.replace(/\\u/g, ""), 16)));
+        else if (x.indexOf("#!") === 0)
           p = p.slice(0, p.length - 1), r.lineOffset = 2;
-        else if ((r.stack.token !== "object" || r.stack.token === "object" && T(B(1, !1), 58) && T(e.token[r.count], 44) && T(e.token[r.count], 123)) && (p.length > n.wrap && n.wrap > 0 || n.wrap !== 0 && i(e.token[r.count], 43) && (i(e.token[r.count - 1], 46) || i(e.token[r.count - 1], 39)))) {
-          let be = p, xe = c, ve = ae === "double" ? Be : ae === "single" ? je : be.charAt(0), ye = n.wrap, Ze = /u[0-9a-fA-F]{4}/, Pe = /x[0-9a-fA-F]{2}/;
-          if (be = be.slice(1, be.length - 1), i(e.token[r.count], 43) && (i(e.token[r.count - 1], 46) || i(e.token[r.count - 1], 39)) && (r.pop(e), ve = e.token[r.count].charAt(0), be = e.token[r.count].slice(1, e.token[r.count].length - 1) + be, r.pop(e)), be.length > ye && ye > 0)
+        else if ((r.stack.token !== "object" || r.stack.token === "object" && M(G(1, !1), 58) && M(e.token[r.count], 44) && M(e.token[r.count], 123)) && (p.length > n.wrap && n.wrap > 0 || n.wrap !== 0 && i(e.token[r.count], 43) && (i(e.token[r.count - 1], 46) || i(e.token[r.count - 1], 39)))) {
+          let X = p, Se = c, Ee = Z === "double" ? Be : Z === "single" ? $e : X.charAt(0), be = n.wrap, Ze = /u[0-9a-fA-F]{4}/, st = /x[0-9a-fA-F]{2}/;
+          if (X = X.slice(1, X.length - 1), i(e.token[r.count], 43) && (i(e.token[r.count - 1], 46) || i(e.token[r.count - 1], 39)) && (r.pop(e), Ee = e.token[r.count].charAt(0), X = e.token[r.count].slice(1, e.token[r.count].length - 1) + X, r.pop(e)), X.length > be && be > 0)
             do
-              xe = be.slice(0, ye), i(xe[ye - 5], 92) && Ze.test(be.slice(ye - 4, ye + 1)) ? xe = xe.slice(0, ye - 5) : i(xe[ye - 4], 92) && Ze.test(be.slice(ye - 3, ye + 2)) ? xe = xe.slice(0, ye - 4) : i(xe[ye - 3], 92) && (Ze.test(be.slice(ye - 2, ye + 3)) || Pe.test(be.slice(ye - 2, ye + 1))) ? xe = xe.slice(0, ye - 3) : i(xe[ye - 2], 92) && (Ze.test(be.slice(ye - 1, ye + 4)) || Pe.test(be.slice(ye - 1, ye + 2))) ? xe = xe.slice(0, ye - 2) : i(xe[ye - 1], 92) && (xe = xe.slice(0, ye - 1)), xe = ve + xe + ve, be = be.slice(xe.length - 2), p = xe, w = "string", D(c), r.lineOffset = 0, p = "+", w = "operator", D(c);
-            while (be.length > ye);
-          p = be === c ? ve + ve : ve + be + ve, w = "string";
+              Se = X.slice(0, be), i(Se[be - 5], 92) && Ze.test(X.slice(be - 4, be + 1)) ? Se = Se.slice(0, be - 5) : i(Se[be - 4], 92) && Ze.test(X.slice(be - 3, be + 2)) ? Se = Se.slice(0, be - 4) : i(Se[be - 3], 92) && (Ze.test(X.slice(be - 2, be + 3)) || st.test(X.slice(be - 2, be + 1))) ? Se = Se.slice(0, be - 3) : i(Se[be - 2], 92) && (Ze.test(X.slice(be - 1, be + 4)) || st.test(X.slice(be - 1, be + 2))) ? Se = Se.slice(0, be - 2) : i(Se[be - 1], 92) && (Se = Se.slice(0, be - 1)), Se = Ee + Se + Ee, X = X.slice(Se.length - 2), p = Se, S = "string", q(c), r.lineOffset = 0, p = "+", S = "operator", q(c);
+            while (X.length > be);
+          p = X === c ? Ee + Ee : Ee + X + Ee, S = "string";
         }
       } else
-        /\{\s*\?>$/.test(p) ? w = "liquid_start" : w = q;
-      p.length > 0 && D(c);
+        /\{\s*\?>$/.test(p) ? S = "liquid_start" : S = A;
+      p.length > 0 && q(c);
     }
-    if (d > -1 && b(), i(a[m - 1], 92) && P(m - 1) === !0 && (i(a[m], 34) || i(a[m], 39)))
+    if (d > -1 && k(), i(l[m - 1], 92) && B(m - 1) === !0 && (i(l[m], 34) || i(l[m], 39)))
       if (r.pop(e), i(e.token[0], 123))
-        i(a[m], 34) ? (y = Be, x = '\\"', te = [Be]) : (y = je, x = "\\'", te = [je]), E = !0;
+        i(l[m], 34) ? (x = Be, w = '\\"', ne = [Be]) : (x = $e, w = "\\'", ne = [$e]), $ = !0;
       else {
-        if (i(a[m], 34)) {
-          te = ['\\"'], de();
+        if (i(l[m], 34)) {
+          ne = ['\\"'], he();
           return;
         }
-        te = ["\\'"], de();
+        ne = ["\\'"], he();
         return;
       }
-    if (v = Z, v < C)
+    if (v = Y, v < O)
       do {
-        if (T(e.token[0], 123) && T(e.token[0], 91) && ae !== "none" && (i(a[v], 34) || i(a[v], 39)) ? (i(a[v - 1], 92) ? P(v - 1) === !0 && (ae === "double" && i(a[v], 39) || ae === "single" && i(a[v], 34)) && te.pop() : ae === "double" && i(a[v], 34) && i(a[m], 39) ? a[v] = Be : ae === "single" && i(a[v], 39) && i(a[m], 34) && (a[v] = je), te.push(a[v])) : v > U ? (me = !0, i(a[v], 123) && i(a[v + 1], 37) && a[v + 2] !== y ? (de(), G("{%", "%}", "liquid"), he()) : i(a[v], 123) && i(a[v + 1], 123) && a[v + 2] !== y ? (de(), G("{{", "}}", "liquid"), he()) : (me = !1, te.push(a[v]))) : te.push(a[v]), r.language !== "json" && r.language !== "javascript" && (i(y, 34) || i(y, 39)) && (me === !0 || v > U) && T(a[v - 1], 92) && T(a[v], 34) && T(a[v], 39) && (i(a[v], 10) || v === C - 1)) {
+        if (M(e.token[0], 123) && M(e.token[0], 91) && Z !== "none" && (i(l[v], 34) || i(l[v], 39)) ? (i(l[v - 1], 92) ? B(v - 1) === !0 && (Z === "double" && i(l[v], 39) || Z === "single" && i(l[v], 34)) && ne.pop() : Z === "double" && i(l[v], 34) && i(l[m], 39) ? l[v] = Be : Z === "single" && i(l[v], 39) && i(l[m], 34) && (l[v] = $e), ne.push(l[v])) : v > z ? (ge = !0, i(l[v], 123) && i(l[v + 1], 37) && l[v + 2] !== x ? (he(), T("{%", "%}", "liquid"), fe()) : i(l[v], 123) && i(l[v + 1], 123) && l[v + 2] !== x ? (he(), T("{{", "}}", "liquid"), fe()) : (ge = !1, ne.push(l[v]))) : ne.push(l[v]), r.language !== "json" && r.language !== "javascript" && (i(x, 34) || i(x, 39)) && (ge === !0 || v > z) && M(l[v - 1], 92) && M(l[v], 34) && M(l[v], 39) && (i(l[v], 10) || v === O - 1)) {
           r.error = "Unterminated string in script on line number " + r.lineNumber;
           break;
         }
-        if (a[v] === Q[W - 1] && (T(a[v - 1], 92) || P(v - 1) === !1) && (W === 1 || te[v - Z] === Q[0] && te.slice(v - Z - W + 2).join(c) === x))
+        if (l[v] === R[E - 1] && (M(l[v - 1], 92) || B(v - 1) === !1) && (E === 1 || ne[v - Y] === R[0] && ne.slice(v - Y - E + 2).join(c) === w))
           break;
         v = v + 1;
-      } while (v < C);
-    de();
+      } while (v < O);
+    he();
   }
   function oe() {
-    let y = c, x = B(5, !1), q = r.count, v = r.lineOffset;
-    if (!(r.language === "json" || k.length < 1 || k[k.length - 1].charAt(0) !== "x" || /^x?(;|\}|\))$/.test(p) === !1) && !(e.stack[r.count] === "do" && x === "while" && i(e.token[r.count], 125))) {
-      if (i(p, 59) && e.token[q - 1] === "x{") {
-        if (y = e.token[e.begin[q - 2] - 1], e.token[q - 2] === "do" || i(e.token[q - 2], 41) && "ifforwhilecatch".indexOf(y) > -1) {
-          M = r.pop(e), p = n.correct === !0 ? "}" : "x}", w = "end", L = r.stack.entry, D(), k.pop(), r.lineOffset = v;
+    let x = c, w = G(5, !1), A = r.count, v = r.lineOffset;
+    if (!(r.language === "json" || b.length < 1 || b[b.length - 1].charAt(0) !== "x" || /^x?(;|\}|\))$/.test(p) === !1) && !(e.stack[r.count] === "do" && w === "while" && i(e.token[r.count], 125))) {
+      if (i(p, 59) && e.token[A - 1] === "x{") {
+        if (x = e.token[e.begin[A - 2] - 1], e.token[A - 2] === "do" || i(e.token[A - 2], 41) && "ifforwhilecatch".indexOf(x) > -1) {
+          W = r.pop(e), p = n.correct === !0 ? "}" : "x}", S = "end", C = r.stack.entry, q(), b.pop(), r.lineOffset = v;
           return;
         }
-        M = r.pop(e), p = n.correct === !0 ? "}" : "x}", w = "end", L = r.stack.entry, D(), k.pop(), p = ";", w = "end", r.push(e, M, c), r.lineOffset = v;
+        W = r.pop(e), p = n.correct === !0 ? "}" : "x}", S = "end", C = r.stack.entry, q(), b.pop(), p = ";", S = "end", r.push(e, W, c), r.lineOffset = v;
         return;
       }
-      if (p = n.correct === !0 ? "}" : "x}", w = "end", e.token[r.count] !== "x}") {
-        if (x === "else" && e.stack[r.count] === "if" && (i(e.token[r.count], 59) || e.token[r.count] === "x;")) {
-          L = r.stack.entry, D(), k.pop(), r.lineOffset = v;
+      if (p = n.correct === !0 ? "}" : "x}", S = "end", e.token[r.count] !== "x}") {
+        if (w === "else" && e.stack[r.count] === "if" && (i(e.token[r.count], 59) || e.token[r.count] === "x;")) {
+          C = r.stack.entry, q(), b.pop(), r.lineOffset = v;
           return;
         }
         do
-          if (L = r.stack.entry, D(), k.pop(), e.stack[r.count] === "do")
+          if (C = r.stack.entry, q(), b.pop(), e.stack[r.count] === "do")
             break;
-        while (k[k.length - 1] === "x{");
+        while (b[b.length - 1] === "x{");
         r.lineOffset = v;
       }
     }
   }
-  function ne() {
-    let y = r.count;
-    if (e.stack[y] === "object" && A.objectSort === !0)
-      p = ",", w = "separator", ge(), D();
+  function se() {
+    let x = r.count;
+    if (e.stack[x] === "object" && N.objectSort === !0)
+      p = ",", S = "separator", ke(), q();
     else {
       do
-        y = y - 1;
-      while (y > 0 && e.types[y - 1] === "comment");
+        x = x - 1;
+      while (x > 0 && e.types[x - 1] === "comment");
       r.splice({
         data: e,
         howmany: 0,
-        index: y,
+        index: x,
         record: {
-          begin: e.begin[y],
+          begin: e.begin[x],
           ender: -1,
           lexer: "script",
           lines: r.lineOffset,
-          stack: e.stack[y],
+          stack: e.stack[x],
           token: ",",
           types: "separator"
         }
-      }), D();
+      }), q();
     }
   }
-  function Y(y) {
-    let x = !1, q = !1, v = B(1, !1), E = i(e.token[r.count], 40) ? r.count : e.begin[r.count];
-    function me() {
-      let te = 0, R = e.token[E - 1] === "Array", Q = R ? "[" : "{", W = R ? "]" : "}", U = R ? "array" : "object";
-      if (R === !0 && e.types[r.count] === "number" && (te = Number(e.token[r.count]), M = r.pop(e)), M = r.pop(e), M = r.pop(e), M = r.pop(e), r.stack.pop(), p = Q, w = "start", D(U), te > 0) {
-        p = ",", w = "separator";
+  function ee(x) {
+    let w = !1, A = !1, v = G(1, !1), $ = i(e.token[r.count], 40) ? r.count : e.begin[r.count];
+    function ge() {
+      let ne = 0, pe = e.token[$ - 1] === "Array", R = pe ? "[" : "{", E = pe ? "]" : "}", z = pe ? "array" : "object";
+      if (pe === !0 && e.types[r.count] === "number" && (ne = Number(e.token[r.count]), W = r.pop(e)), W = r.pop(e), W = r.pop(e), W = r.pop(e), r.stack.pop(), p = R, S = "start", q(z), ne > 0) {
+        p = ",", S = "separator";
         do
-          D(), te = te - 1;
-        while (te > 0);
+          q(), ne = ne - 1;
+        while (ne > 0);
       }
-      p = W, w = "end", D();
+      p = E, S = "end", q();
     }
-    if (d > -1 && b(), f.length > 0 && (f[f.length - 1] === 0 ? f.pop() : f[f.length - 1] = f[f.length - 1] - 1), (i(y, 41) || y === "x)" || i(y, 93)) && (n.correct === !0 && $(), ge()), (i(y, 41) || y === "x)") && pe(!1), le > -1 && (i(y, 125) && (A.variableList === "list" && V.count[le] === 0 || e.token[r.count] === "x;" && A.variableList === "each") && j(), V.count[le] = V.count[le] - 1, V.count[le] < 0 && j()), i(p, 44) && e.stack[r.count] !== "initializer" && (i(y, 93) && i(e.token[r.count - 1], 91) || i(y, 125)) && (M = r.pop(e)), i(y, 41) || y === "x)" ? (p = y, o.length > 0 && (_ = o[o.length - 1], _.length > 1 && T(v, 123) && (_[0] === "if" || _[0] === "for" || _[0] === "with" || _[0] === "while" && e.stack[_[1] - 2] !== void 0 && e.stack[_[1] - 2] !== "do") && (x = !0))) : i(y, 93) ? p = "]" : i(y, 125) && (T(p, 44) && n.correct === !0 && $(), r.stack.length > 0 && r.stack.token !== "object" && pe(!0), A.objectSort === !0 && r.stack.token === "object" && $t(e), w === "comment" && (p = e.token[r.count], w = e.types[r.count]), p = "}"), r.stack.token === "data_type" ? w = "type_end" : w = "end", o.pop(), L = r.stack.entry, i(y, 41) && n.correct === !0 && E - r.count < 2 && (i(e.token[r.count], 40) || e.types[r.count] === "number") && (e.token[E - 1] === "Array" || e.token[E - 1] === "Object") && e.token[E - 2] === "new" && (me(), q = !0), k[k.length - 1] === "x{" && i(y, 125) ? (oe(), k.pop(), e.stack[r.count] !== "try" && T(v, 58) && T(v, 59) && e.token[e.begin[m] - 1] !== "?" && oe(), p = "}") : k.pop(), A.endComma !== void 0 && A.endComma !== "none" && r.stack.token === "array" || r.stack.token === "object" || r.stack.token === "data_type")
-      if (A.endComma === "always" && T(e.token[r.count], 44)) {
-        let te = r.stack.index, R = r.count;
+    if (d > -1 && k(), f.length > 0 && (f[f.length - 1] === 0 ? f.pop() : f[f.length - 1] = f[f.length - 1] - 1), (i(x, 41) || x === "x)" || i(x, 93)) && (n.correct === !0 && P(), ke()), (i(x, 41) || x === "x)") && V(!1), le > -1 && (i(x, 125) && (N.variableList === "list" && F.count[le] === 0 || e.token[r.count] === "x;" && N.variableList === "each") && y(), F.count[le] = F.count[le] - 1, F.count[le] < 0 && y()), i(p, 44) && e.stack[r.count] !== "initializer" && (i(x, 93) && i(e.token[r.count - 1], 91) || i(x, 125)) && (W = r.pop(e)), i(x, 41) || x === "x)" ? (p = x, o.length > 0 && (D = o[o.length - 1], D.length > 1 && M(v, 123) && (D[0] === "if" || D[0] === "for" || D[0] === "with" || D[0] === "while" && e.stack[D[1] - 2] !== void 0 && e.stack[D[1] - 2] !== "do") && (w = !0))) : i(x, 93) ? p = "]" : i(x, 125) && (M(p, 44) && n.correct === !0 && P(), r.stack.length > 0 && r.stack.token !== "object" && V(!0), N.objectSort === !0 && r.stack.token === "object" && jt(e), S === "comment" && (p = e.token[r.count], S = e.types[r.count]), p = "}"), r.stack.token === "data_type" ? S = "type_end" : S = "end", o.pop(), C = r.stack.entry, i(x, 41) && n.correct === !0 && $ - r.count < 2 && (i(e.token[r.count], 40) || e.types[r.count] === "number") && (e.token[$ - 1] === "Array" || e.token[$ - 1] === "Object") && e.token[$ - 2] === "new" && (ge(), A = !0), b[b.length - 1] === "x{" && i(x, 125) ? (oe(), b.pop(), e.stack[r.count] !== "try" && M(v, 58) && M(v, 59) && e.token[e.begin[m] - 1] !== "?" && oe(), p = "}") : b.pop(), N.endComma !== void 0 && N.endComma !== "none" && r.stack.token === "array" || r.stack.token === "object" || r.stack.token === "data_type")
+      if (N.endComma === "always" && M(e.token[r.count], 44)) {
+        let ne = r.stack.index, pe = r.count;
         do {
-          if (e.begin[R] === te) {
-            if (i(e.token[R], 44))
+          if (e.begin[pe] === ne) {
+            if (i(e.token[pe], 44))
               break;
           } else
-            R = e.begin[R];
-          R = R - 1;
-        } while (R > te);
-        if (R > te) {
-          let Q = w, W = p;
-          p = ",", w = "separator", D(), p = W, w = Q;
+            pe = e.begin[pe];
+          pe = pe - 1;
+        } while (pe > ne);
+        if (pe > ne) {
+          let R = S, E = p;
+          p = ",", S = "separator", q(), p = E, S = R;
         }
       } else
-        A.endComma === "never" && i(e.token[r.count], 44) && r.pop(e);
-    q === !1 && (D(), i(p, 125) && e.stack[r.count] !== "object" && e.stack[r.count] !== "class" && e.stack[r.count] !== "data_type" && (s.pop(), oe())), x === !0 && (p = n.correct === !0 ? "{" : "x{", w = "start", D(_[0]), k.push("x{"), _[1] = r.count), h.pop(), r.stack.token !== "data_type" && (h[h.length - 1] = !1);
+        N.endComma === "never" && i(e.token[r.count], 44) && r.pop(e);
+    A === !1 && (q(), i(p, 125) && e.stack[r.count] !== "object" && e.stack[r.count] !== "class" && e.stack[r.count] !== "data_type" && (s.pop(), oe())), w === !0 && (p = n.correct === !0 ? "{" : "x{", S = "start", q(D[0]), b.push("x{"), D[1] = r.count), h.pop(), r.stack.token !== "data_type" && (h[h.length - 1] = !1);
   }
-  function F(y) {
-    let x = r.count, q = c, v = c, E = c, me = !1;
-    if (k.push(y), i(y, 123) && (e.types[r.count] === "type" || e.types[r.count] === "type_end" || e.types[r.count] === "generic")) {
-      let te = 0;
-      e.types[r.count] === "type_end" && (x = e.begin[r.count]), te = x;
+  function _(x) {
+    let w = r.count, A = c, v = c, $ = c, ge = !1;
+    if (b.push(x), i(x, 123) && (e.types[r.count] === "type" || e.types[r.count] === "type_end" || e.types[r.count] === "generic")) {
+      let ne = 0;
+      e.types[r.count] === "type_end" && (w = e.begin[r.count]), ne = w;
       do
-        if (x = x - 1, e.begin[x] !== te && e.begin[x] !== -1 || i(e.token[x], 58))
+        if (w = w - 1, e.begin[w] !== ne && e.begin[w] !== -1 || i(e.token[w], 58))
           break;
-      while (x > e.begin[x]);
-      i(e.token[x], 58) && e.stack[x - 1] === "arguments" ? (h.push(!1), me = !0) : h.push(h[h.length - 1]), x = r.count;
+      while (w > e.begin[w]);
+      i(e.token[w], 58) && e.stack[w - 1] === "arguments" ? (h.push(!1), ge = !0) : h.push(h[h.length - 1]), w = r.count;
     } else
-      i(y, 91) && e.types[r.count] === "type_end" ? h.push(!0) : h.push(h[h.length - 1]);
-    if (d > -1 && (b(), x = r.count), le > -1 && (V.count[le] = V.count[le] + 1), e.token[x - 1] === "function" ? o.push(["function", x + 1]) : o.push([p, x + 1]), p = y, h[h.length - 1] === !0 ? w = "type_start" : w = "start", i(y, 40) || y === "x(" ? ge() : i(y, 91) && (l > -1 ? (e.begin[l - 1] === e.begin[e.begin[x] - 1] || e.token[e.begin[x]] === "x(") && (l = -1, n.correct === !0 ? Y(")") : Y("x)"), ge(), p = "{", w = "start") : i(p, 41) && ge(), w === "comment" && i(e.token[x - 1], 41) && (p = e.token[x], e.token[x] = "{", w = e.types[x], e.types[x] = "start")), q = (() => {
-      let te = r.count;
-      if (e.types[te] === "comment")
+      i(x, 91) && e.types[r.count] === "type_end" ? h.push(!0) : h.push(h[h.length - 1]);
+    if (d > -1 && (k(), w = r.count), le > -1 && (F.count[le] = F.count[le] + 1), e.token[w - 1] === "function" ? o.push(["function", w + 1]) : o.push([p, w + 1]), p = x, h[h.length - 1] === !0 ? S = "type_start" : S = "start", i(x, 40) || x === "x(" ? ke() : i(x, 91) && (a > -1 ? (e.begin[a - 1] === e.begin[e.begin[w] - 1] || e.token[e.begin[w]] === "x(") && (a = -1, n.correct === !0 ? ee(")") : ee("x)"), ke(), p = "{", S = "start") : i(p, 41) && ke(), S === "comment" && i(e.token[w - 1], 41) && (p = e.token[w], e.token[w] = "{", S = e.types[w], e.types[w] = "start")), A = (() => {
+      let ne = r.count;
+      if (e.types[ne] === "comment")
         do
-          te = te - 1;
-        while (te > 0 && e.types[te] === "comment");
-      return e.token[te];
-    })(), v = e.stack[x] === void 0 ? c : (() => {
-      let te = r.count;
-      if (e.types[te] === "comment")
+          ne = ne - 1;
+        while (ne > 0 && e.types[ne] === "comment");
+      return e.token[ne];
+    })(), v = e.stack[w] === void 0 ? c : (() => {
+      let ne = r.count;
+      if (e.types[ne] === "comment")
         do
-          te = te - 1;
-        while (te > 0 && e.types[te] === "comment");
-      return e.token[e.begin[te] - 1];
-    })(), i(p, 123) && (e.types[x] === "word" || i(e.token[x], 93))) {
-      let te = x;
-      if (i(e.token[te], 93))
+          ne = ne - 1;
+        while (ne > 0 && e.types[ne] === "comment");
+      return e.token[e.begin[ne] - 1];
+    })(), i(p, 123) && (e.types[w] === "word" || i(e.token[w], 93))) {
+      let ne = w;
+      if (i(e.token[ne], 93))
         do
-          te = e.begin[te] - 1;
-        while (i(e.token[te], 93));
+          ne = e.begin[ne] - 1;
+        while (i(e.token[ne], 93));
       do {
-        if (e.types[te] === "start" || e.types[te] === "end" || e.types[te] === "operator")
+        if (e.types[ne] === "start" || e.types[ne] === "end" || e.types[ne] === "operator")
           break;
-        te = te - 1;
-      } while (te > 0);
-      i(e.token[te], 58) && e.stack[te - 1] === "arguments" && (E = "function", s.push(g), g = []);
+        ne = ne - 1;
+      } while (ne > 0);
+      i(e.token[ne], 58) && e.stack[ne - 1] === "arguments" && ($ = "function", s.push(g), g = []);
     }
-    if (w === "type_start")
-      E = "data_type";
-    else if (E === c && (i(p, 123) || p === "x{")) {
-      if (q === "else" || q === "do" || q === "try" || q === "finally" || q === "switch")
-        E = q;
-      else if (f[f.length - 1] === 0 && q !== "return")
-        f.pop(), E = "class";
-      else if (e.token[x - 1] === "class")
-        E = "class";
-      else if (i(e.token[x], 93) && i(e.token[x - 1], 91))
-        E = "array";
-      else if ((e.types[x] === "word" || e.types[x] === "reference") && (e.types[x - 1] === "word" || e.types[x - 1] === "reference" || e.token[x - 1] === "?" && (e.types[x - 2] === "word" || e.types[x - 2] === "reference")) && e.token[x] !== "in" && e.token[x - 1] !== "export" && e.token[x - 1] !== "import")
-        E = "map";
-      else if (e.stack[x] === "method" && e.types[x] === "end" && (e.types[e.begin[x] - 1] === "word" || e.types[e.begin[x] - 1] === "reference") && e.token[e.begin[x] - 2] === "new")
-        E = "initializer";
-      else if (i(p, 123) && (i(q, 41) || q === "x)") && (e.types[e.begin[x] - 1] === "word" || e.types[e.begin[x] - 1] === "reference" || e.token[e.begin[x] - 1] === "]"))
-        v === "if" ? E = "if" : v === "for" ? E = "for" : v === "while" ? E = "while" : v === "class" ? E = "class" : v === "switch" || e.token[e.begin[x] - 1] === "switch" ? E = "switch" : v === "catch" ? E = "catch" : E = "function";
-      else if (i(p, 123) && (i(q, 59) || q === "x;"))
-        E = "block";
-      else if (i(p, 123) && i(e.token[x], 58) && e.stack[x] === "switch")
-        E = "block";
-      else if (e.token[x - 1] === "import" || e.token[x - 2] === "import" || e.token[x - 1] === "export" || e.token[x - 2] === "export")
-        E = "object";
-      else if (i(q, 41) && (_[0] === "function" || _[0] === "if" || _[0] === "for" || _[0] === "class" || _[0] === "while" || _[0] === "switch" || _[0] === "catch"))
-        E = _[0];
-      else if (e.stack[x] === "notation")
-        E = "function";
-      else if ((e.types[x] === "number" || e.types[x] === "string" || e.types[x] === "word" || e.types[x] === "reference") && (e.types[x - 1] === "word" || e.types[x - 1] === "reference") && e.token[e.begin[x] - 1] !== "for")
-        E = "function";
-      else if (r.stack.length > 0 && T(e.token[x], 58) && r.stack.token === "object" && (i(e.token[e.begin[x] - 2], 123) || i(e.token[e.begin[x] - 2], 44)))
-        E = "function";
-      else if (e.types[_[1] - 1] === "markup" && e.token[_[1] - 3] === "function")
-        E = "function";
-      else if (q === "=>")
-        E = "function";
-      else if (me === !0 || e.types[r.count] === "type_end" && e.stack[e.begin[r.count] - 2] === "arguments")
-        E = "function";
-      else if (i(q, 41) && e.stack[x] === "method" && (e.types[e.begin[x] - 1] === "word" || e.types[e.begin[x] - 1] === "property" || e.types[e.begin[x] - 1] === "reference"))
-        E = "function";
-      else if (i(p, 123) && e.types[x] === "word" && e.token[x] !== "return" && e.token[x] !== "in" && e.token[x] !== "import" && e.token[x] !== "const" && e.token[x] !== "let" && e.token[x] !== c)
-        E = "block";
-      else if (i(p, 123) && "if|else|for|while|function|class|switch|catch|finally".indexOf(e.stack[x]) > -1 && (e.token[x] === "x}" || i(e.token[x], 125)))
-        E = "block";
-      else if (e.stack[x] === "arguments")
-        E = "function";
-      else if (e.types[x] === "generic")
+    if (S === "type_start")
+      $ = "data_type";
+    else if ($ === c && (i(p, 123) || p === "x{")) {
+      if (A === "else" || A === "do" || A === "try" || A === "finally" || A === "switch")
+        $ = A;
+      else if (f[f.length - 1] === 0 && A !== "return")
+        f.pop(), $ = "class";
+      else if (e.token[w - 1] === "class")
+        $ = "class";
+      else if (i(e.token[w], 93) && i(e.token[w - 1], 91))
+        $ = "array";
+      else if ((e.types[w] === "word" || e.types[w] === "reference") && (e.types[w - 1] === "word" || e.types[w - 1] === "reference" || e.token[w - 1] === "?" && (e.types[w - 2] === "word" || e.types[w - 2] === "reference")) && e.token[w] !== "in" && e.token[w - 1] !== "export" && e.token[w - 1] !== "import")
+        $ = "map";
+      else if (e.stack[w] === "method" && e.types[w] === "end" && (e.types[e.begin[w] - 1] === "word" || e.types[e.begin[w] - 1] === "reference") && e.token[e.begin[w] - 2] === "new")
+        $ = "initializer";
+      else if (i(p, 123) && (i(A, 41) || A === "x)") && (e.types[e.begin[w] - 1] === "word" || e.types[e.begin[w] - 1] === "reference" || e.token[e.begin[w] - 1] === "]"))
+        v === "if" ? $ = "if" : v === "for" ? $ = "for" : v === "while" ? $ = "while" : v === "class" ? $ = "class" : v === "switch" || e.token[e.begin[w] - 1] === "switch" ? $ = "switch" : v === "catch" ? $ = "catch" : $ = "function";
+      else if (i(p, 123) && (i(A, 59) || A === "x;"))
+        $ = "block";
+      else if (i(p, 123) && i(e.token[w], 58) && e.stack[w] === "switch")
+        $ = "block";
+      else if (e.token[w - 1] === "import" || e.token[w - 2] === "import" || e.token[w - 1] === "export" || e.token[w - 2] === "export")
+        $ = "object";
+      else if (i(A, 41) && (D[0] === "function" || D[0] === "if" || D[0] === "for" || D[0] === "class" || D[0] === "while" || D[0] === "switch" || D[0] === "catch"))
+        $ = D[0];
+      else if (e.stack[w] === "notation")
+        $ = "function";
+      else if ((e.types[w] === "number" || e.types[w] === "string" || e.types[w] === "word" || e.types[w] === "reference") && (e.types[w - 1] === "word" || e.types[w - 1] === "reference") && e.token[e.begin[w] - 1] !== "for")
+        $ = "function";
+      else if (r.stack.length > 0 && M(e.token[w], 58) && r.stack.token === "object" && (i(e.token[e.begin[w] - 2], 123) || i(e.token[e.begin[w] - 2], 44)))
+        $ = "function";
+      else if (e.types[D[1] - 1] === "markup" && e.token[D[1] - 3] === "function")
+        $ = "function";
+      else if (A === "=>")
+        $ = "function";
+      else if (ge === !0 || e.types[r.count] === "type_end" && e.stack[e.begin[r.count] - 2] === "arguments")
+        $ = "function";
+      else if (i(A, 41) && e.stack[w] === "method" && (e.types[e.begin[w] - 1] === "word" || e.types[e.begin[w] - 1] === "property" || e.types[e.begin[w] - 1] === "reference"))
+        $ = "function";
+      else if (i(p, 123) && e.types[w] === "word" && e.token[w] !== "return" && e.token[w] !== "in" && e.token[w] !== "import" && e.token[w] !== "const" && e.token[w] !== "let" && e.token[w] !== c)
+        $ = "block";
+      else if (i(p, 123) && "if|else|for|while|function|class|switch|catch|finally".indexOf(e.stack[w]) > -1 && (e.token[w] === "x}" || i(e.token[w], 125)))
+        $ = "block";
+      else if (e.stack[w] === "arguments")
+        $ = "function";
+      else if (e.types[w] === "generic")
         do {
-          if (x = x - 1, e.token[x] === "function" || e.stack[x] === "arguments") {
-            E = "function";
+          if (w = w - 1, e.token[w] === "function" || e.stack[w] === "arguments") {
+            $ = "function";
             break;
           }
-          if (e.token[x] === "interface") {
-            E = "map";
+          if (e.token[w] === "interface") {
+            $ = "map";
             break;
           }
-          if (i(e.token[x], 59)) {
-            E = "object";
+          if (i(e.token[w], 59)) {
+            $ = "object";
             break;
           }
-        } while (x > e.begin[r.count]);
+        } while (w > e.begin[r.count]);
       else
-        E = "object";
-      E !== "object" && E !== "class" && (E === "function" ? (s.push(g), g = []) : s.push([]));
+        $ = "object";
+      $ !== "object" && $ !== "class" && ($ === "function" ? (s.push(g), g = []) : s.push([]));
     } else
-      i(p, 91) ? E = "array" : (i(p, 40) || p === "x(") && (q === "function" || e.token[x - 1] === "function" || e.token[x - 1] === "function*" || e.token[x - 2] === "function" ? E = "arguments" : i(e.token[x - 1], 46) || i(e.token[e.begin[x] - 2], 46) || e.types[x] === "generic" || i(e.token[x], 125) && e.stack[x] === "function" ? E = "method" : q === "if" || q === "for" || q === "class" || q === "while" || q === "catch" || q === "finally" || q === "switch" || q === "with" ? E = "expression" : e.types[x] === "word" || e.types[x] === "property" || e.types[x] === "reference" ? E = "method" : E = "paren");
-    D(E), f.length > 0 && (f[f.length - 1] = f[f.length - 1] + 1);
+      i(p, 91) ? $ = "array" : (i(p, 40) || p === "x(") && (A === "function" || e.token[w - 1] === "function" || e.token[w - 1] === "function*" || e.token[w - 2] === "function" ? $ = "arguments" : i(e.token[w - 1], 46) || i(e.token[e.begin[w] - 2], 46) || e.types[w] === "generic" || i(e.token[w], 125) && e.stack[w] === "function" ? $ = "method" : A === "if" || A === "for" || A === "class" || A === "while" || A === "catch" || A === "finally" || A === "switch" || A === "with" ? $ = "expression" : e.types[w] === "word" || e.types[w] === "property" || e.types[w] === "reference" ? $ = "method" : $ = "paren");
+    q($), f.length > 0 && (f[f.length - 1] = f[f.length - 1] + 1);
   }
-  function H(y) {
-    let x = 2, q = 0, v = c, E = y.slice(0, 2), me = y.length;
-    if (i(y[2], 45) && (x = x + 1), ce(y.charAt(x)) === !0)
+  function Q(x) {
+    let w = 2, A = 0, v = c, $ = x.slice(0, 2), ge = x.length;
+    if (i(x[2], 45) && (w = w + 1), ue(x.charAt(w)) === !0)
       do
-        x = x + 1;
-      while (ce(y.charAt(x)) === !0 && x < me);
-    q = x;
+        w = w + 1;
+      while (ue(x.charAt(w)) === !0 && w < ge);
+    A = w;
     do
-      q = q + 1;
-    while (ce(y.charAt(q)) === !1 && y.charAt(q) !== "(" && q < me);
-    if (q === me && (q = y.length - 2), v = y.slice(x, q), v === "else" || E === "{%" && (v === "elseif" || v === "when" || v === "elif" || v === "elsif"))
+      A = A + 1;
+    while (ue(x.charAt(A)) === !1 && x.charAt(A) !== "(" && A < ge);
+    if (A === ge && (A = x.length - 2), v = x.slice(w, A), v === "else" || $ === "{%" && (v === "elseif" || v === "when" || v === "elif" || v === "elsif"))
       return ["liquid_else", `liquid_${v}`];
-    if (E === "{{")
+    if ($ === "{{")
       return v === "end" ? ["liquid_end", c] : (
         //  (name === 'block' && (/\{%\s*\w/).test(source) === false) ||
         v === "define" || v === "form" || v === "if" || v === "unless" || v === "range" || v === "with" ? ["liquid_start", `liquid_${v}`] : ["liquid", c]
       );
-    if (q = S.length - 1, q > -1)
+    if (A = j.length - 1, A > -1)
       do {
-        if (v === S[q] && v !== "block")
+        if (v === j[A] && v !== "block")
           return ["liquid_start", `liquid_${v}`];
-        if (v === "end" + S[q])
+        if (v === "end" + j[A])
           return [
             "liquid_end",
             c
           ];
-        q = q - 1;
-      } while (q > -1);
+        A = A - 1;
+      } while (A > -1);
     return ["liquid", c];
   }
-  function b() {
-    let y = d, x = 1, q = c, v = c, E = p, me = w, te = [];
-    function R() {
-      k.push("x{"), r.splice({
+  function k() {
+    let x = d, w = 1, A = c, v = c, $ = p, ge = S, ne = [];
+    function pe() {
+      b.push("x{"), r.splice({
         data: e,
         howmany: 1,
         index: r.count - 3
       });
     }
-    function Q(W, U, Z) {
-      let ae = e.begin[W], he = 0;
+    function R(E, z, Y) {
+      let Z = e.begin[E], fe = 0;
       do {
-        if (e.token[W] === U && e.types[W] === "word") {
-          if (Z === !0)
-            e.types[W] = "reference";
-          else if (e.begin[W] > ae && e.token[e.begin[W]] === "{" && e.stack[W] !== "object" && e.stack[W] !== "class" && e.stack[W] !== "data_type")
-            if (e.stack[W] === "function")
-              e.types[W] = "reference";
+        if (e.token[E] === z && e.types[E] === "word") {
+          if (Y === !0)
+            e.types[E] = "reference";
+          else if (e.begin[E] > Z && e.token[e.begin[E]] === "{" && e.stack[E] !== "object" && e.stack[E] !== "class" && e.stack[E] !== "data_type")
+            if (e.stack[E] === "function")
+              e.types[E] = "reference";
             else {
-              he = e.begin[W];
+              fe = e.begin[E];
               do {
-                if (e.stack[he] === "function") {
-                  e.types[W] = "reference";
+                if (e.stack[fe] === "function") {
+                  e.types[E] = "reference";
                   break;
                 }
-                he = e.begin[he];
-              } while (he > ae);
+                fe = e.begin[fe];
+              } while (fe > Z);
             }
         }
-        W = W - 1;
-      } while (W > ae);
+        E = E - 1;
+      } while (E > Z);
     }
     do
-      te.push(a[y]), i(a[y], 92), y = y + 1;
-    while (y < m);
-    if (p.charAt(0) === "\u201C" ? r.error = `Quote looking character (\u201C, \\u201c) used instead of actual quotes on line number ${r.lineNumber}` : p.charAt(0) === "\u201D" && (r.error = `Quote looking character (\u201D, \\u201d) used instead of actual quotes on line number ${r.lineNumber}`), q = te.join(c), d = -1, r.count > 0 && q === "function" && i(e.token[r.count], 40) && (i(e.token[r.count - 1], 123) || e.token[r.count - 1] === "x{") && (e.types[r.count] = "start"), r.count > 1 && q === "function" && i(p, 40) && (i(e.token[r.count - 1], 125) || e.token[r.count - 1] === "x}"))
+      ne.push(l[x]), i(l[x], 92), x = x + 1;
+    while (x < m);
+    if (p.charAt(0) === "\u201C" ? r.error = `Quote looking character (\u201C, \\u201c) used instead of actual quotes on line number ${r.lineNumber}` : p.charAt(0) === "\u201D" && (r.error = `Quote looking character (\u201D, \\u201d) used instead of actual quotes on line number ${r.lineNumber}`), A = ne.join(c), d = -1, r.count > 0 && A === "function" && i(e.token[r.count], 40) && (i(e.token[r.count - 1], 123) || e.token[r.count - 1] === "x{") && (e.types[r.count] = "start"), r.count > 1 && A === "function" && i(p, 40) && (i(e.token[r.count - 1], 125) || e.token[r.count - 1] === "x}"))
       if (i(e.token[r.count - 1], 125)) {
-        if (y = r.count - 2, y > -1)
+        if (x = r.count - 2, x > -1)
           do {
-            if (e.types[y] === "end" ? x = x + 1 : (e.types[y] === "start" || e.types[y] === "end") && (x = x - 1), x === 0)
+            if (e.types[x] === "end" ? w = w + 1 : (e.types[x] === "start" || e.types[x] === "end") && (w = w - 1), w === 0)
               break;
-            y = y - 1;
-          } while (y > -1);
-        if (i(e.token[y], 123) && i(e.token[y - 1], 41)) {
-          if (x = 1, y = y - 2, y > -1)
+            x = x - 1;
+          } while (x > -1);
+        if (i(e.token[x], 123) && i(e.token[x - 1], 41)) {
+          if (w = 1, x = x - 2, x > -1)
             do {
-              if (e.types[y] === "end" ? x = x + 1 : (e.types[y] === "start" || e.types[y] === "end") && (x = x - 1), x === 0)
+              if (e.types[x] === "end" ? w = w + 1 : (e.types[x] === "start" || e.types[x] === "end") && (w = w - 1), w === 0)
                 break;
-              y = y - 1;
-            } while (y > -1);
-          e.token[y - 1] !== "function" && e.token[y - 2] !== "function" && (e.types[r.count] = "start");
+              x = x - 1;
+            } while (x > -1);
+          e.token[x - 1] !== "function" && e.token[x - 2] !== "function" && (e.types[r.count] = "start");
         }
       } else
         e.types[r.count] = "start";
-    if (n.correct === !0 && (q === "Object" || q === "Array") && i(a[m + 1], 40) && i(a[m + 2], 41) && i(e.token[r.count - 1], 61) && e.token[r.count] === "new")
-      q === "Object" ? (e.token[r.count] = "{", p = "}", e.stack[r.count] = "object", r.stack.update("object")) : (e.token[r.count] = "[", p = "]", e.stack[r.count] = "array", r.stack.update("array")), e.types[r.count] = "start", w = "end", a[m + 1] = c, a[m + 2] = c, m = m + 2;
+    if (n.correct === !0 && (A === "Object" || A === "Array") && i(l[m + 1], 40) && i(l[m + 2], 41) && i(e.token[r.count - 1], 61) && e.token[r.count] === "new")
+      A === "Object" ? (e.token[r.count] = "{", p = "}", e.stack[r.count] = "object", r.stack.update("object")) : (e.token[r.count] = "[", p = "]", e.stack[r.count] = "array", r.stack.update("array")), e.types[r.count] = "start", S = "end", l[m + 1] = c, l[m + 2] = c, m = m + 2;
     else {
-      if (x = r.count, y = x, A.variableList !== "none" && (q === "var" || q === "let" || q === "const")) {
-        if (e.types[x] === "comment")
+      if (w = r.count, x = w, N.variableList !== "none" && (A === "var" || A === "let" || A === "const")) {
+        if (e.types[w] === "comment")
           do
-            x = x - 1;
-          while (x > 0 && e.types[x] === "comment");
-        if (A.variableList === "list" && le > -1 && V.index[le] === x && q === V.word[le]) {
-          p = ",", w = "separator", e.token[x] = p, e.types[x] = w, V.count[le] = 0, V.index[le] = x, V.word[le] = q;
+            w = w - 1;
+          while (w > 0 && e.types[w] === "comment");
+        if (N.variableList === "list" && le > -1 && F.index[le] === w && A === F.word[le]) {
+          p = ",", S = "separator", e.token[w] = p, e.types[w] = S, F.count[le] = 0, F.index[le] = w, F.word[le] = A;
           return;
         }
-        le = le + 1, V.count.push(0), V.index.push(x), V.word.push(q), x = y;
+        le = le + 1, F.count.push(0), F.index.push(w), F.word.push(A), w = x;
       } else
-        le > -1 && q !== V.word[le] && r.count === V.index[le] && i(e.token[V.index[le]], 59) && p !== V.word[le] && A.variableList === "list" && j();
-      if (q === "from" && e.token[r.count] === "x;" && i(e.token[r.count - 1], 125) && ge(), q === "while" && e.token[r.count] === "x;" && i(e.token[r.count - 1], 125)) {
-        let W = 0, U = r.count - 2;
-        if (U > -1)
+        le > -1 && A !== F.word[le] && r.count === F.index[le] && i(e.token[F.index[le]], 59) && p !== F.word[le] && N.variableList === "list" && y();
+      if (A === "from" && e.token[r.count] === "x;" && i(e.token[r.count - 1], 125) && ke(), A === "while" && e.token[r.count] === "x;" && i(e.token[r.count - 1], 125)) {
+        let E = 0, z = r.count - 2;
+        if (z > -1)
           do {
-            if (e.types[U] === "end" ? W = W + 1 : e.types[U] === "start" && (W = W - 1), W < 0) {
-              i(e.token[U], 123) && e.token[U - 1] === "do" && ge();
+            if (e.types[z] === "end" ? E = E + 1 : e.types[z] === "start" && (E = E - 1), E < 0) {
+              i(e.token[z], 123) && e.token[z - 1] === "do" && ke();
               return;
             }
-            U = U - 1;
-          } while (U > -1);
+            z = z - 1;
+          } while (z > -1);
       }
-      if (me === "comment") {
-        let W = r.count;
+      if (ge === "comment") {
+        let E = r.count;
         do
-          W = W - 1;
-        while (W > 0 && e.types[W] === "comment");
-        me = e.types[W], E = e.token[W];
+          E = E - 1;
+        while (E > 0 && e.types[E] === "comment");
+        ge = e.types[E], $ = e.token[E];
       }
-      if (v = B(2, !1), q === "void")
-        E === ":" && e.stack[r.count - 1] === "arguments" ? w = "type" : w = "word";
+      if (v = G(2, !1), A === "void")
+        $ === ":" && e.stack[r.count - 1] === "arguments" ? S = "type" : S = "word";
       else if ((r.stack.token === "object" || r.stack.token === "class" || r.stack.token === "data_type") && (i(e.token[r.count], 123) || i(e.token[e.begin[r.count]], 123) && i(e.token[r.count], 44) || e.types[r.count] === "liquid_end" && (i(e.token[e.begin[r.count] - 1], 123) || i(e.token[e.begin[r.count] - 1], 44))))
-        q === "return" || q === "break" ? w = "word" : w = "property";
-      else if (h[h.length - 1] === !0 || (r.language === "typescript" || r.language === "flow") && E === "type")
-        w = "type";
-      else if (s.length > 0 && (E === "function" || E === "class" || E === "const" || E === "let" || E === "var" || E === "new" || E === "void"))
-        w = "reference", s[s.length - 1].push(q), r.language === "javascript" || r.language === "jsx" || r.language === "typescript" || r.language === "tsx" ? E === "var" || E === "function" && e.types[r.count - 1] !== "operator" && e.types[r.count - 1] !== "start" && e.types[r.count - 1] !== "end" ? Q(r.count, q, !0) : Q(r.count, q, !1) : Q(r.count, q, !1);
-      else if (r.stack.token === "arguments" && w !== "operator")
-        w = "reference", g.push(q);
-      else if (i(E, 44) && e.stack[r.count] !== "method" && (e.stack[r.count] !== "expression" || e.token[e.begin[r.count] - 1] === "for")) {
-        let W = r.count, U = r.stack.index;
+        A === "return" || A === "break" ? S = "word" : S = "property";
+      else if (h[h.length - 1] === !0 || (r.language === "typescript" || r.language === "flow") && $ === "type")
+        S = "type";
+      else if (s.length > 0 && ($ === "function" || $ === "class" || $ === "const" || $ === "let" || $ === "var" || $ === "new" || $ === "void"))
+        S = "reference", s[s.length - 1].push(A), r.language === "javascript" || r.language === "jsx" || r.language === "typescript" || r.language === "tsx" ? $ === "var" || $ === "function" && e.types[r.count - 1] !== "operator" && e.types[r.count - 1] !== "start" && e.types[r.count - 1] !== "end" ? R(r.count, A, !0) : R(r.count, A, !1) : R(r.count, A, !1);
+      else if (r.stack.token === "arguments" && S !== "operator")
+        S = "reference", g.push(A);
+      else if (i($, 44) && e.stack[r.count] !== "method" && (e.stack[r.count] !== "expression" || e.token[e.begin[r.count] - 1] === "for")) {
+        let E = r.count, z = r.stack.index;
         do {
-          if (e.begin[W] === U) {
-            if (e.token[W] === ";" || e.token[W] === "var" || e.token[W] === "let" || e.token[W] === "const" || e.token[W] === "type")
+          if (e.begin[E] === z) {
+            if (e.token[E] === ";" || e.token[E] === "var" || e.token[E] === "let" || e.token[E] === "const" || e.token[E] === "type")
               break;
           } else
-            e.types[W] === "end" && (W = e.begin[W]);
-          W = W - 1;
-        } while (W > U);
-        s.length > 0 && e.token[W] === "var" ? (w = "reference", s[s.length - 1].push(q), r.language === "javascript" || r.language === "jsx" || r.language === "typescript" || r.language === "tsx" ? Q(W, q, !0) : Q(W, q, !1)) : s.length > 0 && (e.token[W] === "let" || e.token[W] === "const" || e.token[W] === "type" && (r.language === "typescript" || r.language === "tsx")) ? (w = "reference", s[s.length - 1].push(q), Q(W, q, !1)) : w = "word";
+            e.types[E] === "end" && (E = e.begin[E]);
+          E = E - 1;
+        } while (E > z);
+        s.length > 0 && e.token[E] === "var" ? (S = "reference", s[s.length - 1].push(A), r.language === "javascript" || r.language === "jsx" || r.language === "typescript" || r.language === "tsx" ? R(E, A, !0) : R(E, A, !1)) : s.length > 0 && (e.token[E] === "let" || e.token[E] === "const" || e.token[E] === "type" && (r.language === "typescript" || r.language === "tsx")) ? (S = "reference", s[s.length - 1].push(A), R(E, A, !1)) : S = "word";
       } else if (r.stack.token !== "object" || r.stack.token === "object" && p !== "," && p !== "{") {
-        let W = s.length, U = 0;
-        if (W > 0) {
+        let E = s.length, z = 0;
+        if (E > 0) {
           do
-            if (W = W - 1, U = s[W].length, U > 0) {
+            if (E = E - 1, z = s[E].length, z > 0) {
               do
-                if (U = U - 1, q === s[W][U])
+                if (z = z - 1, A === s[E][z])
                   break;
-              while (U > 0);
-              if (q === s[W][U])
+              while (z > 0);
+              if (A === s[E][z])
                 break;
             }
-          while (W > 0);
-          s[W][U] === q && E !== "." ? w = "reference" : w = "word";
+          while (E > 0);
+          s[E][z] === A && $ !== "." ? S = "reference" : S = "word";
         } else
-          w = "word";
+          S = "word";
       } else
-        w = "word";
-      p = q, q === "from" && e.token[r.count] === "}" && ge();
+        S = "word";
+      p = A, A === "from" && e.token[r.count] === "}" && ke();
     }
-    if (D(), q === "class" && f.push(0), q === "do" && (v = B(1, !0), v !== "{" && (p = n.correct === !0 ? "{" : "x{", w = "start", k.push("x{"), D("do"))), q === "else") {
-      v = B(2, !0);
-      let W = r.count - 1;
-      if (e.types[W] === "comment")
+    if (q(), A === "class" && f.push(0), A === "do" && (v = G(1, !0), v !== "{" && (p = n.correct === !0 ? "{" : "x{", S = "start", b.push("x{"), q("do"))), A === "else") {
+      v = G(2, !0);
+      let E = r.count - 1;
+      if (e.types[E] === "comment")
         do
-          W = W - 1;
-        while (W > 0 && e.types[W] === "comment");
-      e.token[W] === "x}" && (e.token[r.count] === "else" ? e.stack[r.count - 1] !== "if" && e.types[r.count - 1] !== "comment" && e.stack[r.count - 1] !== "else" ? (k.pop(), r.splice({
+          E = E - 1;
+        while (E > 0 && e.types[E] === "comment");
+      e.token[E] === "x}" && (e.token[r.count] === "else" ? e.stack[r.count - 1] !== "if" && e.types[r.count - 1] !== "comment" && e.stack[r.count - 1] !== "else" ? (b.pop(), r.splice({
         data: e,
         howmany: 0,
         index: r.count - 1,
@@ -4784,28 +4793,28 @@ function ln() {
           token: n.correct === !0 ? "}" : "x}",
           types: "end"
         }
-      }), r.stack.length > 1 && (r.stack.splice(r.stack.length - 2, 1), r.stack.update(r.count))) : (e.token[r.count - 2] === "x}" && L[0] !== "if" && e.stack[r.count] === "else" || e.token[r.count - 2] === "}" && e.stack[r.count - 2] === "if" && L[0] === "if" && e.token[L[1] - 1] !== "if" && e.token[e.begin[r.count - 1]] === "x{") && R() : e.token[r.count] === "x}" && e.stack[r.count] === "if" && R()), v !== "if" && T(v, 123) && (p = n.correct === !0 ? "{" : "x{", w = "start", k.push("x{"), D("else"));
+      }), r.stack.length > 1 && (r.stack.splice(r.stack.length - 2, 1), r.stack.update(r.count))) : (e.token[r.count - 2] === "x}" && C[0] !== "if" && e.stack[r.count] === "else" || e.token[r.count - 2] === "}" && e.stack[r.count - 2] === "if" && C[0] === "if" && e.token[C[1] - 1] !== "if" && e.token[e.begin[r.count - 1]] === "x{") && pe() : e.token[r.count] === "x}" && e.stack[r.count] === "if" && pe()), v !== "if" && M(v, 123) && (p = n.correct === !0 ? "{" : "x{", S = "start", b.push("x{"), q("else"));
     }
-    (q === "for" || q === "if" || q === "switch" || q === "catch") && e.token[r.count - 1] !== "." && (v = B(1, !0), v !== "(" && (l = r.count, n.correct === !0 ? F("(") : F("x(")));
+    (A === "for" || A === "if" || A === "switch" || A === "catch") && e.token[r.count - 1] !== "." && (v = G(1, !0), v !== "(" && (a = r.count, n.correct === !0 ? _("(") : _("x(")));
   }
-  function X() {
+  function K() {
     r.lineOffset = 1;
     do {
-      if (i(a[m], 10) && (r.lineIndex = m, r.lineOffset = r.lineOffset + 1, r.lineNumber = r.lineNumber + 1), ce(a[m + 1]) === !1)
+      if (i(l[m], 10) && (r.lineIndex = m, r.lineOffset = r.lineOffset + 1, r.lineNumber = r.lineNumber + 1), ue(l[m + 1]) === !1)
         break;
       m = m + 1;
-    } while (m < C);
+    } while (m < O);
   }
   do
-    ce(a[m]) ? (d > -1 && b(), X(), r.lineOffset > 1 && I < r.count && T(a[m + 1], 59) && T(a[m + 1], 125) && (pe(!1), I = r.count)) : i(a[m], 123) && i(a[m + 1], 37) ? G("{%", "%}", "liquid") : i(a[m], 123) && i(a[m + 1], 123) ? G("{{", "}}", "liquid") : i(a[m], 60) && i(a[m + 1], 33) && i(a[m + 2], 45) && i(a[m + 3], 45) ? G("<!--", "-->", "comment") : i(a[m], 60) ? $e() : i(a[m], 47) && (m === C - 1 || i(a[m + 1], 42)) ? Ce() : (r.count < 0 || e.lines[r.count] > 0) && i(a[m], 35) && i(a[m + 1], 33) && (i(a[m + 2], 47) || i(a[m + 3], 91)) ? G("#!" + a[m + 2], z, "string") : i(a[m], 47) && (m === C - 1 || i(a[m + 1], 47)) ? O() : i(a[m], 96) || i(a[m], 125) && r.stack.token === "template_string" ? (d > -1 && b(), p = J(), i(p, 125) && p.slice(p.length - 2) === "${" ? (w = "template_string_else", D("template_string")) : p.slice(p.length - 2) === "${" ? (w = "template_string_start", D("template_string")) : i(p[0], 125) ? (w = "template_string_end", D()) : (w = "string", D())) : i(a[m], 34) || i(a[m], 39) ? G(a[m], a[m], "string") : i(a[m], 45) && m < C - 1 && T(a[m + 1], 61) && T(a[m + 1], 45) && (w === "number" || w === "word" || w === "reference") && p !== "return" && (w === "word" || w === "reference" || w === "number" || i(p, 41) || i(p, 93)) ? (d > -1 && b(), p = "-", w = "operator", D()) : d === -1 && (a[m] !== "0" || a[m] === "0" && a[m + 1] !== "b") && (He(a[m]) || m !== C - 2 && i(a[m], 45) && i(a[m + 1], 46) && He(a[m + 2]) || m !== C - 1 && (i(a[m], 45) || i(a[m], 46)) && He(a[m + 1])) ? (d > -1 && b(), w === "end" && i(a[m], 45) ? (p = "-", w = "operator") : (p = K(), w = "number"), D()) : i(a[m], 58) && i(a[m + 1], 58) ? (d > -1 && b(), n.correct === !0 && $(), ge(), m = m + 1, p = "::", w = "separator", D()) : i(a[m], 44) ? (d > -1 && b(), n.correct === !0 && $(), h[h.length - 1] === !0 && e.stack[r.count].indexOf("type") < 0 && (h[h.length - 1] = !1), w === "comment" ? ne() : le > -1 && V.count[le] === 0 && A.variableList === "each" ? (ge(), p = ";", w = "separator", D(), p = V.word[le], w = "word", D(), V.index[le] = r.count) : (p = ",", w = "separator", ge(), D())) : i(a[m], 46) ? (d > -1 && b(), h[h.length - 1] = !1, i(a[m + 1], 46) && i(a[m + 2], 46) ? (p = "...", w = "operator", m = m + 2) : (ge(), p = ".", w = "separator"), ce(a[m - 1]) && (r.lineOffset = 1), D()) : i(a[m], 59) ? (d > -1 && b(), h[h.length - 1] === !0 && e.stack[r.count].indexOf("type") < 0 && (h[h.length - 1] = !1), f[f.length - 1] === 0 && f.pop(), le > -1 && V.count[le] === 0 && (A.variableList === "each" ? j() : V.index[le] = r.count + 1), n.correct === !0 && $(), p = ";", w = "separator", e.token[r.count] === "x}" ? ue() : D(), oe()) : i(a[m], 40) || i(a[m], 91) || i(a[m], 123) ? F(a[m]) : i(a[m], 41) || i(a[m], 93) || i(a[m], 125) ? Y(a[m]) : d < 0 && e.stack[r.count] === "object" && i(a[m], 42) && T(a[m + 1], 61) && He(a[m + 1]) === !1 && ce(a[m + 1]) === !1 ? d = m : i(a[m], 61) || i(a[m], 38) || i(a[m], 60) || i(a[m], 62) || i(a[m], 43) || i(a[m], 45) || i(a[m], 42) || i(a[m], 47) || i(a[m], 33) || i(a[m], 63) || i(a[m], 124) || i(a[m], 94) || i(a[m], 58) || i(a[m], 37) || i(a[m], 94) ? (p = se(), p === "regex" ? p = e.token[r.count] : i(p, 42) && e.token[r.count] === "function" ? e.token[r.count] = "function*" : (w = "operator", T(p, 33) && p !== "++" && p !== "--" && ge(), D())) : d < 0 && a[m] !== c && (d = m), le > -1 && r.count === V.index[le] + 1 && i(e.token[V.index[le]], 59) && p !== V.word[le] && w !== "comment" && A.variableList === "list" && j(), m = m + 1;
-  while (m < C);
-  return d > -1 && b(), (T(e.token[r.count], 125) && i(e.token[0], 123) || T(e.token[0], 123)) && (T(e.token[r.count], 93) && i(e.token[0], 91) || T(e.token[0], 91)) && pe(!1), t[0] === r.count && (p = z + t[1], w = "string", D()), e.token[r.count] === "x;" && (i(e.token[r.count - 1], 125) || i(e.token[r.count - 1], 93)) && e.begin[r.count - 1] === 0 && r.pop(e), A.objectSort && e.begin.length > 0 && _t(0, r.count + 1), e;
+    ue(l[m]) ? (d > -1 && k(), K(), r.lineOffset > 1 && I < r.count && M(l[m + 1], 59) && M(l[m + 1], 125) && (V(!1), I = r.count)) : i(l[m], 123) && i(l[m + 1], 37) ? T("{%", "%}", "liquid") : i(l[m], 123) && i(l[m + 1], 123) ? T("{{", "}}", "liquid") : i(l[m], 60) && i(l[m + 1], 33) && i(l[m + 2], 45) && i(l[m + 3], 45) ? T("<!--", "-->", "comment") : i(l[m], 60) ? J() : i(l[m], 47) && (m === O - 1 || i(l[m + 1], 42)) ? ae() : (r.count < 0 || e.lines[r.count] > 0) && i(l[m], 35) && i(l[m + 1], 33) && (i(l[m + 2], 47) || i(l[m + 3], 91)) ? T("#!" + l[m + 2], H, "string") : i(l[m], 47) && (m === O - 1 || i(l[m + 1], 47)) ? L() : i(l[m], 96) || i(l[m], 125) && r.stack.token === "template_string" ? (d > -1 && k(), p = ce(), i(p, 125) && p.slice(p.length - 2) === "${" ? (S = "template_string_else", q("template_string")) : p.slice(p.length - 2) === "${" ? (S = "template_string_start", q("template_string")) : i(p[0], 125) ? (S = "template_string_end", q()) : (S = "string", q())) : i(l[m], 34) || i(l[m], 39) ? T(l[m], l[m], "string") : i(l[m], 45) && m < O - 1 && M(l[m + 1], 61) && M(l[m + 1], 45) && (S === "number" || S === "word" || S === "reference") && p !== "return" && (S === "word" || S === "reference" || S === "number" || i(p, 41) || i(p, 93)) ? (d > -1 && k(), p = "-", S = "operator", q()) : d === -1 && (l[m] !== "0" || l[m] === "0" && l[m + 1] !== "b") && (He(l[m]) || m !== O - 2 && i(l[m], 45) && i(l[m + 1], 46) && He(l[m + 2]) || m !== O - 1 && (i(l[m], 45) || i(l[m], 46)) && He(l[m + 1])) ? (d > -1 && k(), S === "end" && i(l[m], 45) ? (p = "-", S = "operator") : (p = me(), S = "number"), q()) : i(l[m], 58) && i(l[m + 1], 58) ? (d > -1 && k(), n.correct === !0 && P(), ke(), m = m + 1, p = "::", S = "separator", q()) : i(l[m], 44) ? (d > -1 && k(), n.correct === !0 && P(), h[h.length - 1] === !0 && e.stack[r.count].indexOf("type") < 0 && (h[h.length - 1] = !1), S === "comment" ? se() : le > -1 && F.count[le] === 0 && N.variableList === "each" ? (ke(), p = ";", S = "separator", q(), p = F.word[le], S = "word", q(), F.index[le] = r.count) : (p = ",", S = "separator", ke(), q())) : i(l[m], 46) ? (d > -1 && k(), h[h.length - 1] = !1, i(l[m + 1], 46) && i(l[m + 2], 46) ? (p = "...", S = "operator", m = m + 2) : (ke(), p = ".", S = "separator"), ue(l[m - 1]) && (r.lineOffset = 1), q()) : i(l[m], 59) ? (d > -1 && k(), h[h.length - 1] === !0 && e.stack[r.count].indexOf("type") < 0 && (h[h.length - 1] = !1), f[f.length - 1] === 0 && f.pop(), le > -1 && F.count[le] === 0 && (N.variableList === "each" ? y() : F.index[le] = r.count + 1), n.correct === !0 && P(), p = ";", S = "separator", e.token[r.count] === "x}" ? we() : q(), oe()) : i(l[m], 40) || i(l[m], 91) || i(l[m], 123) ? _(l[m]) : i(l[m], 41) || i(l[m], 93) || i(l[m], 125) ? ee(l[m]) : d < 0 && e.stack[r.count] === "object" && i(l[m], 42) && M(l[m + 1], 61) && He(l[m + 1]) === !1 && ue(l[m + 1]) === !1 ? d = m : i(l[m], 61) || i(l[m], 38) || i(l[m], 60) || i(l[m], 62) || i(l[m], 43) || i(l[m], 45) || i(l[m], 42) || i(l[m], 47) || i(l[m], 33) || i(l[m], 63) || i(l[m], 124) || i(l[m], 94) || i(l[m], 58) || i(l[m], 37) || i(l[m], 94) ? (p = te(), p === "regex" ? p = e.token[r.count] : i(p, 42) && e.token[r.count] === "function" ? e.token[r.count] = "function*" : (S = "operator", M(p, 33) && p !== "++" && p !== "--" && ke(), q())) : d < 0 && l[m] !== c && (d = m), le > -1 && r.count === F.index[le] + 1 && i(e.token[F.index[le]], 59) && p !== F.word[le] && S !== "comment" && N.variableList === "list" && y(), m = m + 1;
+  while (m < O);
+  return d > -1 && k(), (M(e.token[r.count], 125) && i(e.token[0], 123) || M(e.token[0], 123)) && (M(e.token[r.count], 93) && i(e.token[0], 91) || M(e.token[0], 91)) && V(!1), t[0] === r.count && (p = H + t[1], S = "string", q()), e.token[r.count] === "x;" && (i(e.token[r.count - 1], 125) || i(e.token[r.count - 1], 93)) && e.begin[r.count - 1] === 0 && r.pop(e), N.objectSort && e.begin.length > 0 && Qt(0, r.count + 1), e;
 }
 
 // src/lexers/style.ts
-function an() {
-  let { data: e, rules: s, source: n } = r, u = n.split(c), A = n.length, a = [], C = [], o = 0, k = c, f = c;
-  function t(l) {
+function fn() {
+  let { data: e, rules: s, source: n } = r, u = n.split(c), N = n.length, l = [], O = [], o = 0, b = c, f = c;
+  function t(a) {
     r.push(e, {
       begin: r.stack.index,
       ender: -1,
@@ -4813,193 +4822,193 @@ function an() {
       lines: r.lineOffset,
       stack: r.stack.token,
       token: f,
-      types: k
-    }, l);
+      types: b
+    }, a);
   }
-  function h(l) {
-    let g = l;
+  function h(a) {
+    let g = a;
     do
-      l = l - 1;
-    while (i(u[l], 92) && l > 0);
-    return (g - l) % 2 === 1;
+      a = a - 1;
+    while (i(u[a], 92) && a > 0);
+    return (g - a) % 2 === 1;
   }
-  function V(l) {
-    let g = l.replace(/\s*!important/, " !important").split(c), M = /-?transition$/.test(e.token[r.count - 2]), L = [], N = /(\s|\(|,)-?0+\.?\d+([a-z]|\)|,|\s)/g, S = /(\s|\(|,)-?\.?\d+([a-z]|\)|,|\s)/g, j = 0, D = 0, B = c, P = g.length, pe = [], ge = (se) => se;
-    function ue(se) {
-      return se = se.replace(/\s*/g, c), /\/\d/.test(se) && l.indexOf("url(") === 0 ? se : ` ${se.charAt(0)} ${se.charAt(1)}`;
+  function F(a) {
+    let g = a.replace(/\s*!important/, " !important").split(c), W = /-?transition$/.test(e.token[r.count - 2]), C = [], U = /(\s|\(|,)-?0+\.?\d+([a-z]|\)|,|\s)/g, j = /(\s|\(|,)-?\.?\d+([a-z]|\)|,|\s)/g, y = 0, q = 0, G = c, B = g.length, V = [], ke = (te) => te;
+    function we(te) {
+      return te = te.replace(/\s*/g, c), /\/\d/.test(te) && a.indexOf("url(") === 0 ? te : ` ${te.charAt(0)} ${te.charAt(1)}`;
     }
-    function Ce(se) {
-      return s.style.noLeadZero === !0 ? se.replace(/^-?\D0+(\.|\d)/, (J) => J.replace(/0+/, c)) : /0*\./.test(se) ? se.replace(/0*\./, "0.") : /0+/.test(/\d+/.exec(se)[0]) ? /^\D*0+\D*$/.test(se) ? se.replace(/0+/, "0") : se.replace(/\d+/.exec(se)[0], /\d+/.exec(se)[0].replace(/^0+/, c)) : se;
+    function ae(te) {
+      return s.style.noLeadZero === !0 ? te.replace(/^-?\D0+(\.|\d)/, (ce) => ce.replace(/0+/, c)) : /0*\./.test(te) ? te.replace(/0*\./, "0.") : /0+/.test(/\d+/.exec(te)[0]) ? /^\D*0+\D*$/.test(te) ? te.replace(/0+/, "0") : te.replace(/\d+/.exec(te)[0], /\d+/.exec(te)[0].replace(/^0+/, c)) : te;
     }
-    function O(se) {
-      return se.replace(",", ", ");
+    function L(te) {
+      return te.replace(",", ", ");
     }
-    function ke(se) {
-      return `${se} `;
+    function ye(te) {
+      return `${te} `;
     }
-    function K() {
-      let se = j - 1, J = se;
-      if (se < 1)
+    function me() {
+      let te = y - 1, ce = te;
+      if (te < 1)
         return !0;
       do
-        J = J - 1;
-      while (J > 0 && i(g[J], 92));
-      return (se - J) % 2 === 1;
+        ce = ce - 1;
+      while (ce > 0 && i(g[ce], 92));
+      return (te - ce) % 2 === 1;
     }
-    if (j < P)
+    if (y < B)
       do
-        pe.push(g[j]), (T(g[j - 1], 92) || K() === !1) && (B === c ? i(g[j], 34) ? (B = Be, D = D + 1) : i(g[j], 39) ? (B = je, D = D + 1) : i(g[j], 40) ? (B = ")", D = D + 1) : i(g[j], 91) && (B = "]", D = D + 1) : i(g[j], 40) && i(B, 41) || i(g[j], 91) && i(B, 93) ? D = D + 1 : g[j] === B && (D = D - 1, D === 0 && (B = c))), B === c && i(g[j], 32) && (pe.pop(), L.push(ge(pe.join(c))), pe = []), j = j + 1;
-      while (j < P);
-    if (L.push(ge(pe.join(c))), P = L.length, j = 0, j < P)
+        V.push(g[y]), (M(g[y - 1], 92) || me() === !1) && (G === c ? i(g[y], 34) ? (G = Be, q = q + 1) : i(g[y], 39) ? (G = $e, q = q + 1) : i(g[y], 40) ? (G = ")", q = q + 1) : i(g[y], 91) && (G = "]", q = q + 1) : i(g[y], 40) && i(G, 41) || i(g[y], 91) && i(G, 93) ? q = q + 1 : g[y] === G && (q = q - 1, q === 0 && (G = c))), G === c && i(g[y], 32) && (V.pop(), C.push(ke(V.join(c))), V = []), y = y + 1;
+      while (y < B);
+    if (C.push(ke(V.join(c))), B = C.length, y = 0, y < B)
       do
-        s.style.noLeadZero === !0 && /^-?0+\.\d+[a-z]/.test(L[j]) === !0 ? L[j] = L[j].replace(/0+\./, ".") : s.style.noLeadZero === !1 && /^-?\.\d+[a-z]/.test(L[j]) ? L[j] = L[j].replace(".", "0.") : N.test(L[j]) || S.test(L[j]) ? L[j] = L[j].replace(N, Ce).replace(S, Ce) : /^(0+([a-z]{2,3}|%))$/.test(L[j]) && M === !1 ? L[j] = "0" : /^(0+)/.test(L[j]) ? (L[j] = L[j].replace(/0+/, "0"), /\d/.test(L[j].charAt(1)) && (L[j] = L[j].substr(1))) : /^url\((?!('|"))/.test(L[j]) && L[j].charCodeAt(L[j].length - 1) === 41 && (B = L[j].charAt(L[j].indexOf("url(") + 4), B !== "@" && T(B, 40) && T(B, 60) && (s.style.quoteConvert === "double" ? L[j] = L[j].replace(/url\(/, 'url("').replace(/\)$/, '")') : L[j] = L[j].replace(/url\(/, "url('").replace(/\)$/, "')"))), /^(\+|-)?\d+(\.\d+)?(e-?\d+)?\D+$/.test(L[j]) && (we.css.units.has(L[j].replace(/(\+|-)?\d+(\.\d+)?(e-?\d+)?/, c)) || (L[j] = L[j].replace(/(\+|-)?\d+(\.\d+)?(e-?\d+)?/, ke))), /^\w+\(/.test(L[j]) && L[j].charAt(L[j].length - 1) === ")" && (L[j].indexOf("url(") !== 0 || L[j].indexOf("url(") === 0 && L[j].indexOf(ee) > 0) && (L[j] = L[j].replace(/,\S/g, O)), j = j + 1;
-      while (j < P);
-    return B = L.join(ee), B.charAt(0) + B.slice(1).replace(/\s*(\/|\+|\*)\s*(\d|\$)/, ue);
+        s.style.noLeadZero === !0 && /^-?0+\.\d+[a-z]/.test(C[y]) === !0 ? C[y] = C[y].replace(/0+\./, ".") : s.style.noLeadZero === !1 && /^-?\.\d+[a-z]/.test(C[y]) ? C[y] = C[y].replace(".", "0.") : U.test(C[y]) || j.test(C[y]) ? C[y] = C[y].replace(U, ae).replace(j, ae) : /^(0+([a-z]{2,3}|%))$/.test(C[y]) && W === !1 ? C[y] = "0" : /^(0+)/.test(C[y]) ? (C[y] = C[y].replace(/0+/, "0"), /\d/.test(C[y].charAt(1)) && (C[y] = C[y].substr(1))) : /^url\((?!('|"))/.test(C[y]) && C[y].charCodeAt(C[y].length - 1) === 41 && (G = C[y].charAt(C[y].indexOf("url(") + 4), G !== "@" && M(G, 40) && M(G, 60) && (s.style.quoteConvert === "double" ? C[y] = C[y].replace(/url\(/, 'url("').replace(/\)$/, '")') : C[y] = C[y].replace(/url\(/, "url('").replace(/\)$/, "')"))), /^(\+|-)?\d+(\.\d+)?(e-?\d+)?\D+$/.test(C[y]) && (Le.css.units.has(C[y].replace(/(\+|-)?\d+(\.\d+)?(e-?\d+)?/, c)) || (C[y] = C[y].replace(/(\+|-)?\d+(\.\d+)?(e-?\d+)?/, ye))), /^\w+\(/.test(C[y]) && C[y].charAt(C[y].length - 1) === ")" && (C[y].indexOf("url(") !== 0 || C[y].indexOf("url(") === 0 && C[y].indexOf(ie) > 0) && (C[y] = C[y].replace(/,\S/g, L)), y = y + 1;
+      while (y < B);
+    return G = C.join(ie), G.charAt(0) + G.slice(1).replace(/\s*(\/|\+|\*)\s*(\d|\$)/, we);
   }
   function le() {
-    let l = [], g = [], M = s.style.quoteConvert, L = o, N = 0, S = c, j = null, D = !1;
-    function B() {
-      if (g.push(u[L]), ce(u[L + 1]))
+    let a = [], g = [], W = s.style.quoteConvert, C = o, U = 0, j = c, y = null, q = !1;
+    function G() {
+      if (g.push(u[C]), ue(u[C + 1]))
         do
-          L = L + 1;
-        while (L < A && ce(u[L + 1]));
+          C = C + 1;
+        while (C < N && ue(u[C + 1]));
     }
-    if (L < A)
+    if (C < N)
       do {
-        if (i(u[L], 34) || i(u[L], 39) ? (j === null && (j = !1), l[l.length - 1] === u[L] && (T(u[L - 1], 92) || h(L - 1) === !1) ? (l.pop(), M === "double" ? u[L] = Be : M === "single" && (u[L] = je)) : T(l[l.length - 1], 34) && T(l[l.length - 1], 39) && (T(u[L - 1], 92) || h(L - 1) === !1) ? (l.push(u[L]), M === "double" ? u[L] = Be : M === "single" && (u[L] = je)) : i(u[L - 1], 92) && M !== "none" ? h(L - 1) === !0 && (M === "double" && i(u[L], 39) || M === "single" && i(u[L], 34)) && g.pop() : M === "double" && i(u[L], 34) ? u[L] = '\\"' : M === "single" && i(u[L], 39) && (u[L] = "\\'"), g.push(u[L])) : T(u[L - 1], 92) || h(L - 1) === !1 ? i(u[L], 40) ? (j === null && (j = !0), l.push(")"), B()) : i(u[L], 91) ? (j = !1, l.push("]"), B()) : (i(u[L], 35) || i(u[L], 64)) && i(u[L + 1], 123) ? (j = !1, g.push(u[L]), L = L + 1, l.push("}"), B()) : u[L] === l[l.length - 1] ? (g.push(u[L]), l.pop()) : g.push(u[L]) : g.push(u[L]), r.stack.token === "map" && l.length === 0 && (i(u[L + 1], 44) || i(u[L + 1], 41)))
-          if (i(u[L + 1], 41) && i(e.token[r.count], 40))
+        if (i(u[C], 34) || i(u[C], 39) ? (y === null && (y = !1), a[a.length - 1] === u[C] && (M(u[C - 1], 92) || h(C - 1) === !1) ? (a.pop(), W === "double" ? u[C] = Be : W === "single" && (u[C] = $e)) : M(a[a.length - 1], 34) && M(a[a.length - 1], 39) && (M(u[C - 1], 92) || h(C - 1) === !1) ? (a.push(u[C]), W === "double" ? u[C] = Be : W === "single" && (u[C] = $e)) : i(u[C - 1], 92) && W !== "none" ? h(C - 1) === !0 && (W === "double" && i(u[C], 39) || W === "single" && i(u[C], 34)) && g.pop() : W === "double" && i(u[C], 34) ? u[C] = '\\"' : W === "single" && i(u[C], 39) && (u[C] = "\\'"), g.push(u[C])) : M(u[C - 1], 92) || h(C - 1) === !1 ? i(u[C], 40) ? (y === null && (y = !0), a.push(")"), G()) : i(u[C], 91) ? (y = !1, a.push("]"), G()) : (i(u[C], 35) || i(u[C], 64)) && i(u[C + 1], 123) ? (y = !1, g.push(u[C]), C = C + 1, a.push("}"), G()) : u[C] === a[a.length - 1] ? (g.push(u[C]), a.pop()) : g.push(u[C]) : g.push(u[C]), r.stack.token === "map" && a.length === 0 && (i(u[C + 1], 44) || i(u[C + 1], 41)))
+          if (i(u[C + 1], 41) && i(e.token[r.count], 40))
             r.pop(e), r.stack.pop(), g.splice(0, 0, "(");
           else
             break;
-        if (i(u[L + 1], 58)) {
-          if (N = L, ce(u[N]))
+        if (i(u[C + 1], 58)) {
+          if (U = C, ue(u[U]))
             do
-              N = N - 1;
-            while (ce(u[N]));
-          e.types[r.count] !== "start" && (S = u.slice(N - 6, N + 1).join(c), (S.indexOf("filter") === S.length - 6 || S.indexOf("progid") === S.length - 6) && (S = "filter"));
+              U = U - 1;
+            while (ue(u[U]));
+          e.types[r.count] !== "start" && (j = u.slice(U - 6, U + 1).join(c), (j.indexOf("filter") === j.length - 6 || j.indexOf("progid") === j.length - 6) && (j = "filter"));
         }
-        if (l.length === 0) {
-          if (i(u[L + 1], 59) && h(L + 1) === !0 || i(u[L + 1], 58) && T(u[L], 58) && T(u[L + 2], 58) && S !== "filter" && S !== "progid" || i(u[L + 1], 123) || i(u[L + 1], 125) || i(u[L + 1], 47) && (i(u[L + 2], 42) || i(u[L + 2], 47))) {
-            if (N = g.length - 1, ce(g[N]))
+        if (a.length === 0) {
+          if (i(u[C + 1], 59) && h(C + 1) === !0 || i(u[C + 1], 58) && M(u[C], 58) && M(u[C + 2], 58) && j !== "filter" && j !== "progid" || i(u[C + 1], 123) || i(u[C + 1], 125) || i(u[C + 1], 47) && (i(u[C + 2], 42) || i(u[C + 2], 47))) {
+            if (U = g.length - 1, ue(g[U]))
               do
-                N = N - 1, L = L - 1, g.pop();
-              while (ce(g[N]));
+                U = U - 1, C = C - 1, g.pop();
+              while (ue(g[U]));
             break;
           }
-          if (i(u[L + 1], 44))
+          if (i(u[C + 1], 44))
             break;
         }
-        L = L + 1;
-      } while (L < A);
-    o = L, r.stack.token === "map" && i(g[0], 40) && (a[a.length - 1] = a[a.length - 1] - 1), f = g.join(c).replace(/\s+/g, ee).replace(/^\s/, c).replace(/\s$/, c), j === !0 && (r.count > -1 && we.css.atrules(f) && s.style.atRuleSpace === !0 ? e.token[r.count] = e.token[r.count].replace(/\s*\(/g, " (").replace(/\s*\)\s*/g, ") ").replace(/,\(/g, ", (") : f = f.replace(/\s+\(/g, "(").replace(/\s+\)/g, ")").replace(/,\(/g, ", (")), k === "colon" && e.types[r.count - 1] === "start" ? we.css.pseudoClasses.has(f) && (e.token[r.count] = f = ":" + f, k = "pseudo", D = !0) : r.count > -1 && e.token[r.count].indexOf("extend(") === 0 ? k = "pseudo" : j === !0 && He(f.charAt(0)) === !1 && /^rgba?\(/.test(f) === !1 && f.indexOf("url(") !== 0 && (f.indexOf(ee) < 0 || f.indexOf(ee) > f.indexOf("(")) && f.charAt(f.length - 1) === ")" ? (i(e.token[r.count], 58) ? k = "value" : (f = f.replace(/,\u0020?/g, ", "), k = "function"), f = V(f)) : r.count > -1 && je.indexOf(e.token[r.count].charAt(0)) > -1 && e.types[r.count] === "variable" ? k = "item" : i(g[0], 64) || g[0] === "$" ? (e.types[r.count] === "colon" && s.language === "css" && (e.types[r.count - 1] === "property" || e.types[r.count - 1] === "variable") ? k = "value" : r.count > -1 && (k = "item", S = e.token[r.count], L = S.indexOf("("), i(S[S.length - 1], 41) && L > 0 && (S = S.slice(L + 1, S.length - 1), e.token[r.count] = e.token[r.count].slice(0, L + 1) + V(S) + ")")), f = V(f)) : k = "item", D === !1 ? t(c) : D = !1;
+        C = C + 1;
+      } while (C < N);
+    o = C, r.stack.token === "map" && i(g[0], 40) && (l[l.length - 1] = l[l.length - 1] - 1), f = g.join(c).replace(/\s+/g, ie).replace(/^\s/, c).replace(/\s$/, c), y === !0 && (r.count > -1 && Le.css.atrules(f) && s.style.atRuleSpace === !0 ? e.token[r.count] = e.token[r.count].replace(/\s*\(/g, " (").replace(/\s*\)\s*/g, ") ").replace(/,\(/g, ", (") : f = f.replace(/\s+\(/g, "(").replace(/\s+\)/g, ")").replace(/,\(/g, ", (")), b === "colon" && e.types[r.count - 1] === "start" ? Le.css.pseudoClasses.has(f) && (e.token[r.count] = f = ":" + f, b = "pseudo", q = !0) : r.count > -1 && e.token[r.count].indexOf("extend(") === 0 ? b = "pseudo" : y === !0 && He(f.charAt(0)) === !1 && /^rgba?\(/.test(f) === !1 && f.indexOf("url(") !== 0 && (f.indexOf(ie) < 0 || f.indexOf(ie) > f.indexOf("(")) && f.charAt(f.length - 1) === ")" ? (i(e.token[r.count], 58) ? b = "value" : (f = f.replace(/,\u0020?/g, ", "), b = "function"), f = F(f)) : r.count > -1 && $e.indexOf(e.token[r.count].charAt(0)) > -1 && e.types[r.count] === "variable" ? b = "item" : i(g[0], 64) || g[0] === "$" ? (e.types[r.count] === "colon" && s.language === "css" && (e.types[r.count - 1] === "property" || e.types[r.count - 1] === "variable") ? b = "value" : r.count > -1 && (b = "item", j = e.token[r.count], C = j.indexOf("("), i(j[j.length - 1], 41) && C > 0 && (j = j.slice(C + 1, j.length - 1), e.token[r.count] = e.token[r.count].slice(0, C + 1) + F(j) + ")")), f = F(f)) : b = "item", q === !1 ? t(c) : q = !1;
   }
-  function m(l) {
-    let g = r.count, M = 0, L = c, N = [];
-    function S() {
+  function m(a) {
+    let g = r.count, W = 0, C = c, U = [];
+    function j() {
       if (!(r.count < 0)) {
         if (g > 0 && (e.types[g] === "comment" || e.types[g] === "ignore"))
           do
-            g = g - 1, N.push(e.token[g]);
+            g = g - 1, U.push(e.token[g]);
           while (g > 0 && e.lexer[g] === "style" && (e.types[g] === "comment" || e.types[g] === "ignore"));
-        if (M = g - 1, M > 0 && (e.types[M] === "comment" || e.types[M] === "ignore"))
+        if (W = g - 1, W > 0 && (e.types[W] === "comment" || e.types[W] === "ignore"))
           do
-            M = M - 1;
-          while (M > 0 && e.lexer[g] === "style" && (e.types[M] === "comment" || e.types[M] === "ignore"));
-        M < 0 && (M = 0), g < 0 && (g = 0), L = e.token[g][0];
+            W = W - 1;
+          while (W > 0 && e.lexer[g] === "style" && (e.types[W] === "comment" || e.types[W] === "ignore"));
+        W < 0 && (W = 0), g < 0 && (g = 0), C = e.token[g][0];
       }
     }
-    function j(B) {
-      return B.replace(/\s*&/, " &").replace(/\s*&\s*{/, " & {").replace(/\s*>\s*/g, " > ").replace(/\s*\+\s*/g, " + ");
+    function y(G) {
+      return G.replace(/\s*&/, " &").replace(/\s*&\s*{/, " & {").replace(/\s*>\s*/g, " > ").replace(/\s*\+\s*/g, " + ");
     }
-    function D(B) {
-      let P = B, pe = e.begin[P];
-      if (e.token[B] = e.token[B].replace(/\s*&/, " &").replace(/\s*&\s*{/, " & {").replace(/\s*>\s*/g, " > ").replace(/\s*\+\s*/g, " + ").replace(/:\s+/g, ": ").replace(/^\s+/, c).replace(/\s+$/, c).replace(/\s+::\s+/, "::"), i(e.token[P], 64) && (e.token[B] = e.token[B].replace(/(\(\s*[a-z-]+\s*)(:)(\S)/g, "$1$2 $3")), T(e.token[P], 44) && e.types[P] !== "comment" && (e.types[P] = "selector"), i(e.token[P - 1], 44) || i(e.token[P - 1], 58) || e.types[P - 1] === "comment" || e.types[P - 1] === "pseudo")
-        if (e.types[P - 1] === "colon" && (e.types[P] === "selector" || e.types[P] === "at_rule") && (e.types[P - 2] === "template" || e.types[P - 2] === "liquid_start" || e.types[P - 2] === "liquid_else" || e.types[P - 2] === "liquid_end"))
-          e.token[P - 1] = ":" + e.token[P] + ee, e.types[P - 1] = "selector", r.splice({
+    function q(G) {
+      let B = G, V = e.begin[B];
+      if (e.token[G] = e.token[G].replace(/\s*&/, " &").replace(/\s*&\s*{/, " & {").replace(/\s*>\s*/g, " > ").replace(/\s*\+\s*/g, " + ").replace(/:\s+/g, ": ").replace(/^\s+/, c).replace(/\s+$/, c).replace(/\s+::\s+/, "::"), i(e.token[B], 64) && (e.token[G] = e.token[G].replace(/(\(\s*[a-z-]+\s*)(:)(\S)/g, "$1$2 $3")), M(e.token[B], 44) && e.types[B] !== "comment" && (e.types[B] = "selector"), i(e.token[B - 1], 44) || i(e.token[B - 1], 58) || e.types[B - 1] === "comment" || e.types[B - 1] === "pseudo")
+        if (e.types[B - 1] === "colon" && (e.types[B] === "selector" || e.types[B] === "at_rule") && (e.types[B - 2] === "template" || e.types[B - 2] === "liquid_start" || e.types[B - 2] === "liquid_else" || e.types[B - 2] === "liquid_end"))
+          e.token[B - 1] = ":" + e.token[B] + ie, e.types[B - 1] = "selector", r.splice({
             data: e,
             howmany: 1,
-            index: P
+            index: B
           });
-        else if (e.types[P - 1] === "pseudo")
-          e.token[P - 1] = `${e.token[P - 1]}${e.token[P]}`, e.types[P - 1] = "selector", r.splice({
+        else if (e.types[B - 1] === "pseudo")
+          e.token[B - 1] = `${e.token[B - 1]}${e.token[B]}`, e.types[B - 1] = "selector", r.splice({
             data: e,
             howmany: 1,
-            index: P
+            index: B
           });
-        else if (e.types[P - 2] === "comment")
-          e.token[P - 1] = j(`${e.token[P - 1]}${e.token[P]}`), e.types[P - 1] = "selector", r.splice({
+        else if (e.types[B - 2] === "comment")
+          e.token[B - 1] = y(`${e.token[B - 1]}${e.token[B]}`), e.types[B - 1] = "selector", r.splice({
             data: e,
             howmany: 1,
-            index: P
+            index: B
           });
         else
           do
-            if (P = P - 1, e.begin[P] === pe) {
-              if (i(e.token[P], 59))
+            if (B = B - 1, e.begin[B] === V) {
+              if (i(e.token[B], 59))
                 break;
-              T(e.token[P], 44) && e.types[P] !== "comment" && (e.types[P] = "selector"), e.token[P] === ":" && T(e.token[P - 1], 59) && (e.token[P - 1] = j(`${e.token[P - 1]}:${e.token[P + 1]}`), r.splice({
+              M(e.token[B], 44) && e.types[B] !== "comment" && (e.types[B] = "selector"), e.token[B] === ":" && M(e.token[B - 1], 59) && (e.token[B - 1] = y(`${e.token[B - 1]}:${e.token[B + 1]}`), r.splice({
                 data: e,
                 howmany: 2,
-                index: P
+                index: B
               }));
             } else
               break;
-          while (P > 0);
-      if (P = r.count, s.style.sortSelectors === !0 && i(e.token[P - 1], 44)) {
-        let ge = [e.token[P]];
+          while (B > 0);
+      if (B = r.count, s.style.sortSelectors === !0 && i(e.token[B - 1], 44)) {
+        let ke = [e.token[B]];
         do {
-          if (P = P - 1, e.types[P] === "comment" || e.types[P] === "ignore")
+          if (B = B - 1, e.types[B] === "comment" || e.types[B] === "ignore")
             do
-              P = P - 1;
-            while (P > 0 && (e.types[P] === "comment" || e.types[P] === "ignore"));
-          i(e.token[P], 44) && (P = P - 1), ge.push(e.token[P]);
-        } while (P > 0 && (i(e.token[P - 1], 44) || e.types[P - 1] === "selector" || e.types[P - 1] === "comment" || e.types[P - 1] === "ignore"));
-        ge.sort(), P = r.count, e.token[P] = ge.pop();
+              B = B - 1;
+            while (B > 0 && (e.types[B] === "comment" || e.types[B] === "ignore"));
+          i(e.token[B], 44) && (B = B - 1), ke.push(e.token[B]);
+        } while (B > 0 && (i(e.token[B - 1], 44) || e.types[B - 1] === "selector" || e.types[B - 1] === "comment" || e.types[B - 1] === "ignore"));
+        ke.sort(), B = r.count, e.token[B] = ke.pop();
         do {
-          if (P = P - 1, e.types[P] === "comment" || e.types[P] === "ignore")
+          if (B = B - 1, e.types[B] === "comment" || e.types[B] === "ignore")
             do
-              P = P - 1;
-            while (P > 0 && (e.types[P] === "comment" || e.types[P] === "ignore"));
-          i(e.token[P], 44) && (P = P - 1), e.token[P] = ge.pop();
-        } while (P > 0 && (i(e.token[P - 1], 44) || e.types[P - 1] === "selector" || e.types[P - 1] === "comment" || e.types[P - 1] === "ignore"));
+              B = B - 1;
+            while (B > 0 && (e.types[B] === "comment" || e.types[B] === "ignore"));
+          i(e.token[B], 44) && (B = B - 1), e.token[B] = ke.pop();
+        } while (B > 0 && (i(e.token[B - 1], 44) || e.types[B - 1] === "selector" || e.types[B - 1] === "comment" || e.types[B - 1] === "ignore"));
       }
-      g = r.count, S();
+      g = r.count, j();
     }
-    if (S(), l === "start" && (e.types[g] === "value" || e.types[g] === "variable") && (e.types[g] = "item"), e.lexer[r.count - 1] !== "style" || M < 0)
-      l === "colon" ? i(L, 36) || i(L, 64) ? e.types[g] = "variable" : e.stack[g] !== "global" && (e.types[g] !== "comment" || e.types[g] !== "ignore") && (e.types[g] = "property") : e.lexer[g] === "style" && (e.types[g] = "selector", D(g));
-    else if (l === "start" && e.types[g] === "function" && e.lexer[g] === "style")
-      e.types[g] = "selector", D(g);
+    if (j(), a === "start" && (e.types[g] === "value" || e.types[g] === "variable") && (e.types[g] = "item"), e.lexer[r.count - 1] !== "style" || W < 0)
+      a === "colon" ? i(C, 36) || i(C, 64) ? e.types[g] = "variable" : e.stack[g] !== "global" && (e.types[g] !== "comment" || e.types[g] !== "ignore") && (e.types[g] = "property") : e.lexer[g] === "style" && (e.types[g] = "selector", q(g));
+    else if (a === "start" && e.types[g] === "function" && e.lexer[g] === "style")
+      e.types[g] = "selector", q(g);
     else if (e.types[g] === "item" && e.lexer[g] === "style")
-      if (l === "start")
-        D(g), e.types[g] = "selector", e.token[g] === ":" && (e.types[M] = "selector"), e.token[g].indexOf("=\u201C") > 0 ? r.error = `Invalid Quote (\u201C, \\201c) used on line number ${r.lineNumber}` : e.token[g].indexOf("=\u201D") > 0 && (r.error = `Invalid Quote (\u201D, \\201d) used on line number ${r.lineNumber}`);
-      else if (l === "end")
-        i(L, 36) || i(L, 64) ? e.types[g] = "variable" : e.types[g] = "value", e.token[g] = V(e.token[g]);
-      else if (l === "separator")
-        if (e.types[M] === "colon" || i(e.token[M], 44) || i(e.token[M], 123)) {
-          if (T(u[o], 59) && (e.types[M] === "selector" || e.types[M] === "at_rule" || i(e.token[M], 123)))
-            e.types[g] = "selector", D(g);
+      if (a === "start")
+        q(g), e.types[g] = "selector", e.token[g] === ":" && (e.types[W] = "selector"), e.token[g].indexOf("=\u201C") > 0 ? r.error = `Invalid Quote (\u201C, \\201c) used on line number ${r.lineNumber}` : e.token[g].indexOf("=\u201D") > 0 && (r.error = `Invalid Quote (\u201D, \\201d) used on line number ${r.lineNumber}`);
+      else if (a === "end")
+        i(C, 36) || i(C, 64) ? e.types[g] = "variable" : e.types[g] = "value", e.token[g] = F(e.token[g]);
+      else if (a === "separator")
+        if (e.types[W] === "colon" || i(e.token[W], 44) || i(e.token[W], 123)) {
+          if (M(u[o], 59) && (e.types[W] === "selector" || e.types[W] === "at_rule" || i(e.token[W], 123)))
+            e.types[g] = "selector", q(g);
           else if (i(e.token[g], 36) || i(e.token[g], 64))
             e.types[g] = "variable";
-          else if (i(e.token[M], 58) && e.token[g] === "root") {
-            e.types[M] = "selector", e.token[M] = e.token[M] + e.token[g], r.pop(e);
+          else if (i(e.token[W], 58) && e.token[g] === "root") {
+            e.types[W] = "selector", e.token[W] = e.token[W] + e.token[g], r.pop(e);
             return;
           } else
             e.types[g] = "value";
-          e.token[g] = V(e.token[g]), e.token[g].charAt(0) === "\u201C" ? r.error = `Invalid Quote (\u201C, \\201c) used on line number ${r.lineNumber}` : e.token[g].charAt(0) === "\u201D" && (r.error = `Invalid (\u201D, \\201d) used on line number ${r.lineNumber}`);
+          e.token[g] = F(e.token[g]), e.token[g].charAt(0) === "\u201C" ? r.error = `Invalid Quote (\u201C, \\201c) used on line number ${r.lineNumber}` : e.token[g].charAt(0) === "\u201D" && (r.error = `Invalid (\u201D, \\201d) used on line number ${r.lineNumber}`);
         } else
-          i(L, 36) || i(L, 64) ? e.types[g] = "variable" : e.types[M] === "value" || e.types[M] === "variable" ? (e.token[M] = e.token[M] + e.token[g], r.pop(e)) : e.types[g] = "value";
+          i(C, 36) || i(C, 64) ? e.types[g] = "variable" : e.types[W] === "value" || e.types[W] === "variable" ? (e.token[W] = e.token[W] + e.token[g], r.pop(e)) : e.types[g] = "value";
       else
-        l === "colon" ? i(L, 36) || i(L, 64) ? e.types[g] = "variable" : e.types[g] = "property" : i(e.token[M], 64) && (e.types[M - 2] !== "variable" && e.types[M - 2] !== "property" || e.types[M - 1] === "separator") ? (e.types[M] = "variable", k = "variable", e.token[M] = V(e.token[M])) : l === "comment" && (i(L, 46) || i(L, 35)) && (e.types[g] = "selector");
+        a === "colon" ? i(C, 36) || i(C, 64) ? e.types[g] = "variable" : e.types[g] = "property" : i(e.token[W], 64) && (e.types[W - 2] !== "variable" && e.types[W - 2] !== "property" || e.types[W - 1] === "separator") ? (e.types[W] = "variable", b = "variable", e.token[W] = F(e.token[W])) : a === "comment" && (i(C, 46) || i(C, 35)) && (e.types[g] = "selector");
   }
   function p() {
-    let l = r.count;
+    let a = r.count;
     do
-      l = l - 1;
-    while (l > 0 && e.types[l] === "comment");
-    e.token[l] !== ";" && r.splice({
+      a = a - 1;
+    while (a > 0 && e.types[a] === "comment");
+    e.token[a] !== ";" && r.splice({
       data: e,
       howmany: 0,
-      index: l + 1,
+      index: a + 1,
       record: {
         begin: r.stack.index,
         ender: -1,
@@ -5011,95 +5020,95 @@ function an() {
       }
     });
   }
-  function w(l, g) {
-    let M = [], L = c, N = c, S = 0, j = l.length;
-    function D(B) {
-      let P = r.count > 0 ? e.types[r.count - 1] : e.types[r.count];
-      k === "item" && (P === "colon" ? e.types[r.count] = "value" : m(P)), i(u[o + 1], 32), k = B, f = Ft(f, N), k.indexOf("start") > -1 || k.indexOf("else") > -1 ? t(f) : t(c);
+  function S(a, g) {
+    let W = [], C = c, U = c, j = 0, y = a.length;
+    function q(G) {
+      let B = r.count > 0 ? e.types[r.count - 1] : e.types[r.count];
+      b === "item" && (B === "colon" ? e.types[r.count] = "value" : m(B)), i(u[o + 1], 32), b = G, f = zt(f, U), b.indexOf("start") > -1 || b.indexOf("else") > -1 ? t(f) : t(c);
     }
-    if (C[C.length - 1] = !0, o < A)
+    if (O[O.length - 1] = !0, o < N)
       do {
-        if (M.push(u[o]), L === c) {
+        if (W.push(u[o]), C === c) {
           if (i(u[o], 34))
-            L = Be;
+            C = Be;
           else if (i(u[o], 39))
-            L = je;
+            C = $e;
           else if (i(u[o], 47))
-            i(u[o + 1], 47) ? L = "/" : i(u[o + 1], 42) && (L = "*");
+            i(u[o + 1], 47) ? C = "/" : i(u[o + 1], 42) && (C = "*");
           else if (i(g, u[o + 1].charCodeAt(0))) {
             do
-              S = S + 1, o = o + 1, M.push(u[o]);
-            while (o < A && S < g.length && u[o + 1] === g.charAt(S));
-            if (S === g.length) {
-              if (L = M.join(c), ce(L.charAt(j)))
+              j = j + 1, o = o + 1, W.push(u[o]);
+            while (o < N && j < g.length && u[o + 1] === g.charAt(j));
+            if (j === g.length) {
+              if (C = W.join(c), ue(C.charAt(y)))
                 do
-                  j = j + 1;
-                while (ce(L.charAt(j)));
-              S = j;
+                  y = y + 1;
+                while (ue(C.charAt(y)));
+              j = y;
               do
-                S = S + 1;
-              while (S < g.length && !ce(L.charAt(S)));
-              if (S === L.length && (S = S - g.length), l === "{%" && (N = Ue(L)), k === "item" && e.types[r.count - 1] === "colon" && (e.types[r.count - 2] === "property" || e.types[r.count - 2] === "variable")) {
-                k = "value", e.types[r.count] = "value", Number.isNaN(Number(e.token[r.count])) === !0 && e.token[r.count].charAt(e.token[r.count].length - 1) !== ")" ? e.token[r.count] = e.token[r.count] + L : e.token[r.count] = e.token[r.count] + ee + L;
+                j = j + 1;
+              while (j < g.length && !ue(C.charAt(j)));
+              if (j === C.length && (j = j - g.length), a === "{%" && (U = Ue(C)), b === "item" && e.types[r.count - 1] === "colon" && (e.types[r.count - 2] === "property" || e.types[r.count - 2] === "variable")) {
+                b = "value", e.types[r.count] = "value", Number.isNaN(Number(e.token[r.count])) === !0 && e.token[r.count].charAt(e.token[r.count].length - 1) !== ")" ? e.token[r.count] = e.token[r.count] + C : e.token[r.count] = e.token[r.count] + ie + C;
                 return;
               }
-              if (f = L, l === "{%") {
-                let B = Array.from(we.liquid.tags), P = B.length - 1, pe = N.slice(0, N.indexOf(ee) + 1);
-                if (pe.indexOf("(") > 0 && (N = pe.slice(0, pe.indexOf("("))), we.liquid.else.has(N)) {
-                  D("liquid_else");
+              if (f = C, a === "{%") {
+                let G = Array.from(Le.liquid.tags), B = G.length - 1, V = U.slice(0, U.indexOf(ie) + 1);
+                if (V.indexOf("(") > 0 && (U = V.slice(0, V.indexOf("("))), Le.liquid.else.has(U)) {
+                  q("liquid_else");
                   return;
                 }
-                if (P = B.length - 1, P > -1)
+                if (B = G.length - 1, B > -1)
                   do {
-                    if (N === B[P]) {
-                      D("liquid_start");
+                    if (U === G[B]) {
+                      q("liquid_start");
                       return;
                     }
-                    if (N === "end" + B[P]) {
-                      D("liquid_end");
+                    if (U === "end" + G[B]) {
+                      q("liquid_end");
                       return;
                     }
-                    P = P - 1;
-                  } while (P > -1);
-              } else if (l === "{{") {
-                let B = L.slice(2), P = B.length, pe = 0;
+                    B = B - 1;
+                  } while (B > -1);
+              } else if (a === "{{") {
+                let G = C.slice(2), B = G.length, V = 0;
                 do
-                  pe = pe + 1;
-                while (pe < P && ce(B.charAt(pe)) === !1 && B.charCodeAt(j) !== 40);
-                if (B = B.slice(0, pe), i(B[B.length - 2], 125) && (B = B.slice(0, B.length - 2)), B === "end") {
-                  D("liquid_end");
+                  V = V + 1;
+                while (V < B && ue(G.charAt(V)) === !1 && G.charCodeAt(y) !== 40);
+                if (G = G.slice(0, V), i(G[G.length - 2], 125) && (G = G.slice(0, G.length - 2)), G === "end") {
+                  q("liquid_end");
                   return;
                 }
               }
-              D("liquid");
+              q("liquid");
               return;
             }
-            S = 0;
+            j = 0;
           }
         } else
-          L === u[o] && (i(L, 34) || i(L, 39) ? L = c : i(L, 47) && (i(u[o], 13) || i(u[o], 10)) ? L = c : i(L, 42) && i(u[o + 1], 47) && (L = c));
+          C === u[o] && (i(C, 34) || i(C, 39) ? C = c : i(C, 47) && (i(u[o], 13) || i(u[o], 10)) ? C = c : i(C, 42) && i(u[o + 1], 47) && (C = c));
         o = o + 1;
-      } while (o < A);
+      } while (o < N);
   }
-  function _(l) {
+  function D(a) {
     let g;
-    l ? (g = Qt({
+    a ? (g = Ht({
       chars: u,
       start: o,
-      end: A,
+      end: N,
       lexer: "style",
       begin: "//",
-      ender: z
-    }), f = g[0], k = Mt.test(f) ? "ignore" : "comment") : (g = yt(u, {
+      ender: H
+    }), f = g[0], b = It.test(f) ? "ignore" : "comment") : (g = xt(u, {
       start: o,
-      end: A,
+      end: N,
       lexer: "style",
       begin: "/*",
       ender: "*/"
-    }), f = g[0], k = Bi.test(f) ? "ignore" : "comment"), t(c), o = g[1];
+    }), f = g[0], b = $i.test(f) ? "ignore" : "comment"), t(c), o = g[1];
   }
   function I() {
-    let l = r.lineOffset, g = {
+    let a = r.lineOffset, g = {
       data: {
         margin: [
           c,
@@ -5121,1357 +5130,1357 @@ function an() {
         padding: 0
       },
       removes: []
-    }, M = r.stack.index;
-    function L(D) {
-      if (e.token[S - 2] === D) {
-        let B = e.token[S].replace(/\s*!important\s*/g, c).split(ee), P = B.length;
-        e.token[S].indexOf("!important") > -1 && (g.data[D[4]] = !0), P > 3 ? (g.data[D][0] === c && (g.data[D][0] = B[0]), g.data[D][1] === c && (g.data[D][1] = B[1]), g.data[D][2] === c && (g.data[D][2] = B[2]), g.data[D][3] === c && (g.data[D][3] = B[3])) : P > 2 ? (g.data[D][0] === c && (g.data[D][0] = B[0]), g.data[D][1] === c && (g.data[D][1] = B[1]), g.data[D][2] === c && (g.data[D][2] = B[2]), g.data[D][3] === c && (g.data[D][3] = B[1])) : P > 1 ? (g.data[D][0] === c && (g.data[D][0] = B[0]), g.data[D][1] === c && (g.data[D][1] = B[1]), g.data[D][2] === c && (g.data[D][2] = B[0]), g.data[D][3] === c && (g.data[D][3] = B[1])) : (g.data[D][0] === c && (g.data[D][0] = B[0]), g.data[D][1] === c && (g.data[D][1] = B[0]), g.data[D][2] === c && (g.data[D][2] = B[0]), g.data[D][3] === c && (g.data[D][3] = B[0]));
-      } else if (e.token[S - 2] === `${D}-bottom`)
-        g.data[D][2] === c && (g.data[D][2] = e.token[S]);
-      else if (e.token[S - 2] === `${D}-left`)
-        g.data[D][3] === c && (g.data[D][3] = e.token[S]);
-      else if (e.token[S - 2] === `${D}-right`)
-        g.data[D][1] === c && (g.data[D][1] = e.token[S]);
-      else if (e.token[S - 2] === `${D}-top`)
-        g.data[D][0] === c && (g.data[D][0] = e.token[S]);
+    }, W = r.stack.index;
+    function C(q) {
+      if (e.token[j - 2] === q) {
+        let G = e.token[j].replace(/\s*!important\s*/g, c).split(ie), B = G.length;
+        e.token[j].indexOf("!important") > -1 && (g.data[q[4]] = !0), B > 3 ? (g.data[q][0] === c && (g.data[q][0] = G[0]), g.data[q][1] === c && (g.data[q][1] = G[1]), g.data[q][2] === c && (g.data[q][2] = G[2]), g.data[q][3] === c && (g.data[q][3] = G[3])) : B > 2 ? (g.data[q][0] === c && (g.data[q][0] = G[0]), g.data[q][1] === c && (g.data[q][1] = G[1]), g.data[q][2] === c && (g.data[q][2] = G[2]), g.data[q][3] === c && (g.data[q][3] = G[1])) : B > 1 ? (g.data[q][0] === c && (g.data[q][0] = G[0]), g.data[q][1] === c && (g.data[q][1] = G[1]), g.data[q][2] === c && (g.data[q][2] = G[0]), g.data[q][3] === c && (g.data[q][3] = G[1])) : (g.data[q][0] === c && (g.data[q][0] = G[0]), g.data[q][1] === c && (g.data[q][1] = G[0]), g.data[q][2] === c && (g.data[q][2] = G[0]), g.data[q][3] === c && (g.data[q][3] = G[0]));
+      } else if (e.token[j - 2] === `${q}-bottom`)
+        g.data[q][2] === c && (g.data[q][2] = e.token[j]);
+      else if (e.token[j - 2] === `${q}-left`)
+        g.data[q][3] === c && (g.data[q][3] = e.token[j]);
+      else if (e.token[j - 2] === `${q}-right`)
+        g.data[q][1] === c && (g.data[q][1] = e.token[j]);
+      else if (e.token[j - 2] === `${q}-top`)
+        g.data[q][0] === c && (g.data[q][0] = e.token[j]);
       else
         return;
-      g.removes.push([S, D]), g.last[D] = S;
+      g.removes.push([j, q]), g.last[q] = j;
     }
-    function N() {
-      let D = 0, B = c, P = /^(0+([a-z]+|%))/, pe = g.removes.length, ge = g.data.margin[0] !== c && g.data.margin[1] !== c && g.data.margin[2] !== c && g.data.margin[3] !== c, ue = g.data.padding[0] !== c && g.data.padding[1] !== c && g.data.padding[2] !== c && g.data.padding[3] !== c;
-      function Ce(O) {
-        if (P.test(g.data[O][0]) === !0 && (g.data[O][0] = "0"), P.test(g.data[O][1]) === !0 && (g.data[O][1] = "0"), P.test(g.data[O][2]) === !0 && (g.data[O][2] = "0"), P.test(g.data[O][3]) === !0 && (g.data[O][3] = "0"), g.data[O][0] === g.data[O][1] && g.data[O][0] === g.data[O][2] && g.data[O][0] === g.data[O][3] ? B = g.data[O][0] : g.data[O][0] === g.data[O][2] && g.data[O][1] === g.data[O][3] && g.data[O][0] !== g.data[O][1] ? B = `${g.data[O][0]} ${g.data[O][1]}` : g.data[O][1] === g.data[O][3] && g.data[O][0] !== g.data[O][2] ? B = `${g.data[O][0]} ${g.data[O][1]} ${g.data[O][2]}` : B = `${g.data[O][0]} ${g.data[O][1]} ${g.data[O][2]} ${g.data[O][3]}`, g.data[O[4]] === !0 && (B = `${B.replace(" !important", c)} !important`), g.last[O] > r.count) {
-          D = M < 1 ? 1 : M + 1;
+    function U() {
+      let q = 0, G = c, B = /^(0+([a-z]+|%))/, V = g.removes.length, ke = g.data.margin[0] !== c && g.data.margin[1] !== c && g.data.margin[2] !== c && g.data.margin[3] !== c, we = g.data.padding[0] !== c && g.data.padding[1] !== c && g.data.padding[2] !== c && g.data.padding[3] !== c;
+      function ae(L) {
+        if (B.test(g.data[L][0]) === !0 && (g.data[L][0] = "0"), B.test(g.data[L][1]) === !0 && (g.data[L][1] = "0"), B.test(g.data[L][2]) === !0 && (g.data[L][2] = "0"), B.test(g.data[L][3]) === !0 && (g.data[L][3] = "0"), g.data[L][0] === g.data[L][1] && g.data[L][0] === g.data[L][2] && g.data[L][0] === g.data[L][3] ? G = g.data[L][0] : g.data[L][0] === g.data[L][2] && g.data[L][1] === g.data[L][3] && g.data[L][0] !== g.data[L][1] ? G = `${g.data[L][0]} ${g.data[L][1]}` : g.data[L][1] === g.data[L][3] && g.data[L][0] !== g.data[L][2] ? G = `${g.data[L][0]} ${g.data[L][1]} ${g.data[L][2]}` : G = `${g.data[L][0]} ${g.data[L][1]} ${g.data[L][2]} ${g.data[L][3]}`, g.data[L[4]] === !0 && (G = `${G.replace(" !important", c)} !important`), g.last[L] > r.count) {
+          q = W < 1 ? 1 : W + 1;
           do {
-            if (e.begin[D] === M && e.types[D] === "value" && e.token[D - 2].indexOf(O) === 0) {
-              g.last[O] = D;
+            if (e.begin[q] === W && e.types[q] === "value" && e.token[q - 2].indexOf(L) === 0) {
+              g.last[L] = q;
               break;
             }
-            D = D + 1;
-          } while (D < r.count);
+            q = q + 1;
+          } while (q < r.count);
         }
-        e.token[g.last[O]] = B, e.token[g.last[O] - 2] = O;
+        e.token[g.last[L]] = G, e.token[g.last[L] - 2] = L;
       }
-      if (pe > 1 && (ge === !0 || ue === !0))
+      if (V > 1 && (ke === !0 || we === !0))
         do
-          g.removes[D][0] !== g.last.margin && g.removes[D][0] !== g.last.padding && (ge === !0 && g.removes[D][1] === "margin" || ue === !0 && g.removes[D][1] === "padding") && r.splice({
+          g.removes[q][0] !== g.last.margin && g.removes[q][0] !== g.last.padding && (ke === !0 && g.removes[q][1] === "margin" || we === !0 && g.removes[q][1] === "padding") && r.splice({
             data: e,
-            howmany: e.types[g.removes[D][0] + 1] === "separator" ? 4 : 3,
-            index: g.removes[D][0] - 2
-          }), D = D + 1;
-        while (D < pe - 1);
-      ge === !0 && Ce("margin"), ue === !0 && Ce("padding"), j === !0 && (M < 0 ? r.error = "Brace mismatch. There appears to be more closing braces than starting braces." : _t(M, r.count + 1));
+            howmany: e.types[g.removes[q][0] + 1] === "separator" ? 4 : 3,
+            index: g.removes[q][0] - 2
+          }), q = q + 1;
+        while (q < V - 1);
+      ke === !0 && ae("margin"), we === !0 && ae("padding"), y === !0 && (W < 0 ? r.error = "Brace mismatch. There appears to be more closing braces than starting braces." : Qt(W, r.count + 1));
     }
-    let S = r.count, j = !1;
+    let j = r.count, y = !1;
     do
-      S = S - 1, e.begin[S] === M ? e.types[S] === "value" && e.types[S - 2] === "property" && (e.token[S - 2].indexOf("margin") === 0 ? L("margin") : e.token[S - 2].indexOf("padding") === 0 && L("padding")) : (j = !0, S = e.begin[S]);
-    while (S > M);
-    N(), r.lineOffset = l;
+      j = j - 1, e.begin[j] === W ? e.types[j] === "value" && e.types[j - 2] === "property" && (e.token[j - 2].indexOf("margin") === 0 ? C("margin") : e.token[j - 2].indexOf("padding") === 0 && C("padding")) : (y = !0, j = e.begin[j]);
+    while (j > W);
+    U(), r.lineOffset = a;
   }
   function d() {
     r.lineOffset = 1;
     do {
-      if (i(u[o], 10) && (r.lineIndex = o, r.lineOffset = r.lineOffset + 1, r.lineNumber = r.lineNumber + 1), ce(u[o + 1]) === !1)
+      if (i(u[o], 10) && (r.lineIndex = o, r.lineOffset = r.lineOffset + 1, r.lineNumber = r.lineNumber + 1), ue(u[o + 1]) === !1)
         break;
       o = o + 1;
-    } while (o < A);
+    } while (o < N);
   }
   do
-    ce(u[o]) ? d() : i(u[o], 47) && i(u[o + 1], 42) ? _(!1) : i(u[o], 47) && i(u[o + 1], 47) ? _(!0) : i(u[o], 123) && i(u[o + 1], 37) ? w("{%", "%}") : i(u[o], 123) && i(u[o + 1], 123) ? w("{{", "}}") : i(u[o], 123) || i(u[o], 40) && i(e.token[r.count], 58) && e.types[r.count - 1] === "variable" ? (m("start"), k = "start", f = u[o], i(u[o], 40) ? (t("map"), a.push(0)) : e.types[r.count] === "at_rule" || e.types[r.count] === "selector" || e.types[r.count] === "variable" ? i(e.token[r.count], 64) ? (e.types[r.count] = "at_rule", t(e.token[r.count])) : t(e.token[r.count]) : e.types[r.count] === "colon" ? t(e.token[r.count - 1]) : t("block"), C.push(!1)) : i(u[o], 125) || u[o] === ")" && r.stack.token === "map" && a[a.length - 1] === 0 ? i(u[o], 125) && i(e.token[r.count - 1], 123) && e.types[r.count] === "item" && e.token[r.count - 2] !== void 0 && e.token[r.count - 2].charCodeAt(e.token[r.count - 2].length - 1) === 64 ? (e.token[r.count - 2] = e.token[r.count - 2] + "{" + e.token[r.count] + "}", r.pop(e), r.pop(e), r.stack.pop()) : (i(u[o], 41) && a.pop(), m("end"), i(u[o], 125) && T(e.token[r.count], 59) && (e.types[r.count] === "value" || e.types[r.count] === "function" || e.types[r.count] === "variable" && (i(e.token[r.count - 1], 58) || i(e.token[r.count - 1], 59)) ? (s.correct === !0 ? f = ";" : f = "x;", k = "separator", t(c)) : e.types[r.count] === "comment" && p()), C.pop(), f = u[o], k = "end", i(u[o], 125) && I(), s.style.sortProperties === !0 && i(u[o], 125) && $t(e), t(c)) : i(u[o], 59) || i(u[o], 44) ? (e.types[r.count - 1] === "selector" || e.types[r.count - 1] === "at_rule" || e.types[r.count] !== "function" && i(e.token[r.count - 1], 125) ? m("start") : m("separator"), e.types[r.count] !== "separator" && h(o) === !0 && (f = u[o], k = "separator", t(c))) : r.count > -1 && i(u[o], 58) && e.types[r.count] !== "end" ? (m("colon"), f = ":", k = "colon", t(c)) : (r.stack.token === "map" && i(u[o], 40) && (a[a.length - 1] = a[a.length - 1] + 1), le()), o = o + 1;
-  while (o < A);
-  return s.style.sortProperties === !0 && $t(e), e;
+    ue(u[o]) ? d() : i(u[o], 47) && i(u[o + 1], 42) ? D(!1) : i(u[o], 47) && i(u[o + 1], 47) ? D(!0) : i(u[o], 123) && i(u[o + 1], 37) ? S("{%", "%}") : i(u[o], 123) && i(u[o + 1], 123) ? S("{{", "}}") : i(u[o], 123) || i(u[o], 40) && i(e.token[r.count], 58) && e.types[r.count - 1] === "variable" ? (m("start"), b = "start", f = u[o], i(u[o], 40) ? (t("map"), l.push(0)) : e.types[r.count] === "at_rule" || e.types[r.count] === "selector" || e.types[r.count] === "variable" ? i(e.token[r.count], 64) ? (e.types[r.count] = "at_rule", t(e.token[r.count])) : t(e.token[r.count]) : e.types[r.count] === "colon" ? t(e.token[r.count - 1]) : t("block"), O.push(!1)) : i(u[o], 125) || u[o] === ")" && r.stack.token === "map" && l[l.length - 1] === 0 ? i(u[o], 125) && i(e.token[r.count - 1], 123) && e.types[r.count] === "item" && e.token[r.count - 2] !== void 0 && e.token[r.count - 2].charCodeAt(e.token[r.count - 2].length - 1) === 64 ? (e.token[r.count - 2] = e.token[r.count - 2] + "{" + e.token[r.count] + "}", r.pop(e), r.pop(e), r.stack.pop()) : (i(u[o], 41) && l.pop(), m("end"), i(u[o], 125) && M(e.token[r.count], 59) && (e.types[r.count] === "value" || e.types[r.count] === "function" || e.types[r.count] === "variable" && (i(e.token[r.count - 1], 58) || i(e.token[r.count - 1], 59)) ? (s.correct === !0 ? f = ";" : f = "x;", b = "separator", t(c)) : e.types[r.count] === "comment" && p()), O.pop(), f = u[o], b = "end", i(u[o], 125) && I(), s.style.sortProperties === !0 && i(u[o], 125) && jt(e), t(c)) : i(u[o], 59) || i(u[o], 44) ? (e.types[r.count - 1] === "selector" || e.types[r.count - 1] === "at_rule" || e.types[r.count] !== "function" && i(e.token[r.count - 1], 125) ? m("start") : m("separator"), e.types[r.count] !== "separator" && h(o) === !0 && (f = u[o], b = "separator", t(c))) : r.count > -1 && i(u[o], 58) && e.types[r.count] !== "end" ? (m("colon"), f = ":", b = "colon", t(c)) : (r.stack.token === "map" && i(u[o], 40) && (l[l.length - 1] = l[l.length - 1] + 1), le()), o = o + 1;
+  while (o < N);
+  return s.style.sortProperties === !0 && jt(e), e;
 }
 
 // src/lexers/index.ts
-function yi(e) {
+function xi(e) {
   if (e === 1)
-    return on();
-  if (e === 3)
     return an();
+  if (e === 3)
+    return fn();
   if (e === 2)
-    return ln();
+    return un();
 }
 
 // src/format/markup.ts
-function un() {
-  let { rules: e } = r, { lineBreakValue: s } = e.markup, n = r.start, u, A = -1, a = 0, C = 0, o = 0, k = isNaN(e.indentLevel) ? 0 : e.indentLevel, f = r.data, t = r.ender < 1 || r.ender > f.token.length ? f.token.length : r.ender + 1, h = Fe(null), V = e.language === "jsx" || e.language === "tsx", le = new Set(e.liquid.dedentTagList), m = /* @__PURE__ */ new Map(), p = r.start > 0 ? Array(r.start).fill(0, 0, r.start) : [], w = ke(), _ = S(), I = [];
-  function d($, G) {
-    return f.types[$] === G;
+function cn() {
+  let { rules: e } = r, { lineBreakValue: s } = e.markup, n = r.start, u, N = -1, l = 0, O = 0, o = 0, b = isNaN(e.indentLevel) ? 0 : e.indentLevel, f = r.data, t = r.ender < 1 || r.ender > f.token.length ? f.token.length : r.ender + 1, h = Fe(null), F = e.language === "jsx" || e.language === "tsx", le = new Set(e.liquid.dedentTagList), m = /* @__PURE__ */ new Map(), p = r.start > 0 ? Array(r.start).fill(0, 0, r.start) : [], S = ye(), D = j(), I = [];
+  function d(P, T) {
+    return f.types[P] === T;
   }
-  function l($, G) {
-    return f.stack[$] === G;
+  function a(P, T) {
+    return f.stack[P] === T;
   }
-  function g($, G) {
-    return f.token[$] === G;
+  function g(P, T) {
+    return f.token[P] === T;
   }
-  function M($, G) {
-    return $ > -1 && (f.types[$] || c).indexOf(G);
+  function W(P, T) {
+    return P > -1 && (f.types[P] || c).indexOf(T);
   }
-  function L($, G = !0, oe = !0) {
-    let ne = [], Y = e.preserveLine + 1, F = Math.min(f.lines[n + 1] - 1, Y), H = 0;
-    if ($ < 0 && ($ = 0), G)
+  function C(P, T = !0, oe = !0) {
+    let se = [], ee = e.preserveLine + 1, _ = Math.min(f.lines[n + 1] - 1, ee), Q = 0;
+    if (P < 0 && (P = 0), T)
       do
-        ne.push(r.crlf), H = H + 1;
-      while (H < F);
-    if ($ > 0 && oe) {
-      H = 0;
+        se.push(r.crlf), Q = Q + 1;
+      while (Q < _);
+    if (P > 0 && oe) {
+      Q = 0;
       do
-        ne.push(_), H = H + 1;
-      while (H < $);
+        se.push(D), Q = Q + 1;
+      while (Q < P);
     }
-    return ne.join(c);
+    return se.join(c);
   }
-  function N() {
-    let $, G = f.lines[n + 1]; T(f.token[n][1], 37) && e.markup.commentIndent === !0 && (e.markup.commentDelimiters === "inline" || e.markup.commentDelimiters === "consistent" && /<!--\n/.test(f.token[n]) === !1);
-    $ = f.token[n].split(r.crlf);
-    let ne = d(n, "attribute"), Y = $.length - 1, F = w[n - 1] > -1 ? ne ? w[n - 1] + 1 : w[n - 1] : (() => {
-      let b = n - 1, X = b > -1 && M(b, "start") > -1;
-      if (d(n, "comment") && T(f.token[n][1], 37))
-        return w[n] - 1;
-      if (w[n] > -1 && d(n, "attribute"))
-        return w[n] + 1;
+  function U() {
+    let P, T = f.lines[n + 1]; M(f.token[n][1], 37) && e.markup.commentIndent === !0 && (e.markup.commentDelimiters === "inline" || e.markup.commentDelimiters === "consistent" && /<!--\n/.test(f.token[n]) === !1);
+    P = f.token[n].split(r.crlf);
+    let se = d(n, "attribute"), ee = P.length - 1, _ = S[n - 1] > -1 ? se ? S[n - 1] + 1 : S[n - 1] : (() => {
+      let k = n - 1, K = k > -1 && W(k, "start") > -1;
+      if (d(n, "comment") && M(f.token[n][1], 37))
+        return S[n] - 1;
+      if (S[n] > -1 && d(n, "attribute"))
+        return S[n] + 1;
       do {
-        if (b = b - 1, w[b] > -1)
-          return d(n, "content") && X === !1 ? w[b] : w[b] + 1;
-        M(b, "start") > -1 && (X = !0);
-      } while (b > 0);
-      return b === -2 ? 0 : 1;
-    })(), H = 0;
+        if (k = k - 1, S[k] > -1)
+          return d(n, "content") && K === !1 ? S[k] : S[k] + 1;
+        W(k, "start") > -1 && (K = !0);
+      } while (k > 0);
+      return k === -2 ? 0 : 1;
+    })(), Q = 0;
     f.lines[n + 1] = 0;
     do
-      d(n, "comment") ? (H === 0 && (i(f.token[n][1], 37) && e.liquid.commentNewline === !0 || i(f.token[n][1], 37) === !1 && e.markup.commentNewline === !0) && (e.preserveLine === 0 || I.length > 0 && I[I.length - 1].lastIndexOf(z) + 1 < 2) && I.push(L(F)), $[H] !== c ? (H > 0 && (i(f.token[n][1], 37) && e.liquid.commentIndent === !0 || i(f.token[n][1], 37) === !1 && e.markup.commentIndent === !0) && I.push(_), $[H + 1].trimStart() !== c ? I.push($[H], L(F)) : I.push($[H], z)) : $[H + 1].trimStart() === c ? I.push(z) : I.push(L(F))) : ne ? s === "align" || s === "force-align" ? I.push($[H].trim(), L(w[n])) : s === "indent" || s === "force-indent" ? H + 1 === Y ? I.push($[H].trimEnd(), L(w[n])) : H === 0 ? I.push($[H].replace(/(["'])\s+/, "$1" + L(F)).trim(), L(F)) : I.push($[H], L(F)) : (I.push($[H]), s === "force-preserve" && (H + 1 === Y || H === 0) ? I.push(L(w[n])) : I.push(r.crlf)) : I.push($[H], L(F)), H = H + 1;
-    while (H < Y);
-    if (ne && T($[Y], 60) && m.get(n - 1) >= 2 && Qe($[Y], 62) && e.markup.delimiterTerminus !== "inline") {
+      d(n, "comment") ? (Q === 0 && (i(f.token[n][1], 37) && e.liquid.commentNewline === !0 || i(f.token[n][1], 37) === !1 && e.markup.commentNewline === !0) && (e.preserveLine === 0 || I.length > 0 && I[I.length - 1].lastIndexOf(H) + 1 < 2) && I.push(C(_)), P[Q] !== c ? (Q > 0 && (i(f.token[n][1], 37) && e.liquid.commentIndent === !0 || i(f.token[n][1], 37) === !1 && e.markup.commentIndent === !0) && I.push(D), P[Q + 1].trimStart() !== c ? I.push(P[Q], C(_)) : I.push(P[Q], H)) : P[Q + 1].trimStart() === c ? I.push(H) : I.push(C(_))) : se ? s === "align" || s === "force-align" ? I.push(P[Q].trim(), C(S[n])) : s === "indent" || s === "force-indent" ? Q + 1 === ee ? I.push(P[Q].trimEnd(), C(S[n])) : Q === 0 ? I.push(P[Q].replace(/(["'])\s+/, "$1" + C(_)).trim(), C(_)) : I.push(P[Q], C(_)) : (I.push(P[Q]), s === "force-preserve" && (Q + 1 === ee || Q === 0) ? I.push(C(S[n])) : I.push(r.crlf)) : I.push(P[Q], C(_)), Q = Q + 1;
+    while (Q < ee);
+    if (se && M(P[ee], 60) && m.get(n - 1) >= 2 && Qe(P[ee], 62) && e.markup.delimiterTerminus !== "inline") {
       m.delete(n - 1);
-      let b = L(w[n - 1] - 1);
-      I[I.length - 1] === b && I.push(e.indentChar.repeat(e.indentSize)), d(n - 1, "singleton") && dt($[Y], 47) ? I.push($[Y].slice(0, -2), b, "/>") : I.push($[Y].slice(0, -1), b, ">");
+      let k = C(S[n - 1] - 1);
+      I[I.length - 1] === k && I.push(e.indentChar.repeat(e.indentSize)), d(n - 1, "singleton") && mt(P[ee], 47) ? I.push(P[ee].slice(0, -2), k, "/>") : I.push(P[ee].slice(0, -1), k, ">");
     } else
-      I.push($[Y]);
-    f.lines[n + 1] = G, d(n, "comment") && (d(n + 1, "liquid_end") || d(n - 1, "liquid_end")) ? I.push(L(w[n])) : w[n] === -10 ? I.push(ee) : I.push(L(w[n]));
-  }
-  function S() {
-    let $ = [e.indentChar], G = e.indentSize - 1, oe = 0;
-    if (oe < G)
-      do
-        $.push(e.indentChar), oe = oe + 1;
-      while (oe < G);
-    return $.join(c);
+      I.push(P[ee]);
+    f.lines[n + 1] = T, d(n, "comment") && (d(n + 1, "liquid_end") || d(n - 1, "liquid_end")) ? I.push(C(S[n])) : S[n] === -10 ? I.push(ie) : I.push(C(S[n]));
   }
   function j() {
-    C > 0 && (a = C - 1);
-    let $ = n + 1, G = 0;
-    if (d($, void 0))
-      return $ - 1;
-    if (d($, "comment") || n < t - 1 && M($, "attribute") > -1)
-      do {
-        if (d($, "jsx_attribute_start")) {
-          G = $;
-          do {
-            if (d($, "jsx_attribute_end") && f.begin[$] === G)
-              break;
-            $ = $ + 1;
-          } while ($ < t);
-        } else if (d($, "comment") === !1 && M($, "attribute") < 0)
-          return $;
-        $ = $ + 1;
-      } while ($ < t);
-    return $;
+    let P = [e.indentChar], T = e.indentSize - 1, oe = 0;
+    if (oe < T)
+      do
+        P.push(e.indentChar), oe = oe + 1;
+      while (oe < T);
+    return P.join(c);
   }
-  function D() {
-    let $ = f.token[n], G = ii.exec($);
-    if (G === null)
+  function y() {
+    O > 0 && (l = O - 1);
+    let P = n + 1, T = 0;
+    if (d(P, void 0))
+      return P - 1;
+    if (d(P, "comment") || n < t - 1 && W(P, "attribute") > -1)
+      do {
+        if (d(P, "jsx_attribute_start")) {
+          T = P;
+          do {
+            if (d(P, "jsx_attribute_end") && f.begin[P] === T)
+              break;
+            P = P + 1;
+          } while (P < t);
+        } else if (d(P, "comment") === !1 && W(P, "attribute") < 0)
+          return P;
+        P = P + 1;
+      } while (P < t);
+    return P;
+  }
+  function q() {
+    let P = f.token[n], T = ni.exec(P);
+    if (T === null)
       return;
-    let oe = n + 1, ne = !1, Y = e.markup.selfCloseSpace === !0 && G[0] === "/>" ? ee : c;
-    f.token[n] = $.replace(ii, c);
+    let oe = n + 1, se = !1, ee = e.markup.selfCloseSpace === !0 && T[0] === "/>" ? ie : c;
+    f.token[n] = P.replace(ni, c);
     do {
       if (d(oe, "jsx_attribute_end") && f.begin[f.begin[oe]] === n)
-        ne = !1;
+        se = !1;
       else if (f.begin[oe] === n) {
         if (d(oe, "jsx_attribute_start"))
-          ne = !0;
-        else if (M(oe, "attribute") < 0 && ne === !1)
+          se = !0;
+        else if (W(oe, "attribute") < 0 && se === !1)
           break;
-      } else if (ne === !1 && (f.begin[oe] < n || M(oe, "attribute") < 0))
+      } else if (se === !1 && (f.begin[oe] < n || W(oe, "attribute") < 0))
         break;
       oe = oe + 1;
     } while (oe < t);
-    d(oe - 1, "comment_attribute") && (Y = L(w[oe - 2] - 1)), f.token[oe - 1] = `${f.token[oe - 1]}${Y}${G[0]}`, d(oe, "comment");
+    d(oe - 1, "comment_attribute") && (ee = C(S[oe - 2] - 1)), f.token[oe - 1] = `${f.token[oe - 1]}${ee}${T[0]}`, d(oe, "comment");
+  }
+  function G() {
+    if (d(n, "end") === !1 && Qe(f.token[n], 62) && M(f.token[n], 60) && m.get(f.begin[n]) >= 2) {
+      m.delete(f.begin[n]);
+      let P = C(S[n - 1] - 1).replace(/\n+/, H), T = `${f.token[n].slice(0, -1)}${P}>`;
+      d(f.begin[n], "singleton") && i(f.token[n][f.token[n].length - 2], 47) ? f.token[n] = `${f.token[n].slice(0, -2)}${P}/>` : f.token[n] = T;
+    }
   }
   function B() {
-    if (d(n, "end") === !1 && Qe(f.token[n], 62) && T(f.token[n], 60) && m.get(f.begin[n]) >= 2) {
-      m.delete(f.begin[n]);
-      let $ = L(w[n - 1] - 1).replace(/\n+/, z), G = `${f.token[n].slice(0, -1)}${$}>`;
-      d(f.begin[n], "singleton") && i(f.token[n][f.token[n].length - 2], 47) ? f.token[n] = `${f.token[n].slice(0, -2)}${$}/>` : f.token[n] = G;
-    }
-  }
-  function P() {
-    let $ = f.begin[n], G = n;
+    let P = f.begin[n], T = n;
     do
-      if (G = G - 1, g(G, "</li>") && g(G - 1, "</a>") && f.begin[f.begin[G]] === $ && f.begin[G - 1] === f.begin[G] + 1)
-        G = f.begin[G];
+      if (T = T - 1, g(T, "</li>") && g(T - 1, "</a>") && f.begin[f.begin[T]] === P && f.begin[T - 1] === f.begin[T] + 1)
+        T = f.begin[T];
       else
         return;
-    while (G > $ + 1);
-    G = n;
+    while (T > P + 1);
+    T = n;
     do
-      G = G - 1, d(G + 1, "attribute") ? p[G] = -10 : g(G, "</li>") === !1 && (p[G] = -20);
-    while (G > $ + 1);
+      T = T - 1, d(T + 1, "attribute") ? p[T] = -10 : g(T, "</li>") === !1 && (p[T] = -20);
+    while (T > P + 1);
   }
-  function pe() {
-    let $ = n, G = !1;
+  function V() {
+    let P = n, T = !1;
     if (f.lines[n + 1] === 0 && e.markup.forceIndent === !1) {
       do {
-        if (f.lines[$] > 0) {
-          G = !0;
+        if (f.lines[P] > 0) {
+          T = !0;
           break;
         }
-        $ = $ - 1;
-      } while ($ > A);
-      $ = n;
+        P = P - 1;
+      } while (P > N);
+      P = n;
     } else
-      G = !0;
-    if (G === !0) {
-      d(f.begin[$] - 1, "liquid") && (p[f.begin[$] - 1] = k);
+      T = !0;
+    if (T === !0) {
+      d(f.begin[P] - 1, "liquid") && (p[f.begin[P] - 1] = b);
       do
-        p.push(k), $ = $ - 1;
-      while ($ > A);
-      p[n] = k, (d($, "attribute") || d($, "liquid_attribute") || d($, "jsx_attribute_start") || d($, "start")) && d(n + 1, "comment") === !1 && d(n + 1, "start") === !1 && f.types[n + 1].startsWith("liquid") === !1 || d(n + 1, "liquid_end") ? p[$] = k + 1 : d(n + 1, "liquid_else") ? p[$] = k - 1 : d(C, "liquid") && (p[a] = k - 1, p[n - 1] = k);
+        p.push(b), P = P - 1;
+      while (P > N);
+      p[n] = b, (d(P, "attribute") || d(P, "liquid_attribute") || d(P, "jsx_attribute_start") || d(P, "start")) && d(n + 1, "comment") === !1 && d(n + 1, "start") === !1 && f.types[n + 1].startsWith("liquid") === !1 || d(n + 1, "liquid_end") ? p[P] = b + 1 : d(n + 1, "liquid_else") ? p[P] = b - 1 : d(O, "liquid") && (p[l] = b - 1, p[n - 1] = b);
     } else {
       do
-        p.push(-20), $ = $ - 1;
-      while ($ > A);
-      p[$] = -20;
+        p.push(-20), P = P - 1;
+      while (P > N);
+      p[P] = -20;
     }
-    A = -1;
+    N = -1;
   }
-  function ge() {
+  function ke() {
     if (e.markup.forceIndent === !0 || e.markup.forceAttribute === !0) {
-      p.push(k);
+      p.push(b);
       return;
     }
-    let $ = k;
-    if (C < t && (M(C, "end") > -1 || M(C, "start") > -1) && f.lines[C] > 0 ? (p.push(k), $ = $ + 1, n > 0 && d(n, "singleton") && M(n - 1, "attribute") > -1 && d(f.begin[n - 1], "singleton") && (f.begin[n] < 0 || d(f.begin[n - 1], "singleton") && f.begin[f.ender[n] - 1] !== n ? p[n - 1] = k : p[n - 1] = k + 1)) : n > 0 && d(n, "singleton") && M(n - 1, "attribute") > -1 ? (p[n - 1] = k, o = f.token[n].length, p.push(-10)) : f.lines[C] === 0 ? p.push(-20) : (e.wrap === 0 || n < t - 2 && f.token[n] !== void 0 && f.token[n + 1] !== void 0 && f.token[n + 2] !== void 0 && f.token[n].length + f.token[n + 1].length + f.token[n + 2].length + 1 > e.wrap && M(n + 2, "attribute") > -1 || f.token[n] !== void 0 && f.token[n + 1] !== void 0 && f.token[n].length + f.token[n + 1].length > e.wrap) && (d(n + 1, "singleton") || d(n + 1, "liquid")) ? p.push(k) : (o = o + 1, p.push(-10)), n > 0 && M(n - 1, "attribute") > -1 && f.lines[n] < 1 && (p[n - 1] = -20), o > e.wrap) {
-      let G = n, oe = Math.max(f.begin[n], 0);
+    let P = b;
+    if (O < t && (W(O, "end") > -1 || W(O, "start") > -1) && f.lines[O] > 0 ? (p.push(b), P = P + 1, n > 0 && d(n, "singleton") && W(n - 1, "attribute") > -1 && d(f.begin[n - 1], "singleton") && (f.begin[n] < 0 || d(f.begin[n - 1], "singleton") && f.begin[f.ender[n] - 1] !== n ? p[n - 1] = b : p[n - 1] = b + 1)) : n > 0 && d(n, "singleton") && W(n - 1, "attribute") > -1 ? (p[n - 1] = b, o = f.token[n].length, p.push(-10)) : f.lines[O] === 0 ? p.push(-20) : (e.wrap === 0 || n < t - 2 && f.token[n] !== void 0 && f.token[n + 1] !== void 0 && f.token[n + 2] !== void 0 && f.token[n].length + f.token[n + 1].length + f.token[n + 2].length + 1 > e.wrap && W(n + 2, "attribute") > -1 || f.token[n] !== void 0 && f.token[n + 1] !== void 0 && f.token[n].length + f.token[n + 1].length > e.wrap) && (d(n + 1, "singleton") || d(n + 1, "liquid")) ? p.push(b) : (o = o + 1, p.push(-10)), n > 0 && W(n - 1, "attribute") > -1 && f.lines[n] < 1 && (p[n - 1] = -20), o > e.wrap) {
+      let T = n, oe = Math.max(f.begin[n], 0);
       if (d(n, "content") && e.markup.preserveText === !1) {
-        let ne = 0, Y = f.token[n].replace(Xe, ee).split(ee);
+        let se = 0, ee = f.token[n].replace(Xe, ie).split(ie);
         do
-          if (G = G - 1, p[G] < 0)
-            ne = ne + f.token[G].length, p[G] === -10 && (ne = ne + 1);
+          if (T = T - 1, p[T] < 0)
+            se = se + f.token[T].length, p[T] === -10 && (se = se + 1);
           else
             break;
-        while (G > 0);
-        G = 0, oe = Y.length;
+        while (T > 0);
+        T = 0, oe = ee.length;
         do
-          Y[G].length + ne > e.wrap ? (Y[G] = r.crlf + Y[G], ne = Y[G].length) : (Y[G] = ` ${Y[G]}`, ne = ne + Y[G].length), G = G + 1;
-        while (G < oe);
-        i(Y[0], 32) ? f.token[n] = Y.join(c).slice(1) : (p[n - 1] = $, f.token[n] = Y.join(c).replace(r.crlf, c)), f.token[n].indexOf(r.crlf) > 0 && (o = f.token[n].length - f.token[n].lastIndexOf(r.crlf));
+          ee[T].length + se > e.wrap ? (ee[T] = r.crlf + ee[T], se = ee[T].length) : (ee[T] = ` ${ee[T]}`, se = se + ee[T].length), T = T + 1;
+        while (T < oe);
+        i(ee[0], 32) ? f.token[n] = ee.join(c).slice(1) : (p[n - 1] = P, f.token[n] = ee.join(c).replace(r.crlf, c)), f.token[n].indexOf(r.crlf) > 0 && (o = f.token[n].length - f.token[n].lastIndexOf(r.crlf));
       } else {
         do {
-          if (G = G - 1, p[G] > -1) {
+          if (T = T - 1, p[T] > -1) {
             o = f.token[n].length, f.lines[n + 1] > 0 && (o = o + 1);
             return;
           }
-          if (M(G, "start") > -1) {
+          if (W(T, "start") > -1) {
             o = 0;
             return;
           }
-          if (f.lines[G + 1] > 0 && (d(G, "attribute") === !1 || d(G, "attribute") && d(G + 1, "attribute")) && (d(G, "singleton") === !1 || d(G, "attribute") && d(G + 1, "attribute"))) {
+          if (f.lines[T + 1] > 0 && (d(T, "attribute") === !1 || d(T, "attribute") && d(T + 1, "attribute")) && (d(T, "singleton") === !1 || d(T, "attribute") && d(T + 1, "attribute"))) {
             o = f.token[n].length, f.lines[n + 1] > 0 && (o = o + 1);
             break;
           }
-        } while (G > oe);
-        p[G] = $;
+        } while (T > oe);
+        d(T, "content") ? p[T] = -20 : p[T] = P;
       }
     }
   }
-  function ue() {
-    let $ = n;
-    f.types[$ - 1] === "script_start" && i(f.token[$ - 1], 123) && (p[$ - 1] = -20);
+  function we() {
+    let P = n;
+    f.types[P - 1] === "script_start" && i(f.token[P - 1], 123) && (p[P - 1] = -20);
     do {
-      if (f.lexer[n + 1] === "markup" && f.begin[n + 1] < $ && d(n + 1, "start") === !1 && d(n + 1, "singleton") === !1)
+      if (f.lexer[n + 1] === "markup" && f.begin[n + 1] < P && d(n + 1, "start") === !1 && d(n + 1, "singleton") === !1)
         break;
       p.push(0), n = n + 1;
     } while (n < t);
-    h[$] = n, f.types[n + 1] === "script_end" && f.token[n + 1] === "}" ? p.push(-20) : (f.types[n + 1], p.push(k - 1)), C = j(), f.lexer[C] === "markup" && f.stack[n].indexOf("attribute") < 0 && (f.types[C] === "end" || f.types[C] === "liquid_end") && (k = k - 1);
+    h[P] = n, f.types[n + 1] === "script_end" && f.token[n + 1] === "}" ? p.push(-20) : (f.types[n + 1], p.push(b - 1)), O = y(), f.lexer[O] === "markup" && f.stack[n].indexOf("attribute") < 0 && (f.types[O] === "end" || f.types[O] === "liquid_end") && (b = b - 1);
   }
-  function Ce($) {
-    let G = f.token[$].replace(/\s+/g, ee).split(ee), oe = G.length, ne = 1, Y = G[0].length;
+  function ae(P) {
+    let T = f.token[P].replace(/\s+/g, ie).split(ie), oe = T.length, se = 1, ee = T[0].length;
     do
-      Y + G[ne].length > e.wrap ? (Y = G[ne].length, G[ne] = r.crlf + G[ne]) : (G[ne] = ` ${G[ne]}`, Y = Y + G[ne].length), ne = ne + 1;
-    while (ne < oe);
-    f.token[$] = G.join(c);
+      ee + T[se].length > e.wrap ? (ee = T[se].length, T[se] = r.crlf + T[se]) : (T[se] = ` ${T[se]}`, ee = ee + T[se].length), se = se + 1;
+    while (se < oe);
+    f.token[P] = T.join(c);
   }
-  function O() {
-    let $ = n - 1, G = n, oe = !1, ne = !1, Y = M($ + 1, "end"), F = f.token[$].length + 1, H = 0, b = (() => {
-      if (M(n, "start") > 0) {
-        let y = n;
+  function L() {
+    let P = n - 1, T = n, oe = !1, se = !1, ee = W(P + 1, "end"), _ = f.token[P].length + 1, Q = 0, k = (() => {
+      if (W(n, "start") > 0) {
+        let x = n;
         do {
-          if (d(y, "end") && f.begin[y] === n && y < t - 1 && M(y + 1, "attribute") > -1) {
+          if (d(x, "end") && f.begin[x] === n && x < t - 1 && W(x + 1, "attribute") > -1) {
             oe = !0;
             break;
           }
-          y = y + 1;
-        } while (y < t);
+          x = x + 1;
+        } while (x < t);
       } else
-        n < t - 1 && M(n + 1, "attribute") > -1 && (oe = !0);
-      return d(C, "end") || d(C, "liquid_end") || d(C, "liquid_when") && e.markup.forceIndent === !0 ? d($, "singleton") ? k + 2 : k + 1 : d($, "singleton") ? k + 1 : k;
+        n < t - 1 && W(n + 1, "attribute") > -1 && (oe = !0);
+      return d(O, "end") || d(O, "liquid_end") || d(O, "liquid_when") && e.markup.forceIndent === !0 ? d(P, "singleton") ? b + 2 : b + 1 : d(P, "singleton") ? b + 1 : b;
     })();
     if (oe === !1 && d(n, "comment_attribute")) {
-      p.push(k), p[$] = f.types[$] === "singleton" ? k + 1 : k;
+      p.push(b), p[P] = f.types[P] === "singleton" ? b + 1 : b;
       return;
     }
-    function X(y) {
-      e.markup.forceAttribute === !1 ? p.push(-10) : e.markup.forceAttribute === !0 || y >= e.markup.forceAttribute ? e.liquid.indentAttribute === !0 ? (d(n - 1, "liquid_attribute_start") && (p[n - 1] = b + H), p.push(b + H)) : p.push(b) : p.push(-10);
+    function K(x) {
+      e.markup.forceAttribute === !1 ? p.push(-10) : e.markup.forceAttribute === !0 || x >= e.markup.forceAttribute ? e.liquid.indentAttribute === !0 ? (d(n - 1, "liquid_attribute_start") && (p[n - 1] = k + Q), p.push(k + Q)) : p.push(k) : p.push(-10);
     }
-    b < 1 && (b = 1), Y = 0;
+    k < 1 && (k = 1), ee = 0;
     do
-      Y = Y + 1;
-    while (M(n + Y, "attribute") > -1 && (d(n + Y, "end") === !1 || d(n + Y, "liquid_when") === !1 || d(n + Y, "singleton") === !1 || d(n + Y, "start") === !1 || d(n + Y, "comment") === !1));
-    (s === "force-preserve" || s === "force-align" || s === "force-indent") && (mt(e.markup.forceAttribute) && e.markup.forceAttribute === !1 || kt(e.markup.forceAttribute) && Y <= e.markup.forceAttribute) && (Y = 1 / 0);
+      ee = ee + 1;
+    while (W(n + ee, "attribute") > -1 && (d(n + ee, "end") === !1 || d(n + ee, "liquid_when") === !1 || d(n + ee, "singleton") === !1 || d(n + ee, "start") === !1 || d(n + ee, "comment") === !1));
+    (s === "force-preserve" || s === "force-align" || s === "force-indent") && (ht(e.markup.forceAttribute) && e.markup.forceAttribute === !1 || yt(e.markup.forceAttribute) && ee <= e.markup.forceAttribute) && (ee = 1 / 0);
     do {
       if (o = o + f.token[n].length + 1, f.types[n].indexOf("attribute") > 0)
-        d(n, "comment_attribute") ? p.push(b) : M(n, "start") > 0 && M(n, "liquid") < 0 ? (ne = !0, n < t - 2 && f.types[n + 2].indexOf("attribute") > 0 ? (p.push(-20), n = n + 1, h[n] = n) : ($ === n - 1 && oe === !1 ? V ? p.push(-20) : p.push(b) : V ? p.push(-20) : p.push(b + 1), f.lexer[n + 1] !== "markup" && (n = n + 1, ue()))) : e.liquid.indentAttribute === !0 ? d(n, "liquid_attribute_start") ? (H > 0 ? p.push(b + H) : p.push(b), H = H + 1) : d(n, "liquid_attribute_else") ? p[n - 1] = b + H - 1 : d(n, "liquid_attribute_end") ? (H = H - 1, p[n - 1] = b + H) : X(Y) : M(n, "end") > 0 && d(n, "liquid_attribute_end") === !1 ? (p[n - 1] !== -20 && (p[n - 1] = p[f.begin[n]] - 1), f.lexer[n + 1] !== "markup" ? p.push(-20) : p.push(b)) : M(n, "liquid_attribute") > -1 ? (F = F + f.token[n].length + 1, e.markup.preserveAttribute === !0 ? p.push(-10) : e.markup.forceAttribute === !0 || e.markup.forceAttribute >= 1 || ne === !0 || n < t - 1 && M(n + 1, "attribute") > -1 ? X(Y) : p.push(-10)) : p.push(b);
+        d(n, "comment_attribute") ? p.push(k) : W(n, "start") > 0 && W(n, "liquid") < 0 ? (se = !0, n < t - 2 && f.types[n + 2].indexOf("attribute") > 0 ? (p.push(-20), n = n + 1, h[n] = n) : (P === n - 1 && oe === !1 ? F ? p.push(-20) : p.push(k) : F ? p.push(-20) : p.push(k + 1), f.lexer[n + 1] !== "markup" && (n = n + 1, we()))) : e.liquid.indentAttribute === !0 ? d(n, "liquid_attribute_start") ? (Q > 0 ? p.push(k + Q) : p.push(k), Q = Q + 1) : d(n, "liquid_attribute_else") ? p[n - 1] = k + Q - 1 : d(n, "liquid_attribute_end") ? (Q = Q - 1, p[n - 1] = k + Q) : K(ee) : W(n, "end") > 0 && d(n, "liquid_attribute_end") === !1 ? (p[n - 1] !== -20 && (p[n - 1] = p[f.begin[n]] - 1), f.lexer[n + 1] !== "markup" ? p.push(-20) : p.push(k)) : W(n, "liquid_attribute") > -1 ? (_ = _ + f.token[n].length + 1, e.markup.preserveAttribute === !0 ? p.push(-10) : e.markup.forceAttribute === !0 || e.markup.forceAttribute >= 1 || se === !0 || n < t - 1 && W(n + 1, "attribute") > -1 ? K(ee) : p.push(-10)) : p.push(k);
       else if (d(n, "attribute"))
-        F = F + f.token[n].length + 1, e.markup.preserveAttribute === !0 ? p.push(-10) : e.markup.forceAttribute === !0 || e.markup.forceAttribute >= 1 || ne === !0 || n < t - 1 && M(n + 1, "attribute") > -1 ? X(Y) : p.push(-10);
-      else if (f.begin[n] < $ + 1)
+        _ = _ + f.token[n].length + 1, e.markup.preserveAttribute === !0 ? p.push(-10) : e.markup.forceAttribute === !0 || e.markup.forceAttribute >= 1 || se === !0 || n < t - 1 && W(n + 1, "attribute") > -1 ? K(ee) : p.push(-10);
+      else if (f.begin[n] < P + 1)
         break;
       n = n + 1;
     } while (n < t);
-    if (n = n - 1, M(n, "liquid") < 0 && M(n, "end") > -1 && M(n, "attribute") > 0 && d($, "singleton") === !1 && p[n - 1] > 0 && oe === !0 && (p[n - 1] = p[n - 1] - 1), p[n] !== -20 && (V === !0 && M($, "start") > -1 && d(n + 1, "script_start") ? p[n] = b : g(n, "/") && p[n - 1] !== 10 ? p[n - 1] = -10 : p[n] = p[$]), e.markup.forceAttribute === !0)
-      o = 0, p[$] = b, Y >= 2 && e.markup.delimiterTerminus === "force" && m.set($, Y);
+    if (n = n - 1, W(n, "liquid") < 0 && W(n, "end") > -1 && W(n, "attribute") > 0 && d(P, "singleton") === !1 && p[n - 1] > 0 && oe === !0 && (p[n - 1] = p[n - 1] - 1), p[n] !== -20 && (F === !0 && W(P, "start") > -1 && d(n + 1, "script_start") ? p[n] = k : g(n, "/") && p[n - 1] !== 10 ? p[n - 1] = -10 : p[n] = p[P]), e.markup.forceAttribute === !0)
+      o = 0, p[P] = k, ee >= 2 && e.markup.delimiterTerminus === "force" && m.set(P, ee);
     else if (e.markup.forceAttribute >= 1)
-      if (Y >= e.markup.forceAttribute) {
-        p[$] = b;
-        let y = n - 1;
+      if (ee >= e.markup.forceAttribute) {
+        p[P] = k;
+        let x = n - 1;
         do
-          (d(y, "liquid") && p[y] === -10 || d(y, "attribute") && p[y] === -10) && (p[y] = b), y = y - 1;
-        while (y > $);
-        (e.markup.delimiterTerminus === "force" && Y >= 2 || e.markup.delimiterTerminus === "adapt" && Y === 1 / 0) && m.set($, Y);
+          (d(x, "liquid") && p[x] === -10 || d(x, "attribute") && p[x] === -10) && (p[x] = k), x = x - 1;
+        while (x > P);
+        (e.markup.delimiterTerminus === "force" && ee >= 2 || e.markup.delimiterTerminus === "adapt" && ee === 1 / 0) && m.set(P, ee);
       } else
-        p[$] = -10;
+        p[P] = -10;
     else
-      p[$] = -10;
-    if (e.markup.preserveAttribute === !0 || g($, "<%xml%>") || g($, "<?xml?>")) {
+      p[P] = -10;
+    if (e.markup.preserveAttribute === !0 || g(P, "<%xml%>") || g(P, "<?xml?>")) {
       o = 0;
       return;
     }
-    if (G = n, G > $ + 1) {
-      if (e.markup.selfCloseSpace === !1 && (F = F - 1), F > e.wrap && e.wrap > 0 && e.markup.forceAttribute === !1) {
-        p[$] = b, o = f.token[n].length, G = G - 1;
+    if (T = n, T > P + 1) {
+      if (e.markup.selfCloseSpace === !1 && (_ = _ - 1), _ > e.wrap && e.wrap > 0 && e.markup.forceAttribute === !1) {
+        p[P] = k, o = f.token[n].length, T = T - 1;
         do
-          f.token[G].length > e.wrap && ce(f.token[G]) && Ce(G), (M(G, "liquid") > -1 && p[G] === -10 || d(G, "attribute") && p[G] === -10) && (p[G] = b), G = G - 1;
-        while (G > $);
+          f.token[T].length > e.wrap && ue(f.token[T]) && ae(T), (W(T, "liquid") > -1 && p[T] === -10 || d(T, "attribute") && p[T] === -10) && (p[T] = k), T = T - 1;
+        while (T > P);
       }
     } else
-      e.wrap > 0 && d(n, "attribute") && f.token[n].length > e.wrap && ce(f.token[n]) && Ce(n);
+      e.wrap > 0 && d(n, "attribute") && f.token[n].length > e.wrap && ue(f.token[n]) && ae(n);
   }
-  function ke() {
+  function ye() {
     do
-      f.lexer[n] === "markup" ? (d(n, "doctype") && (p[n - 1] = k), M(n, "attribute") > -1 ? O() : d(n, "comment") ? (A < 0 && (A = n), pe()) : d(n, "comment") === !1 && (C = j(), (d(C, "end") || d(C, "liquid_case_end") || d(C, "liquid_end") && d(n, "liquid_else") === !1) && (k > -1 && (k = k - 1), (g(n, "</ol>") || g(n, "</ul>") || g(n, "</dl>")) && P()), d(n, "script_end") && d(C, "end") ? f.lines[C] < 1 ? p.push(-20) : f.lines[C] > 1 ? p.push(k) : p.push(-10) : (e.markup.forceIndent === !1 || e.markup.forceIndent === !0 && d(C, "script_start")) && (d(n, "content") || d(n, "singleton") || d(n, "liquid")) ? (o = o + f.token[n].length, f.lines[C] > 0 && d(C, "script_start") ? p.push(-10) : e.wrap > 0 && d(n, "singleton") === !1 && (M(n, "liquid") < 0 || C < t && M(n, "liquid") > -1 && M(C, "liquid") < 0) ? ge() : C < t && (M(C, "end") > -1 || M(C, "start") > -1) && (f.lines[C] > 0 || M(n, "liquid_") > -1) ? (d(C, "liquid_case_end") && le.has("case") === !1 && (k = k - 1), p.push(k)) : f.lines[C] === 0 ? p.push(-20) : f.lines[C] === 1 ? p.push(-10) : (d(C, "liquid_when") && (d(n, "liquid") || d(n, "content")) && (k = k - 1), p.push(k))) : d(n, "start") || d(n, "liquid_start") || d(n, "liquid_bad_start") ? (k = k + 1, V === !0 && i(f.token[n + 1], 123) ? f.lines[C] === 0 ? p.push(-20) : f.lines[C] > 1 ? p.push(k) : p.push(-10) : d(n, "start") && d(C, "end") ? f.stack[n] === "liquid" || M(C - 1, "comment") > -1 ? p.push(k) : p.push(-20) : d(n, "start") && d(C, "script_start") ? p.push(-10) : f.lines[C] === 0 && (d(C, "content") || d(C, "singleton") || d(n, "start") && d(C, "liquid") && e.markup.forceIndent === !1) ? p.push(-20) : p.push(k)) : e.markup.forceIndent === !1 && f.lines[C] === 0 && (d(C, "content") || d(C, "singleton")) || d(n + 2, "script_end") ? p.push(-20) : d(n, "liquid_else") && d(C, "liquid_end") ? (k = k - 1, p[n - 1] = k, p.push(k)) : d(n, "liquid_else") && d(C, "liquid_else") ? (p[n - 1] = k - 1, p.push(k - 1)) : d(n, "liquid_else") && (d(C, "content") || d(C, "liquid")) ? (p[n - 1] = k - 1, p.push(k)) : e.markup.forceIndent === !0 && (d(n, "content") && (d(C, "liquid") || d(C, "content")) || d(n, "liquid") && (d(C, "content") || d(C, "liquid"))) ? f.lines[C] < 1 ? p.push(-20) : f.lines[C] > 1 ? p.push(k) : p.push(-10) : d(n, "liquid_bad_start") ? (k = k + 1, p.push(k)) : d(C, "liquid_bad_end") ? (k = k - 1, p.push(k)) : d(C, "liquid_else") && p[n - 1] === k ? p.push(k - 1) : d(n, "liquid_else") && p[n - 1] === k && e.markup.forceIndent === !1 ? (p[n - 1] = k - 1, p.push(k)) : d(a, "liquid_start") && d(C, "liquid_end") && f.lines[C] === 0 ? p[n - 1] = -20 : d(n, "liquid_case_start") ? (le.has("case") === !1 && (k = k + 1), p.push(k)) : d(n, "liquid_when") && d(C, "liquid_when") === !1 ? (d(a, "attribute") && e.markup.forceIndent === !1 ? p[n - 1] = k - 1 : k = k + 1, p.push(k)) : d(C, "liquid_when") && d(n, "liquid_when") === !1 ? (k = k - 1, p.push(k)) : (d(C, "liquid_case_end") && le.has("case") === !1 && (k = k - 1), p.push(k))), d(n, "content") === !1 && d(n, "singleton") === !1 && d(n, "liquid") === !1 && d(n, "liquid_when") === !1 && d(n, "attribute") === !1 && (o = 0)) : (o = 0, ue()), n = n + 1;
+      f.lexer[n] === "markup" ? (d(n, "doctype") && (p[n - 1] = b), W(n, "attribute") > -1 ? L() : d(n, "comment") ? (N < 0 && (N = n), V()) : d(n, "comment") === !1 && (O = y(), (d(O, "end") || d(O, "liquid_case_end") || d(O, "liquid_end") && d(n, "liquid_else") === !1) && (b > -1 && (b = b - 1), (g(n, "</ol>") || g(n, "</ul>") || g(n, "</dl>")) && B()), d(n, "script_end") && d(O, "end") ? f.lines[O] < 1 ? p.push(-20) : f.lines[O] > 1 ? p.push(b) : p.push(-10) : (e.markup.forceIndent === !1 || e.markup.forceIndent === !0 && d(O, "script_start")) && (d(n, "content") || d(n, "singleton") || d(n, "liquid")) ? (o = o + f.token[n].length, f.lines[O] > 0 && d(O, "script_start") ? p.push(-10) : e.wrap > 0 && d(n, "singleton") === !1 && (W(n, "liquid") < 0 || O < t && W(n, "liquid") > -1 && W(O, "liquid") < 0) ? ke() : O < t && (W(O, "end") > -1 || W(O, "start") > -1) && (f.lines[O] > 0 || W(n, "liquid_") > -1) ? (d(O, "liquid_case_end") && le.has("case") === !1 && (b = b - 1), p.push(b)) : f.lines[O] === 0 ? p.push(-20) : f.lines[O] === 1 ? p.push(-10) : (d(O, "liquid_when") && (d(n, "liquid") || d(n, "content")) && (b = b - 1), p.push(b))) : d(n, "start") || d(n, "liquid_start") || d(n, "liquid_bad_start") ? (b = b + 1, F === !0 && i(f.token[n + 1], 123) ? f.lines[O] === 0 ? p.push(-20) : f.lines[O] > 1 ? p.push(b) : p.push(-10) : d(n, "start") && d(O, "end") ? f.stack[n] === "liquid" || W(O - 1, "comment") > -1 ? p.push(b) : p.push(-20) : d(n, "start") && d(O, "script_start") ? p.push(-10) : f.lines[O] === 0 && (d(O, "content") || d(O, "singleton") || d(n, "start") && d(O, "liquid") && e.markup.forceIndent === !1) ? d(O, "content") ? ke() : p.push(-20) : p.push(b)) : e.markup.forceIndent === !1 && f.lines[O] === 0 && (d(O, "content") || d(O, "singleton")) || d(n + 2, "script_end") ? p.push(-20) : d(n, "liquid_else") && d(O, "liquid_end") ? (b = b - 1, p[n - 1] = b, p.push(b)) : d(n, "liquid_else") && d(O, "liquid_else") ? (p[n - 1] = b - 1, p.push(b - 1)) : d(n, "liquid_else") && (d(O, "content") || d(O, "liquid")) ? (p[n - 1] = b - 1, p.push(b)) : e.markup.forceIndent === !0 && (d(n, "content") && (d(O, "liquid") || d(O, "content")) || d(n, "liquid") && (d(O, "content") || d(O, "liquid"))) ? f.lines[O] < 1 ? p.push(-20) : f.lines[O] > 1 ? p.push(b) : p.push(-10) : d(n, "liquid_bad_start") ? (b = b + 1, p.push(b)) : d(O, "liquid_bad_end") ? (b = b - 1, p.push(b)) : d(O, "liquid_else") && p[n - 1] === b ? p.push(b - 1) : d(n, "liquid_else") && p[n - 1] === b && e.markup.forceIndent === !1 ? (p[n - 1] = b - 1, p.push(b)) : d(l, "liquid_start") && d(O, "liquid_end") && f.lines[O] === 0 ? p[n - 1] = -20 : d(n, "liquid_case_start") ? (le.has("case") === !1 && (b = b + 1), p.push(b)) : d(n, "liquid_when") && d(O, "liquid_when") === !1 ? (d(l, "attribute") && e.markup.forceIndent === !1 ? p[n - 1] = b - 1 : b = b + 1, p.push(b)) : d(O, "liquid_when") && d(n, "liquid_when") === !1 ? (b = b - 1, p.push(b)) : (d(O, "liquid_case_end") && le.has("case") === !1 && (b = b - 1), p.push(b))), d(n, "content") === !1 && d(n, "singleton") === !1 && d(n, "liquid") === !1 && d(n, "liquid_when") === !1 && d(n, "attribute") === !1 && (o = 0)) : (o = 0, we()), n = n + 1;
     while (n < t);
     return p;
   }
-  function K() {
-    let $ = f.token[n].split(z), G = e.indentChar.repeat(e.indentSize), oe = $.length, ne = 0, Y = z;
-    Y += L(w[n - 1], !1) + G;
+  function me() {
+    let P = f.token[n].split(H), T = e.indentChar.repeat(e.indentSize), oe = P.length, se = 0, ee = H;
+    ee += C(S[n - 1], !1) + T;
     do {
-      if (ne === 0)
-        if (ne + 1 === oe - 1 && ($[ne + 1].length === 2 || $[ne + 1].length === 3)) {
-          Y.length > 1 && (Y = Y.slice(0, -2)), I.push($[ne], Y, $[ne + 1]);
+      if (se === 0)
+        if (se + 1 === oe - 1 && (P[se + 1].length === 2 || P[se + 1].length === 3)) {
+          ee.length > 1 && (ee = ee.slice(0, -2)), I.push(P[se], ee, P[se + 1]);
           break;
         } else
-          I.push($[ne], Y);
+          I.push(P[se], ee);
       else
-        ne === oe - 1 ? I.push($[ne]) : (ne + 1 === oe - 1 && ($[ne + 1].length === 2 || $[ne + 1].length === 3) && (Y = Y.slice(0, -2)), I.push($[ne], Y));
-      ne = ne + 1;
-    } while (ne < oe);
+        se === oe - 1 ? I.push(P[se]) : (se + 1 === oe - 1 && (P[se + 1].length === 2 || P[se + 1].length === 3) && (ee = ee.slice(0, -2)), I.push(P[se], ee));
+      se = se + 1;
+    } while (se < oe);
   }
-  function se() {
-    let $ = f.token[n].split(r.crlf), G = $.length, oe = L(w[n - 1], !1), ne = 0, Y = 0;
+  function te() {
+    let P = f.token[n].split(r.crlf), T = P.length, oe = C(S[n - 1], !1), se = 0, ee = 0;
     do
-      $[ne] !== c ? (isNaN(Y) || (I.push(Y === 0 ? z : z.repeat(Y)), Y = NaN), $[ne].startsWith(oe) || ($[ne] = oe + $[ne])) : isNaN(Y) || (Y = Y + 1), ne = ne + 1;
-    while (ne < G);
-    Y = -1;
+      P[se] !== c ? (isNaN(ee) || (I.push(ee === 0 ? H : H.repeat(ee)), ee = NaN), P[se].startsWith(oe) || (P[se] = oe + P[se])) : isNaN(ee) || (ee = ee + 1), se = se + 1;
+    while (se < T);
+    ee = -1;
     do {
-      if (ne = ne - 1, $[ne] !== c)
+      if (se = se - 1, P[se] !== c)
         break;
-      Y = Y + 1;
-    } while (ne > -1);
-    if (Y === -1)
-      I.push($.join(r.crlf).replace(Ct, c)), I.push(L(w[n]));
+      ee = ee + 1;
+    } while (se > -1);
+    if (ee === -1)
+      I.push(P.join(r.crlf).replace(Ot, c)), I.push(C(S[n]));
     else {
-      let F = $.join(r.crlf).replace(Ct, c).replace(We, c);
-      Y === 0 ? I.push(F, L(w[n])) : I.push(F, z.repeat(Y), L(w[n]));
+      let _ = P.join(r.crlf).replace(Ot, c).replace(Pe, c);
+      ee === 0 ? I.push(_, C(S[n])) : I.push(_, H.repeat(ee), C(S[n]));
     }
   }
-  function J() {
-    if (ft.test(f.token[n])) {
-      let $ = f.token[n].split(z), G = $.length, oe = 0;
+  function ce() {
+    if (ct.test(f.token[n])) {
+      let P = f.token[n].split(H), T = P.length, oe = 0;
       do
-        $[oe] === c ? oe + 1 !== G && $[oe + 1] !== c ? I.push(z, L(w[n], !1, !0)) : I.push(z) : oe + 1 === G ? I.push($[oe], z, L(w[n], !1, !0)) : I.push($[oe], z, L(w[n], !1, !0)), oe = oe + 1;
-      while (oe < G);
+        P[oe] === c ? oe + 1 !== T && P[oe + 1] !== c ? I.push(H, C(S[n], !1, !0)) : I.push(H) : oe + 1 === T ? I.push(P[oe], H, C(S[n], !1, !0)) : I.push(P[oe], H, C(S[n], !1, !0)), oe = oe + 1;
+      while (oe < T);
     } else
-      I.push(f.token[n], L(w[n]));
+      I.push(f.token[n], C(S[n]));
   }
-  function $e() {
-    n = r.start, u = e.indentLevel, I.length === 0 && u > 0 && I.push(L(w[n], !1, !0));
+  function J() {
+    n = r.start, u = e.indentLevel, I.length === 0 && u > 0 && I.push(C(S[n], !1, !0));
     do {
       if (f.lexer[n] === "markup")
-        n < t - 1 && (d(n, "start") || d(n, "singleton") || d(n, "xml")) && M(n, "attribute") < 0 && Ke(f.types[n + 1]) === !1 && M(n + 1, "attribute") > -1 && D(), d(n, "comment") && i(f.token[n].trimStart()[1], 37) && e.liquid.preserveComment === !0 ? (I.push(f.token[n]), (d(n + 1, "comment") && i(f.token[n + 1].trimStart()[1], 37) && e.liquid.preserveComment === !0) === !1 ? I.push(L(w[n])) : I.push(L(w[n], !0, !1))) : d(n, "comment") && i(f.token[n].trimStart()[1], 33) && e.markup.preserveComment === !0 ? I.push(f.token[n]) : Ke(f.token[n]) === !1 && f.token[n].indexOf(r.crlf) > 0 && (d(n, "content") && e.markup.preserveText === !1 || d(n, "comment") && T(f.token[n].trimStart()[1], 33) || d(n, "attribute")) ? N() : d(n, "comment") ? J() : d(n, "liquid_capture") ? I.push(f.token[n], L(w[n])) : d(n, "ignore") ? l(n, "script") || l(n, "style") ? se() : (I.push(f.token[n]), d(n + 1, "ignore") === !1 ? d(n + 1, "ignore_next") ? I.push(L(w[n], !0, !1)) : I.push(L(w[n])) : I.push(L(w[n], !0, !1))) : e.markup.forceIndent === !1 && d(n, "liquid") && d(n + 1, "end") && f.lines[n] === 0 ? I.push(f.token[n]) : (u = w[n], e.markup.delimiterTerminus === "force" && B(), ft.test(f.token[n]) && M(n, "liquid") > -1 && d(n, "liquid_end") === !1 ? K() : I.push(f.token[n]), w[n] === -10 && n < t - 1 ? I.push(ee) : w[n] > -1 && (d(n, "ignore") === !1 && d(n + 1, "ignore_next") === !0 || d(n, "ignore") === !1 && d(n, "ignore_next") === !1 && d(n + 1, "ignore") === !0 && l(n + 1, "script") === !1 && l(n + 1, "style") === !1 ? I.push(L(w[n], !0, !1)) : d(n, "ignore") && d(n + 1, "ignore") === !1 && d(n + 1, "ignore_next") === !1 ? I.push(L(w[n])) : d(n + 1, "comment") && e.markup.preserveComment === !0 && i(f.token[n + 1].trimStart()[1], 33) || d(n + 1, "comment") && e.liquid.preserveComment === !0 && i(f.token[n + 1].trimStart()[1], 37) ? I.push(L(w[n], !0, !1)) : d(n + 1, "ignore") === !1 && d(n + 1, "ignore_next") === !1 && I.push(L(w[n]))));
+        n < t - 1 && (d(n, "start") || d(n, "singleton") || d(n, "xml")) && W(n, "attribute") < 0 && Ke(f.types[n + 1]) === !1 && W(n + 1, "attribute") > -1 && q(), d(n, "comment") && i(f.token[n].trimStart()[1], 37) && e.liquid.preserveComment === !0 ? (I.push(f.token[n]), (d(n + 1, "comment") && i(f.token[n + 1].trimStart()[1], 37) && e.liquid.preserveComment === !0) === !1 ? I.push(C(S[n])) : I.push(C(S[n], !0, !1))) : d(n, "comment") && i(f.token[n].trimStart()[1], 33) && e.markup.preserveComment === !0 ? I.push(f.token[n]) : Ke(f.token[n]) === !1 && f.token[n].indexOf(r.crlf) > 0 && (d(n, "content") && e.markup.preserveText === !1 || d(n, "comment") && M(f.token[n].trimStart()[1], 33) || d(n, "attribute")) ? U() : d(n, "comment") ? ce() : d(n, "liquid_capture") ? I.push(f.token[n], C(S[n])) : d(n, "ignore") ? a(n, "script") || a(n, "style") ? te() : (I.push(f.token[n]), d(n + 1, "ignore") === !1 ? d(n + 1, "ignore_next") ? I.push(C(S[n], !0, !1)) : I.push(C(S[n])) : I.push(C(S[n], !0, !1))) : e.markup.forceIndent === !1 && d(n, "liquid") && d(n + 1, "end") && f.lines[n] === 0 ? I.push(f.token[n]) : (u = S[n], e.markup.delimiterTerminus === "force" && G(), ct.test(f.token[n]) && W(n, "liquid") > -1 && d(n, "liquid_end") === !1 ? me() : I.push(f.token[n]), S[n] === -10 && n < t - 1 ? I.push(ie) : S[n] > -1 && (d(n, "ignore") === !1 && d(n + 1, "ignore_next") === !0 || d(n, "ignore") === !1 && d(n, "ignore_next") === !1 && d(n + 1, "ignore") === !0 && a(n + 1, "script") === !1 && a(n + 1, "style") === !1 ? I.push(C(S[n], !0, !1)) : d(n, "ignore") && d(n + 1, "ignore") === !1 && d(n + 1, "ignore_next") === !1 ? I.push(C(S[n])) : d(n + 1, "comment") && e.markup.preserveComment === !0 && Qi(f.token[n + 1].trimStart()[1], 33, 37) ? I.push(C(S[n], !0, !1)) : d(n + 1, "ignore") === !1 && d(n + 1, "ignore_next") === !1 && (d(n + 1, "content") ? I.push(C(S[n], !0, !1)) : I.push(C(S[n])))));
       else {
-        r.start = n, r.ender = h[n], u > 0 && e.liquid.dedentTagList.includes(f.stack[n]) && (I.splice(I.length - 1, 1, L(w[n] - 1)), u = u - 1);
-        let $ = r.external(u);
-        (e.language === "jsx" || e.language === "tsx") && (f.types[n - 1] === "template_string_end" || f.types[n - 1] === "jsx_attribute_start" || f.types[n - 1] === "script_start") ? I.push($) : (I.push($), (e.markup.forceIndent || w[r.iterator] > -1 && n in h) && (h[n] > n && (n = r.iterator), I.push(L(w[n])))), n !== r.iterator && (n = r.iterator);
+        r.start = n, r.ender = h[n], u > 0 && e.liquid.dedentTagList.includes(f.stack[n]) && (I.splice(I.length - 1, 1, C(S[n] - 1)), u = u - 1);
+        let P = r.external(u);
+        (e.language === "jsx" || e.language === "tsx") && (f.types[n - 1] === "template_string_end" || f.types[n - 1] === "jsx_attribute_start" || f.types[n - 1] === "script_start") ? I.push(P) : (I.push(P), (e.markup.forceIndent || S[r.iterator] > -1 && n in h) && (h[n] > n && (n = r.iterator), I.push(C(S[n])))), n !== r.iterator && (n = r.iterator);
       }
       n = n + 1;
     } while (n < t);
     return r.iterator = t - 1, e.endNewline === !0 ? I.join(c).replace(/\s*$/, r.crlf) : I.join(c).trimEnd();
   }
-  return $e();
+  return J();
 }
 
 // src/format/script.ts
-function fn() {
-  let { data: e, rules: s } = r, n = r.language === "json" ? s.json : s.script, A = 0, a = {}, C = "script", o = r.ender < 1 || r.ender > e.token.length ? e.token.length : r.ender + 1, k = (() => {
-    let t = r.start, h = s.indentLevel, V = !1, le = !1, m = c, p = c, w = e.types[0], _ = e.token[0], I = [-1], d = [], l = r.start > 0 ? Array(r.start).fill(0, 0, r.start) : [], g = [], M = [[]], L = [], N = [], S = [], j = [!1], D = [], B = [];
-    function P() {
-      pe(!1, !1);
-      let F = n.commentIndent === !0 ? h : 0;
-      if (V === !1 && /\/\u002a\s*global\s/.test(e.token[t])) {
-        let H = e.token[t].replace(/\/\u002a\s*global\s+/, c).replace(/\s*\u002a\/$/, c).split(","), b = H.length;
+function pn() {
+  let { data: e, rules: s } = r, n = r.language === "json" ? s.json : s.script, N = 0, l = {}, O = "script", o = r.ender < 1 || r.ender > e.token.length ? e.token.length : r.ender + 1, b = (() => {
+    let t = r.start, h = s.indentLevel, F = !1, le = !1, m = c, p = c, S = e.types[0], D = e.token[0], I = [-1], d = [], a = r.start > 0 ? Array(r.start).fill(0, 0, r.start) : [], g = [], W = [[]], C = [], U = [], j = [], y = [!1], q = [], G = [];
+    function B() {
+      V(!1, !1);
+      let _ = n.commentIndent === !0 ? h : 0;
+      if (F === !1 && /\/\u002a\s*global\s/.test(e.token[t])) {
+        let Q = e.token[t].replace(/\/\u002a\s*global\s+/, c).replace(/\s*\u002a\/$/, c).split(","), k = Q.length;
         do
-          b = b - 1, H[b] = H[b].replace(/\s+/g, c), H[b] !== c && r.stack.push([H[b], -1]);
-        while (b > 0);
+          k = k - 1, Q[k] = Q[k].replace(/\s+/g, c), Q[k] !== c && r.stack.push([Q[k], -1]);
+        while (k > 0);
       }
       if (e.types[t - 1] === "comment" || e.types[t + 1] === "comment")
-        l[t - 1] = F;
+        a[t - 1] = _;
       else if (e.lines[t] < 2) {
-        let H = t + 1;
-        if (e.types[H] === "comment")
+        let Q = t + 1;
+        if (e.types[Q] === "comment")
           do
-            H = H + 1;
-          while (H < o && e.types[H] === "comment");
-        if (t < o - 1 && e.stack[H] !== "block" && (i(e.token[H], 123) || e.token[H] === "x{")) {
-          let b = r.stack.length;
-          if (e.begin.splice(t, 0, e.begin[H]), e.ender.splice(t, 0, e.ender[H]), e.lexer.splice(t, 0, e.lexer[H]), e.lines.splice(t, 0, e.lines[H]), e.stack.splice(t, 0, e.stack[H]), e.token.splice(t, 0, e.token[H]), e.types.splice(t, 0, e.types[H]), b > 0)
+            Q = Q + 1;
+          while (Q < o && e.types[Q] === "comment");
+        if (t < o - 1 && e.stack[Q] !== "block" && (i(e.token[Q], 123) || e.token[Q] === "x{")) {
+          let k = r.stack.length;
+          if (e.begin.splice(t, 0, e.begin[Q]), e.ender.splice(t, 0, e.ender[Q]), e.lexer.splice(t, 0, e.lexer[Q]), e.lines.splice(t, 0, e.lines[Q]), e.stack.splice(t, 0, e.stack[Q]), e.token.splice(t, 0, e.token[Q]), e.types.splice(t, 0, e.types[Q]), k > 0)
             do
-              if (b = b - 1, r.stack[b][1] === H)
-                r.stack[b][1] = t;
-              else if (r.stack[b][1] < t)
+              if (k = k - 1, r.stack[k][1] === Q)
+                r.stack[k][1] = t;
+              else if (r.stack[k][1] < t)
                 break;
-            while (b > 0);
-          H = H + 1, e.begin.splice(H, 1), e.ender.splice(H, 1), e.lexer.splice(H, 1), e.lines.splice(H, 1), e.stack.splice(H, 1), e.token.splice(H, 1), e.types.splice(H, 1), b = t + 1;
+            while (k > 0);
+          Q = Q + 1, e.begin.splice(Q, 1), e.ender.splice(Q, 1), e.lexer.splice(Q, 1), e.lines.splice(Q, 1), e.stack.splice(Q, 1), e.token.splice(Q, 1), e.types.splice(Q, 1), k = t + 1;
           do
-            e.begin[b] = t, e.stack[b] = e.stack[H], b = b + 1;
-          while (b < H);
-          b = b + 1;
+            e.begin[k] = t, e.stack[k] = e.stack[Q], k = k + 1;
+          while (k < Q);
+          k = k + 1;
           do {
-            if (e.begin[b] === e.begin[H] && (e.begin[b] = t, e.types[b] === "end"))
+            if (e.begin[k] === e.begin[Q] && (e.begin[k] = t, e.types[k] === "end"))
               break;
-            b = b + 1;
-          } while (b < o - 1);
-          e.begin[H] = t, t = t - 1;
+            k = k + 1;
+          } while (k < o - 1);
+          e.begin[Q] = t, t = t - 1;
         } else
-          l[t - 1] = -10, e.stack[t] === "paren" || e.stack[t] === "method" ? l.push(h + 2) : l.push(h), n.commentIndent === !0 && l[t] > -1 && e.lines[t] < 3 && (e.lines[t] = 3);
-        e.types[t + 1] !== "comment" && (V = !0);
+          a[t - 1] = -10, e.stack[t] === "paren" || e.stack[t] === "method" ? a.push(h + 2) : a.push(h), n.commentIndent === !0 && a[t] > -1 && e.lines[t] < 3 && (e.lines[t] = 3);
+        e.types[t + 1] !== "comment" && (F = !0);
         return;
       } else
-        i(e.token[t - 1], 44) ? l[t - 1] = F : i(_, 61) && e.types[t - 1] !== "comment" && /^\/\*{2}\s*@[A-Za-z_]+/.test(p) === !0 ? l[t - 1] = -10 : i(_, 123) && e.types[t - 1] !== "comment" && e.lines[0] < 2 ? e.stack[t] === "function" ? l[t - 1] = F : l[t - 1] = /\n/.test(p) ? F : -10 : l[t - 1] = F;
-      e.types[t + 1] !== "comment" && (V = !0), i(e.token[e.begin[t]], 40) ? l.push(h + 1) : l.push(h), l[t] > -1 && e.lines[t] < 3 && (e.types[t - 1] === "comment" && p.startsWith("//") ? e.lines[t] = 2 : e.lines[t] = 3), n.commentNewline === !0 && p.startsWith("//") === !1 && e.lines[t] >= 3 && (e.lines[t] = 2);
+        i(e.token[t - 1], 44) ? a[t - 1] = _ : i(D, 61) && e.types[t - 1] !== "comment" && /^\/\*{2}\s*@[A-Za-z_]+/.test(p) === !0 ? a[t - 1] = -10 : i(D, 123) && e.types[t - 1] !== "comment" && e.lines[0] < 2 ? e.stack[t] === "function" ? a[t - 1] = _ : a[t - 1] = /\n/.test(p) ? _ : -10 : a[t - 1] = _;
+      e.types[t + 1] !== "comment" && (F = !0), i(e.token[e.begin[t]], 40) ? a.push(h + 1) : a.push(h), a[t] > -1 && e.lines[t] < 3 && (e.types[t - 1] === "comment" && p.startsWith("//") ? e.lines[t] = 2 : e.lines[t] = 3), n.commentNewline === !0 && p.startsWith("//") === !1 && e.lines[t] >= 3 && (e.lines[t] = 2);
     }
-    function pe(F, H) {
-      let b = t - 1, X = F === !0 ? 0 : 1, y = M[M.length - 1] === void 0 ? [] : M[M.length - 1], x = H === !1 && e.stack[t] === "array" && F === !0 && T(p, 91);
-      if (!(N[N.length - 1] === !1 || e.stack[t] === "array" && n.arrayFormat === "inline" || e.stack[t] === "object" && n.objectIndent === "inline")) {
-        N[N.length - 1] = !1;
+    function V(_, Q) {
+      let k = t - 1, K = _ === !0 ? 0 : 1, x = W[W.length - 1] === void 0 ? [] : W[W.length - 1], w = Q === !1 && e.stack[t] === "array" && _ === !0 && M(p, 91);
+      if (!(U[U.length - 1] === !1 || e.stack[t] === "array" && n.arrayFormat === "inline" || e.stack[t] === "object" && n.objectIndent === "inline")) {
+        U[U.length - 1] = !1;
         do {
-          if (e.types[b] === "end" ? X = X + 1 : e.types[b] === "start" && (X = X - 1), e.stack[b] === "global")
+          if (e.types[k] === "end" ? K = K + 1 : e.types[k] === "start" && (K = K - 1), e.stack[k] === "global")
             break;
-          if (X === 0) {
-            if (e.stack[t] === "class" || e.stack[t] === "map" || x === !1 && (F === !1 && e.token[b] !== "(" && e.token[b] !== "x(" || F === !0 && i(e.token[b], 44)))
-              e.types[b + 1] === "liquid_start" ? e.lines[b] < 1 ? l[b] = -20 : l[b] = h - 1 : y.length > 0 && y[y.length - 1] > -1 ? l[b] = h - 1 : l[b] = h;
-            else if (e.stack[t] === "array" && e.types[t] === "operator" && (i(e.token[b], 44) && (l[b] = h), b === e.begin[t]))
+          if (K === 0) {
+            if (e.stack[t] === "class" || e.stack[t] === "map" || w === !1 && (_ === !1 && e.token[k] !== "(" && e.token[k] !== "x(" || _ === !0 && i(e.token[k], 44)))
+              e.types[k + 1] === "liquid_start" ? e.lines[k] < 1 ? a[k] = -20 : a[k] = h - 1 : x.length > 0 && x[x.length - 1] > -1 ? a[k] = h - 1 : a[k] = h;
+            else if (e.stack[t] === "array" && e.types[t] === "operator" && (i(e.token[k], 44) && (a[k] = h), k === e.begin[t]))
               break;
-            if (F === !1)
+            if (_ === !1)
               break;
           }
-          if (X < 0) {
-            e.types[b + 1] === "liquid_start" || e.types[b + 1] === "template_string_start" ? e.lines[b] < 1 ? l[b] = -20 : l[b] = h - 1 : y.length > 0 && y[y.length - 1] > -1 ? l[b] = h - 1 : l[b] = h;
+          if (K < 0) {
+            e.types[k + 1] === "liquid_start" || e.types[k + 1] === "template_string_start" ? e.lines[k] < 1 ? a[k] = -20 : a[k] = h - 1 : x.length > 0 && x[x.length - 1] > -1 ? a[k] = h - 1 : a[k] = h;
             break;
           }
-          b = b - 1;
-        } while (b > -1);
+          k = k - 1;
+        } while (k > -1);
       }
     }
-    function ge() {
-      let F = Ke(M[M.length - 1]) ? [] : M[M.length - 1];
-      function H() {
-        let b = t, X = !1, y = e.begin[b];
+    function ke() {
+      let _ = Ke(W[W.length - 1]) ? [] : W[W.length - 1];
+      function Q() {
+        let k = t, K = !1, x = e.begin[k];
         do {
-          if (b = b - 1, e.lexer[b] === "markup") {
-            X = !0;
+          if (k = k - 1, e.lexer[k] === "markup") {
+            K = !0;
             break;
           }
-          e.begin[b] !== y && (b = e.begin[b]);
-        } while (b > y);
-        if (X === !0) {
-          b = t;
+          e.begin[k] !== x && (k = e.begin[k]);
+        } while (k > x);
+        if (K === !0) {
+          k = t;
           do
-            b = b - 1, e.begin[b] !== y ? b = e.begin[b] : i(e.token[b], 44) && (l[b] = h + 1);
-          while (b > y);
-          l[y] = h + 1, l[t - 1] = h;
+            k = k - 1, e.begin[k] !== x ? k = e.begin[k] : i(e.token[k], 44) && (a[k] = h + 1);
+          while (k > x);
+          a[x] = h + 1, a[t - 1] = h;
         } else
-          l[t - 1] = -20;
+          a[t - 1] = -20;
       }
-      if (i(p, 41) && i(e.token[t + 1], 46) && T(e.token[F[0]], 58) && F[F.length - 1] > -1) {
-        let b = e.begin[t], X = !1, y = !1;
+      if (i(p, 41) && i(e.token[t + 1], 46) && M(e.token[_[0]], 58) && _[_.length - 1] > -1) {
+        let k = e.begin[t], K = !1, x = !1;
         do
-          b = b - 1;
-        while (b > 0 && l[b] < -9);
-        X = l[b] === h, b = t + 1;
+          k = k - 1;
+        while (k > 0 && a[k] < -9);
+        K = a[k] === h, k = t + 1;
         do {
-          if (b = b + 1, i(e.token[b], 123)) {
-            y = !0;
+          if (k = k + 1, i(e.token[k], 123)) {
+            x = !0;
             break;
           }
-          if (e.begin[b] === e.begin[t + 1] && (e.types[b] === "separator" || e.types[b] === "end"))
+          if (e.begin[k] === e.begin[t + 1] && (e.types[k] === "separator" || e.types[k] === "end"))
             break;
-        } while (b < o);
-        X === !1 && y === !0 && M.length > 1 && (M[M.length - 2].push(e.begin[t]), h = h + 1);
+        } while (k < o);
+        K === !1 && x === !0 && W.length > 1 && (W[W.length - 2].push(e.begin[t]), h = h + 1);
       }
-      if (w !== "separator" && O(), i(e.token[t + 1], 58) && (e.stack[t] === "object" || e.stack[t] === "array") && pe(!0, !1), i(e.token[e.begin[t] - 1], 44) && (i(e.token[t + 1], 125) || i(e.token[t + 1], 93)) && (e.stack[t] === "object" || e.stack[t] === "array") && pe(!0, !1), e.stack[t] !== "attribute" && (T(p, 41) && p !== "x)" && (e.lexer[t - 1] !== "markup" || e.lexer[t - 1] === "markup" && e.token[t - 2] !== "return") && (h = h - 1), i(p, 125) && e.stack[t] === "switch" && n.noCaseIndent === !1 && (h = h - 1)), i(p, 125) || p === "x}") {
-        if (e.types[t - 1] !== "comment" && _ !== "{" && _ !== "x{" && w !== "end" && w !== "string" && w !== "number" && w !== "separator" && _ !== "++" && _ !== "--" && (t < 2 || e.token[t - 2] !== ";" || e.token[t - 2] !== "x;" || _ === "break" || _ === "return")) {
-          let b = t - 1, X = !1, y = e.begin[t], x = d.length;
+      if (S !== "separator" && L(), i(e.token[t + 1], 58) && (e.stack[t] === "object" || e.stack[t] === "array") && V(!0, !1), i(e.token[e.begin[t] - 1], 44) && (i(e.token[t + 1], 125) || i(e.token[t + 1], 93)) && (e.stack[t] === "object" || e.stack[t] === "array") && V(!0, !1), e.stack[t] !== "attribute" && (M(p, 41) && p !== "x)" && (e.lexer[t - 1] !== "markup" || e.lexer[t - 1] === "markup" && e.token[t - 2] !== "return") && (h = h - 1), i(p, 125) && e.stack[t] === "switch" && n.noCaseIndent === !1 && (h = h - 1)), i(p, 125) || p === "x}") {
+        if (e.types[t - 1] !== "comment" && D !== "{" && D !== "x{" && S !== "end" && S !== "string" && S !== "number" && S !== "separator" && D !== "++" && D !== "--" && (t < 2 || e.token[t - 2] !== ";" || e.token[t - 2] !== "x;" || D === "break" || D === "return")) {
+          let k = t - 1, K = !1, x = e.begin[t], w = d.length;
           do {
-            if (e.begin[b] === y) {
-              if ((i(e.token[b], 61) || i(e.token[b], 59) || e.token[b] === "x;") && (X = !0), i(e.token[b], 46) && l[b - 1] > -1) {
-                N[N.length - 1] = !1, l[y] = h + 1, l[t - 1] = h;
+            if (e.begin[k] === x) {
+              if ((i(e.token[k], 61) || i(e.token[k], 59) || e.token[k] === "x;") && (K = !0), i(e.token[k], 46) && a[k - 1] > -1) {
+                U[U.length - 1] = !1, a[x] = h + 1, a[t - 1] = h;
                 break;
               }
-              if (b > 0 && e.token[b] === "return" && (e.token[b - 1] === ")" || e.token[b - 1] === "x)" || e.token[b - 1] === "{" || e.token[b - 1] === "x{" || e.token[b - 1] === "}" || e.token[b - 1] === "x}" || e.token[b - 1] === ";" || e.token[b - 1] === "x;")) {
-                h = h - 1, l[t - 1] = h;
+              if (k > 0 && e.token[k] === "return" && (e.token[k - 1] === ")" || e.token[k - 1] === "x)" || e.token[k - 1] === "{" || e.token[k - 1] === "x{" || e.token[k - 1] === "}" || e.token[k - 1] === "x}" || e.token[k - 1] === ";" || e.token[k - 1] === "x;")) {
+                h = h - 1, a[t - 1] = h;
                 break;
               }
-              if (i(e.token[b], 58) && g.length === 0 || i(e.token[b], 44) && X === !1)
+              if (i(e.token[k], 58) && g.length === 0 || i(e.token[k], 44) && K === !1)
                 break;
-              if (b === 0 || e.token[b - 1] === "{" || e.token[b - 1] === "x{" || e.token[b] === "for" || e.token[b] === "if" || e.token[b] === "do" || e.token[b] === "function" || e.token[b] === "while" || e.token[b] === "var" || e.token[b] === "let" || e.token[b] === "const" || e.token[b] === "with") {
-                d[x - 1] === !1 && x > 1 && (t === o - 1 || e.token[t + 1] !== ")" && e.token[t + 1] !== "x)") && e.stack[t] !== "object" && (h = h - 1);
+              if (k === 0 || e.token[k - 1] === "{" || e.token[k - 1] === "x{" || e.token[k] === "for" || e.token[k] === "if" || e.token[k] === "do" || e.token[k] === "function" || e.token[k] === "while" || e.token[k] === "var" || e.token[k] === "let" || e.token[k] === "const" || e.token[k] === "with") {
+                d[w - 1] === !1 && w > 1 && (t === o - 1 || e.token[t + 1] !== ")" && e.token[t + 1] !== "x)") && e.stack[t] !== "object" && (h = h - 1);
                 break;
               }
             } else
-              b = e.begin[b];
-            b = b - 1;
-          } while (b > y);
+              k = e.begin[k];
+            k = k - 1;
+          } while (k > x);
         }
         I.pop();
       }
-      if (n.bracePadding === !1 && p !== "}" && p !== "]" && w !== "markup" && w !== "liquid" && (l[t - 1] = -20), n.bracePadding === !0 && w !== "start" && _ !== ";" && (l[e.begin[t]] < -9 || N[N.length - 1] === !0))
-        l[e.begin[t]] = -10, l[t - 1] = -10, l.push(-20);
+      if (n.bracePadding === !1 && p !== "}" && p !== "]" && S !== "markup" && S !== "liquid" && (a[t - 1] = -20), n.bracePadding === !0 && S !== "start" && D !== ";" && (a[e.begin[t]] < -9 || U[U.length - 1] === !0))
+        a[e.begin[t]] = -10, a[t - 1] = -10, a.push(-20);
       else if (e.stack[t] === "attribute")
-        l[t - 1] = -20, l.push(h);
-      else if (e.stack[t] === "array" && (F.length > 0 || L[L.length - 1] === !0))
-        ue(), N[N.length - 1] = !1, l[e.begin[t]] = h + 1, l[t - 1] = h, l.push(-20);
-      else if (F.length > 0 && (e.stack[t] === "object" || e.begin[t] === 0 && i(p, 125)))
-        ue(), N[N.length - 1] = !1, l[e.begin[t]] = h + 1, l[t - 1] = h, l.push(-20);
+        a[t - 1] = -20, a.push(h);
+      else if (e.stack[t] === "array" && (_.length > 0 || C[C.length - 1] === !0))
+        we(), U[U.length - 1] = !1, a[e.begin[t]] = h + 1, a[t - 1] = h, a.push(-20);
+      else if (_.length > 0 && (e.stack[t] === "object" || e.begin[t] === 0 && i(p, 125)))
+        we(), U[U.length - 1] = !1, a[e.begin[t]] = h + 1, a[t - 1] = h, a.push(-20);
       else if (p === ")" || p === "x)") {
-        let b = p === ")" && T(_, 40) && B.length > 0 ? B.pop() + 1 : 0, X = e.token[e.begin[t] - 1] === "if" ? (() => {
-          let y = t;
+        let k = p === ")" && M(D, 40) && G.length > 0 ? G.pop() + 1 : 0, K = e.token[e.begin[t] - 1] === "if" ? (() => {
+          let x = t;
           do
-            if (y = y - 1, e.token[y] === ")" && l[y - 1] > -1)
-              return b;
-          while (y > e.begin[t]);
-          return b + 5;
-        })() : b;
-        if (b > 0 && (r.language !== "jsx" || r.language === "jsx" && e.token[e.begin[t] - 1] !== "render")) {
-          let y = s.wrap, x = e.begin[t], q = B.length, v = t - 2;
-          if (X > y) {
-            l[e.begin[t]] = h + 1, l[t - 1] = h;
+            if (x = x - 1, e.token[x] === ")" && a[x - 1] > -1)
+              return k;
+          while (x > e.begin[t]);
+          return k + 5;
+        })() : k;
+        if (k > 0 && (r.language !== "jsx" || r.language === "jsx" && e.token[e.begin[t] - 1] !== "render")) {
+          let x = s.wrap, w = e.begin[t], A = G.length, v = t - 2;
+          if (K > x) {
+            a[e.begin[t]] = h + 1, a[t - 1] = h;
             do
-              e.begin[v] === x ? e.token[v] === "&&" || e.token[v] === "||" ? l[v] = h + 1 : l[v] > -1 && e.types[v] !== "comment" && e.token[v + 1] !== "." && (l[v] = l[v] + 1) : l[v] > -1 && e.token[v + 1] !== "." && (l[v] = l[v] + 1), v = v - 1;
-            while (v > x);
+              e.begin[v] === w ? e.token[v] === "&&" || e.token[v] === "||" ? a[v] = h + 1 : a[v] > -1 && e.types[v] !== "comment" && e.token[v + 1] !== "." && (a[v] = a[v] + 1) : a[v] > -1 && e.token[v + 1] !== "." && (a[v] = a[v] + 1), v = v - 1;
+            while (v > w);
           } else
-            q > 0 && (B[q - 1] = B[q - 1] + b);
-        } else if (p === ")" && t > e.begin[t] + 2 && e.lexer[e.begin[t] + 1] === C && e.token[e.begin[t] + 1] !== "function") {
-          let y = e.begin[t] < 0 ? 0 : e.begin[t], x = s.wrap, q = F.length, v = 0, E = 0, me = 0, te = 0, R = 0, Q = !1, W = !1, U = h + 1, Z = !1, ae = !1, he = !1;
-          if (l[y] < -9) {
-            E = y;
+            A > 0 && (G[A - 1] = G[A - 1] + k);
+        } else if (p === ")" && t > e.begin[t] + 2 && e.lexer[e.begin[t] + 1] === O && e.token[e.begin[t] + 1] !== "function") {
+          let x = e.begin[t] < 0 ? 0 : e.begin[t], w = s.wrap, A = _.length, v = 0, $ = 0, ge = 0, ne = 0, pe = 0, R = !1, E = !1, z = h + 1, Y = !1, Z = !1, fe = !1;
+          if (a[x] < -9) {
+            $ = x;
             do
-              E = E + 1;
-            while (E < t && l[E] < -9);
-            te = E;
+              $ = $ + 1;
+            while ($ < t && a[$] < -9);
+            ne = $;
             do
-              v = v + e.token[E].length, l[E] === -10 && (v = v + 1), e.token[E] === "(" && me > 0 && me < x - 1 && te === t && (me = -1), e.token[E] === ")" ? R = R - 1 : e.token[E] === "(" && (R = R + 1), E === y && R > 0 && (me = v), E = E - 1;
-            while (E > y && l[E] < -9);
-            if (e.token[E + 1] === "." && (U = l[E] + 1), v > x - 1 && x > 0 && T(_, 40) && me !== -1 && N[N.length - 2] === !1 && (e.token[y - 1] === "if" && d[d.length - 1] === !0 || e.token[y - 1] !== "if") && (l[y] = U, e.token[y - 1] === "for")) {
-              E = y;
+              v = v + e.token[$].length, a[$] === -10 && (v = v + 1), e.token[$] === "(" && ge > 0 && ge < w - 1 && ne === t && (ge = -1), e.token[$] === ")" ? pe = pe - 1 : e.token[$] === "(" && (pe = pe + 1), $ === x && pe > 0 && (ge = v), $ = $ - 1;
+            while ($ > x && a[$] < -9);
+            if (e.token[$ + 1] === "." && (z = a[$] + 1), v > w - 1 && w > 0 && M(D, 40) && ge !== -1 && U[U.length - 2] === !1 && (e.token[x - 1] === "if" && d[d.length - 1] === !0 || e.token[x - 1] !== "if") && (a[x] = z, e.token[x - 1] === "for")) {
+              $ = x;
               do
-                E = E + 1, i(e.token[E], 59) && e.begin[E] === y && (l[E] = U);
-              while (E < t);
+                $ = $ + 1, i(e.token[$], 59) && e.begin[$] === x && (a[$] = z);
+              while ($ < t);
             }
           }
-          E = t, v = 0;
+          $ = t, v = 0;
           do
-            E = E - 1, e.stack[E] === "function" ? E = e.begin[E] : e.begin[E] === y ? (i(e.token[E], 63) ? he = !0 : i(e.token[E], 44) && Q === !1 ? (Q = !0, v >= x && x > 0 && (Z = !0)) : e.types[E] === "markup" && ae === !1 && (ae = !0), l[E] > -9 && T(e.token[E], 44) && e.types[E] !== "markup" ? v = 0 : (l[E] === -10 && (v = v + 1), v = v + e.token[E].length, v >= x && x > 0 && (Q === !0 || ae === !0) && (Z = !0))) : l[E] > -9 ? v = 0 : (v = v + e.token[E].length, v >= x && x > 0 && (Q === !0 || ae === !0) && (Z = !0));
-          while (E > y && Z === !1);
-          if (Q === !1 && i(e.token[e.begin[t] + 1], 96))
-            l[e.begin[t]] = -20, l[t - 1] = -20;
-          else if ((Q === !0 || ae === !0) && v >= x && x > 0 || l[y] > -9) {
-            if (he === !0) {
-              if (U = l[y], i(e.token[y - 1], 91)) {
-                E = t;
+            $ = $ - 1, e.stack[$] === "function" ? $ = e.begin[$] : e.begin[$] === x ? (i(e.token[$], 63) ? fe = !0 : i(e.token[$], 44) && R === !1 ? (R = !0, v >= w && w > 0 && (Y = !0)) : e.types[$] === "markup" && Z === !1 && (Z = !0), a[$] > -9 && M(e.token[$], 44) && e.types[$] !== "markup" ? v = 0 : (a[$] === -10 && (v = v + 1), v = v + e.token[$].length, v >= w && w > 0 && (R === !0 || Z === !0) && (Y = !0))) : a[$] > -9 ? v = 0 : (v = v + e.token[$].length, v >= w && w > 0 && (R === !0 || Z === !0) && (Y = !0));
+          while ($ > x && Y === !1);
+          if (R === !1 && i(e.token[e.begin[t] + 1], 96))
+            a[e.begin[t]] = -20, a[t - 1] = -20;
+          else if ((R === !0 || Z === !0) && v >= w && w > 0 || a[x] > -9) {
+            if (fe === !0) {
+              if (z = a[x], i(e.token[x - 1], 91)) {
+                $ = t;
                 do
-                  if (E = E + 1, e.types[E] === "end" || i(e.token[E], 44) || i(e.token[E], 59))
+                  if ($ = $ + 1, e.types[$] === "end" || i(e.token[$], 44) || i(e.token[$], 59))
                     break;
-                while (E < o);
-                i(e.token[E], 93) && (U = U - 1, W = !0);
+                while ($ < o);
+                i(e.token[$], 93) && (z = z - 1, E = !0);
               }
             } else
-              q > 0 && F[q - 1] > E && (U = U - q);
-            N[N.length - 1] = !1, E = t;
+              A > 0 && _[A - 1] > $ && (z = z - A);
+            U[U.length - 1] = !1, $ = t;
             do
-              if (E = E - 1, e.begin[E] === y)
-                if (e.token[E].indexOf("=") > -1 && e.types[E] === "operator" && e.token[E].indexOf("!") < 0 && e.token[E].indexOf("==") < 0 && e.token[E] !== "<=" && e.token[E].indexOf(">") < 0) {
-                  v = E;
+              if ($ = $ - 1, e.begin[$] === x)
+                if (e.token[$].indexOf("=") > -1 && e.types[$] === "operator" && e.token[$].indexOf("!") < 0 && e.token[$].indexOf("==") < 0 && e.token[$] !== "<=" && e.token[$].indexOf(">") < 0) {
+                  v = $;
                   do
-                    if (v = v - 1, e.begin[v] === y && (e.token[v] === ";" || e.token[v] === "," || v === y))
+                    if (v = v - 1, e.begin[v] === x && (e.token[v] === ";" || e.token[v] === "," || v === x))
                       break;
-                  while (v > y);
+                  while (v > x);
                 } else
-                  i(e.token[E], 44) ? l[E] = U : l[E] > -9 && W === !1 && (e.token[y - 1] !== "for" || e.token[E + 1] === "?" || e.token[E + 1] === ":") && (e.token[e.begin[t]] !== "(" || e.token[E] !== "+") && (l[E] = l[E] + 1);
+                  i(e.token[$], 44) ? a[$] = z : a[$] > -9 && E === !1 && (e.token[x - 1] !== "for" || e.token[$ + 1] === "?" || e.token[$ + 1] === ":") && (e.token[e.begin[t]] !== "(" || e.token[$] !== "+") && (a[$] = a[$] + 1);
               else
-                l[E] > -9 && W === !1 && (l[E] = l[E] + 1);
-            while (E > y);
-            l[y] = U, l[t - 1] = U - 1;
+                a[$] > -9 && E === !1 && (a[$] = a[$] + 1);
+            while ($ > x);
+            a[x] = z, a[t - 1] = z - 1;
           } else
-            l[t - 1] = -20;
-          e.token[e.begin[t] - 1] === "+" && l[e.begin[t]] > -9 && (l[e.begin[t] - 1] = -10);
+            a[t - 1] = -20;
+          e.token[e.begin[t] - 1] === "+" && a[e.begin[t]] > -9 && (a[e.begin[t] - 1] = -10);
         } else
-          r.language === "jsx" || r.language === "tsx" ? H() : l[t - 1] = -20;
-        l.push(-20);
-      } else if (N[N.length - 1] === !0)
-        i(p, 93) && e.begin[t] - 1 > 0 && e.token[e.begin[e.begin[t] - 1]] === "[" && (N[N.length - 2] = !1), e.begin[t] < l.length && (l[e.begin[t]] = -20), r.language === "jsx" || r.language === "tsx" ? H() : i(p, 93) && l[e.begin[t]] > -1 ? l[t - 1] = l[e.begin[t]] - 1 : l[t - 1] = -20, l.push(-20);
+          r.language === "jsx" || r.language === "tsx" ? Q() : a[t - 1] = -20;
+        a.push(-20);
+      } else if (U[U.length - 1] === !0)
+        i(p, 93) && e.begin[t] - 1 > 0 && e.token[e.begin[e.begin[t] - 1]] === "[" && (U[U.length - 2] = !1), e.begin[t] < a.length && (a[e.begin[t]] = -20), r.language === "jsx" || r.language === "tsx" ? Q() : i(p, 93) && a[e.begin[t]] > -1 ? a[t - 1] = a[e.begin[t]] - 1 : a[t - 1] = -20, a.push(-20);
       else if (e.types[t - 1] === "comment" && e.token[t - 1].substring(0, 2) === "//")
-        e.token[t - 2] === "x}" && (l[t - 3] = h + 1), l[t - 1] = h, l.push(-20);
-      else if (w.indexOf("liquid") < 0 && // PATCH SO LIQUID TOKENS DONT END WITH: }}} (3 LCB)
-      e.types[t - 1] !== "comment" && (i(_, 123) && i(p, 125) || i(_, 91) && i(p, 93)))
-        l[t - 1] = -20, l.push(-20);
+        e.token[t - 2] === "x}" && (a[t - 3] = h + 1), a[t - 1] = h, a.push(-20);
+      else if (S.indexOf("liquid") < 0 && // PATCH SO LIQUID TOKENS DONT END WITH: }}} (3 LCB)
+      e.types[t - 1] !== "comment" && (i(D, 123) && i(p, 125) || i(D, 91) && i(p, 93)))
+        a[t - 1] = -20, a.push(-20);
       else if (i(p, 93)) {
-        if (d[d.length - 1] === !0 && N[N.length - 1] === !1 && n.arrayFormat !== "inline" || i(_, 93) && l[t - 2] === h + 1 ? (l[t - 1] = h, l[e.begin[t]] = h + 1) : l[t - 1] === -10 && (l[t - 1] = -20), e.token[e.begin[t] + 1] === "function")
-          l[t - 1] = h;
+        if (d[d.length - 1] === !0 && U[U.length - 1] === !1 && n.arrayFormat !== "inline" || i(D, 93) && a[t - 2] === h + 1 ? (a[t - 1] = h, a[e.begin[t]] = h + 1) : a[t - 1] === -10 && (a[t - 1] = -20), e.token[e.begin[t] + 1] === "function")
+          a[t - 1] = h;
         else if (d[d.length - 1] === !1) {
-          (i(_, 125) || _ === "x}") && (l[t - 1] = h);
-          let b = t - 1, X = 1;
+          (i(D, 125) || D === "x}") && (a[t - 1] = h);
+          let k = t - 1, K = 1;
           do {
-            if (i(e.token[b], 93) && (X = X + 1), i(e.token[b], 91) && (X = X - 1, X === 0)) {
-              if (b > 0 && (i(e.token[b + 1], 123) || i(e.token[b + 1], 91) || e.token[b + 1] === "x{")) {
-                l[b] = h + 1;
+            if (i(e.token[k], 93) && (K = K + 1), i(e.token[k], 91) && (K = K - 1, K === 0)) {
+              if (k > 0 && (i(e.token[k + 1], 123) || i(e.token[k + 1], 91) || e.token[k + 1] === "x{")) {
+                a[k] = h + 1;
                 break;
               }
-              if (T(e.token[b + 1], 91) || le === !1) {
-                l[b] = -20;
+              if (M(e.token[k + 1], 91) || le === !1) {
+                a[k] = -20;
                 break;
               }
               break;
             }
-            X === 1 && e.token[b] === "+" && l[b] > 1 && (l[b] = l[b] - 1), b = b - 1;
-          } while (b > -1);
+            K === 1 && e.token[k] === "+" && a[k] > 1 && (a[k] = a[k] - 1), k = k - 1;
+          } while (k > -1);
         } else
-          (r.language === "jsx" || r.language === "tsx") && H();
+          (r.language === "jsx" || r.language === "tsx") && Q();
         if (n.arrayFormat === "inline") {
-          let b = t, X = e.begin[t];
+          let k = t, K = e.begin[t];
           do
-            if (b = b - 1, e.types[b] === "end")
+            if (k = k - 1, e.types[k] === "end")
               break;
-          while (b > X);
-          b > X ? (l[e.begin[t]] = h + 1, l[t - 1] = h) : (l[e.begin[t]] = -20, l[t - 1] = -20);
+          while (k > K);
+          k > K ? (a[e.begin[t]] = h + 1, a[t - 1] = h) : (a[e.begin[t]] = -20, a[t - 1] = -20);
         } else
-          l[e.begin[t]] > -1 && (l[t - 1] = l[e.begin[t]] - 1);
-        l.push(-20);
+          a[e.begin[t]] > -1 && (a[t - 1] = a[e.begin[t]] - 1);
+        a.push(-20);
       } else
-        i(p, 125) || p === "x}" || d[d.length - 1] === !0 ? (i(p, 125) && _ === "x}" && e.token[t + 1] === "else" ? (l[t - 2] = h + 2, l.push(-20)) : l.push(h), l[t - 1] = h) : l.push(-20);
-      e.types[t - 1] === "comment" && (l[t - 1] = h), ue(), le = d[d.length - 1], d.pop(), M.pop(), L.pop(), S.pop(), D.pop(), N.pop(), j.pop();
+        i(p, 125) || p === "x}" || d[d.length - 1] === !0 ? (i(p, 125) && D === "x}" && e.token[t + 1] === "else" ? (a[t - 2] = h + 2, a.push(-20)) : a.push(h), a[t - 1] = h) : a.push(-20);
+      e.types[t - 1] === "comment" && (a[t - 1] = h), we(), le = d[d.length - 1], d.pop(), W.pop(), C.pop(), j.pop(), q.pop(), U.pop(), y.pop();
     }
-    function ue() {
-      let F = 0, H = M[M.length - 1];
-      if (H !== void 0) {
-        if (F = H.length - 1, F < 1 && H[F] < 0 && (i(p, 59) || p === "x;" || i(p, 41) || p === "x)" || i(p, 125) || p === "x}")) {
-          H.pop();
+    function we() {
+      let _ = 0, Q = W[W.length - 1];
+      if (Q !== void 0) {
+        if (_ = Q.length - 1, _ < 1 && Q[_] < 0 && (i(p, 59) || p === "x;" || i(p, 41) || p === "x)" || i(p, 125) || p === "x}")) {
+          Q.pop();
           return;
         }
-        if (!(F < 0 || H[F] < 0)) {
+        if (!(_ < 0 || Q[_] < 0)) {
           if (i(p, 58)) {
-            if (T(e.token[H[F]], 63))
+            if (M(e.token[Q[_]], 63))
               do
-                H.pop(), F = F - 1, h = h - 1;
-              while (F > -1 && H[F] > -1 && T(e.token[H[F]], 63));
-            H[F] = t, l[t - 1] = h;
+                Q.pop(), _ = _ - 1, h = h - 1;
+              while (_ > -1 && Q[_] > -1 && M(e.token[Q[_]], 63));
+            Q[_] = t, a[t - 1] = h;
           } else
             do
-              H.pop(), F = F - 1, h = h - 1;
-            while (F > -1 && H[F] > -1);
-          (e.stack[t] === "array" || i(p, 44)) && H.length < 1 && H.push(-1);
+              Q.pop(), _ = _ - 1, h = h - 1;
+            while (_ > -1 && Q[_] > -1);
+          (e.stack[t] === "array" || i(p, 44)) && Q.length < 1 && Q.push(-1);
         }
       }
     }
-    function Ce() {
-      let F = t;
+    function ae() {
+      let _ = t;
       do {
-        if (e.lexer[t + 1] === C && e.begin[t + 1] < F || e.token[F - 1] === "return" && e.types[t] === "end" && e.begin[t] === F)
+        if (e.lexer[t + 1] === O && e.begin[t + 1] < _ || e.token[_ - 1] === "return" && e.types[t] === "end" && e.begin[t] === _)
           break;
-        l.push(0), t = t + 1;
+        a.push(0), t = t + 1;
       } while (t < o);
-      a[F] = t, l.push(h - 1);
+      l[_] = t, a.push(h - 1);
     }
-    function O() {
-      let F = t - 1, H = e.begin[t];
+    function L() {
+      let _ = t - 1, Q = e.begin[t];
       if (!(h < 1))
         do {
-          if (H !== e.begin[F])
-            F = e.begin[F];
-          else if (e.types[F] === "separator" || e.types[F] === "operator") {
-            e.token[F] === "." && l[F - 1] > 0 && (e.token[H - 1] === "if" ? h = h - 2 : h = h - 1);
+          if (Q !== e.begin[_])
+            _ = e.begin[_];
+          else if (e.types[_] === "separator" || e.types[_] === "operator") {
+            e.token[_] === "." && a[_ - 1] > 0 && (e.token[Q - 1] === "if" ? h = h - 2 : h = h - 1);
             break;
           }
-          F = F - 1;
-        } while (F > 0 && F > H);
+          _ = _ - 1;
+        } while (_ > 0 && _ > Q);
     }
-    function ke() {
-      (e.token[t + 1] !== "," && p.indexOf("/>") !== p.length - 2 || e.token[t + 1] === "," && e.token[e.begin[t] - 3] !== "React") && pe(!1, !1), _ === "return" || _ === "?" || _ === ":" ? (l[t - 1] = -10, l.push(-20)) : w === "start" || e.token[t - 2] === "return" && e.stack[t - 1] === "method" ? l.push(h) : l.push(-20);
+    function ye() {
+      (e.token[t + 1] !== "," && p.indexOf("/>") !== p.length - 2 || e.token[t + 1] === "," && e.token[e.begin[t] - 3] !== "React") && V(!1, !1), D === "return" || D === "?" || D === ":" ? (a[t - 1] = -10, a.push(-20)) : S === "start" || e.token[t - 2] === "return" && e.stack[t - 1] === "method" ? a.push(h) : a.push(-20);
     }
-    function K() {
-      let F = Ke(M[M.length - 1]) ? [] : M[M.length - 1];
-      function H() {
-        let b = e.token[t + 1], X = 0, y = 0, x = t, q = p === "+" ? h + 2 : h, v = 0;
+    function me() {
+      let _ = Ke(W[W.length - 1]) ? [] : W[W.length - 1];
+      function Q() {
+        let k = e.token[t + 1], K = 0, x = 0, w = t, A = p === "+" ? h + 2 : h, v = 0;
         if (s.wrap < 1) {
-          l.push(-10);
+          a.push(-10);
           return;
         }
         do {
-          if (x = x - 1, i(e.token[e.begin[t]], 40) && (x === e.begin[t] && (v = X), i(e.token[x], 44) && e.begin[x] === e.begin[t] && d[d.length - 1] === !0) || X > s.wrap - 1 || l[x] > -9 || e.types[x] === "operator" && e.token[x] !== "=" && e.token[x] !== "+" && e.begin[x] === e.begin[t] || (X = X + e.token[x].length, x === e.begin[t] && e.token[x] === "[" && X < s.wrap - 1) || e.token[x] === "." && l[x] > -9)
+          if (w = w - 1, i(e.token[e.begin[t]], 40) && (w === e.begin[t] && (v = K), i(e.token[w], 44) && e.begin[w] === e.begin[t] && d[d.length - 1] === !0) || K > s.wrap - 1 || a[w] > -9 || e.types[w] === "operator" && e.token[w] !== "=" && e.token[w] !== "+" && e.begin[w] === e.begin[t] || (K = K + e.token[w].length, w === e.begin[t] && e.token[w] === "[" && K < s.wrap - 1) || e.token[w] === "." && a[w] > -9)
             break;
-          l[x] === -10 && (X = X + 1);
-        } while (x > 0);
-        if (v > 0 && (v = v + b.length), X = X + b.length, y = x, X > s.wrap - 1 && l[x] < -9)
+          a[w] === -10 && (K = K + 1);
+        } while (w > 0);
+        if (v > 0 && (v = v + k.length), K = K + k.length, x = w, K > s.wrap - 1 && a[w] < -9)
           do
-            y = y - 1;
-          while (y > 0 && l[y] < -9);
-        if (e.token[y + 1] === "." && e.begin[t] <= e.begin[y] ? q = q + 1 : e.types[y] === "operator" && (q = l[y]), y = b.length, X + y < s.wrap) {
-          l.push(-10);
+            x = x - 1;
+          while (x > 0 && a[x] < -9);
+        if (e.token[x + 1] === "." && e.begin[t] <= e.begin[x] ? A = A + 1 : e.types[x] === "operator" && (A = a[x]), x = k.length, K + x < s.wrap) {
+          a.push(-10);
           return;
         }
-        if (i(e.token[e.begin[t]], 40) && (e.token[F[0]] === ":" || e.token[F[0]] === "?") ? q = h + 3 : e.stack[t] === "method" ? (l[e.begin[t]] = h, d[d.length - 1] === !0 ? q = h + 3 : q = h + 1) : (e.stack[t] === "object" || e.stack[t] === "array") && pe(!0, !1), (e.token[x] === "var" || e.token[x] === "let" || e.token[x] === "const") && (X = X - s.indentSize * s.indentChar.length * 2), v > 0 ? x = s.wrap - v : x = s.wrap - X, x > 0 && x < 5) {
-          l.push(q), (e.token[t].charAt(0) === '"' || e.token[t].charAt(0) === "'") && (t = t + 1, l.push(-10));
+        if (i(e.token[e.begin[t]], 40) && (e.token[_[0]] === ":" || e.token[_[0]] === "?") ? A = h + 3 : e.stack[t] === "method" ? (a[e.begin[t]] = h, d[d.length - 1] === !0 ? A = h + 3 : A = h + 1) : (e.stack[t] === "object" || e.stack[t] === "array") && V(!0, !1), (e.token[w] === "var" || e.token[w] === "let" || e.token[w] === "const") && (K = K - s.indentSize * s.indentChar.length * 2), v > 0 ? w = s.wrap - v : w = s.wrap - K, w > 0 && w < 5) {
+          a.push(A), (e.token[t].charAt(0) === '"' || e.token[t].charAt(0) === "'") && (t = t + 1, a.push(-10));
           return;
         }
         if (e.token[e.begin[t]] !== "(" || v > s.wrap - 1 || v === 0) {
-          if (v > 0 && (X = v), X - b.length < s.wrap - 1 && (b.charAt(0) === '"' || b.charAt(0) === "'")) {
-            if (t = t + 1, X = X + 3, X - b.length > s.wrap - 4) {
-              l.push(q);
+          if (v > 0 && (K = v), K - k.length < s.wrap - 1 && (k.charAt(0) === '"' || k.charAt(0) === "'")) {
+            if (t = t + 1, K = K + 3, K - k.length > s.wrap - 4) {
+              a.push(A);
               return;
             }
-            l.push(-10);
+            a.push(-10);
             return;
           }
-          l.push(q);
+          a.push(A);
           return;
         }
-        l.push(-10);
+        a.push(-10);
       }
-      if (O(), F.length > 0 && F[F.length - 1] > -1 && e.stack[t] === "array" && (L[L.length - 1] = !0), p !== ":" && (e.token[e.begin[t]] !== "(" && e.token[e.begin[t]] !== "x(" && N.length > 0 && pe(!0, !1), p !== "?" && e.token[F[F.length - 1]] === ".")) {
-        let b = 0, X = t, y = e.begin[X];
+      if (L(), _.length > 0 && _[_.length - 1] > -1 && e.stack[t] === "array" && (C[C.length - 1] = !0), p !== ":" && (e.token[e.begin[t]] !== "(" && e.token[e.begin[t]] !== "x(" && U.length > 0 && V(!0, !1), p !== "?" && e.token[_[_.length - 1]] === ".")) {
+        let k = 0, K = t, x = e.begin[K];
         do {
-          if (e.begin[X] === y) {
-            if (e.token[X + 1] === "{" || e.token[X + 1] === "[" || e.token[X] === "function")
+          if (e.begin[K] === x) {
+            if (e.token[K + 1] === "{" || e.token[K + 1] === "[" || e.token[K] === "function")
               break;
-            if (i(e.token[X], 44) || i(e.token[X], 59) || e.types[X] === "end" || i(e.token[X], 58)) {
-              F.pop(), h = h - 1;
-              break;
-            }
-            if (e.token[X] === "?" || i(e.token[X], 58)) {
-              e.token[F[F.length - 1]] === "." && b < 2 && (F[F.length - 1] = y + 1);
+            if (i(e.token[K], 44) || i(e.token[K], 59) || e.types[K] === "end" || i(e.token[K], 58)) {
+              _.pop(), h = h - 1;
               break;
             }
-            e.token[X] === "." && (b = b + 1);
+            if (e.token[K] === "?" || i(e.token[K], 58)) {
+              e.token[_[_.length - 1]] === "." && k < 2 && (_[_.length - 1] = x + 1);
+              break;
+            }
+            e.token[K] === "." && (k = k + 1);
           }
-          X = X + 1;
-        } while (X < o);
+          K = K + 1;
+        } while (K < o);
       }
       if (p === "!" || p === "...") {
-        (i(_, 125) || _ === "x}") && (l[t - 1] = h), l.push(-20);
+        (i(D, 125) || D === "x}") && (a[t - 1] = h), a.push(-20);
         return;
       }
-      if (_ === ";" || _ === "x;") {
-        e.token[e.begin[t] - 1] !== "for" && (l[t - 1] = h), l.push(-20);
+      if (D === ";" || D === "x;") {
+        e.token[e.begin[t] - 1] !== "for" && (a[t - 1] = h), a.push(-20);
         return;
       }
       if (p === "*") {
-        _ === "function" || _ === "yield" ? l[t - 1] = -20 : l[t - 1] = -10, l.push(-10);
+        D === "function" || D === "yield" ? a[t - 1] = -20 : a[t - 1] = -10, a.push(-10);
         return;
       }
       if (p === "?") {
-        if (e.lines[t] === 0 && e.types[t - 2] === "word" && e.token[t - 2] !== "return" && e.token[t - 2] !== "in" && e.token[t - 2] !== "instanceof" && e.token[t - 2] !== "typeof" && (w === "reference" || w === "word") && (e.types[t + 1] === "word" || e.types[t + 1] === "reference" || (i(e.token[t + 1], 40) || e.token[t + 1] === "x(") && e.token[t - 2] === "new")) {
-          if (l[t - 1] = -20, e.types[t + 1] === "word" || e.types[t + 1] === "reference") {
-            l.push(-10);
+        if (e.lines[t] === 0 && e.types[t - 2] === "word" && e.token[t - 2] !== "return" && e.token[t - 2] !== "in" && e.token[t - 2] !== "instanceof" && e.token[t - 2] !== "typeof" && (S === "reference" || S === "word") && (e.types[t + 1] === "word" || e.types[t + 1] === "reference" || (i(e.token[t + 1], 40) || e.token[t + 1] === "x(") && e.token[t - 2] === "new")) {
+          if (a[t - 1] = -20, e.types[t + 1] === "word" || e.types[t + 1] === "reference") {
+            a.push(-10);
             return;
           }
-          l.push(-20);
+          a.push(-20);
           return;
         }
         if (e.token[t + 1] === ":") {
-          l[t - 1] = -20, l.push(-20);
+          a[t - 1] = -20, a.push(-20);
           return;
         }
         if (g.push(t), n.ternaryLine === !0)
-          l[t - 1] = -10;
+          a[t - 1] = -10;
         else {
-          let b = t - 1;
+          let k = t - 1;
           do
-            b = b - 1;
-          while (b > -1 && l[b] < -9);
-          if (F.push(t), h = h + 1, l[b] === h && e.token[b + 1] !== ":" && (h = h + 1, F.push(t)), l[t - 1] = h, i(e.token[e.begin[t]], 40) && (F.length < 2 || F[0] === F[1])) {
-            N[N.length - 1] = !1, t - 2 === e.begin[t] ? l[e.begin[t]] = h - 1 : l[e.begin[t]] = h, b = t - 2;
+            k = k - 1;
+          while (k > -1 && a[k] < -9);
+          if (_.push(t), h = h + 1, a[k] === h && e.token[k + 1] !== ":" && (h = h + 1, _.push(t)), a[t - 1] = h, i(e.token[e.begin[t]], 40) && (_.length < 2 || _[0] === _[1])) {
+            U[U.length - 1] = !1, t - 2 === e.begin[t] ? a[e.begin[t]] = h - 1 : a[e.begin[t]] = h, k = t - 2;
             do {
-              if (e.types[b] === "end" && l[b - 1] > -1)
+              if (e.types[k] === "end" && a[k - 1] > -1)
                 break;
-              l[b] > -1 && (l[b] = l[b] + 1), b = b - 1;
-            } while (b > e.begin[t]);
+              a[k] > -1 && (a[k] = a[k] + 1), k = k - 1;
+            } while (k > e.begin[t]);
           }
         }
-        l.push(-10);
+        a.push(-10);
         return;
       }
       if (p === ":") {
         if (e.stack[t] === "map" || e.types[t + 1] === "type" || e.types[t + 1] === "type_start") {
-          l[t - 1] = -20, l.push(-10);
+          a[t - 1] = -20, a.push(-10);
           return;
         }
         if (g.length > 0 && e.begin[g[g.length - 1]] === e.begin[t]) {
-          let b = t, X = e.begin[t];
+          let k = t, K = e.begin[t];
           do
-            if (b = b - 1, e.begin[b] === X) {
-              if (i(e.token[b], 44) || i(e.token[b], 59)) {
-                l[t - 1] = -20;
+            if (k = k - 1, e.begin[k] === K) {
+              if (i(e.token[k], 44) || i(e.token[k], 59)) {
+                a[t - 1] = -20;
                 break;
               }
-              if (e.token[b] === "?") {
-                g.pop(), ue(), n.ternaryLine === !0 && (l[t - 1] = -10), l.push(-10);
+              if (e.token[k] === "?") {
+                g.pop(), we(), n.ternaryLine === !0 && (a[t - 1] = -10), a.push(-10);
                 return;
               }
             } else
-              e.types[b] === "end" && (b = e.begin[b]);
-          while (b > X);
+              e.types[k] === "end" && (k = e.begin[k]);
+          while (k > K);
         }
         if (e.token[t - 2] === "where" && e.stack[t - 2] === e.stack[t]) {
-          l[t - 1] = -10, l.push(-10);
+          a[t - 1] = -10, a.push(-10);
           return;
         }
-        if (w === "reference" && e.token[e.begin[t]] !== "(" && e.token[e.begin[t]] !== "x(") {
-          l[t - 1] = -20, l.push(-10);
+        if (S === "reference" && e.token[e.begin[t]] !== "(" && e.token[e.begin[t]] !== "x(") {
+          a[t - 1] = -20, a.push(-10);
           return;
         }
-        if ((i(_, 41) || _ === "x)") && e.token[e.begin[t - 1] - 2] === "function") {
-          l[t - 1] = -20, l.push(-10);
+        if ((i(D, 41) || D === "x)") && e.token[e.begin[t - 1] - 2] === "function") {
+          a[t - 1] = -20, a.push(-10);
           return;
         }
         if (e.stack[t] === "attribute") {
-          l[t - 1] = -20, l.push(-10);
+          a[t - 1] = -20, a.push(-10);
           return;
         }
-        if (e.token[e.begin[t]] !== "(" && e.token[e.begin[t]] !== "x(" && (w === "reference" || i(_, 41) || i(_, 93) || _ === "?") && (e.stack[t] === "map" || e.stack[t] === "class" || e.types[t + 1] === "reference") && (g.length === 0 || g[g.length - 1] < e.begin[t]) && ("mapclassexpressionmethodglobalparen".indexOf(e.stack[t]) > -1 || e.types[t - 2] === "word" && e.stack[t] !== "switch")) {
-          l[t - 1] = -20, l.push(-10);
+        if (e.token[e.begin[t]] !== "(" && e.token[e.begin[t]] !== "x(" && (S === "reference" || i(D, 41) || i(D, 93) || D === "?") && (e.stack[t] === "map" || e.stack[t] === "class" || e.types[t + 1] === "reference") && (g.length === 0 || g[g.length - 1] < e.begin[t]) && ("mapclassexpressionmethodglobalparen".indexOf(e.stack[t]) > -1 || e.types[t - 2] === "word" && e.stack[t] !== "switch")) {
+          a[t - 1] = -20, a.push(-10);
           return;
         }
         if (e.stack[t] === "switch" && (g.length < 1 || g[g.length - 1] < e.begin[t])) {
-          l[t - 1] = -20, n.caseSpace === !0 ? l.push(-10) : l.push(h);
+          a[t - 1] = -20, n.caseSpace === !0 ? a.push(-10) : a.push(h);
           return;
         }
-        e.stack[t] === "object" ? l[t - 1] = -20 : g.length > 0 ? l[t - 1] = h : l[t - 1] = -10, l.push(-10);
+        e.stack[t] === "object" ? a[t - 1] = -20 : g.length > 0 ? a[t - 1] = h : a[t - 1] = -10, a.push(-10);
         return;
       }
       if (p === "++" || p === "--") {
-        w === "number" || w === "reference" ? (l[t - 1] = -20, l.push(-10)) : t < o - 1 && (e.types[t + 1] === "number" || e.types[t + 1] === "reference") ? l.push(-20) : l.push(-10);
+        S === "number" || S === "reference" ? (a[t - 1] = -20, a.push(-10)) : t < o - 1 && (e.types[t + 1] === "number" || e.types[t + 1] === "reference") ? a.push(-20) : a.push(-10);
         return;
       }
       if (p === "+") {
-        if (w === "start" ? l[t - 1] = -20 : l[t - 1] = -10, s.wrap < 1 || e.token[e.begin[t]] === "x(") {
-          l.push(-10);
+        if (S === "start" ? a[t - 1] = -20 : a[t - 1] = -10, s.wrap < 1 || e.token[e.begin[t]] === "x(") {
+          a.push(-10);
           return;
         }
-        let b = e.token[t + 1];
-        if (b === void 0) {
-          l.push(-10);
+        let k = e.token[t + 1];
+        if (k === void 0) {
+          a.push(-10);
           return;
         }
         if (e.types[t - 1] === "operator" || e.types[t - 1] === "start") {
-          if (e.types[t + 1] === "reference" || b === "(" || b === "[") {
-            l.push(-20);
+          if (e.types[t + 1] === "reference" || k === "(" || k === "[") {
+            a.push(-20);
             return;
           }
-          if (Number(b.slice(1, -1)) > -1 && (/\d/.test(b.charAt(1)) === !0 || b.charAt(1) === "." || b.charAt(1) === "-" || b.charAt(1) === "+")) {
-            l.push(-20);
+          if (Number(k.slice(1, -1)) > -1 && (/\d/.test(k.charAt(1)) === !0 || k.charAt(1) === "." || k.charAt(1) === "-" || k.charAt(1) === "+")) {
+            a.push(-20);
             return;
           }
         }
-        return H();
+        return Q();
       }
-      if (e.types[t - 1] !== "comment" && (i(_, 40) ? l[t - 1] = -20 : p === "*" && e.stack[t] === "object" && e.types[t + 1] === "reference" && (i(_, 123) || i(_, 44)) ? l[t - 1] = h : (p !== "?" || g.length === 0) && (l[t - 1] = -10)), p.indexOf("=") > -1 && p !== "==" && p !== "===" && p !== "!=" && p !== "!==" && p !== ">=" && p !== "<=" && p !== "=>" && e.stack[t] !== "method" && e.stack[t] !== "object") {
-        let b = t + 1, X = 0, y = !1, x = c;
+      if (e.types[t - 1] !== "comment" && (i(D, 40) ? a[t - 1] = -20 : p === "*" && e.stack[t] === "object" && e.types[t + 1] === "reference" && (i(D, 123) || i(D, 44)) ? a[t - 1] = h : (p !== "?" || g.length === 0) && (a[t - 1] = -10)), p.indexOf("=") > -1 && p !== "==" && p !== "===" && p !== "!=" && p !== "!==" && p !== ">=" && p !== "<=" && p !== "=>" && e.stack[t] !== "method" && e.stack[t] !== "object") {
+        let k = t + 1, K = 0, x = !1, w = c;
         if ((i(e.token[e.begin[t]], 40) || e.token[e.begin[t]] === "x(") && e.token[t + 1] !== "function")
           return;
         do {
-          if (e.types[b] === "start") {
-            if (y === !0 && e.token[b] !== "[") {
-              j[j.length - 1] === !0 && (j[j.length - 1] = !1);
+          if (e.types[k] === "start") {
+            if (x === !0 && e.token[k] !== "[") {
+              y[y.length - 1] === !0 && (y[y.length - 1] = !1);
               break;
             }
-            X = X + 1;
+            K = K + 1;
           }
-          if (e.types[b] === "end" && (X = X - 1), X < 0) {
-            j[j.length - 1] === !0 && (j[j.length - 1] = !1);
+          if (e.types[k] === "end" && (K = K - 1), K < 0) {
+            y[y.length - 1] === !0 && (y[y.length - 1] = !1);
             break;
           }
-          if (X === 0) {
-            if (x = e.token[b], y === !0) {
-              if (e.types[b] === "operator" || i(e.token[b], 59) || e.token[b] === "x;" || e.token[b] === "?" || e.token[b] === "var" || e.token[b] === "let" || e.token[b] === "const") {
-                x !== void 0 && (x === "?" || x.indexOf("=") > -1 && x !== "==" && x !== "===" && x !== "!=" && x !== "!==" && x !== ">=" && x !== "<=") && j[j.length - 1] === !1 && (j[j.length - 1] = !0), (x === ";" || x === "x;" || x === "var" || x === "let" || x === "const") && j[j.length - 1] === !0 && (j[j.length - 1] = !1);
+          if (K === 0) {
+            if (w = e.token[k], x === !0) {
+              if (e.types[k] === "operator" || i(e.token[k], 59) || e.token[k] === "x;" || e.token[k] === "?" || e.token[k] === "var" || e.token[k] === "let" || e.token[k] === "const") {
+                w !== void 0 && (w === "?" || w.indexOf("=") > -1 && w !== "==" && w !== "===" && w !== "!=" && w !== "!==" && w !== ">=" && w !== "<=") && y[y.length - 1] === !1 && (y[y.length - 1] = !0), (w === ";" || w === "x;" || w === "var" || w === "let" || w === "const") && y[y.length - 1] === !0 && (y[y.length - 1] = !1);
                 break;
               }
-              j[j.length - 1] === !0 && (x === "return" || x === "break" || x === "continue" || x === "throw") && (j[j.length - 1] = !1);
+              y[y.length - 1] === !0 && (w === "return" || w === "break" || w === "continue" || w === "throw") && (y[y.length - 1] = !1);
             }
-            (x === ";" || x === "x;" || x === ",") && (y = !0);
+            (w === ";" || w === "x;" || w === ",") && (x = !0);
           }
-          b = b + 1;
-        } while (b < o);
-        l.push(-10);
+          k = k + 1;
+        } while (k < o);
+        a.push(-10);
         return;
       }
-      if (p === "-" && _ === "return" || i(_, 61)) {
-        l.push(-20);
+      if (p === "-" && D === "return" || i(D, 61)) {
+        a.push(-20);
         return;
       }
-      if (w === "operator" && e.types[t + 1] === "reference" && _ !== "--" && _ !== "++" && p !== "&&" && p !== "||") {
-        l.push(-20);
+      if (S === "operator" && e.types[t + 1] === "reference" && D !== "--" && D !== "++" && p !== "&&" && p !== "||") {
+        a.push(-20);
         return;
       }
-      return H();
+      return Q();
     }
-    function se() {
-      let F = () => {
-        let H = e.begin[t];
-        if (H < 0)
+    function te() {
+      let _ = () => {
+        let Q = e.begin[t];
+        if (Q < 0)
           r.stack.push([e.token[t], -1]);
         else {
-          if (e.stack[H + 1] !== "function")
+          if (e.stack[Q + 1] !== "function")
             do
-              H = e.begin[H];
-            while (H > -1 && e.stack[H + 1] !== "function");
-          r.stack.push([e.token[t], H]);
+              Q = e.begin[Q];
+            while (Q > -1 && e.stack[Q + 1] !== "function");
+          r.stack.push([e.token[t], Q]);
         }
       };
-      if (e.types[t - 1] === "comment" ? l[t - 1] = h : w === "end" && _ !== ")" && e.token[e.begin[t - 1] - 1] !== ")" ? l[t - 1] = -10 : w !== "separator" && w !== "start" && w !== "end" && w.indexOf("template_string") < 0 && (w === "word" || w === "operator" || w === "property" || w === "type" || w === "reference" ? l[t - 1] = -10 : l[t - 1] = -20), _ === "var" && e.lexer[t - 1] === C)
-        F();
-      else if (_ === "function")
+      if (e.types[t - 1] === "comment" ? a[t - 1] = h : S === "end" && D !== ")" && e.token[e.begin[t - 1] - 1] !== ")" ? a[t - 1] = -10 : S !== "separator" && S !== "start" && S !== "end" && S.indexOf("template_string") < 0 && (S === "word" || S === "operator" || S === "property" || S === "type" || S === "reference" ? a[t - 1] = -10 : a[t - 1] = -20), D === "var" && e.lexer[t - 1] === O)
+        _();
+      else if (D === "function")
         r.stack.push([e.token[t], t]);
-      else if (_ === "let" || _ === "const")
+      else if (D === "let" || D === "const")
         r.stack.push([e.token[t], t]);
       else if (e.stack[t] === "arguments")
         r.stack.push([e.token[t], t]);
-      else if (i(_, 44)) {
-        let H = t;
+      else if (i(D, 44)) {
+        let Q = t;
         do
-          H = H - 1;
-        while (H > e.begin[t] && e.token[H] !== "var" && e.token[H] !== "let" && e.token[H] !== "const");
-        e.token[H] === "var" ? F() : (e.token[H] === "let" || e.token[H] === "const") && r.stack.push([e.token[t], t]);
+          Q = Q - 1;
+        while (Q > e.begin[t] && e.token[Q] !== "var" && e.token[Q] !== "let" && e.token[Q] !== "const");
+        e.token[Q] === "var" ? _() : (e.token[Q] === "let" || e.token[Q] === "const") && r.stack.push([e.token[t], t]);
       }
-      l.push(-10);
+      a.push(-10);
     }
-    function J() {
-      let F = Ke(M[M.length - 1]) ? [] : M[M.length - 1], H = () => {
+    function ce() {
+      let _ = Ke(W[W.length - 1]) ? [] : W[W.length - 1], Q = () => {
         if (n.methodChain > 0) {
-          let b = t, X = e.begin[t], y = [t], x = e.token[X - 1] === "if";
+          let k = t, K = e.begin[t], x = [t], w = e.token[K - 1] === "if";
           do
-            if (b = b - 1, e.types[b] === "end" && (b = e.begin[b]), e.begin[b] === X) {
-              if (e.types[b] === "string" && e.token[b].indexOf("${") === e.token[b].length - 2)
+            if (k = k - 1, e.types[k] === "end" && (k = e.begin[k]), e.begin[k] === K) {
+              if (e.types[k] === "string" && e.token[k].indexOf("${") === e.token[k].length - 2)
                 break;
-              if (e.token[b] === ".") {
-                if (l[b - 1] > 0) {
-                  l[t - 1] = x === !0 ? h + 1 : h;
+              if (e.token[k] === ".") {
+                if (a[k - 1] > 0) {
+                  a[t - 1] = w === !0 ? h + 1 : h;
                   return;
                 }
-                y.push(b);
-              } else if (e.token[b] === ";" || e.token[b] === "," || e.types[b] === "operator" || (e.types[b] === "word" || e.types[b] === "reference") && (e.types[b - 1] === "word" || e.types[b - 1] === "reference"))
+                x.push(k);
+              } else if (e.token[k] === ";" || e.token[k] === "," || e.types[k] === "operator" || (e.types[k] === "word" || e.types[k] === "reference") && (e.types[k - 1] === "word" || e.types[k - 1] === "reference"))
                 break;
             }
-          while (b > X);
-          if (y.length < n.methodChain) {
-            l[t - 1] = -20;
+          while (k > K);
+          if (x.length < n.methodChain) {
+            a[t - 1] = -20;
             return;
           }
-          b = 0, X = y.length;
+          k = 0, K = x.length;
           do
-            l[y[b] - 1] = x === !0 ? h + 1 : h, b = b + 1;
-          while (b < X);
-          b = y[y.length - 1] - 1;
+            a[x[k] - 1] = w === !0 ? h + 1 : h, k = k + 1;
+          while (k < K);
+          k = x[x.length - 1] - 1;
           do
-            l[b] > -1 && (l[b] = l[b] + 1), b = b + 1;
-          while (b < t);
-          h = x === !0 ? h + 2 : h + 1;
+            a[k] > -1 && (a[k] = a[k] + 1), k = k + 1;
+          while (k < t);
+          h = w === !0 ? h + 2 : h + 1;
         }
-        l[t - 1] = h;
+        a[t - 1] = h;
       };
       if (p === "::") {
-        l[t - 1] = -20, l.push(-20);
+        a[t - 1] = -20, a.push(-20);
         return;
       }
       if (p === ".") {
-        e.token[e.begin[t]] !== "(" && e.token[e.begin[t]] !== "x(" && F.length > 0 && (e.stack[t] === "object" || e.stack[t] === "array" ? pe(!0, !1) : pe(!1, !1)), n.methodChain === 0 ? l[t - 1] = -20 : n.methodChain < 0 ? e.lines[t] > 0 ? H() : l[t - 1] = -20 : H(), l.push(-20);
+        e.token[e.begin[t]] !== "(" && e.token[e.begin[t]] !== "x(" && _.length > 0 && (e.stack[t] === "object" || e.stack[t] === "array" ? V(!0, !1) : V(!1, !1)), n.methodChain === 0 ? a[t - 1] = -20 : n.methodChain < 0 ? e.lines[t] > 0 ? Q() : a[t - 1] = -20 : Q(), a.push(-20);
         return;
       }
       if (p === ",") {
-        if (O(), d[d.length - 1] === !1 && (e.stack[t] === "object" || e.stack[t] === "array" || e.stack[t] === "paren" || e.stack[t] === "expression" || e.stack[t] === "method") && (d[d.length - 1] = !0, i(e.token[e.begin[t]], 40))) {
-          let b = t;
+        if (L(), d[d.length - 1] === !1 && (e.stack[t] === "object" || e.stack[t] === "array" || e.stack[t] === "paren" || e.stack[t] === "expression" || e.stack[t] === "method") && (d[d.length - 1] = !0, i(e.token[e.begin[t]], 40))) {
+          let k = t;
           do
-            b = b - 1, e.begin[b] === e.begin[t] && e.token[b] === "+" && l[b] > -9 && (l[b] = l[b] + 2);
-          while (b > e.begin[t]);
+            k = k - 1, e.begin[k] === e.begin[t] && e.token[k] === "+" && a[k] > -9 && (a[k] = a[k] + 2);
+          while (k > e.begin[t]);
         }
         if (e.stack[t] === "array" && n.arrayFormat === "indent") {
-          l[t - 1] = -20, l.push(h);
+          a[t - 1] = -20, a.push(h);
           return;
         }
         if (e.stack[t] === "array" && n.arrayFormat === "inline") {
-          l[t - 1] = -20, l.push(-10);
+          a[t - 1] = -20, a.push(-10);
           return;
         }
         if (e.stack[t] === "object" && n.objectIndent === "indent") {
-          l[t - 1] = -20, l.push(h);
+          a[t - 1] = -20, a.push(h);
           return;
         }
         if (e.stack[t] === "object" && n.objectIndent === "inline") {
-          l[t - 1] = -20, l.push(-10);
+          a[t - 1] = -20, a.push(-10);
           return;
         }
-        if (F.length > 0) {
-          F[F.length - 1] > -1 && ue(), l[t - 1] = -20, l.push(h);
+        if (_.length > 0) {
+          _[_.length - 1] > -1 && we(), a[t - 1] = -20, a.push(h);
           return;
         }
         if (e.token[t - 2] === ":" && e.token[t - 4] === "where") {
-          l[t - 1] = -20, l.push(-10);
+          a[t - 1] = -20, a.push(-10);
           return;
         }
-        if (l[t - 1] = -20, e.types[t + 1] !== "end" && (S[S.length - 1] = S[S.length - 1] + 1), (i(e.token[e.begin[t]], 40) || e.token[e.begin[t]] === "x(") && r.language !== "jsx" && e.stack[t] !== "global" && (e.types[t - 1] !== "string" && e.types[t - 1] !== "number" || e.token[t - 2] !== "+" || e.types[t - 1] === "string" && e.types[t - 1] !== "number" && i(e.token[t - 2], 43) && e.types[t - 3] !== "string" && e.types[t - 3] !== "number")) {
-          l.push(-10);
+        if (a[t - 1] = -20, e.types[t + 1] !== "end" && (j[j.length - 1] = j[j.length - 1] + 1), (i(e.token[e.begin[t]], 40) || e.token[e.begin[t]] === "x(") && r.language !== "jsx" && e.stack[t] !== "global" && (e.types[t - 1] !== "string" && e.types[t - 1] !== "number" || e.token[t - 2] !== "+" || e.types[t - 1] === "string" && e.types[t - 1] !== "number" && i(e.token[t - 2], 43) && e.types[t - 3] !== "string" && e.types[t - 3] !== "number")) {
+          a.push(-10);
           return;
         }
-        if (w === "reference" && e.types[t - 2] === "word" && "var-let-const-from".indexOf(e.token[t - 2]) < 0 && (e.types[t - 3] === "end" || e.token[t - 3] === ";")) {
-          D[D.length - 1] = !0, l.push(-10);
+        if (S === "reference" && e.types[t - 2] === "word" && "var-let-const-from".indexOf(e.token[t - 2]) < 0 && (e.types[t - 3] === "end" || e.token[t - 3] === ";")) {
+          q[q.length - 1] = !0, a.push(-10);
           return;
         }
-        if (D[D.length - 1] === !0 || e.stack[t] === "notation") {
-          l.push(-10);
+        if (q[q.length - 1] === !0 || e.stack[t] === "notation") {
+          a.push(-10);
           return;
         }
-        if (S[S.length - 1] > 3 && (e.stack[t] === "array" || e.stack[t] === "object")) {
-          if (N[N.length - 1] === !0 && pe(!0, !0), l[t - 1] = -20, L[L.length - 1] === !0) {
-            l.push(h);
+        if (j[j.length - 1] > 3 && (e.stack[t] === "array" || e.stack[t] === "object")) {
+          if (U[U.length - 1] === !0 && V(!0, !0), a[t - 1] = -20, C[C.length - 1] === !0) {
+            a.push(h);
             return;
           }
-          let b = e.begin[t], X = t;
+          let k = e.begin[t], K = t;
           do
-            e.types[X] === "end" ? X = e.begin[X] : i(e.token[X], 44) && e.types[X + 1] !== "comment" && (l[X] = h), X = X - 1;
-          while (X > b);
-          l[b] = h, L[L.length - 1] = !0;
+            e.types[K] === "end" ? K = e.begin[K] : i(e.token[K], 44) && e.types[K + 1] !== "comment" && (a[K] = h), K = K - 1;
+          while (K > k);
+          a[k] = h, C[C.length - 1] = !0;
           return;
         }
-        if (e.stack[t] === "object" && N[N.length - 1] === !0 && e.types[e.begin[t] - 1] !== "word" && e.types[e.begin[t] - 1] !== "reference" && e.token[e.begin[t] - 1] !== "(" && e.token[e.begin[t] - 1] !== "x(") {
-          let b = e.begin[t], X = t - 1;
+        if (e.stack[t] === "object" && U[U.length - 1] === !0 && e.types[e.begin[t] - 1] !== "word" && e.types[e.begin[t] - 1] !== "reference" && e.token[e.begin[t] - 1] !== "(" && e.token[e.begin[t] - 1] !== "x(") {
+          let k = e.begin[t], K = t - 1;
           do {
-            if (e.begin[X] === b) {
-              if (i(e.token[X], 44))
+            if (e.begin[K] === k) {
+              if (i(e.token[K], 44))
                 break;
-              if (i(e.token[X], 58)) {
-                pe(!0, !1);
+              if (i(e.token[K], 58)) {
+                V(!0, !1);
                 break;
               }
             }
-            X = X - 1;
-          } while (X > b);
+            K = K - 1;
+          } while (K > k);
         }
-        if (N[N.length - 1] === !1 || i(e.token[t - 2], 43) && (w === "string" || w === "number") && l[t - 2] > 0 && (i(_, 34) || i(_, 39))) {
+        if (U[U.length - 1] === !1 || i(e.token[t - 2], 43) && (S === "string" || S === "number") && a[t - 2] > 0 && (i(D, 34) || i(D, 39))) {
           if (e.stack[t] === "method") {
-            if (i(e.token[t - 2], 43) && (i(_, 34) || i(_, 39)) && (e.token[t - 3].charAt(0) === '"' || e.token[t - 3].charAt(0) === "'")) {
-              l.push(h + 2);
+            if (i(e.token[t - 2], 43) && (i(D, 34) || i(D, 39)) && (e.token[t - 3].charAt(0) === '"' || e.token[t - 3].charAt(0) === "'")) {
+              a.push(h + 2);
               return;
             }
             if (e.token[t - 2] !== "+") {
-              l.push(-10);
+              a.push(-10);
               return;
             }
           }
-          l.push(h);
+          a.push(h);
           return;
         }
-        if (N[N.length - 1] === !0 && e.stack[t] !== "object") {
-          l.push(-10);
+        if (U[U.length - 1] === !0 && e.stack[t] !== "object") {
+          a.push(-10);
           return;
         }
-        if (S[S.length - 1] < 4 && (e.stack[t] === "array" || e.stack[t] === "object")) {
-          l.push(-10);
+        if (j[j.length - 1] < 4 && (e.stack[t] === "array" || e.stack[t] === "object")) {
+          a.push(-10);
           return;
         }
-        l.push(h);
+        a.push(h);
         return;
       }
       if (i(p, 59) || p === "x;") {
-        if (O(), e.token[t + 1] !== void 0 && e.types[t + 1].indexOf("attribute") > 0 && e.types[t + 1].indexOf("end") > 0) {
-          l[t - 1] = -20, l.push(h - 1);
+        if (L(), e.token[t + 1] !== void 0 && e.types[t + 1].indexOf("attribute") > 0 && e.types[t + 1].indexOf("end") > 0) {
+          a[t - 1] = -20, a.push(h - 1);
           return;
         }
         if (I[I.length - 1] > -1 && e.stack[I[I.length - 1]] !== "expression") {
-          let b = t;
+          let k = t;
           do {
-            if (b = b - 1, i(e.token[b], 59))
+            if (k = k - 1, i(e.token[k], 59))
               break;
-            if (i(e.token[b], 44)) {
+            if (i(e.token[k], 44)) {
               h = h - 1;
               break;
             }
-            e.types[b] === "end" && (b = e.begin[b]);
-          } while (b > 0 && b > e.begin[t]);
+            e.types[k] === "end" && (k = e.begin[k]);
+          } while (k > 0 && k > e.begin[t]);
         }
-        if (I[I.length - 1] = -1, ue(), e.token[e.begin[t] - 1] !== "for" && pe(!1, !1), D[D.length - 1] = !1, l[t - 1] = -20, e.begin[t] > 0 && e.token[e.begin[t] - 1] === "for" && e.stack[t] !== "for") {
-          l.push(-10);
+        if (I[I.length - 1] = -1, we(), e.token[e.begin[t] - 1] !== "for" && V(!1, !1), q[q.length - 1] = !1, a[t - 1] = -20, e.begin[t] > 0 && e.token[e.begin[t] - 1] === "for" && e.stack[t] !== "for") {
+          a.push(-10);
           return;
         }
-        l.push(h);
+        a.push(h);
         return;
       }
-      l.push(-20);
+      a.push(-20);
     }
-    function $e() {
-      let F = e.stack[t + 1], H = t === 0 ? e.stack[t] : e.stack[t - 1];
-      if ((i(_, 41) || T(_, 93) && (H === "object" || H === "array")) && (F !== "method" || F === "method" && T(e.token[t + 1], 41) && T(e.token[t + 2], 41)) && (i(_, 41) && (F !== "function" || i(e.token[e.begin[e.begin[t - 1] - 1]], 40) || e.token[e.begin[e.begin[t - 1] - 1]] === "x(") ? pe(!1, !1) : e.types[t + 1] !== "end" && e.types[t + 2] !== "end" && pe(!0, !1)), d.push(!1), M.push([]), j.push(!1), L.push(!1), D.push(!1), S.push(0), n.neverFlatten === !0 || F === "attribute" || w === "generic" || n.arrayFormat === "indent" && F === "array" || F === "class" && T(_, 40) && _ !== "x(" || i(p, 91) && e.token[t + 1] === "function" ? N.push(!1) : F === "expression" || F === "method" || (F === "object" || F === "class") && (i(_, 40) || _ === "x(" || w === "word" || w === "reference") || F === "array" || i(p, 40) || p === "x(" || i(p, 123) && F === "object" && w !== "operator" && w !== "start" && w !== "string" && w !== "number" && H !== "object" && H !== "array" && t > 0 ? N.push(!0) : N.push(!1), T(p, 40) && p !== "x(" && e.stack[t + 1] !== "attribute" && (h = h + 1), i(p, 123) || p === "x{") {
-        if (I.push(-1), e.types[t - 1] !== "comment" && (w === "markup" ? l[t - 1] = h : n.braceAllman === !0 && w !== "operator" && _ !== "return" ? l[t - 1] = h - 1 : e.stack[t + 1] !== "block" && (F === "function" || i(_, 41) || _ === "x)" || i(_, 44) || i(_, 125) || w === "markup") ? l[t - 1] = -10 : (i(_, 123) || _ === "x{" || i(_, 91) || i(_, 125) || _ === "x}") && (l[t - 1] = h - 1)), F === "object") {
+    function J() {
+      let _ = e.stack[t + 1], Q = t === 0 ? e.stack[t] : e.stack[t - 1];
+      if ((i(D, 41) || M(D, 93) && (Q === "object" || Q === "array")) && (_ !== "method" || _ === "method" && M(e.token[t + 1], 41) && M(e.token[t + 2], 41)) && (i(D, 41) && (_ !== "function" || i(e.token[e.begin[e.begin[t - 1] - 1]], 40) || e.token[e.begin[e.begin[t - 1] - 1]] === "x(") ? V(!1, !1) : e.types[t + 1] !== "end" && e.types[t + 2] !== "end" && V(!0, !1)), d.push(!1), W.push([]), y.push(!1), C.push(!1), q.push(!1), j.push(0), n.neverFlatten === !0 || _ === "attribute" || S === "generic" || n.arrayFormat === "indent" && _ === "array" || _ === "class" && M(D, 40) && D !== "x(" || i(p, 91) && e.token[t + 1] === "function" ? U.push(!1) : _ === "expression" || _ === "method" || (_ === "object" || _ === "class") && (i(D, 40) || D === "x(" || S === "word" || S === "reference") || _ === "array" || i(p, 40) || p === "x(" || i(p, 123) && _ === "object" && S !== "operator" && S !== "start" && S !== "string" && S !== "number" && Q !== "object" && Q !== "array" && t > 0 ? U.push(!0) : U.push(!1), M(p, 40) && p !== "x(" && e.stack[t + 1] !== "attribute" && (h = h + 1), i(p, 123) || p === "x{") {
+        if (I.push(-1), e.types[t - 1] !== "comment" && (S === "markup" ? a[t - 1] = h : n.braceAllman === !0 && S !== "operator" && D !== "return" ? a[t - 1] = h - 1 : e.stack[t + 1] !== "block" && (_ === "function" || i(D, 41) || D === "x)" || i(D, 44) || i(D, 125) || S === "markup") ? a[t - 1] = -10 : (i(D, 123) || D === "x{" || i(D, 91) || i(D, 125) || D === "x}") && (a[t - 1] = h - 1)), _ === "object") {
           if (n.objectIndent === "indent") {
-            N[N.length - 1] = !1, l.push(h);
+            U[U.length - 1] = !1, a.push(h);
             return;
           }
           if (n.objectIndent === "inline") {
-            N[N.length - 1] = !0, l.push(-20);
+            U[U.length - 1] = !0, a.push(-20);
             return;
           }
         }
-        if (F === "switch") {
+        if (_ === "switch") {
           if (n.noCaseIndent === !0) {
-            l.push(h - 1);
+            a.push(h - 1);
             return;
           }
-          h = h + 1, l.push(h);
+          h = h + 1, a.push(h);
           return;
         }
-        if (N[N.length - 1] === !0 && w !== "word" && w !== "reference") {
-          l.push(-20);
+        if (U[U.length - 1] === !0 && S !== "word" && S !== "reference") {
+          a.push(-20);
           return;
         }
-        l.push(h);
+        a.push(h);
         return;
       }
       if (i(p, 40) || p === "x(") {
-        if (s.wrap > 0 && i(p, 40) && e.token[t + 1] !== ")" && B.push(1), i(_, 45) && (i(e.token[t - 2], 40) || e.token[t - 2] === "x(") && (l[t - 2] = -20), w === "end" && H !== "if" && H !== "for" && H !== "catch" && H !== "else" && H !== "do" && H !== "try" && H !== "finally" && H !== "catch" && (e.types[t - 1] === "comment" ? l[t - 1] = h : l[t - 1] = -20), _ === "async" ? l[t - 1] = -10 : (F === "method" || e.token[t - 2] === "function" && w === "reference") && (_ === "import" || _ === "in" || n.functionNameSpace === !0 ? l[t - 1] = -10 : i(_, 125) && e.stack[t - 1] === "function" || w === "word" || w === "reference" || w === "property" ? l[t - 1] = -20 : H !== "method" && F !== "method" && (l[t - 1] = h)), i(_, 43) && (i(e.token[t - 2], 34) || i(e.token[t - 2], 39))) {
-          l.push(h);
+        if (s.wrap > 0 && i(p, 40) && e.token[t + 1] !== ")" && G.push(1), i(D, 45) && (i(e.token[t - 2], 40) || e.token[t - 2] === "x(") && (a[t - 2] = -20), S === "end" && Q !== "if" && Q !== "for" && Q !== "catch" && Q !== "else" && Q !== "do" && Q !== "try" && Q !== "finally" && Q !== "catch" && (e.types[t - 1] === "comment" ? a[t - 1] = h : a[t - 1] = -20), D === "async" ? a[t - 1] = -10 : (_ === "method" || e.token[t - 2] === "function" && S === "reference") && (D === "import" || D === "in" || n.functionNameSpace === !0 ? a[t - 1] = -10 : i(D, 125) && e.stack[t - 1] === "function" || S === "word" || S === "reference" || S === "property" ? a[t - 1] = -20 : Q !== "method" && _ !== "method" && (a[t - 1] = h)), i(D, 43) && (i(e.token[t - 2], 34) || i(e.token[t - 2], 39))) {
+          a.push(h);
           return;
         }
-        if (i(_, 125) || _ === "x}") {
-          l.push(-20);
+        if (i(D, 125) || D === "x}") {
+          a.push(-20);
           return;
         }
-        (i(_, 45) && (t < 2 || T(e.token[t - 2], 41) && T(e.token[t - 2], 93) && e.token[t - 2] !== "x)" && e.types[t - 2] !== "reference" && e.types[t - 2] !== "string" && e.types[t - 2] !== "number") || n.functionSpace === !1 && _ === "function") && (l[t - 1] = -20), l.push(-20);
+        (i(D, 45) && (t < 2 || M(e.token[t - 2], 41) && M(e.token[t - 2], 93) && e.token[t - 2] !== "x)" && e.types[t - 2] !== "reference" && e.types[t - 2] !== "string" && e.types[t - 2] !== "number") || n.functionSpace === !1 && D === "function") && (a[t - 1] = -20), a.push(-20);
         return;
       }
       if (i(p, 91)) {
-        if (i(_, 91) && (d[d.length - 2] = !0), _ === "return" || _ === "var" || _ === "let" || _ === "const" ? l[t - 1] = -10 : e.types[t - 1] !== "comment" && e.stack[t - 1] !== "attribute" && (w === "end" || w === "word" || w === "reference") ? l[t - 1] = -20 : (i(_, 91) || i(_, 123) || _ === "x{") && (l[t - 1] = h - 1), e.stack[t] === "attribute") {
-          l.push(-20);
+        if (i(D, 91) && (d[d.length - 2] = !0), D === "return" || D === "var" || D === "let" || D === "const" ? a[t - 1] = -10 : e.types[t - 1] !== "comment" && e.stack[t - 1] !== "attribute" && (S === "end" || S === "word" || S === "reference") ? a[t - 1] = -20 : (i(D, 91) || i(D, 123) || D === "x{") && (a[t - 1] = h - 1), e.stack[t] === "attribute") {
+          a.push(-20);
           return;
         }
         if (n.arrayFormat === "indent") {
-          N[N.length - 1] = !1, l.push(h);
+          U[U.length - 1] = !1, a.push(h);
           return;
         }
         if (n.arrayFormat === "inline") {
-          N[N.length - 1] = !0, l.push(-20);
+          U[U.length - 1] = !0, a.push(-20);
           return;
         }
-        if (F === "method" || N[N.length - 1] === !0) {
-          l.push(-20);
+        if (_ === "method" || U[U.length - 1] === !0) {
+          a.push(-20);
           return;
         }
-        let b = t + 1;
+        let k = t + 1;
         do {
-          if (i(e.token[b], 93)) {
-            l.push(-20);
+          if (i(e.token[k], 93)) {
+            a.push(-20);
             return;
           }
-          if (i(e.token[b], 44)) {
-            l.push(h);
+          if (i(e.token[k], 44)) {
+            a.push(h);
             return;
           }
-          b = b + 1;
-        } while (b < o);
-        l.push(-20);
+          k = k + 1;
+        } while (k < o);
+        a.push(-20);
       }
     }
-    function $() {
-      p.length === 1 ? (l.push(-20), e.lines[t] === 0 && (l[t - 1] = -20)) : p.indexOf("#!/") === 0 ? l.push(h) : w === "liquid" ? l[t - 1] = -10 : l.push(-10), (i(_, 44) || w === "start") && (e.stack[t] === "object" || e.stack[t] === "array") && N[N.length - 1] === !1 && t > 0 && (l[t - 1] = h);
+    function P() {
+      p.length === 1 ? (a.push(-20), e.lines[t] === 0 && (a[t - 1] = -20)) : p.indexOf("#!/") === 0 ? a.push(h) : S === "liquid" ? a[t - 1] = -10 : a.push(-10), (i(D, 44) || S === "start") && (e.stack[t] === "object" || e.stack[t] === "array") && U[U.length - 1] === !1 && t > 0 && (a[t - 1] = h);
     }
-    function G() {
-      m === "liquid_start" ? w === "string" ? (e.lines[t - 1] <= 1 && (l[t - 1] = -20), e.lines[t] > 1 ? (h = h + 1, l.push(h)) : l.push(-10)) : e.lines[t] > 1 ? (h = h + 1, l.push(h)) : e.lines[t] === 1 ? l.push(-10) : (l[t - 1] = -20, l.push(-20)) : m === "liquid_else" ? w === "string" ? (e.lines[t - 1] <= 1 && (l[t - 1] = -20), e.lines[t] > 0 ? (h = h - 1, l.push(h)) : l.push(-20)) : e.lines[t] > 1 ? (l[t - 1] = h - 1, l.push(h)) : e.lines[t] === 1 ? l.push(-10) : l.push(-20) : m === "liquid_end" ? w === "string" ? (e.lines[t - 1] <= 1 && (l[t - 1] = -20), e.lines[t] > 1 ? (l[t - 1] = h - 1, l.push(h)) : l.push(-10)) : w === "liquid" && e.lines[t] < 2 ? l.push(-10) : e.lines[t] > 1 ? (l[t - 1] = h, l.push(h)) : e.lines[t] === 0 ? (l[t - 1] = -20, h = h - 1, l.push(-20)) : (h = h - 1, l.push(h)) : m === "liquid" && (i(_, 58) && l[t - 2] === -10 && (l[t - 2] = -20), w === "string" && l[t - 2] === -10 ? (l[t - 1] = -20, l.push(-10)) : e.lines[t] > 1 ? l.push(h) : e.lines[t] === 1 ? l.push(-10) : l.push(-20));
+    function T() {
+      m === "liquid_start" ? S === "string" ? (e.lines[t - 1] <= 1 && (a[t - 1] = -20), e.lines[t] > 1 ? (h = h + 1, a.push(h)) : a.push(-10)) : e.lines[t] > 1 ? (h = h + 1, a.push(h)) : e.lines[t] === 1 ? a.push(-10) : (a[t - 1] = -20, a.push(-20)) : m === "liquid_else" ? S === "string" ? (e.lines[t - 1] <= 1 && (a[t - 1] = -20), e.lines[t] > 0 ? (h = h - 1, a.push(h)) : a.push(-20)) : e.lines[t] > 1 ? (a[t - 1] = h - 1, a.push(h)) : e.lines[t] === 1 ? a.push(-10) : a.push(-20) : m === "liquid_end" ? S === "string" ? (e.lines[t - 1] <= 1 && (a[t - 1] = -20), e.lines[t] > 1 ? (a[t - 1] = h - 1, a.push(h)) : a.push(-10)) : S === "liquid" && e.lines[t] < 2 ? a.push(-10) : e.lines[t] > 1 ? (a[t - 1] = h, a.push(h)) : e.lines[t] === 0 ? (a[t - 1] = -20, h = h - 1, a.push(-20)) : (h = h - 1, a.push(h)) : m === "liquid" && (i(D, 58) && a[t - 2] === -10 && (a[t - 2] = -20), S === "string" && a[t - 2] === -10 ? (a[t - 1] = -20, a.push(-10)) : e.lines[t] > 1 ? a.push(h) : e.lines[t] === 1 ? a.push(-10) : a.push(-20));
     }
     function oe() {
-      m === "template_string_start" ? (h = h + 1, l.push(h)) : m === "template_string_else" ? (O(), l[t - 1] = h - 1, l.push(h)) : (O(), h = h - 1, l[t - 1] = h, l.push(-10)), t > 2 && (e.types[t - 2] === "template_string_else" || e.types[t - 2] === "template_string_start") && (n.bracePadding === !0 ? (l[t - 2] = -10, l[t - 1] = -10) : (l[t - 2] = -20, l[t - 1] = -20));
+      m === "template_string_start" ? (h = h + 1, a.push(h)) : m === "template_string_else" ? (L(), a[t - 1] = h - 1, a.push(h)) : (L(), h = h - 1, a[t - 1] = h, a.push(-10)), t > 2 && (e.types[t - 2] === "template_string_else" || e.types[t - 2] === "template_string_start") && (n.bracePadding === !0 ? (a[t - 2] = -10, a[t - 1] = -10) : (a[t - 2] = -20, a[t - 1] = -20));
     }
-    function ne() {
-      i(e.token[t - 1], 44) || i(e.token[t - 1], 58) && e.stack[t - 1] !== "data_type" ? l[t - 1] = -10 : l[t - 1] = -20, (e.types[t] === "type" || e.types[t] === "type_end") && l.push(-10), e.types[t] === "type_start" && l.push(-20);
+    function se() {
+      i(e.token[t - 1], 44) || i(e.token[t - 1], 58) && e.stack[t - 1] !== "data_type" ? a[t - 1] = -10 : a[t - 1] = -20, (e.types[t] === "type" || e.types[t] === "type_end") && a.push(-10), e.types[t] === "type_start" && a.push(-20);
     }
-    function Y() {
-      if ((i(_, 41) || _ === "x)") && e.stack[t] === "class" && (e.token[e.begin[t - 1] - 1] === "static" || e.token[e.begin[t - 1] - 1] === "final" || e.token[e.begin[t - 1] - 1] === "void") && (l[t - 1] = -10, l[e.begin[t - 1] - 1] = -10), i(_, 93) && (l[t - 1] = -10), p === "else" && i(_, 125) && (e.token[t - 2] === "x}" && (l[t - 3] = l[t - 3] - 1), (n.braceAllman === !0 || n.elseNewline === !0) && (l[t - 1] = h)), p === "new" && we.js.keywords.has(e.token[t + 1]) && (A = A + 1), p === "from" && w === "end" && t > 0 && (e.token[e.begin[t - 1] - 1] === "import" || i(e.token[e.begin[t - 1] - 1], 44)) && (l[t - 1] = -10), p === "function") {
+    function ee() {
+      if ((i(D, 41) || D === "x)") && e.stack[t] === "class" && (e.token[e.begin[t - 1] - 1] === "static" || e.token[e.begin[t - 1] - 1] === "final" || e.token[e.begin[t - 1] - 1] === "void") && (a[t - 1] = -10, a[e.begin[t - 1] - 1] = -10), i(D, 93) && (a[t - 1] = -10), p === "else" && i(D, 125) && (e.token[t - 2] === "x}" && (a[t - 3] = a[t - 3] - 1), (n.braceAllman === !0 || n.elseNewline === !0) && (a[t - 1] = h)), p === "new" && Le.js.keywords.has(e.token[t + 1]) && (N = N + 1), p === "from" && S === "end" && t > 0 && (e.token[e.begin[t - 1] - 1] === "import" || i(e.token[e.begin[t - 1] - 1], 44)) && (a[t - 1] = -10), p === "function") {
         if (n.functionSpace === !1 && t < o - 1 && (i(e.token[t + 1], 40) || e.token[t + 1] === "x(")) {
-          l.push(-20);
+          a.push(-20);
           return;
         }
-        l.push(-10);
+        a.push(-10);
         return;
       }
-      if (i(_, 45) && t > 1)
-        e.types[t - 2] === "operator" || i(e.token[t - 2], 44) ? l[t - 1] = -20 : e.types[t - 2] === "start" && (l[t - 2] = -20, l[t - 1] = -20);
-      else if (p === "while" && (i(_, 125) || _ === "x}")) {
-        let F = t - 1, H = 0;
+      if (i(D, 45) && t > 1)
+        e.types[t - 2] === "operator" || i(e.token[t - 2], 44) ? a[t - 1] = -20 : e.types[t - 2] === "start" && (a[t - 2] = -20, a[t - 1] = -20);
+      else if (p === "while" && (i(D, 125) || D === "x}")) {
+        let _ = t - 1, Q = 0;
         do {
-          if ((i(e.token[F], 125) || e.token[F] === "x}") && (H = H + 1), (i(e.token[F], 123) || e.token[F] === "x{") && (H = H - 1), H === 0) {
-            if (e.token[F - 1] === "do") {
-              l[t - 1] = -10;
+          if ((i(e.token[_], 125) || e.token[_] === "x}") && (Q = Q + 1), (i(e.token[_], 123) || e.token[_] === "x{") && (Q = Q - 1), Q === 0) {
+            if (e.token[_ - 1] === "do") {
+              a[t - 1] = -10;
               break;
             }
-            l[t - 1] = h;
+            a[t - 1] = h;
             break;
           }
-          F = F - 1;
-        } while (F > -1);
-      } else if (p === "in" || (i(_, 125) || _ === "x}") && (p === "catch" || p === "else" && n.elseNewline === !1 && n.braceAllman === !1))
-        l[t - 1] = -10;
+          _ = _ - 1;
+        } while (_ > -1);
+      } else if (p === "in" || (i(D, 125) || D === "x}") && (p === "catch" || p === "else" && n.elseNewline === !1 && n.braceAllman === !1))
+        a[t - 1] = -10;
       else if (p === "var" || p === "let" || p === "const") {
-        if (I[I.length - 1] = t, w === "end" && (l[t - 1] = h), e.token[e.begin[t] - 1] !== "for") {
-          let F = t + 1, H = 0;
+        if (I[I.length - 1] = t, S === "end" && (a[t - 1] = h), e.token[e.begin[t] - 1] !== "for") {
+          let _ = t + 1, Q = 0;
           do {
-            if (e.types[F] === "end" && (H = H - 1), e.types[F] === "start" && (H = H + 1), H < 0 || H === 0 && (i(e.token[F], 59) || i(e.token[F], 44)))
+            if (e.types[_] === "end" && (Q = Q - 1), e.types[_] === "start" && (Q = Q + 1), Q < 0 || Q === 0 && (i(e.token[_], 59) || i(e.token[_], 44)))
               break;
-            F = F + 1;
-          } while (F < o);
-          i(e.token[F], 44) && (h = h + 1);
+            _ = _ + 1;
+          } while (_ < o);
+          i(e.token[_], 44) && (h = h + 1);
         }
-        l.push(-10);
+        a.push(-10);
         return;
       }
-      if (w !== "word" && e.stack[t] === "switch" && (p === "default" || p === "case")) {
-        l[t - 1] = h - 1, l.push(-10);
+      if (S !== "word" && e.stack[t] === "switch" && (p === "default" || p === "case")) {
+        a[t - 1] = h - 1, a.push(-10);
         return;
       }
-      if (p === "catch" && _ === ".") {
-        l[t - 1] = -20, l.push(-20);
+      if (p === "catch" && D === ".") {
+        a[t - 1] = -20, a.push(-20);
         return;
       }
       if (p === "catch" || p === "finally") {
-        l[t - 1] = -10, l.push(-10);
+        a[t - 1] = -10, a.push(-10);
         return;
       }
       if (n.bracePadding === !1 && t < o - 1 && i(e.token[t + 1], 125)) {
-        l.push(-20);
+        a.push(-20);
         return;
       }
-      if (e.stack[t] === "object" && (i(_, 123) || i(_, 44)) && (i(e.token[t + 1], 40) || e.token[t + 1] === "x(")) {
-        l.push(-20);
+      if (e.stack[t] === "object" && (i(D, 123) || i(D, 44)) && (i(e.token[t + 1], 40) || e.token[t + 1] === "x(")) {
+        a.push(-20);
         return;
       }
-      e.types[t - 1] === "comment" && i(e.token[e.begin[t]], 40) && (l[t - 1] = h + 1), s.script.inlineReturn === !0 && p === "return" && w === "start" && e.stack[t] === "if" && _ === "x{" ? (l[t - 1] = -20, l.push(-20)) : l.push(-10);
+      e.types[t - 1] === "comment" && i(e.token[e.begin[t]], 40) && (a[t - 1] = h + 1), s.script.inlineReturn === !0 && p === "return" && S === "start" && e.stack[t] === "if" && D === "x{" ? (a[t - 1] = -20, a.push(-20)) : a.push(-10);
     }
     do
-      e.lexer[t] === C ? (m = e.types[t], p = e.token[t], m === "comment" ? P() : m === "regex" ? l.push(-20) : m === "string" ? $() : m.indexOf("template_string") === 0 ? oe() : m === "separator" ? J() : m === "start" ? $e() : m === "end" ? ge() : m === "type" || m === "type_start" || m === "type_end" ? ne() : m === "operator" ? K() : m === "word" ? Y() : m === "reference" ? se() : m === "markup" ? ke() : m.indexOf("liquid") > -1 ? G() : m === "generic" ? (T(_, 35) && _ !== "return" && w !== "operator" && _ !== "public" && _ !== "private" && _ !== "static" && _ !== "final" && _ !== "implements" && _ !== "class" && _ !== "void" && (l[t - 1] = -20), i(e.token[t + 1], 40) || e.token[t + 1] === "x(" ? l.push(-20) : l.push(-10)) : l.push(-10), m !== "comment" && (w = m, _ = p), B.length > 0 && T(e.token[t], 41) && (e.types[t] === "comment" && B[B.length - 1] > -1 ? B[B.length - 1] = s.wrap + 1 : l[t] > -1 || i(e.token[t], 96) && e.token[t].indexOf(z) > 0 ? B[B.length - 1] = -1 : B[B.length - 1] > -1 && (B[B.length - 1] = B[B.length - 1] + e.token[t].length, l[t] === -10 && (B[B.length - 1] = B[B.length - 1] + 1)))) : Ce(), t = t + 1;
+      e.lexer[t] === O ? (m = e.types[t], p = e.token[t], m === "comment" ? B() : m === "regex" ? a.push(-20) : m === "string" ? P() : m.indexOf("template_string") === 0 ? oe() : m === "separator" ? ce() : m === "start" ? J() : m === "end" ? ke() : m === "type" || m === "type_start" || m === "type_end" ? se() : m === "operator" ? me() : m === "word" ? ee() : m === "reference" ? te() : m === "markup" ? ye() : m.indexOf("liquid") > -1 ? T() : m === "generic" ? (M(D, 35) && D !== "return" && S !== "operator" && D !== "public" && D !== "private" && D !== "static" && D !== "final" && D !== "implements" && D !== "class" && D !== "void" && (a[t - 1] = -20), i(e.token[t + 1], 40) || e.token[t + 1] === "x(" ? a.push(-20) : a.push(-10)) : a.push(-10), m !== "comment" && (S = m, D = p), G.length > 0 && M(e.token[t], 41) && (e.types[t] === "comment" && G[G.length - 1] > -1 ? G[G.length - 1] = s.wrap + 1 : a[t] > -1 || i(e.token[t], 96) && e.token[t].indexOf(H) > 0 ? G[G.length - 1] = -1 : G[G.length - 1] > -1 && (G[G.length - 1] = G[G.length - 1] + e.token[t].length, a[t] === -10 && (G[G.length - 1] = G[G.length - 1] + 1)))) : ae(), t = t + 1;
     while (t < o);
-    return l;
+    return a;
   })();
   return (() => {
-    let t = [], h = s.indentChar.repeat(s.indentSize), V = s.preserveLine + 1, le = [
+    let t = [], h = s.indentChar.repeat(s.indentSize), F = s.preserveLine + 1, le = [
       "x;",
       "x}",
       "x{",
       "x(",
       "x)"
     ], m = r.start, p = s.indentLevel;
-    function w(I) {
-      let d = (() => m === o - 1 ? 1 : e.lines[m + 1] - 1 > V ? V : e.lines[m + 1] > 1 ? e.lines[m + 1] - 1 : 1)();
+    function S(I) {
+      let d = m === o - 1 ? 1 : e.lines[m + 1] - 1 > F ? F : e.lines[m + 1] > 1 ? e.lines[m + 1] - 1 : 1;
       return r.crlf.repeat(d) + h.repeat(I);
     }
     if (n.vertical === !0) {
       let I = function(d) {
-        let l = 0, g = 0, M = d - 1, L = 0, N = 0, S = e.begin[m], j = [];
+        let a = 0, g = 0, W = d - 1, C = 0, U = 0, j = e.begin[m], y = [];
         do {
-          if ((e.begin[M] === S || i(e.token[M], 93) || i(e.token[M], 41)) && (i(e.token[M + 1], 61) || i(e.token[M + 1], 59) && e.stack[M] === "object")) {
-            L = M, g = 0;
+          if ((e.begin[W] === j || i(e.token[W], 93) || i(e.token[W], 41)) && (i(e.token[W + 1], 61) || i(e.token[W + 1], 59) && e.stack[W] === "object")) {
+            C = W, g = 0;
             do {
-              if (e.begin[L] === S) {
-                if (i(e.token[L], 58) || i(e.token[L], 59) || e.token[L] === "x;" || k[L] > -1 && e.types[L] !== "comment") {
-                  i(e.token[L + 1], 46) && (g = g + s.indentSize * s.indentChar.length);
+              if (e.begin[C] === j) {
+                if (i(e.token[C], 58) || i(e.token[C], 59) || e.token[C] === "x;" || b[C] > -1 && e.types[C] !== "comment") {
+                  i(e.token[C + 1], 46) && (g = g + s.indentSize * s.indentChar.length);
                   break;
                 }
-              } else if (k[L] > -1)
+              } else if (b[C] > -1)
                 break;
-              e.types[L] !== "comment" && (k[L - 1] === -10 && (g = g + 1), g = e.token[L].length + g), L = L - 1;
-            } while (L > S);
-            if (N = L, i(e.token[N], 44) && i(e.token[M + 1], 61))
+              e.types[C] !== "comment" && (b[C - 1] === -10 && (g = g + 1), g = e.token[C].length + g), C = C - 1;
+            } while (C > j);
+            if (U = C, i(e.token[U], 44) && i(e.token[W + 1], 61))
               do {
-                if (e.types[N] === "end" && (N = e.begin[N]), e.begin[N] === S) {
-                  if (i(e.token[N], 59) || e.token[N] === "x;")
+                if (e.types[U] === "end" && (U = e.begin[U]), e.begin[U] === j) {
+                  if (i(e.token[U], 59) || e.token[U] === "x;")
                     break;
-                  if (e.token[N] === "var" || e.token[N] === "const" || e.token[N] === "let") {
+                  if (e.token[U] === "var" || e.token[U] === "const" || e.token[U] === "let") {
                     g = g + s.indentSize * s.indentChar.length;
                     break;
                   }
                 }
-                N = N - 1;
-              } while (N > S);
-            g > l && (l = g), j.push([M, g]), M = L;
+                U = U - 1;
+              } while (U > j);
+            g > a && (a = g), y.push([W, g]), W = C;
           } else
-            e.types[M] === "end" && (M = e.begin[M]);
-          M = M - 1;
-        } while (M > S);
-        if (M = j.length, M > 0)
+            e.types[W] === "end" && (W = e.begin[W]);
+          W = W - 1;
+        } while (W > j);
+        if (W = y.length, W > 0)
           do
-            if (M = M - 1, L = j[M][1], L < l)
+            if (W = W - 1, C = y[W][1], C < a)
               do
-                e.token[j[M][0]] = e.token[j[M][0]] + ee, L = L + 1;
-              while (L < l);
-          while (M > 0);
+                e.token[y[W][0]] = e.token[y[W][0]] + ie, C = C + 1;
+              while (C < a);
+          while (W > 0);
       };
       m = o;
       do
-        m = m - 1, e.lexer[m] === "script" && i(e.token[m], 125) && T(e.token[m - 1], 123) && k[e.begin[m]] > 0 ? I(m) : m = e.begin[m];
+        m = m - 1, e.lexer[m] === "script" && i(e.token[m], 125) && M(e.token[m - 1], 123) && b[e.begin[m]] > 0 ? I(m) : m = e.begin[m];
       while (m > 0);
     }
     m = r.start;
     do {
-      if (e.lexer[m] === C) {
-        if (e.types[m] === "comment" && n.commentIndent === !0 && ft.test(e.token[m])) {
-          let I = e.begin[m] > -1 ? i(e.token[m][2], 42) ? oi(k[m], h) + s.indentChar : oi(k[m], h) : s.indentChar, d = e.token[m].split(z), l = 1;
+      if (e.lexer[m] === O) {
+        if (e.types[m] === "comment" && n.commentIndent === !0 && ct.test(e.token[m])) {
+          let I = e.begin[m] > -1 ? i(e.token[m][2], 42) ? li(b[m], h) + s.indentChar : li(b[m], h) : s.indentChar, d = e.token[m].split(H), a = 1;
           do
-            d[l] = I + d[l].trimStart(), l = l + 1;
-          while (l < d.length);
-          e.token.splice(m, 1, d.join(z));
+            d[a] = I + d[a].trimStart(), a = a + 1;
+          while (a < d.length);
+          e.token.splice(m, 1, d.join(H));
         }
-        le.indexOf(e.token[m]) < 0 && (T(e.token[m], 59) || n.noSemicolon === !1 ? t.push(e.token[m]) : k[m] < 0 && e.types[m + 1] !== "comment" && t.push(";")), m < o - 1 && e.lexer[m + 1] !== C && e.begin[m] === e.begin[m + 1] && e.types[m + 1].indexOf("end") < 0 && T(e.token[m], 44) ? t.push(ee) : k[m] > -1 ? ((k[m] > -1 && i(e.token[m], 123) || k[m] > -1 && i(e.token[m + 1], 125)) && e.lines[m] < 3 && n.braceNewline === !0 && e.lines[m + 1] < 3 && t.push(w(0)), r.mode === 2 ? r.ender !== m && t.push(w(k[m])) : m !== o - 1 && t.push(w(k[m])), p = k[m]) : k[m] === -10 && (t.push(ee), e.lexer[m + 1] !== C && (p = p + 1));
-      } else if (a[m] === m)
+        le.indexOf(e.token[m]) < 0 && (M(e.token[m], 59) || n.noSemicolon === !1 ? t.push(e.token[m]) : b[m] < 0 && e.types[m + 1] !== "comment" && t.push(";")), m < o - 1 && e.lexer[m + 1] !== O && e.begin[m] === e.begin[m + 1] && e.types[m + 1].indexOf("end") < 0 && M(e.token[m], 44) ? t.push(ie) : b[m] > -1 ? ((b[m] > -1 && i(e.token[m], 123) || b[m] > -1 && i(e.token[m + 1], 125)) && e.lines[m] < 3 && n.braceNewline === !0 && e.lines[m + 1] < 3 && t.push(S(0)), r.mode === 2 ? r.ender !== m && t.push(S(b[m])) : m !== o - 1 && t.push(S(b[m])), p = b[m]) : b[m] === -10 && (t.push(ie), e.lexer[m + 1] !== O && (p = p + 1));
+      } else if (l[m] === m)
         t.push(e.token[m]);
       else {
-        r.ender = a[m], r.start = m;
+        r.ender = l[m], r.start = m;
         let I = r.external(p);
-        t.push(I), m = r.iterator, k[m] === -10 ? t.push(ee) : k[m] > -1 && t.push(w(k[m]));
+        t.push(I), m = r.iterator, b[m] === -10 ? t.push(ie) : b[m] > -1 && t.push(S(b[m]));
       }
       m = m + 1;
     } while (m < o);
@@ -6480,50 +6489,50 @@ function fn() {
 }
 
 // src/format/style.ts
-function cn() {
-  let e = [], { data: s, rules: n, crlf: u } = r, A = Fe(null), a = r.ender > 0 ? r.ender + 1 : s.token.length, C = n.preserveLine + 1, o = n.indentChar.repeat(n.indentSize), k = n.indentLevel, f = r.start, t = [c, c];
+function dn() {
+  let e = [], { data: s, rules: n, crlf: u } = r, N = Fe(null), l = r.ender > 0 ? r.ender + 1 : s.token.length, O = n.preserveLine + 1, o = n.indentChar.repeat(n.indentSize), b = n.indentLevel, f = r.start, t = [c, c];
   function h(le, m) {
     return s.types[le] === m;
   }
-  function V(le) {
-    let m = [], p = (() => f === a - 1 ? 1 : s.lines[f + 1] - 1 > C ? C : s.lines[f + 1] > 1 ? s.lines[f + 1] - 1 : 1)(), w = 0;
+  function F(le) {
+    let m = [], p = f === l - 1 ? 1 : s.lines[f + 1] - 1 > O ? O : s.lines[f + 1] > 1 ? s.lines[f + 1] - 1 : 1, S = 0;
     le < 0 && (le = 0);
     do
-      m.push(u), w = w + 1;
-    while (w < p);
+      m.push(u), S = S + 1;
+    while (S < p);
     if (le > 0) {
-      w = 0;
+      S = 0;
       do
-        m.push(o), w = w + 1;
-      while (w < le);
+        m.push(o), S = S + 1;
+      while (S < le);
     }
     e.push(m.join(c));
   }
   do {
-    switch ((h(f + 1, "end") || h(f + 1, "liquid_end") || h(f + 1, "liquid_else")) && k > 0 && (k = k - 1), h(f, "liquid") ? (h(f - 1, "separator") && V(k), e.push(s.token[f]), h(f + 1, "separator") === !1 && T(s.token[f + 1], 59) && we.css.units.has(s.token[f + 1]) === !1 && (h(f + 1, "start") ? e.push(ee) : h(f + 1, "colon") === !1 && V(k))) : h(f - 1, "selector") && h(f, "liquid") && h(f + 1, "selector") ? (e.push(s.token[f]), Qe(s.token[f - 1], 45) && (i(s.token[f + 1], 46) || i(s.token[f + 1], 35) || i(s.token[f + 1], 38)) && e.push(ee)) : h(f, "liquid_else") ? (e.push(s.token[f]), h(f + 1, "property") && (k = k + 1), s.lines[f + 1] === 1 ? e.push(ee) : s.lines[f + 1] > 1 && V(k)) : h(f, "liquid_start") ? (e.push(s.token[f]), s.lines[f + 1] === 1 ? e.push(ee) : (s.lines[f + 1] > 1 || (h(f + 1, "liquid") || h(f + 1, "selector")) && h(f + 2, "start")) && (k = k + 1, V(k))) : h(f, "liquid_end") ? (e.push(s.token[f]), h(f + 1, "start") ? e.push(ee) : s.lines[f + 1] !== 0 && V(k)) : h(f, "start") ? (e.push(s.token[f]), (h(f + 1, "property") || h(f + 1, "selector") || h(f + 1, "comment") || h(f + 1, "liquid") || h(f + 1, "liquid_start")) && (k = k + 1), h(f + 1, "end") === !1 && V(k)) : i(s.token[f], 59) ? (e.push(s.token[f]), h(f + 1, "property") && ((h(f - 2, "liquid") || h(f - 2, "liquid_end")) && h(f - 1, "value") || h(f - 1, "liquid_end")) && (k = k + 1, k > A.property && (k = A.property)), V(k)) : h(f, "end") || h(f, "comment") ? (e.push(s.token[f]), h(f + 1, "value") ? s.lines[f + 1] === 1 ? e.push(ee) : s.lines[f + 1] > 1 && V(k) : h(f - 1, "liquid_end") && h(f, "separator") && h(f + 1, "property") ? (k = k + 1, V(k)) : h(f + 1, "separator") === !1 ? h(f + 1, "comment") === !1 || h(f + 1, "comment") && s.lines[f + 1] > 1 ? V(k) : e.push(ee) : h(f, "comment") && h(f + 1, "comment") === !1 && s.lines[f] > 1 && V(k)) : i(s.token[f], 58) ? (e.push(s.token[f]), h(f + 1, "selector") === !1 && T(s.token[f + 1], 44) && e.push(ee)) : h(f, "selector") || h(f, "at_rule") ? (n.style.classPadding === !0 && h(f - 1, "end") && s.lines[f] < 3 && V(k), s.token[f].indexOf("and(") > 0 ? (s.token[f] = s.token[f].replace(/and\(/, "and ("), e.push(s.token[f])) : s.token[f].indexOf("when(") > 0 ? (t = s.token[f].split("when("), e.push(t[0].replace(/\s+$/, c)), V(k + 1), e.push(`when (${t[1]}`)) : e.push(s.token[f]), h(f + 1, "start") ? (e.push(ee), h(f, "at_rule") && h(f + 2, "colon") && (k = k + 1)) : s.types[f + 1].indexOf("liquid") > -1 && s.lines[f + 1] === 0 && (e.push(s.token[f + 1]), f = f + 1, h(f + 1, "start") && e.push(ee), h(f + 1, "selector") && i(s.token[f + 1], 46) && e.push(ee))) : i(s.token[f], 44) ? (h(f + 1, "value") && V(k), e.push(s.token[f]), h(f + 1, "selector") || h(f + 1, "property") ? V(k) : e.push(ee), h(f - 1, "selector") && h(f + 1, "liquid_end") && V(k)) : s.stack[f] === "map" && i(s.token[f + 1], 41) && f - s.begin[f] > 5 ? (e.push(s.token[f]), V(k)) : s.token[f] === "x;" ? V(k) : (h(f, "variable") || h(f, "function")) && n.style.classPadding === !0 && h(f - 1, "end") && s.lines[f] < 3 ? (e.push(u), e.push(s.token[f])) : T(s.token[f], 59) && (e.push(s.token[f]), (h(f + 1, "liquid_end") || h(f + 1, "liquid_else")) && (s.lines[f + 1] === 1 ? e.push(ee) : s.lines[f + 1] > 1 && V(k))), s.types[f + 1]) {
+    switch ((h(f + 1, "end") || h(f + 1, "liquid_end") || h(f + 1, "liquid_else")) && b > 0 && (b = b - 1), h(f, "liquid") ? (h(f - 1, "separator") && F(b), e.push(s.token[f]), h(f + 1, "separator") === !1 && M(s.token[f + 1], 59) && Le.css.units.has(s.token[f + 1]) === !1 && (h(f + 1, "start") ? e.push(ie) : h(f + 1, "colon") === !1 && F(b))) : h(f - 1, "selector") && h(f, "liquid") && h(f + 1, "selector") ? (e.push(s.token[f]), Qe(s.token[f - 1], 45) && (i(s.token[f + 1], 46) || i(s.token[f + 1], 35) || i(s.token[f + 1], 38)) && e.push(ie)) : h(f, "liquid_else") ? (e.push(s.token[f]), h(f + 1, "property") && (b = b + 1), s.lines[f + 1] === 1 ? e.push(ie) : s.lines[f + 1] > 1 && F(b)) : h(f, "liquid_start") ? (e.push(s.token[f]), s.lines[f + 1] === 1 ? e.push(ie) : (s.lines[f + 1] > 1 || (h(f + 1, "liquid") || h(f + 1, "selector")) && h(f + 2, "start")) && (b = b + 1, F(b))) : h(f, "liquid_end") ? (e.push(s.token[f]), h(f + 1, "start") ? e.push(ie) : s.lines[f + 1] !== 0 && F(b)) : h(f, "start") ? (e.push(s.token[f]), (h(f + 1, "property") || h(f + 1, "selector") || h(f + 1, "comment") || h(f + 1, "liquid") || h(f + 1, "liquid_start")) && (b = b + 1), h(f + 1, "end") === !1 && F(b)) : i(s.token[f], 59) ? (e.push(s.token[f]), h(f + 1, "property") && ((h(f - 2, "liquid") || h(f - 2, "liquid_end")) && h(f - 1, "value") || h(f - 1, "liquid_end")) && (b = b + 1, b > N.property && (b = N.property)), F(b)) : h(f, "end") || h(f, "comment") ? (e.push(s.token[f]), h(f + 1, "value") ? s.lines[f + 1] === 1 ? e.push(ie) : s.lines[f + 1] > 1 && F(b) : h(f - 1, "liquid_end") && h(f, "separator") && h(f + 1, "property") ? (b = b + 1, F(b)) : h(f + 1, "separator") === !1 ? h(f + 1, "comment") === !1 || h(f + 1, "comment") && s.lines[f + 1] > 1 ? F(b) : e.push(ie) : h(f, "comment") && h(f + 1, "comment") === !1 && s.lines[f] > 1 && F(b)) : i(s.token[f], 58) ? (e.push(s.token[f]), h(f + 1, "selector") === !1 && M(s.token[f + 1], 44) && e.push(ie)) : h(f, "selector") || h(f, "at_rule") ? (n.style.classPadding === !0 && h(f - 1, "end") && s.lines[f] < 3 && F(b), s.token[f].indexOf("and(") > 0 ? (s.token[f] = s.token[f].replace(/and\(/, "and ("), e.push(s.token[f])) : s.token[f].indexOf("when(") > 0 ? (t = s.token[f].split("when("), e.push(t[0].replace(/\s+$/, c)), F(b + 1), e.push(`when (${t[1]}`)) : e.push(s.token[f]), h(f + 1, "start") ? (e.push(ie), h(f, "at_rule") && h(f + 2, "colon") && (b = b + 1)) : s.types[f + 1].indexOf("liquid") > -1 && s.lines[f + 1] === 0 && (e.push(s.token[f + 1]), f = f + 1, h(f + 1, "start") && e.push(ie), h(f + 1, "selector") && i(s.token[f + 1], 46) && e.push(ie))) : i(s.token[f], 44) ? (h(f + 1, "value") && F(b), e.push(s.token[f]), h(f + 1, "selector") || h(f + 1, "property") ? F(b) : e.push(ie), h(f - 1, "selector") && h(f + 1, "liquid_end") && F(b)) : s.stack[f] === "map" && i(s.token[f + 1], 41) && f - s.begin[f] > 5 ? (e.push(s.token[f]), F(b)) : s.token[f] === "x;" ? F(b) : (h(f, "variable") || h(f, "function")) && n.style.classPadding === !0 && h(f - 1, "end") && s.lines[f] < 3 ? (e.push(u), e.push(s.token[f])) : M(s.token[f], 59) && (e.push(s.token[f]), (h(f + 1, "liquid_end") || h(f + 1, "liquid_else")) && (s.lines[f + 1] === 1 ? e.push(ie) : s.lines[f + 1] > 1 && F(b))), s.types[f + 1]) {
       case "property":
-        A.property = k;
+        N.property = b;
         break;
       case "end":
-        A.property = k - 1;
+        N.property = b - 1;
         break;
       case "selector":
-        s.types[f] === "selector" && (A.property = k);
+        s.types[f] === "selector" && (N.property = b);
         break;
     }
     f = f + 1;
-  } while (f < a);
-  return r.iterator = a - 1, (e[0] === r.crlf || i(e[0], 32)) && (e[0] = c), r.mode === 2 ? e.join(c).trimEnd() : n.endNewline === !0 ? e.join(c).replace(/\s*$/, r.crlf) : e.join(c).trimEnd();
+  } while (f < l);
+  return r.iterator = l - 1, (e[0] === r.crlf || i(e[0], 32)) && (e[0] = c), r.mode === 2 ? e.join(c).trimEnd() : n.endNewline === !0 ? e.join(c).replace(/\s*$/, r.crlf) : e.join(c).trimEnd();
 }
 
 // src/format/index.ts
-function wi(e) {
+function Si(e) {
   if (e === 1)
-    return un();
-  if (e === 3)
     return cn();
+  if (e === 3)
+    return dn();
   if (e === 2)
-    return fn();
+    return pn();
 }
 
 // src/rules/presets/default.ts
@@ -6644,7 +6653,7 @@ var Ge = {
 };
 
 // src/parse/parser.ts
-var Si = class extends Array {
+var Li = class extends Array {
   get entry() {
     return this[this.length - 1];
   }
@@ -6715,7 +6724,7 @@ var Si = class extends Array {
     /**
      * Hardcoded string reference to CRLF rule
      */
-    this.crlf = z;
+    this.crlf = H;
     /**
      * Stores the declared variable names for the script lexer. This must be stored outside
      * the script lexer since some languages recursive use of the script lexer
@@ -6863,7 +6872,7 @@ var Si = class extends Array {
    * Resets the current stores for clean parse structures
    */
   reset() {
-    this.error = null, this.count = -1, this.start = 0, this.ender = 0, this.lineColumn = 0, this.lineNumber = 1, this.lineDepth = 2, this.lineIndex = 0, this.lineOffset = 0, this.numbers = [], this.data.begin = [], this.data.ender = [], this.data.lexer = [], this.data.lines = [], this.data.stack = [], this.data.token = [], this.data.types = [], this.references = [[]], this.stack = new Si(["global", -1]), this.mode = 1, this.pairs = Fe(null), this.attributes.size > 0 && this.attributes.clear(), this.regions.size > 0 && this.regions.clear();
+    this.error = null, this.count = -1, this.start = 0, this.ender = 0, this.lineColumn = 0, this.lineNumber = 1, this.lineDepth = 2, this.lineIndex = 0, this.lineOffset = 0, this.numbers = [], this.data.begin = [], this.data.ender = [], this.data.lexer = [], this.data.lines = [], this.data.stack = [], this.data.token = [], this.data.types = [], this.references = [[]], this.stack = new Li(["global", -1]), this.mode = 1, this.pairs = Fe(null), this.attributes.size > 0 && this.attributes.clear(), this.regions.size > 0 && this.regions.clear();
   }
   /**
    * Get Record
@@ -6887,7 +6896,7 @@ var Si = class extends Array {
    * Executes a full parse - top to bottom.
    */
   document(s, n = 3) {
-    return ei.test(this.source) ? this.source : (this.reset(), yi(s), n === 1 ? this.data : (this.mode = 3, wi(s)));
+    return ti.test(this.source) ? this.source : (this.reset(), xi(s), n === 1 ? this.data : (this.mode = 3, Si(s)));
   }
   /**
    * Switch
@@ -6898,15 +6907,15 @@ var Si = class extends Array {
   external(s, n) {
     if (this.mode === 1) {
       this.mode = 2;
-      let u = St(s);
-      it.region = n, this.language = s, this.lexer = Ie(this.language), this.regions.set(this.count + 1, { lexer: u, id: this.language }), yi(u), this.mode = 1, this.lexer = Ie(this.rules.language), this.language = this.rules.language;
+      let u = Lt(s);
+      it.region = n, this.language = s, this.lexer = De(this.language), this.regions.set(this.count + 1, { lexer: u, id: this.language }), xi(u), this.mode = 1, this.lexer = De(this.rules.language), this.language = this.rules.language;
     } else {
       if (this.regions.size === 0)
         return this.source;
-      let { id: u, lexer: A } = this.regions.get(this.start);
+      let { id: u, lexer: N } = this.regions.get(this.start);
       this.mode = 2, this.language = u, this.rules.indentLevel = s;
-      let a = wi(A);
-      return this.mode = 3, this.rules.indentLevel = 0, this.language = this.rules.language, this.lexer = Ie(this.language), a;
+      let l = Si(N);
+      return this.mode = 3, this.rules.indentLevel = 0, this.language = this.rules.language, this.lexer = De(this.language), l;
     }
   }
   /**
@@ -6941,7 +6950,7 @@ var Si = class extends Array {
       };
     else if (this.stack.index in this.pairs && (s.types === "end" || s.types === "liquid_end")) {
       let u = this.pairs[this.stack.index];
-      u.skip && delete this.pairs[this.stack.index], u.type === 3 ? s.token.indexOf(`end${u.stack}`) > -1 ? delete this.pairs[this.stack.index] : s.stack === "liquid" && (s.token === "%}" || s.token === "-%}") ? delete this.pairs[this.stack.index] : jt(114, u) : u.type === 2 && (`</${u.stack}>` === s.token ? delete this.pairs[this.stack.index] : jt(105, u));
+      u.skip && delete this.pairs[this.stack.index], u.type === 3 ? s.token.indexOf(`end${u.stack}`) > -1 ? delete this.pairs[this.stack.index] : s.stack === "liquid" && (s.token === "%}" || s.token === "-%}") ? delete this.pairs[this.stack.index] : Et(114, u) : u.type === 2 && (`</${u.stack}>` === s.token ? delete this.pairs[this.stack.index] : Et(105, u));
     }
   }
   /**
@@ -6964,8 +6973,8 @@ var Si = class extends Array {
       if (this.count = this.count + 1, n.lexer !== "style" && u.replace(/[{}<>%]/g, c) === c && (u = n.types === "else" ? "else" : Ue(n.token)), n.lexer === "markup" && n.stack !== "liquid" && this.syntactic(n, u), this.lineOffset = 0, n.types === "start" || n.types.indexOf("_start") > 0)
         this.stack.push([u, this.count]), this.lineDepth = this.lineDepth + this.rules.indentSize;
       else if (n.types === "end" || n.types.indexOf("_end") > 0) {
-        let A = 0, a = this.stack.length;
-        a > 2 && (s.types[this.stack[a - 1][1]] === "else" || s.types[this.stack[a - 1][1]].indexOf("_else") > 0) && (s.types[this.stack[a - 2][1]] === "start" || s.types[this.stack[a - 2][1]].indexOf("_start") > 0) && (s.types[this.stack[a - 2][1] + 1] === "else" || s.types[this.stack[a - 2][1] + 1].indexOf("_else") > 0) && (this.stack.pop(), s.begin[this.count] = this.stack.index, s.stack[this.count] = this.stack.token, s.ender[this.count - 1] = this.count, A = s.ender[s.begin[this.count] + 1]), this.final(s), A > 0 && (s.ender[s.begin[this.count] + 1] = A), this.stack.pop(), this.lineDepth = this.lineDepth - this.rules.indentSize;
+        let N = 0, l = this.stack.length;
+        l > 2 && (s.types[this.stack[l - 1][1]] === "else" || s.types[this.stack[l - 1][1]].indexOf("_else") > 0) && (s.types[this.stack[l - 2][1]] === "start" || s.types[this.stack[l - 2][1]].indexOf("_start") > 0) && (s.types[this.stack[l - 2][1] + 1] === "else" || s.types[this.stack[l - 2][1] + 1].indexOf("_else") > 0) && (this.stack.pop(), s.begin[this.count] = this.stack.index, s.stack[this.count] = this.stack.token, s.ender[this.count - 1] = this.count, N = s.ender[s.begin[this.count] + 1]), this.final(s), N > 0 && (s.ender[s.begin[this.count] + 1] = N), this.stack.pop(), this.lineDepth = this.lineDepth - this.rules.indentSize;
       } else
         (n.types === "else" || n.types.indexOf("_else") > 0) && (u === c && (u = "else"), this.count > 0 && (s.types[this.count - 1] === "start" || s.types[this.count - 1].indexOf("_start") > 0) ? this.stack.push([u, this.count]) : (this.final(s), this.stack.update(u === c ? "else" : u, this.count)));
       this.hooks.parse !== null && this.hooks.parse[0].call({
@@ -7032,7 +7041,7 @@ var Si = class extends Array {
   spacer(s) {
     this.lineOffset = 1;
     do {
-      if (i(s.array[s.index], 10) && (this.lineIndex = s.index, this.lineOffset = this.lineOffset + 1, this.lineNumber = this.lineNumber + 1), lt(s.array[s.index + 1]))
+      if (i(s.array[s.index], 10) && (this.lineIndex = s.index, this.lineOffset = this.lineOffset + 1, this.lineNumber = this.lineNumber + 1), at(s.array[s.index + 1]))
         break;
       s.index = s.index + 1;
     } while (s.index < s.end);
@@ -7046,12 +7055,12 @@ it.input = c, /**
  * Static reference to the current external region input
  */
 it.region = c;
-var Li = it, r = new Li();
+var Ci = it, r = new Ci();
 
 // src/parse/detection.ts
-function pn(e) {
-  let s = [], n = 0, u = /(((var)|(let)|(const)|(function)|(import))\s+(\w|\$)+[a-zA-Z0-9]*)/.test(e) && /@import/.test(e) === !1, A = /((((final)|(public)|(private))\s+static)|(static\s+void))/.test(e);
-  function a() {
+function mn(e) {
+  let s = [], n = 0, u = /(((var)|(let)|(const)|(function)|(import))\s+(\w|\$)+[a-zA-Z0-9]*)/.test(e) && /@import/.test(e) === !1, N = /((((final)|(public)|(private))\s+static)|(static\s+void))/.test(e);
+  function l() {
     return /\n\s*#+\s+/.test(e) || /^#+\s+/.test(e) ? {
       language: "markdown",
       lexer: "markup"
@@ -7066,10 +7075,10 @@ function pn(e) {
       lexer: "style"
     };
   }
-  function C() {
-    let k = 1, f = c, t = !1, h = !1, V = /((public)|(private))\s+(static\s+)?(((v|V)oid)|(class)|(final))/.test(e);
+  function O() {
+    let b = 1, f = c, t = !1, h = !1, F = /((public)|(private))\s+(static\s+)?(((v|V)oid)|(class)|(final))/.test(e);
     function le() {
-      return e.indexOf("(") > -1 || e.indexOf("=") > -1 || e.indexOf(";") > -1 && e.indexOf("{") > -1 ? A === !0 || /\w<\w+(,\s+\w+)*>/.test(e) || /(?:var|let|const)\s+\w+\s*:/.test(e) || /=\s*<\w+/.test(e) ? {
+      return e.indexOf("(") > -1 || e.indexOf("=") > -1 || e.indexOf(";") > -1 && e.indexOf("{") > -1 ? N === !0 || /\w<\w+(,\s+\w+)*>/.test(e) || /(?:var|let|const)\s+\w+\s*:/.test(e) || /=\s*<\w+/.test(e) ? {
         language: "typescript",
         lexer: "script"
       } : {
@@ -7107,20 +7116,20 @@ function pn(e) {
         lexer: "style"
       };
     }
-    if (k < n)
+    if (b < n)
       do
-        t === !1 ? i(s[k], 42) && i(s[k - 1], 47) ? (s[k - 1] = c, t = !0) : h === !1 && k < n - 6 && s[k].charCodeAt(0) === 102 && //     f
-        s[k + 1].charCodeAt(0) === 105 && // i
-        s[k + 2].charCodeAt(0) === 108 && // l
-        s[k + 3].charCodeAt(0) === 116 && // t
-        s[k + 4].charCodeAt(0) === 101 && // e
-        s[k + 5].charCodeAt(0) === 114 && // r
-        i(s[k + 6], 58) && (h = !0) : t === !0 && i(s[k], 42) && k !== n - 1 && i(s[k + 1], 47) ? (t = !1, s[k] = c, s[k + 1] = c) : h === !0 && i(s[k], 59) && (h = !1, s[k] = c), (t === !0 || h === !0) && (s[k] = c), k = k + 1;
-      while (k < n);
+        t === !1 ? i(s[b], 42) && i(s[b - 1], 47) ? (s[b - 1] = c, t = !0) : h === !1 && b < n - 6 && s[b].charCodeAt(0) === 102 && //     f
+        s[b + 1].charCodeAt(0) === 105 && // i
+        s[b + 2].charCodeAt(0) === 108 && // l
+        s[b + 3].charCodeAt(0) === 116 && // t
+        s[b + 4].charCodeAt(0) === 101 && // e
+        s[b + 5].charCodeAt(0) === 114 && // r
+        i(s[b + 6], 58) && (h = !0) : t === !0 && i(s[b], 42) && b !== n - 1 && i(s[b + 1], 47) ? (t = !1, s[b] = c, s[b + 1] = c) : h === !0 && i(s[b], 59) && (h = !1, s[b] = c), (t === !0 || h === !0) && (s[b] = c), b = b + 1;
+      while (b < n);
     return f = s.join(c), /\s\/\//.test(e) === !1 && /\/\/\s/.test(e) === !1 && /^(\s*(\{|\[)(?!%))/.test(e) === !0 && /((\]|\})\s*)$/.test(e) && e.indexOf(",") !== -1 ? {
       language: "json",
       lexer: "script"
-    } : /((\}?(\(\))?\)*;?\s*)|([a-z0-9]("|')?\)*);?(\s*\})*)$/i.test(e) === !0 && (u === !0 || V === !0 || /console\.log\(/.test(e) === !0 || /export\s+default\s+class\s+/.test(e) === !0 || /export\s+(const|var|let|class)s+/.test(e) === !0 || /document\.get/.test(e) === !0 || /((=|(\$\())\s*function)|(\s*function\s+(\w*\s+)?\()/.test(e) === !0 || e.indexOf("{") === -1 || /^(\s*if\s+\()/.test(e) === !0) ? le() : e.indexOf("{") > -1 && (/^(\s*[\u007b\u0024\u002e#@a-z0-9])/i.test(e) || /^(\s*\/(\*|\/))/.test(e) || /^(\s*\*\s*\{)/.test(e)) && /^(\s*if\s*\()/.test(e) === !1 && /=\s*(\{|\[|\()/.test(f) === !1 && (/(\+|-|=|\?)=/.test(f) === !1 || /\/\/\s*=+/.test(f) || /=+('|")?\)/.test(e) && /;\s*base64/.test(e)) && /function(\s+\w+)*\s*\(/.test(f) === !1 ? m() : e.indexOf("{%") > -1 ? {
+    } : /((\}?(\(\))?\)*;?\s*)|([a-z0-9]("|')?\)*);?(\s*\})*)$/i.test(e) === !0 && (u === !0 || F === !0 || /console\.log\(/.test(e) === !0 || /export\s+default\s+class\s+/.test(e) === !0 || /export\s+(const|var|let|class)s+/.test(e) === !0 || /document\.get/.test(e) === !0 || /((=|(\$\())\s*function)|(\s*function\s+(\w*\s+)?\()/.test(e) === !0 || e.indexOf("{") === -1 || /^(\s*if\s+\()/.test(e) === !0) ? le() : e.indexOf("{") > -1 && (/^(\s*[\u007b\u0024\u002e#@a-z0-9])/i.test(e) || /^(\s*\/(\*|\/))/.test(e) || /^(\s*\*\s*\{)/.test(e)) && /^(\s*if\s*\()/.test(e) === !1 && /=\s*(\{|\[|\()/.test(f) === !1 && (/(\+|-|=|\?)=/.test(f) === !1 || /\/\/\s*=+/.test(f) || /=+('|")?\)/.test(e) && /;\s*base64/.test(e)) && /function(\s+\w+)*\s*\(/.test(f) === !1 ? m() : e.indexOf("{%") > -1 ? {
       language: "liquid",
       lexer: "markup"
     } : {
@@ -7129,7 +7138,7 @@ function pn(e) {
     };
   }
   function o() {
-    function k() {
+    function b() {
       return /{%-?\s*(schema|for|if|unless|render|include)/.test(e) || /{%-?\s*end\w+/.test(e) || /{{-?\s*content_for/.test(e) || /{{-?\s*[a-zA-Z0-9_'".[\]]+\s*-?}}/.test(e) || /{%/.test(e) && /%}/.test(e) && /{{/.test(e) && /}}/.test(e) ? {
         language: "liquid",
         lexer: "markup"
@@ -7138,7 +7147,7 @@ function pn(e) {
         lexer: "markup"
       };
     }
-    return /^(\s*<!doctype\s+html>)/i.test(e) || /^(\s*<html)/i.test(e) || /<form\s/i.test(e) && /<label\s/i.test(e) && /<input\s/i.test(e) || /<img(\s+\w+=['"]?\S+['"]?)*\s+src\s*=/.test(e) || /<a(\s+\w+=['"]?\S+['"]?)*\s+href\s*=/.test(e) || /<ul\s/i.test(e) && /<li\s/i.test(e) && /<\/li>/i.test(e) && /<\/ul>/i.test(e) || /<head\s*>/.test(e) && /<\/head>/.test(e) || /^(\s*<!DOCTYPE\s+((html)|(HTML))\s+PUBLIC\s+)/.test(e) && /XHTML\s+1\.1/.test(e) === !1 && /XHTML\s+1\.0\s+(S|s)((trict)|(TRICT))/.test(e) === !1 ? k() : /\s?{[{%]-?/.test(e) ? {
+    return /^(\s*<!doctype\s+html>)/i.test(e) || /^(\s*<html)/i.test(e) || /<form\s/i.test(e) && /<label\s/i.test(e) && /<input\s/i.test(e) || /<img(\s+\w+=['"]?\S+['"]?)*\s+src\s*=/.test(e) || /<a(\s+\w+=['"]?\S+['"]?)*\s+href\s*=/.test(e) || /<ul\s/i.test(e) && /<li\s/i.test(e) && /<\/li>/i.test(e) && /<\/ul>/i.test(e) || /<head\s*>/.test(e) && /<\/head>/.test(e) || /^(\s*<!DOCTYPE\s+((html)|(HTML))\s+PUBLIC\s+)/.test(e) && /XHTML\s+1\.1/.test(e) === !1 && /XHTML\s+1\.0\s+(S|s)((trict)|(TRICT))/.test(e) === !1 ? b() : /\s?{[{%]-?/.test(e) ? {
       language: "liquid",
       lexer: "markup"
     } : {
@@ -7155,31 +7164,31 @@ function pn(e) {
   } : /^(\s*<!DOCTYPE\s+html>)/i.test(e) ? o() : /^\s*@(?:charset|import|include|keyframes|media|namespace|page)\b/.test(e) || /**
    * Final Statics Test
    */
-  A === !1 && /=(>|=|-|\+|\*)/.test(e) === !1 && /^(?:\s*((if)|(for)|(function))\s*\()/.test(e) === !1 && /(?:\s|;|\})((if)|(for)|(function\s*\w*))\s*\(/.test(e) === !1 && u === !1 && /return\s*\w*\s*(;|\})/.test(e) === !1 && (e === void 0 || /^(?:\s*#(?!(!\/)))/.test(e) || /\n\s*(\.|@)\w+(\(|(\s*:))/.test(e) && />\s*<\w/.test(e) === !1 || /^\s*:root\s*\{/.test(e) || /-{2}\w+\s*\{/.test(e) || /^\s*(?:body|button|hr|section|h[1-6]|p|strong|\*)\s+\{\s+/.test(e)) ? a() : (s = e.replace(/\[[a-zA-Z][\w-]*=['"]?[a-zA-Z][\w-]*['"]?\]/g, c).split(c), n = s.length, /^(\s*({{|{%|<))/.test(e) ? o() : A === !0 || /^(?:[\s\w-]*<)/.test(e) === !1 && /(?:>[\s\w-]*)$/.test(e) === !1 ? C() : (/^(?:\s*<\?xml)/.test(e) || /(?:>[\w\s:]*)?<(?:\/|!|#)?[\w\s:\-[]+/.test(e) || /^\s*</.test(e) && /<\/\w+(\w|\d)+>\s*$/.test(e)) && (/^(?:[\s\w]*<)/.test(e) || /(?:>[\s\w]*)$/.test(e)) || /^(?:\s*<s((cript)|(tyle)))/i.test(e) && /(?:<\/s((cript)|(tyle))>\s*)$/i.test(e) ? /^(?:[\s\w]*<)/.test(e) === !1 || /(?:>[\s\w]*)$/.test(e) === !1 ? C() : o() : {
+  N === !1 && /=(>|=|-|\+|\*)/.test(e) === !1 && /^(?:\s*((if)|(for)|(function))\s*\()/.test(e) === !1 && /(?:\s|;|\})((if)|(for)|(function\s*\w*))\s*\(/.test(e) === !1 && u === !1 && /return\s*\w*\s*(;|\})/.test(e) === !1 && (e === void 0 || /^(?:\s*#(?!(!\/)))/.test(e) || /\n\s*(\.|@)\w+(\(|(\s*:))/.test(e) && />\s*<\w/.test(e) === !1 || /^\s*:root\s*\{/.test(e) || /-{2}\w+\s*\{/.test(e) || /^\s*(?:body|button|hr|section|h[1-6]|p|strong|\*)\s+\{\s+/.test(e)) ? l() : (s = e.replace(/\[[a-zA-Z][\w-]*=['"]?[a-zA-Z][\w-]*['"]?\]/g, c).split(c), n = s.length, /^(\s*({{|{%|<))/.test(e) ? o() : N === !0 || /^(?:[\s\w-]*<)/.test(e) === !1 && /(?:>[\s\w-]*)$/.test(e) === !1 ? O() : (/^(?:\s*<\?xml)/.test(e) || /(?:>[\w\s:]*)?<(?:\/|!|#)?[\w\s:\-[]+/.test(e) || /^\s*</.test(e) && /<\/\w+(\w|\d)+>\s*$/.test(e)) && (/^(?:[\s\w]*<)/.test(e) || /(?:>[\s\w]*)$/.test(e)) || /^(?:\s*<s((cript)|(tyle)))/i.test(e) && /(?:<\/s((cript)|(tyle))>\s*)$/i.test(e) ? /^(?:[\s\w]*<)/.test(e) === !1 || /(?:>[\s\w]*)$/.test(e) === !1 ? O() : o() : {
     language: "unknown",
     lexer: "text"
   });
 }
 
 // src/rules/validate.ts
-function Vt(e, s, n) {
+function Jt(e, s, n) {
   if (e === "global")
     switch (s) {
       case "indentChar":
-        return wn(e, s, n);
+        return Ln(e, s, n);
       case "preset":
       case "language":
         return nt(e, s, n);
       case "crlf":
       case "correct":
       case "endNewline":
-        return xt(e, s, n);
+        return wt(e, s, n);
       case "indentLevel":
       case "indentSize":
       case "preserveLine":
       case "wrap":
       case "wrapFraction":
-        return Ci(e, s, n);
+        return Oi(e, s, n);
       default:
         return !1;
     }
@@ -7190,14 +7199,14 @@ function Vt(e, s, n) {
       case "indentAttribute":
       case "normalizeSpacing":
       case "preserveComment":
-        return xt(e, s, n);
+        return wt(e, s, n);
       case "forceArgument":
       case "forceFilter":
-        return Ci(e, s, n);
+        return Oi(e, s, n);
       case "ignoreTagList":
       case "dedentTagList":
       case "paddedTagList":
-        return dn(e, s, n);
+        return hn(e, s, n);
       case "lineBreakSeparator":
       case "delimiterPlacement":
       case "delimiterTrims":
@@ -7207,11 +7216,11 @@ function Vt(e, s, n) {
   else if (e === "markup")
     switch (s) {
       case "forceAttribute":
-        if (kt(n))
-          return Ci(e, s, n);
-        if (mt(n))
-          return xt(e, s, n);
-        throw Ee({
+        if (yt(n))
+          return Oi(e, s, n);
+        if (ht(n))
+          return wt(e, s, n);
+        throw je({
           message: `Invalid ${e} rule (${s}) type "${typeof n}" provided`,
           option: `${e} \u2192 ${s}`,
           provided: n,
@@ -7221,11 +7230,11 @@ function Vt(e, s, n) {
           ]
         });
       case "attributeSort":
-        if (mt(n))
-          return xt(e, s, n);
+        if (ht(n))
+          return wt(e, s, n);
         if (Ne(n))
-          return dn(e, s, n);
-        throw Ee({
+          return hn(e, s, n);
+        throw je({
           message: `Invalid ${e} rule (${s}) type "${typeof n}" provided`,
           option: `${e} \u2192 ${s}`,
           provided: n,
@@ -7247,7 +7256,7 @@ function Vt(e, s, n) {
       case "selfCloseSpace":
       case "selfCloseSVG":
       case "stripAttributeLines":
-        return xt(e, s, n);
+        return wt(e, s, n);
       case "attributeCasing":
       case "commentDelimiters":
       case "delimiterTerminus":
@@ -7263,7 +7272,7 @@ function Vt(e, s, n) {
       case "noLeadZero":
       case "sortSelectors":
       case "sortProperties":
-        return mt(n);
+        return ht(n);
       case "quoteConvert":
         return nt(e, s, n);
     }
@@ -7276,16 +7285,16 @@ function Vt(e, s, n) {
       case "braceAllman":
       case "bracePadding":
       case "objectSort":
-        return xt(e, s, n);
+        return wt(e, s, n);
     }
 }
-function dn(e, s, n) {
+function hn(e, s, n) {
   if (Ne(n)) {
     if (n.length === 0)
       return !0;
-    for (let u = 0, A = n.length; u < A; u++)
-      if (Nt(n[u]) === !1)
-        throw Ee({
+    for (let u = 0, N = n.length; u < N; u++)
+      if (Bt(n[u]) === !1)
+        throw je({
           message: `Invalid ${e} rule (${s}) type "${typeof n}" provided`,
           option: `${e} \u2192 ${s} (index: ${u})`,
           provided: n,
@@ -7295,7 +7304,7 @@ function dn(e, s, n) {
         });
     return !0;
   }
-  throw Ee({
+  throw je({
     message: `Invalid ${e} rule (${s}) type "${typeof n}" provided`,
     option: e === "global" ? s : `${e} \u2192 ${s}`,
     provided: n,
@@ -7304,10 +7313,10 @@ function dn(e, s, n) {
     ]
   });
 }
-function wn(e, s, n) {
+function Ln(e, s, n) {
   if (typeof n == "string")
     return !0;
-  throw Ee({
+  throw je({
     message: `Invalid ${e} rule (${s}) type "${typeof n}" provided`,
     option: e === "global" ? s : `${e} \u2192 ${s}`,
     provided: n,
@@ -7316,10 +7325,10 @@ function wn(e, s, n) {
     ]
   });
 }
-function Ci(e, s, n) {
-  if (kt(n) && isNaN(n) === !1)
+function Oi(e, s, n) {
+  if (yt(n) && isNaN(n) === !1)
     return !0;
-  throw Ee({
+  throw je({
     message: `Invalid ${e} rule (${s}) type "${typeof n}" provided`,
     option: e === "global" ? s : `${e} \u2192 ${s}`,
     provided: n,
@@ -7328,12 +7337,12 @@ function Ci(e, s, n) {
     ]
   });
 }
-function xt(e, s, n) {
-  if (kt(n))
+function wt(e, s, n) {
+  if (yt(n))
     return n !== 0;
-  if (mt(n))
+  if (ht(n))
     return !0;
-  throw Ee({
+  throw je({
     message: `Invalid ${e} rule (${s}) type "${typeof n}" provided`,
     option: e === "global" ? s : `${e} \u2192 ${s}`,
     provided: n,
@@ -7343,8 +7352,8 @@ function xt(e, s, n) {
   });
 }
 function nt(e, s, n) {
-  if (Nt(n) === !1)
-    throw Ee({
+  if (Bt(n) === !1)
+    throw je({
       message: `Invalid ${e} rule (${s}) type "${typeof n}" provided`,
       option: `${e} \u2192 ${s}`,
       provided: n,
@@ -7370,7 +7379,7 @@ function nt(e, s, n) {
       case "css":
         return !0;
     }
-    throw Ee({
+    throw je({
       message: `Unsupported "${s}" identifier provided`,
       option: e === `${s} (global)` ? s : `${e} \u2192 ${s}`,
       provided: n,
@@ -7401,7 +7410,7 @@ function nt(e, s, n) {
       case "prettier":
         return !0;
     }
-    throw Ee({
+    throw je({
       message: `Unsupported "${s}" provided`,
       option: e === `${s} (global)` ? s : `${e} \u2192 ${s}`,
       provided: n,
@@ -7421,7 +7430,7 @@ function nt(e, s, n) {
       case "lowercase-value":
         return !0;
       default:
-        throw Ee({
+        throw je({
           message: `Invalid "${s}" option provided`,
           option: `${e} \u2192 ${s}`,
           provided: n,
@@ -7442,7 +7451,7 @@ function nt(e, s, n) {
       case "force":
         return !0;
       default:
-        throw Ee({
+        throw je({
           message: `Invalid "${s}" option provided`,
           option: `${e} \u2192 ${s}`,
           provided: n,
@@ -7465,7 +7474,7 @@ function nt(e, s, n) {
       case "multiline":
         return !0;
       default:
-        throw Ee({
+        throw je({
           message: `Invalid "${s}" option provided`,
           option: `${e} \u2192 ${s}`,
           provided: n,
@@ -7490,7 +7499,7 @@ function nt(e, s, n) {
       case "force-multiline":
         return !0;
       default:
-        throw Ee({
+        throw je({
           message: `Invalid "${s}" option provided`,
           option: `${e} \u2192 ${s}`,
           provided: n,
@@ -7511,7 +7520,7 @@ function nt(e, s, n) {
       case "after":
         return !0;
       default:
-        throw Ee({
+        throw je({
           message: `Invalid "${s}" option provided`,
           option: `${e} \u2192 ${s}`,
           provided: n,
@@ -7529,7 +7538,7 @@ function nt(e, s, n) {
       case "adapt":
         return !0;
       default:
-        throw Ee({
+        throw je({
           message: `Invalid "${s}" option provided`,
           option: `${e} \u2192 ${s}`,
           provided: n,
@@ -7550,7 +7559,7 @@ function nt(e, s, n) {
       case "force-indent":
         return !0;
       default:
-        throw Ee({
+        throw je({
           message: `Invalid "${s}" option provided`,
           option: `${e} \u2192 ${s}`,
           provided: n,
@@ -7571,7 +7580,7 @@ function nt(e, s, n) {
       case "single":
         return !0;
       default:
-        throw Ee({
+        throw je({
           message: `Invalid "${s}" option provided`,
           option: `${e} \u2192 ${s}`,
           provided: n,
@@ -7589,7 +7598,7 @@ function nt(e, s, n) {
       case "inline":
         return !0;
       default:
-        throw Ee({
+        throw je({
           message: `Invalid "${s}" option provided`,
           option: `${e} \u2192 ${s}`,
           provided: n,
@@ -7607,7 +7616,7 @@ function nt(e, s, n) {
       case "never":
         return !0;
       default:
-        throw Ee({
+        throw je({
           message: `Invalid "${s}" option provided`,
           option: `${e} \u2192 ${s}`,
           provided: n,
@@ -7625,7 +7634,7 @@ function nt(e, s, n) {
       case "list":
         return !0;
       default:
-        throw Ee({
+        throw je({
           message: `Invalid "${s}" option provided`,
           option: `${e} \u2192 ${s}`,
           provided: n,
@@ -7639,7 +7648,7 @@ function nt(e, s, n) {
 }
 
 // src/rules/presets/recommended.ts
-var Jt = _e(Ge, {
+var Ut = _e(Ge, {
   preset: "recommended",
   language: "auto",
   preserveLine: 2,
@@ -7682,7 +7691,7 @@ var Jt = _e(Ge, {
 });
 
 // src/rules/presets/strict.ts
-var Ut = _e(Ge, {
+var Zt = _e(Ge, {
   preset: "strict",
   language: "auto",
   preserveLine: 1,
@@ -7739,7 +7748,7 @@ var Ut = _e(Ge, {
 });
 
 // src/rules/presets/warrington.ts
-var Zt = _e(Ge, {
+var Xt = _e(Ge, {
   preset: "warrington",
   language: "auto",
   preserveLine: 2,
@@ -7775,7 +7784,7 @@ var Zt = _e(Ge, {
 });
 
 // src/rules/presets/prettier.ts
-var Xt = _e(Ge, {
+var Yt = _e(Ge, {
   preset: "prettier",
   language: "auto",
   preserveLine: 1,
@@ -7814,7 +7823,7 @@ var Xt = _e(Ge, {
 });
 
 // src/rules/define.ts
-var Sn = [
+var Cn = [
   "correct",
   "crlf",
   "endNewline",
@@ -7824,14 +7833,14 @@ var Sn = [
   "preserveLine",
   "wrap",
   "wrapFraction"
-], Ln = [
+], On = [
   "liquid",
   "markup",
   "style",
   "json",
   "script"
 ];
-function Cn(e) {
+function vn(e) {
   if (e.preset === r.rules.preset)
     return e;
   if (nt("global", "preset", e.preset))
@@ -7839,54 +7848,54 @@ function Cn(e) {
       case "default":
         return _e(Ge, e);
       case "strict":
-        return _e(Ut, e);
-      case "recommended":
-        return _e(Jt, e);
-      case "warrington":
         return _e(Zt, e);
-      case "prettier":
+      case "recommended":
+        return _e(Ut, e);
+      case "warrington":
         return _e(Xt, e);
+      case "prettier":
+        return _e(Yt, e);
     }
   return e;
 }
-function mn(e, s) {
-  let n = Hi(e), u = n("preset") ? Cn(e) : e, A;
-  s.rules.length > 0 && (A = {}), n("language") && Vt("global", "language", u.language) && r.language !== u.language && (r.language = r.rules.language = u.language);
-  for (let a of Sn)
-    n(a) !== !1 && r.rules[a] !== u[a] && Vt("global", a, u[a]) && (A && (A[a] = { from: r.rules[a], to: u[a] }), a === "crlf" && (r.crlf = u[a] ? Oi : z), a === "wrap" && u[a] > 0 && (n("wrapFraction") === !1 || n("wrapFraction") && u.wrapFraction <= 0) && (u.wrapFraction = u[a] - u[a] / 4), r.rules[a] = u[a]);
-  for (let a of Ln)
-    if (n(a) !== !1 && r.rules[a] !== u[a]) {
-      A && (A[a] = Fe(null));
-      for (let C in u[a])
-        Vt(a, C, u[a][C]) && (A && (A[a][C] = Fe(null), A[a][C].old = r.rules[a][C], A[a][C].new = u[a][C]), r.rules[a][C] = u[a][C]);
+function gn(e, s) {
+  let n = zi(e), u = n("preset") ? vn(e) : e, N;
+  s.rules.length > 0 && (N = {}), n("language") && Jt("global", "language", u.language) && r.language !== u.language && (r.language = r.rules.language = u.language);
+  for (let l of Cn)
+    n(l) !== !1 && r.rules[l] !== u[l] && Jt("global", l, u[l]) && (N && (N[l] = { from: r.rules[l], to: u[l] }), l === "crlf" && (r.crlf = u[l] ? vi : H), l === "wrap" && u[l] > 0 && (n("wrapFraction") === !1 || n("wrapFraction") && u.wrapFraction <= 0) && (u.wrapFraction = u[l] - u[l] / 4), r.rules[l] = u[l]);
+  for (let l of On)
+    if (n(l) !== !1 && r.rules[l] !== u[l]) {
+      N && (N[l] = Fe(null));
+      for (let O in u[l])
+        Jt(l, O, u[l][O]) && (N && (N[l][O] = Fe(null), N[l][O].old = r.rules[l][O], N[l][O].new = u[l][O]), r.rules[l][O] = u[l][O]);
     }
   if (s.rules.length > 0)
-    for (let a of s.rules)
-      a(A, r.rules);
+    for (let l of s.rules)
+      l(N, r.rules);
 }
 
 // src/cli/utils.ts
-function Pt(e, ...s) {
+function Tt(e, ...s) {
   let n = Array.isArray(e);
-  return function u(A, a, C) {
-    let o = typeof C;
-    if (C && o === "object")
-      if (Array.isArray(C))
-        for (let k of C)
-          a = u(A, a, k);
+  return function u(N, l, O) {
+    let o = typeof O;
+    if (O && o === "object")
+      if (Array.isArray(O))
+        for (let b of O)
+          l = u(N, l, b);
       else
-        for (let k in C) {
-          let f = C[k];
-          typeof f == "function" ? a[k] = f(a[k], Pt) : f === void 0 ? A ? a.splice(k, 1) : delete a[k] : f === null || typeof f != "object" || Array.isArray(f) ? a[k] = f : typeof a[k] == "object" ? a[k] = f === a[k] ? f : Pt(a[k], f) : a[k] = u(!1, {}, f);
+        for (let b in O) {
+          let f = O[b];
+          typeof f == "function" ? l[b] = f(l[b], Tt) : f === void 0 ? N ? l.splice(b, 1) : delete l[b] : f === null || typeof f != "object" || Array.isArray(f) ? l[b] = f : typeof l[b] == "object" ? l[b] = f === l[b] ? f : Tt(l[b], f) : l[b] = u(!1, {}, f);
         }
     else
-      o === "function" && (a = C(a, Pt));
-    return a;
+      o === "function" && (l = O(l, Tt));
+    return l;
   }(n, n ? e.slice() : Object.assign({}, e), s);
 }
 
 // src/esthetic.ts
-var hn = new class {
+var bn = new class {
   constructor() {
     this.language = "auto";
     this.lexer = "auto";
@@ -7897,40 +7906,40 @@ var hn = new class {
       rules: [],
       parse: []
     };
-    Re.env === "node" && (Re.cwd = process.cwd()), Re.env === "browser" && ("esthetic" in window || Mi(window, "esthetic", {
+    Re.env === "node" && (Re.cwd = process.cwd()), Re.env === "browser" && ("esthetic" in window || Ii(window, "esthetic", {
       configurable: !0,
       get() {
-        return hn;
+        return bn;
       }
     })), Di(this.preset, {
       default: { get() {
         return Ge;
       } },
       warrington: { get() {
-        return Zt;
-      } },
-      prettier: { get() {
         return Xt;
       } },
+      prettier: { get() {
+        return Yt;
+      } },
       strict: { get() {
-        return Ut;
+        return Zt;
       } },
       recommended: { get() {
-        return Jt;
+        return Ut;
       } }
     });
   }
   preset(s, n) {
-    return Pt(this.preset[s], n);
+    return Tt(this.preset[s], n);
   }
   get table() {
     return r.data;
   }
   get definitions() {
-    return bi;
+    return ki;
   }
   get detect() {
-    return pn;
+    return mn;
   }
   get error() {
     return r.error;
@@ -7939,7 +7948,7 @@ var hn = new class {
     return r.numbers;
   }
   grammar(s) {
-    return s ? (we.extend(s), this) : we.extend();
+    return s ? (Le.extend(s), this) : Le.extend();
   }
   settings(s) {
     if (!s)
@@ -7955,11 +7964,11 @@ var hn = new class {
     r.hooks[s] = [n];
   }
   format(s, n) {
-    if (r.source = s, tt(n) && "language" in n && this.language !== n.language && nt("global", "language", n.language) && (this.language = r.language = r.rules.language = n.language, this.lexer = r.lexer = Ie(r.language)), this.rules(n), this.lexer === "auto") {
+    if (r.source = s, tt(n) && "language" in n && this.language !== n.language && nt("global", "language", n.language) && (this.language = r.language = r.rules.language = n.language, this.lexer = r.lexer = De(r.language)), this.rules(n), this.lexer === "auto") {
       let o = this.detect(r.source);
-      this.language = r.language = r.rules.language = o.language, this.lexer = r.lexer = Ie(o.language);
+      this.language = r.language = r.rules.language = o.language, this.lexer = r.lexer = De(o.language);
     }
-    let u = St(this.language), A = Re.reportStats ? ri(this.language, this.lexer) : null, a = r.document(u);
+    let u = Lt(this.language), N = Re.reportStats ? oi(this.language, this.lexer) : null, l = r.document(u);
     if (r.error !== null)
       if (this.events.error.length > 0) {
         for (let o of this.events.error)
@@ -7970,7 +7979,7 @@ var hn = new class {
           throw new Error(r.error);
         return s;
       }
-    let C = A === null ? null : this.stats = A(a.length);
+    let O = N === null ? null : this.stats = N(l.length);
     if (this.events.format.length > 0) {
       for (let o of this.events.format)
         if (o.call({ get data() {
@@ -7980,7 +7989,7 @@ var hn = new class {
             return s;
           },
           get stats() {
-            return C;
+            return O;
           },
           get rules() {
             return r.rules;
@@ -7988,14 +7997,14 @@ var hn = new class {
         }) === !1)
           return s;
     }
-    return a;
+    return l;
   }
   parse(s, n) {
-    if (r.source = s, tt(n) && "language" in n && this.language !== n.language && nt("global", "language", n.language) && (this.language = r.language = r.rules.language = n.language, this.lexer = r.lexer = Ie(r.language)), this.rules(n), this.lexer === "auto") {
+    if (r.source = s, tt(n) && "language" in n && this.language !== n.language && nt("global", "language", n.language) && (this.language = r.language = r.rules.language = n.language, this.lexer = r.lexer = De(r.language)), this.rules(n), this.lexer === "auto") {
       let o = this.detect(r.source);
-      this.language = r.language = r.rules.language = o.language, this.lexer = r.lexer = Ie(o.language);
+      this.language = r.language = r.rules.language = o.language, this.lexer = r.lexer = De(o.language);
     }
-    let u = St(this.language), A = Re.reportStats ? ri(this.language, this.lexer) : null, a = r.document(u, 1);
+    let u = Lt(this.language), N = Re.reportStats ? oi(this.language, this.lexer) : null, l = r.document(u, 1);
     if (r.error !== null)
       if (this.events.error.length > 0) {
         for (let o of this.events.error)
@@ -8006,7 +8015,7 @@ var hn = new class {
           throw r.error;
         return [];
       }
-    let C = A === null ? null : this.stats = A(r.count);
+    let O = N === null ? null : this.stats = N(r.count);
     if (this.events.parse.length > 0) {
       for (let o of this.events.parse)
         if (o({
@@ -8014,7 +8023,7 @@ var hn = new class {
             return r.data;
           },
           get stats() {
-            return C;
+            return O;
           },
           get rules() {
             return r.rules;
@@ -8022,32 +8031,32 @@ var hn = new class {
         }) === !1)
           return s;
     }
-    return a;
+    return l;
   }
   rules(s) {
-    return Ke(s) ? r.rules : (mn(s, this.events), this.language = r.language, this.lexer = r.lexer = Ie(r.language), r.rules);
+    return Ke(s) ? r.rules : (gn(s, this.events), this.language = r.language, this.lexer = r.lexer = De(r.language), r.rules);
   }
   liquid(s, n) {
-    return this.language = r.language = r.rules.language = "liquid", this.lexer = r.lexer = Ie(r.language), this.format(s, n);
+    return this.language = r.language = r.rules.language = "liquid", this.lexer = r.lexer = De(r.language), this.format(s, n);
   }
   html(s, n) {
-    return this.language = r.language = r.rules.language = "html", this.lexer = r.lexer = Ie(r.language), this.format(s, n);
+    return this.language = r.language = r.rules.language = "html", this.lexer = r.lexer = De(r.language), this.format(s, n);
   }
   xml(s, n) {
-    return this.language = r.language = r.rules.language = "xml", this.lexer = r.lexer = Ie(r.language), this.format(s, n);
+    return this.language = r.language = r.rules.language = "xml", this.lexer = r.lexer = De(r.language), this.format(s, n);
   }
   css(s, n) {
-    return this.language = r.language = r.rules.language = "css", this.lexer = r.lexer = Ie(r.language), this.format(s, n);
+    return this.language = r.language = r.rules.language = "css", this.lexer = r.lexer = De(r.language), this.format(s, n);
   }
   json(s, n) {
-    return this.language = r.language = r.rules.language = "json", this.lexer = r.lexer = Ie(r.language), this.format(s, n);
+    return this.language = r.language = r.rules.language = "json", this.lexer = r.lexer = De(r.language), this.format(s, n);
   }
   js(s, n) {
-    return this.language = r.language = r.rules.language = "javascript", this.lexer = r.lexer = Ie(r.language), this.format(s, n);
+    return this.language = r.language = r.rules.language = "javascript", this.lexer = r.lexer = De(r.language), this.format(s, n);
   }
   ts(s, n) {
-    return this.language = r.language = r.rules.language = "typescript", this.lexer = r.lexer = Ie(r.language), this.format(s, n);
+    return this.language = r.language = r.rules.language = "typescript", this.lexer = r.lexer = De(r.language), this.format(s, n);
   }
 }();
 
-export { hn as default };
+export { bn as default };

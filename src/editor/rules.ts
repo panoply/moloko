@@ -1,16 +1,20 @@
 import type { IAttrs } from 'types/model';
 import type { editor } from 'monaco-editor';
 import type { ClosureComponent } from 'mithril';
+import type { Style } from 'types/moloko';
 import { monaco } from '../monaco';
 import { esthetic, m } from 'modules';
 import { encode } from './hash';
+import { assign } from './utils';
 
-export function EstheticStatic (dom: HTMLElement, attrs: IAttrs) {
+export function RulesStatic (dom: HTMLElement, attrs: IAttrs) {
 
-  const options = Object.assign<editor.IEditorOptions, editor.IEditorOverrideServices>({}, attrs.config.monaco);
+  const options = assign<editor.IEditorOptions, editor.IEditorOverrideServices>(
+    {},
+    attrs.config.monaco
+  );
 
-  options.model = attrs.esthetic.model;
-  options.automaticLayout = false;
+  options.model = attrs.rules.model;
 
   monaco.languages.registerDocumentRangeFormattingEditProvider(
     {
@@ -35,16 +39,14 @@ export function EstheticStatic (dom: HTMLElement, attrs: IAttrs) {
   return {
     mount: () => {
 
-      attrs.esthetic.editor = monaco.editor.create(dom as HTMLElement, options);
-      attrs.esthetic.editor.updateOptions({
-        theme: 'potion-light'
-      });
+      attrs.rules.editor = monaco.editor.create(dom as HTMLElement, options);
+      attrs.rules.editor.updateOptions({ theme: 'potion-light' });
 
-      attrs.esthetic.editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => {
+      attrs.rules.editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => {
 
-        esthetic.rules(JSON.parse(attrs.esthetic.model.getValue()));
+        esthetic.rules(JSON.parse(attrs.rules.model.getValue()));
 
-        attrs.esthetic.editor.trigger(
+        attrs.rules.editor.trigger(
           'editor',
           'editor.action.formatDocument',
           null
@@ -61,26 +63,29 @@ export function EstheticStatic (dom: HTMLElement, attrs: IAttrs) {
     },
     unmount: () => {
 
-      attrs.esthetic.editor.dispose();
+      attrs.rules.editor.dispose();
 
     }
   };
 
 }
 
-export const Esthetic: ClosureComponent<IAttrs> = (
+export const Rules: ClosureComponent<IAttrs> = (
   {
     attrs
   }
 ) => {
 
-  const options = Object.assign<editor.IEditorOptions, editor.IEditorOverrideServices>({}, attrs.config.monaco);
-  options.model = attrs.esthetic.model;
-  options.automaticLayout = false;
+  const options = assign<editor.IEditorOptions, editor.IEditorOverrideServices>(
+    {},
+    attrs.config.monaco
+  );
+
+  options.model = attrs.rules.model;
 
   monaco.languages.registerDocumentRangeFormattingEditProvider(
     {
-      language: attrs.esthetic.model.getLanguageId()
+      language: attrs.rules.model.getLanguageId()
     }
     ,
     {
@@ -100,14 +105,14 @@ export const Esthetic: ClosureComponent<IAttrs> = (
 
   const addCommand = () => {
 
-    attrs.esthetic.editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => {
+    attrs.rules.editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => {
 
-      attrs.esthetic.rules = JSON.parse(attrs.esthetic.model.getValue());
-      esthetic.rules(attrs.esthetic.rules);
+      attrs.rules.esthetic = JSON.parse(attrs.rules.model.getValue());
+      esthetic.rules(attrs.rules.esthetic);
 
       encode(attrs);
 
-      attrs.esthetic.editor.trigger(
+      attrs.rules.editor.trigger(
         'editor',
         'editor.action.formatDocument',
         null
@@ -124,20 +129,26 @@ export const Esthetic: ClosureComponent<IAttrs> = (
   };
 
   return {
-    oncreate: (
-      {
-        dom
+    view: () => m(
+      'moloko-rules'
+      , {
+        style: <Style>{ flex: 0 },
+        oncreate: (
+          {
+            dom
+          }
+        ) => {
+
+          attrs.rules.node = dom as HTMLElement;
+          attrs.rules.editor = monaco.editor.create(dom as HTMLElement, options);
+          attrs.rules.editor.onDidFocusEditorText(() => addCommand());
+
+          const { style } = attrs.rules.editor.getDomNode();
+          style.setProperty('--vscode-editor-background', '#121418');
+          style.setProperty('--vscode-editorGutter-background', '#121418');
+
+        }
       }
-    ) => {
-
-      attrs.esthetic.editor = monaco.editor.create(dom as HTMLElement, options);
-      attrs.esthetic.editor.onDidFocusEditorText(() => addCommand());
-
-      const { style } = attrs.esthetic.editor.getDomNode();
-      style.setProperty('--vscode-editor-background', '#121418');
-      style.setProperty('--vscode-editorGutter-background', '#121418');
-
-    },
-    view: () => m('div', { style: { height: '100%' } })
+    )
   };
 };

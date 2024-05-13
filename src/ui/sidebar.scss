@@ -1,0 +1,55 @@
+moloko-sidebar {
+  z-index: 400;
+  display: block;
+  min-width: 75px;
+  max-width: 75px;
+  height: 100%;
+  overflow-x: visible;
+  background-color: var(--moloko-background-sidebar);
+  border-right: var(--moloko-border);
+
+  button.moloko-language,
+  button.moloko-action {
+    border: none;
+    cursor: pointer;
+  }
+
+  button.moloko-language {
+    display: flex;
+    justify-content: center;
+    padding: 20px 25px;
+    background-color: var(--moloko-background-editor);
+    transition: background var(--moloko-hover-transition);
+
+    svg {
+      width: 20px;
+      height: 20px;
+      margin-left: -2px;
+      overflow: visible;
+    }
+  }
+
+  button.moloko-action {
+    padding: 30px 25px;
+    color: #fafafa;
+    background: transparent;
+
+    &.disable {
+      color: var(--moloko-button-disable);
+
+      &:hover {
+        color: var(--moloko-button-disable);
+        cursor: not-allowed;
+      }
+    }
+
+    &.active {
+      color: var(--moloko-button-hover);
+    }
+
+    &:hover {
+      color: var(--moloko-button-hover);
+      transition: color var(--moloko-hover-transition);
+    }
+  }
+}

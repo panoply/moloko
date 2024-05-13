@@ -1,10 +1,53 @@
-.ml-btn {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
+moloko-editor {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: var(--moloko-height);
+  min-height: 100%;
+  background-color: var(--moloko-background-editor);
+  -webkit-font-smoothing: antialiased;
+}
 
-  &:hover {
-    transition: color 0.15s linear;
+moloko-language,
+moloko-rules,
+moloko-input,
+moloko-parse-table,
+moloko-preview {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  overflow: auto;
+  transition: flex var(--moloko-toggle-transition);
+}
+
+moloko-language,
+moloko-rules,
+moloko-parse-table {
+  flex: 0 1 0%;
+}
+
+
+// RULES PANE
+moloko-rules {
+  max-width: 650px;
+
+  @media screen and (min-width: 1700px) { max-width: 750px; }
+
+  > * {
+    min-width: 650px;
+    margin-right: auto;
+
+    @media screen and (min-width: 1700px) { min-width: 750px; }
   }
 }
 
+
+moloko-input,
+moloko-preview {
+
+  .scrollbar{
+    &.horizontal {
+      height: 2px !important;
+    }
+  }
+}

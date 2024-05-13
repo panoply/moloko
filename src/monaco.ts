@@ -4,7 +4,7 @@ import { schema } from 'monaco/schema';
 import type { LanguageName, Rules } from 'esthetic';
 import { SAMPLE } from 'monaco/sample';
 import join from 'url-join';
-import { loadExternalCSS } from 'utils/helpers';
+import { loadExternalCSS } from './editor/utils';
 
 /**
  * Monaco Editor

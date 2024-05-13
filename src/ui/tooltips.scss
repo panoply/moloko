@@ -1,60 +1,26 @@
-$tooltip-bg: #000;
-$tooltip-font-family: system-ui, sans-serif;
-$tooltip-font-style: normal;
-$tooltip-font-size: 0.5rem;
-$tooltip-font-color: #fafafa;
-$tooltip-padding-y: 0.3rem;
-$tooltip-padding-x: 0.6rem;
-$tooltip-arrow-size: 9px;
-$tooltip-radius: 0;
-$tooltip-border-width: 0.03rem;
-$tooltip-animation: true;
-$tooltip-use-outline: false;
-$tooltip-arrow-directions: (
-  bottom: top,
-  top: bottom,
-  left: right,
-  right: left
-);
-
 @mixin arrow($direction) {
   width: 0;
   height: 0;
 
-  @if not map-has-key($tooltip-arrow-directions, $direction) {
-    $keys: map.keys($tooltip-arrow-directions);
+  @if not map-has-key($moloko-tooltip-arrow-directions, $direction) {
+    $keys: map.keys($moloko-tooltip-arrow-directions);
 
     @error "[tooltip] The $direction parameter must be one of: `#{$keys}, `#{$direction}` was given.";
-  }
-
-
-  @if $tooltip-use-outline {
-    border: $tooltip-arrow-size solid transparent;
-    border-#{map-get($tooltip-arrow-directions, $direction)}-color: $tooltip-bg;
-  } @else {
-    border: $tooltip-arrow-size solid transparent;
-    border-#{map-get($tooltip-arrow-directions, $direction)}-color: $tooltip-bg;
   }
 }
 
 @mixin base-effects() {
   opacity: 0;
+  transition: opacity 0.12s ease-out 0.12s, transform 0.12s ease-out 0.12s;
   pointer-events: none;
-
-  @if $tooltip-animation {
-    transition: opacity 0.12s ease-out 0.12s,
-      transform 0.12s ease-out 0.12s;
-  } @else {
-    transition: none;
-  }
 }
 
 @mixin normalized-text() {
   font-weight: 400;
-  font-size: $tooltip-font-size;
-  font-family: $tooltip-font-family;
+  font-size: var(--moloko-tooltip-font-size);
+  font-family: var(--moloko-tooltip-font-family);
   font-style: normal;
-  font-style: $tooltip-font-style;
+  font-style: var(--moloko-tooltip-font-style);
   text-indent: 0;
   text-shadow: none;
   -webkit-font-smoothing: antialiased;
@@ -77,24 +43,17 @@ button[aria-label] {
     cursor: pointer; // Fixing iOS Safari event issue. More info at: https://goo.gl/w8JF4W
 
     &::after {
-      @include base-effects;
-      @include normalized-text;
-
-      @if $tooltip-use-outline {
-        color: $tooltip-font-color;
-        background: inherit;
-        border: $tooltip-border-width solid $tooltip-bg;
-      } @else {
-        color: $tooltip-font-color;
-        background: $tooltip-bg;
-      }
-
       position: absolute;
       z-index: 99999;
-      padding: $tooltip-padding-y $tooltip-padding-x;
+      padding: var(--moloko-tooltip-padding-y) var(--moloko-tooltip-padding-x);
+      color: var(--moloko-tooltip-font-color);
       white-space: nowrap;
-      border-radius: $tooltip-radius;
+      background: var(--moloko-tooltip-bg);
+      border-radius: var(--moloko-tooltip-radius);
       content: attr(aria-label);
+
+      @include base-effects;
+      @include normalized-text;
     }
 
     &::before {
@@ -164,7 +123,7 @@ button[aria-label] {
       }
 
       &::after {
-        margin-bottom: $tooltip-arrow-size + 5px;
+        margin-bottom: var(--moloko-tooltip-arrow-size) + 5px;
       }
     }
 
@@ -184,7 +143,7 @@ button[aria-label] {
       }
 
       &::after {
-        margin-top: $tooltip-arrow-size + 5px;
+        margin-top: var(--moloko-tooltip-arrow-size) + 5px;
       }
 
       &::before {
@@ -219,7 +178,7 @@ button[aria-label] {
       }
 
       &::after {
-        margin-right: $tooltip-arrow-size + 5px;
+        margin-right: var(--moloko-tooltip-arrow-size) + 5px;
       }
 
       &::before {
@@ -236,7 +195,7 @@ button[aria-label] {
       }
 
       &::after {
-        margin-left: $tooltip-arrow-size + 5px;
+        margin-left: var(--moloko-tooltip-arrow-size) + 5px;
       }
 
       &::before {

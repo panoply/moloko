@@ -1,18 +1,16 @@
-import type { IConfig, Style } from 'types';
-import * as hashed from 'editor/hash';
-import { model } from 'src/model';
-import { Sidebar } from './components/sidebar';
-import { Input } from 'editor/input';
+import type { IConfig } from 'types';
+import * as hashed from './editor/hash';
+import { model } from './model';
+import { Sidebar } from './editor/sidebar';
+import { Input } from './editor/input';
 import { getMonacoModule, getInputModel, getRulesModel } from './monaco';
-import { Preview } from 'editor/preview';
+import { Preview } from './editor/preview';
 import { IAttrs } from 'types/model';
-import { Esthetic, EstheticStatic } from 'editor/rules';
-import { Language } from './components/language';
-import { Mode, State } from 'utils/enums';
+import { Rules, RulesStatic } from './editor/rules';
+import { Language } from './editor/language';
 import { load, esthetic, m } from 'modules';
-import { ParseTable } from 'editor/table';
-import { Splash } from './components/splash';
-import { delay } from 'utils/helpers';
+import { delay } from './editor/utils';
+import { ParseTable } from './editor/table';
 
 /**
  * Quickly checks if the editor session is
@@ -35,16 +33,16 @@ function setMolokoOptions (attrs: IAttrs) {
 
     attrs.language = store.language;
     attrs.input.model = getInputModel(attrs.language.current, store.input.value);
-    attrs.preview.model = getInputModel(attrs.language.current, store.input.value);
     attrs.input.width = store.input.width;
+    attrs.preview.model = getInputModel(attrs.language.current, store.input.value);
     attrs.preview.state = store.preview.state;
     attrs.preview.mode = store.preview.mode;
     attrs.preview.width = store.preview.width;
-    attrs.esthetic.state = store.esthetic.state;
-    attrs.esthetic.width = store.esthetic.width;
-    attrs.esthetic.model = getRulesModel(attrs.language.current, store.esthetic.rules);
+    attrs.rules.state = store.rules.state;
+    attrs.rules.width = store.rules.width;
+    attrs.rules.model = getRulesModel(attrs.language.current, store.rules.esthetic);
 
-    esthetic.rules(store.esthetic.rules);
+    esthetic.rules(store.rules.esthetic);
 
   } else {
 
@@ -53,7 +51,7 @@ function setMolokoOptions (attrs: IAttrs) {
     if (attrs.config.preview.enable) attrs.preview.model = getInputModel(attrs.language.current);
 
     attrs.input.model = getInputModel(attrs.language.current);
-    attrs.esthetic.model = getRulesModel(attrs.language.current, attrs.esthetic.rules);
+    attrs.rules.model = getRulesModel(attrs.language.current, attrs.rules.esthetic);
 
     if (attrs.config.hash) {
       attrs.hash = hashed.encode(attrs);
@@ -79,7 +77,7 @@ export async function loader (options: IConfig = {}): Promise<{
   try {
     await getMonacoModule(attrs.path);
   } catch (e) {
-    throw new Error('Failed to load Monaco', e);
+    throw new Error('Failed to load Monaco Editor Module', e);
   }
 
   const splash = setMolokoOptions(attrs);
@@ -91,7 +89,7 @@ export async function loader (options: IConfig = {}): Promise<{
       return attrs;
     },
     get esthetic () {
-      return EstheticStatic;
+      return RulesStatic;
     }
   };
 
@@ -100,15 +98,13 @@ export async function loader (options: IConfig = {}): Promise<{
 /**
  * Moloko Initialize
  */
-export async function render (element: HTMLElement, options: IConfig = {}) {
+export async function render (options: IConfig = {}) {
 
   const { attrs } = await loader(options);
 
   return {
-    get attrs () {
-      return attrs;
-    },
-    Esthetic,
+    get attrs () { return attrs; },
+    Rules,
     Preview
   };
 
@@ -127,47 +123,40 @@ export async function mount (element: HTMLElement, options: IConfig = {}) {
 
   const { attrs } = await loader(options);
 
-  const toggles = (prop: string) => {
+  m.mount(
+    element
+    , {
+      oncreate: () => {
 
-    return attrs[prop].state === State.Opened
-      ? '.open'
-      : attrs[prop].state === State.Toggle
-        ? '.close'
-        : '';
-  };
+        window.addEventListener('resize', () => {
 
-  m.mount(element, {
-    view: () => m(
-      'section.moloko-editor'
-      , { style: <Style>{ top: `${attrs.config.offset}px` } }
-      , [
-        attrs.config.sidebar.enable ? m(
-          'aside.moloko-sidebar'
-          , m(Sidebar, attrs)
-        ) : null
-        ,
-        m(
-          'aside.moloko-language' + toggles('language')
-          , m(Language, attrs)
-        )
-        ,
-        m(
-          'section.moloko-esthetic' + toggles('esthetic')
-          , m(Esthetic, attrs)
-        )
-        ,
-        m(
-          'section.moloko-input'
-          , m(Input, attrs)
-        )
-        ,
-        attrs.config.preview.enable && attrs.preview.state === State.Opened ? m(
-          `section.moloko-preview[aria-label=${attrs.preview.mode === Mode.Formatted ? 'preview' : ''}]`
-          , attrs.preview.mode === Mode.Formatted ? m(Preview, attrs) : m(ParseTable, attrs)
-        ) : null
-      ]
-    )
-  });
+          // make editor as small as possible
+          attrs.input.editor.layout({ width: 0, height: 0 });
+          attrs.preview.editor.layout({ width: 0, height: 0 });
+          attrs.rules.editor.layout({ width: 0, height: 0 });
+
+          window.requestAnimationFrame(() => {
+            const ri = attrs.input.node.getBoundingClientRect();
+            const rp = attrs.preview.node.getBoundingClientRect();
+            const rr = attrs.rules.node.getBoundingClientRect();
+            attrs.input.editor.layout({ width: ri.width, height: ri.height });
+            attrs.preview.editor.layout({ width: rp.width, height: rp.height });
+            attrs.rules.editor.layout({ width: rr.width, height: rr.height });
+          });
+        });
+
+      },
+      view: () => m(
+        'moloko-editor'
+        , m(Sidebar, attrs)
+        , m(Language, attrs)
+        , m(Rules, attrs)
+        , m(Input, attrs)
+        , m(Preview, attrs)
+        , m(ParseTable, attrs)
+      )
+    }
+  );
 
   return attrs;
 

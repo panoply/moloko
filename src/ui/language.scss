@@ -1,13 +1,37 @@
-.moloko-language {
-  width: 200px;
-  height: 100%;
+moloko-language {
+  z-index: 300;
+  flex-flow: column;
+  max-width: 220px;
+  overflow-x: hidden;
   overflow-y: scroll;
-  border-right: 0.01rem solid $moloko-border-color;
-  transition: left 0.15s linear;
-  will-change: left;
+  background-color: #12161d;
+  border-right: var(--moloko-border);
+  transition: flex 400ms;
 
-  .language-label {
-    padding: 30px 0;
+  > * {
+    min-width: 220px;
+    margin-right: auto;
+    overflow: hidden;
+  }
+
+
+  &::-webkit-scrollbar-track { background-color: $moloko-background-editor; }
+  &::-webkit-scrollbar-thumb { background-color: #384355; }
+  &::-webkit-scrollbar-thumb:horizontal { display: none; }
+
+  &::-webkit-scrollbar {
+    width: 2px;
+    background-color: #384355;
+  }
+
+  &::-webkit-scrollbar:horizontal {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  h1.language-label {
+    margin: 30px 0;
     color: #384355;
     font-weight: 600;
     font-size: 0.8rem;
@@ -17,7 +41,7 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  .btn-language {
+  button.language {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
@@ -29,7 +53,7 @@
     border: 0;
     border-left: 1.5px solid transparent;
 
-    &.current {
+    &.active {
       color: var(--moloko-accent);
       border-left: 1.5px solid var(--moloko-accent);
 

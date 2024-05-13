@@ -19,10 +19,10 @@ export function encode (attrs: IAttrs) {
       state: attrs.preview.state,
       width: attrs.preview.width
     },
-    esthetic: {
-      rules: attrs.esthetic.rules,
-      state: attrs.esthetic.state,
-      width: attrs.esthetic.width
+    rules: {
+      esthetic: attrs.rules.esthetic,
+      state: attrs.rules.state,
+      width: attrs.rules.width
     }
   }));
 

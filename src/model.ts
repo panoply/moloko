@@ -1,6 +1,6 @@
 import type { IConfig } from 'types';
 import type { IAttrs } from 'types/model';
-import { State, Mode } from 'utils/enums';
+import { State, Mode } from './editor/enums';
 import merge from 'mergerino';
 import join from 'url-join';
 
@@ -19,7 +19,7 @@ export const model = new class Model implements IAttrs {
     splash: true,
     tabs: false,
     monaco: {
-      automaticLayout: false,
+      automaticLayout: true,
       useShadowDOM: false,
       multiCursorPaste: 'full',
       experimentalWhitespaceRendering: 'off',
@@ -34,7 +34,7 @@ export const model = new class Model implements IAttrs {
       },
       padding: {
         top: 25,
-        bottom: 200
+        bottom: 100
       },
       renderWhitespace: 'boundary',
       formatOnPaste: false,
@@ -57,9 +57,9 @@ export const model = new class Model implements IAttrs {
     preview: {
       enable: true
     },
-    esthetic: {
+    rules: {
       enable: true,
-      rules: {
+      esthetic: {
         crlf: false,
         correct: false,
         preset: 'default',
@@ -160,6 +160,20 @@ export const model = new class Model implements IAttrs {
     hash: true,
     input: '',
     language: 'liquid',
+    samples: {
+      plaintext: true,
+      html: true,
+      xml: true,
+      liquid: true,
+      css: true,
+      json: true,
+      scss: true,
+      javascript: true,
+      typescript: true,
+      jsx: true,
+      tsx: true,
+      yaml: true
+    },
     sidebar: {
       enable: true,
       width: 75,
@@ -184,9 +198,9 @@ export const model = new class Model implements IAttrs {
           icon: 'link',
           tooltip: 'Copy Link'
         },
-        github: {
+        ghissue: {
           active: false,
-          icon: 'github',
+          icon: 'ghissue',
           tooltip: 'Submit Issue to Github'
         }
       }
@@ -225,14 +239,30 @@ export const model = new class Model implements IAttrs {
   public open = null;
   public path = join(Model.config.resolve.origin, Model.config.resolve.path);
 
+  public documents = {
+    plaintext: { sample: '', input: '' },
+    html: { sample: '', input: '' },
+    xml: { sample: '', input: '' },
+    liquid: { sample: '', input: '' },
+    css: { sample: '', input: '' },
+    json: { sample: '', input: '' },
+    scss: { sample: '', input: '' },
+    javascript: { sample: '', input: '' },
+    typescript: { sample: '', input: '' },
+    jsx: { sample: '', input: '' },
+    tsx: { sample: '', input: '' },
+    yaml: { sample: '', input: '' }
+  };
+
   public language = {
     state: State.Hidden,
+    node: null,
     current: 'auto',
     detect: true
   };
 
   public input = {
-    width: -1,
+    width: 1,
     editor: null,
     model: null,
     node: null,
@@ -240,7 +270,7 @@ export const model = new class Model implements IAttrs {
   };
 
   public preview = {
-    width: -1,
+    width: 1,
     editor: null,
     mode: Mode.Formatted,
     state: State.Opened,
@@ -248,12 +278,18 @@ export const model = new class Model implements IAttrs {
     node: null
   };
 
-  public esthetic = {
-    width: -1,
+  public table = {
+    width: 0,
+    state: State.Hidden,
+    node: null
+  };
+
+  public rules = {
+    width: 0,
     editor: null,
     model: null,
     state: State.Hidden,
-    rules: Model.config.esthetic.rules,
+    esthetic: Model.config.rules.esthetic,
     node: null
   };
 
@@ -264,7 +300,7 @@ export const model = new class Model implements IAttrs {
     this.path = join(this.config.resolve.origin, this.config.resolve.path);
     this.language.current = this.config.language || 'auto';
     this.language.detect = this.config.detect;
-    this.esthetic.rules = this.config.esthetic.rules;
+    this.rules.esthetic = this.config.rules.esthetic;
 
     return this;
 

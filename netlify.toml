@@ -1,6 +1,6 @@
-# REQUEST HEADERS
-# ---------------------------
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Access-Control-Allow-Origin = "*"
+[dev]
+  command = "pnpm dev"
+  publish = "public"
+
+[functions]
+  directory = "public/functions/"
